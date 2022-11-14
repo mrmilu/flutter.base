@@ -4,7 +4,6 @@ import 'package:flutter_base/ui/components/buttons/icon_button_tertiary.dart';
 import 'package:flutter_base/ui/components/column_scroll_view.dart';
 import 'package:flutter_base/ui/components/text/high_text.dart';
 import 'package:flutter_base/ui/styles/colors.dart';
-import 'package:flutter_base/ui/styles/moggie_icons.dart';
 import 'package:flutter_base/ui/styles/spacing.dart';
 import 'package:flutter_base/ui/utils/media_query.dart';
 
@@ -75,7 +74,7 @@ class FlutterBaseDialog extends StatelessWidget {
                               SizedBox(
                                 width: 24,
                                 child: IconButtonTertiary(
-                                  icon: MoggieIcons.cross_line,
+                                  icon: Icons.close,
                                   foregroundColor:
                                       MoggieColors.specificContentLow,
                                   onPressed: () {

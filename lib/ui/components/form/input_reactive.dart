@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base/ui/components/flutter_base_icon.dart';
 import 'package:flutter_base/ui/styles/colors.dart';
-import 'package:flutter_base/ui/styles/moggie_icons.dart';
 import 'package:flutter_base/ui/utils/scroll.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
@@ -82,7 +81,7 @@ class InputReactive<T> extends ReactiveTextField {
         mainAxisAlignment: MainAxisAlignment.start,
         children: const [
           FlutterBaseIcon(
-            icon: MoggieIcons.search_line,
+            icon: Icons.search,
             color: MoggieColors.specificContentHigh,
           ),
         ],

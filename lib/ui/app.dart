@@ -75,7 +75,6 @@ class _AppState extends ConsumerState<App> with TickerProviderStateMixin {
   Future<void> _initialize() async {
     bool hasError = false;
     _controller.repeat();
-    _precacheImages();
     GetIt.I.get<DeepLinkController>()();
     FlutterNativeSplash.remove();
     try {
@@ -109,19 +108,6 @@ class _AppState extends ConsumerState<App> with TickerProviderStateMixin {
             .showSnackBar(LocaleKeys.errorsMessages_global.tr());
       }
     }
-  }
-
-  _precacheImages() {
-    precacheImage(const AssetImage("assets/images/cat_count_1.png"), context);
-    precacheImage(const AssetImage("assets/images/cat_count_2.png"), context);
-    precacheImage(const AssetImage("assets/images/cat_count_3.png"), context);
-    precacheImage(const AssetImage("assets/images/cat_count_4.png"), context);
-    precacheImage(const AssetImage("assets/images/cat_count_5.png"), context);
-    precacheImage(const AssetImage("assets/images/main_page_story_first.png"), context);
-    precacheImage(const AssetImage("assets/images/main_page_story_second.png"), context);
-    precacheImage(const AssetImage("assets/images/main_page_story_third.png"), context);
-    precacheImage(
-        const AssetImage("assets/images/cat_count_more.png"), context);
   }
 }
 

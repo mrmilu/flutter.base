@@ -6,7 +6,7 @@ import 'package:flutter_base/common/interfaces/notifications_service.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:injectable/injectable.dart';
 
-@Singleton(as: INotificationsService)
+// @Singleton(as: INotificationsService)
 class NotificationsService implements INotificationsService {
   static const AndroidNotificationChannel channel = AndroidNotificationChannel(
     "high_importance_channel", // id

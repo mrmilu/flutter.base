@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_base/ui/components/buttons/icon_button_tertiary.dart';
 import 'package:flutter_base/ui/styles/colors.dart';
-import 'package:flutter_base/ui/styles/moggie_icons.dart';
 import 'package:flutter_base/ui/styles/spacing.dart';
 
 class FlutterBaseAppBar extends AppBar {
@@ -39,7 +38,7 @@ class FlutterBaseAppBar extends AppBar {
         return Transform.translate(
           offset: const Offset(8, 0),
           child: IconButtonTertiary(
-            icon: MoggieIcons.cross_line,
+            icon: Icons.close,
             foregroundColor: MoggieColors.specificContentLow,
             fixedSize: const Size.fromWidth(24),
             onPressed: () {
@@ -76,7 +75,7 @@ class MoggieAppBarLeading extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: Spacing.sp16),
       child: IconButtonTertiary(
-        icon: MoggieIcons.arrow_left_line,
+        icon: Icons.arrow_back_ios,
         foregroundColor: MoggieColors.specificContentLow,
         onPressed: () {
           if (customPopAction != null) {

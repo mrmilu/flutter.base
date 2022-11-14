@@ -88,7 +88,6 @@ dev_dependencies:
   freezed: 2.1.1
   json_serializable: 6.5.1
   reactive_forms_generator: 0.20.0-beta
-  isar_generator: 3.0.2
 
 dependency_overrides:
   analyzer: ^4.6.0
@@ -167,8 +166,8 @@ flavorizr:
 
       android:
         applicationId: "com.flutterbase-mrmilu.beta"
-        firebase:
-          config: ".firebase/beta/google-services.json"
+#        firebase:
+#          config: ".firebase/beta/google-services.json"
         customConfig:
           signingConfig: signingConfigs.release_beta
       ios:

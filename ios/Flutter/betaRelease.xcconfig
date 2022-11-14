@@ -4,5 +4,5 @@
 
 FLUTTER_TARGET=lib/main_beta.dart
 ASSET_PREFIX=beta
-BUNDLE_NAME=Moggie (Beta)
-BUNDLE_DISPLAY_NAME=Moggie (Beta)
+BUNDLE_NAME=Flutter base (Beta)
+BUNDLE_DISPLAY_NAME=Flutter base (Beta)
