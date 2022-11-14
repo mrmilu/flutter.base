@@ -1,0 +1,8 @@
+#include? "Pods/Target Support Files/Pods-Runner/Pods-Runner.debug-dev.xcconfig"
+#include "Generated.xcconfig"
+#include? "tmp.xcconfig"
+
+FLUTTER_TARGET=lib/main_dev.dart
+ASSET_PREFIX=dev
+BUNDLE_NAME=Moggie (Dev)
+BUNDLE_DISPLAY_NAME=Moggie (Dev)

@@ -1,0 +1,133 @@
+{
+  "errorsMessages": {
+    "global": "Something went wrong",
+    "login": "Error sign in with current credentials"
+  },
+  "formErrors": {
+    "required": "This filed is required",
+    "emailFormat": "Wrong email format",
+    "password": "The password must have at least 8 characters (including un uppercase letter, one lowercase letter and a number)",
+    "passwordMatch": "Both passwords must match."
+  },
+  "login": {
+    "title": "Sign in",
+    "or": "Or...",
+    "noAccount": "Don't have an account yet?",
+    "signUp": "Sign up",
+    "forgotPassword": "Forgot password?",
+    "socialAuth": {
+      "login": {
+        "apple": "Sign in with Apple ID",
+        "google": "Sign in with Google"
+      },
+      "signUp": {
+        "apple": "Sign up with Apple ID",
+        "google": "Sign up with Google"
+      }
+    },
+    "form": {
+      "email": {
+        "label": "Email"
+      },
+      "password": {
+        "label": "Password"
+      },
+      "submit": "Sign in"
+    }
+  },
+  "signUp": {
+    "title": "Create an account",
+    "haveAccount": "Already have an account?",
+    "alternative": "Alternatively",
+    "signIn": "Sign in",
+    "form": {
+      "name": {
+        "label": "What do your friends call you?"
+      },
+      "email": {
+        "label": "What’s your email?"
+      },
+      "password": {
+        "label": "Create a password"
+      },
+      "submit": "Create account"
+    },
+    "termsAndPrivacy": {
+      "blockOne": "By creating an account, you agree to Flutter Base’s ",
+      "blockTwo": "Terms & Conditions",
+      "blockThree": " and ",
+      "blockFour": "Privacy Policy."
+    }
+  },
+  "forgotPassword": {
+    "title": "Forgot your password?",
+    "claim": "Don't sweat it - pop in your email address below to reset it!",
+    "form": {
+      "email": {
+        "label": "Enter your email"
+      },
+      "submit": "Continue"
+    }
+  },
+  "forgotPasswordConfirm": {
+    "title": "You've got mail!",
+    "continue": "Continue",
+    "resend": "I haven't received the email",
+    "resendTitle": "Let's try this thing again - check your inbox!"
+  },
+  "changePassword": {
+    "title": "Choose a new password!",
+    "form": {
+      "password": {
+        "label": "Type your new password"
+      },
+      "repeatPassword": {
+        "label": "Type again your new password"
+      },
+      "submit": "Continue"
+    }
+  },
+  "changePasswordSuccess": {
+    "title": "Perfect! Your password has been reset.",
+    "description": "You're ready to sign in - see you there!",
+    "button": "Sign in"
+  },
+  "mainPage": {
+    "title": "Hey there, we're Mr Milú!",
+    "claim": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec gravida non eros id tempus.",
+    "getStartedBtn": "Get started",
+    "loginBtn": "Have an account? Sign in",
+  },
+  "verifyAccount": {
+    "title": "Almost done! Let's verify your account.",
+    "continue": "Continue"
+  },
+  "profile": {
+    "title": "Profile",
+    "options": {
+      "logout": "Logout",
+      "edit": "Edit profile"
+    },
+    "edit": {
+      "title": "Edit profile",
+      "form": {
+        "name": "Name",
+        "submit": "Save changes"
+      }
+    },
+    "avatar": {
+      "edit": {
+        "title": "Crop avatar",
+        "save": "Save"
+      },
+      "options": {
+        "cancel": "Cancel",
+        "gallery": "Choose from gallery",
+        "take": "Take a photo",
+        "delete": "Delete current photo"
+      }
+    }
+  }
+}
+
+

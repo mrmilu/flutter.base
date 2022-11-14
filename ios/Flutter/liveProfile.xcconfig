@@ -1,0 +1,6 @@
+#include "Generated.xcconfig"
+
+FLUTTER_TARGET=lib/main_live.dart
+ASSET_PREFIX=live
+BUNDLE_NAME=Moggie
+BUNDLE_DISPLAY_NAME=Moggie
