@@ -10,15 +10,21 @@ Map<String, dynamic>? emailValidator(AbstractControl<dynamic> control) {
 
 Map<String, dynamic>? passwordValidator(AbstractControl<dynamic> control) {
   return Validators.pattern(
-      RegExp(r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d\w\W]{8,}$"))(control);
+    RegExp(r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d\w\W]{8,}$"),
+  )(control);
 }
 
 Map<String, dynamic>? Function(AbstractControl<dynamic> control)
     buildMustMatchPassword(
-        String repeatPasswordControl, String passwordControl) {
+  String repeatPasswordControl,
+  String passwordControl,
+) {
   return (AbstractControl<dynamic> control) {
-    return Validators.mustMatch(repeatPasswordControl, passwordControl,
-        markAsDirty: false)(control);
+    return Validators.mustMatch(
+      repeatPasswordControl,
+      passwordControl,
+      markAsDirty: false,
+    )(control);
   };
 }
 

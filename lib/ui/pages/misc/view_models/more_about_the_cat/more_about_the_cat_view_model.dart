@@ -5,25 +5,33 @@ part 'more_about_the_cat_view_model.gform.dart';
 
 Map<String, dynamic>? birthdateValidator(AbstractControl<dynamic> control) {
   return ValidateControlIf<bool>(
-          controlNameToCheck: 'knowsBirthdate',
-          valueToCheck: true,
-          controlNameToValidate: 'birthdate',
-          validation: Validators.required)
-      .validate(control);
+    controlNameToCheck: 'knowsBirthdate',
+    valueToCheck: true,
+    controlNameToValidate: 'birthdate',
+    validation: Validators.required,
+  ).validate(control);
 }
 
 Map<String, dynamic>? weightValidator(AbstractControl<dynamic> control) {
-  return AtLeastOneValid(controlOneName: 'weight', controlTwoName: 'weightRange', validation: Validators.required)
-      .validate(control);
+  return AtLeastOneValid(
+    controlOneName: 'weight',
+    controlTwoName: 'weightRange',
+    validation: Validators.required,
+  ).validate(control);
 }
 
 Map<String, dynamic>? ageValidator(AbstractControl<dynamic> control) {
-  return AtLeastOneValid(controlOneName: 'age', controlTwoName: 'birthdate', validation: Validators.required)
-      .validate(control);
+  return AtLeastOneValid(
+    controlOneName: 'age',
+    controlTwoName: 'birthdate',
+    validation: Validators.required,
+  ).validate(control);
 }
 
 @ReactiveFormAnnotation(name: "MoreAboutTheCatModel")
-@FormGroupAnnotation(validators: [birthdateValidator, ageValidator, weightValidator])
+@FormGroupAnnotation(
+  validators: [birthdateValidator, ageValidator, weightValidator],
+)
 class MoreAboutTheCatViewModel {
   final String age;
   final bool? knowsBirthdate;

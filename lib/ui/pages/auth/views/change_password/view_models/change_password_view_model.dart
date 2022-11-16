@@ -5,7 +5,8 @@ part 'change_password_view_model.gform.dart';
 
 Map<String, dynamic>? mustMatchPassword(AbstractControl<dynamic> control) {
   return Validators.mustMatch("password", "repeatPassword", markAsDirty: false)(
-      control);
+    control,
+  );
 }
 
 @ReactiveFormAnnotation(name: "ChangePasswordModel")

@@ -5,8 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_base/ui/components/editable_image_preview.dart';
 import 'package:flutter_base/ui/i18n/locale_keys.g.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_base/ui/pages/profile/providers/profile_provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class EditAvatarPageData {
   final File avatar;
@@ -38,7 +38,8 @@ class EditAvatarPage extends ConsumerWidget {
         ),
         trailing: TextButton(
           style: TextButton.styleFrom(
-              foregroundColor: Theme.of(context).colorScheme.onPrimary),
+            foregroundColor: Theme.of(context).colorScheme.onPrimary,
+          ),
           onPressed: ref.watch(profileProvider.notifier).cropAvatarPhotoAndSave,
           child: Text(
             LocaleKeys.profile_avatar_edit_save.tr(),

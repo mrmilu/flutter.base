@@ -19,6 +19,7 @@ class HighTextS extends StatelessWidget {
     );
   }
 }
+
 class HighTextM extends StatelessWidget {
   final String label;
   final Color? color;

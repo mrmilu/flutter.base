@@ -1,8 +1,8 @@
 import 'dart:io';
-import 'package:injectable/injectable.dart';
+
 import 'package:flutter_base/common/interfaces/asset_picker_service.dart';
 import 'package:flutter_base/common/interfaces/fs_repository.dart';
-
+import 'package:injectable/injectable.dart';
 
 @Injectable()
 class ImageFromGalleryUseCase {
@@ -13,7 +13,9 @@ class ImageFromGalleryUseCase {
 
   Future<File?> call() async {
     final image = await _assetPickerService.imageFromGallery();
-    if(image == null) return null;
-    return await _fsRepository.createFile(CreateFileInput(path: "share", bytes: image.readAsBytesSync()));
+    if (image == null) return null;
+    return await _fsRepository.createFile(
+      CreateFileInput(path: "share", bytes: image.readAsBytesSync()),
+    );
   }
 }

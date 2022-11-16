@@ -24,8 +24,10 @@ class AuthRepository implements IAuthRepository {
 
   @override
   Future<String> login(LoginInputModel input) async {
-    final res = await _apiService.post("/users/login/",
-        data: input.toOutput().toJson());
+    final res = await _apiService.post(
+      "/users/login/",
+      data: input.toOutput().toJson(),
+    );
     return LoginDataModel.fromJson(res ?? {}).token;
   }
 
@@ -37,8 +39,10 @@ class AuthRepository implements IAuthRepository {
 
   @override
   Future<String> signUp(SignUpInputModel input) async {
-    final res = await _apiService.post("/users/registration/",
-        data: input.toOutput().toJson());
+    final res = await _apiService.post(
+      "/users/registration/",
+      data: input.toOutput().toJson(),
+    );
     return SignUpDataModel.fromJson(res ?? {}).token;
   }
 
@@ -60,7 +64,11 @@ class AuthRepository implements IAuthRepository {
     if (user.email == null) {
       throw const AppError(message: "Error while login with Apple");
     }
-    return SocialAuthUser(name: user.displayName, email: user.email!, password: user.uid);
+    return SocialAuthUser(
+      name: user.displayName,
+      email: user.email!,
+      password: user.uid,
+    );
   }
 
   @override
@@ -77,13 +85,19 @@ class AuthRepository implements IAuthRepository {
     if (user.email == null) {
       throw const AppError(message: "Error while login with Google");
     }
-    return SocialAuthUser(name: user.displayName, email: user.email!, password: user.uid);
+    return SocialAuthUser(
+      name: user.displayName,
+      email: user.email!,
+      password: user.uid,
+    );
   }
 
   @override
   Future<void> requestResetPassword(String email) async {
-    await _apiService.post("/users/password/reset/",
-        data: {"email": email});
+    await _apiService.post(
+      "/users/password/reset/",
+      data: {"email": email},
+    );
   }
 
   @override
@@ -96,13 +110,17 @@ class AuthRepository implements IAuthRepository {
 
   @override
   Future<void> resendPasswordResetEmail(String email) async {
-    await _apiService.post("/users/registration/resend-email/",
-        data: {"email": email});
+    await _apiService.post(
+      "/users/registration/resend-email/",
+      data: {"email": email},
+    );
   }
 
   @override
   Future<void> verifyAccount(String token) async {
-    await _apiService.post("/users/account-confirm-email/",
-        data: {"key": token});
+    await _apiService.post(
+      "/users/account-confirm-email/",
+      data: {"key": token},
+    );
   }
 }

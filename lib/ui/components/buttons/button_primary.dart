@@ -57,16 +57,22 @@ class ButtonPrimary extends ElevatedButton {
     return MaterialStateProperty.resolveWith((states) {
       if (size == ButtonSize.small) {
         return const EdgeInsets.symmetric(
-            vertical: Spacing.sp8, horizontal: Spacing.sp12);
+          vertical: Spacing.sp8,
+          horizontal: Spacing.sp12,
+        );
       } else {
         return const EdgeInsets.symmetric(
-            vertical: Spacing.sp12, horizontal: Spacing.sp16);
+          vertical: Spacing.sp12,
+          horizontal: Spacing.sp16,
+        );
       }
     });
   }
 
   static MaterialStateProperty<Color?> _foregroundColor(
-      ButtonSize size, Color? customForegroundColor) {
+    ButtonSize size,
+    Color? customForegroundColor,
+  ) {
     return MaterialStateProperty.resolveWith((states) {
       final smallColor =
           customForegroundColor ?? MoggieColors.specificSemanticPrimary;
@@ -89,7 +95,9 @@ class ButtonPrimary extends ElevatedButton {
   }
 
   static MaterialStateProperty<Color?> _backgroundColor(
-      ButtonSize size, Color? customBackgroundColor) {
+    ButtonSize size,
+    Color? customBackgroundColor,
+  ) {
     return MaterialStateProperty.resolveWith((states) {
       final smallColor =
           customBackgroundColor ?? MoggieColors.specificSurfaceHigh;
@@ -164,11 +172,11 @@ class _ButtonPrimaryContent extends StatelessWidget {
     );
   }
 
-  get _iconSize => size == ButtonSize.small ? 16.0 : 24.0;
+  double get _iconSize => size == ButtonSize.small ? 16.0 : 24.0;
 
-  get _hasIcon => _hasIconData || _hasSvgIcon;
+  bool get _hasIcon => _hasIconData || _hasSvgIcon;
 
-  get _hasSvgIcon => svgIconName != null;
+  bool get _hasSvgIcon => svgIconName != null;
 
-  get _hasIconData => iconData != null;
+  bool get _hasIconData => iconData != null;
 }

@@ -1,6 +1,6 @@
-import 'package:injectable/injectable.dart';
 import 'package:flutter_base/core/auth/domain/interfaces/auth_repository.dart';
 import 'package:flutter_base/core/auth/domain/models/change_password_input_model.dart';
+import 'package:injectable/injectable.dart';
 
 class ChangePasswordUseCaseInput {
   final String uid;
@@ -22,7 +22,7 @@ class ChangePasswordUseCase {
 
   ChangePasswordUseCase(this._authRepository);
 
-  call(ChangePasswordUseCaseInput input) {
+  Future<void> call(ChangePasswordUseCaseInput input) {
     final repositoryInput = ChangePasswordInputModel(
       uid: input.uid,
       token: input.token,

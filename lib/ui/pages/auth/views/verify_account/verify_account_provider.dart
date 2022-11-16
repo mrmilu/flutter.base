@@ -16,14 +16,18 @@ class VerifyAccountProvider {
   }
 
   void verifyAccount(String token) async {
-    await _uiProvider.tryAction(() async {
-      FocusManager.instance.primaryFocus?.unfocus();
-      final input = VerifyAccountUseCaseInput(token: token);
-      await _verifyAccountUseCase(input);
-      _userProvider.setUserVerified();
-    }, rethrowError: true);
+    await _uiProvider.tryAction(
+      () async {
+        FocusManager.instance.primaryFocus?.unfocus();
+        final input = VerifyAccountUseCaseInput(token: token);
+        await _verifyAccountUseCase(input);
+        _userProvider.setUserVerified();
+      },
+      rethrowError: true,
+    );
   }
 }
 
 final verifyAccountProvider = AutoDisposeProvider<VerifyAccountProvider>(
-    (ref) => VerifyAccountProvider(ref));
+  (ref) => VerifyAccountProvider(ref),
+);

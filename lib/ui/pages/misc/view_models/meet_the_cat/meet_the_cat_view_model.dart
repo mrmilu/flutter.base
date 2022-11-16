@@ -10,9 +10,7 @@ class MeetTheCatViewModel {
   final String? gender;
 
   MeetTheCatViewModel({
-    @FormControlAnnotation(validators: [requiredValidator])
-    this.name = '',
-    @FormControlAnnotation(validators: [requiredValidator])
-    this.gender
+    @FormControlAnnotation(validators: [requiredValidator]) this.name = '',
+    @FormControlAnnotation(validators: [requiredValidator]) this.gender,
   });
 }

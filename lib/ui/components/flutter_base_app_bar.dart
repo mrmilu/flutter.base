@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:flutter_base/ui/components/buttons/icon_button_tertiary.dart';
 import 'package:flutter_base/ui/styles/colors.dart';
 import 'package:flutter_base/ui/styles/spacing.dart';
+import 'package:go_router/go_router.dart';
 
 class FlutterBaseAppBar extends AppBar {
   FlutterBaseAppBar({
@@ -19,8 +19,9 @@ class FlutterBaseAppBar extends AppBar {
           leading: showLeading
               ? leading ??
                   MoggieAppBarLeading(
-                      customPopRoute: customPopRoute,
-                      customPopAction: customPopAction)
+                    customPopRoute: customPopRoute,
+                    customPopAction: customPopAction,
+                  )
               : null,
           actions: [
             if (trailing != null)
@@ -34,23 +35,25 @@ class FlutterBaseAppBar extends AppBar {
   factory FlutterBaseAppBar.dialog({String? customPopRoute}) {
     return FlutterBaseAppBar(
       showLeading: false,
-      trailing: Builder(builder: (context) {
-        return Transform.translate(
-          offset: const Offset(8, 0),
-          child: IconButtonTertiary(
-            icon: Icons.close,
-            foregroundColor: MoggieColors.specificContentLow,
-            fixedSize: const Size.fromWidth(24),
-            onPressed: () {
-              if (Navigator.of(context).canPop()) {
-                Navigator.of(context).pop();
-              } else if (customPopRoute != null) {
-                GoRouter.of(context).go(customPopRoute);
-              }
-            },
-          ),
-        );
-      }),
+      trailing: Builder(
+        builder: (context) {
+          return Transform.translate(
+            offset: const Offset(8, 0),
+            child: IconButtonTertiary(
+              icon: Icons.close,
+              foregroundColor: MoggieColors.specificContentLow,
+              fixedSize: const Size.fromWidth(24),
+              onPressed: () {
+                if (Navigator.of(context).canPop()) {
+                  Navigator.of(context).pop();
+                } else if (customPopRoute != null) {
+                  GoRouter.of(context).go(customPopRoute);
+                }
+              },
+            ),
+          );
+        },
+      ),
     );
   }
 }

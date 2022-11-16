@@ -21,7 +21,7 @@ class PostPageProvider extends StateNotifier<PostPageState> {
     Future.delayed(Duration.zero, () => _init());
   }
 
-  _init() async {
+  Future<void> _init() async {
     _uiProvider.showGlobalLoader();
     try {
       final posts = [];
@@ -34,4 +34,5 @@ class PostPageProvider extends StateNotifier<PostPageState> {
 
 final postPageProvider =
     AutoDisposeStateNotifierProvider<PostPageProvider, PostPageState>(
-        (ref) => PostPageProvider(ref));
+  (ref) => PostPageProvider(ref),
+);

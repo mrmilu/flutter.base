@@ -16,7 +16,8 @@ class UserRepository implements IUserRepository {
 
   @override
   Future<User> getLoggedUser() async {
-    final response = await _apiService.get<Map<String, dynamic>>("/users/user/");
+    final response =
+        await _apiService.get<Map<String, dynamic>>("/users/user/");
     return UserDataModel.fromJson(response ?? {}).toDomain();
   }
 

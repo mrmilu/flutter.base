@@ -21,9 +21,9 @@ class NotificationsService implements INotificationsService {
   StreamSubscription<RemoteMessage>? _onMessageOpenedAppSubscription;
 
   @override
-  Future<void> init(
-      {required void Function(String? payload)
-          onLocalAndroidNotificationOpen}) async {
+  Future<void> init({
+    required void Function(String? payload) onLocalAndroidNotificationOpen,
+  }) async {
     // Sets up apple foreground notification presentation options
     FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
       alert: true, // Required to display a heads up notification
@@ -60,16 +60,17 @@ class NotificationsService implements INotificationsService {
       // local notification to show to users using the created channel.
       if (notification != null && android != null) {
         _flutterLocalNotificationsPlugin?.show(
-            notification.hashCode,
-            notification.title,
-            notification.body,
-            NotificationDetails(
-              android: AndroidNotificationDetails(
-                channel.id,
-                channel.name,
-                channelDescription: channel.description,
-              ),
-            ));
+          notification.hashCode,
+          notification.title,
+          notification.body,
+          NotificationDetails(
+            android: AndroidNotificationDetails(
+              channel.id,
+              channel.name,
+              channelDescription: channel.description,
+            ),
+          ),
+        );
       }
     });
   }
@@ -82,15 +83,7 @@ class NotificationsService implements INotificationsService {
 
   @override
   Future<NotificationSettings> requestApplePermissions() {
-    return FirebaseMessaging.instance.requestPermission(
-      alert: true,
-      announcement: false,
-      badge: true,
-      carPlay: false,
-      criticalAlert: false,
-      provisional: false,
-      sound: true,
-    );
+    return FirebaseMessaging.instance.requestPermission();
   }
 
   @override
@@ -103,7 +96,8 @@ class NotificationsService implements INotificationsService {
 
   @override
   void onBackgroundMessage(
-      Future<void> Function(Map<String, dynamic> messageData) handler) {
+    Future<void> Function(Map<String, dynamic> messageData) handler,
+  ) {
     FirebaseMessaging.onBackgroundMessage((RemoteMessage message) {
       return handler(message.data);
     });
@@ -116,7 +110,8 @@ class NotificationsService implements INotificationsService {
 
   @override
   void onTerminatedStateMessage(
-      Future<void> Function(Map<String, dynamic> messageData) handler) async {
+    Future<void> Function(Map<String, dynamic> messageData) handler,
+  ) async {
     final notification = await FirebaseMessaging.instance.getInitialMessage();
     if (notification != null) handler(notification.data);
   }

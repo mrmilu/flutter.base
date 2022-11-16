@@ -22,32 +22,36 @@ class PostPage extends ConsumerWidget {
           ),
         ),
       ),
-      body: Builder(builder: (context) {
-        return ListView.builder(
-          itemCount: posts.length,
-          padding: const EdgeInsets.all(16),
-          itemBuilder: (context, idx) {
-            dynamic post = posts[idx];
-            final tileWidget = ListTile(
-              title: Text(post.title),
-              subtitle: Text(
-                post.body.replaceAll("\n", " "),
-                overflow: TextOverflow.ellipsis,
-                maxLines: 1,
-                softWrap: false,
-              ),
-            );
-            if (idx == 0) {
-              return Column(children: [
-                SizedBox(height: Scaffold.of(context).appBarMaxHeight ?? 0),
-                tileWidget,
-              ]);
-            } else {
-              return tileWidget;
-            }
-          },
-        );
-      }),
+      body: Builder(
+        builder: (context) {
+          return ListView.builder(
+            itemCount: posts.length,
+            padding: const EdgeInsets.all(16),
+            itemBuilder: (context, idx) {
+              dynamic post = posts[idx];
+              final tileWidget = ListTile(
+                title: Text(post.title),
+                subtitle: Text(
+                  post.body.replaceAll("\n", " "),
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
+                  softWrap: false,
+                ),
+              );
+              if (idx == 0) {
+                return Column(
+                  children: [
+                    SizedBox(height: Scaffold.of(context).appBarMaxHeight ?? 0),
+                    tileWidget,
+                  ],
+                );
+              } else {
+                return tileWidget;
+              }
+            },
+          );
+        },
+      ),
     );
   }
 }

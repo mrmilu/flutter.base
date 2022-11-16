@@ -1,13 +1,16 @@
-import 'package:injectable/injectable.dart';
 import 'package:flutter_base/common/interfaces/share_service.dart';
+import 'package:injectable/injectable.dart';
 import 'package:share_plus/share_plus.dart';
 
 @Injectable(as: IShareService)
 class ShareService implements IShareService {
   @override
   Future<ShareStatus> file(ShareFileInput input) async {
-    final result = await Share.shareXFiles(input.files,
-        subject: input.subject, text: input.text);
+    final result = await Share.shareXFiles(
+      input.files,
+      subject: input.subject,
+      text: input.text,
+    );
     if (result.raw.isEmpty && result.status == ShareResultStatus.dismissed) {
       return ShareStatus.dismissed;
     } else if (result.raw.isNotEmpty) {

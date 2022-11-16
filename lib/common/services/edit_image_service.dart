@@ -30,7 +30,8 @@ class EditImageService implements IEditImageService {
 
     if (result == null) return null;
 
-    return _fsRepository.createFile(CreateFileInput(path: _editImagePath, bytes: result));
+    return _fsRepository
+        .createFile(CreateFileInput(path: _editImagePath, bytes: result));
   }
 
   @override

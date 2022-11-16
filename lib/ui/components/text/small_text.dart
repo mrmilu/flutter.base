@@ -7,11 +7,11 @@ class SmallTextXxs extends StatelessWidget {
   final TextAlign? textAlign;
 
   const SmallTextXxs(
-      this.label, {
-        super.key,
-        this.color,
-        this.textAlign,
-      });
+    this.label, {
+    super.key,
+    this.color,
+    this.textAlign,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -31,11 +31,11 @@ class SmallTextXs extends StatelessWidget {
   final TextAlign? textAlign;
 
   const SmallTextXs(
-      this.label, {
-        super.key,
-        this.color,
-        this.textAlign,
-      });
+    this.label, {
+    super.key,
+    this.color,
+    this.textAlign,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -55,11 +55,11 @@ class SmallTextS extends StatelessWidget {
   final TextAlign? textAlign;
 
   const SmallTextS(
-      this.label, {
-        super.key,
-        this.color,
-        this.textAlign,
-      });
+    this.label, {
+    super.key,
+    this.color,
+    this.textAlign,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -79,11 +79,11 @@ class SmallTextM extends StatelessWidget {
   final TextAlign? textAlign;
 
   const SmallTextM(
-      this.label, {
-        super.key,
-        this.color,
-        this.textAlign,
-      });
+    this.label, {
+    super.key,
+    this.color,
+    this.textAlign,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -103,11 +103,11 @@ class SmallTextL extends StatelessWidget {
   final TextAlign? textAlign;
 
   const SmallTextL(
-      this.label, {
-        super.key,
-        this.color,
-        this.textAlign,
-      });
+    this.label, {
+    super.key,
+    this.color,
+    this.textAlign,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -120,4 +120,3 @@ class SmallTextL extends StatelessWidget {
     );
   }
 }
-

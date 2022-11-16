@@ -1,16 +1,18 @@
-import 'package:injectable/injectable.dart';
 import 'package:flutter_base/core/app/domain/models/app_error.dart';
 import 'package:flutter_base/core/auth/domain/interfaces/auth_repository.dart';
 import 'package:flutter_base/core/auth/domain/models/auth_provider.dart';
 import 'package:flutter_base/core/auth/domain/models/social_auth_user.dart';
+import 'package:injectable/injectable.dart';
 
 class SocialAuthUseCaseInput {
   final AuthProvider authProvider;
 
   const SocialAuthUseCaseInput({
     required this.authProvider,
-  }) : assert(authProvider != AuthProvider.email,
-  "For social auth login provider can't be email");
+  }) : assert(
+          authProvider != AuthProvider.email,
+          "For social auth login provider can't be email",
+        );
 }
 
 @Injectable()
@@ -30,8 +32,9 @@ class SocialAuthUseCase {
 
     if (socialAuthUser == null) {
       throw const AppError(
-          message: "No social auth user generated",
-          code: AppErrorCode.socialLoginError);
+        message: "No social auth user generated",
+        code: AppErrorCode.socialLoginError,
+      );
     }
     return socialAuthUser;
   }

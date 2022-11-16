@@ -79,7 +79,7 @@ class SocialAuthService implements ISocialAuthService {
   }
 
   @override
-  logout() async {
+  Future<void> logout() async {
     await FirebaseAuth.instance.signOut();
   }
 }

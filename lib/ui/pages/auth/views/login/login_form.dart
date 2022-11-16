@@ -5,12 +5,12 @@ import 'package:flutter_base/ui/components/buttons/button_primary.dart';
 import 'package:flutter_base/ui/components/buttons/button_tertiary.dart';
 import 'package:flutter_base/ui/components/form/input_reactive.dart';
 import 'package:flutter_base/ui/i18n/locale_keys.g.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:flutter_base/ui/pages/auth/views/login/login_provider.dart';
 import 'package:flutter_base/ui/pages/auth/views/login/view_models/basic_login_view_model.dart';
 import 'package:flutter_base/ui/utils/form.dart';
 import 'package:flutter_base/ui/view_models/button_size.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 
 class LoginForm extends ConsumerStatefulWidget {

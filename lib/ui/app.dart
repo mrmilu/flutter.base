@@ -5,18 +5,17 @@ import 'package:easy_localization/easy_localization.dart' as easy_localization;
 import 'package:flutter/material.dart';
 import 'package:flutter_base/core/app/domain/models/app_error.dart';
 import 'package:flutter_base/core/app/domain/use_cases/init_app_use_case.dart';
+import 'package:flutter_base/ui/components/splash_screen.dart';
 import 'package:flutter_base/ui/controllers/deep_link_controller.dart';
 import 'package:flutter_base/ui/i18n/locale_keys.g.dart';
 import 'package:flutter_base/ui/providers/ui_provider.dart';
 import 'package:flutter_base/ui/providers/user_provider.dart';
+import 'package:flutter_base/ui/styles/theme.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
-import 'package:flutter_base/ui/styles/theme.dart';
 import 'package:reactive_forms/reactive_forms.dart';
-
-import 'package:flutter_base/ui/components/splash_screen.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 class App extends ConsumerStatefulWidget {
@@ -33,43 +32,46 @@ class _AppState extends ConsumerState<App> with TickerProviderStateMixin {
   late Future _initAppFuture;
 
   @override
-  initState() {
+  void initState() {
     precacheImage(const AssetImage("assets/images/splash.png"), context);
     super.initState();
     _controller = AnimationController(
-        duration: const Duration(milliseconds: 1200), vsync: this);
+      duration: const Duration(milliseconds: 1200),
+      vsync: this,
+    );
     _initAppFuture = _initialize();
   }
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: _initAppFuture,
-        builder: (context, snapshot) {
-          return Directionality(
-            textDirection: TextDirection.ltr,
-            child: Stack(
-              children: [
-                Positioned.fill(
-                  child: Visibility(
-                    visible: showApp,
-                    child: _MaterialApp(),
-                  ),
+      future: _initAppFuture,
+      builder: (context, snapshot) {
+        return Directionality(
+          textDirection: TextDirection.ltr,
+          child: Stack(
+            children: [
+              Positioned.fill(
+                child: Visibility(
+                  visible: showApp,
+                  child: _MaterialApp(),
                 ),
-                if (snapshot.connectionState == ConnectionState.waiting)
-                  Positioned.fill(
-                    child: AnimatedOpacity(
-                      opacity: splashOpacity,
-                      duration: const Duration(milliseconds: 500),
-                      child: MaterialApp(
-                        home: Splash(controller: _controller),
-                      ),
+              ),
+              if (snapshot.connectionState == ConnectionState.waiting)
+                Positioned.fill(
+                  child: AnimatedOpacity(
+                    opacity: splashOpacity,
+                    duration: const Duration(milliseconds: 500),
+                    child: MaterialApp(
+                      home: Splash(controller: _controller),
                     ),
                   ),
-              ],
-            ),
-          );
-        });
+                ),
+            ],
+          ),
+        );
+      },
+    );
   }
 
   Future<void> _initialize() async {

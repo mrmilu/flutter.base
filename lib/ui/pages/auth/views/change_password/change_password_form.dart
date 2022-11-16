@@ -52,20 +52,21 @@ class _BasicLoginFormWidgetState extends ConsumerState<ChangePasswordForm> {
             ),
             BoxSpacer.v24(),
             ReactiveChangePasswordModelFormConsumer(
-                builder: (context, consumerModel, _) {
-              return ButtonPrimary(
-                text: LocaleKeys.changePassword_form_submit.tr(),
-                onPressed: consumerModel.form.valid
-                    ? () {
-                        ref.read(changePasswordProvider).changePassword(
-                              formModel,
-                              token: widget.token,
-                              uid: widget.uid,
-                            );
-                      }
-                    : null,
-              );
-            }),
+              builder: (context, consumerModel, _) {
+                return ButtonPrimary(
+                  text: LocaleKeys.changePassword_form_submit.tr(),
+                  onPressed: consumerModel.form.valid
+                      ? () {
+                          ref.read(changePasswordProvider).changePassword(
+                                formModel,
+                                token: widget.token,
+                                uid: widget.uid,
+                              );
+                        }
+                      : null,
+                );
+              },
+            ),
           ],
         );
       },

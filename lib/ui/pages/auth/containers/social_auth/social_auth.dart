@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_base/core/auth/domain/models/auth_provider.dart';
 import 'package:flutter_base/ui/components/box_spacer.dart';
 import 'package:flutter_base/ui/components/buttons/button_secondary.dart';
@@ -10,6 +9,7 @@ import 'package:flutter_base/ui/i18n/locale_keys.g.dart';
 import 'package:flutter_base/ui/pages/auth/containers/social_auth/social_auth_provider.dart';
 import 'package:flutter_base/ui/styles/colors.dart';
 import 'package:flutter_base/ui/styles/text_style.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 enum SocialAuthType { login, singUp }
 
@@ -42,7 +42,6 @@ class SocialAuth extends ConsumerWidget {
         ],
         ButtonSecondary(
           iconName: "google_logo",
-          iconColor: null,
           text: _googleBtnTxt,
           customTextStyle: MoggieTextStyles.midM.copyWith(
             fontSize: 15,
@@ -56,11 +55,11 @@ class SocialAuth extends ConsumerWidget {
     );
   }
 
-  get _appleBtnTxt => type == SocialAuthType.singUp
+  String get _appleBtnTxt => type == SocialAuthType.singUp
       ? LocaleKeys.login_socialAuth_signUp_apple.tr()
       : LocaleKeys.login_socialAuth_login_apple.tr();
 
-  get _googleBtnTxt => type == SocialAuthType.singUp
+  String get _googleBtnTxt => type == SocialAuthType.singUp
       ? LocaleKeys.login_socialAuth_signUp_google.tr()
       : LocaleKeys.login_socialAuth_login_google.tr();
 

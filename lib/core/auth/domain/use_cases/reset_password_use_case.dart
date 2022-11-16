@@ -1,5 +1,5 @@
-import 'package:injectable/injectable.dart';
 import 'package:flutter_base/core/auth/domain/interfaces/auth_repository.dart';
+import 'package:injectable/injectable.dart';
 
 class ResetPasswordUseCaseInput {
   final String email;
@@ -7,7 +7,6 @@ class ResetPasswordUseCaseInput {
   const ResetPasswordUseCaseInput({
     required this.email,
   });
-
 }
 
 @Injectable()
@@ -16,7 +15,7 @@ class ResetPasswordUseCase {
 
   ResetPasswordUseCase(this._authRepository);
 
-  call(ResetPasswordUseCaseInput input) {
+  Future<void> call(ResetPasswordUseCaseInput input) {
     return _authRepository.requestResetPassword(input.email);
   }
 }

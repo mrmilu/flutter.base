@@ -1,6 +1,6 @@
-import 'package:injectable/injectable.dart';
 import 'package:flutter_base/core/auth/domain/interfaces/auth_repository.dart';
 import 'package:flutter_base/core/auth/domain/interfaces/token_repository.dart';
+import 'package:injectable/injectable.dart';
 
 @Injectable()
 class LogoutUseCase {

@@ -32,11 +32,12 @@ class ColumnScrollView extends StatelessWidget {
             child: IntrinsicHeight(
               child: Padding(
                 padding: EdgeInsets.only(
-                    top: padding.top,
-                    left: padding.left,
-                    right: padding.right,
-                    bottom: (disableKeyboardPadding ? 0 : keyboardHeight) +
-                        padding.bottom),
+                  top: padding.top,
+                  left: padding.left,
+                  right: padding.right,
+                  bottom: (disableKeyboardPadding ? 0 : keyboardHeight) +
+                      padding.bottom,
+                ),
                 child: Column(
                   crossAxisAlignment: crossAxisAlignment,
                   mainAxisAlignment: mainAxisAlignment,

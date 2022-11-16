@@ -8,9 +8,7 @@ import 'package:go_router/go_router.dart';
 
 FutureOr<String?> authGuard(BuildContext context, GoRouterState state) {
   final providerContainer = GetIt.I.get<ProviderContainer>();
-  final user = providerContainer
-      .read(userProvider)
-      .userData;
+  final user = providerContainer.read(userProvider).userData;
   if (user != null && user.verified) {
     return null;
   } else if (user != null && user.verified) {

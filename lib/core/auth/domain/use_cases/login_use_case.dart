@@ -1,13 +1,13 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter_base/core/user/domain/models/user.dart';
-import 'package:injectable/injectable.dart';
 import 'package:flutter_base/core/auth/domain/interfaces/auth_repository.dart';
 import 'package:flutter_base/core/auth/domain/interfaces/token_repository.dart';
 import 'package:flutter_base/core/auth/domain/models/auth_provider.dart';
 import 'package:flutter_base/core/auth/domain/models/login_input_model.dart';
 import 'package:flutter_base/core/auth/domain/models/token_model.dart';
 import 'package:flutter_base/core/auth/domain/use_cases/social_auth_use_case.dart';
+import 'package:flutter_base/core/user/domain/models/user.dart';
 import 'package:flutter_base/core/user/domain/use_cases/user_and_cats_use_case.dart';
+import 'package:injectable/injectable.dart';
 
 class LoginUseCaseInput {
   final String? email;
@@ -50,7 +50,8 @@ class LoginUseCase {
     if (input.provider == AuthProvider.google ||
         input.provider == AuthProvider.apple) {
       final socialAuthUser = await _socialAuthUseCase(
-          SocialAuthUseCaseInput(authProvider: input.provider));
+        SocialAuthUseCaseInput(authProvider: input.provider),
+      );
       loginInput = LoginInputModel(
         email: socialAuthUser.email,
         password: socialAuthUser.password,

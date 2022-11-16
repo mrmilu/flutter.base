@@ -1,5 +1,5 @@
-import 'package:json_annotation/json_annotation.dart';
 import 'package:flutter_base/core/app/domain/models/photo.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'photo_data_model.g.dart';
 

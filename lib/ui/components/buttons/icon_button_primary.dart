@@ -22,9 +22,12 @@ class IconButtonPrimary extends ElevatedButton {
                 borderRadius: BorderRadius.circular(40.0),
               ),
             ),
-            minimumSize: MaterialStateProperty.all(fixedSize ?? _btnSizeMap[size]),
-            fixedSize: MaterialStateProperty.all(fixedSize ?? _btnSizeMap[size]),
-            maximumSize: MaterialStateProperty.all(fixedSize ?? _btnSizeMap[size]),
+            minimumSize:
+                MaterialStateProperty.all(fixedSize ?? _btnSizeMap[size]),
+            fixedSize:
+                MaterialStateProperty.all(fixedSize ?? _btnSizeMap[size]),
+            maximumSize:
+                MaterialStateProperty.all(fixedSize ?? _btnSizeMap[size]),
             enableFeedback: true,
             splashFactory: NoSplash.splashFactory,
             padding: MaterialStateProperty.all(EdgeInsets.zero),
@@ -33,7 +36,6 @@ class IconButtonPrimary extends ElevatedButton {
             elevation: MaterialStateProperty.all(0),
           ),
           child: Align(
-            alignment: Alignment.center,
             child: FlutterBaseIcon(
               icon: icon,
               size: size == ButtonSize.small ? 16 : 24,

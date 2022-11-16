@@ -1,5 +1,5 @@
-import 'package:injectable/injectable.dart';
 import 'package:flutter_base/core/auth/domain/interfaces/auth_repository.dart';
+import 'package:injectable/injectable.dart';
 
 class VerifyAccountUseCaseInput {
   final String token;
@@ -7,7 +7,6 @@ class VerifyAccountUseCaseInput {
   const VerifyAccountUseCaseInput({
     required this.token,
   });
-
 }
 
 @Injectable()
@@ -16,7 +15,7 @@ class VerifyAccountUseCase {
 
   VerifyAccountUseCase(this._authRepository);
 
-  call(VerifyAccountUseCaseInput input) {
+  Future<void> call(VerifyAccountUseCaseInput input) {
     return _authRepository.verifyAccount(input.token);
   }
 }

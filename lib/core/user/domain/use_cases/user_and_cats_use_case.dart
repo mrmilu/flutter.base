@@ -1,6 +1,6 @@
-import 'package:injectable/injectable.dart';
 import 'package:flutter_base/core/user/domain/interfaces/user_repository.dart';
 import 'package:flutter_base/core/user/domain/models/user.dart';
+import 'package:injectable/injectable.dart';
 
 @Injectable()
 class GetUserUseCase {

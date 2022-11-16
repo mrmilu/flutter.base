@@ -8,11 +8,11 @@ import 'package:flutter_base/ui/components/form_scaffold.dart';
 import 'package:flutter_base/ui/components/text/high_text.dart';
 import 'package:flutter_base/ui/components/text/small_text.dart';
 import 'package:flutter_base/ui/i18n/locale_keys.g.dart';
+import 'package:flutter_base/ui/pages/auth/containers/social_auth/social_auth.dart';
+import 'package:flutter_base/ui/pages/auth/views/login/login_form.dart';
+import 'package:flutter_base/ui/view_models/button_size.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:flutter_base/ui/pages/auth/views/login/login_form.dart';
-import 'package:flutter_base/ui/pages/auth/containers/social_auth/social_auth.dart';
-import 'package:flutter_base/ui/view_models/button_size.dart';
 
 class LoginPage extends ConsumerWidget {
   const LoginPage({super.key});

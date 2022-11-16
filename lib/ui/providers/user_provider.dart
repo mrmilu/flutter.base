@@ -25,24 +25,24 @@ class UserProvider extends StateNotifier<UserState> {
     _uiProvider = ref.watch(uiProvider.notifier);
   }
 
-  setUserVerified() {
+  void setUserVerified() {
     state = state.copyWith(userData: state.userData?.copyWith(verified: true));
   }
 
-  setUserData(UserViewModel data) {
+  void setUserData(UserViewModel data) {
     state = state.copyWith(userData: data);
   }
 
-  clearProvider() {
+  void clearProvider() {
     state = UserState();
   }
 
-  getInitialUserData() async {
+  Future<void> getInitialUserData() async {
     final user = await _userAndCatsUseCase();
     setUserData(user.toViewModel());
   }
 
-  logout() async {
+  Future<void> logout() async {
     _uiProvider.tryAction(() async {
       await _logoutUseCase();
       GetIt.I.get<GoRouter>().go("/");
@@ -54,5 +54,7 @@ class UserProvider extends StateNotifier<UserState> {
 final userProvider =
     StateNotifierProvider<UserProvider, UserState>((ref) => UserProvider(ref));
 
-final userVerifiedComputedProvider = Provider.autoDispose<bool>((ref) => ref
-    .watch(userProvider.select((state) => state.userData?.verified == true)));
+final userVerifiedComputedProvider = Provider.autoDispose<bool>(
+  (ref) => ref
+      .watch(userProvider.select((state) => state.userData?.verified == true)),
+);

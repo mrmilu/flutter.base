@@ -6,6 +6,7 @@ import 'package:flutter_base/ui/pages/auth/views/change_password/change_password
 import 'package:flutter_base/ui/pages/auth/views/change_password/change_password_sucess_page.dart';
 import 'package:flutter_base/ui/pages/auth/views/forgot_password/forgot_password_confirm_page.dart';
 import 'package:flutter_base/ui/pages/auth/views/forgot_password/forgot_password_page.dart';
+import 'package:flutter_base/ui/pages/auth/views/login/login_page.dart';
 import 'package:flutter_base/ui/pages/auth/views/sign_up/sign_up_page.dart';
 import 'package:flutter_base/ui/pages/home/pages/home_page.dart';
 import 'package:flutter_base/ui/pages/misc/views/main_page.dart';
@@ -13,11 +14,10 @@ import 'package:flutter_base/ui/pages/post/pages/post_page.dart';
 import 'package:flutter_base/ui/pages/profile/pages/edit_avatar_page.dart';
 import 'package:flutter_base/ui/pages/profile/pages/edit_profile_page.dart';
 import 'package:flutter_base/ui/pages/profile/pages/profile_page.dart';
-import 'package:flutter_base/ui/pages/auth/views/login/login_page.dart';
 import 'package:flutter_base/ui/router/guards/auth_guard.dart';
 import 'package:go_router/go_router.dart';
 
-platformPage(
+Page platformPage(
   Widget child, {
   bool fullscreenDialog = false,
   bool maintainState = false,
@@ -26,7 +26,8 @@ platformPage(
         ? CupertinoPage(
             child: child,
             fullscreenDialog: fullscreenDialog,
-            maintainState: maintainState)
+            maintainState: maintainState,
+          )
         : MaterialPage(
             child: child,
             fullscreenDialog: fullscreenDialog,
@@ -34,13 +35,19 @@ platformPage(
           );
 
 CustomTransitionPage<void> fadeTransitionPage(
-    GoRouterState state, Widget page) {
+  GoRouterState state,
+  Widget page,
+) {
   return CustomTransitionPage<void>(
     key: state.pageKey,
     child: page,
     transitionDuration: const Duration(milliseconds: 150),
-    transitionsBuilder: (BuildContext context, Animation<double> animation,
-            Animation<double> secondaryAnimation, Widget child) =>
+    transitionsBuilder: (
+      BuildContext context,
+      Animation<double> animation,
+      Animation<double> secondaryAnimation,
+      Widget child,
+    ) =>
         FadeTransition(opacity: animation, child: child),
   );
 }
@@ -67,23 +74,25 @@ final GoRouter router = GoRouter(
       path: "/forgot-password/confirm",
       pageBuilder: (context, state) => platformPage(
         ForgotPasswordConfirmPage(
-          data: (state.extra as ForgotPasswordConfirmPageData),
+          data: state.extra as ForgotPasswordConfirmPageData,
         ),
         fullscreenDialog: true,
       ),
     ),
     GoRoute(
-        path: "/change-password",
-        pageBuilder: (context, GoRouterState state) => platformPage(
-              ChangePasswordPage(data: (state.extra as ChangePasswordPageData)),
-              fullscreenDialog: true,
-            )),
+      path: "/change-password",
+      pageBuilder: (context, GoRouterState state) => platformPage(
+        ChangePasswordPage(data: state.extra as ChangePasswordPageData),
+        fullscreenDialog: true,
+      ),
+    ),
     GoRoute(
-        path: "/change-password/success",
-        pageBuilder: (context, GoRouterState state) => platformPage(
-              const ChangePasswordSuccessPage(),
-              fullscreenDialog: true,
-            )),
+      path: "/change-password/success",
+      pageBuilder: (context, GoRouterState state) => platformPage(
+        const ChangePasswordSuccessPage(),
+        fullscreenDialog: true,
+      ),
+    ),
 
     /// Application
     ShellRoute(

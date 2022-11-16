@@ -20,7 +20,8 @@ class CircularProgress extends StatelessWidget {
   Widget build(BuildContext context) {
     var themeData = ThemeData(
       cupertinoOverrideTheme: CupertinoThemeData(
-          brightness: cupertinoBrightness ?? Theme.of(context).brightness),
+        brightness: cupertinoBrightness ?? Theme.of(context).brightness,
+      ),
     );
     themeData = themeData.copyWith(
       colorScheme: themeData.colorScheme.copyWith(secondary: _indicatorColor),

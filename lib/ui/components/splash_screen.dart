@@ -37,12 +37,14 @@ class Splash extends StatelessWidget {
       backgroundColor: Colors.white,
       body: Center(
         child: AnimatedBuilder(
-            animation: controller,
-            builder: (context, child) {
-              return Opacity(
-                  opacity: opacity.value,
-                  child: Image.asset("assets/images/splash.png"));
-            }),
+          animation: controller,
+          builder: (context, child) {
+            return Opacity(
+              opacity: opacity.value,
+              child: Image.asset("assets/images/splash.png"),
+            );
+          },
+        ),
       ),
     );
   }

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'package:flutter_base/ui/styles/colors.dart';
-
+import 'package:get_it/get_it.dart';
 
 enum SnackBarStyle { info, warning, error }
 
-styledSnackBar(BuildContext context, String message,
-    {SnackBarStyle style = SnackBarStyle.info}) {
+SnackBar styledSnackBar(
+  BuildContext context,
+  String message, {
+  SnackBarStyle style = SnackBarStyle.info,
+}) {
   late Color bgColor;
   late Color labelColor;
 

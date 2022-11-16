@@ -22,17 +22,21 @@ class SignUpProvider {
   void signUp(SignUpModelForm formModel) async {
     formModel.form.markAllAsTouched();
     if (formModel.form.valid) {
-      await _uiProvider.tryAction(() async {
-        FocusManager.instance.primaryFocus?.unfocus();
-        final input = SignUpUseCaseInput(
+      await _uiProvider.tryAction(
+        () async {
+          FocusManager.instance.primaryFocus?.unfocus();
+          final input = SignUpUseCaseInput(
             email: formModel.model.email,
             password: formModel.model.password,
             name: formModel.model.name,
-            provider: AuthProvider.email);
-        final user = await _signUpUseCase(input);
-        _userProvider.setUserData(user.toViewModel());
-        GetIt.I.get<GoRouter>().go("/home");
-      }, rethrowError: true);
+            provider: AuthProvider.email,
+          );
+          final user = await _signUpUseCase(input);
+          _userProvider.setUserData(user.toViewModel());
+          GetIt.I.get<GoRouter>().go("/home");
+        },
+        rethrowError: true,
+      );
     }
   }
 }

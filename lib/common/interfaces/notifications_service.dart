@@ -1,8 +1,9 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 
 abstract class INotificationsService {
-  Future<void> init(
-      {required void Function(String? payload) onLocalAndroidNotificationOpen});
+  Future<void> init({
+    required void Function(String? payload) onLocalAndroidNotificationOpen,
+  });
 
   void clean();
 
@@ -11,10 +12,12 @@ abstract class INotificationsService {
   void onMessageOpen(void Function(Map<String, dynamic> messageData) handler);
 
   void onBackgroundMessage(
-      Future<void> Function(Map<String, dynamic> messageData) handler);
+    Future<void> Function(Map<String, dynamic> messageData) handler,
+  );
 
   void onTerminatedStateMessage(
-      Future<void> Function(Map<String, dynamic> messageData) handler);
+    Future<void> Function(Map<String, dynamic> messageData) handler,
+  );
 
   Future<String?> getToken();
 }

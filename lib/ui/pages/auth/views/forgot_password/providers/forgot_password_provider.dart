@@ -7,7 +7,7 @@ import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 
-class ForgotPasswordProvider  {
+class ForgotPasswordProvider {
   late UiProvider _uiProvider;
   final _resetPasswordUseCase = GetIt.I.get<ResetPasswordUseCase>();
   final _appRouter = GetIt.I.get<GoRouter>();
@@ -22,13 +22,17 @@ class ForgotPasswordProvider  {
       _uiProvider.tryAction(() async {
         FocusManager.instance.primaryFocus?.unfocus();
         final input =
-        ResetPasswordUseCaseInput(email: formModel.model.email.trim());
+            ResetPasswordUseCaseInput(email: formModel.model.email.trim());
         await _resetPasswordUseCase(input);
-        _appRouter.push("/forgot-password/confirm", extra: ForgotPasswordConfirmPageData(email: input.email));
+        _appRouter.push(
+          "/forgot-password/confirm",
+          extra: ForgotPasswordConfirmPageData(email: input.email),
+        );
       });
     }
   }
 }
 
 final forgotPasswordProvider = AutoDisposeProvider<ForgotPasswordProvider>(
-    (ref) => ForgotPasswordProvider(ref));
+  (ref) => ForgotPasswordProvider(ref),
+);

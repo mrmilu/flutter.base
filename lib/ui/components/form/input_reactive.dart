@@ -26,9 +26,10 @@ class InputReactive<T> extends ReactiveTextField {
     super.inputFormatters,
     super.readOnly,
   })  : assert(
-            ((label != null && withFloatingLabel) && placeholder == null) ||
-                ((label == null && !withFloatingLabel) && placeholder != null),
-            'At least a placeholder or label should be given'),
+          ((label != null && withFloatingLabel) && placeholder == null) ||
+              ((label == null && !withFloatingLabel) && placeholder != null),
+          'At least a placeholder or label should be given',
+        ),
         super(
           showErrors: showErrors ??
               (control) => control.invalid && control.touched && control.dirty,
@@ -56,11 +57,12 @@ class InputReactive<T> extends ReactiveTextField {
     ReactiveFormFieldCallback? onSubmitted,
   }) {
     return InputReactive<T>(
-        label: label,
-        formControl: formControl,
-        keyboardType: TextInputType.emailAddress,
-        onSubmitted: onSubmitted,
-        placeholder: placeholder);
+      label: label,
+      formControl: formControl,
+      keyboardType: TextInputType.emailAddress,
+      onSubmitted: onSubmitted,
+      placeholder: placeholder,
+    );
   }
 
   factory InputReactive.search({
@@ -78,7 +80,6 @@ class InputReactive<T> extends ReactiveTextField {
       placeholder: placeholder,
       prefixIconConstraints: const BoxConstraints.tightFor(width: 30),
       prefixIcon: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
         children: const [
           FlutterBaseIcon(
             icon: Icons.search,

@@ -11,12 +11,12 @@ class FsRepository implements IFsRepository {
   }
 
   @override
-  Future<File> createFile(
-      CreateFileInput input) async {
+  Future<File> createFile(CreateFileInput input) async {
     final localPath = await _localPath;
     String? name = input.name;
     name ??= '${DateTime.now().millisecondsSinceEpoch}';
-    final file = File('$localPath/${input.path}/$name')..createSync(recursive: true);
+    final file = File('$localPath/${input.path}/$name')
+      ..createSync(recursive: true);
     return file..writeAsBytesSync(input.bytes);
   }
 

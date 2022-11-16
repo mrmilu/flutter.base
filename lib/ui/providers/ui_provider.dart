@@ -6,11 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_base/core/app/domain/models/app_error.dart';
 import 'package:flutter_base/ui/components/global_circular_progress.dart';
 import 'package:flutter_base/ui/components/styled_snackbar.dart';
+import 'package:flutter_base/ui/i18n/locale_keys.g.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
-import 'package:flutter_base/ui/i18n/locale_keys.g.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 part 'ui_provider.freezed.dart';
@@ -63,7 +63,7 @@ class UiProvider extends StateNotifier<UiState> {
     }
   }
 
-  tryAction<T>(
+  Future<void> tryAction<T>(
     Future<T> Function() action, {
     bool rethrowError = false,
   }) async {
@@ -95,4 +95,5 @@ final uiProvider =
     StateNotifierProvider<UiProvider, UiState>((_) => UiProvider());
 
 final hideOverlayProvider = Provider(
-    (ref) => ref.watch(uiProvider.select((state) => state.hideOverlay)));
+  (ref) => ref.watch(uiProvider.select((state) => state.hideOverlay)),
+);

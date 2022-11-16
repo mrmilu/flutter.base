@@ -1,8 +1,9 @@
 import 'dart:developer';
-import 'package:flutter/foundation.dart';
+
 import 'package:easy_localization/easy_localization.dart';
 // ignore: unused_import
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_base/core/app/domain/interfaces/env_vars.dart';

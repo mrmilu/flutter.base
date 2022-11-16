@@ -1,9 +1,9 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:get_it/get_it.dart';
-import 'package:go_router/go_router.dart';
 import 'package:flutter_base/core/auth/domain/use_cases/change_password_use_case.dart';
 import 'package:flutter_base/ui/pages/auth/views/change_password/view_models/change_password_view_model.dart';
 import 'package:flutter_base/ui/providers/ui_provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get_it/get_it.dart';
+import 'package:go_router/go_router.dart';
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 
 class ChangePasswordProvider {

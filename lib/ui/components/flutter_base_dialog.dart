@@ -8,7 +8,9 @@ import 'package:flutter_base/ui/styles/spacing.dart';
 import 'package:flutter_base/ui/utils/media_query.dart';
 
 typedef FlutterBaseDialogBuilder = Widget Function(
-    BuildContext context, FlutterBaseDialogDelegate dialogDelegate);
+  BuildContext context,
+  FlutterBaseDialogDelegate dialogDelegate,
+);
 
 class FlutterBaseDialogDismissOption {
   final bool doNotCallOnClose;
@@ -112,7 +114,7 @@ class FlutterBaseDialog extends StatelessWidget {
     );
   }
 
-  get _hasHeader => title != null || !noCloseButton;
+  bool get _hasHeader => title != null || !noCloseButton;
 }
 
 class FlutterBaseDialogDelegate {

@@ -23,6 +23,11 @@ class SignUpOutputModel {
 
 extension ToOuput on SignUpInputModel {
   SignUpOutputModel toOutput() {
-    return SignUpOutputModel(name: name, email: email, password: password, provider: provider.name );
+    return SignUpOutputModel(
+      name: name,
+      email: email,
+      password: password,
+      provider: provider.name,
+    );
   }
 }

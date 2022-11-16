@@ -9,7 +9,9 @@ class ProgressOverlay {
         double fullHeight = MediaQuery.of(context).size.height;
         double fullWidth = MediaQuery.of(context).size.width;
         return _GlobalProgressWidget(
-            fullHeight: fullHeight, fullWidth: fullWidth);
+          fullHeight: fullHeight,
+          fullWidth: fullWidth,
+        );
       },
     );
   }

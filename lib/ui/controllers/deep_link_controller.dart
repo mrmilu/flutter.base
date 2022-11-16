@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_base/common/interfaces/deep_link_service.dart';
+import 'package:flutter_base/ui/pages/auth/views/forgot_password/forgot_password_confirm_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:injectable/injectable.dart';
-import 'package:flutter_base/ui/pages/auth/views/forgot_password/forgot_password_confirm_page.dart';
 
 @LazySingleton()
 class DeepLinkController {
@@ -11,7 +11,7 @@ class DeepLinkController {
 
   DeepLinkController(this._appRouter, this._deepLinkService);
 
-  call() {
+  void call() {
     _initDeepLinks();
   }
 
@@ -30,7 +30,7 @@ class DeepLinkController {
     }
   }
 
-  _processDeepLinks(Uri deepLink) {
+  void _processDeepLinks(Uri deepLink) {
     if (deepLink.queryParameters.containsKey('type') &&
         deepLink.queryParameters["type"] == "reset-password" &&
         deepLink.queryParameters.containsKey('key') &&
@@ -38,8 +38,10 @@ class DeepLinkController {
         deepLink.queryParameters["uid"]?.isNotEmpty == true) {
       _appRouter.replace(
         "/forgot-password/confirm",
-        extra:
-        ForgotPasswordConfirmPageData(token: deepLink.queryParameters['key']!, uid: deepLink.queryParameters['uid']!),
+        extra: ForgotPasswordConfirmPageData(
+          token: deepLink.queryParameters['key']!,
+          uid: deepLink.queryParameters['uid']!,
+        ),
       );
     }
   }

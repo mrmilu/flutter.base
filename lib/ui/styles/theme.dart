@@ -27,8 +27,9 @@ final moggieThemeData = ThemeData(
     ),
   ),
   textTheme: const TextTheme().apply(
-      bodyColor: MoggieColors.specificContentHigh,
-      displayColor: MoggieColors.specificContentHigh),
+    bodyColor: MoggieColors.specificContentHigh,
+    displayColor: MoggieColors.specificContentHigh,
+  ),
   inputDecorationTheme: InputDecorationTheme(
     hintStyle: MoggieTextStyles.smallM
         .copyWith(color: MoggieColors.specificContentLow),

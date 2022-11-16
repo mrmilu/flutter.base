@@ -1,8 +1,8 @@
 import 'package:flutter/services.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:injectable/injectable.dart';
 import 'package:flutter_base/common/interfaces/fs_repository.dart';
 import 'package:flutter_base/common/interfaces/share_service.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:injectable/injectable.dart';
 
 class ShareFileUseCaseInput {
   final Uint8List bytes;
@@ -25,9 +25,19 @@ class ShareFileUseCase {
 
   ShareFileUseCase(this._fsRepository, this._shareService);
 
-  call(ShareFileUseCaseInput input) async {
-    final file = await _fsRepository.createFile(CreateFileInput(path: "share", bytes: input.bytes, name: input.filename));
-    final shareInput = ShareFileInput(files: [XFile(file.path)], subject: input.subject, text: input.text);
+  Future<void> call(ShareFileUseCaseInput input) async {
+    final file = await _fsRepository.createFile(
+      CreateFileInput(
+        path: "share",
+        bytes: input.bytes,
+        name: input.filename,
+      ),
+    );
+    final shareInput = ShareFileInput(
+      files: [XFile(file.path)],
+      subject: input.subject,
+      text: input.text,
+    );
     try {
       await _shareService.file(shareInput);
     } finally {

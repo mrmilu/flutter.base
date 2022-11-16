@@ -57,10 +57,14 @@ class ButtonSecondary extends OutlinedButton {
     return MaterialStateProperty.resolveWith((states) {
       if (size == ButtonSize.small) {
         return const EdgeInsets.symmetric(
-            vertical: Spacing.sp8, horizontal: Spacing.sp12);
+          vertical: Spacing.sp8,
+          horizontal: Spacing.sp12,
+        );
       } else {
         return const EdgeInsets.symmetric(
-            vertical: Spacing.sp12, horizontal: Spacing.sp16);
+          vertical: Spacing.sp12,
+          horizontal: Spacing.sp16,
+        );
       }
     });
   }
@@ -172,11 +176,11 @@ class _ButtonSecondaryContent extends StatelessWidget {
         : MoggieTextStyles.smallL;
   }
 
-  get _iconSize => size == ButtonSize.small ? 16.0 : 24.0;
+  double get _iconSize => size == ButtonSize.small ? 16.0 : 24.0;
 
-  get _hasIcon => _hasIconData || _hasSvgIcon;
+  bool get _hasIcon => _hasIconData || _hasSvgIcon;
 
-  get _hasSvgIcon => svgIconName != null;
+  bool get _hasSvgIcon => svgIconName != null;
 
-  get _hasIconData => iconData != null;
+  bool get _hasIconData => iconData != null;
 }

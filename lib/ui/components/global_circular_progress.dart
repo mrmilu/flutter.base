@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base/ui/components/circular_progress.dart';
 import 'package:flutter_base/ui/providers/ui_provider.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_base/ui/styles/colors.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class GlobalCircularProgress {
   static OverlayEntry build(BuildContext context) {
@@ -11,7 +11,9 @@ class GlobalCircularProgress {
         double fullHeight = MediaQuery.of(context).size.height;
         double fullWidth = MediaQuery.of(context).size.width;
         return _GlobalProgressWidget(
-            fullHeight: fullHeight, fullWidth: fullWidth);
+          fullHeight: fullHeight,
+          fullWidth: fullWidth,
+        );
       },
     );
   }

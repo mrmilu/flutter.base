@@ -14,8 +14,9 @@ class InfoBlock extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: MoggieColors.specificBeige10,
-          borderRadius: BorderRadius.circular(16)),
+        color: MoggieColors.specificBeige10,
+        borderRadius: BorderRadius.circular(16),
+      ),
       child: Padding(
         padding: const EdgeInsets.all(Spacing.sp16),
         child: child,

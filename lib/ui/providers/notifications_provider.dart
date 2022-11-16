@@ -14,7 +14,8 @@ class NotificationsProvider {
   NotificationsProvider() : super() {
     _iNotificationsService.requestApplePermissions();
     _iNotificationsService.init(
-        onLocalAndroidNotificationOpen: (_) => _onOpenNotification());
+      onLocalAndroidNotificationOpen: (_) => _onOpenNotification(),
+    );
     _iNotificationsService
         .onMessageOpen((messageData) => _onOpenNotification());
     _iNotificationsService
@@ -33,11 +34,11 @@ class NotificationsProvider {
     log("notification opened");
   }
 
-  cancelSubscriptions() {
+  void cancelSubscriptions() {
     _iNotificationsService.clean();
   }
 
-  _registerDevice(String? deviceToken) async {
+  Future<void> _registerDevice(String? deviceToken) async {
     if (deviceToken == null) return;
     this.deviceToken = deviceToken;
     log(deviceToken);
@@ -46,7 +47,8 @@ class NotificationsProvider {
 }
 
 Future<void> _firebaseMessagingBackgroundHandler(
-    Map<String, dynamic> messageData) async {
+  Map<String, dynamic> messageData,
+) async {
   // If you're going to use other Firebase services in the background, such as Firestore,
   // make sure you call `initializeApp` before using other Firebase services.
   await Firebase.initializeApp();

@@ -91,11 +91,11 @@ class _ButtonTertiaryContent extends StatelessWidget {
             .copyWith(color: MoggieColors.specificSemanticPrimary);
   }
 
-  get _iconSize => size == ButtonSize.small ? 16.0 : 24.0;
+  double get _iconSize => size == ButtonSize.small ? 16.0 : 24.0;
 
-  get _hasIcon => _hasIconData || _hasSvgIcon;
+  bool get _hasIcon => _hasIconData || _hasSvgIcon;
 
-  get _hasSvgIcon => svgIconName != null;
+  bool get _hasSvgIcon => svgIconName != null;
 
-  get _hasIconData => iconData != null;
+  bool get _hasIconData => iconData != null;
 }
