@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:flutter_base/common/utils/enum.dart';
 import 'package:flutter_base/core/app/domain/models/photo.dart';
 
 part 'photo_data_model.g.dart';
@@ -17,16 +16,14 @@ class PhotoDataModel {
     required this.imageType,
   });
 
-
   factory PhotoDataModel.fromJson(Map<String, dynamic> json) =>
       _$PhotoDataModelFromJson(json);
-
 
   Photo toDomain() {
     return Photo(
       id: id,
       url: image,
-      type: enumFromString(ImageType.values, imageType),
+      type: ImageType.values.byName(imageType),
     );
   }
 }

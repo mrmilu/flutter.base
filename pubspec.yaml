@@ -19,6 +19,7 @@ version: 1.0.1+4
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
+  flutter: ">=3.3.0"
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -44,7 +45,7 @@ dependencies:
   flutter_local_notifications: 12.0.1+1
   firebase_messaging: 13.1.0
   firebase_auth: 3.11.2
-  flutter_mrmilu: 0.3.0
+  flutter_mrmilu: 0.5.1
   flutter_secure_storage: 6.0.0
   google_sign_in: 5.4.2
   sign_in_with_apple: 4.1.0
