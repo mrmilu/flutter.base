@@ -51,9 +51,7 @@ commands:
           command: fvm flutter pub run build_runner build
       - run: 
           name: Generated translation files
-          command: |
-            fvm flutter pub run easy_localization:generate -S lib/res/l10n -O lib/src/ui
-            fvm flutter pub run easy_localization:generate -S lib/res/l10n -f keys -O lib/src/ui -o l10n.g.dart
+          command: fvm flutter pub run easy_localization:generate -S assets/translations -f keys -O lib/ui/i18n -o locale_keys.g.dart
   install_flutter:
     description: Install Flutter by FVM
     parameters:
