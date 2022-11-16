@@ -1,75 +1,115 @@
 version: 2.1
-
 orbs:
   android: circleci/android@2.1.2
   flutter: circleci/flutter@1.1.0
-
 jobs:
-  beta_deploy_android:
-    executor:
-      name: android/android-machine
-      resource-class: large
-      tag: 2021.10.1
-    steps:
-      - checkout
-      - install_flutter_android
-      - flutter/install_android_gem
-      - run: echo "$BETA_PLAY_STORE_UPLOAD_KEY" | base64 --decode > android/upload-keystore-beta.jks
-      - run: echo "$BETA_PLAY_STORE_UPLOAD_KEY_PROPERTIES" | base64 --decode > android/beta.key.properties
-      - run: echo "$GOOGLE_PLAY_API_KEY" | base64 --decode > android/fastlane/api-access.json
-      - build_deps
-      - run: cd android && bundle exec fastlane build_deploy_beta
-  beta_deploy_ios:
-    macos:
-      xcode: 14.1.0
-    environment:
-      FL_OUTPUT_DIR: output
-    steps:
-      - checkout
-      - install_flutter_ios
-      - flutter/install_ios_gem
-      - build_deps
-      - run: fvm flutter precache --ios
-      - flutter/install_ios_pod
-      - run:
-          name: Fastlane
-          command: cd ios && bundle exec fastlane build_deploy_beta
-      - store_artifacts:
-          path: output
+  deploy-android:
+      executor:
+        name: android/android-machine
+        resource-class: large
+        tag: 2021.10.1
+      steps:
+        - checkout
+        - install_flutter
+        - build
+        - flutter/install_android_gem
+        - env_vars_files:
+            target_platform: "android"
+        - run:
+            name: Deploy Android app (internal Beta) by fastlane
+            command: bundle exec fastlane build_deploy_internal_beta
+            working_directory: android
+  deploy-ios:
+      macos:
+        xcode: 13.4.1
+      environment:
+        FL_OUTPUT_DIR: output
+      steps:
+        - checkout
+        - install_flutter:
+            os: "macos"
+        - build
+        - flutter/install_ios_gem
+        - run: fvm flutter precache --ios
+        - flutter/install_ios_pod
+        - run:
+            name: Deploy iOS app (internal Beta) by fastlane
+            command: bundle exec fastlane build_deploy_internal_beta
+            working_directory: ios
+        - store_artifacts:
+            path: output
 
 commands:
-  build_deps:
+  build:
+    description: Build generated files
     steps:
-      - run: fvm flutter pub get
-      - run: fvm flutter pub run build_runner build --delete-conflicting-outputs
-      - run: fvm flutter pub run easy_localization:generate -S assets/translations -f keys -O lib/ui/i18n -o locale_keys.g.dart
-  install_flutter_android:
+      - run: 
+          name: Get dependencies
+          command: fvm flutter pub get
+      - run: 
+          name: Generated auto generated files
+          command: fvm flutter pub run build_runner build
+      - run: 
+          name: Generated translation files
+          command: |
+            fvm flutter pub run easy_localization:generate -S lib/res/l10n -O lib/src/ui
+            fvm flutter pub run easy_localization:generate -S lib/res/l10n -f keys -O lib/src/ui -o l10n.g.dart
+  install_flutter:
+    description: Install Flutter by FVM
+    parameters:
+      os:
+        type: enum
+        default: "linux"
+        enum: ["linux", "macos", "windows"]
     steps:
-      - run: echo 'export PATH="$CIRCLE_WORKING_DIRECTORY"/fvm:"$CIRCLE_WORKING_DIRECTORY"/.pub-cache/bin:"$CIRCLE_WORKING_DIRECTORY"/fvm/default/bin:"$PATH"' >> $BASH_ENV
-      - run: echo 'export FVM_HOME="$CIRCLE_WORKING_DIRECTORY"/fvm/versions/' >> $BASH_ENV
-      - run: echo 'export FVM_VERSION=2.4.1' >> $BASH_ENV
-      - run: wget https://github.com/leoafarias/fvm/releases/download/"$FVM_VERSION"/fvm-"$FVM_VERSION"-linux-x64.tar.gz
-      - run: tar -xf fvm-"$FVM_VERSION"-linux-x64.tar.gz
-      - run: rm fvm-"$FVM_VERSION"-linux-x64.tar.gz
-      - run: fvm doctor
-      - run: fvm install
-  install_flutter_ios:
+      - run:
+          name: Set env vars
+          command: |
+            echo 'export PATH="$CIRCLE_WORKING_DIRECTORY"/fvm:"$CIRCLE_WORKING_DIRECTORY"/.pub-cache/bin:"$CIRCLE_WORKING_DIRECTORY"/fvm/default/bin:"$PATH"' >> $BASH_ENV
+            echo 'export FVM_HOME="$CIRCLE_WORKING_DIRECTORY"/fvm/versions/' >> $BASH_ENV
+            echo 'export FVM_VERSION=2.4.1' >> $BASH_ENV
+      - run:
+          name: Install FVM
+          command: |
+            curl -O -L https://github.com/fluttertools/fvm/releases/download/"$FVM_VERSION"/fvm-"$FVM_VERSION"-<< parameters.os >>-x64.tar.gz
+            tar -xf fvm-"$FVM_VERSION"-<< parameters.os >>-x64.tar.gz
+            rm fvm-"$FVM_VERSION"-<< parameters.os >>-x64.tar.gz
+      - run:
+          name: Install Flutter
+          command: fvm install
+  env_vars_files:
+    description: Get enviroment variables files
+    parameters:
+      target_platform:
+        type: enum
+        default: "base"
+        enum: ["ios", "android", "base"]
     steps:
-      - run: brew tap leoafarias/fvm
-      - run: brew install fvm
-      - run: fvm doctor
-      - run: fvm install
+      - when:
+          condition:
+            equal: [ "android", << parameters.target_platform >> ]
+          steps:
+            - run: 
+                name: Get Android files
+                command: |
+                  echo $KEY_PROPERTIES | base64 -d > ./android/key.properties
+                  echo $UPLOAD_KEYSTORE | base64 -d > ./android/upload-keystore.jks
+                  echo $PLAY_STORE_UPLOAD_KEY | base64 -d > ./android/fastlane/api-access.json
 
 workflows:
-  deploy_beta:
+  deploy:
     jobs:
-      - beta_deploy_android:
+      - deploy-android:
+          name: "Distribute Android app (internal Beta)"
           filters:
             branches:
-              only: develop
-      - beta_deploy_ios:
+              only:
+                - develop
+      - deploy-ios:
+          name: "Distribute iOS app (internal Beta)"
           context:
             - match
           filters:
             branches:
-              only: develop
+              only:
+                - develop
