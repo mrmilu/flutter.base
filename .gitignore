@@ -9,9 +9,6 @@
 .history
 .svn/
 .fvm/flutter_sdk
-locator.config.dart
-firebase_options.*.dart
-**/ios/Flutter/tmp.xcconfig
 
 # IntelliJ related
 *.iml
@@ -22,7 +19,7 @@ firebase_options.*.dart
 # The .vscode folder contains launch configuration and tasks you configure in
 # VS Code which you may wish to be included in version control, so this line
 # is commented out by default.
-#.vscode/
+.vscode/
 
 # Flutter/Dart/Pub related
 **/doc/api/
@@ -42,6 +39,8 @@ firebase_options.*.dart
 *.env
 .firebase/**/google-services.json
 .firebase/**/GoogleService-Info.plist
+locator.config.dart
+firebase_options.*.dart
 
 # Web related
 lib/generated_plugin_registrant.dart
