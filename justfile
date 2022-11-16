@@ -1,6 +1,10 @@
 default:
     just --list
 
+# Show all commands and info
+help:
+    just --list
+
 # Runs app
 run flavor:
     fvm flutter run lib/main_{{flavor}}.dart --flavor {{flavor}}
@@ -28,6 +32,7 @@ clean:
 # Install deps
 install-deps:
     fvm flutter pub get
+    cd ios/ && pod install
 
 # Clean and get
 clean-and-get:
@@ -37,3 +42,10 @@ clean-and-get:
 # Generate locales
 locales:
     fvm flutter pub run easy_localization:generate -S assets/translations -f keys -O lib/ui/i18n -o locale_keys.g.dart
+
+# Initial project setup
+setup:
+    fvm flutter precache --ios
+    just clean-and-get
+    just locales
+    just codegen

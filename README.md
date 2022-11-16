@@ -1,6 +1,14 @@
 # flutter_base
 
-### Requirements
+## Requirements
+
+- Flutter (see version in ./fvm/fvm_config.json). Use [FVM](https://fvm.app/docs/getting_started/installation) to install Flutter versions
+- [Just](https://github.com/casey/just) to commands
+- When build to iOS, follow [this steps](https://docs.flutter.dev/get-started/install/macos#install-xcode)
+- When build to Android, follow [this steps](https://docs.flutter.dev/get-started/install/macos#install-android-studio)
+
+### Commit tools
+
 For this project to work correctly `lefthook` and `commitlint` must be installed in
 your computer. We use lefthook to run git hooks and commitlint to lint commit messages.
 
@@ -16,11 +24,12 @@ lefthook add commit-msg
 npm install -g @commitlint/cli @commitlint/config-conventional
 ```
 
-For more info: 
+For more info:
+
 - [lefthook](https://github.com/evilmartians/lefthook)
 - [commitlint](https://commitlint.js.org/#/)
 
-### Features
+## Features
 
 This project is a starting point for a Flutter application with the following features:
 
@@ -44,3 +53,9 @@ The following index has a summary of configuration, common errors and how to sol
 
 > To rename from flutter_base to another package name, change the pubspec.yml file and all the imports. Also if using Idea IDE's delete the .idea folder
 > and in Project Structure... add a new root module to the project root so the IDE can detect the actual project.
+
+## Run
+
+For almost of actions, can be use the setup commands in `justfile`
+
+Initial setup `just setup` and then `just run {flavor}`
