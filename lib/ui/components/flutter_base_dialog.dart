@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base/ui/components/box_spacer.dart';
 import 'package:flutter_base/ui/components/buttons/icon_button_tertiary.dart';
-import 'package:flutter_base/ui/components/column_scroll_view.dart';
 import 'package:flutter_base/ui/components/text/high_text.dart';
+import 'package:flutter_base/ui/components/views/column_scroll_view.dart';
 import 'package:flutter_base/ui/styles/colors.dart';
 import 'package:flutter_base/ui/styles/spacing.dart';
 import 'package:flutter_base/ui/utils/media_query.dart';

@@ -1,10 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_base/ui/components/box_spacer.dart';
 
 import 'package:flutter_base/ui/components/buttons/button_primary.dart';
-import 'package:flutter_base/ui/components/column_scroll_view.dart';
-import 'package:flutter_base/ui/components/space_gap.dart';
+import 'package:flutter_base/ui/components/views/column_scroll_view.dart';
 import 'package:flutter_base/ui/i18n/locale_keys.g.dart';
 import 'package:flutter_base/ui/pages/profile/providers/profile_provider.dart';
 import 'package:flutter_base/ui/pages/profile/view_models/edit_profile_view_model.dart';
@@ -38,7 +38,7 @@ class EditProfilePage extends ConsumerWidget {
               builder: (context, formModel, child) {
                 return Column(
                   children: [
-                    SpaceGap.horizontal(),
+                    BoxSpacer.v16(),
                     ReactiveTextField(
                       formControl: formModel.nameControl,
                       scrollPadding: textFieldScrollPadding(context: context),
@@ -46,9 +46,7 @@ class EditProfilePage extends ConsumerWidget {
                         labelText: LocaleKeys.profile_edit_form_name.tr(),
                       ),
                     ),
-                    SpaceGap.horizontal(
-                      size: 30,
-                    ),
+                    BoxSpacer.v32(),
                     ButtonPrimary(
                       text: LocaleKeys.profile_edit_form_submit.tr(),
                       onPressed: () => ref

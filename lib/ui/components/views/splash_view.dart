@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class Splash extends StatelessWidget {
+class SplashView extends StatelessWidget {
   final AnimationController controller;
   final Animation<double> opacity;
 
-  Splash({super.key, required this.controller})
+  SplashView({super.key, required this.controller})
       : opacity = TweenSequence(<TweenSequenceItem<double>>[
           TweenSequenceItem(
             tween: Tween(

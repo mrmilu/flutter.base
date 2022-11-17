@@ -1,13 +1,13 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class SvgFlutterBaseIcon extends StatelessWidget {
+class FlutterBaseSvgIcon extends StatelessWidget {
   final String iconName;
   final double? width;
   final double? height;
   final Color? color;
 
-  const SvgFlutterBaseIcon({
+  const FlutterBaseSvgIcon({
     super.key,
     required this.iconName,
     this.width = 24,
@@ -24,28 +24,6 @@ class SvgFlutterBaseIcon extends StatelessWidget {
       height: height,
       color: color,
       fit: BoxFit.cover,
-    );
-  }
-}
-
-class FlutterBaseIcon extends StatelessWidget {
-  final IconData icon;
-  final double? size;
-  final Color? color;
-
-  const FlutterBaseIcon({
-    super.key,
-    required this.icon,
-    this.size = 24,
-    this.color,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Icon(
-      icon,
-      size: size,
-      color: color,
     );
   }
 }

@@ -2,13 +2,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_base/ui/components/box_spacer.dart';
 import 'package:flutter_base/ui/components/buttons/button_primary.dart';
-import 'package:flutter_base/ui/components/column_scroll_view.dart';
 import 'package:flutter_base/ui/components/flutter_base_app_bar.dart';
 import 'package:flutter_base/ui/components/form/input_reactive.dart';
 import 'package:flutter_base/ui/components/form_scaffold.dart';
-import 'package:flutter_base/ui/components/space_gap.dart';
 import 'package:flutter_base/ui/components/text/high_text.dart';
 import 'package:flutter_base/ui/components/text/small_text.dart';
+import 'package:flutter_base/ui/components/views/column_scroll_view.dart';
 import 'package:flutter_base/ui/i18n/locale_keys.g.dart';
 import 'package:flutter_base/ui/pages/auth/views/forgot_password/providers/forgot_password_provider.dart';
 import 'package:flutter_base/ui/pages/auth/views/forgot_password/view_models/forgot_password_view_model.dart';
@@ -45,7 +44,7 @@ class ForgotPasswordPage extends StatelessWidget {
                     ),
                     BoxSpacer.v24(),
                     _buildContinueBtn(formModel),
-                    SpaceGap.horizontal(),
+                    BoxSpacer.v16(),
                   ],
                 );
               },

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base/ui/components/box_spacer.dart';
-import 'package:flutter_base/ui/components/flutter_base_icon.dart';
+import 'package:flutter_base/ui/components/icons/flutter_base_icon.dart';
+import 'package:flutter_base/ui/components/icons/flutter_base_svg_icon.dart';
 import 'package:flutter_base/ui/styles/colors.dart';
 import 'package:flutter_base/ui/styles/spacing.dart';
 import 'package:flutter_base/ui/styles/text_style.dart';
@@ -151,7 +152,7 @@ class _ButtonSecondaryContent extends StatelessWidget {
           _hasIcon ? MainAxisAlignment.spaceBetween : MainAxisAlignment.center,
       children: [
         if (_hasSvgIcon)
-          SvgFlutterBaseIcon(
+          FlutterBaseSvgIcon(
             iconName: svgIconName!,
             width: _iconSize,
             height: _iconSize,

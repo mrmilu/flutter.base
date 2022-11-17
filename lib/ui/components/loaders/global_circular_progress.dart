@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_base/ui/components/circular_progress.dart';
+import 'package:flutter_base/ui/components/loaders/circular_progress.dart';
 import 'package:flutter_base/ui/providers/ui_provider.dart';
 import 'package:flutter_base/ui/styles/colors.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

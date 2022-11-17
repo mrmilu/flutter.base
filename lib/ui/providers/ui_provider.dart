@@ -4,7 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_base/core/app/domain/models/app_error.dart';
-import 'package:flutter_base/ui/components/global_circular_progress.dart';
+import 'package:flutter_base/ui/components/loaders/global_circular_progress.dart';
 import 'package:flutter_base/ui/components/styled_snackbar.dart';
 import 'package:flutter_base/ui/i18n/locale_keys.g.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_base/ui/components/flutter_base_icon.dart';
+import 'package:flutter_base/ui/components/icons/flutter_base_icon.dart';
+import 'package:flutter_base/ui/components/icons/flutter_base_svg_icon.dart';
 import 'package:flutter_base/ui/styles/colors.dart';
 import 'package:flutter_base/ui/utils/scroll.dart';
 import 'package:reactive_forms/reactive_forms.dart';
@@ -136,7 +137,7 @@ class _ReactivePasswordInputState extends State<ReactivePasswordInput> {
               showPassword = !showPassword;
             });
           },
-          icon: const SvgFlutterBaseIcon(
+          icon: const FlutterBaseSvgIcon(
             color: MoggieColors.specificContentLow,
             iconName: "eye_line",
           ),
