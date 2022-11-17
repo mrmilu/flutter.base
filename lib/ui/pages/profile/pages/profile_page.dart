@@ -38,7 +38,7 @@ class ProfilePage extends ConsumerWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          user?.name ?? "---",
+                          user?.name ?? '---',
                           style: Theme.of(context).textTheme.headline5,
                           overflow: TextOverflow.ellipsis,
                           maxLines: 1,
@@ -59,7 +59,7 @@ class ProfilePage extends ConsumerWidget {
                     leading: const Icon(CupertinoIcons.pencil),
                     title: Text(LocaleKeys.profile_options_edit.tr()),
                     onTap: () {
-                      GoRouter.of(context).push("/profile/edit");
+                      GoRouter.of(context).push('/profile/edit');
                     },
                   ),
                   const Divider(),

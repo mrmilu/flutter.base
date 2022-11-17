@@ -25,7 +25,7 @@ class AuthRepository implements IAuthRepository {
   @override
   Future<String> login(LoginInputModel input) async {
     final res = await _apiService.post(
-      "/users/login/",
+      '/users/login/',
       data: input.toOutput().toJson(),
     );
     return LoginDataModel.fromJson(res ?? {}).token;
@@ -40,7 +40,7 @@ class AuthRepository implements IAuthRepository {
   @override
   Future<String> signUp(SignUpInputModel input) async {
     final res = await _apiService.post(
-      "/users/registration/",
+      '/users/registration/',
       data: input.toOutput().toJson(),
     );
     return SignUpDataModel.fromJson(res ?? {}).token;
@@ -56,13 +56,13 @@ class AuthRepository implements IAuthRepository {
         rethrow;
       } else {
         throw const AppError(
-          message: "Sign-in with Apple Canceled",
+          message: 'Sign-in with Apple Canceled',
           code: AppErrorCode.appleAuthCanceled,
         );
       }
     }
     if (user.email == null) {
-      throw const AppError(message: "Error while login with Apple");
+      throw const AppError(message: 'Error while login with Apple');
     }
     return SocialAuthUser(
       name: user.displayName,
@@ -77,13 +77,13 @@ class AuthRepository implements IAuthRepository {
     user = await _socialAuthService.signInWithGoogle();
     if (user == null) {
       throw const AppError(
-        message: "Sign-in with Google Canceled",
+        message: 'Sign-in with Google Canceled',
         code: AppErrorCode.googleAuthCanceled,
       );
     }
 
     if (user.email == null) {
-      throw const AppError(message: "Error while login with Google");
+      throw const AppError(message: 'Error while login with Google');
     }
     return SocialAuthUser(
       name: user.displayName,
@@ -95,15 +95,15 @@ class AuthRepository implements IAuthRepository {
   @override
   Future<void> requestResetPassword(String email) async {
     await _apiService.post(
-      "/users/password/reset/",
-      data: {"email": email},
+      '/users/password/reset/',
+      data: {'email': email},
     );
   }
 
   @override
   Future<void> changePassword(ChangePasswordInputModel input) async {
     await _apiService.post(
-      "/users/password/reset/confirm/",
+      '/users/password/reset/confirm/',
       data: input.toOutput().toJson(),
     );
   }
@@ -111,16 +111,16 @@ class AuthRepository implements IAuthRepository {
   @override
   Future<void> resendPasswordResetEmail(String email) async {
     await _apiService.post(
-      "/users/registration/resend-email/",
-      data: {"email": email},
+      '/users/registration/resend-email/',
+      data: {'email': email},
     );
   }
 
   @override
   Future<void> verifyAccount(String token) async {
     await _apiService.post(
-      "/users/account-confirm-email/",
-      data: {"key": token},
+      '/users/account-confirm-email/',
+      data: {'key': token},
     );
   }
 }

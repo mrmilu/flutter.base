@@ -23,11 +23,11 @@ class ChangePasswordSuccessPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: FlutterBaseAppBar.dialog(customPopRoute: "/login"),
+      appBar: FlutterBaseAppBar.dialog(customPopRoute: '/login'),
       bottomSheet: ScaffoldBottomSheet(
         child: ButtonPrimary(
           onPressed: () {
-            GoRouter.of(context).go("/login");
+            GoRouter.of(context).go('/login');
           },
           text: LocaleKeys.changePasswordSuccess_button.tr(),
         ),

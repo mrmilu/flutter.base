@@ -32,12 +32,12 @@ class DeepLinkController {
 
   void _processDeepLinks(Uri deepLink) {
     if (deepLink.queryParameters.containsKey('type') &&
-        deepLink.queryParameters["type"] == "reset-password" &&
+        deepLink.queryParameters['type'] == 'reset-password' &&
         deepLink.queryParameters.containsKey('key') &&
         deepLink.queryParameters.containsKey('uid') &&
-        deepLink.queryParameters["uid"]?.isNotEmpty == true) {
+        deepLink.queryParameters['uid']?.isNotEmpty == true) {
       _appRouter.replace(
-        "/forgot-password/confirm",
+        '/forgot-password/confirm',
         extra: ForgotPasswordConfirmPageData(
           token: deepLink.queryParameters['key'],
           uid: deepLink.queryParameters['uid'],

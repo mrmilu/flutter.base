@@ -7,7 +7,7 @@ part 'photo_data_model.g.dart';
 class PhotoDataModel {
   final int id;
   final String image;
-  @JsonKey(name: "image_type")
+  @JsonKey(name: 'image_type')
   final String imageType;
 
   PhotoDataModel({

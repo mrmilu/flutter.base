@@ -41,7 +41,7 @@ class SplashView extends StatelessWidget {
           builder: (context, child) {
             return Opacity(
               opacity: opacity.value,
-              child: Image.asset("assets/images/splash.png"),
+              child: Image.asset('assets/images/splash.png'),
             );
           },
         ),

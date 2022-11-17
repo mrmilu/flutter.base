@@ -31,7 +31,7 @@ class NotificationsProvider {
 
   Future<void> _onOpenNotification() async {
     // Here redirect to notifications tab
-    log("notification opened");
+    log('notification opened');
   }
 
   void cancelSubscriptions() {

@@ -7,9 +7,9 @@ part 'user_data_model.g.dart';
 class UserDataModel {
   final int? id;
   final String email;
-  @JsonKey(name: "first_name")
+  @JsonKey(name: 'first_name')
   final String name;
-  @JsonKey(name: "verified")
+  @JsonKey(name: 'verified')
   final bool activated;
 
   const UserDataModel({

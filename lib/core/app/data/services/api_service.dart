@@ -29,8 +29,8 @@ class ApiService extends DioRestService {
     }
 
     AppErrorCode? errorCode;
-    String path = error.response?.requestOptions.path ?? "";
-    if (path.contains("login")) {
+    String path = error.response?.requestOptions.path ?? '';
+    if (path.contains('login')) {
       errorCode = AppErrorCode.wrongCredentials;
     }
 
@@ -59,7 +59,7 @@ class ApiService extends DioRestService {
 abstract class ApiServiceModule {
   @lazySingleton
   ApiService get httpClient => ApiService(
-        baseUrl: "${GetIt.I<IEnvVars>().apiUrl}/api",
+        baseUrl: '${GetIt.I<IEnvVars>().apiUrl}/api',
         tokenRepository: GetIt.I<ITokenRepository>(),
       );
 }

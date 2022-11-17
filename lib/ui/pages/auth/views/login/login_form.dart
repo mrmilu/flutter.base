@@ -34,7 +34,7 @@ class _BasicLoginFormWidgetState extends ConsumerState<LoginForm> {
             InputReactive.email(
               formControl: formModel.emailControl,
               placeholder: LocaleKeys.login_form_email_label.tr(),
-              onSubmitted: (control) => formModel.form.focus("password"),
+              onSubmitted: (control) => formModel.form.focus('password'),
             ),
             BoxSpacer.v16(),
             ReactivePasswordInput(
@@ -48,7 +48,7 @@ class _BasicLoginFormWidgetState extends ConsumerState<LoginForm> {
                 text: LocaleKeys.login_forgotPassword.tr(),
                 size: ButtonSize.small,
                 onPressed: () {
-                  GoRouter.of(context).push("/forgot-password");
+                  GoRouter.of(context).push('/forgot-password');
                 },
               ),
             ),
@@ -59,8 +59,8 @@ class _BasicLoginFormWidgetState extends ConsumerState<LoginForm> {
                 var submitDisabled = true;
                 if (snapshot.data != null) {
                   submitDisabled =
-                      formValueIsEmpty(snapshot.data, "password") &&
-                          formValueIsEmpty(snapshot.data, "email");
+                      formValueIsEmpty(snapshot.data, 'password') &&
+                          formValueIsEmpty(snapshot.data, 'email');
                 }
 
                 return ButtonPrimary(

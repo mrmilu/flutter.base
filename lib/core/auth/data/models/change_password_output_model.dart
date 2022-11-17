@@ -7,9 +7,9 @@ part 'change_password_output_model.g.dart';
 class ChangePasswordOutputModel {
   final String uid;
   final String token;
-  @JsonKey(name: "new_password1")
+  @JsonKey(name: 'new_password1')
   final String password;
-  @JsonKey(name: "new_password2")
+  @JsonKey(name: 'new_password2')
   final String repeatPassword;
 
   const ChangePasswordOutputModel({

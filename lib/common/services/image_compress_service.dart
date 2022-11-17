@@ -14,7 +14,7 @@ class ImageCompressService implements IImageCompressService {
     final dir = await getApplicationDocumentsDirectory();
     final dateTime = DateTime.now().toIso8601String();
     final extension = lastIndex >= 0 ? inputPath.substring(lastIndex) : '.jpg';
-    final outPath = "${dir.absolute.path}/${dateTime}_out$extension";
+    final outPath = '${dir.absolute.path}/${dateTime}_out$extension';
     try {
       final File? result = await FlutterImageCompress.compressAndGetFile(
         inputPath,

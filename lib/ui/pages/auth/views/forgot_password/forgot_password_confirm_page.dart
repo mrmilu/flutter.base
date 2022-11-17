@@ -50,7 +50,7 @@ class ForgotPasswordConfirmPage extends StatelessWidget {
                 onPressed: data.token?.isNotEmpty == true
                     ? () {
                         GoRouter.of(context).push(
-                          "/change-password",
+                          '/change-password',
                           extra: ChangePasswordPageData(
                             token: data.token!,
                             uid: data.uid!,

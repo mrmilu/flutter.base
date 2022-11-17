@@ -61,17 +61,17 @@ final GoRouter router = GoRouter(
   navigatorKey: _rootNavigatorKey,
   initialLocation: '/home',
   routes: <RouteBase>[
-    GoRoute(path: "/", builder: (context, state) => const MainPage()),
+    GoRoute(path: '/', builder: (context, state) => const MainPage()),
     // Auth routes
-    GoRoute(path: "/login", builder: (context, state) => const LoginPage()),
-    GoRoute(path: "/sign-up", builder: (context, state) => const SignUpPage()),
+    GoRoute(path: '/login', builder: (context, state) => const LoginPage()),
+    GoRoute(path: '/sign-up', builder: (context, state) => const SignUpPage()),
     GoRoute(
-      path: "/forgot-password",
+      path: '/forgot-password',
       pageBuilder: (context, state) =>
           platformPage(const ForgotPasswordPage(), fullscreenDialog: true),
     ),
     GoRoute(
-      path: "/forgot-password/confirm",
+      path: '/forgot-password/confirm',
       pageBuilder: (context, state) => platformPage(
         ForgotPasswordConfirmPage(
           data: state.extra as ForgotPasswordConfirmPageData,
@@ -80,14 +80,14 @@ final GoRouter router = GoRouter(
       ),
     ),
     GoRoute(
-      path: "/change-password",
+      path: '/change-password',
       pageBuilder: (context, GoRouterState state) => platformPage(
         ChangePasswordPage(data: state.extra as ChangePasswordPageData),
         fullscreenDialog: true,
       ),
     ),
     GoRoute(
-      path: "/change-password/success",
+      path: '/change-password/success',
       pageBuilder: (context, GoRouterState state) => platformPage(
         const ChangePasswordSuccessPage(),
         fullscreenDialog: true,
@@ -103,7 +103,7 @@ final GoRouter router = GoRouter(
       routes: <RouteBase>[
         GoRoute(
           redirect: authGuard,
-          path: "/profile",
+          path: '/profile',
           pageBuilder: (BuildContext context, GoRouterState state) =>
               fadeTransitionPage(state, const ProfilePage()),
           routes: <RouteBase>[
@@ -113,7 +113,7 @@ final GoRouter router = GoRouter(
                   const EditProfilePage(),
             ),
             GoRoute(
-              path: "avatar",
+              path: 'avatar',
               parentNavigatorKey: _rootNavigatorKey,
               builder: (context, state) => EditAvatarPage(
                 avatar: (state.extra as EditAvatarPageData).avatar,
@@ -123,7 +123,7 @@ final GoRouter router = GoRouter(
         ),
         GoRoute(
           redirect: authGuard,
-          path: "/home",
+          path: '/home',
           pageBuilder: (BuildContext context, GoRouterState state) =>
               fadeTransitionPage(state, const PostPage()),
         ),

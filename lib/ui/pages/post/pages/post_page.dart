@@ -16,7 +16,7 @@ class PostPage extends ConsumerWidget {
         backgroundColor:
             Theme.of(context).colorScheme.inversePrimary.withOpacity(0.86),
         middle: Text(
-          "Posts",
+          'Posts',
           style: TextStyle(
             color: Theme.of(context).colorScheme.onPrimary,
           ),
@@ -32,7 +32,7 @@ class PostPage extends ConsumerWidget {
               final tileWidget = ListTile(
                 title: Text(post.title),
                 subtitle: Text(
-                  post.body.replaceAll("\n", " "),
+                  post.body.replaceAll('\n', ' '),
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
                   softWrap: false,

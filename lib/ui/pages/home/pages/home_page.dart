@@ -45,9 +45,9 @@ class _HomePageState extends ConsumerState<HomePage> {
     final GoRouter route = GoRouter.of(context);
     final String location = route.location;
     switch (location) {
-      case "/home":
+      case '/home':
         return 0;
-      case "/profile":
+      case '/profile':
         return 1;
       default:
         return 0;

@@ -38,7 +38,7 @@ class _BasicLoginFormWidgetState extends ConsumerState<ChangePasswordForm> {
             ReactivePasswordInput(
               formControl: formModel.passwordControl,
               placeholder: LocaleKeys.changePassword_form_password_label.tr(),
-              onSubmitted: (control) => formModel.form.focus("repeatPassword"),
+              onSubmitted: (control) => formModel.form.focus('repeatPassword'),
             ),
             BoxSpacer.v16(),
             ReactivePasswordInput(

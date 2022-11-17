@@ -28,7 +28,7 @@ Map<String, dynamic>? ageValidator(AbstractControl<dynamic> control) {
   ).validate(control);
 }
 
-@ReactiveFormAnnotation(name: "MoreAboutTheCatModel")
+@ReactiveFormAnnotation(name: 'MoreAboutTheCatModel')
 @FormGroupAnnotation(
   validators: [birthdateValidator, ageValidator, weightValidator],
 )

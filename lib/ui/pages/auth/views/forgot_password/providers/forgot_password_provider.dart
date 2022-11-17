@@ -25,7 +25,7 @@ class ForgotPasswordProvider {
             ResetPasswordUseCaseInput(email: formModel.model.email.trim());
         await _resetPasswordUseCase(input);
         _appRouter.push(
-          "/forgot-password/confirm",
+          '/forgot-password/confirm',
           extra: ForgotPasswordConfirmPageData(email: input.email),
         );
       });

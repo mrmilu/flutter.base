@@ -4,12 +4,12 @@ import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 part 'change_password_view_model.gform.dart';
 
 Map<String, dynamic>? mustMatchPassword(AbstractControl<dynamic> control) {
-  return Validators.mustMatch("password", "repeatPassword", markAsDirty: false)(
+  return Validators.mustMatch('password', 'repeatPassword', markAsDirty: false)(
     control,
   );
 }
 
-@ReactiveFormAnnotation(name: "ChangePasswordModel")
+@ReactiveFormAnnotation(name: 'ChangePasswordModel')
 @FormGroupAnnotation(validators: [mustMatchPassword])
 class ChangePasswordViewModel {
   final String password;
@@ -17,8 +17,8 @@ class ChangePasswordViewModel {
 
   ChangePasswordViewModel({
     @FormControlAnnotation(validators: [requiredValidator, passwordValidator])
-        this.password = "",
+        this.password = '',
     @FormControlAnnotation(validators: [requiredValidator, passwordValidator])
-        this.repeatPassword = "",
+        this.repeatPassword = '',
   });
 }

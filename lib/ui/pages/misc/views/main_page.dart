@@ -87,14 +87,14 @@ class _BottomSheet extends StatelessWidget {
             children: [
               ButtonPrimary(
                 onPressed: () {
-                  GoRouter.of(context).push("/sign-up");
+                  GoRouter.of(context).push('/sign-up');
                 },
                 text: LocaleKeys.mainPage_getStartedBtn.tr(),
               ),
               BoxSpacer.v8(),
               ButtonTertiary(
                 onPressed: () {
-                  GoRouter.of(context).push("/login");
+                  GoRouter.of(context).push('/login');
                 },
                 text: LocaleKeys.mainPage_loginBtn.tr(),
               )

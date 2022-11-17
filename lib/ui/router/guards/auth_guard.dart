@@ -12,10 +12,10 @@ FutureOr<String?> authGuard(BuildContext context, GoRouterState state) {
   if (user != null && user.verified) {
     return null;
   } else if (user != null && user.verified) {
-    return "/cats-amount";
+    return '/cats-amount';
   } else if (user != null && !user.verified) {
-    return "/verify-account";
+    return '/verify-account';
   } else {
-    return "/";
+    return '/';
   }
 }

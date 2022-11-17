@@ -10,7 +10,7 @@ Map<String, dynamic>? emailValidator(AbstractControl<dynamic> control) {
 
 Map<String, dynamic>? passwordValidator(AbstractControl<dynamic> control) {
   return Validators.pattern(
-    RegExp(r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d\w\W]{8,}$"),
+    RegExp(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d\w\W]{8,}$'),
   )(control);
 }
 
@@ -29,8 +29,8 @@ Map<String, dynamic>? Function(AbstractControl<dynamic> control)
 }
 
 class MoggieValidationMessages {
-  static String validateIf = "validateIf";
-  static String atLeastOne = "atLeastOne";
+  static String validateIf = 'validateIf';
+  static String atLeastOne = 'atLeastOne';
 }
 
 class ValidateControlIf<T> extends Validator<dynamic> {

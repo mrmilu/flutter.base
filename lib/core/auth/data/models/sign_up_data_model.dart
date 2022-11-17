@@ -4,7 +4,7 @@ part 'sign_up_data_model.g.dart';
 
 @JsonSerializable(createToJson: false)
 class SignUpDataModel {
-  @JsonKey(required: true, name: "key")
+  @JsonKey(required: true, name: 'key')
   String token;
 
   SignUpDataModel({

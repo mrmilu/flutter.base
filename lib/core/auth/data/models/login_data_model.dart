@@ -4,7 +4,7 @@ part 'login_data_model.g.dart';
 
 @JsonSerializable()
 class LoginDataModel {
-  @JsonKey(name: "key")
+  @JsonKey(name: 'key')
   final String token;
 
   const LoginDataModel({

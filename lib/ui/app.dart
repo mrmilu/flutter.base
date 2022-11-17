@@ -33,7 +33,7 @@ class _AppState extends ConsumerState<App> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    precacheImage(const AssetImage("assets/images/splash.png"), context);
+    precacheImage(const AssetImage('assets/images/splash.png'), context);
     super.initState();
     _controller = AnimationController(
       duration: const Duration(milliseconds: 1200),
@@ -85,7 +85,7 @@ class _AppState extends ConsumerState<App> with TickerProviderStateMixin {
       await initAppUseCase();
     } on AppError catch (e, stackTrace) {
       if (e.code != AppErrorCode.unAuthorized) {
-        log(e.code?.toString() ?? e.message ?? "Init error");
+        log(e.code?.toString() ?? e.message ?? 'Init error');
         Sentry.captureException(e, stackTrace: stackTrace);
         hasError = true;
         rethrow;

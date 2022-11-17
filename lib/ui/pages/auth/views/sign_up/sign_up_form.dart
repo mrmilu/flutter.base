@@ -25,14 +25,14 @@ class SignUpForm extends ConsumerWidget {
               formControl: formModel.nameControl,
               placeholder: LocaleKeys.signUp_form_name_label.tr(),
               textCapitalization: TextCapitalization.words,
-              onSubmitted: (control) => formModel.form.focus("email"),
+              onSubmitted: (control) => formModel.form.focus('email'),
             ),
             BoxSpacer.v16(),
             InputReactive(
               formControl: formModel.emailControl,
               placeholder: LocaleKeys.signUp_form_email_label.tr(),
               keyboardType: TextInputType.emailAddress,
-              onSubmitted: (control) => formModel.form.focus("password"),
+              onSubmitted: (control) => formModel.form.focus('password'),
             ),
             BoxSpacer.v16(),
             ReactivePasswordInput(
@@ -50,9 +50,9 @@ class SignUpForm extends ConsumerWidget {
                 var submitDisabled = true;
                 if (snapshot.data != null) {
                   submitDisabled =
-                      formValueIsEmpty(snapshot.data, "password") &&
-                          formValueIsEmpty(snapshot.data, "email") &&
-                          formValueIsEmpty(snapshot.data, "name");
+                      formValueIsEmpty(snapshot.data, 'password') &&
+                          formValueIsEmpty(snapshot.data, 'email') &&
+                          formValueIsEmpty(snapshot.data, 'name');
                 }
 
                 return ButtonPrimary(

@@ -24,9 +24,10 @@ linter:
     - prefer_asserts_with_message
     - prefer_if_elements_to_conditional_expressions
     - prefer_null_aware_method_calls
+    - prefer_single_quotes
     - require_trailing_commas
-    - sized_box_shrink_expand
     - secure_pubspec_urls
+    - sized_box_shrink_expand
     - sort_pub_dependencies
     - sort_unnamed_constructors_first
     - throw_in_finally
@@ -34,11 +35,11 @@ linter:
     - unnecessary_null_checks
     - unnecessary_parenthesis
     - unnecessary_statements
-    - use_decorated_box
     - use_colored_box
+    - use_decorated_box
     - use_is_even_rather_than_modulo
-    - use_string_buffers
     - use_named_constants
+    - use_string_buffers
     - use_super_parameters
 analyzer:
   exclude:

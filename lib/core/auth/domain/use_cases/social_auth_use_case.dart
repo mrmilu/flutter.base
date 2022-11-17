@@ -32,7 +32,7 @@ class SocialAuthUseCase {
 
     if (socialAuthUser == null) {
       throw const AppError(
-        message: "No social auth user generated",
+        message: 'No social auth user generated',
         code: AppErrorCode.socialLoginError,
       );
     }

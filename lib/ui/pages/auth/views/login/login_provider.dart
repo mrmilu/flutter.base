@@ -32,7 +32,7 @@ class LoginProvider {
         FocusManager.instance.primaryFocus?.unfocus();
         final user = await _loginUseCase(input);
         _userProvider.setUserData(user.toViewModel());
-        _appRouter.go("/home");
+        _appRouter.go('/home');
       });
     }
   }

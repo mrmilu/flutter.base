@@ -30,7 +30,7 @@ class SocialAuthProvider {
       final input = LoginUseCaseInput(provider: provider);
       final user = await _loginUseCase(input);
       _userProvider.setUserData(user.toViewModel());
-      _appRouter.go("/home");
+      _appRouter.go('/home');
     } on AppError catch (e, stackTrace) {
       if (e.code != AppErrorCode.appleAuthCanceled &&
           e.code != AppErrorCode.googleAuthCanceled &&
@@ -54,7 +54,7 @@ class SocialAuthProvider {
       final input = SignUpUseCaseInput(provider: provider);
       final user = await _signUpUseCase(input);
       _userProvider.setUserData(user.toViewModel());
-      _appRouter.go("/home");
+      _appRouter.go('/home');
     } on AppError catch (e) {
       if (e.code != AppErrorCode.appleAuthCanceled &&
           e.code != AppErrorCode.googleAuthCanceled &&

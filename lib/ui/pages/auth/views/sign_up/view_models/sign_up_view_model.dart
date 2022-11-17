@@ -3,7 +3,7 @@ import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 
 part 'sign_up_view_model.gform.dart';
 
-@ReactiveFormAnnotation(name: "SignUpModel")
+@ReactiveFormAnnotation(name: 'SignUpModel')
 @FormGroupAnnotation()
 class SignUpViewModel {
   final String email;
@@ -12,9 +12,9 @@ class SignUpViewModel {
 
   SignUpViewModel({
     @FormControlAnnotation(validators: [requiredValidator, emailValidator])
-        this.email = "",
-    @FormControlAnnotation(validators: [requiredValidator]) this.name = "",
+        this.email = '',
+    @FormControlAnnotation(validators: [requiredValidator]) this.name = '',
     @FormControlAnnotation(validators: [requiredValidator, passwordValidator])
-        this.password = "",
+        this.password = '',
   });
 }

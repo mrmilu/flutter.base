@@ -53,7 +53,7 @@ class ProfileProvider extends StateNotifier<ProfileState> {
     final avatar = await _assetPickerService.imageFromGallery();
     if (avatar != null) {
       _appRouter.push(
-        "/profile/avatar",
+        '/profile/avatar',
         extra: EditAvatarPageData(avatar: avatar),
       );
     }
@@ -65,7 +65,7 @@ class ProfileProvider extends StateNotifier<ProfileState> {
     final avatar = await _assetPickerService.imageFromCamera();
     if (avatar != null) {
       _appRouter.push(
-        "/profile/avatar",
+        '/profile/avatar',
         extra: EditAvatarPageData(avatar: avatar),
       );
     }

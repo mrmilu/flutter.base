@@ -28,7 +28,7 @@ class ShareFileUseCase {
   Future<void> call(ShareFileUseCaseInput input) async {
     final file = await _fsRepository.createFile(
       CreateFileInput(
-        path: "share",
+        path: 'share',
         bytes: input.bytes,
         name: input.filename,
       ),

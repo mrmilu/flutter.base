@@ -10,9 +10,9 @@ import 'package:injectable/injectable.dart';
 // @Singleton(as: INotificationsService)
 class NotificationsService implements INotificationsService {
   static const AndroidNotificationChannel channel = AndroidNotificationChannel(
-    "high_importance_channel", // id
-    "High Importance Notifications", // title
-    description: "This channel is used for important notifications.",
+    'high_importance_channel', // id
+    'High Importance Notifications', // title
+    description: 'This channel is used for important notifications.',
     importance: Importance.max,
   );
 
@@ -34,7 +34,7 @@ class NotificationsService implements INotificationsService {
     if (Platform.isAndroid) {
       _flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
       const AndroidInitializationSettings initializationSettingsAndroid =
-          AndroidInitializationSettings("ic_launcher_foreground");
+          AndroidInitializationSettings('ic_launcher_foreground');
       const InitializationSettings initializationSettings =
           InitializationSettings(android: initializationSettingsAndroid);
       await _flutterLocalNotificationsPlugin!.initialize(

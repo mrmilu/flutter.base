@@ -28,7 +28,7 @@ class SocialAuth extends ConsumerWidget {
       children: [
         if (Platform.isIOS) ...[
           ButtonSecondary(
-            iconName: "apple_logo",
+            iconName: 'apple_logo',
             onPressed: () {
               _appleAuth(ref);
             },
@@ -41,7 +41,7 @@ class SocialAuth extends ConsumerWidget {
           BoxSpacer.v8(),
         ],
         ButtonSecondary(
-          iconName: "google_logo",
+          iconName: 'google_logo',
           text: _googleBtnTxt,
           customTextStyle: MoggieTextStyles.midM.copyWith(
             fontSize: 15,

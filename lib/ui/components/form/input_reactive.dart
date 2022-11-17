@@ -139,7 +139,7 @@ class _ReactivePasswordInputState extends State<ReactivePasswordInput> {
           },
           icon: const FlutterBaseSvgIcon(
             color: MoggieColors.specificContentLow,
-            iconName: "eye_line",
+            iconName: 'eye_line',
           ),
         ),
       ),

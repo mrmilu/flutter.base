@@ -39,7 +39,7 @@ void startApp() async {
 
     providerContainer
         .read(uiProvider.notifier)
-        .showSnackBar("Something went wrong");
+        .showSnackBar('Something went wrong');
     log('PlatformDispatcher.instance/$error');
     return true;
   };

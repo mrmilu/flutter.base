@@ -26,7 +26,7 @@ class LoginUseCaseInput {
                       provider == AuthProvider.apple) &&
                   email == null &&
                   password == null),
-          "If email provider is chosen email and password are required.",
+          'If email provider is chosen email and password are required.',
         );
 }
 

@@ -31,7 +31,7 @@ class ChangePasswordProvider {
           repeatPassword: formModel.model.repeatPassword.trim(),
         );
         await _changePasswordUseCase(input);
-        _appRouter.push("/change-password/success");
+        _appRouter.push('/change-password/success');
       });
     }
   }

@@ -45,7 +45,7 @@ class UserProvider extends StateNotifier<UserState> {
   Future<void> logout() async {
     _uiProvider.tryAction(() async {
       await _logoutUseCase();
-      GetIt.I.get<GoRouter>().go("/");
+      GetIt.I.get<GoRouter>().go('/');
       clearProvider();
     });
   }

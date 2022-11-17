@@ -15,7 +15,7 @@ class ImageFromCameraUseCase {
     final image = await _assetPickerService.imageFromCamera();
     if (image == null) return null;
     return _fsRepository.createFile(
-      CreateFileInput(path: "share", bytes: image.readAsBytesSync()),
+      CreateFileInput(path: 'share', bytes: image.readAsBytesSync()),
     );
   }
 }

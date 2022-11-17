@@ -30,7 +30,7 @@ class LoginPage extends ConsumerWidget {
               fixedSize: const Size(53, 18),
               size: ButtonSize.small,
               onPressed: () {
-                GoRouter.of(context).push("/sign-up");
+                GoRouter.of(context).push('/sign-up');
               },
             ),
           ],

@@ -15,7 +15,7 @@ class ImageFromGalleryUseCase {
     final image = await _assetPickerService.imageFromGallery();
     if (image == null) return null;
     return _fsRepository.createFile(
-      CreateFileInput(path: "share", bytes: image.readAsBytesSync()),
+      CreateFileInput(path: 'share', bytes: image.readAsBytesSync()),
     );
   }
 }

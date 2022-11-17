@@ -18,8 +18,8 @@ class FlutterBaseSvgIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SvgPicture.asset(
-      "assets/icons/$iconName.svg",
-      semanticsLabel: "icon_$iconName",
+      'assets/icons/$iconName.svg',
+      semanticsLabel: 'icon_$iconName',
       width: width,
       height: height,
       color: color,

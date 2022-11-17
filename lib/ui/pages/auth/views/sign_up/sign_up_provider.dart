@@ -33,7 +33,7 @@ class SignUpProvider {
           );
           final user = await _signUpUseCase(input);
           _userProvider.setUserData(user.toViewModel());
-          GetIt.I.get<GoRouter>().go("/home");
+          GetIt.I.get<GoRouter>().go('/home');
         },
         rethrowError: true,
       );

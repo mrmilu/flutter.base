@@ -17,16 +17,16 @@ class UserRepository implements IUserRepository {
   @override
   Future<User> getLoggedUser() async {
     final response =
-        await _apiService.get<Map<String, dynamic>>("/users/user/");
+        await _apiService.get<Map<String, dynamic>>('/users/user/');
     return UserDataModel.fromJson(response ?? {}).toDomain();
   }
 
   @override
   Future<User> avatar(File photo) async {
     final res = await _apiService.post(
-      "/user/avatar",
+      '/user/avatar',
       data: FormData.fromMap({
-        "file": await MultipartFile.fromFile(photo.path),
+        'file': await MultipartFile.fromFile(photo.path),
       }),
     );
     return UserDataModel.fromJson(res ?? {}).toDomain();
@@ -34,13 +34,13 @@ class UserRepository implements IUserRepository {
 
   @override
   Future<User> deleteAvatar() async {
-    final res = await _apiService.delete("/user/avatar");
+    final res = await _apiService.delete('/user/avatar');
     return UserDataModel.fromJson(res).toDomain();
   }
 
   @override
   Future<User> update(UpdateUserInputModel input) async {
-    final res = await _apiService.put("/user", data: input.toJson());
+    final res = await _apiService.put('/user', data: input.toJson());
     return UserDataModel.fromJson(res ?? {}).toDomain();
   }
 }

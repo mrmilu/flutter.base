@@ -3,7 +3,7 @@ import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 
 part 'meet_the_cat_view_model.gform.dart';
 
-@ReactiveFormAnnotation(name: "MeetTheCatModel")
+@ReactiveFormAnnotation(name: 'MeetTheCatModel')
 @FormGroupAnnotation()
 class MeetTheCatViewModel {
   final String name;

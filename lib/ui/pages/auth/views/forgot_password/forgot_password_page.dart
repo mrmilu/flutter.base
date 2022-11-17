@@ -63,7 +63,7 @@ class ForgotPasswordPage extends StatelessWidget {
           builder: (context, snapshot) {
             var submitDisabled = true;
             if (snapshot.data != null) {
-              submitDisabled = formValueIsEmpty(snapshot.data, "email");
+              submitDisabled = formValueIsEmpty(snapshot.data, 'email');
             }
 
             return ButtonPrimary(
