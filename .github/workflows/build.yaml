@@ -17,6 +17,10 @@ jobs:
         cache: true
     - name: Install dependencies
       run: flutter pub get
+    - name: Generate auto generated files
+      run: fvm flutter pub run build_runner build
+    - name: Generated translation files
+      run: fvm flutter pub run easy_localization:generate -S assets/translations -f keys -O lib/ui/i18n -o locale_keys.g.dart
     - name: Verify formated files
       run: flutter format $(find . -name "*.dart" -not -wholename "lib/**/*.g.dart")
     - name: Analyze code
