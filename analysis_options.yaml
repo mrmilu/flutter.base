@@ -12,20 +12,40 @@ include: package:flutter_lints/flutter.yaml
 linter:
   rules:
     - always_declare_return_types
-    - avoid_bool_literals_in_conditional_expressions
-    - avoid_redundant_argument_values
-    - unnecessary_parenthesis
-    - require_trailing_commas
-    - sort_pub_dependencies
-    - directives_ordering
-    - prefer_asserts_with_message
-    - use_super_parameters
-    - avoid_annotating_with_dynamic
-    - sized_box_for_whitespace
     - always_use_package_imports
+    - avoid_annotating_with_dynamic
+    - avoid_bool_literals_in_conditional_expressions
+    - avoid_positional_boolean_parameters
+    - avoid_redundant_argument_values
+    - avoid_unused_constructor_parameters
+    - conditional_uri_does_not_exist
+    - directives_ordering
+    - literal_only_boolean_expressions
+    - prefer_asserts_with_message
+    - prefer_if_elements_to_conditional_expressions
+    - prefer_null_aware_method_calls
+    - require_trailing_commas
+    - sized_box_shrink_expand
+    - secure_pubspec_urls
+    - sort_pub_dependencies
+    - sort_unnamed_constructors_first
+    - throw_in_finally
+    - unnecessary_await_in_return
+    - unnecessary_null_checks
+    - unnecessary_parenthesis
+    - unnecessary_statements
+    - use_decorated_box
+    - use_colored_box
+    - use_is_even_rather_than_modulo
+    - use_string_buffers
+    - use_named_constants
+    - use_super_parameters
 analyzer:
   exclude:
-    - "**/*.gform.dart"
     - "**/*.g.dart"
+    - "**/*.gform.dart"
     - "lib/core/app/ioc/locator.config.dart"
     - "lib/ui/styles/moggie_icons.dart"
+    - lib/**/*.freezed.dart
+    - lib/generated_plugin_registrant.dart
+    - test/**/*.mocks.dart

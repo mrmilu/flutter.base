@@ -14,7 +14,7 @@ class ImageFromCameraUseCase {
   Future<File?> call() async {
     final image = await _assetPickerService.imageFromCamera();
     if (image == null) return null;
-    return await _fsRepository.createFile(
+    return _fsRepository.createFile(
       CreateFileInput(path: "share", bytes: image.readAsBytesSync()),
     );
   }

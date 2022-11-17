@@ -14,7 +14,7 @@ class ImageFromGalleryUseCase {
   Future<File?> call() async {
     final image = await _assetPickerService.imageFromGallery();
     if (image == null) return null;
-    return await _fsRepository.createFile(
+    return _fsRepository.createFile(
       CreateFileInput(path: "share", bytes: image.readAsBytesSync()),
     );
   }

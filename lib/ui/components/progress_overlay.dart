@@ -67,7 +67,7 @@ class __GlobalProgressWidgetState extends ConsumerState<_GlobalProgressWidget> {
       child: AnimatedOpacity(
         opacity: _opacity,
         duration: const Duration(milliseconds: 250),
-        child: Container(
+        child: ColoredBox(
           color: Theme.of(context).primaryColorDark.withAlpha(210),
           child: const Center(
             child: CircularProgress(),

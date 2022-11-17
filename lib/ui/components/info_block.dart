@@ -12,7 +12,7 @@ class InfoBlock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return DecoratedBox(
       decoration: BoxDecoration(
         color: MoggieColors.specificBeige10,
         borderRadius: BorderRadius.circular(16),

@@ -14,7 +14,6 @@ class IconButtonSecondary extends OutlinedButton {
     required super.onPressed,
     required IconData icon,
     ButtonSize size = ButtonSize.normal,
-    TextStyle? customTextStyle,
   }) : super(
           style: ButtonStyle(
             shape: MaterialStateProperty.all(

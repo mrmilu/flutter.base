@@ -31,7 +31,7 @@ class EditableImagePreview extends StatelessWidget {
         cropLayerPainter: circleMask
             ? const CircleEditorCropLayerPainter()
             : const EditorCropLayerPainter(),
-        cropRectPadding: const EdgeInsets.all(0),
+        cropRectPadding: EdgeInsets.zero,
         initCropRectType: InitCropRectType.layoutRect,
         cornerSize: Size.zero,
       ),

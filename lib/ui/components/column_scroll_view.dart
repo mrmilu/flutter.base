@@ -13,7 +13,7 @@ class ColumnScrollView extends StatelessWidget {
     required this.children,
     this.crossAxisAlignment = CrossAxisAlignment.center,
     this.mainAxisAlignment = MainAxisAlignment.start,
-    this.padding = const EdgeInsets.all(0),
+    this.padding = EdgeInsets.zero,
     this.disableKeyboardPadding = false,
     this.controller,
   });

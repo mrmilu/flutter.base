@@ -59,8 +59,8 @@ class _BasicLoginFormWidgetState extends ConsumerState<LoginForm> {
                 var submitDisabled = true;
                 if (snapshot.data != null) {
                   submitDisabled =
-                      formValueIsEmpty(snapshot.data!, "password") &&
-                          formValueIsEmpty(snapshot.data!, "email");
+                      formValueIsEmpty(snapshot.data, "password") &&
+                          formValueIsEmpty(snapshot.data, "email");
                 }
 
                 return ButtonPrimary(

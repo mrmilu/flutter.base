@@ -50,9 +50,9 @@ class SignUpForm extends ConsumerWidget {
                 var submitDisabled = true;
                 if (snapshot.data != null) {
                   submitDisabled =
-                      formValueIsEmpty(snapshot.data!, "password") &&
-                          formValueIsEmpty(snapshot.data!, "email") &&
-                          formValueIsEmpty(snapshot.data!, "name");
+                      formValueIsEmpty(snapshot.data, "password") &&
+                          formValueIsEmpty(snapshot.data, "email") &&
+                          formValueIsEmpty(snapshot.data, "name");
                 }
 
                 return ButtonPrimary(

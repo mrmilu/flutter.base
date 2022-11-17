@@ -39,8 +39,8 @@ class DeepLinkController {
       _appRouter.replace(
         "/forgot-password/confirm",
         extra: ForgotPasswordConfirmPageData(
-          token: deepLink.queryParameters['key']!,
-          uid: deepLink.queryParameters['uid']!,
+          token: deepLink.queryParameters['key'],
+          uid: deepLink.queryParameters['uid'],
         ),
       );
     }

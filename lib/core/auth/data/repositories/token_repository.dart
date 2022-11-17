@@ -17,8 +17,8 @@ class TokenRepository implements ITokenRepository {
   }
 
   @override
-  Future<String> getToken() async {
-    return await _secureStorageService.read(key: _tokenKey);
+  Future<String> getToken() {
+    return _secureStorageService.read(key: _tokenKey);
   }
 
   @override
