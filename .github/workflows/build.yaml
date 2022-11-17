@@ -25,5 +25,3 @@ jobs:
       run: flutter format $(find . -name "*.dart" -not -wholename "lib/**/*.g.dart")
     - name: Analyze code
       run: flutter analyze
-    - name: Run tests
-      run: flutter test
