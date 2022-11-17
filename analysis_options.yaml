@@ -22,7 +22,6 @@ linter:
     - directives_ordering
     - literal_only_boolean_expressions
     - prefer_asserts_with_message
-    - prefer_if_elements_to_conditional_expressions
     - prefer_null_aware_method_calls
     - prefer_single_quotes
     - require_trailing_commas
