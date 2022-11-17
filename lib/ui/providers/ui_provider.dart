@@ -1,12 +1,10 @@
-import 'dart:developer';
-
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_base/core/app/domain/models/app_error.dart';
 import 'package:flutter_base/ui/components/loaders/global_circular_progress.dart';
 import 'package:flutter_base/ui/components/styled_snackbar.dart';
-import 'package:flutter_base/ui/i18n/locale_keys.g.dart';
+import 'package:flutter_base/ui/extensions/app_error_code_messages.dart';
+import 'package:flutter_base/ui/extensions/program_error_messages.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:get_it/get_it.dart';
@@ -72,18 +70,20 @@ class UiProvider extends StateNotifier<UiState> {
       await action();
     } on AppError catch (e, stackTrace) {
       Sentry.captureException(e, stackTrace: stackTrace);
-      log('$runtimeType/${e.toString()}');
+      debugPrint('$runtimeType/AppError: ${e.toString()}');
 
       if (rethrowError) rethrow;
 
-      final defaultMessage = LocaleKeys.errorsMessages_global.tr();
-      if (e.code == AppErrorCode.unAuthorized ||
-          e.code == AppErrorCode.wrongCredentials) {
-        showSnackBar(e.message ?? defaultMessage);
-      } else {
-        showSnackBar(defaultMessage);
-      }
+      showSnackBar(e.code?.getMessage() ?? e.message ?? '');
+    } on Error catch (e, stackTrace) {
+      debugPrint('$runtimeType/ProgramError: ${e.toString()}');
+      Sentry.captureException(e, stackTrace: stackTrace);
+
+      if (rethrowError) rethrow;
+
+      showSnackBar(e.getMessage());
     } catch (e) {
+      debugPrint('$runtimeType/Exception: ${e.toString()}');
       rethrow;
     } finally {
       hideGlobalLoader();

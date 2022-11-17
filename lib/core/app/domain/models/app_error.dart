@@ -6,15 +6,23 @@ class AppError implements Exception {
     this.message,
     this.code,
   });
+
+  @override
+  String toString() {
+    return '${code.toString()} - $message';
+  }
 }
 
 enum AppErrorCode {
-  googleAuthCanceled,
   appleAuthCanceled,
-  unAuthorized,
-  wrongCredentials,
   badRequest,
+  forbidden,
+  internalServer,
   generalError,
+  googleAuthCanceled,
+  notFound,
   resendEmailDoesNotExist,
   socialLoginError,
+  unauthorized,
+  wrongCredentials,
 }

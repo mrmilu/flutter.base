@@ -1,15 +1,12 @@
 import 'dart:async';
 import 'dart:typed_data';
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_base/common/interfaces/asset_picker_service.dart';
 import 'package:flutter_base/common/interfaces/edit_image_service.dart';
-import 'package:flutter_base/core/app/domain/models/app_error.dart';
 import 'package:flutter_base/core/user/domain/interfaces/user_repository.dart';
 import 'package:flutter_base/core/user/domain/models/update_user_input_model.dart';
-import 'package:flutter_base/ui/i18n/locale_keys.g.dart';
 import 'package:flutter_base/ui/pages/profile/pages/edit_avatar_page.dart';
 import 'package:flutter_base/ui/pages/profile/view_models/edit_profile_view_model.dart';
 import 'package:flutter_base/ui/providers/ui_provider.dart';
@@ -73,59 +70,53 @@ class ProfileProvider extends StateNotifier<ProfileState> {
   }
 
   Future<void> deleteAvatar() async {
-    try {
+    _uiProvider.tryAction(() async {
       _uiProvider.showGlobalLoader();
       final user = await _userRepository.deleteAvatar();
       _userProvider.setUserData(user.toViewModel());
-    } finally {
-      _uiProvider.hideGlobalLoader();
-    }
+    });
   }
 
   Future<void> updateProfile(EditProfileModelForm formModel) async {
     formModel.form.markAllAsTouched();
     if (formModel.form.valid) {
-      _uiProvider.showGlobalLoader();
-      final input = UpdateUserInputModel(
-        name: formModel.model.name.trim(),
-      );
-      try {
+      _uiProvider.tryAction(() async {
         FocusManager.instance.primaryFocus?.unfocus();
+        final input = UpdateUserInputModel(
+          name: formModel.model.name.trim(),
+        );
         final user = await _userRepository.update(input);
         _userProvider.setUserData(user.toViewModel());
         _appRouter.pop();
-      } on AppError {
-        _uiProvider.showSnackBar(LocaleKeys.errorsMessages_global.tr());
-      } finally {
-        _uiProvider.hideGlobalLoader();
-      }
+      });
     }
   }
 
   Future<void> cropAvatarPhotoAndSave() async {
     _uiProvider.showGlobalLoader();
-    try {
-      final editorState = state.avatarEditorKey!.currentState;
-      if (editorState == null) {
-        return;
-      }
-      final Rect? rect = editorState.getCropRect();
-      final Uint8List rawImage = editorState.rawImageData;
+    _uiProvider
+        .tryAction(() async {
+          final editorState = state.avatarEditorKey!.currentState;
+          if (editorState == null) {
+            return;
+          }
+          final Rect? rect = editorState.getCropRect();
+          final Uint8List rawImage = editorState.rawImageData;
 
-      if (rect == null) return;
+          if (rect == null) return;
 
-      final editedAvatar = await _editImageService.crop(rect, rawImage);
-      if (editedAvatar != null) {
-        final user = await _userRepository.avatar(editedAvatar);
-        _userProvider.setUserData(user.toViewModel());
-      }
-      _uiProvider.hideGlobalLoader();
-      _appRouter.navigator?.pop();
-    } finally {
-      Timer(const Duration(milliseconds: 300), () {
-        state.avatarEditorKey?.currentState?.reset();
-      });
-    }
+          final editedAvatar = await _editImageService.crop(rect, rawImage);
+          if (editedAvatar != null) {
+            final user = await _userRepository.avatar(editedAvatar);
+            _userProvider.setUserData(user.toViewModel());
+          }
+        })
+        .then((value) => _appRouter.navigator?.pop())
+        .whenComplete(() {
+          Timer(const Duration(milliseconds: 300), () {
+            state.avatarEditorKey?.currentState?.reset();
+          });
+        });
   }
 }
 

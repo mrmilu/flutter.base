@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:easy_localization/easy_localization.dart';
 // ignore: unused_import
 import 'package:firebase_core/firebase_core.dart';
@@ -40,7 +38,7 @@ void startApp() async {
     providerContainer
         .read(uiProvider.notifier)
         .showSnackBar('Something went wrong');
-    log('PlatformDispatcher.instance/$error');
+    debugPrint('PlatformDispatcher.instance/$error');
     return true;
   };
 

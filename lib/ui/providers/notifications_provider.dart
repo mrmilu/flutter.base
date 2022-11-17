@@ -1,7 +1,7 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_base/common/interfaces/notifications_service.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
@@ -31,7 +31,7 @@ class NotificationsProvider {
 
   Future<void> _onOpenNotification() async {
     // Here redirect to notifications tab
-    log('notification opened');
+    debugPrint('notification opened');
   }
 
   void cancelSubscriptions() {
@@ -41,7 +41,7 @@ class NotificationsProvider {
   Future<void> _registerDevice(String? deviceToken) async {
     if (deviceToken == null) return;
     this.deviceToken = deviceToken;
-    log(deviceToken);
+    debugPrint(deviceToken);
     // here register device token in backend
   }
 }

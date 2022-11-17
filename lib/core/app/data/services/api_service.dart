@@ -35,17 +35,31 @@ class ApiService extends DioRestService {
     }
 
     switch (error.response?.statusCode) {
-      case 401:
-        throw AppError(
-          message: apiErrorMessage ?? error.response?.statusMessage,
-          code: AppErrorCode.unAuthorized,
-        );
       case 400:
         throw AppError(
           message: apiErrorMessage ?? error.response?.statusMessage,
           code: errorCode ?? AppErrorCode.badRequest,
         );
+      case 401:
+        throw AppError(
+          message: apiErrorMessage ?? error.response?.statusMessage,
+          code: errorCode ?? AppErrorCode.unauthorized,
+        );
+      case 403:
+        throw AppError(
+          message: apiErrorMessage ?? error.response?.statusMessage,
+          code: errorCode ?? AppErrorCode.forbidden,
+        );
+      case 404:
+        throw AppError(
+          message: apiErrorMessage ?? error.response?.statusMessage,
+          code: errorCode ?? AppErrorCode.notFound,
+        );
       case 500:
+        throw AppError(
+          message: apiErrorMessage ?? error.response?.statusMessage,
+          code: errorCode ?? AppErrorCode.internalServer,
+        );
       default:
         throw AppError(
           message: apiErrorMessage ?? error.response?.statusMessage,

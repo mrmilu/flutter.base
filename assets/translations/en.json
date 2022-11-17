@@ -1,13 +1,31 @@
 {
-  "errorsMessages": {
-    "global": "Something went wrong",
-    "login": "Error sign in with current credentials"
-  },
-  "formErrors": {
-    "required": "This filed is required",
-    "emailFormat": "Wrong email format",
-    "password": "The password must have at least 8 characters (including un uppercase letter, one lowercase letter and a number)",
-    "passwordMatch": "Both passwords must match."
+  "errors": {
+    "exceptions": {
+      "apple_auth_cancel": "Sign-in with Apple Canceled",
+      "bad_request": "Bad request",
+      "unauthorized": "Denied access",
+      "social_login_error": "No social auth user generated",
+      "google_auth_cancel": "Sign-in with Google Canceled",
+      "email_does_not_exist": "Email does not exit",
+      "wrong_credentials": "Error sign in with current credentials",
+      "internal_program_unknown": "Internal program error unknown",
+      "internal_program_argument": "Invalid argument on function",
+      "internal_program_format": "Invalid format",
+      "internal_program_range": "Value not in range",
+      "internal_program_null": "Null values",
+      "internal_program_state": "Invalid operation with actual state",
+      "internal_program_type": "Invalid type",
+      "global": "Something went wrong",
+      "internal_server": "Unknown error server",
+      "not_found": "Not found request",
+      "forbidden": "Forbidden permissions to access"
+    },
+    "form": {
+      "required": "This filed is required",
+      "emailFormat": "Wrong email format",
+      "password": "The password must have at least 8 characters (including un uppercase letter, one lowercase letter and a number)",
+      "passwordMatch": "Both passwords must match."
+    }
   },
   "login": {
     "title": "Sign in",
@@ -129,5 +147,3 @@
     }
   }
 }
-
-

@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:easy_localization/easy_localization.dart' as easy_localization;
 import 'package:flutter/material.dart';
@@ -84,8 +83,8 @@ class _AppState extends ConsumerState<App> with TickerProviderStateMixin {
       final initAppUseCase = GetIt.I.get<InitAppUseCase>();
       await initAppUseCase();
     } on AppError catch (e, stackTrace) {
-      if (e.code != AppErrorCode.unAuthorized) {
-        log(e.code?.toString() ?? e.message ?? 'Init error');
+      if (e.code != AppErrorCode.unauthorized) {
+        debugPrint(e.code?.toString() ?? e.message ?? 'Init error');
         Sentry.captureException(e, stackTrace: stackTrace);
         hasError = true;
         rethrow;
@@ -93,7 +92,7 @@ class _AppState extends ConsumerState<App> with TickerProviderStateMixin {
     } catch (e, stackTrace) {
       Sentry.captureException(e, stackTrace: stackTrace);
       hasError = true;
-      log('$runtimeType/${e.toString()}');
+      debugPrint('$runtimeType/${e.toString()}');
       // swallow error
     } finally {
       setState(() {
@@ -107,7 +106,7 @@ class _AppState extends ConsumerState<App> with TickerProviderStateMixin {
       if (hasError) {
         ref
             .read(uiProvider.notifier)
-            .showSnackBar(LocaleKeys.errorsMessages_global.tr());
+            .showSnackBar(LocaleKeys.errors_exceptions_global.tr());
       }
     }
   }
@@ -118,8 +117,8 @@ class _MaterialApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ReactiveFormConfig(
       validationMessages: {
-        ValidationMessage.required: (_) => LocaleKeys.formErrors_required.tr(),
-        ValidationMessage.email: (_) => LocaleKeys.formErrors_emailFormat.tr()
+        ValidationMessage.required: (_) => LocaleKeys.errors_form_required.tr(),
+        ValidationMessage.email: (_) => LocaleKeys.errors_form_emailFormat.tr()
       },
       child: MaterialApp.router(
         theme: moggieThemeData,
