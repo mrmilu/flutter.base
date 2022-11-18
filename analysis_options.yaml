@@ -42,10 +42,11 @@ linter:
     - use_super_parameters
 analyzer:
   exclude:
-    - "**/*.g.dart"
-    - "**/*.gform.dart"
-    - "lib/core/app/ioc/locator.config.dart"
-    - "lib/ui/styles/moggie_icons.dart"
+    - fvm/
+    - lib/**/*.config.dart
     - lib/**/*.freezed.dart
+    - lib/**/*.g.dart
+    - lib/**/*.gform.dart
     - lib/generated_plugin_registrant.dart
+    - lib/ui/styles/moggie_icons.dart
     - test/**/*.mocks.dart
