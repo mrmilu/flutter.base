@@ -72,7 +72,7 @@ jobs:
         - build
         - run:
             name: Verify formated files
-            command: fvm flutter format $(find . -name "*.dart" -not -wholename "lib/**/*.g.dart")
+            command: fvm flutter format $(find ./lib/ -name "*.dart" -not -wholename "lib/**/*.g.dart")
         - run:
             name: Analyze code
             command: fvm flutter analyze
@@ -129,12 +129,7 @@ commands:
 workflows:
   deploy:
     jobs:
-      - code-analysis:
-          filters:
-            branches:
-              only:
-                - develop
-                - main
+      - code-analysis
       - deploy-android:
           name: "Distribute Android app (close testing)"
           requires:
