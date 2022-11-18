@@ -62,6 +62,22 @@ jobs:
         - store_artifacts:
             path: output
 
+  code-analysis:
+      macos:
+        xcode: 14.1.0
+      steps:
+        - checkout
+        - install_flutter:
+            os: "macos"
+        - build
+        - run:
+            name: Verify formated files
+            command: fvm flutter format $(find . -name "*.dart" -not -wholename "lib/**/*.g.dart")
+        - run:
+            name: Analyze code
+            command: fvm flutter analyze
+
+
 commands:
   build:
     description: Build generated files
@@ -113,8 +129,16 @@ commands:
 workflows:
   deploy:
     jobs:
+      - code-analysis:
+          filters:
+            branches:
+              only:
+                - develop
+                - main
       - deploy-android:
           name: "Distribute Android app (close testing)"
+          requires:
+            - code-analysis
           filters:
             branches:
               only:
@@ -124,6 +148,8 @@ workflows:
           name: "Distribute iOS app (internal)"
           context:
             - match
+          requires:
+            - code-analysis
           filters:
             branches:
               only:
