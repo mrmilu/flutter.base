@@ -13,15 +13,26 @@ jobs:
         - install_flutter
         - build
         - flutter/install_android_gem
-        - env_vars_files:
-            target_platform: "android"
-        - run:
-            name: Deploy Android app (internal Beta) by fastlane
-            command: bundle exec fastlane build_deploy_internal_beta
-            working_directory: android
+        - env_vars_files
+        - when:
+            condition:
+              equal: [ develop, << pipeline.git.branch >> ]
+            steps:
+              - run:
+                  name: Deploy Android app (close testing Beta) by fastlane
+                  command: bundle exec fastlane build_deploy_internal_beta
+                  working_directory: android
+        - when:
+            condition:
+              equal: [ main, << pipeline.git.branch >> ]
+            steps:
+              - run:
+                  name: Deploy Android app (close testing Beta) by fastlane
+                  command: bundle exec fastlane build_deploy_internal_prod
+                  working_directory: android
   deploy-ios:
       macos:
-        xcode: 13.4.1
+        xcode: 14.1.0
       environment:
         FL_OUTPUT_DIR: output
       steps:
@@ -32,10 +43,22 @@ jobs:
         - flutter/install_ios_gem
         - run: fvm flutter precache --ios
         - flutter/install_ios_pod
-        - run:
-            name: Deploy iOS app (internal Beta) by fastlane
-            command: bundle exec fastlane build_deploy_internal_beta
-            working_directory: ios
+        - when:
+            condition:
+              equal: [ develop, << pipeline.git.branch >> ]
+            steps:
+              - run:
+                  name: Deploy iOS app (internal Beta) by fastlane
+                  command: bundle exec fastlane build_deploy_internal_beta
+                  working_directory: ios
+        - when:
+            condition:
+              equal: [ main, << pipeline.git.branch >> ]
+            steps:
+              - run:
+                  name: Deploy iOS app (internal Prod) by fastlane
+                  command: bundle exec fastlane build_deploy_internal_prod
+                  working_directory: ios
         - store_artifacts:
             path: output
 
@@ -79,37 +102,30 @@ commands:
           command: fvm install
   env_vars_files:
     description: Get enviroment variables files
-    parameters:
-      target_platform:
-        type: enum
-        default: "base"
-        enum: ["ios", "android", "base"]
     steps:
-      - when:
-          condition:
-            equal: [ "android", << parameters.target_platform >> ]
-          steps:
-            - run: 
-                name: Get Android files
-                command: |
-                  echo $KEY_PROPERTIES | base64 -d > ./android/key.properties
-                  echo $UPLOAD_KEYSTORE | base64 -d > ./android/upload-keystore.jks
-                  echo $PLAY_STORE_UPLOAD_KEY | base64 -d > ./android/fastlane/api-access.json
+      - run: 
+          name: Get Android files
+          command: |
+            echo $KEY_PROPERTIES | base64 -d > ./android/key.properties
+            echo $UPLOAD_KEYSTORE | base64 -d > ./android/upload-keystore.jks
+            echo $PLAY_STORE_UPLOAD_KEY | base64 -d > ./android/fastlane/api-access.json
 
 workflows:
   deploy:
     jobs:
       - deploy-android:
-          name: "Distribute Android app (internal Beta)"
+          name: "Distribute Android app (close testing)"
           filters:
             branches:
               only:
                 - develop
+                - main
       - deploy-ios:
-          name: "Distribute iOS app (internal Beta)"
+          name: "Distribute iOS app (internal)"
           context:
             - match
           filters:
             branches:
               only:
                 - develop
+                - main

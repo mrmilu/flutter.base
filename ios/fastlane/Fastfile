@@ -17,7 +17,7 @@ default_platform(:ios)
 
 platform :ios do
   desc "Build app and deploy (internal beta)"
-  lane :build_deploy_beta do
+  lane :build_deploy_internal_beta do
       api_key = app_store_connect_api_key(
         key_id: "XXXXXX",
         issuer_id: "xxxxx-xxxxx-xxxx-xxxx-xxxxx",
@@ -50,6 +50,44 @@ platform :ios do
       upload_to_testflight(
           api_key: api_key,
           app_identifier: 'com.flutterbase-mrmilu.beta',
+          skip_waiting_for_build_processing: true
+      )
+  end
+
+  desc "Build app and deploy (internal prod)"
+  lane :build_deploy_internal_prod do
+      api_key = app_store_connect_api_key(
+        key_id: "XXXXXX",
+        issuer_id: "xxxxx-xxxxx-xxxx-xxxx-xxxxx",
+        key_content: ENV["FLUTTER_BASE_APP_STORE_CONNECT_PRIVATE_KEY"],
+        in_house: false, # optional but may be required if using match/sigh
+      )
+
+      create_keychain(
+        name: "fastlane.keychain",
+        password: ENV["FASTLANE_PASSWORD"],
+        default_keychain: true,
+        unlock: true,
+        timeout: 3600,
+        lock_when_sleeps: false
+      )
+
+      match(
+        type: 'appstore',
+        app_identifier: ["com.flutterbase-mrmilu.live"],
+        api_key: api_key,
+        git_branch: "flutter_base",
+        clone_branch_directly: true,
+        keychain_name: "fastlane.keychain",
+        keychain_password: ENV["FASTLANE_PASSWORD"],
+        readonly: true,
+      )
+
+      build_app(workspace: "Runner.xcworkspace", scheme: "live")
+
+      upload_to_testflight(
+          api_key: api_key,
+          app_identifier: 'com.flutterbase-mrmilu.live',
           skip_waiting_for_build_processing: true
       )
   end

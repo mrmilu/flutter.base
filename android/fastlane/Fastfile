@@ -16,13 +16,22 @@
 default_platform(:android)
 
 platform :android do
-  desc "Build and deploy a new version to the Google Play"
-  lane :build_deploy_beta do
+  desc "Build app and deploy (closing test beta)"
+  lane :build_deploy_internal_beta do
     sh("fvm", "flutter", "build", "appbundle", "--flavor", "beta", "./lib/main_beta.dart")
     upload_to_play_store(
       package_name: 'com.flutterbase-mrmilu.beta',
-      track: 'internal',
+      track: 'alpha',
       aab: '../build/app/outputs/bundle/betaRelease/app-beta-release.aab'
+    )
+  end
+  desc "Build app and deploy (closing test prod)"
+  lane :build_deploy_internal_prod do
+    sh("fvm", "flutter", "build", "appbundle", "--flavor", "live", "./lib/main_live.dart")
+    upload_to_play_store(
+      package_name: 'com.flutterbase-mrmilu.live',
+      track: 'alpha',
+      aab: '../build/app/outputs/bundle/liveRelease/app-live-release.aab'
     )
   end
 end
