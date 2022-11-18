@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_base/core/app/domain/interfaces/env_vars.dart';
 import 'package:flutter_base/core/app/ioc/locator.dart';
 import 'package:flutter_base/ui/app.dart';
+import 'package:flutter_base/ui/i18n/codegen_loader.g.dart';
 import 'package:flutter_base/ui/providers/ui_provider.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -51,6 +52,7 @@ void startApp() async {
       EasyLocalization(
         supportedLocales: const [Locale('en')],
         path: 'assets/translations',
+        assetLoader: const CodegenLoader(),
         fallbackLocale: const Locale('en'),
         child: UncontrolledProviderScope(
           container: GetIt.I.get<ProviderContainer>(),
