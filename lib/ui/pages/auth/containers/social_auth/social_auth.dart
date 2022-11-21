@@ -8,7 +8,7 @@ import 'package:flutter_base/ui/components/buttons/button_secondary.dart';
 import 'package:flutter_base/ui/i18n/locale_keys.g.dart';
 import 'package:flutter_base/ui/pages/auth/containers/social_auth/social_auth_provider.dart';
 import 'package:flutter_base/ui/styles/colors.dart';
-import 'package:flutter_base/ui/styles/text_style.dart';
+import 'package:flutter_base/ui/styles/text_styles.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 enum SocialAuthType { login, singUp }
@@ -32,7 +32,7 @@ class SocialAuth extends ConsumerWidget {
             onPressed: () {
               _appleAuth(ref);
             },
-            customTextStyle: MoggieTextStyles.midM.copyWith(
+            customTextStyle: TextStyles.midM.copyWith(
               fontSize: 15,
               color: MoggieColors.specificContentHigh,
             ),
@@ -43,7 +43,7 @@ class SocialAuth extends ConsumerWidget {
         ButtonSecondary(
           iconName: 'google_logo',
           text: _googleBtnTxt,
-          customTextStyle: MoggieTextStyles.midM.copyWith(
+          customTextStyle: TextStyles.midM.copyWith(
             fontSize: 15,
             color: MoggieColors.specificContentHigh,
           ),

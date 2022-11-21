@@ -4,7 +4,7 @@ import 'package:flutter_base/ui/components/icons/flutter_base_icon.dart';
 import 'package:flutter_base/ui/components/icons/flutter_base_svg_icon.dart';
 import 'package:flutter_base/ui/styles/colors.dart';
 import 'package:flutter_base/ui/styles/spacing.dart';
-import 'package:flutter_base/ui/styles/text_style.dart';
+import 'package:flutter_base/ui/styles/text_styles.dart';
 import 'package:flutter_base/ui/view_models/button_size.dart';
 
 const _btnMinSizeMap = {
@@ -164,9 +164,8 @@ class _ButtonPrimaryContent extends StatelessWidget {
         Center(
           child: Text(
             text,
-            style: ButtonSize.small == size
-                ? MoggieTextStyles.midM
-                : MoggieTextStyles.smallL,
+            style:
+                ButtonSize.small == size ? TextStyles.midM : TextStyles.smallL,
           ),
         ),
       ],

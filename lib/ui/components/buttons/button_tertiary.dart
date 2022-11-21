@@ -3,7 +3,7 @@ import 'package:flutter_base/ui/components/box_spacer.dart';
 import 'package:flutter_base/ui/components/icons/flutter_base_icon.dart';
 import 'package:flutter_base/ui/components/icons/flutter_base_svg_icon.dart';
 import 'package:flutter_base/ui/styles/colors.dart';
-import 'package:flutter_base/ui/styles/text_style.dart';
+import 'package:flutter_base/ui/styles/text_styles.dart';
 import 'package:flutter_base/ui/view_models/button_size.dart';
 
 class ButtonTertiary extends TextButton {
@@ -86,9 +86,8 @@ class _ButtonTertiaryContent extends StatelessWidget {
   TextStyle get _textStyle {
     if (customTextStyle != null) return customTextStyle!;
     return ButtonSize.small == size
-        ? MoggieTextStyles.midM
-            .copyWith(color: MoggieColors.specificSemanticPrimary)
-        : MoggieTextStyles.smallL
+        ? TextStyles.midM.copyWith(color: MoggieColors.specificSemanticPrimary)
+        : TextStyles.smallL
             .copyWith(color: MoggieColors.specificSemanticPrimary);
   }
 

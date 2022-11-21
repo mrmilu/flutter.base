@@ -1,36 +1,41 @@
 import 'package:flutter/material.dart';
 
-class MoggieTextStyles {
+class Fonts {
+  static const String poppins = 'Poppins';
+  static const String recoleta = 'Recoleta';
+}
+
+class TextStyles {
   // Small
   static TextStyle smallXxs = const TextStyle(
-    fontFamily: 'Poppins',
+    fontFamily: Fonts.poppins,
     letterSpacing: -0.096,
     fontWeight: FontWeight.w400,
     fontSize: 9,
     height: 1.3,
   );
   static TextStyle smallXs = const TextStyle(
-    fontFamily: 'Poppins',
+    fontFamily: Fonts.poppins,
     letterSpacing: -0.32,
     fontWeight: FontWeight.w400,
     fontSize: 10,
     height: 1.4,
   );
   static TextStyle smallS = const TextStyle(
-    fontFamily: 'Poppins',
+    fontFamily: Fonts.poppins,
     fontWeight: FontWeight.w400,
     fontSize: 12,
     height: 1.3,
   );
   static TextStyle smallM = const TextStyle(
-    fontFamily: 'Poppins',
+    fontFamily: Fonts.poppins,
     fontWeight: FontWeight.w400,
     fontSize: 14,
     height: 1.25,
     letterSpacing: -0.192,
   );
   static TextStyle smallL = const TextStyle(
-    fontFamily: 'Poppins',
+    fontFamily: Fonts.poppins,
     fontWeight: FontWeight.w400,
     fontSize: 18,
     height: 1.2,
@@ -38,39 +43,39 @@ class MoggieTextStyles {
 
   // Mid
   static TextStyle midXs = const TextStyle(
-    fontFamily: 'Poppins',
+    fontFamily: Fonts.poppins,
     fontWeight: FontWeight.w500,
     fontSize: 10,
     height: 1.4,
     letterSpacing: -0.32,
   );
   static TextStyle midS = const TextStyle(
-    fontFamily: 'Poppins',
+    fontFamily: Fonts.poppins,
     fontWeight: FontWeight.w500,
     fontSize: 12,
     height: 1.3,
   );
   static TextStyle midM = const TextStyle(
-    fontFamily: 'Poppins',
+    fontFamily: Fonts.poppins,
     fontWeight: FontWeight.w500,
     fontSize: 14,
     height: 1.15,
   );
   static TextStyle midL = const TextStyle(
-    fontFamily: 'Poppins',
+    fontFamily: Fonts.poppins,
     fontWeight: FontWeight.w500,
     fontSize: 18,
     height: 1.22,
     letterSpacing: -0.32,
   );
   static TextStyle midXl = const TextStyle(
-    fontFamily: 'Poppins',
+    fontFamily: Fonts.poppins,
     fontWeight: FontWeight.w500,
     fontSize: 18,
     height: 1.4,
   );
   static TextStyle midXxl = const TextStyle(
-    fontFamily: 'Poppins',
+    fontFamily: Fonts.poppins,
     fontWeight: FontWeight.w500,
     fontSize: 32,
     height: 0.875,
@@ -79,28 +84,28 @@ class MoggieTextStyles {
 
   // High
   static TextStyle highS = const TextStyle(
-    fontFamily: 'Recoleta',
+    fontFamily: Fonts.recoleta,
     fontWeight: FontWeight.w500,
     fontSize: 22,
     height: 1.4,
     letterSpacing: -0.24,
   );
   static TextStyle highM = const TextStyle(
-    fontFamily: 'Recoleta',
+    fontFamily: Fonts.recoleta,
     fontWeight: FontWeight.w500,
     fontSize: 24,
     height: 1,
     letterSpacing: -0.24,
   );
   static TextStyle highL = const TextStyle(
-    fontFamily: 'Recoleta',
+    fontFamily: Fonts.recoleta,
     fontWeight: FontWeight.w500,
     fontSize: 32,
     height: 1.20,
     letterSpacing: -0.4,
   );
   static TextStyle highXl = const TextStyle(
-    fontFamily: 'Recoleta',
+    fontFamily: Fonts.recoleta,
     fontWeight: FontWeight.w500,
     fontSize: 40,
     height: 1.15,

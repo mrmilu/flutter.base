@@ -12,7 +12,7 @@ import 'package:flutter_base/ui/i18n/locale_keys.g.dart';
 import 'package:flutter_base/ui/pages/auth/containers/social_auth/social_auth.dart';
 import 'package:flutter_base/ui/pages/auth/views/sign_up/sign_up_form.dart';
 import 'package:flutter_base/ui/styles/colors.dart';
-import 'package:flutter_base/ui/styles/text_style.dart';
+import 'package:flutter_base/ui/styles/text_styles.dart';
 import 'package:flutter_base/ui/view_models/button_size.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -70,7 +70,7 @@ class TermAndPrivacy extends StatelessWidget {
   Widget build(BuildContext context) {
     return RichText(
       text: TextSpan(
-        style: MoggieTextStyles.smallS.copyWith(
+        style: TextStyles.smallS.copyWith(
           color: MoggieColors.specificContentLow,
         ),
         children: [
@@ -79,7 +79,7 @@ class TermAndPrivacy extends StatelessWidget {
           ),
           TextSpan(
             recognizer: TapGestureRecognizer()..onTap = () {},
-            style: MoggieTextStyles.smallS.copyWith(
+            style: TextStyles.smallS.copyWith(
               color: MoggieColors.specificContentHigh,
             ),
             text: LocaleKeys.signUp_termsAndPrivacy_blockTwo.tr(),
@@ -89,7 +89,7 @@ class TermAndPrivacy extends StatelessWidget {
           ),
           TextSpan(
             recognizer: TapGestureRecognizer()..onTap = () {},
-            style: MoggieTextStyles.smallS.copyWith(
+            style: TextStyles.smallS.copyWith(
               color: MoggieColors.specificContentHigh,
             ),
             text: LocaleKeys.signUp_termsAndPrivacy_blockFour.tr(),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base/ui/styles/colors.dart';
-import 'package:flutter_base/ui/styles/text_style.dart';
+import 'package:flutter_base/ui/styles/text_styles.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 class CheckboxReactive extends ReactiveCheckboxListTile {
@@ -23,7 +23,7 @@ class CheckboxReactive extends ReactiveCheckboxListTile {
             offset: const Offset(-20, 0),
             child: Text(
               label,
-              style: MoggieTextStyles.smallM.copyWith(
+              style: TextStyles.smallM.copyWith(
                 height: 1.8,
               ),
             ),

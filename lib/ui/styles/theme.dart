@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base/ui/styles/colors.dart';
 import 'package:flutter_base/ui/styles/spacing.dart';
-import 'package:flutter_base/ui/styles/text_style.dart';
+import 'package:flutter_base/ui/styles/text_styles.dart';
 
 const transparentBottomSheetTheme =
     BottomSheetThemeData(backgroundColor: Colors.transparent);
@@ -31,13 +31,13 @@ final moggieThemeData = ThemeData(
     displayColor: MoggieColors.specificContentHigh,
   ),
   inputDecorationTheme: InputDecorationTheme(
-    hintStyle: MoggieTextStyles.smallM
-        .copyWith(color: MoggieColors.specificContentLow),
-    floatingLabelStyle: MoggieTextStyles.smallS,
-    helperStyle: MoggieTextStyles.smallS
-        .copyWith(color: MoggieColors.specificContentLow),
-    errorStyle: MoggieTextStyles.smallS
-        .copyWith(color: MoggieColors.specificSemanticDanger),
+    hintStyle:
+        TextStyles.smallM.copyWith(color: MoggieColors.specificContentLow),
+    floatingLabelStyle: TextStyles.smallS,
+    helperStyle:
+        TextStyles.smallS.copyWith(color: MoggieColors.specificContentLow),
+    errorStyle:
+        TextStyles.smallS.copyWith(color: MoggieColors.specificSemanticDanger),
     contentPadding: const EdgeInsets.symmetric(vertical: Spacing.sp12),
     enabledBorder: const UnderlineInputBorder(
       borderSide: BorderSide(color: MoggieColors.specificBorderLow),

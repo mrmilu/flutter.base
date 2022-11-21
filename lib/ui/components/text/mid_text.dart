@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_base/ui/styles/text_style.dart';
+import 'package:flutter_base/ui/styles/text_styles.dart';
 
 class MidTextXs extends StatelessWidget {
   final String label;
@@ -18,7 +18,7 @@ class MidTextXs extends StatelessWidget {
     return Text(
       label,
       textAlign: textAlign,
-      style: MoggieTextStyles.midXs.copyWith(
+      style: TextStyles.midXs.copyWith(
         color: color,
       ),
     );
@@ -42,7 +42,7 @@ class MidTextS extends StatelessWidget {
     return Text(
       label,
       textAlign: textAlign,
-      style: MoggieTextStyles.midS.copyWith(
+      style: TextStyles.midS.copyWith(
         color: color,
       ),
     );
@@ -66,7 +66,7 @@ class MidTextM extends StatelessWidget {
     return Text(
       label,
       textAlign: textAlign,
-      style: MoggieTextStyles.midM.copyWith(
+      style: TextStyles.midM.copyWith(
         color: color,
       ),
     );
@@ -90,7 +90,7 @@ class MidTextL extends StatelessWidget {
     return Text(
       label,
       textAlign: textAlign,
-      style: MoggieTextStyles.midL.copyWith(
+      style: TextStyles.midL.copyWith(
         color: color,
       ),
     );
@@ -114,7 +114,7 @@ class MidTextXl extends StatelessWidget {
     return Text(
       label,
       textAlign: textAlign,
-      style: MoggieTextStyles.midXl.copyWith(
+      style: TextStyles.midXl.copyWith(
         color: color,
       ),
     );
@@ -138,7 +138,7 @@ class MidTextXll extends StatelessWidget {
     return Text(
       label,
       textAlign: textAlign,
-      style: MoggieTextStyles.midXxl.copyWith(
+      style: TextStyles.midXxl.copyWith(
         color: color,
       ),
     );

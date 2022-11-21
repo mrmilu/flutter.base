@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_base/ui/styles/text_style.dart';
+import 'package:flutter_base/ui/styles/text_styles.dart';
 
 class HighTextS extends StatelessWidget {
   final String label;
@@ -15,7 +15,7 @@ class HighTextS extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       label,
-      style: MoggieTextStyles.highS,
+      style: TextStyles.highS,
     );
   }
 }
@@ -34,7 +34,7 @@ class HighTextM extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       label,
-      style: MoggieTextStyles.highM,
+      style: TextStyles.highM,
     );
   }
 }
@@ -53,7 +53,7 @@ class HighTextL extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       label,
-      style: MoggieTextStyles.highL,
+      style: TextStyles.highL,
     );
   }
 }
@@ -72,7 +72,7 @@ class HighTextXl extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       label,
-      style: MoggieTextStyles.highXl,
+      style: TextStyles.highXl,
     );
   }
 }

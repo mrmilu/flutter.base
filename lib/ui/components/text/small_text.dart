@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_base/ui/styles/text_style.dart';
+import 'package:flutter_base/ui/styles/text_styles.dart';
 
 class SmallTextXxs extends StatelessWidget {
   final String label;
@@ -18,7 +18,7 @@ class SmallTextXxs extends StatelessWidget {
     return Text(
       label,
       textAlign: textAlign,
-      style: MoggieTextStyles.smallXxs.copyWith(
+      style: TextStyles.smallXxs.copyWith(
         color: color,
       ),
     );
@@ -42,7 +42,7 @@ class SmallTextXs extends StatelessWidget {
     return Text(
       label,
       textAlign: textAlign,
-      style: MoggieTextStyles.smallXs.copyWith(
+      style: TextStyles.smallXs.copyWith(
         color: color,
       ),
     );
@@ -66,7 +66,7 @@ class SmallTextS extends StatelessWidget {
     return Text(
       label,
       textAlign: textAlign,
-      style: MoggieTextStyles.smallS.copyWith(
+      style: TextStyles.smallS.copyWith(
         color: color,
       ),
     );
@@ -90,7 +90,7 @@ class SmallTextM extends StatelessWidget {
     return Text(
       label,
       textAlign: textAlign,
-      style: MoggieTextStyles.smallM.copyWith(
+      style: TextStyles.smallM.copyWith(
         color: color,
       ),
     );
@@ -114,7 +114,7 @@ class SmallTextL extends StatelessWidget {
     return Text(
       label,
       textAlign: textAlign,
-      style: MoggieTextStyles.smallL.copyWith(
+      style: TextStyles.smallL.copyWith(
         color: color,
       ),
     );
