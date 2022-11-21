@@ -1,6 +1,6 @@
 # flutter_flavorizr
 
-### iOS issues
+## iOS issues
 
 If you get any error or something like the following:
 
@@ -15,11 +15,11 @@ If you get any error or something like the following:
 
 Make sure that the configuration is correct following the next steps:
 
-### `***.xcconfig `files
+## `***.xcconfig` files
 
 - Files must have the following include at the top
 
-```
+```shell
 #include "Pods/Target Support Files/Pods-Runner/Pods-Runner.<destination>.xcconfig"
 ```
 
@@ -30,7 +30,7 @@ either *release-beta* or *debug-beta*.
 - Also, they must have the correct `FLUTTER_TARGET` as the name of your main files for each flavor.
   For example:
 
-```
+```shell
 FLUTTER_TARGET=lib/main.beta.dart
 ```
 
@@ -41,7 +41,7 @@ Runner_ project to `iphoneos`. This is wrong and must be changed to iOS like the
 
 ![Build settings](https://github.com/hazzo/flutter_base/blob/main/docs/flutter_flavorizr_1.png)
 
-Also, inside the tabs info in the _Runner_ project (not target) the flavor configuration is wrong.
+Also, inside the tabs info in the *Runner* project (not target) the flavor configuration is wrong.
 
 It should *NOT* look like the following image:
 
@@ -51,8 +51,8 @@ It *SHOULD* look like this one:
 
 ![Right info tab Runner project config](https://github.com/hazzo/flutter_base/blob/main/docs/flutter_flavorizr_3.png)
 
-Basically the new config must be set to the _Runner_ *target* and not the project.
+Basically the new config must be set to the *Runner* *target* and not the project.
 
 > **Note**:
 > If you intend on modifying your flavor configs make sure to first have a clean commit
-> so when you run the _flutter_flavorizr_ script you can easily detect which files changed
+> so when you run the flutter_flavorizr script you can easily detect which files changed
