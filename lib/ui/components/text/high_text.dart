@@ -15,7 +15,7 @@ class HighTextS extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       label,
-      style: TextStyles.highS,
+      style: TextStyles.highS.copyWith(color: color),
     );
   }
 }
@@ -34,7 +34,7 @@ class HighTextM extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       label,
-      style: TextStyles.highM,
+      style: TextStyles.highM.copyWith(color: color),
     );
   }
 }
@@ -53,7 +53,7 @@ class HighTextL extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       label,
-      style: TextStyles.highL,
+      style: TextStyles.highL.copyWith(color: color),
     );
   }
 }
@@ -72,7 +72,7 @@ class HighTextXl extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       label,
-      style: TextStyles.highXl,
+      style: TextStyles.highXl.copyWith(color: color),
     );
   }
 }
