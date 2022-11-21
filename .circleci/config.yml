@@ -16,7 +16,8 @@ jobs:
         - env_vars_files
         - when:
             condition:
-              equal: [ develop, << pipeline.git.branch >> ]
+              not: 
+                equal: [ master, << pipeline.git.branch >> ]
             steps:
               - run:
                   name: Deploy Android app (close testing Beta) by fastlane
@@ -24,7 +25,7 @@ jobs:
                   working_directory: android
         - when:
             condition:
-              equal: [ main, << pipeline.git.branch >> ]
+              equal: [ master, << pipeline.git.branch >> ]
             steps:
               - run:
                   name: Deploy Android app (close testing Beta) by fastlane
@@ -45,7 +46,8 @@ jobs:
         - flutter/install_ios_pod
         - when:
             condition:
-              equal: [ develop, << pipeline.git.branch >> ]
+              not: 
+                equal: [ master, << pipeline.git.branch >> ]
             steps:
               - run:
                   name: Deploy iOS app (internal Beta) by fastlane
@@ -53,7 +55,7 @@ jobs:
                   working_directory: ios
         - when:
             condition:
-              equal: [ main, << pipeline.git.branch >> ]
+              equal: [ master, << pipeline.git.branch >> ]
             steps:
               - run:
                   name: Deploy iOS app (internal Prod) by fastlane
@@ -137,8 +139,8 @@ workflows:
           filters:
             branches:
               only:
-                - develop
-                - main
+                - release/*
+                - master
       - deploy-ios:
           name: "Distribute iOS app (internal)"
           context:
@@ -148,5 +150,5 @@ workflows:
           filters:
             branches:
               only:
-                - develop
-                - main
+                - release/*
+                - master
