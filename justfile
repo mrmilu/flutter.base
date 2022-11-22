@@ -41,7 +41,6 @@ clean-and-get:
 
 # Generate locales
 locales:
-    fvm flutter pub run easy_localization:generate -S assets/translations -O lib/ui/i18n
     fvm flutter pub run easy_localization:generate -S assets/translations -f keys -O lib/ui/i18n -o locale_keys.g.dart
 
 # Initial project setup
