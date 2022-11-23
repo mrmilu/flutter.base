@@ -1,6 +1,5 @@
-import 'package:dio/dio.dart';
+import 'package:flutter_base/core/app/data/transformers/error_transformer.dart';
 import 'package:flutter_base/core/app/domain/interfaces/env_vars.dart';
-import 'package:flutter_base/core/app/domain/models/app_error.dart';
 import 'package:flutter_base/core/auth/data/interceptors/authentication_interceptor.dart';
 import 'package:flutter_base/core/auth/domain/interfaces/token_repository.dart';
 import 'package:flutter_mrmilu/flutter_mrmilu.dart';
@@ -13,60 +12,11 @@ class ApiService extends DioRestService {
     required ITokenRepository tokenRepository,
   }) : super(
           validCodes: [200, 201, 204],
-          catchErrors: ApiService.errorsHandler,
+          catchErrors: errorsHandler,
           interceptors: [
             AuthorizationInterceptor(tokenRepository: tokenRepository),
           ],
         );
-
-  static void errorsHandler(DioError error) {
-    var apiErrorMessage = error.response?.data;
-    if (apiErrorMessage is Map) {
-      apiErrorMessage = apiErrorMessage.entries.first.value;
-    }
-    if (apiErrorMessage is List) {
-      apiErrorMessage = apiErrorMessage.first;
-    }
-
-    AppErrorCode? errorCode;
-    String path = error.response?.requestOptions.path ?? '';
-    if (path.contains('login')) {
-      errorCode = AppErrorCode.wrongCredentials;
-    }
-
-    switch (error.response?.statusCode) {
-      case 400:
-        throw AppError(
-          message: apiErrorMessage ?? error.response?.statusMessage,
-          code: errorCode ?? AppErrorCode.badRequest,
-        );
-      case 401:
-        throw AppError(
-          message: apiErrorMessage ?? error.response?.statusMessage,
-          code: errorCode ?? AppErrorCode.unauthorized,
-        );
-      case 403:
-        throw AppError(
-          message: apiErrorMessage ?? error.response?.statusMessage,
-          code: errorCode ?? AppErrorCode.forbidden,
-        );
-      case 404:
-        throw AppError(
-          message: apiErrorMessage ?? error.response?.statusMessage,
-          code: errorCode ?? AppErrorCode.notFound,
-        );
-      case 500:
-        throw AppError(
-          message: apiErrorMessage ?? error.response?.statusMessage,
-          code: errorCode ?? AppErrorCode.internalServer,
-        );
-      default:
-        throw AppError(
-          message: apiErrorMessage ?? error.response?.statusMessage,
-          code: AppErrorCode.generalError,
-        );
-    }
-  }
 }
 
 @module
