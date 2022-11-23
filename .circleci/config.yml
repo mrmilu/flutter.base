@@ -129,7 +129,12 @@ commands:
 workflows:
   deploy:
     jobs:
-      - code-analysis
+      - code-analysis:
+          filters:
+            branches:
+              only:
+                - release/*
+                - master
       - deploy-android:
           name: "Distribute Android app (close testing)"
           requires:

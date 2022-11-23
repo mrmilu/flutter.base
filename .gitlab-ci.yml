@@ -1,0 +1,17 @@
+stages:
+  - test
+
+test:
+  stage: test
+  image: docker/compose:1.29.2
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+  tags:
+    - docker
+  services:
+    - docker:dind
+  before_script:
+    - docker-compose -f test.yml build
+  script:
+    - docker-compose -f test.yml run flutter fvm flutter format $(find . -name "*.dart" -not -wholename "lib/**/*.g.dart")
+    - docker-compose -f test.yml run flutter fvm flutter analyze

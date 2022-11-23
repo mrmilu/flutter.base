@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  flutter:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    image: flutter-test
