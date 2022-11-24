@@ -14,18 +14,10 @@ Map<String, dynamic>? passwordValidator(AbstractControl<dynamic> control) {
   )(control);
 }
 
-Map<String, dynamic>? Function(AbstractControl<dynamic> control)
-    buildMustMatchPassword(
-  String repeatPasswordControl,
-  String passwordControl,
-) {
-  return (AbstractControl<dynamic> control) {
-    return Validators.mustMatch(
-      repeatPasswordControl,
-      passwordControl,
-      markAsDirty: false,
-    )(control);
-  };
+Map<String, dynamic>? mustMatchPassword(AbstractControl<dynamic> control) {
+  return Validators.mustMatch('password', 'repeatPassword', markAsDirty: false)(
+    control,
+  );
 }
 
 class MoggieValidationMessages {
