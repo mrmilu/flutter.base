@@ -19,9 +19,7 @@ class DeepLinkController {
     _deepLinkService.onLink().listen((link) {
       _processDeepLinks(link);
     }).onError((e) {
-      if (kDebugMode) {
-        print(e);
-      }
+      debugPrint(e);
     });
 
     final Uri? link = await _deepLinkService.getInitialLink();

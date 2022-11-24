@@ -64,7 +64,7 @@ class LoginUseCase {
     }
 
     final token = await _authRepository.login(loginInput);
-    if (kDebugMode) print(token);
+    debugPrint(token);
     await _tokenRepository.update(TokenModel(token: token));
     return _userAndCatsUseCase();
   }

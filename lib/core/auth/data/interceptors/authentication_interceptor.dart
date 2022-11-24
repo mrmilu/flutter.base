@@ -13,7 +13,7 @@ class AuthorizationInterceptor extends QueuedInterceptorsWrapper {
     RequestInterceptorHandler handler,
   ) async {
     final token = await tokenRepository.getToken();
-    if (kDebugMode) print(token);
+    debugPrint(token);
 
     if (token.isEmpty) {
       tokenRepository.clear();
