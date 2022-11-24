@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_base/ui/components/box_spacer.dart';
 import 'package:flutter_base/ui/components/buttons/button_primary.dart';
 import 'package:flutter_base/ui/components/flutter_base_app_bar.dart';
-import 'package:flutter_base/ui/components/form/input_reactive.dart';
+import 'package:flutter_base/ui/components/form/email_reactive_input.dart';
 import 'package:flutter_base/ui/components/form_scaffold.dart';
 import 'package:flutter_base/ui/components/text/high_text.dart';
 import 'package:flutter_base/ui/components/text/small_text.dart';
@@ -37,7 +37,7 @@ class ForgotPasswordPage extends StatelessWidget {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    InputReactive.email(
+                    EmailReactiveInput(
                       placeholder:
                           LocaleKeys.forgotPassword_form_email_label.tr(),
                       formControl: formModel.emailControl,

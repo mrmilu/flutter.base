@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_base/ui/components/box_spacer.dart';
 import 'package:flutter_base/ui/components/buttons/button_primary.dart';
-import 'package:flutter_base/ui/components/form/input_reactive.dart';
+import 'package:flutter_base/ui/components/form/password_reactive_input.dart';
 import 'package:flutter_base/ui/i18n/locale_keys.g.dart';
 import 'package:flutter_base/ui/pages/auth/views/change_password/change_password_provider.dart';
 import 'package:flutter_base/ui/pages/auth/views/change_password/view_models/change_password_view_model.dart';
@@ -35,13 +35,13 @@ class _BasicLoginFormWidgetState extends ConsumerState<ChangePasswordForm> {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            ReactivePasswordInput(
+            PasswordReactiveInput(
               formControl: formModel.passwordControl,
               placeholder: LocaleKeys.changePassword_form_password_label.tr(),
               onSubmitted: (control) => formModel.form.focus('repeatPassword'),
             ),
             BoxSpacer.v16(),
-            ReactivePasswordInput(
+            PasswordReactiveInput(
               formControl: formModel.repeatPasswordControl,
               placeholder:
                   LocaleKeys.changePassword_form_repeatPassword_label.tr(),

@@ -3,8 +3,8 @@ import 'package:flutter_base/ui/styles/colors.dart';
 import 'package:flutter_base/ui/styles/text_styles.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
-class CheckboxReactive extends ReactiveCheckboxListTile {
-  CheckboxReactive({
+class CheckboxReactiveInput extends ReactiveCheckboxListTile {
+  CheckboxReactiveInput({
     super.key,
     super.formControl,
     super.formControlName,

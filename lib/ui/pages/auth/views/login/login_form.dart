@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_base/ui/components/box_spacer.dart';
 import 'package:flutter_base/ui/components/buttons/button_primary.dart';
 import 'package:flutter_base/ui/components/buttons/button_tertiary.dart';
-import 'package:flutter_base/ui/components/form/input_reactive.dart';
+import 'package:flutter_base/ui/components/form/email_reactive_input.dart';
+import 'package:flutter_base/ui/components/form/password_reactive_input.dart';
 import 'package:flutter_base/ui/i18n/locale_keys.g.dart';
 import 'package:flutter_base/ui/pages/auth/views/login/login_provider.dart';
 import 'package:flutter_base/ui/pages/auth/views/login/view_models/basic_login_view_model.dart';
@@ -31,13 +32,13 @@ class _BasicLoginFormWidgetState extends ConsumerState<LoginForm> {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            InputReactive.email(
+            EmailReactiveInput(
               formControl: formModel.emailControl,
               placeholder: LocaleKeys.login_form_email_label.tr(),
               onSubmitted: (control) => formModel.form.focus('password'),
             ),
             BoxSpacer.v16(),
-            ReactivePasswordInput(
+            PasswordReactiveInput(
               placeholder: LocaleKeys.login_form_password_label.tr(),
               formControl: formModel.passwordControl,
             ),
