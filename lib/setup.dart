@@ -5,6 +5,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_base/core/app/domain/interfaces/env_vars.dart';
+import 'package:flutter_base/core/app/domain/models/env_vars.dart';
+import 'package:flutter_base/core/app/domain/models/enviroments_list.dart';
 import 'package:flutter_base/core/app/ioc/locator.dart';
 import 'package:flutter_base/ui/app.dart';
 import 'package:flutter_base/ui/providers/ui_provider.dart';
@@ -14,10 +16,13 @@ import 'package:get_it/get_it.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 void startApp() async {
+  final env = EnvVars().environment;
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await EasyLocalization.ensureInitialized();
-  // await Firebase.initializeApp();
+  if (onlineEnviroment.contains(env)) {
+    // await Firebase.initializeApp();
+  }
 
   LicenseRegistry.addLicense(() async* {
     final poppinsLicense =
@@ -25,7 +30,7 @@ void startApp() async {
     yield LicenseEntryWithLineBreaks(['google_fonts'], poppinsLicense);
   });
 
-  configureDependencies();
+  configureDependencies(env: env);
 
   final providerContainer = GetIt.I.get<ProviderContainer>();
 
