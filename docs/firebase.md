@@ -2,8 +2,10 @@
 
 Follow the following steps for firebase manual installation:
 
+- Required: [Firebase project](https://console.firebase.google.com/) created for each enviroment
 - **Android**: Follow the steps [here](https://firebase.flutter.dev/docs/manual-installation/android) but **don't add yet the
   `google-services.json` file**, just download it.
+  - Add SHA:1 and SHA:256 certificates fingerprints to [firebase configuration](https://console.firebase.google.com/project/flutterbase-beta/settings/general/android:com.flutterbase.beta)
 - **iOS**: just add your app to your firebase project and download
 the `GoogleService-Info.plist` file.
 
