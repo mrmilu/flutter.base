@@ -2,13 +2,14 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_base/core/app/data/services/api_service.dart';
+import 'package:flutter_base/core/app/domain/models/enviroments_list.dart';
 import 'package:flutter_base/core/user/data/models/user_data_model.dart';
 import 'package:flutter_base/core/user/domain/interfaces/user_repository.dart';
 import 'package:flutter_base/core/user/domain/models/update_user_input_model.dart';
 import 'package:flutter_base/core/user/domain/models/user.dart';
 import 'package:injectable/injectable.dart';
 
-@Injectable(as: IUserRepository)
+@Injectable(as: IUserRepository, env: onlineEnviroment)
 class UserRepository implements IUserRepository {
   final ApiService _apiService;
 

@@ -3,11 +3,11 @@ import 'dart:io';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_base/common/interfaces/notifications_service.dart';
+import 'package:flutter_base/core/app/domain/models/enviroments_list.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-// ignore: unused_import
 import 'package:injectable/injectable.dart';
 
-// @Singleton(as: INotificationsService)
+@Singleton(as: INotificationsService, env: onlineEnviroment)
 class NotificationsService implements INotificationsService {
   static const AndroidNotificationChannel channel = AndroidNotificationChannel(
     'high_importance_channel', // id
@@ -82,8 +82,10 @@ class NotificationsService implements INotificationsService {
   }
 
   @override
-  Future<NotificationSettings> requestApplePermissions() {
-    return FirebaseMessaging.instance.requestPermission();
+  Future<bool> requestApplePermissions() async {
+    final permissions = await FirebaseMessaging.instance.requestPermission();
+    return [AuthorizationStatus.authorized, AuthorizationStatus.provisional]
+        .contains(permissions.authorizationStatus);
   }
 
   @override

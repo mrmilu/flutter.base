@@ -1,5 +1,3 @@
-import 'package:firebase_messaging/firebase_messaging.dart';
-
 abstract class INotificationsService {
   Future<void> init({
     required void Function(String? payload) onLocalAndroidNotificationOpen,
@@ -7,7 +5,7 @@ abstract class INotificationsService {
 
   void clean();
 
-  Future<NotificationSettings> requestApplePermissions();
+  Future<bool> requestApplePermissions();
 
   void onMessageOpen(void Function(Map<String, dynamic> messageData) handler);
 
