@@ -1,4 +1,9 @@
-# flutter_native_splash
+# Flutter native splash
+
+## Native splash
+
+- Config your splash on `flutter_native_splash.yaml`
+- Run command to generate new splash images ([official docs](https://pub.dev/packages/flutter_native_splash))
 
 ## Second splash screen inside flutter
 

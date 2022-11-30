@@ -2,12 +2,16 @@
 
 Follow the following steps for firebase manual installation:
 
-- Required: [Firebase project](https://console.firebase.google.com/) created for each enviroment
+## Requirements
+
+- Create [Firebase project](https://console.firebase.google.com/) for each enviroment
 - **Android**: Follow the steps [here](https://firebase.flutter.dev/docs/manual-installation/android) but **don't add yet the
   `google-services.json` file**, just download it.
-  - Add SHA:1 and SHA:256 certificates fingerprints to [firebase configuration](https://console.firebase.google.com/project/flutterbase-beta/settings/general/android:com.flutterbase.beta)
+  - Add SHA:1 and SHA:256 certificates fingerprints to [firebase configuration](https://console.firebase.google.com/project/letsgo-beta/settings/general/android:com.letsgocompany.beta)
 - **iOS**: just add your app to your firebase project and download
 the `GoogleService-Info.plist` file.
+
+## Config
 
 Then configure the `pubspec.yaml` flavor like this creating the corresponding folders:
 
@@ -47,6 +51,8 @@ flavorizr:
           config: ".firebase/banana/GoogleService-Info.plist"
 ```
 
+## Generate
+
 After this run the following command:
 
 ```bash
@@ -64,3 +70,8 @@ and once command finishes just leave the changes made in:
 
 - `ios/Runner.xcodeproj/project.pbxproj`
 - `android/app/src/{flavor}/google-services.json`
+
+## Other features
+
+- [authentication](firebase_authentication.md)
+- [dynamic links](firebase_dynamic_links.md)
