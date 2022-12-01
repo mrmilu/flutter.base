@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'social_auth_output_model.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(createFactory: false)
 class SocialAuthOutputModel {
   final String name;
   final String email;
