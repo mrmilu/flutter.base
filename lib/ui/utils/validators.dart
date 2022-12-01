@@ -1,4 +1,4 @@
-import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
+import 'package:reactive_forms/reactive_forms.dart';
 
 Map<String, dynamic>? requiredValidator(AbstractControl<dynamic> control) {
   return Validators.required(control);

@@ -1,0 +1,22 @@
+targets:
+  $default:
+    builders:
+      json_serializable:
+        generate_for:
+            include:
+              - lib/core/**/data/models/**.dart
+        options:
+          field_rename: snake
+      freezed:freezed:
+        generate_for:
+          include:
+            - lib/ui/pages/**/**.dart
+            - lib/ui/providers/**.dart
+      injectable_generator:injectable_config_builder:
+        generate_for:
+          include:
+            - lib/common/repositories/**/**.dart
+            - lib/common/services/**/**.dart
+            - lib/core/**/data/repositories/**.dart
+            - lib/core/**/domain/use_cases/**.dart
+            - lib/core/app/**/**.dart
