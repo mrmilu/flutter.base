@@ -13,14 +13,22 @@
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
 
+# Variables to change
+# 
+# key_id: Get from https://appstoreconnect.apple.com/access/api
+# issuer_id: Get from https://appstoreconnect.apple.com/access/api
+# FLUTTER_BASE_APP_STORE_CONNECT_PRIVATE_KEY =>
+# git_branch:
+# app_identifier:
+
 default_platform(:ios)
 
 platform :ios do
   desc "Build app and deploy (internal beta)"
   lane :build_deploy_internal_beta do
       api_key = app_store_connect_api_key(
-        key_id: "XXXXXX",
-        issuer_id: "xxxxx-xxxxx-xxxx-xxxx-xxxxx",
+        key_id: "XXXXXX", # Get from https://appstoreconnect.apple.com/access/api
+        issuer_id: "xxxxx-xxxxx-xxxx-xxxx-xxxxx", # Get from https://appstoreconnect.apple.com/access/api
         key_content: ENV["FLUTTER_BASE_APP_STORE_CONNECT_PRIVATE_KEY"],
         in_house: false, # optional but may be required if using match/sigh
       )
@@ -57,8 +65,8 @@ platform :ios do
   desc "Build app and deploy (internal prod)"
   lane :build_deploy_internal_prod do
       api_key = app_store_connect_api_key(
-        key_id: "XXXXXX",
-        issuer_id: "xxxxx-xxxxx-xxxx-xxxx-xxxxx",
+        key_id: "XXXXXX", # Get from https://appstoreconnect.apple.com/access/api
+        issuer_id: "xxxxx-xxxxx-xxxx-xxxx-xxxxx", # Get from https://appstoreconnect.apple.com/access/api
         key_content: ENV["FLUTTER_BASE_APP_STORE_CONNECT_PRIVATE_KEY"],
         in_house: false, # optional but may be required if using match/sigh
       )
