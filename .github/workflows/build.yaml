@@ -22,6 +22,6 @@ jobs:
     - name: Generated translation files
       run: flutter pub run easy_localization:generate -S assets/translations -f keys -O lib/ui/i18n -o locale_keys.g.dart
     - name: Verify formated files
-      run: flutter format $(find . -name "*.dart" -not -wholename "lib/**/*.g.dart") --set-exit-if-changed
+      run: flutter format $(find . -name "*.dart" -not -wholename "**/*.g.dart") --set-exit-if-changed
     - name: Analyze code
       run: flutter analyze

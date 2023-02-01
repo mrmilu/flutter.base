@@ -74,7 +74,7 @@ jobs:
         - build
         - run:
             name: Verify formated files
-            command: fvm flutter format $(find ./lib/ -name "*.dart" -not -wholename "lib/**/*.g.dart")
+            command: fvm flutter format $(find ./lib/ -name "*.dart" -not -wholename "**/*.g.dart")
         - run:
             name: Analyze code
             command: fvm flutter analyze
