@@ -36,20 +36,19 @@ FLUTTER_TARGET=lib/main.beta.dart
 
 ### XCode config
 
-For some reason in some flutter projects the plugin might change the Base SDK in Xcode for your _
-Runner_ project to `iphoneos`. This is wrong and must be changed to iOS like the following image:
+For some reason in some flutter projects the plugin might change the Base SDK in Xcode for your *Runner* project to `iphoneos`. This is wrong and must be changed to iOS like the following image:
 
-![Build settings](https://github.com/hazzo/flutter_base/blob/main/docs/flutter_flavorizr_1.png)
+![Build settings](https://github.com/mrmilu/flutter_base/blob/master/docs/flutter_flavorizr_1.png)
 
 Also, inside the tabs info in the *Runner* project (not target) the flavor configuration is wrong.
 
 It should *NOT* look like the following image:
 
-![Wrong info tab Runner project config](https://github.com/hazzo/flutter_base/blob/main/docs/flutter_flavorizr_2.png)
+![Wrong info tab Runner project config](https://github.com/mrmilu/flutter_base/blob/master/docs/flutter_flavorizr_2.png)
 
 It *SHOULD* look like this one:
 
-![Right info tab Runner project config](https://github.com/hazzo/flutter_base/blob/main/docs/flutter_flavorizr_3.png)
+![Right info tab Runner project config](https://github.com/mrmilu/flutter_base/blob/master/docs/flutter_flavorizr_3.png)
 
 Basically the new config must be set to the *Runner* *target* and not the project.
 

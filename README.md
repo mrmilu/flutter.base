@@ -59,3 +59,12 @@ The following index has a summary of configuration, common errors and how to sol
 For almost of actions, can be use the setup commands in `justfile`
 
 Initial setup `just setup` and then `just run {flavor}`
+
+### iOS
+
+First time to run on physical iOS device, need download Apple certificates. To acomplish this, please follow this steps
+
+- Navigate to ios folder: `cd /ios`
+- Execute `fastlane match development --read-only`
+
+More details on [this documentation](https://www.notion.so/mrmilu/Fastlane-y-Match-0be41150a6fe411cabd60b7d783c80b1#d6069bd171b6451497077e258d5c656f)
