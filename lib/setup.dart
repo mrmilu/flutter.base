@@ -14,6 +14,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:stack_trace/stack_trace.dart' as stack_trace;
 
 void startApp() async {
   final env = EnvVars().environment;
@@ -36,6 +37,12 @@ void startApp() async {
 
   FlutterError.onError = (details) {
     FlutterError.presentError(details);
+  };
+
+  FlutterError.demangleStackTrace = (StackTrace stack) {
+    if (stack is stack_trace.Trace) return stack.vmTrace;
+    if (stack is stack_trace.Chain) return stack.toTrace().vmTrace;
+    return stack;
   };
   PlatformDispatcher.instance.onError = (error, stack) {
     Sentry.captureException(error, stackTrace: stack);
