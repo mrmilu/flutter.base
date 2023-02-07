@@ -71,6 +71,7 @@ dependencies:
   sentry_flutter: 6.15.1
   share_plus: 6.2.0
   sign_in_with_apple: 4.1.0
+  stack_trace: 1.10.0
   video_player: 2.4.7
 
 dev_dependencies:
