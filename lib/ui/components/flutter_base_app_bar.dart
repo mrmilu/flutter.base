@@ -18,7 +18,7 @@ class FlutterBaseAppBar extends AppBar {
   }) : super(
           leading: showLeading
               ? leading ??
-                  MoggieAppBarLeading(
+                  FlutterBaseAppBarLeading(
                     customPopRoute: customPopRoute,
                     customPopAction: customPopAction,
                   )
@@ -58,11 +58,11 @@ class FlutterBaseAppBar extends AppBar {
   }
 }
 
-class MoggieAppBarLeading extends StatelessWidget {
+class FlutterBaseAppBarLeading extends StatelessWidget {
   final String? customPopRoute;
   final VoidCallback? customPopAction;
 
-  const MoggieAppBarLeading({
+  const FlutterBaseAppBarLeading({
     super.key,
     this.customPopRoute,
     this.customPopAction,
