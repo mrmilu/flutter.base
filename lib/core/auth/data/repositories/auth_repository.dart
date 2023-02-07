@@ -12,7 +12,6 @@ import 'package:flutter_base/core/auth/domain/interfaces/auth_repository.dart';
 import 'package:flutter_base/core/auth/domain/models/change_password_input_model.dart';
 import 'package:flutter_base/core/auth/domain/models/login_input_model.dart';
 import 'package:flutter_base/core/auth/domain/models/sign_up_input_model.dart';
-import 'package:flutter_base/core/auth/domain/models/social_auth_user.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
@@ -48,7 +47,7 @@ class AuthRepository implements IAuthRepository {
   }
 
   @override
-  Future<SocialAuthUser> appleSocialAuth() async {
+  Future<String> appleSocialAuth() async {
     late firebase_auth.User user;
     try {
       user = await _socialAuthService.signInWithApple();
@@ -62,18 +61,11 @@ class AuthRepository implements IAuthRepository {
         );
       }
     }
-    if (user.email == null) {
-      throw const AppError(message: 'Error while login with Apple');
-    }
-    return SocialAuthUser(
-      name: user.displayName,
-      email: user.email!,
-      password: user.uid,
-    );
+    return user.getIdToken();
   }
 
   @override
-  Future<SocialAuthUser> googleSocialAuth() async {
+  Future<String> googleSocialAuth() async {
     late firebase_auth.User? user;
     user = await _socialAuthService.signInWithGoogle();
     if (user == null) {
@@ -82,15 +74,7 @@ class AuthRepository implements IAuthRepository {
         code: AppErrorCode.googleAuthCanceled,
       );
     }
-
-    if (user.email == null) {
-      throw const AppError(message: 'Error while login with Google');
-    }
-    return SocialAuthUser(
-      name: user.displayName,
-      email: user.email!,
-      password: user.uid,
-    );
+    return user.getIdToken();
   }
 
   @override
@@ -123,5 +107,16 @@ class AuthRepository implements IAuthRepository {
       '/users/account-confirm-email/',
       data: {'key': token},
     );
+  }
+
+  @override
+  Future socialAuth(String token) async {
+    final res = await _apiService.post(
+      '/users/social-auth/',
+      data: {
+        'firebase_token': token,
+      },
+    );
+    return SignUpDataModel.fromJson(res ?? {}).token;
   }
 }

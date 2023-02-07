@@ -1,37 +1,37 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_base/core/auth/domain/models/auth_provider.dart';
 import 'package:flutter_base/core/auth/domain/use_cases/login_use_case.dart';
 import 'package:flutter_base/ui/features/auth/views/login/view_models/basic_login_view_model.dart';
 import 'package:flutter_base/ui/providers/ui_provider.dart';
 import 'package:flutter_base/ui/providers/user_provider.dart';
+import 'package:flutter_base/ui/utils/platform.dart';
 import 'package:flutter_base/ui/view_models/user_view_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 
-class LoginProvider {
-  late UserProvider _userProvider;
-  late UiProvider _uiProvider;
+class LoginProvider extends AutoDisposeNotifier<BasicLoginModelForm> {
   final _loginUseCase = GetIt.I.get<LoginUseCase>();
   final _appRouter = GetIt.I.get<GoRouter>();
 
-  LoginProvider(AutoDisposeProviderRef ref) {
-    _userProvider = ref.read(userProvider.notifier);
-    _uiProvider = ref.read(uiProvider.notifier);
+  @override
+  BasicLoginModelForm build() {
+    return BasicLoginViewModel().generateFormModel();
   }
 
-  void login(BasicLoginModelForm formModel) async {
-    formModel.form.markAllAsTouched();
-    if (formModel.form.valid) {
-      _uiProvider.tryAction(() async {
+  void login() async {
+    final userNotifier = ref.read(userProvider.notifier);
+    final uiNotifier = ref.read(uiProvider.notifier);
+    state.form.markAllAsTouched();
+    if (state.form.valid) {
+      uiNotifier.tryAction(() async {
         final input = LoginUseCaseInput(
-          email: formModel.model.email.trim(),
-          password: formModel.model.password.trim(),
-          provider: AuthProvider.email,
+          email: state.model.email.trim(),
+          password: state.model.password.trim(),
+          userDeviceType: deviceType!,
         );
         FocusManager.instance.primaryFocus?.unfocus();
         final user = await _loginUseCase(input);
-        _userProvider.setUserData(user.toViewModel());
+        userNotifier.setUserData(user.toViewModel());
         _appRouter.go('/home');
       });
     }
@@ -39,4 +39,6 @@ class LoginProvider {
 }
 
 final loginProvider =
-    AutoDisposeProvider<LoginProvider>((ref) => LoginProvider(ref));
+    AutoDisposeNotifierProvider<LoginProvider, BasicLoginModelForm>(
+  LoginProvider.new,
+);

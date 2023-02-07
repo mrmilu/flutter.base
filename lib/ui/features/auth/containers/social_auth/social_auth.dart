@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_base/core/auth/domain/models/auth_provider.dart';
+import 'package:flutter_base/core/auth/domain/enums/auth_provider.dart';
 import 'package:flutter_base/ui/components/box_spacer.dart';
 import 'package:flutter_base/ui/components/buttons/button_secondary.dart';
 import 'package:flutter_base/ui/features/auth/containers/social_auth/social_auth_provider.dart';
@@ -65,19 +65,27 @@ class SocialAuth extends ConsumerWidget {
 
   void _appleAuth(WidgetRef ref) {
     if (type == SocialAuthType.login) {
-      ref.read(socialAuthProvider).socialLogin(AuthProvider.apple);
+      ref
+          .read(socialAuthProvider.notifier)
+          .socialLogin(SocialAuthServiceProvider.apple);
     }
     if (type == SocialAuthType.singUp) {
-      ref.read(socialAuthProvider).socialSignUp(AuthProvider.apple);
+      ref
+          .read(socialAuthProvider.notifier)
+          .socialSignUp(SocialAuthServiceProvider.apple);
     }
   }
 
   void _googleAuth(WidgetRef ref) {
     if (type == SocialAuthType.login) {
-      ref.read(socialAuthProvider).socialLogin(AuthProvider.google);
+      ref
+          .read(socialAuthProvider.notifier)
+          .socialLogin(SocialAuthServiceProvider.google);
     }
     if (type == SocialAuthType.singUp) {
-      ref.read(socialAuthProvider).socialSignUp(AuthProvider.google);
+      ref
+          .read(socialAuthProvider.notifier)
+          .socialSignUp(SocialAuthServiceProvider.google);
     }
   }
 }

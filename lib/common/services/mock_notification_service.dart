@@ -1,6 +1,9 @@
 import 'package:faker_dart/faker_dart.dart';
 import 'package:flutter_base/common/interfaces/notifications_service.dart';
+import 'package:flutter_base/core/app/domain/models/enviroments_list.dart';
+import 'package:injectable/injectable.dart';
 
+@Injectable(as: INotificationsService, env: localEnviroment)
 class MockNotificationService extends INotificationsService {
   final _faker = Faker.instance;
   @override

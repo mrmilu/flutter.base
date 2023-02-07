@@ -1,3 +1,4 @@
+import 'package:flutter_base/ui/utils/reactive_form.dart';
 import 'package:flutter_base/ui/utils/validators.dart';
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 
@@ -12,4 +13,7 @@ class BasicLoginViewModel {
     @FormControlAnnotation(validators: [requiredValidator]) this.email = '',
     @FormControlAnnotation(validators: [requiredValidator]) this.password = '',
   });
+
+  BasicLoginModelForm generateFormModel() =>
+      buildFormModel((form) => BasicLoginModelForm(this, form, null));
 }
