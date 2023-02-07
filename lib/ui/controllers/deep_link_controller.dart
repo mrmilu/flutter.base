@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_base/common/interfaces/deep_link_service.dart';
-import 'package:flutter_base/ui/pages/auth/views/forgot_password/forgot_password_confirm_page.dart';
+import 'package:flutter_base/ui/features/auth/views/forgot_password/forgot_password_confirm_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:injectable/injectable.dart';
 
@@ -34,7 +34,7 @@ class DeepLinkController {
         deepLink.queryParameters.containsKey('key') &&
         deepLink.queryParameters.containsKey('uid') &&
         deepLink.queryParameters['uid']?.isNotEmpty == true) {
-      _appRouter.replace(
+      _appRouter.pushReplacement(
         '/forgot-password/confirm',
         extra: ForgotPasswordConfirmPageData(
           token: deepLink.queryParameters['key'],

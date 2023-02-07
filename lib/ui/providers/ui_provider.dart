@@ -1,14 +1,13 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_base/core/app/domain/models/app_error.dart';
 import 'package:flutter_base/ui/components/loaders/global_circular_progress.dart';
 import 'package:flutter_base/ui/components/styled_snackbar.dart';
 import 'package:flutter_base/ui/extensions/app_error_code_messages.dart';
 import 'package:flutter_base/ui/extensions/program_error_messages.dart';
+import 'package:flutter_base/ui/router/app_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:get_it/get_it.dart';
-import 'package:go_router/go_router.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 part 'ui_provider.freezed.dart';
@@ -23,17 +22,16 @@ class UiState with _$UiState {
 
 class UiProvider extends StateNotifier<UiState> {
   UiProvider() : super(UiState());
-  final _appRouter = GetIt.I.get<GoRouter>();
   final _snackBarKey = GetIt.I.get<GlobalKey<ScaffoldMessengerState>>();
   bool _entryAdded = false;
 
   void showGlobalLoader() {
     if (_entryAdded) return;
-    final context = _appRouter.navigator?.overlay?.context;
+    final context = rootNavigatorKey.currentState?.overlay?.context;
     if (context == null) return;
     OverlayEntry overlayEntry = GlobalCircularProgress.build(context);
-    if (_appRouter.navigator?.overlay == null) return;
-    _appRouter.navigator?.overlay?.insert(overlayEntry);
+    if (rootNavigatorKey.currentState?.overlay == null) return;
+    rootNavigatorKey.currentState?.overlay!.insert(overlayEntry);
     _entryAdded = true;
     state = state.copyWith(globalLoaderEntry: overlayEntry);
   }

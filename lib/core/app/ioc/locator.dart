@@ -12,7 +12,7 @@ final getIt = GetIt.instance;
 
 @InjectableInit()
 void configureDependencies({required String env}) {
-  $initGetIt(getIt, environment: env);
+  getIt.init(environment: env);
 }
 
 @module

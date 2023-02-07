@@ -27,6 +27,8 @@ jobs:
               exit 1
             fi
           working_directory: android
+      - send_notification:
+          platform: "Android"
   deploy-ios:
     macos:
       xcode: 14.1.0
@@ -52,20 +54,10 @@ jobs:
               exit 1
             fi
           working_directory: ios
+      - send_notification:
+          platform: "iOS"
       - store_artifacts:
           path: output
-  send-notification:
-    docker:
-      - image: 'cimg/base:stable'
-    steps:
-      - slack/notify:
-          channel: C0478GQDPV2
-          event: pass
-          template: basic_success_1
-      - slack/notify:
-          channel: C0478GQDPV2
-          event: fail
-          template: basic_fail_1
 
 commands:
   build:
@@ -122,11 +114,49 @@ commands:
               echo "Incorrect branch $CIRCLE_BRANCH"
               exit 1
             fi
-
+  send_notification:
+    parameters:
+      platform:
+        type: enum
+        default: "iOS"
+        enum: [ "iOS", "Android" ]
+    steps:
+      - slack/notify:
+          channel: C0478GQDPV2
+          event: pass
+          custom: |
+            {
+            	"blocks": [
+            		{
+            			"type": "section",
+            			"text": {
+            				"type": "mrkdwn",
+            				"text": "*<< parameters.platform >>* version deploy success! :rocket:"
+            			}
+            		}
+            	]
+            }
+      - slack/notify:
+          channel: C0478GQDPV2
+          event: fail
+          custom: |
+            {
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "*<< parameters.platform >>* version deploy failure! :warning:"
+                  }
+                }
+              ]
+            }
 workflows:
   deploy:
     jobs:
       - deploy-android:
+          context:
+            - slack
           filters:
             branches:
               only:
@@ -135,17 +165,7 @@ workflows:
       - deploy-ios:
           context:
             - match
-          filters:
-            branches:
-              only:
-                - master
-                - develop
-      - send-notification:
-          context:
             - slack
-          requires:
-            - deploy-android
-            - deploy-ios
           filters:
             branches:
               only:
