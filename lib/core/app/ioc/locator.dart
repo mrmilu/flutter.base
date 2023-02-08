@@ -1,11 +1,18 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_base/common/interfaces/asset_picker_service.dart';
+import 'package:flutter_base/common/interfaces/image_compress_service.dart';
+import 'package:flutter_base/common/interfaces/notifications_service.dart';
+import 'package:flutter_base/common/interfaces/social_auth_service.dart';
+import 'package:flutter_base/common/services/asset_picker_service.dart';
+import 'package:flutter_base/common/services/image_compress_service.dart';
+import 'package:flutter_base/common/services/notifications_service.dart';
+import 'package:flutter_base/common/services/social_auth_service.dart';
 import 'package:flutter_base/core/app/domain/interfaces/env_vars.dart';
 import 'package:flutter_base/core/app/domain/models/env_vars.dart';
 import 'package:flutter_base/core/app/ioc/locator.config.dart';
 import 'package:flutter_base/ui/router/app_router.dart';
-import 'package:flutter_mrmilu/flutter_mrmilu.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';

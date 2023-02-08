@@ -81,4 +81,5 @@ class SocialAuthProvider extends AutoDisposeNotifier {
 
 final socialAuthProvider =
     AutoDisposeNotifierProvider<SocialAuthProvider, void>(
-        SocialAuthProvider.new);
+  SocialAuthProvider.new,
+);

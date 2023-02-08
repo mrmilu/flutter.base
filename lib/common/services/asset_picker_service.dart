@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:flutter_mrmilu/src/interfaces/asset_picker_service.dart';
+import 'package:flutter_base/common/interfaces/asset_picker_service.dart';
 import 'package:image_picker/image_picker.dart';
 
 class AssetPickerService implements IAssetPickerService {

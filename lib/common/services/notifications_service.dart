@@ -3,9 +3,9 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter_base/common/interfaces/notifications_service.dart';
+import 'package:flutter_base/common/models/notifications_service.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:flutter_mrmilu/src/interfaces/notifications_service.dart';
-import 'package:flutter_mrmilu/src/models/notifications_service.dart';
 
 class NotificationsService implements INotificationsService {
   late bool _initialized;
@@ -20,9 +20,9 @@ class NotificationsService implements INotificationsService {
   }
 
   static const AndroidNotificationChannel channel = AndroidNotificationChannel(
-    "high_importance_channel", // id
-    "High Importance Notifications", // title
-    description: "This channel is used for important notifications.",
+    'high_importance_channel', // id
+    'High Importance Notifications', // title
+    description: 'This channel is used for important notifications.',
     importance: Importance.max,
   );
 
@@ -65,26 +65,27 @@ class NotificationsService implements INotificationsService {
           android != null &&
           onForegroundAndroidNotificationOpen != null) {
         _flutterLocalNotificationsPlugin?.show(
-            notification.hashCode,
-            notification.title,
-            notification.body,
-            NotificationDetails(
-              android: AndroidNotificationDetails(
-                channel.id,
-                channel.name,
-                channelDescription: channel.description,
-              ),
-            ));
+          notification.hashCode,
+          notification.title,
+          notification.body,
+          NotificationDetails(
+            android: AndroidNotificationDetails(
+              channel.id,
+              channel.name,
+              channelDescription: channel.description,
+            ),
+          ),
+        );
       }
       final customNotification = _customNotificationFromRemoteMessage(message);
-      log("Notification on foreground: ${customNotification.title} - ${customNotification.body}");
+      log('Notification on foreground: ${customNotification.title} - ${customNotification.body}');
       _streamController.add(customNotification);
     });
 
     _onBackgroundMessage = FirebaseMessaging.onMessageOpenedApp
         .listen((RemoteMessage message) async {
       final customNotification = _customNotificationFromRemoteMessage(message);
-      log("Notification on background: ${customNotification.title} - ${customNotification.body}");
+      log('Notification on background: ${customNotification.title} - ${customNotification.body}');
       _streamController.add(customNotification);
     });
 
@@ -96,7 +97,7 @@ class NotificationsService implements INotificationsService {
       if (message != null) {
         final customNotification =
             _customNotificationFromRemoteMessage(message);
-        log("Initial notification: ${customNotification.title} - ${customNotification.body}");
+        log('Initial notification: ${customNotification.title} - ${customNotification.body}');
         _streamController.add(customNotification);
       }
     });
@@ -110,7 +111,7 @@ class NotificationsService implements INotificationsService {
   ) async {
     _flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
     const AndroidInitializationSettings initializationSettingsAndroid =
-        AndroidInitializationSettings("ic_launcher_foreground");
+        AndroidInitializationSettings('ic_launcher_foreground');
     const InitializationSettings initializationSettings =
         InitializationSettings(android: initializationSettingsAndroid);
     await _flutterLocalNotificationsPlugin!.initialize(
@@ -126,15 +127,7 @@ class NotificationsService implements INotificationsService {
 
   @override
   Future<NotificationPermissionStatus> requestNotificationPermissions() async {
-    final settings = await FirebaseMessaging.instance.requestPermission(
-      alert: true,
-      announcement: false,
-      badge: true,
-      carPlay: false,
-      criticalAlert: false,
-      provisional: false,
-      sound: true,
-    );
+    final settings = await FirebaseMessaging.instance.requestPermission();
     return NotificationPermissionStatus.values
         .byName(settings.authorizationStatus.name);
   }
@@ -145,7 +138,8 @@ class NotificationsService implements INotificationsService {
   }
 
   CustomNotification _customNotificationFromRemoteMessage(
-      RemoteMessage message) {
+    RemoteMessage message,
+  ) {
     return CustomNotification(
       data: message.data,
       title: message.notification?.title ?? '',

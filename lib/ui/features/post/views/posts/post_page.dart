@@ -30,6 +30,7 @@ class PostPage extends ConsumerWidget {
                 left: Spacing.sp16,
                 right: Spacing.sp16,
                 top: basePadding.top + Spacing.sp16,
+                bottom: 100,
               ),
               itemCount: posts.length,
               itemBuilder: (context, idx) {
