@@ -3,6 +3,7 @@ import 'package:flutter_base/ui/components/box_spacer.dart';
 import 'package:flutter_base/ui/components/icons/flutter_base_icon.dart';
 import 'package:flutter_base/ui/components/text/mid_text.dart';
 import 'package:flutter_base/ui/styles/border_radius.dart';
+import 'package:flutter_base/ui/styles/box_shadows.dart';
 import 'package:flutter_base/ui/styles/colors.dart';
 import 'package:flutter_base/ui/styles/spacing.dart';
 import 'package:flutter_base/ui/styles/text_styles.dart';
@@ -42,13 +43,7 @@ class AppBottomBar extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: CircularBorderRadius.br16,
         color: FlutterBaseColors.specificSurfaceLow,
-        boxShadow: [
-          BoxShadow(
-            blurRadius: 20,
-            offset: const Offset(2, 2),
-            color: FlutterBaseColors.specificBasicBlack.withOpacity(0.12),
-          )
-        ],
+        boxShadow: BoxShadows.bs1,
       ),
       child: Padding(
         padding:

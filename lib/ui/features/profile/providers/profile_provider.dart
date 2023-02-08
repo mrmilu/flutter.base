@@ -24,30 +24,30 @@ part 'profile_provider.freezed.dart';
 class ProfileState with _$ProfileState {
   factory ProfileState({
     GlobalKey<ExtendedImageEditorState>? avatarEditorKey,
+    EditProfileModelForm? editProfileFormModel,
   }) = _ProfileState;
 }
 
-class ProfileProvider extends StateNotifier<ProfileState> {
+class ProfileProvider extends AutoDisposeNotifier<ProfileState> {
   final IAssetPickerService _assetPickerService =
       GetIt.I.get<IAssetPickerService>();
   final _userRepository = GetIt.I.get<IUserRepository>();
   final _editImageService = GetIt.I.get<IEditImageService>();
   final _appRouter = GetIt.I.get<GoRouter>();
-  late final UserProvider _userProvider;
-  late final UiProvider _uiProvider;
 
-  ProfileProvider(AutoDisposeStateNotifierProviderRef ref)
-      : super(
-          ProfileState(
-            avatarEditorKey: GlobalKey<ExtendedImageEditorState>(),
-          ),
-        ) {
-    _userProvider = ref.watch(userProvider.notifier);
-    _uiProvider = ref.watch(uiProvider.notifier);
+  @override
+  ProfileState build() {
+    final user = ref.watch(userProvider.select((state) => state.userData));
+    return ProfileState(
+      avatarEditorKey: GlobalKey<ExtendedImageEditorState>(),
+      editProfileFormModel:
+          EditProfileViewModel(name: user!.name).generateFormModel(),
+    );
   }
 
   Future<void> chosePhotoFromGallery() async {
-    _uiProvider.showGlobalLoader();
+    final uiNotifier = ref.watch(uiProvider.notifier);
+    uiNotifier.showGlobalLoader();
     final avatar = await _assetPickerService.imageFromGallery();
     if (avatar != null) {
       _appRouter.push(
@@ -55,11 +55,12 @@ class ProfileProvider extends StateNotifier<ProfileState> {
         extra: EditAvatarPageData(avatar: avatar),
       );
     }
-    _uiProvider.hideGlobalLoader();
+    uiNotifier.hideGlobalLoader();
   }
 
   Future<void> takePhoto() async {
-    _uiProvider.showGlobalLoader();
+    final uiNotifier = ref.watch(uiProvider.notifier);
+    uiNotifier.showGlobalLoader();
     final avatar = await _assetPickerService.imageFromCamera();
     if (avatar != null) {
       _appRouter.push(
@@ -67,35 +68,42 @@ class ProfileProvider extends StateNotifier<ProfileState> {
         extra: EditAvatarPageData(avatar: avatar),
       );
     }
-    _uiProvider.hideGlobalLoader();
+    uiNotifier.hideGlobalLoader();
   }
 
   Future<void> deleteAvatar() async {
-    _uiProvider.tryAction(() async {
-      _uiProvider.showGlobalLoader();
+    final userNotifier = ref.watch(userProvider.notifier);
+    final uiNotifier = ref.watch(uiProvider.notifier);
+    uiNotifier.tryAction(() async {
+      uiNotifier.showGlobalLoader();
       final user = await _userRepository.deleteAvatar();
-      _userProvider.setUserData(user.toViewModel());
+      userNotifier.setUserData(user.toViewModel());
     });
   }
 
-  Future<void> updateProfile(EditProfileModelForm formModel) async {
+  Future<void> updateProfile() async {
+    final userNotifier = ref.watch(userProvider.notifier);
+    final uiNotifier = ref.watch(uiProvider.notifier);
+    final formModel = state.editProfileFormModel!;
     formModel.form.markAllAsTouched();
     if (formModel.form.valid) {
-      _uiProvider.tryAction(() async {
+      uiNotifier.tryAction(() async {
         FocusManager.instance.primaryFocus?.unfocus();
         final input = UpdateUserInputModel(
           name: formModel.model.name.trim(),
         );
         final user = await _userRepository.update(input);
-        _userProvider.setUserData(user.toViewModel());
+        userNotifier.setUserData(user.toViewModel());
         _appRouter.pop();
       });
     }
   }
 
   Future<void> cropAvatarPhotoAndSave() async {
-    _uiProvider.showGlobalLoader();
-    _uiProvider
+    final userNotifier = ref.watch(userProvider.notifier);
+    final uiNotifier = ref.watch(uiProvider.notifier);
+    uiNotifier.showGlobalLoader();
+    uiNotifier
         .tryAction(() async {
           final editorState = state.avatarEditorKey!.currentState;
           if (editorState == null) {
@@ -109,7 +117,7 @@ class ProfileProvider extends StateNotifier<ProfileState> {
           final editedAvatar = await _editImageService.crop(rect, rawImage);
           if (editedAvatar != null) {
             final user = await _userRepository.avatar(editedAvatar);
-            _userProvider.setUserData(user.toViewModel());
+            userNotifier.setUserData(user.toViewModel());
           }
         })
         .then((value) => rootNavigatorKey.currentState?.pop())
@@ -122,6 +130,6 @@ class ProfileProvider extends StateNotifier<ProfileState> {
 }
 
 final profileProvider =
-    AutoDisposeStateNotifierProvider<ProfileProvider, ProfileState>(
-  (ref) => ProfileProvider(ref),
+    AutoDisposeNotifierProvider<ProfileProvider, ProfileState>(
+  ProfileProvider.new,
 );

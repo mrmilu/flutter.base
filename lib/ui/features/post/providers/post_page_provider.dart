@@ -1,38 +1,41 @@
+import 'package:faker_dart/faker_dart.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_base/ui/features/post/view_models/posts_view_model.dart';
 import 'package:flutter_base/ui/providers/ui_provider.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod/riverpod.dart';
 
-part 'post_page_provider.freezed.dart';
-
-@freezed
-class PostPageState with _$PostPageState {
-  factory PostPageState({
-    @Default([]) List<dynamic> posts,
-    @Default(false) refreshing,
-  }) = _PostPageState;
-}
-
-class PostPageProvider extends StateNotifier<PostPageState> {
-  late final UiProvider _uiProvider;
-
-  PostPageProvider(AutoDisposeStateNotifierProviderRef ref)
-      : super(PostPageState()) {
-    _uiProvider = ref.watch(uiProvider.notifier);
-    Future.delayed(Duration.zero, () => _init());
+class PostPageProvider extends AutoDisposeNotifier<List<PostsViewModel>> {
+  @override
+  List<PostsViewModel> build() {
+    final uiNotifier = ref.watch(uiProvider.notifier);
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      uiNotifier.showGlobalLoader();
+    });
+    final faker = Faker.instance;
+    try {
+      final posts = List.generate(
+        50,
+        (index) => PostsViewModel(
+          title: faker.lorem.sentence(),
+          body: faker.lorem.paragraph(sentenceCount: 5),
+        ),
+      );
+      return posts;
+    } finally {
+      WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+        uiNotifier.hideGlobalLoader();
+      });
+    }
   }
 
-  Future<void> _init() async {
-    _uiProvider.showGlobalLoader();
-    try {
-      final posts = [];
-      state = state.copyWith(posts: posts);
-    } finally {
-      _uiProvider.hideGlobalLoader();
-    }
+  void delete(int idx) {
+    final cloneState = [...state];
+    cloneState.removeAt(idx);
+    state = cloneState;
   }
 }
 
 final postPageProvider =
-    AutoDisposeStateNotifierProvider<PostPageProvider, PostPageState>(
-  (ref) => PostPageProvider(ref),
+    AutoDisposeNotifierProvider<PostPageProvider, List<PostsViewModel>>(
+  PostPageProvider.new,
 );
