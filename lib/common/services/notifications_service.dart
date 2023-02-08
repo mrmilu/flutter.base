@@ -1,8 +1,8 @@
 import 'dart:async';
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_base/common/interfaces/notifications_service.dart';
 import 'package:flutter_base/common/models/notifications_service.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -78,14 +78,18 @@ class NotificationsService implements INotificationsService {
         );
       }
       final customNotification = _customNotificationFromRemoteMessage(message);
-      log('Notification on foreground: ${customNotification.title} - ${customNotification.body}');
+      debugPrint(
+        'Notification on foreground: ${customNotification.title} - ${customNotification.body}',
+      );
       _streamController.add(customNotification);
     });
 
     _onBackgroundMessage = FirebaseMessaging.onMessageOpenedApp
         .listen((RemoteMessage message) async {
       final customNotification = _customNotificationFromRemoteMessage(message);
-      log('Notification on background: ${customNotification.title} - ${customNotification.body}');
+      debugPrint(
+        'Notification on background: ${customNotification.title} - ${customNotification.body}',
+      );
       _streamController.add(customNotification);
     });
 
@@ -97,7 +101,9 @@ class NotificationsService implements INotificationsService {
       if (message != null) {
         final customNotification =
             _customNotificationFromRemoteMessage(message);
-        log('Initial notification: ${customNotification.title} - ${customNotification.body}');
+        debugPrint(
+          'Initial notification: ${customNotification.title} - ${customNotification.body}',
+        );
         _streamController.add(customNotification);
       }
     });

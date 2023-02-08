@@ -1,7 +1,7 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_base/common/interfaces/notifications_service.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
@@ -16,7 +16,7 @@ class NotificationsProvider extends AutoDisposeNotifier<void> {
     _init();
 
     ref.onDispose(() {
-      log('disposed notifications provider');
+      debugPrint('disposed notifications provider');
       _notificationsDialogTimer?.cancel();
       GetIt.I.resetLazySingleton<INotificationsService>();
     });
@@ -31,7 +31,7 @@ class NotificationsProvider extends AutoDisposeNotifier<void> {
         .hasPermissionsEnabled(currentNotificationPermission)) {
       initPushNotifications();
     }
-    log('$runtimeType - Notifications enabled');
+    debugPrint('$runtimeType - Notifications enabled');
   }
 
   Future<void> initPushNotifications() async {
@@ -50,7 +50,7 @@ class NotificationsProvider extends AutoDisposeNotifier<void> {
   static Future<void> _backgroundMessageHandler(
     RemoteMessage notificationResponse,
   ) async {
-    log('notification opened on background');
+    debugPrint('notification opened on background');
   }
 }
 
