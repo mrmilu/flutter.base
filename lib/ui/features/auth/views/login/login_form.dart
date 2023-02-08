@@ -12,18 +12,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 
-class LoginForm extends ConsumerStatefulWidget {
-  const LoginForm({
-    super.key,
-  });
+class LoginForm extends ConsumerWidget {
+  const LoginForm({super.key});
 
   @override
-  ConsumerState<LoginForm> createState() => _BasicLoginFormWidgetState();
-}
-
-class _BasicLoginFormWidgetState extends ConsumerState<LoginForm> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final formModel = ref.watch(loginProvider);
     return ReactiveBasicLoginModelForm(
       form: formModel,
