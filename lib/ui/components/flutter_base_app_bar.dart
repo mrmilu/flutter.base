@@ -41,7 +41,7 @@ class FlutterBaseAppBar extends AppBar {
             offset: const Offset(8, 0),
             child: IconButtonTertiary(
               icon: Icons.close,
-              foregroundColor: MoggieColors.specificContentLow,
+              foregroundColor: FlutterBaseColors.specificContentLow,
               fixedSize: const Size.fromWidth(24),
               onPressed: () {
                 if (Navigator.of(context).canPop()) {
@@ -79,7 +79,7 @@ class FlutterBaseAppBarLeading extends StatelessWidget {
       padding: const EdgeInsets.only(left: Spacing.sp16),
       child: IconButtonTertiary(
         icon: Icons.arrow_back_ios,
-        foregroundColor: MoggieColors.specificContentLow,
+        foregroundColor: FlutterBaseColors.specificContentLow,
         onPressed: () {
           if (customPopAction != null) {
             customPopAction!();

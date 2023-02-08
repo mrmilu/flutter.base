@@ -19,7 +19,7 @@ class ButtonTertiary extends TextButton {
     TextStyle? customTextStyle,
   }) : super(
           style: TextButton.styleFrom(
-            foregroundColor: MoggieColors.specificSemanticPrimary,
+            foregroundColor: FlutterBaseColors.specificSemanticPrimary,
             splashFactory: NoSplash.splashFactory,
             padding: EdgeInsets.zero,
             visualDensity: VisualDensity.compact,
@@ -86,9 +86,10 @@ class _ButtonTertiaryContent extends StatelessWidget {
   TextStyle get _textStyle {
     if (customTextStyle != null) return customTextStyle!;
     return ButtonSize.small == size
-        ? TextStyles.midM.copyWith(color: MoggieColors.specificSemanticPrimary)
+        ? TextStyles.midM
+            .copyWith(color: FlutterBaseColors.specificSemanticPrimary)
         : TextStyles.smallL
-            .copyWith(color: MoggieColors.specificSemanticPrimary);
+            .copyWith(color: FlutterBaseColors.specificSemanticPrimary);
   }
 
   double get _iconSize => size == ButtonSize.small ? 16.0 : 24.0;

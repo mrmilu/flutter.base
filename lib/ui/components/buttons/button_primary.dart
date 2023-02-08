@@ -76,9 +76,9 @@ class ButtonPrimary extends ElevatedButton {
   ) {
     return MaterialStateProperty.resolveWith((states) {
       final smallColor =
-          customForegroundColor ?? MoggieColors.specificSemanticPrimary;
+          customForegroundColor ?? FlutterBaseColors.specificSemanticPrimary;
       final normalColor =
-          customForegroundColor ?? MoggieColors.specificBasicWhite;
+          customForegroundColor ?? FlutterBaseColors.specificBasicWhite;
 
       if (states.contains(MaterialState.pressed)) {
         if (size == ButtonSize.small) {
@@ -101,9 +101,9 @@ class ButtonPrimary extends ElevatedButton {
   ) {
     return MaterialStateProperty.resolveWith((states) {
       final smallColor =
-          customBackgroundColor ?? MoggieColors.specificSurfaceHigh;
+          customBackgroundColor ?? FlutterBaseColors.specificSurfaceHigh;
       final normalColor =
-          customBackgroundColor ?? MoggieColors.specificSemanticPrimary;
+          customBackgroundColor ?? FlutterBaseColors.specificSemanticPrimary;
 
       if (states.contains(MaterialState.disabled)) {
         if (size == ButtonSize.small) {

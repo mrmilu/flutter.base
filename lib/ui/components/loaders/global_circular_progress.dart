@@ -70,7 +70,7 @@ class __GlobalProgressWidgetState extends ConsumerState<_GlobalProgressWidget> {
         child: Container(
           height: widget.fullHeight,
           width: widget.fullWidth,
-          color: MoggieColors.specificSemanticPrimary.withAlpha(210),
+          color: FlutterBaseColors.specificSemanticPrimary.withAlpha(210),
           child: const Center(
             child: CircularProgress(
               cupertinoBrightness: Brightness.dark,

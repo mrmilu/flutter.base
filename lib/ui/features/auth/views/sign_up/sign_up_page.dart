@@ -71,7 +71,7 @@ class TermAndPrivacy extends StatelessWidget {
     return RichText(
       text: TextSpan(
         style: TextStyles.smallS.copyWith(
-          color: MoggieColors.specificContentLow,
+          color: FlutterBaseColors.specificContentLow,
         ),
         children: [
           TextSpan(
@@ -80,7 +80,7 @@ class TermAndPrivacy extends StatelessWidget {
           TextSpan(
             recognizer: TapGestureRecognizer()..onTap = () {},
             style: TextStyles.smallS.copyWith(
-              color: MoggieColors.specificContentHigh,
+              color: FlutterBaseColors.specificContentHigh,
             ),
             text: LocaleKeys.signUp_termsAndPrivacy_blockTwo.tr(),
           ),
@@ -90,7 +90,7 @@ class TermAndPrivacy extends StatelessWidget {
           TextSpan(
             recognizer: TapGestureRecognizer()..onTap = () {},
             style: TextStyles.smallS.copyWith(
-              color: MoggieColors.specificContentHigh,
+              color: FlutterBaseColors.specificContentHigh,
             ),
             text: LocaleKeys.signUp_termsAndPrivacy_blockFour.tr(),
           ),

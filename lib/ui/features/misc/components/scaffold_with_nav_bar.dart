@@ -127,7 +127,7 @@ class ScaffoldWithNavBarState extends ConsumerState<ScaffoldWithNavBar>
   SizedBox _buildMainView(BuildContext context) {
     return SizedBox.expand(
       child: ColoredBox(
-        color: MoggieColors.specificBackgroundBase,
+        color: FlutterBaseColors.specificBackgroundBase,
         child: Stack(
           children: [
             Positioned.fill(

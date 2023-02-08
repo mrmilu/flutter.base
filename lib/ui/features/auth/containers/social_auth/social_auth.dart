@@ -34,7 +34,7 @@ class SocialAuth extends ConsumerWidget {
             },
             customTextStyle: TextStyles.midM.copyWith(
               fontSize: 15,
-              color: MoggieColors.specificContentHigh,
+              color: FlutterBaseColors.specificContentHigh,
             ),
             text: _appleBtnTxt,
           ),
@@ -45,7 +45,7 @@ class SocialAuth extends ConsumerWidget {
           text: _googleBtnTxt,
           customTextStyle: TextStyles.midM.copyWith(
             fontSize: 15,
-            color: MoggieColors.specificContentHigh,
+            color: FlutterBaseColors.specificContentHigh,
           ),
           onPressed: () {
             _googleAuth(ref);

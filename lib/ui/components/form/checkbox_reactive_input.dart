@@ -17,8 +17,8 @@ class CheckboxReactiveInput extends ReactiveCheckboxListTile {
             borderRadius: BorderRadius.circular(2),
           ),
           dense: true,
-          side: const BorderSide(color: MoggieColors.specificBorderMid),
-          activeColor: MoggieColors.specificSemanticPrimary,
+          side: const BorderSide(color: FlutterBaseColors.specificBorderMid),
+          activeColor: FlutterBaseColors.specificSemanticPrimary,
           title: Transform.translate(
             offset: const Offset(-20, 0),
             child: Text(

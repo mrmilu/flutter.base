@@ -2,13 +2,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_base/ui/styles/colors.dart';
 
-class MoggieNetworkImage extends StatelessWidget {
+class NetworkImage extends StatelessWidget {
   final String url;
   final double width;
   final double height;
   final BoxFit? fit;
 
-  const MoggieNetworkImage(
+  const NetworkImage(
     this.url, {
     super.key,
     required this.width,
@@ -22,7 +22,7 @@ class MoggieNetworkImage extends StatelessWidget {
       width: width,
       height: height,
       decoration: BoxDecoration(
-        color: MoggieColors.specificContentLow.withOpacity(.20),
+        color: FlutterBaseColors.specificContentLow.withOpacity(.20),
         borderRadius: BorderRadius.circular(16),
       ),
     );

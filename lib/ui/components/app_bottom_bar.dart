@@ -41,12 +41,12 @@ class AppBottomBar extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         borderRadius: CircularBorderRadius.br16,
-        color: MoggieColors.specificSurfaceLow,
+        color: FlutterBaseColors.specificSurfaceLow,
         boxShadow: [
           BoxShadow(
             blurRadius: 20,
             offset: const Offset(2, 2),
-            color: MoggieColors.specificBasicBlack.withOpacity(0.12),
+            color: FlutterBaseColors.specificBasicBlack.withOpacity(0.12),
           )
         ],
       ),
@@ -123,9 +123,10 @@ class _AppBottomBarItemWidget extends StatelessWidget {
     );
   }
 
-  Color? get _bgColor => selected ? MoggieColors.specificSurfaceHigh : null;
+  Color? get _bgColor =>
+      selected ? FlutterBaseColors.specificSurfaceHigh : null;
 
   Color get _color => selected
-      ? MoggieColors.specificSemanticPrimary
-      : MoggieColors.specificContentLow;
+      ? FlutterBaseColors.specificSemanticPrimary
+      : FlutterBaseColors.specificContentLow;
 }

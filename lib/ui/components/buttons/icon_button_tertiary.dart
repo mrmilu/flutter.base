@@ -13,7 +13,7 @@ class IconButtonTertiary extends TextButton {
     super.key,
     required IconData icon,
     ButtonSize? size,
-    Color? foregroundColor = MoggieColors.specificSemanticPrimary,
+    Color? foregroundColor = FlutterBaseColors.specificSemanticPrimary,
     Size? fixedSize,
     required super.onPressed,
   }) : super(

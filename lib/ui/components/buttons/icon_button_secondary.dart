@@ -39,8 +39,8 @@ class IconButtonSecondary extends OutlinedButton {
 
   static MaterialStateProperty<Color?> _foregroundColor(ButtonSize size) {
     return MaterialStateProperty.resolveWith((states) {
-      const smallColor = MoggieColors.specificContentHigh;
-      const normalColor = MoggieColors.specificSemanticPrimary;
+      const smallColor = FlutterBaseColors.specificContentHigh;
+      const normalColor = FlutterBaseColors.specificSemanticPrimary;
 
       if (states.contains(MaterialState.disabled)) {
         if (size == ButtonSize.small) {
@@ -67,8 +67,8 @@ class IconButtonSecondary extends OutlinedButton {
 
   static MaterialStateProperty<Color?> _backgroundColor(ButtonSize size) {
     return MaterialStateProperty.resolveWith((states) {
-      const smallColor = MoggieColors.specificSemanticPrimary;
-      const normalColor = MoggieColors.specificBasicWhite;
+      const smallColor = FlutterBaseColors.specificSemanticPrimary;
+      const normalColor = FlutterBaseColors.specificBasicWhite;
 
       if (states.contains(MaterialState.disabled)) {
         if (size == ButtonSize.small) {
