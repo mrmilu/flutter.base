@@ -1,8 +1,6 @@
 import 'package:flutter_base/common/interfaces/share_service.dart';
-import 'package:injectable/injectable.dart';
 import 'package:share_plus/share_plus.dart';
 
-@Injectable(as: IShareService)
 class ShareService implements IShareService {
   @override
   Future<ShareStatus> file(ShareFileInput input) async {
