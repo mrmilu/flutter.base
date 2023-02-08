@@ -3,17 +3,14 @@ import 'dart:math';
 
 import 'package:crypto/crypto.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_base/common/interfaces/social_auth_service.dart';
-import 'package:flutter_base/core/app/domain/models/app_error.dart';
+import 'package:flutter_mrmilu/src/interfaces/social_auth_service.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:injectable/injectable.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
-@Singleton(as: ISocialAuthService)
 class SocialAuthService implements ISocialAuthService {
   String _generateNonce([int length = 32]) {
     const charset =
-        '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._';
+        "0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._";
     final random = Random.secure();
     return List.generate(length, (_) => charset[random.nextInt(charset.length)])
         .join();
@@ -41,7 +38,7 @@ class SocialAuthService implements ISocialAuthService {
     final fixDisplayNameFromApple =
         '${appleCredential.givenName ?? ""} ${appleCredential.familyName ?? ""}';
 
-    final oauthCredential = OAuthProvider('apple.com').credential(
+    final oauthCredential = OAuthProvider("apple.com").credential(
       idToken: appleCredential.identityToken,
       rawNonce: rawNonce,
     );
@@ -49,7 +46,7 @@ class SocialAuthService implements ISocialAuthService {
     final loggedUser =
         (await FirebaseAuth.instance.signInWithCredential(oauthCredential))
             .user;
-    if (loggedUser == null) throw const AppError(message: 'Null logged user');
+    if (loggedUser == null) throw Exception("NULL_LOGGED_USER");
 
     if (loggedUser.displayName == null) {
       await loggedUser.updateDisplayName(fixDisplayNameFromApple);
@@ -74,12 +71,12 @@ class SocialAuthService implements ISocialAuthService {
 
     final loggedUser =
         (await FirebaseAuth.instance.signInWithCredential(credential)).user;
-    if (loggedUser == null) throw const AppError(message: 'Null logged user');
+    if (loggedUser == null) throw Exception("NULL_LOGGED_USER");
     return loggedUser;
   }
 
   @override
-  Future<void> logout() async {
+  logout() async {
     await FirebaseAuth.instance.signOut();
   }
 }

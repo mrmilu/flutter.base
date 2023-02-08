@@ -35,6 +35,15 @@ abstract class RegisterModule {
   )
   NotificationsService get getNotificationsService => NotificationsService();
 
+  @LazySingleton(as: IAssetPickerService)
+  AssetPickerService get getAssetPickerService => AssetPickerService();
+
+  @LazySingleton(as: ISocialAuthService)
+  SocialAuthService get getSocialAuthService => SocialAuthService();
+
+  @LazySingleton(as: IImageCompressService)
+  ImageCompressService get getImageCompressService => ImageCompressService();
+
   @Singleton()
   GlobalKey<ScaffoldMessengerState> get getScaffoldKey =>
       GlobalKey<ScaffoldMessengerState>();

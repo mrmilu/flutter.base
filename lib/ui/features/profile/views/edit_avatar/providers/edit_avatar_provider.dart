@@ -3,8 +3,9 @@ import 'dart:typed_data';
 
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_base/common/interfaces/asset_picker_service.dart';
 import 'package:flutter_base/common/interfaces/edit_image_service.dart';
+import 'package:flutter_base/core/app/domain/use_cases/image_from_camera_use_case.dart';
+import 'package:flutter_base/core/app/domain/use_cases/image_from_gallery_use_case.dart';
 import 'package:flutter_base/core/user/domain/interfaces/user_repository.dart';
 import 'package:flutter_base/ui/features/profile/views/edit_avatar/edit_avatar_page.dart';
 import 'package:flutter_base/ui/providers/ui_provider.dart';
@@ -17,8 +18,8 @@ import 'package:go_router/go_router.dart';
 
 class EditAvatarProvider
     extends AutoDisposeNotifier<GlobalKey<ExtendedImageEditorState>?> {
-  final IAssetPickerService _assetPickerService =
-      GetIt.I.get<IAssetPickerService>();
+  final _imageFromGalleryUseCase = GetIt.I.get<ImageFromGalleryUseCase>();
+  final _imageFromCameraUseCase = GetIt.I.get<ImageFromCameraUseCase>();
   final _userRepository = GetIt.I.get<IUserRepository>();
   final _editImageService = GetIt.I.get<IEditImageService>();
   final _appRouter = GetIt.I.get<GoRouter>();
@@ -31,7 +32,7 @@ class EditAvatarProvider
   Future<void> chosePhotoFromGallery() async {
     final uiNotifier = ref.watch(uiProvider.notifier);
     uiNotifier.showGlobalLoader();
-    final avatar = await _assetPickerService.imageFromGallery();
+    final avatar = await _imageFromGalleryUseCase();
     if (avatar != null) {
       _appRouter.push(
         '/profile/avatar',
@@ -44,7 +45,7 @@ class EditAvatarProvider
   Future<void> takePhoto() async {
     final uiNotifier = ref.watch(uiProvider.notifier);
     uiNotifier.showGlobalLoader();
-    final avatar = await _assetPickerService.imageFromCamera();
+    final avatar = await _imageFromCameraUseCase();
     if (avatar != null) {
       _appRouter.push(
         '/profile/avatar',

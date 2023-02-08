@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
-import 'package:flutter_base/common/interfaces/social_auth_service.dart';
 import 'package:flutter_base/core/app/data/services/api_service.dart';
 import 'package:flutter_base/core/app/domain/models/app_error.dart';
 import 'package:flutter_base/core/app/domain/models/enviroments_list.dart';
@@ -12,6 +11,7 @@ import 'package:flutter_base/core/auth/domain/interfaces/auth_repository.dart';
 import 'package:flutter_base/core/auth/domain/models/change_password_input_model.dart';
 import 'package:flutter_base/core/auth/domain/models/login_input_model.dart';
 import 'package:flutter_base/core/auth/domain/models/sign_up_input_model.dart';
+import 'package:flutter_mrmilu/flutter_mrmilu.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 

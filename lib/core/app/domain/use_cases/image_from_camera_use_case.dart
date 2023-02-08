@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:flutter_base/common/interfaces/asset_picker_service.dart';
 import 'package:flutter_base/common/interfaces/fs_repository.dart';
+import 'package:flutter_mrmilu/flutter_mrmilu.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable()
