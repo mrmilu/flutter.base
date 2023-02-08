@@ -1,63 +1,60 @@
 import 'dart:async';
+import 'dart:developer';
 
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter_base/common/interfaces/notifications_service.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter_mrmilu/flutter_mrmilu.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
 
-class NotificationsProvider {
-  String? deviceToken;
-  final INotificationsService _iNotificationsService =
-      GetIt.I.get<INotificationsService>();
+class NotificationsProvider extends AutoDisposeNotifier<void> {
+  INotificationsService? _notificationsService;
+  Timer? _notificationsDialogTimer;
 
-  NotificationsProvider() : super() {
-    _iNotificationsService.requestApplePermissions();
-    _iNotificationsService.init(
-      onLocalAndroidNotificationOpen: (_) => _onOpenNotification(),
-    );
-    _iNotificationsService
-        .onMessageOpen((messageData) => _onOpenNotification());
-    _iNotificationsService
-        .onTerminatedStateMessage((messageData) => _onOpenNotification());
+  @override
+  void build() {
+    _notificationsService = GetIt.I.get<INotificationsService>();
+    _init();
 
-    // Gets device token
-    _iNotificationsService.getToken().then(_registerDevice);
+    ref.onDispose(() {
+      log('disposed notifications provider');
+      _notificationsDialogTimer?.cancel();
+      GetIt.I.resetLazySingleton<INotificationsService>();
+    });
 
-    // Background actions (not needed yet)
-    _iNotificationsService
-        .onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+    return;
   }
 
-  Future<void> _onOpenNotification() async {
-    // Here redirect to notifications tab
-    debugPrint('notification opened');
+  Future _init() async {
+    final currentNotificationPermission =
+        await _notificationsService!.getCurrentNotificationPermissions();
+    if (_notificationsService!
+        .hasPermissionsEnabled(currentNotificationPermission)) {
+      initPushNotifications();
+    }
+    log('$runtimeType - Notifications enabled');
   }
 
-  void cancelSubscriptions() {
-    _iNotificationsService.clean();
+  Future<void> initPushNotifications() async {
+    if (_notificationsService!.isInitialized) return;
+
+    final status =
+        await _notificationsService!.requestNotificationPermissions();
+    if (_notificationsService!.hasPermissionsEnabled(status)) {
+      await _notificationsService!.init(
+        onBackgroundMessage: NotificationsProvider._backgroundMessageHandler,
+      );
+    }
   }
 
-  Future<void> _registerDevice(String? deviceToken) async {
-    if (deviceToken == null) return;
-    this.deviceToken = deviceToken;
-    debugPrint(deviceToken);
-    // here register device token in backend
+  @pragma('vm:entry-point')
+  static Future<void> _backgroundMessageHandler(
+    RemoteMessage notificationResponse,
+  ) async {
+    log('notification opened on background');
   }
 }
 
-Future<void> _firebaseMessagingBackgroundHandler(
-  Map<String, dynamic> messageData,
-) async {
-  // If you're going to use other Firebase services in the background, such as Firestore,
-  // make sure you call `initializeApp` before using other Firebase services.
-  await Firebase.initializeApp();
-}
-
-final notificationsProvider = AutoDisposeProvider((ref) {
-  final notificationsProvider = NotificationsProvider();
-  ref.onDispose(() {
-    notificationsProvider.cancelSubscriptions();
-  });
-  return notificationsProvider;
-});
+final notificationsProvider =
+    AutoDisposeNotifierProvider<NotificationsProvider, void>(
+  NotificationsProvider.new,
+);

@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_base/ui/features/profile/providers/profile_provider.dart';
+import 'package:flutter_base/ui/features/profile/views/edit_avatar/providers/edit_avatar_provider.dart';
 import 'package:flutter_base/ui/i18n/locale_keys.g.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -39,16 +39,16 @@ class ProfilePhotoActionSheet extends ConsumerWidget {
 
   void _photoFromGallery(BuildContext context, WidgetRef ref) {
     Navigator.pop(context);
-    ref.read(profileProvider.notifier).chosePhotoFromGallery();
+    ref.read(editAvatarProvider.notifier).chosePhotoFromGallery();
   }
 
   void _photoFromCamera(BuildContext context, WidgetRef ref) {
     Navigator.pop(context);
-    ref.read(profileProvider.notifier).takePhoto();
+    ref.read(editAvatarProvider.notifier).takePhoto();
   }
 
   void _deleteAvatar(BuildContext context, WidgetRef ref) {
     Navigator.pop(context);
-    ref.read(profileProvider.notifier).deleteAvatar();
+    ref.read(editAvatarProvider.notifier).deleteAvatar();
   }
 }

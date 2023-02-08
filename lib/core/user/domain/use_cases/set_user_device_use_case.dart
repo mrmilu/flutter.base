@@ -1,9 +1,9 @@
 import 'dart:developer';
 
-import 'package:flutter_base/common/interfaces/notifications_service.dart';
 import 'package:flutter_base/core/user/domain/enums/user_device_type.dart';
 import 'package:flutter_base/core/user/domain/interfaces/user_repository.dart';
 import 'package:flutter_base/core/user/domain/models/device_input_model.dart';
+import 'package:flutter_mrmilu/flutter_mrmilu.dart';
 import 'package:injectable/injectable.dart';
 
 class SetUserDeviceUseCaseInput {

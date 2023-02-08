@@ -1,8 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_base/core/app/domain/interfaces/env_vars.dart';
 import 'package:flutter_base/core/app/domain/models/env_vars.dart';
 import 'package:flutter_base/core/app/ioc/locator.config.dart';
 import 'package:flutter_base/ui/router/app_router.dart';
+import 'package:flutter_mrmilu/flutter_mrmilu.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
@@ -26,7 +29,17 @@ abstract class RegisterModule {
   @LazySingleton()
   GoRouter get getAppRouter => router;
 
+  @LazySingleton(
+    as: INotificationsService,
+    dispose: disposeNotificationsService,
+  )
+  NotificationsService get getNotificationsService => NotificationsService();
+
   @Singleton()
   GlobalKey<ScaffoldMessengerState> get getScaffoldKey =>
       GlobalKey<ScaffoldMessengerState>();
+}
+
+FutureOr disposeNotificationsService(INotificationsService instance) {
+  instance.dispose();
 }

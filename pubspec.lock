@@ -538,7 +538,7 @@ packages:
       path: "../flutter_mrmilu"
       relative: true
     source: path
-    version: "0.9.0"
+    version: "1.0.0"
   flutter_native_splash:
     dependency: "direct main"
     description:

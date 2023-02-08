@@ -5,8 +5,8 @@ import 'package:flutter_base/ui/components/buttons/button_primary.dart';
 import 'package:flutter_base/ui/components/flutter_base_app_bar.dart';
 import 'package:flutter_base/ui/components/form_scaffold.dart';
 import 'package:flutter_base/ui/components/views/column_scroll_view.dart';
-import 'package:flutter_base/ui/features/profile/providers/profile_provider.dart';
-import 'package:flutter_base/ui/features/profile/view_models/edit_profile_view_model.dart';
+import 'package:flutter_base/ui/features/profile/views/edit_profile/providers/profile_provider.dart';
+import 'package:flutter_base/ui/features/profile/views/edit_profile/view_models/edit_profile_view_model.dart';
 import 'package:flutter_base/ui/i18n/locale_keys.g.dart';
 import 'package:flutter_base/ui/utils/scroll.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -17,8 +17,7 @@ class EditProfilePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final formModel = ref
-        .watch(profileProvider.select((state) => state.editProfileFormModel))!;
+    final formModel = ref.watch(editProfileProvider)!;
 
     return FormScaffold(
       appBar: FlutterBaseAppBar(),
@@ -44,8 +43,9 @@ class EditProfilePage extends ConsumerWidget {
                     BoxSpacer.v32(),
                     ButtonPrimary(
                       text: LocaleKeys.profile_edit_form_submit.tr(),
-                      onPressed: () =>
-                          ref.read(profileProvider.notifier).updateProfile(),
+                      onPressed: () => ref
+                          .read(editProfileProvider.notifier)
+                          .updateProfile(),
                     ),
                   ],
                 );

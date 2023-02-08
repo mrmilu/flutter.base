@@ -2,17 +2,17 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_base/ui/styles/colors.dart';
 
-class NetworkImage extends StatelessWidget {
+class FlutterBaseNetworkImage extends StatelessWidget {
   final String url;
-  final double width;
-  final double height;
+  final double? width;
+  final double? height;
   final BoxFit? fit;
 
-  const NetworkImage(
+  const FlutterBaseNetworkImage(
     this.url, {
     super.key,
-    required this.width,
-    required this.height,
+    this.width,
+    this.height,
     this.fit,
   });
 
