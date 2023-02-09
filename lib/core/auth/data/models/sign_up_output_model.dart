@@ -9,13 +9,11 @@ class SignUpOutputModel {
   final String? name;
   final String email;
   final String password;
-  final String provider;
 
   const SignUpOutputModel({
     this.name,
     required this.email,
     required this.password,
-    required this.provider,
   });
 
   Map<String, dynamic> toJson() => _$SignUpOutputModelToJson(this);
@@ -27,7 +25,6 @@ extension ToOuput on SignUpInputModel {
       name: name,
       email: email,
       password: password,
-      provider: provider.name,
     );
   }
 }

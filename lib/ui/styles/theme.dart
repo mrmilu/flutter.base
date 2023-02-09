@@ -7,18 +7,18 @@ const transparentBottomSheetTheme =
     BottomSheetThemeData(backgroundColor: Colors.transparent);
 
 final moggieThemeData = ThemeData(
-  dividerColor: MoggieColors.specificBorderLow,
+  dividerColor: FlutterBaseColors.specificBorderLow,
   splashFactory: NoSplash.splashFactory,
-  highlightColor: MoggieColors.specificSurfaceMid,
+  highlightColor: FlutterBaseColors.specificSurfaceMid,
   appBarTheme: const AppBarTheme(
     elevation: 0,
-    backgroundColor: MoggieColors.specificBackgroundBase,
+    backgroundColor: FlutterBaseColors.specificBackgroundBase,
     toolbarHeight: 56,
-    foregroundColor: MoggieColors.specificContentHigh,
+    foregroundColor: FlutterBaseColors.specificContentHigh,
   ),
-  scaffoldBackgroundColor: MoggieColors.specificBackgroundBase,
+  scaffoldBackgroundColor: FlutterBaseColors.specificBackgroundBase,
   bottomSheetTheme: const BottomSheetThemeData(
-    backgroundColor: MoggieColors.specificSurfaceLow,
+    backgroundColor: FlutterBaseColors.specificSurfaceLow,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.only(
         topRight: Radius.circular(32),
@@ -27,31 +27,31 @@ final moggieThemeData = ThemeData(
     ),
   ),
   textTheme: const TextTheme().apply(
-    bodyColor: MoggieColors.specificContentHigh,
-    displayColor: MoggieColors.specificContentHigh,
+    bodyColor: FlutterBaseColors.specificContentHigh,
+    displayColor: FlutterBaseColors.specificContentHigh,
   ),
   inputDecorationTheme: InputDecorationTheme(
     hintStyle:
-        TextStyles.smallM.copyWith(color: MoggieColors.specificContentLow),
+        TextStyles.smallM.copyWith(color: FlutterBaseColors.specificContentLow),
     floatingLabelStyle: TextStyles.smallS,
     helperStyle:
-        TextStyles.smallS.copyWith(color: MoggieColors.specificContentLow),
-    errorStyle:
-        TextStyles.smallS.copyWith(color: MoggieColors.specificSemanticDanger),
+        TextStyles.smallS.copyWith(color: FlutterBaseColors.specificContentLow),
+    errorStyle: TextStyles.smallS
+        .copyWith(color: FlutterBaseColors.specificSemanticDanger),
     contentPadding: const EdgeInsets.symmetric(vertical: Spacing.sp12),
     enabledBorder: const UnderlineInputBorder(
-      borderSide: BorderSide(color: MoggieColors.specificBorderLow),
+      borderSide: BorderSide(color: FlutterBaseColors.specificBorderLow),
     ),
     disabledBorder: UnderlineInputBorder(
       borderSide: BorderSide(
-        color: MoggieColors.specificBorderLow.withOpacity(0.25),
+        color: FlutterBaseColors.specificBorderLow.withOpacity(0.25),
       ),
     ),
     errorBorder: const UnderlineInputBorder(
-      borderSide: BorderSide(color: MoggieColors.specificSemanticDanger),
+      borderSide: BorderSide(color: FlutterBaseColors.specificSemanticDanger),
     ),
     focusedBorder: const UnderlineInputBorder(
-      borderSide: BorderSide(color: MoggieColors.specificSemanticPrimary),
+      borderSide: BorderSide(color: FlutterBaseColors.specificSemanticPrimary),
     ),
   ),
 );

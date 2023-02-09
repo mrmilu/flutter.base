@@ -25,4 +25,5 @@ enum AppErrorCode {
   socialLoginError,
   unauthorized,
   wrongCredentials,
+  errorRetrievingDeviceToken,
 }

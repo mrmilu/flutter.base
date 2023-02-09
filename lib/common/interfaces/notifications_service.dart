@@ -1,21 +1,33 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter_base/common/models/notifications_service.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+
+typedef AndroidForegroundNotificationOpenCallback = void Function(
+  NotificationResponse notificationResponse,
+)?;
+
+typedef BackgroundMessageCallback = Future<void> Function(
+  RemoteMessage message,
+)?;
+
 abstract class INotificationsService {
+  bool get isInitialized;
+
+  Stream<CustomNotification> get notificationStream;
+
   Future<void> init({
-    required void Function(String? payload) onLocalAndroidNotificationOpen,
+    AndroidForegroundNotificationOpenCallback
+        onForegroundAndroidNotificationOpen,
+    BackgroundMessageCallback onBackgroundMessage,
   });
 
-  void clean();
+  Future<NotificationPermissionStatus> requestNotificationPermissions();
 
-  Future<bool> requestApplePermissions();
-
-  void onMessageOpen(void Function(Map<String, dynamic> messageData) handler);
-
-  void onBackgroundMessage(
-    Future<void> Function(Map<String, dynamic> messageData) handler,
-  );
-
-  void onTerminatedStateMessage(
-    Future<void> Function(Map<String, dynamic> messageData) handler,
-  );
+  Future<NotificationPermissionStatus> getCurrentNotificationPermissions();
 
   Future<String?> getToken();
+
+  bool hasPermissionsEnabled(NotificationPermissionStatus status);
+
+  void dispose();
 }

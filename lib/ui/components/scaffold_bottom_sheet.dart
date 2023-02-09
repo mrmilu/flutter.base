@@ -1,7 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_base/ui/styles/colors.dart';
 import 'package:flutter_base/ui/styles/spacing.dart';
-
 import 'package:flutter_base/ui/utils/media_query.dart';
 
 class ScaffoldBottomSheet extends StatelessWidget {
@@ -11,7 +10,7 @@ class ScaffoldBottomSheet extends StatelessWidget {
   const ScaffoldBottomSheet({
     super.key,
     required this.child,
-    this.backgroundColor = MoggieColors.specificBackgroundBase,
+    this.backgroundColor = FlutterBaseColors.specificBackgroundBase,
   });
 
   @override

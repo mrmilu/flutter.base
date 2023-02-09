@@ -50,7 +50,7 @@ class FlutterBaseDialog extends StatelessWidget {
         () {
           showModalBottomSheet(
             context: context,
-            barrierColor: MoggieColors.specificBackgroundOverlay1,
+            barrierColor: FlutterBaseColors.specificBackgroundOverlay1,
             isScrollControlled: true,
             builder: (BuildContext context) {
               return Padding(
@@ -78,7 +78,7 @@ class FlutterBaseDialog extends StatelessWidget {
                                 child: IconButtonTertiary(
                                   icon: Icons.close,
                                   foregroundColor:
-                                      MoggieColors.specificContentLow,
+                                      FlutterBaseColors.specificContentLow,
                                   onPressed: () {
                                     onClose?.call();
                                     Navigator.of(context).pop();

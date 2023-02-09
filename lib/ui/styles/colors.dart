@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-class MoggieColors {
+class FlutterBaseColors {
   // Basic
   static const Color specificBasicBlack = Color(0xff000000);
   static const Color specificBasicWhite = Color(0xffFFFFFF);

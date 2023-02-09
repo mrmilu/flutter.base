@@ -45,8 +45,8 @@ class IconButtonPrimary extends ElevatedButton {
 
   static MaterialStateProperty<Color?> _foregroundColor(ButtonSize size) {
     return MaterialStateProperty.resolveWith((states) {
-      const smallColor = MoggieColors.specificSemanticPrimary;
-      const normalColor = MoggieColors.specificBasicWhite;
+      const smallColor = FlutterBaseColors.specificSemanticPrimary;
+      const normalColor = FlutterBaseColors.specificBasicWhite;
 
       if (states.contains(MaterialState.pressed)) {
         if (size == ButtonSize.small) {
@@ -65,8 +65,8 @@ class IconButtonPrimary extends ElevatedButton {
 
   static MaterialStateProperty<Color?> _backgroundColor(ButtonSize size) {
     return MaterialStateProperty.resolveWith((states) {
-      const smallColor = MoggieColors.specificSurfaceHigh;
-      const normalColor = MoggieColors.specificSemanticPrimary;
+      const smallColor = FlutterBaseColors.specificSurfaceHigh;
+      const normalColor = FlutterBaseColors.specificSemanticPrimary;
 
       if (states.contains(MaterialState.disabled)) {
         if (size == ButtonSize.small) {

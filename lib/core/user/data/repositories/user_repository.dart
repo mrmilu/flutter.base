@@ -3,9 +3,11 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter_base/core/app/data/services/api_service.dart';
 import 'package:flutter_base/core/app/domain/models/enviroments_list.dart';
+import 'package:flutter_base/core/auth/data/models/device_output_model.dart';
 import 'package:flutter_base/core/user/data/models/update_user_output_model.dart';
 import 'package:flutter_base/core/user/data/models/user_data_model.dart';
 import 'package:flutter_base/core/user/domain/interfaces/user_repository.dart';
+import 'package:flutter_base/core/user/domain/models/device_input_model.dart';
 import 'package:flutter_base/core/user/domain/models/update_user_input_model.dart';
 import 'package:flutter_base/core/user/domain/models/user.dart';
 import 'package:injectable/injectable.dart';
@@ -44,5 +46,13 @@ class UserRepository implements IUserRepository {
   Future<User> update(UpdateUserInputModel input) async {
     final res = await _apiService.put('/user', data: input.toOutput().toJson());
     return UserDataModel.fromJson(res ?? {}).toDomain();
+  }
+
+  @override
+  Future<void> device(DeviceInputModel input) async {
+    await _apiService.post(
+      '/devices/',
+      data: input.toOutput().toJson(),
+    );
   }
 }

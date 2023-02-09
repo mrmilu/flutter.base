@@ -17,7 +17,7 @@ your computer. We use lefthook to run git hooks and commitlint to lint commit me
 brew install lefthook
 
 # add needed hooks
-lefthook add commit-msg
+lefthook install
 
 # install commitlint
 # node needed in system

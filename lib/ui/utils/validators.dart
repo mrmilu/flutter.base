@@ -20,7 +20,7 @@ Map<String, dynamic>? mustMatchPassword(AbstractControl<dynamic> control) {
   );
 }
 
-class MoggieValidationMessages {
+class ValidationMessages {
   static String validateIf = 'validateIf';
   static String atLeastOne = 'atLeastOne';
 }
@@ -41,7 +41,7 @@ class ValidateControlIf<T> extends Validator<dynamic> {
 
   @override
   Map<String, dynamic>? validate(AbstractControl<dynamic> control) {
-    final error = {MoggieValidationMessages.validateIf: true};
+    final error = {ValidationMessages.validateIf: true};
 
     if (control is! FormGroup) {
       return error;
@@ -59,7 +59,7 @@ class ValidateControlIf<T> extends Validator<dynamic> {
       controlToValidate.setErrors(error, markAsDirty: false);
       controlToValidate.markAsTouched();
     } else {
-      controlToValidate.removeError(MoggieValidationMessages.validateIf);
+      controlToValidate.removeError(ValidationMessages.validateIf);
     }
 
     return null;
@@ -80,7 +80,7 @@ class AtLeastOneValid<T> extends Validator<dynamic> {
 
   @override
   Map<String, dynamic>? validate(AbstractControl control) {
-    final error = {MoggieValidationMessages.atLeastOne: true};
+    final error = {ValidationMessages.atLeastOne: true};
 
     if (control is! FormGroup) {
       return error;

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter_base/core/user/domain/models/device_input_model.dart';
 import 'package:flutter_base/core/user/domain/models/update_user_input_model.dart';
 import 'package:flutter_base/core/user/domain/models/user.dart';
 
@@ -11,4 +12,6 @@ abstract class IUserRepository {
   Future<User> deleteAvatar();
 
   Future<User> update(UpdateUserInputModel input);
+
+  Future<void> device(DeviceInputModel input);
 }

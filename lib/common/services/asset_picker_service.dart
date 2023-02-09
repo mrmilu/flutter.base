@@ -2,9 +2,7 @@ import 'dart:io';
 
 import 'package:flutter_base/common/interfaces/asset_picker_service.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:injectable/injectable.dart';
 
-@Injectable(as: IAssetPickerService)
 class AssetPickerService implements IAssetPickerService {
   final ImagePicker _picker;
 
