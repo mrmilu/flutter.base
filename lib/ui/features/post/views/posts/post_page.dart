@@ -20,6 +20,7 @@ class PostPage extends ConsumerWidget {
       appBar: FlutterBaseAppBar(),
       body: RefreshIndicator(
         onRefresh: () async {
+          // ignore: unused_result
           ref.refresh(postPageProvider);
         },
         child: Builder(
