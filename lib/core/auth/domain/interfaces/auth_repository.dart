@@ -1,7 +1,6 @@
 import 'package:flutter_base/core/auth/domain/models/change_password_input_model.dart';
 import 'package:flutter_base/core/auth/domain/models/login_input_model.dart';
 import 'package:flutter_base/core/auth/domain/models/sign_up_input_model.dart';
-import 'package:flutter_base/core/auth/domain/models/social_auth_user.dart';
 
 abstract class IAuthRepository {
   Future<String> signUp(SignUpInputModel input);
@@ -10,9 +9,11 @@ abstract class IAuthRepository {
 
   Future logout();
 
-  Future<SocialAuthUser> googleSocialAuth();
+  Future socialAuth(String token);
 
-  Future<SocialAuthUser> appleSocialAuth();
+  Future<String> googleSocialAuth();
+
+  Future<String> appleSocialAuth();
 
   Future<void> requestResetPassword(String email);
 

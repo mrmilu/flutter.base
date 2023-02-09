@@ -16,7 +16,7 @@
 default_platform(:android)
 
 platform :android do
-  desc "Build app and deploy (closing test beta)"
+  desc "Build app and deploy (closed testing beta)"
   lane :build_deploy_internal_beta do
     sh("fvm", "flutter", "build", "appbundle", "--flavor", "beta", "./lib/main_beta.dart")
     upload_to_play_store(
@@ -25,7 +25,7 @@ platform :android do
       aab: '../build/app/outputs/bundle/betaRelease/app-beta-release.aab'
     )
   end
-  desc "Build app and deploy (closing test prod)"
+  desc "Build app and deploy (closed testing prod)"
   lane :build_deploy_internal_prod do
     sh("fvm", "flutter", "build", "appbundle", "--flavor", "live", "./lib/main_live.dart")
     upload_to_play_store(

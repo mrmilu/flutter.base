@@ -1,96 +1,75 @@
 version: 2.1
 orbs:
-  android: circleci/android@2.1.2
+  android: circleci/android@2
   flutter: circleci/flutter@1.1.0
+  slack: circleci/slack@4.1
 jobs:
   deploy-android:
-      executor:
-        name: android/android-machine
-        resource-class: large
-        tag: 2021.10.1
-      steps:
-        - checkout
-        - install_flutter
-        - build
-        - flutter/install_android_gem
-        - env_vars_files
-        - when:
-            condition:
-              not: 
-                equal: [ master, << pipeline.git.branch >> ]
-            steps:
-              - run:
-                  name: Deploy Android app (close testing Beta) by fastlane
-                  command: bundle exec fastlane build_deploy_internal_beta
-                  working_directory: android
-        - when:
-            condition:
-              equal: [ master, << pipeline.git.branch >> ]
-            steps:
-              - run:
-                  name: Deploy Android app (close testing Beta) by fastlane
-                  command: bundle exec fastlane build_deploy_internal_prod
-                  working_directory: android
+    executor:
+      name: android/android-machine
+      resource-class: large
+      tag: 2022.09.1
+    steps:
+      - checkout
+      - install_flutter
+      - build
+      - flutter/install_android_gem
+      - env_vars_files
+      - run:
+          name: Deploy Android app by fastlane
+          command: |
+            if [[ "$CIRCLE_BRANCH" == "develop" ]]; then
+              bundle exec fastlane build_deploy_internal_beta
+            elif [[ "$CIRCLE_BRANCH" == "master" ]]; then
+              bundle exec fastlane build_deploy_internal_prod
+            else
+              echo "Incorrect branch $CIRCLE_BRANCH"
+              exit 1
+            fi
+          working_directory: android
+      - send_notification:
+          platform: "Android"
   deploy-ios:
-      macos:
-        xcode: 14.1.0
-      environment:
-        FL_OUTPUT_DIR: output
-      steps:
-        - checkout
-        - install_flutter:
-            os: "macos"
-        - build
-        - flutter/install_ios_gem
-        - run: fvm flutter precache --ios
-        - flutter/install_ios_pod
-        - when:
-            condition:
-              not: 
-                equal: [ master, << pipeline.git.branch >> ]
-            steps:
-              - run:
-                  name: Deploy iOS app (internal Beta) by fastlane
-                  command: bundle exec fastlane build_deploy_internal_beta
-                  working_directory: ios
-        - when:
-            condition:
-              equal: [ master, << pipeline.git.branch >> ]
-            steps:
-              - run:
-                  name: Deploy iOS app (internal Prod) by fastlane
-                  command: bundle exec fastlane build_deploy_internal_prod
-                  working_directory: ios
-        - store_artifacts:
-            path: output
-
-  code-analysis:
-      macos:
-        xcode: 14.1.0
-      steps:
-        - checkout
-        - install_flutter:
-            os: "macos"
-        - build
-        - run:
-            name: Verify formated files
-            command: fvm flutter format $(find ./lib/ -name "*.dart" -not -wholename "**/*.g.dart")
-        - run:
-            name: Analyze code
-            command: fvm flutter analyze
-
+    macos:
+      xcode: 14.1.0
+    environment:
+      FL_OUTPUT_DIR: output
+    steps:
+      - checkout
+      - install_flutter:
+          os: "macos"
+      - build
+      - flutter/install_ios_gem
+      - run: fvm flutter precache --ios
+      - flutter/install_ios_pod
+      - run:
+          name: Deploy iOS app by fastlane
+          command: |
+            if [[ "$CIRCLE_BRANCH" == "develop" ]]; then
+              bundle exec fastlane build_deploy_internal_beta
+            elif [[ "$CIRCLE_BRANCH" == "master" ]]; then
+              bundle exec fastlane build_deploy_internal_prod
+            else
+              echo "Incorrect branch $CIRCLE_BRANCH"
+              exit 1
+            fi
+          working_directory: ios
+      - send_notification:
+          platform: "iOS"
+      - store_artifacts:
+          path: output
 
 commands:
   build:
     description: Build generated files
     steps:
-      - run: 
+      - run:
           name: Get dependencies
           command: fvm flutter pub get
-      - run: 
+      - run:
           name: Generated auto generated files
-          command: fvm flutter pub run build_runner build
-      - run: 
+          command: fvm flutter pub run build_runner build --delete-conflicting-outputs
+      - run:
           name: Generated translation files
           command: fvm flutter pub run easy_localization:generate -S assets/translations -f keys -O lib/ui/i18n -o locale_keys.g.dart
   install_flutter:
@@ -119,39 +98,76 @@ commands:
   env_vars_files:
     description: Get enviroment variables files
     steps:
-      - run: 
-          name: Get Android files
+      - run:
+          name: Get google play store api key
+          command: echo $GOOGLE_PLAY_API_KEY | base64 -d > ./android/fastlane/api-access.json
+      - run:
+          name: Get Android sign files
           command: |
-            echo $KEY_PROPERTIES | base64 -d > ./android/key.properties
-            echo $UPLOAD_KEYSTORE | base64 -d > ./android/upload-keystore.jks
-            echo $PLAY_STORE_UPLOAD_KEY | base64 -d > ./android/fastlane/api-access.json
-
+            if [[ "$CIRCLE_BRANCH" == "develop" ]]; then
+              echo $BETA_PLAY_STORE_UPLOAD_KEY_PROPERTIES | base64 -d > ./android/beta.key.properties
+              echo $BETA_PLAY_STORE_UPLOAD_KEY | base64 -d > ./android/upload-keystore-beta.jks
+            elif [[ "$CIRCLE_BRANCH" == "master" ]]; then
+              echo $LIVE_PLAY_STORE_UPLOAD_KEY_PROPERTIES | base64 -d > ./android/live.key.properties
+              echo $LIVE_PLAY_STORE_UPLOAD_KEY | base64 -d > ./android/upload-keystore-live.jks
+            else
+              echo "Incorrect branch $CIRCLE_BRANCH"
+              exit 1
+            fi
+  send_notification:
+    parameters:
+      platform:
+        type: enum
+        default: "iOS"
+        enum: [ "iOS", "Android" ]
+    steps:
+      - slack/notify:
+          channel: C0478GQDPV2
+          event: pass
+          custom: |
+            {
+            	"blocks": [
+            		{
+            			"type": "section",
+            			"text": {
+            				"type": "mrkdwn",
+            				"text": "*<< parameters.platform >>* version deploy success! :rocket:"
+            			}
+            		}
+            	]
+            }
+      - slack/notify:
+          channel: C0478GQDPV2
+          event: fail
+          custom: |
+            {
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "*<< parameters.platform >>* version deploy failure! :warning:"
+                  }
+                }
+              ]
+            }
 workflows:
   deploy:
     jobs:
-      - code-analysis:
-          filters:
-            branches:
-              only:
-                - release/*
-                - master
       - deploy-android:
-          name: "Distribute Android app (close testing)"
-          requires:
-            - code-analysis
+          context:
+            - slack
           filters:
             branches:
               only:
-                - release/*
                 - master
+                - develop
       - deploy-ios:
-          name: "Distribute iOS app (internal)"
           context:
             - match
-          requires:
-            - code-analysis
+            - slack
           filters:
             branches:
               only:
-                - release/*
                 - master
+                - develop

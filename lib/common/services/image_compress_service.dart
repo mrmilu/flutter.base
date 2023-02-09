@@ -2,10 +2,8 @@ import 'dart:io';
 
 import 'package:flutter_base/common/interfaces/image_compress_service.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
-import 'package:injectable/injectable.dart';
 import 'package:path_provider/path_provider.dart';
 
-@Injectable(as: IImageCompressService)
 class ImageCompressService implements IImageCompressService {
   @override
   Future<File?> byQuality(File file, {int quality = 70}) async {

@@ -14,20 +14,20 @@ SnackBar styledSnackBar(
 
   switch (style) {
     case SnackBarStyle.info:
-      bgColor = MoggieColors.specificSemanticPrimary;
-      labelColor = MoggieColors.specificBasicWhite;
+      bgColor = FlutterBaseColors.specificSemanticPrimary;
+      labelColor = FlutterBaseColors.specificBasicWhite;
       break;
     case SnackBarStyle.warning:
-      bgColor = MoggieColors.specificSemanticWarning;
-      labelColor = MoggieColors.specificBasicWhite;
+      bgColor = FlutterBaseColors.specificSemanticWarning;
+      labelColor = FlutterBaseColors.specificBasicWhite;
       break;
     case SnackBarStyle.error:
-      bgColor = MoggieColors.specificSemanticDanger;
-      labelColor = MoggieColors.specificBasicWhite;
+      bgColor = FlutterBaseColors.specificSemanticDanger;
+      labelColor = FlutterBaseColors.specificBasicWhite;
       break;
     default:
-      bgColor = MoggieColors.specificSemanticPrimary;
-      labelColor = MoggieColors.specificBasicWhite;
+      bgColor = FlutterBaseColors.specificSemanticPrimary;
+      labelColor = FlutterBaseColors.specificBasicWhite;
   }
 
   return SnackBar(

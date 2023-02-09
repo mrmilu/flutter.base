@@ -10,7 +10,7 @@ targets:
       freezed:freezed:
         generate_for:
           include:
-            - lib/ui/pages/**/**.dart
+            - lib/ui/features/**/**.dart
             - lib/ui/providers/**.dart
       injectable_generator:injectable_config_builder:
         generate_for:

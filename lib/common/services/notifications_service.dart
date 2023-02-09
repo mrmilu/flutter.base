@@ -2,13 +2,23 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_base/common/interfaces/notifications_service.dart';
-import 'package:flutter_base/core/app/domain/models/enviroments_list.dart';
+import 'package:flutter_base/common/models/notifications_service.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:injectable/injectable.dart';
 
-@Singleton(as: INotificationsService, env: onlineEnviroment)
 class NotificationsService implements INotificationsService {
+  late bool _initialized;
+  late final StreamController<CustomNotification> _streamController;
+  FlutterLocalNotificationsPlugin? _flutterLocalNotificationsPlugin;
+  StreamSubscription<RemoteMessage>? _onForegroundMessage;
+  StreamSubscription<RemoteMessage>? _onBackgroundMessage;
+
+  NotificationsService() {
+    _streamController = StreamController<CustomNotification>.broadcast();
+    _initialized = false;
+  }
+
   static const AndroidNotificationChannel channel = AndroidNotificationChannel(
     'high_importance_channel', // id
     'High Importance Notifications', // title
@@ -16,49 +26,44 @@ class NotificationsService implements INotificationsService {
     importance: Importance.max,
   );
 
-  FlutterLocalNotificationsPlugin? _flutterLocalNotificationsPlugin;
-  StreamSubscription<RemoteMessage>? _onMessageSubscription;
-  StreamSubscription<RemoteMessage>? _onMessageOpenedAppSubscription;
+  @override
+  Stream<CustomNotification> get notificationStream => _streamController.stream;
+
+  @override
+  bool get isInitialized => _initialized;
 
   @override
   Future<void> init({
-    required void Function(String? payload) onLocalAndroidNotificationOpen,
+    AndroidForegroundNotificationOpenCallback
+        onForegroundAndroidNotificationOpen,
+    BackgroundMessageCallback onBackgroundMessage,
+    bool foregroundNotification = false,
   }) async {
+    if (_initialized) return;
+
     // Sets up apple foreground notification presentation options
     FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
-      alert: true, // Required to display a heads up notification
+      alert:
+          foregroundNotification, // Required to display a heads up notification
       badge: true,
       sound: true,
     );
 
-    if (Platform.isAndroid) {
-      _flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-      const AndroidInitializationSettings initializationSettingsAndroid =
-          AndroidInitializationSettings('ic_launcher_foreground');
-      const InitializationSettings initializationSettings =
-          InitializationSettings(android: initializationSettingsAndroid);
-      await _flutterLocalNotificationsPlugin!.initialize(
-        initializationSettings,
-        onDidReceiveBackgroundNotificationResponse:
-            (NotificationResponse details) =>
-                onLocalAndroidNotificationOpen(details.payload),
-      );
-
-      await _flutterLocalNotificationsPlugin!
-          .resolvePlatformSpecificImplementation<
-              AndroidFlutterLocalNotificationsPlugin>()
-          ?.createNotificationChannel(channel);
+    if (Platform.isAndroid && foregroundNotification) {
+      await _initAndroidLocalNotifications(onForegroundAndroidNotificationOpen);
     }
 
-    // This shows notifications in foreground for Android
-    _onMessageSubscription =
+    _onForegroundMessage =
         FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       RemoteNotification? notification = message.notification;
       AndroidNotification? android = message.notification?.android;
 
+      // This shows notifications in foreground for Android
       // If `onMessage` is triggered with a notification, construct our own
       // local notification to show to users using the created channel.
-      if (notification != null && android != null) {
+      if (notification != null &&
+          android != null &&
+          onForegroundAndroidNotificationOpen != null) {
         _flutterLocalNotificationsPlugin?.show(
           notification.hashCode,
           notification.title,
@@ -72,37 +77,65 @@ class NotificationsService implements INotificationsService {
           ),
         );
       }
+      final customNotification = _customNotificationFromRemoteMessage(message);
+      debugPrint(
+        'Notification on foreground: ${customNotification.title} - ${customNotification.body}',
+      );
+      _streamController.add(customNotification);
     });
-  }
 
-  @override
-  void clean() {
-    _onMessageSubscription?.cancel();
-    _onMessageOpenedAppSubscription?.cancel();
-  }
-
-  @override
-  Future<bool> requestApplePermissions() async {
-    final permissions = await FirebaseMessaging.instance.requestPermission();
-    return [AuthorizationStatus.authorized, AuthorizationStatus.provisional]
-        .contains(permissions.authorizationStatus);
-  }
-
-  @override
-  void onMessageOpen(void Function(Map<String, dynamic> messageData) handler) {
-    _onMessageOpenedAppSubscription = FirebaseMessaging.onMessageOpenedApp
+    _onBackgroundMessage = FirebaseMessaging.onMessageOpenedApp
         .listen((RemoteMessage message) async {
-      handler(message.data);
+      final customNotification = _customNotificationFromRemoteMessage(message);
+      debugPrint(
+        'Notification on background: ${customNotification.title} - ${customNotification.body}',
+      );
+      _streamController.add(customNotification);
     });
+
+    if (onBackgroundMessage != null) {
+      FirebaseMessaging.onBackgroundMessage(onBackgroundMessage);
+    }
+
+    FirebaseMessaging.instance.getInitialMessage().then((message) {
+      if (message != null) {
+        final customNotification =
+            _customNotificationFromRemoteMessage(message);
+        debugPrint(
+          'Initial notification: ${customNotification.title} - ${customNotification.body}',
+        );
+        _streamController.add(customNotification);
+      }
+    });
+
+    _initialized = true;
+  }
+
+  Future<void> _initAndroidLocalNotifications(
+    AndroidForegroundNotificationOpenCallback
+        onForegroundAndroidNotificationOpen,
+  ) async {
+    _flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+    const AndroidInitializationSettings initializationSettingsAndroid =
+        AndroidInitializationSettings('ic_launcher_foreground');
+    const InitializationSettings initializationSettings =
+        InitializationSettings(android: initializationSettingsAndroid);
+    await _flutterLocalNotificationsPlugin!.initialize(
+      initializationSettings,
+      onDidReceiveBackgroundNotificationResponse:
+          onForegroundAndroidNotificationOpen,
+    );
+    _flutterLocalNotificationsPlugin!
+        .resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>()
+        ?.createNotificationChannel(channel);
   }
 
   @override
-  void onBackgroundMessage(
-    Future<void> Function(Map<String, dynamic> messageData) handler,
-  ) {
-    FirebaseMessaging.onBackgroundMessage((RemoteMessage message) {
-      return handler(message.data);
-    });
+  Future<NotificationPermissionStatus> requestNotificationPermissions() async {
+    final settings = await FirebaseMessaging.instance.requestPermission();
+    return NotificationPermissionStatus.values
+        .byName(settings.authorizationStatus.name);
   }
 
   @override
@@ -110,11 +143,38 @@ class NotificationsService implements INotificationsService {
     return FirebaseMessaging.instance.getToken();
   }
 
+  CustomNotification _customNotificationFromRemoteMessage(
+    RemoteMessage message,
+  ) {
+    return CustomNotification(
+      data: message.data,
+      title: message.notification?.title ?? '',
+      body: message.notification?.body ?? '',
+    );
+  }
+
   @override
-  void onTerminatedStateMessage(
-    Future<void> Function(Map<String, dynamic> messageData) handler,
-  ) async {
-    final notification = await FirebaseMessaging.instance.getInitialMessage();
-    if (notification != null) handler(notification.data);
+  Future<NotificationPermissionStatus>
+      getCurrentNotificationPermissions() async {
+    final currentSettings =
+        await FirebaseMessaging.instance.getNotificationSettings();
+    return NotificationPermissionStatus.values
+        .byName(currentSettings.authorizationStatus.name);
+  }
+
+  @override
+  bool hasPermissionsEnabled(NotificationPermissionStatus status) {
+    return [
+      NotificationPermissionStatus.authorized,
+      NotificationPermissionStatus.provisional,
+    ].contains(status);
+  }
+
+  @override
+  void dispose() {
+    _onForegroundMessage?.cancel();
+    _onBackgroundMessage?.cancel();
+    _streamController.close();
+    _initialized = false;
   }
 }

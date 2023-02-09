@@ -32,7 +32,6 @@ clean:
 # Install deps
 install-deps:
     fvm flutter pub get
-    cd ios/ && pod install
 
 # Clean and get
 clean-and-get:

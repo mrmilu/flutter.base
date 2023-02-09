@@ -7,9 +7,6 @@ extension ProgramErrorMessages on Error {
     if (_verifyErrorTypes(ArgumentError)) {
       return LocaleKeys.errors_exceptions_internal_program_argument.tr();
     }
-    if (_verifyErrorTypes(NullThrownError)) {
-      return LocaleKeys.errors_exceptions_internal_program_null.tr();
-    }
     if (_verifyErrorTypes(RangeError)) {
       return LocaleKeys.errors_exceptions_internal_program_range.tr();
     }

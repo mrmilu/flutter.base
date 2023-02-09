@@ -5,11 +5,9 @@ import 'dart:ui';
 import 'package:flutter_base/common/interfaces/edit_image_service.dart';
 import 'package:flutter_base/common/interfaces/fs_repository.dart';
 import 'package:image_editor/image_editor.dart';
-import 'package:injectable/injectable.dart';
 
 const _editImagePath = 'edited_images';
 
-@Injectable(as: IEditImageService)
 class EditImageService implements IEditImageService {
   final IFsRepository _fsRepository;
 

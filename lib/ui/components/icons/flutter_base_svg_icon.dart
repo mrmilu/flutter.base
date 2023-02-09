@@ -22,7 +22,8 @@ class FlutterBaseSvgIcon extends StatelessWidget {
       semanticsLabel: 'icon_$iconName',
       width: width,
       height: height,
-      color: color,
+      colorFilter:
+          color != null ? ColorFilter.mode(color!, BlendMode.srcIn) : null,
       fit: BoxFit.cover,
     );
   }
