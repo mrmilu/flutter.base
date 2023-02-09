@@ -42,6 +42,8 @@ class ProfilePage extends ConsumerWidget {
                       'https://pbs.twimg.com/media/FKNlhKZUcAEd7FY?format=jpg&name=4096x4096',
                       fit: BoxFit.cover,
                       height: 25 * 2,
+                      maxWidthDiskCache: 500,
+                      maxHeightDiskCache: 500,
                     ),
                   ),
                 ),

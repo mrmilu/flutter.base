@@ -8,12 +8,34 @@ class FlutterBaseNetworkImage extends StatelessWidget {
   final double? height;
   final BoxFit? fit;
 
+  /// The target image's cache key. If not specified get the url.
+  ///
+  /// In some contexts the same image may have a different url when requested
+  /// from different sites. If so, use this parameter to have a unique key for
+  /// each image.
+  final String? cacheKey;
+
+  /// Will resize the image and store the resized image in the disk cache.
+  ///
+  /// If the image is too big it will not be cached, so this property helps us
+  /// to compress the image if the width is greater than the specified value.
+  final int? maxWidthDiskCache;
+
+  /// Will resize the image and store the resized image in the disk cache.
+  ///
+  /// If the image is too big it will not be cached, so this property helps
+  /// us to compress the image if the height is greater than the specified value.
+  final int? maxHeightDiskCache;
+
   const FlutterBaseNetworkImage(
     this.url, {
     super.key,
     this.width,
     this.height,
     this.fit,
+    this.cacheKey,
+    this.maxWidthDiskCache,
+    this.maxHeightDiskCache,
   });
 
   @override
@@ -28,12 +50,15 @@ class FlutterBaseNetworkImage extends StatelessWidget {
     );
 
     return CachedNetworkImage(
-      errorWidget: (ctx, _, __) => placeholder,
       imageUrl: url,
       fit: fit,
       width: width,
       height: height,
+      maxWidthDiskCache: maxWidthDiskCache,
+      maxHeightDiskCache: maxHeightDiskCache,
+      cacheKey: cacheKey,
       placeholder: (context, _) => Center(child: placeholder),
+      errorWidget: (ctx, _, __) => placeholder,
     );
   }
 }
