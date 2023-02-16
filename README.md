@@ -50,6 +50,7 @@ The following index has a summary of configuration, common errors and how to sol
 - [flutter_native_splash](docs/flutter_native_splash.md)
 - [flutter_launcher_icons](docs/flutter_launcher_icons.md)
 - [firebase](docs/firebase.md)
+- [sign apps](docs/sign_apps.md)
 
 > To rename from flutter_base to another package name, change the pubspec.yml file and all the imports. Also if using Idea IDE's delete the .idea folder
 > and in Project Structure... add a new root module to the project root so the IDE can detect the actual project.
