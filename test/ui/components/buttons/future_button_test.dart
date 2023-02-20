@@ -3,16 +3,16 @@ import 'package:flutter_base/ui/components/buttons/future_button.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 /*
-Este test comprueba que el onPressed es
-llamado correctamente cuando se toca el botón, que el botón
-se desactiva mientras isLoading es verdadero, y que se muestra
-el widget de carga (loadingBuilder) cuando isLoading es verdadero.
+This test verifies that the onPressed is
+called correctly when the button is touched, that the button
+is disabled while isLoading is true, and that is displayed
+the loading widget (loadingBuilder) when isLoading is true.
 
 By GPTChat & edited by amunoz
  */
 void main() {
   testWidgets(
-      'Cuando se pulsa el botón, isLoading cambia a true y a false al finalizar',
+      "When the button is clicked, isLoading changes to true and false when it's complete",
       (WidgetTester tester) async {
     bool onPressedCalled = false;
 
@@ -41,8 +41,7 @@ void main() {
     expect(find.text('Press me'), findsOneWidget);
   });
 
-  testWidgets(
-      'Cuando isLoading es true, se muestra un CircularProgressIndicator',
+  testWidgets('When isLoading is true, display a CircularProgressIndicator',
       (WidgetTester tester) async {
     await tester.pumpWidget(
       MaterialApp(
@@ -75,7 +74,7 @@ void main() {
   });
 
   testWidgets(
-      'Si disableWhenIsLoading es true, el botón se deshabilita cuando isLoading es true',
+      'If disableWhenIsLoading is true, the button will be disabled when isLoading is true',
       (WidgetTester tester) async {
     await tester.pumpWidget(
       MaterialApp(
@@ -108,7 +107,7 @@ void main() {
   });
 
   testWidgets(
-      'Si disableWhenIsLoading es false, el botón no se deshabilita cuando isLoading es true',
+      'If disableWhenIsLoading is false, the button will not disabled when isLoading is true',
       (WidgetTester tester) async {
     await tester.pumpWidget(
       MaterialApp(
