@@ -152,23 +152,23 @@ flavorizr:
         name: "Flutter base (Dev)"
 
       android:
-        applicationId: "com.flutterbase-mrmilu.dev"
+        applicationId: "com.flutterbasemrmilu.dev"
 
       ios:
-        bundleId: "com.flutterbase-mrmilu.dev"
+        bundleId: "com.flutterbasemrmilu.dev"
 
     beta:
       app:
         name: "Flutter base (Beta)"
 
       android:
-        applicationId: "com.flutterbase-mrmilu.beta"
+        applicationId: "com.flutterbasemrmilu.beta"
 #        firebase:
 #          config: ".firebase/beta/google-services.json"
         customConfig:
           signingConfig: signingConfigs.release_beta
       ios:
-        bundleId: "com.flutterbase-mrmilu.beta"
+        bundleId: "com.flutterbasemrmilu.beta"
 #        firebase:
 #          config: ".firebase/beta/GoogleService-Info.plist"
 
@@ -177,6 +177,6 @@ flavorizr:
         name: "Flutter base"
 
       android:
-        applicationId: "com.flutterbase-mrmilu.live"
+        applicationId: "com.flutterbasemrmilu.live"
       ios:
-        bundleId: "com.flutterbase-mrmilu.live"
+        bundleId: "com.flutterbasemrmilu.live"

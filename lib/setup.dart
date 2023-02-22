@@ -22,7 +22,7 @@ void startApp() async {
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await EasyLocalization.ensureInitialized();
   if (onlineEnviroment.contains(env)) {
-    // await Firebase.initializeApp();
+    await Firebase.initializeApp();
   }
 
   LicenseRegistry.addLicense(() async* {
