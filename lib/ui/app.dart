@@ -42,6 +42,12 @@ class _AppState extends ConsumerState<App> with TickerProviderStateMixin {
   }
 
   @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: _initAppFuture,

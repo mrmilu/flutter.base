@@ -57,6 +57,7 @@ class AppBottomBar extends StatelessWidget {
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 2),
                 child: _AppBottomBarItemWidget(
+                  key: Key('bottom-bar-item-$idx'),
                   selected: idx == selectedIndex,
                   item: item,
                   onTap: () => onItemTapped?.call(idx),
@@ -79,6 +80,7 @@ class _AppBottomBarItemWidget extends StatelessWidget {
     required this.selected,
     required this.item,
     this.onTap,
+    super.key,
   });
 
   @override
