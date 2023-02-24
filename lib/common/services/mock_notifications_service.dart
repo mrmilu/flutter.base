@@ -15,12 +15,12 @@ FutureOr disposeNotificationsService(INotificationsService instance) {
   dispose: disposeNotificationsService,
   env: localEnvironment,
 )
-class NotificationsService implements INotificationsService {
+class MockNotificationsService implements INotificationsService {
   final _faker = Faker.instance;
   late bool _initialized;
   late final StreamController<CustomNotification> _streamController;
 
-  NotificationsService() {
+  MockNotificationsService() {
     _streamController = StreamController<CustomNotification>.broadcast();
     _initialized = false;
   }

@@ -21,7 +21,6 @@ extension PumpApp on WidgetTester {
     WidgetsFlutterBinding.ensureInitialized();
     SharedPreferences.setMockInitialValues({});
     await EasyLocalization.ensureInitialized();
-    configureDependencies(env: 'dev');
 
     // Mock router
     const path = '/widgetToTest';
