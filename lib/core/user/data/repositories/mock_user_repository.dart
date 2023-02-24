@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:faker_dart/faker_dart.dart';
-import 'package:flutter_base/core/app/domain/models/enviroments_list.dart';
+import 'package:flutter_base/core/app/domain/models/environments_list.dart';
 import 'package:flutter_base/core/user/domain/interfaces/user_repository.dart';
 import 'package:flutter_base/core/user/domain/models/device_input_model.dart';
 import 'package:flutter_base/core/user/domain/models/update_user_input_model.dart';
@@ -9,7 +9,7 @@ import 'package:flutter_base/core/user/domain/models/user.dart';
 import 'package:flutter_mrmilu/flutter_mrmilu.dart';
 import 'package:injectable/injectable.dart';
 
-@Injectable(as: IUserRepository, env: localEnviroment)
+@Injectable(as: IUserRepository, env: localEnvironment)
 class MockUserRepository implements IUserRepository {
   final _faker = Faker.instance;
 

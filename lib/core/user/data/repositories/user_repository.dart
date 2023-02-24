@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_base/core/app/data/services/api_service.dart';
-import 'package:flutter_base/core/app/domain/models/enviroments_list.dart';
+import 'package:flutter_base/core/app/domain/models/environments_list.dart';
 import 'package:flutter_base/core/auth/data/models/device_output_model.dart';
 import 'package:flutter_base/core/user/data/models/update_user_output_model.dart';
 import 'package:flutter_base/core/user/data/models/user_data_model.dart';
@@ -12,7 +12,7 @@ import 'package:flutter_base/core/user/domain/models/update_user_input_model.dar
 import 'package:flutter_base/core/user/domain/models/user.dart';
 import 'package:injectable/injectable.dart';
 
-@Injectable(as: IUserRepository, env: onlineEnviroment)
+@Injectable(as: IUserRepository, env: onlineEnvironment)
 class UserRepository implements IUserRepository {
   final ApiService _apiService;
 

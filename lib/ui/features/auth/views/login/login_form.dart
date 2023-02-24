@@ -27,12 +27,14 @@ class LoginForm extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               EmailReactiveInput(
+                key: const Key('sing_in_email'),
                 formControl: formModel.emailControl,
                 placeholder: LocaleKeys.login_form_email_label.tr(),
                 onSubmitted: (control) => formModel.form.focus('password'),
               ),
               BoxSpacer.v16(),
               PasswordReactiveInput(
+                key: const Key('sing_in_pass'),
                 placeholder: LocaleKeys.login_form_password_label.tr(),
                 formControl: formModel.passwordControl,
               ),
@@ -51,10 +53,11 @@ class LoginForm extends ConsumerWidget {
               ReactiveBasicLoginModelFormConsumer(
                 builder: (context, consumerModel, _) {
                   return ButtonPrimary(
+                    key: const Key('sing_in_button'),
                     text: LocaleKeys.login_form_submit.tr(),
                     onPressed: consumerModel.form.valid
-                        ? null
-                        : () => ref.read(loginProvider.notifier).login(),
+                        ? () => ref.read(loginProvider.notifier).login()
+                        : null,
                   );
                 },
               )

@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:flutter_base/common/interfaces/social_auth_service.dart';
 import 'package:flutter_base/core/app/data/services/api_service.dart';
 import 'package:flutter_base/core/app/domain/models/app_error.dart';
-import 'package:flutter_base/core/app/domain/models/enviroments_list.dart';
+import 'package:flutter_base/core/app/domain/models/environments_list.dart';
 import 'package:flutter_base/core/auth/data/models/change_password_output_model.dart';
 import 'package:flutter_base/core/auth/data/models/login_data_model.dart';
 import 'package:flutter_base/core/auth/data/models/login_output_model.dart';
@@ -15,7 +15,7 @@ import 'package:flutter_base/core/auth/domain/models/sign_up_input_model.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
-@Injectable(as: IAuthRepository, env: onlineEnviroment)
+@Injectable(as: IAuthRepository, env: onlineEnvironment)
 class AuthRepository implements IAuthRepository {
   final ApiService _apiService;
   final ISocialAuthService _socialAuthService;

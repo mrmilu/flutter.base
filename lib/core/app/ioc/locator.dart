@@ -44,12 +44,6 @@ abstract class RegisterModule {
   @LazySingleton()
   GoRouter get getAppRouter => router;
 
-  @LazySingleton(
-    as: INotificationsService,
-    dispose: disposeNotificationsService,
-  )
-  NotificationsService get getNotificationsService => NotificationsService();
-
   @Injectable(as: IAssetPickerService)
   AssetPickerService get getAssetPickerService => AssetPickerService();
 
@@ -75,8 +69,4 @@ abstract class RegisterModule {
   @Singleton()
   GlobalKey<ScaffoldMessengerState> get getScaffoldKey =>
       GlobalKey<ScaffoldMessengerState>();
-}
-
-FutureOr disposeNotificationsService(INotificationsService instance) {
-  instance.dispose();
 }

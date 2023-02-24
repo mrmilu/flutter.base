@@ -1,1 +1,1 @@
-enum UserDeviceType { ios, android, web }
+enum UserDeviceType { ios, android, web, unknown }
