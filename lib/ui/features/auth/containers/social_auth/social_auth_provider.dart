@@ -3,6 +3,7 @@ import 'package:flutter_base/core/app/domain/models/app_error.dart';
 import 'package:flutter_base/core/auth/domain/enums/auth_provider.dart';
 import 'package:flutter_base/core/auth/domain/use_cases/login_use_case.dart';
 import 'package:flutter_base/core/auth/domain/use_cases/sign_up_use_case.dart';
+import 'package:flutter_base/core/user/domain/enums/user_device_type.dart';
 import 'package:flutter_base/ui/i18n/locale_keys.g.dart';
 import 'package:flutter_base/ui/providers/ui_provider.dart';
 import 'package:flutter_base/ui/providers/user_provider.dart';
@@ -26,12 +27,12 @@ class SocialAuthProvider extends AutoDisposeNotifier {
     final userNotifier = ref.read(userProvider.notifier);
     uiNotifier.showGlobalLoader();
     try {
-      if (deviceType == null) {
+      if (deviceType == UserDeviceType.unknown) {
         throw const AppError(code: AppErrorCode.errorRetrievingDeviceToken);
       }
       final input = LoginUseCaseInput(
         provider: provider,
-        userDeviceType: deviceType!,
+        userDeviceType: deviceType,
       );
       final user = await _loginUseCase(input);
       userNotifier.setUserData(user.toViewModel());

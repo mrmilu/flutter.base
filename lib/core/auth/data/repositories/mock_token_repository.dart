@@ -1,10 +1,6 @@
 import 'package:faker_dart/faker_dart.dart';
 import 'package:flutter_base/core/app/domain/models/environments_list.dart';
-import 'package:flutter_base/core/auth/domain/interfaces/auth_repository.dart';
 import 'package:flutter_base/core/auth/domain/interfaces/token_repository.dart';
-import 'package:flutter_base/core/auth/domain/models/change_password_input_model.dart';
-import 'package:flutter_base/core/auth/domain/models/login_input_model.dart';
-import 'package:flutter_base/core/auth/domain/models/sign_up_input_model.dart';
 import 'package:flutter_base/core/auth/domain/models/token_model.dart';
 import 'package:injectable/injectable.dart';
 

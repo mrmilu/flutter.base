@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base/common/interfaces/notifications_service.dart';
 import 'package:flutter_base/core/app/domain/models/app_error.dart';
+import 'package:flutter_base/core/app/domain/models/environments_list.dart';
 import 'package:flutter_base/core/app/ioc/locator.dart';
 import 'package:flutter_base/core/auth/domain/interfaces/auth_repository.dart';
 import 'package:flutter_base/core/auth/domain/interfaces/token_repository.dart';
@@ -23,7 +24,7 @@ class FakeLoginInputModel extends Fake implements LoginInputModel {}
 
 void main() {
   // Configure global dependency injection
-  configureDependencies(env: 'test');
+  configureDependencies(env: Environments.test);
 
   setUpAll(() {
     registerFallbackValue(FakeLoginInputModel());

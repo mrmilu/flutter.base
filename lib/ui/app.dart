@@ -127,7 +127,7 @@ class _MaterialApp extends StatelessWidget {
         ValidationMessage.email: (_) => LocaleKeys.errors_form_emailFormat.tr()
       },
       child: MaterialApp.router(
-        theme: moggieThemeData,
+        theme: appThemeData,
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,

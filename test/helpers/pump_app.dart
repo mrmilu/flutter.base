@@ -9,7 +9,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
-
 // ignore: depend_on_referenced_packages
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -57,12 +56,12 @@ extension PumpApp on WidgetTester {
               child: Builder(
                 builder: (context) {
                   return MaterialApp.router(
-                    theme: moggieThemeData,
+                    theme: appThemeData,
                     localizationsDelegates: context.localizationDelegates,
                     supportedLocales: context.supportedLocales,
                     locale: context.locale,
                     scaffoldMessengerKey:
-                        GetIt.I.get<GlobalKey<ScaffoldMessengerState>>(),
+                        getIt<GlobalKey<ScaffoldMessengerState>>(),
                     routeInformationParser: router.routeInformationParser,
                     routerDelegate: router.routerDelegate,
                     routeInformationProvider: router.routeInformationProvider,

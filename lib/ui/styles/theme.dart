@@ -6,7 +6,7 @@ import 'package:flutter_base/ui/styles/text_styles.dart';
 const transparentBottomSheetTheme =
     BottomSheetThemeData(backgroundColor: Colors.transparent);
 
-final moggieThemeData = ThemeData(
+final appThemeData = ThemeData(
   dividerColor: FlutterBaseColors.specificBorderLow,
   splashFactory: NoSplash.splashFactory,
   highlightColor: FlutterBaseColors.specificSurfaceMid,

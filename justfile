@@ -42,7 +42,11 @@ clean-and-get:
 locales:
     fvm flutter pub run easy_localization:generate -S assets/translations -f keys -O lib/ui/i18n -o locale_keys.g.dart
 
-# Initial project setup
+# Integration test
+e2e-test flavor file deviceId:
+    fvm flutter test integration_test/{{flavor}}/{{file}}.dart --flavor {{flavor}} -d {{deviceId}}
+
+# Initial project setup
 setup:
     fvm flutter precache --ios
     just clean-and-get
