@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_base/common/interfaces/notifications_service.dart';
+import 'package:flutter_base/core/app/domain/models/app_error.dart';
 import 'package:flutter_base/core/app/domain/models/environments_list.dart';
 import 'package:flutter_base/core/app/ioc/locator.dart';
 import 'package:flutter_base/core/auth/domain/interfaces/auth_repository.dart';
@@ -49,22 +50,6 @@ void main() {
     });
 
     testWidgets(
-      'When enter valid data user is registered in app',
-      (tester) async {
-        await tester.pumpApp(const SignUpPage());
-
-        final authRepo = getIt<IAuthRepository>();
-        when(() => authRepo.signUp(any())).thenAnswer((_) async => 'token');
-
-        await _enterSignUpData(tester);
-        await _tapRegisterButton(tester);
-
-        final container = getIt<ProviderContainer>();
-        expect(container.read(userProvider).userData, isNotNull);
-      },
-    );
-
-    testWidgets(
       'When not enter required sign up data button is disable',
       (tester) async {
         await tester.pumpApp(const SignUpPage());
@@ -95,6 +80,39 @@ void main() {
         await _enterPassword(tester, invalidPasswordString);
         await tester.pumpAndSettle();
         _checkRegisterButtonEnable(tester, isFalse);
+      },
+    );
+
+    testWidgets(
+      'When enter valid data user is registered in app',
+      (tester) async {
+        await tester.pumpApp(const SignUpPage());
+
+        final authRepo = getIt<IAuthRepository>();
+        when(() => authRepo.signUp(any())).thenAnswer((_) async => 'token');
+
+        await _enterSignUpData(tester);
+        await _tapRegisterButton(tester);
+
+        final container = getIt<ProviderContainer>();
+        expect(container.read(userProvider).userData, isNotNull);
+      },
+    );
+
+    testWidgets(
+      'When server returns error show error message',
+      (tester) async {
+        await tester.pumpApp(const SignUpPage());
+
+        final authRepo = getIt<IAuthRepository>();
+        when(() => authRepo.signUp(any()))
+            .thenThrow(const AppError(message: 'Sign up error'));
+
+        await _enterSignUpData(tester);
+        await _tapRegisterButton(tester);
+
+        expect(find.byType(SnackBar), findsOneWidget);
+        expect(find.text('Sign up error'), findsOneWidget);
       },
     );
   });

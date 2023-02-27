@@ -71,7 +71,6 @@ void main() {
         await _enterLoginCredentials(tester);
         await _tapLoginButton(tester);
 
-        // Check if user logged
         expect(find.byType(SnackBar), findsOneWidget);
         expect(find.text('Bad credentials'), findsOneWidget);
       },
