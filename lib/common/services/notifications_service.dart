@@ -89,8 +89,10 @@ class NotificationsService implements INotificationsService {
         );
       }
       final customNotification = _customNotificationFromRemoteMessage(message);
-      debugPrint(
-        'Notification on foreground: ${customNotification.title} - ${customNotification.body}',
+
+      debugPrintStack(
+        label:
+            'Notification on foreground: ${customNotification.title} - ${customNotification.body}',
       );
       _streamController.add(customNotification);
     });
@@ -98,8 +100,9 @@ class NotificationsService implements INotificationsService {
     _onBackgroundMessage = FirebaseMessaging.onMessageOpenedApp
         .listen((RemoteMessage message) async {
       final customNotification = _customNotificationFromRemoteMessage(message);
-      debugPrint(
-        'Notification on background: ${customNotification.title} - ${customNotification.body}',
+      debugPrintStack(
+        label:
+            'Notification on background: ${customNotification.title} - ${customNotification.body}',
       );
       _streamController.add(customNotification);
     });
@@ -112,8 +115,9 @@ class NotificationsService implements INotificationsService {
       if (message != null) {
         final customNotification =
             _customNotificationFromRemoteMessage(message);
-        debugPrint(
-          'Initial notification: ${customNotification.title} - ${customNotification.body}',
+        debugPrintStack(
+          label:
+              'Initial notification: ${customNotification.title} - ${customNotification.body}',
         );
         _streamController.add(customNotification);
       }

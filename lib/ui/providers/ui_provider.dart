@@ -68,8 +68,9 @@ class UiProvider extends StateNotifier<UiState> {
       await action();
     } on AppError catch (e, stackTrace) {
       Sentry.captureException(e, stackTrace: stackTrace);
+
       debugPrintStack(
-        label: '$runtimeType/AppError: ${e.toString()}',
+        label: e.code?.toString() ?? e.message,
         stackTrace: stackTrace,
       );
 
@@ -78,7 +79,7 @@ class UiProvider extends StateNotifier<UiState> {
       showSnackBar(e.code?.getMessage() ?? e.message ?? '');
     } on Error catch (e, stackTrace) {
       debugPrintStack(
-        label: '$runtimeType/ProgramError: ${e.toString()}',
+        label: e.getMessage(),
         stackTrace: stackTrace,
       );
       Sentry.captureException(e, stackTrace: stackTrace);
@@ -86,8 +87,11 @@ class UiProvider extends StateNotifier<UiState> {
       if (rethrowError) rethrow;
 
       showSnackBar(e.getMessage());
-    } catch (e) {
-      debugPrint('$runtimeType/Exception: ${e.toString()}');
+    } catch (e, stackTrace) {
+      debugPrintStack(
+        label: e.toString(),
+        stackTrace: stackTrace,
+      );
       rethrow;
     } finally {
       hideGlobalLoader();

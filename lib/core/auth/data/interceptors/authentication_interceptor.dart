@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_base/core/auth/domain/interfaces/token_repository.dart';
 
 class AuthorizationInterceptor extends QueuedInterceptorsWrapper {
@@ -13,7 +12,6 @@ class AuthorizationInterceptor extends QueuedInterceptorsWrapper {
     RequestInterceptorHandler handler,
   ) async {
     final token = await tokenRepository.getToken();
-    debugPrint(token);
 
     if (token.isEmpty) {
       tokenRepository.clear();
