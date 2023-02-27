@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base/common/interfaces/notifications_service.dart';
 import 'package:flutter_base/core/app/domain/models/app_error.dart';
-import 'package:flutter_base/core/app/domain/models/environments_list.dart';
-import 'package:flutter_base/core/app/ioc/locator.dart';
 import 'package:flutter_base/core/auth/domain/interfaces/auth_repository.dart';
 import 'package:flutter_base/core/auth/domain/interfaces/token_repository.dart';
 import 'package:flutter_base/core/auth/domain/models/login_input_model.dart';
@@ -16,6 +14,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../../../../helpers/pump_app.dart';
+import '../../../../ioc/locator_mock.dart';
 
 const emailString = 'test@test.com';
 const passwordString = 'password';
@@ -23,10 +22,8 @@ const passwordString = 'password';
 class FakeLoginInputModel extends Fake implements LoginInputModel {}
 
 void main() {
-  // Configure global dependency injection
-  configureDependencies(env: Environments.test);
-
   setUpAll(() {
+    configureMockDependencies();
     registerFallbackValue(FakeLoginInputModel());
     registerFallbackValue(TokenModel());
   });
