@@ -84,7 +84,10 @@ class _AppState extends ConsumerState<App> with TickerProviderStateMixin {
       await initAppUseCase();
     } on AppError catch (e, stackTrace) {
       if (e.code != AppErrorCode.unauthorized) {
-        debugPrint(e.code?.toString() ?? e.message ?? 'Init error');
+        debugPrintStack(
+          label: e.code?.toString() ?? e.message,
+          stackTrace: stackTrace,
+        );
         Sentry.captureException(e, stackTrace: stackTrace);
         hasError = true;
         rethrow;
@@ -92,7 +95,7 @@ class _AppState extends ConsumerState<App> with TickerProviderStateMixin {
     } catch (e, stackTrace) {
       Sentry.captureException(e, stackTrace: stackTrace);
       hasError = true;
-      debugPrint('$runtimeType/${e.toString()}');
+      debugPrintStack(label: e.toString(), stackTrace: stackTrace);
       // swallow error
     } finally {
       setState(() {

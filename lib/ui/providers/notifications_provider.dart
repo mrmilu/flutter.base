@@ -16,7 +16,7 @@ class NotificationsProvider extends AutoDisposeNotifier<void> {
     _init();
 
     ref.onDispose(() {
-      debugPrint('disposed notifications provider');
+      debugPrintStack(label: 'disposed notifications provider');
       _notificationsDialogTimer?.cancel();
       GetIt.I.resetLazySingleton<INotificationsService>();
     });
@@ -31,7 +31,7 @@ class NotificationsProvider extends AutoDisposeNotifier<void> {
         .hasPermissionsEnabled(currentNotificationPermission)) {
       initPushNotifications();
     }
-    debugPrint('$runtimeType - Notifications enabled');
+    debugPrintStack(label: 'Notifications enabled');
   }
 
   Future<void> initPushNotifications() async {
@@ -50,7 +50,7 @@ class NotificationsProvider extends AutoDisposeNotifier<void> {
   static Future<void> _backgroundMessageHandler(
     RemoteMessage notificationResponse,
   ) async {
-    debugPrint('notification opened on background');
+    debugPrintStack(label: 'notification opened on background');
   }
 }
 

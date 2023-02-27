@@ -18,8 +18,8 @@ class DeepLinkController {
   Future<void> _initDeepLinks() async {
     _deepLinkService.onLink().listen((link) {
       _processDeepLinks(link);
-    }).onError((e) {
-      debugPrint(e);
+    }).onError((e, stack) {
+      debugPrintStack(label: e.toString(), stackTrace: stack);
     });
 
     final Uri? link = await _deepLinkService.getInitialLink();
