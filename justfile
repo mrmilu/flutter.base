@@ -42,6 +42,13 @@ clean-and-get:
 locales:
     fvm flutter pub run easy_localization:generate -S assets/translations -f keys -O lib/ui/i18n -o locale_keys.g.dart
 
+# Test
+# Note: on macOS you need to have lcov installed on your system (`brew install lcov`) to use this:
+test:
+    fvm flutter test --coverage
+    genhtml coverage/lcov.info -o coverage/html
+    open coverage/html/index.html
+
 # Integration test
 e2e-test flavor file deviceId:
     fvm flutter test integration_test/{{flavor}}/{{file}}.dart --flavor {{flavor}} -d {{deviceId}}

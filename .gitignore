@@ -56,3 +56,6 @@ app.*.map.json
 *.zip
 report.xml
 **/fastlane/*.json
+
+# Test coverage
+/coverage/
