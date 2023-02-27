@@ -44,7 +44,11 @@ This project is a starting point for a Flutter application with the following fe
 - State management with [Riverpod](https://riverpod.dev/)
 - DotEnv and Flutter Config (for env variables on native code)
 
+## Setup
+
 The following index has a summary of configuration, common errors and how to solve them for each of the features this base project has:
+
+### Docs
 
 - [flutter_flavorizr](docs/flutter_flavorizr.md)
 - [flutter_native_splash](docs/flutter_native_splash.md)
@@ -52,8 +56,12 @@ The following index has a summary of configuration, common errors and how to sol
 - [firebase](docs/firebase.md)
 - [sign apps](docs/sign_apps.md)
 
-> To rename from flutter_base to another package name, change the pubspec.yml file and all the imports. Also if using Idea IDE's delete the .idea folder
-> and in Project Structure... add a new root module to the project root so the IDE can detect the actual project.
+### To do
+
+When create a new project, need complete this checklist
+
+- [ ] Rename project and identifier id. To rename from flutter_base to another package name, change the pubspec.yml file and all the imports. Also if using Idea IDE's delete the .idea folder and in Project Structure... add a new root module to the project root so the IDE can detect the actual project.
+- [ ] Search for all TODO comments and review and modify if necessary
 
 ## Run
 
