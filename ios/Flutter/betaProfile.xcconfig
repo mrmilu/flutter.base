@@ -1,4 +1,5 @@
 #include "Generated.xcconfig"
+#include? "tmp.xcconfig"
 
 FLUTTER_TARGET=lib/main_beta.dart
 ASSET_PREFIX=beta
