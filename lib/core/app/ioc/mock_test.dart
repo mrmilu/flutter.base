@@ -2,13 +2,14 @@ import 'package:flutter_base/common/interfaces/notifications_service.dart';
 import 'package:flutter_base/core/app/domain/models/environments_list.dart';
 import 'package:flutter_base/core/auth/domain/interfaces/auth_repository.dart';
 import 'package:flutter_base/core/auth/domain/interfaces/token_repository.dart';
-import 'package:flutter_base/core/auth/domain/use_cases/social_auth_use_case.dart';
 import 'package:flutter_base/core/user/domain/interfaces/user_repository.dart';
 import 'package:injectable/injectable.dart';
+// ignore: depend_on_referenced_packages
 import 'package:mocktail/mocktail.dart';
 
 @LazySingleton(as: INotificationsService, env: testEnvironment)
-class MockTestNotificationsService extends Mock implements INotificationsService {}
+class MockTestNotificationsService extends Mock
+    implements INotificationsService {}
 
 @LazySingleton(as: IUserRepository, env: testEnvironment)
 class MockTestUserRepository extends Mock implements IUserRepository {}
