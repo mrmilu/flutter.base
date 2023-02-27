@@ -82,6 +82,9 @@
     <key>UIViewControllerBasedStatusBarAppearance</key>
     <true/>
   	<key>UIApplicationSupportsIndirectInputEvents</key>
-	<true/>
+	  <true/>
+    <!-- TODO: Review encryption app -->
+    <key>ITSAppUsesNonExemptEncryption</key>
+    <false/>
 </dict>
 </plist>
