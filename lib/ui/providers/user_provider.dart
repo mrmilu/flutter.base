@@ -17,7 +17,7 @@ class UserState with _$UserState {
 }
 
 class UserProvider extends StateNotifier<UserState> {
-  final _userAndCatsUseCase = GetIt.I.get<GetUserUseCase>();
+  final _userUseCase = GetIt.I.get<GetUserUseCase>();
   final LogoutUseCase _logoutUseCase = GetIt.I.get<LogoutUseCase>();
   late final UiProvider _uiProvider;
 
@@ -38,7 +38,7 @@ class UserProvider extends StateNotifier<UserState> {
   }
 
   Future<void> getInitialUserData() async {
-    final user = await _userAndCatsUseCase();
+    final user = await _userUseCase();
     setUserData(user.toViewModel());
   }
 

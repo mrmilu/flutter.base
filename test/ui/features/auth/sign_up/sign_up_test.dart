@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_annotating_with_dynamic
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_base/common/interfaces/notifications_service.dart';
 import 'package:flutter_base/core/app/domain/models/app_error.dart';
@@ -10,10 +11,11 @@ import 'package:flutter_base/core/auth/domain/models/token_model.dart';
 import 'package:flutter_base/core/user/domain/interfaces/user_repository.dart';
 import 'package:flutter_base/core/user/domain/models/user.dart';
 import 'package:flutter_base/ui/components/buttons/button_primary.dart';
-import 'package:flutter_base/ui/features/auth/views/sign_up/sign_up_page.dart';
+import 'package:flutter_base/ui/i18n/locale_keys.g.dart';
 import 'package:flutter_base/ui/providers/user_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../../../../helpers/pump_app.dart';
@@ -34,7 +36,7 @@ void main() {
     registerFallbackValue(TokenModel());
   });
 
-  group('Sign Up Page Widget Tests', () {
+  group('Signup Page Tests', () {
     setUpAll(() {
       final tokenRepo = getIt<ITokenRepository>();
       when(() => tokenRepo.update(any())).thenAnswer((_) async {});
@@ -49,7 +51,7 @@ void main() {
     testWidgets(
       'When not enter required sign up data button is disable',
       (tester) async {
-        await tester.pumpApp(const SignUpPage());
+        await tester.pumpAppRoute('/sign-up');
 
         await _enterSignUpData(tester);
         _checkRegisterButtonEnable(tester, isTrue);
@@ -83,7 +85,7 @@ void main() {
     testWidgets(
       'When enter valid data user is registered in app',
       (tester) async {
-        await tester.pumpApp(const SignUpPage());
+        await tester.pumpAppRoute('/sign-up');
 
         final authRepo = getIt<IAuthRepository>();
         when(() => authRepo.signUp(any())).thenAnswer((_) async => 'token');
@@ -93,13 +95,15 @@ void main() {
 
         final container = getIt<ProviderContainer>();
         expect(container.read(userProvider).userData, isNotNull);
+        expect(getIt<GoRouter>().location, '/verify-account');
+        expect(find.text(LocaleKeys.verifyAccount_title.tr()), findsOneWidget);
       },
     );
 
     testWidgets(
       'When server returns error show error message',
       (tester) async {
-        await tester.pumpApp(const SignUpPage());
+        await tester.pumpAppRoute('/sign-up');
 
         final authRepo = getIt<IAuthRepository>();
         when(() => authRepo.signUp(any()))

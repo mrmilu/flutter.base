@@ -7,10 +7,10 @@ import 'package:flutter_base/core/auth/domain/models/login_input_model.dart';
 import 'package:flutter_base/core/auth/domain/models/token_model.dart';
 import 'package:flutter_base/core/user/domain/interfaces/user_repository.dart';
 import 'package:flutter_base/core/user/domain/models/user.dart';
-import 'package:flutter_base/ui/features/auth/views/login/login_page.dart';
 import 'package:flutter_base/ui/providers/user_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../../../../helpers/pump_app.dart';
@@ -28,7 +28,7 @@ void main() {
     registerFallbackValue(TokenModel());
   });
 
-  group('Login Page Widget Tests', () {
+  group('Login Page Tests', () {
     setUpAll(() {
       final tokenRepo = getIt<ITokenRepository>();
       when(() => tokenRepo.update(any())).thenAnswer((_) async {});
@@ -36,30 +36,14 @@ void main() {
       when(() => notificationService.getToken()).thenAnswer((_) async => null);
       final userRepo = getIt<IUserRepository>();
       when(() => userRepo.getLoggedUser()).thenAnswer(
-        (_) async => const User(email: '', name: ''),
+        (_) async => const User(email: '', name: '', verified: true),
       );
     });
 
     testWidgets(
-      'When enter valid credentials user enter in app',
-      (tester) async {
-        await tester.pumpApp(const LoginPage());
-
-        final authRepo = getIt<IAuthRepository>();
-        when(() => authRepo.login(any())).thenAnswer((_) async => 'token');
-
-        await _enterLoginCredentials(tester);
-        await _tapLoginButton(tester);
-
-        final container = getIt<ProviderContainer>();
-        expect(container.read(userProvider).userData, isNotNull);
-      },
-    );
-
-    testWidgets(
       'When enter invalid credentials show error message',
       (tester) async {
-        await tester.pumpApp(const LoginPage());
+        await tester.pumpAppRoute('/login');
 
         final authRepo = getIt<IAuthRepository>();
         when(() => authRepo.login(any()))
@@ -70,6 +54,24 @@ void main() {
 
         expect(find.byType(SnackBar), findsOneWidget);
         expect(find.text('Bad credentials'), findsOneWidget);
+      },
+    );
+
+    testWidgets(
+      'When enter valid credentials user enter in app',
+      (tester) async {
+        await tester.pumpAppRoute('/login');
+
+        final authRepo = getIt<IAuthRepository>();
+        when(() => authRepo.login(any())).thenAnswer((_) async => 'token');
+
+        await _enterLoginCredentials(tester);
+        await _tapLoginButton(tester);
+        await tester.pump(const Duration(seconds: 2));
+
+        final container = getIt<ProviderContainer>();
+        expect(container.read(userProvider).userData, isNotNull);
+        expect(getIt<GoRouter>().location, '/home');
       },
     );
   });

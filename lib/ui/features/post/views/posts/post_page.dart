@@ -9,20 +9,30 @@ import 'package:flutter_base/ui/styles/spacing.dart';
 import 'package:flutter_base/ui/view_models/button_size.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class PostPage extends ConsumerWidget {
+class PostPage extends ConsumerStatefulWidget {
   const PostPage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState createState() => _PostPageState();
+}
+
+class _PostPageState extends ConsumerState<PostPage> {
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      ref.read(postPageProvider.notifier).loadPosts();
+    });
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final posts = ref.watch(postPageProvider);
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: FlutterBaseAppBar(),
       body: RefreshIndicator(
-        onRefresh: () async {
-          // ignore: unused_result
-          ref.refresh(postPageProvider);
-        },
+        onRefresh: () => ref.read(postPageProvider.notifier).loadPosts(),
         child: Builder(
           builder: (context) {
             final basePadding = MediaQuery.of(context).padding;
