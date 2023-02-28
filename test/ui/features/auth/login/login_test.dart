@@ -34,11 +34,31 @@ void main() {
       when(() => tokenRepo.update(any())).thenAnswer((_) async {});
       final notificationService = getIt<INotificationsService>();
       when(() => notificationService.getToken()).thenAnswer((_) async => null);
-      final userRepo = getIt<IUserRepository>();
-      when(() => userRepo.getLoggedUser()).thenAnswer(
-        (_) async => const User(email: '', name: '', verified: true),
-      );
     });
+
+    tearDown(() => getIt<ProviderContainer>().refresh(userProvider));
+
+    testWidgets(
+      'When enter valid credentials user enter in app',
+      (tester) async {
+        await tester.pumpAppRoute('/login');
+
+        when(() => getIt<IAuthRepository>().login(any())).thenAnswer(
+          (_) async => 'token',
+        );
+        when(() => getIt<IUserRepository>().getLoggedUser()).thenAnswer(
+          (_) async => const User(email: '', name: '', verified: true),
+        );
+
+        await _enterLoginCredentials(tester);
+        await _tapLoginButton(tester);
+        await tester.pump(const Duration(seconds: 2));
+
+        final container = getIt<ProviderContainer>();
+        expect(container.read(userProvider).userData, isNotNull);
+        expect(getIt<GoRouter>().location, '/home');
+      },
+    );
 
     testWidgets(
       'When enter invalid credentials show error message',
@@ -54,24 +74,6 @@ void main() {
 
         expect(find.byType(SnackBar), findsOneWidget);
         expect(find.text('Bad credentials'), findsOneWidget);
-      },
-    );
-
-    testWidgets(
-      'When enter valid credentials user enter in app',
-      (tester) async {
-        await tester.pumpAppRoute('/login');
-
-        final authRepo = getIt<IAuthRepository>();
-        when(() => authRepo.login(any())).thenAnswer((_) async => 'token');
-
-        await _enterLoginCredentials(tester);
-        await _tapLoginButton(tester);
-        await tester.pump(const Duration(seconds: 2));
-
-        final container = getIt<ProviderContainer>();
-        expect(container.read(userProvider).userData, isNotNull);
-        expect(getIt<GoRouter>().location, '/home');
       },
     );
   });
