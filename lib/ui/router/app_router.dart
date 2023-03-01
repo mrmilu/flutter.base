@@ -5,6 +5,7 @@ import 'package:flutter_base/ui/features/auth/views/forgot_password/forgot_passw
 import 'package:flutter_base/ui/features/auth/views/forgot_password/forgot_password_page.dart';
 import 'package:flutter_base/ui/features/auth/views/login/login_page.dart';
 import 'package:flutter_base/ui/features/auth/views/sign_up/sign_up_page.dart';
+import 'package:flutter_base/ui/features/auth/views/verify_account/verify_account_page.dart';
 import 'package:flutter_base/ui/features/misc/components/scaffold_with_nav_bar.dart';
 import 'package:flutter_base/ui/features/misc/views/main_page.dart';
 import 'package:flutter_base/ui/features/post/views/posts/post_page.dart';
@@ -42,6 +43,10 @@ final GoRouter router = GoRouter(
     // Auth routes
     GoRoute(path: '/login', builder: (context, state) => const LoginPage()),
     GoRoute(path: '/sign-up', builder: (context, state) => const SignUpPage()),
+    GoRoute(
+      path: '/verify-account',
+      builder: (context, state) => const VerifyAccountPage(),
+    ),
     GoRoute(
       path: '/forgot-password',
       pageBuilder: (context, state) =>

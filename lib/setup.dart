@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_base/core/app/domain/interfaces/env_vars.dart';
 import 'package:flutter_base/core/app/domain/models/env_vars.dart';
-import 'package:flutter_base/core/app/domain/models/enviroments_list.dart';
 import 'package:flutter_base/core/app/ioc/locator.dart';
 import 'package:flutter_base/ui/app.dart';
 import 'package:flutter_base/ui/providers/ui_provider.dart';
@@ -21,9 +20,7 @@ void startApp() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await EasyLocalization.ensureInitialized();
-  if (onlineEnviroment.contains(env)) {
-    // await Firebase.initializeApp();
-  }
+  await Firebase.initializeApp();
 
   LicenseRegistry.addLicense(() async* {
     final poppinsLicense =

@@ -27,7 +27,7 @@ class LoginProvider extends AutoDisposeNotifier<BasicLoginModelForm> {
         final input = LoginUseCaseInput(
           email: state.model.email.trim(),
           password: state.model.password.trim(),
-          userDeviceType: deviceType!,
+          userDeviceType: deviceType,
         );
         FocusManager.instance.primaryFocus?.unfocus();
         final user = await _loginUseCase(input);

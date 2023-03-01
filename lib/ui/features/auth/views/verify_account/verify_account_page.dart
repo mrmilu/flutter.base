@@ -14,14 +14,6 @@ import 'package:flutter_base/ui/styles/spacing.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-class VerifyAccountPageData {
-  final String? token;
-
-  const VerifyAccountPageData({
-    required this.token,
-  });
-}
-
 class VerifyAccountPage extends ConsumerStatefulWidget {
   final String? token;
 
@@ -61,6 +53,7 @@ class _VerifyAccountPageState extends ConsumerState<VerifyAccountPage> {
                     final userVerified =
                         ref.watch(userVerifiedComputedProvider);
                     return ButtonPrimary(
+                      key: const Key('verify-button'),
                       onPressed: userVerified
                           ? () {
                               GoRouter.of(context).go('/home');

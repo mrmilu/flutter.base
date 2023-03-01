@@ -25,6 +25,7 @@ class SignUpForm extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               ReactiveInput(
+                key: const Key('sing_up_name'),
                 formControl: formModel.nameControl,
                 placeholder: LocaleKeys.signUp_form_name_label.tr(),
                 textCapitalization: TextCapitalization.words,
@@ -32,6 +33,7 @@ class SignUpForm extends ConsumerWidget {
               ),
               BoxSpacer.v16(),
               ReactiveInput(
+                key: const Key('sing_up_email'),
                 formControl: formModel.emailControl,
                 placeholder: LocaleKeys.signUp_form_email_label.tr(),
                 keyboardType: TextInputType.emailAddress,
@@ -39,6 +41,7 @@ class SignUpForm extends ConsumerWidget {
               ),
               BoxSpacer.v16(),
               PasswordReactiveInput(
+                key: const Key('sing_up_pass'),
                 formControl: formModel.passwordControl,
                 placeholder: LocaleKeys.signUp_form_password_label.tr(),
                 validationMessages: {
@@ -50,12 +53,13 @@ class SignUpForm extends ConsumerWidget {
               ReactiveSignUpModelFormConsumer(
                 builder: (context, consumerModel, _) {
                   return ButtonPrimary(
+                    key: const Key('sing_up_button'),
                     text: LocaleKeys.signUp_form_submit.tr(),
-                    onPressed: !consumerModel.form.valid
-                        ? null
-                        : () {
+                    onPressed: consumerModel.form.valid
+                        ? () {
                             ref.read(signUpProvider.notifier).signUp();
-                          },
+                          }
+                        : null,
                   );
                 },
               )

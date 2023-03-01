@@ -1,41 +1,31 @@
 import 'package:faker_dart/faker_dart.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_base/ui/features/post/view_models/posts_view_model.dart';
-import 'package:flutter_base/ui/providers/ui_provider.dart';
 import 'package:riverpod/riverpod.dart';
 
-class PostPageProvider extends AutoDisposeNotifier<List<PostsViewModel>> {
+class PostPageProvider extends AutoDisposeAsyncNotifier<List<PostsViewModel>> {
   @override
-  List<PostsViewModel> build() {
-    final uiNotifier = ref.watch(uiProvider.notifier);
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      uiNotifier.showGlobalLoader();
-    });
+  Future<List<PostsViewModel>> build() async {
+    await Future.delayed(const Duration(seconds: 2));
     final faker = Faker.instance;
-    try {
-      final posts = List.generate(
-        50,
-        (index) => PostsViewModel(
-          title: faker.lorem.sentence(),
-          body: faker.lorem.paragraph(sentenceCount: 5),
-        ),
-      );
-      return posts;
-    } finally {
-      WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-        uiNotifier.hideGlobalLoader();
-      });
-    }
+    return List.generate(
+      50,
+      (index) => PostsViewModel(
+        title: faker.lorem.sentence(),
+        body: faker.lorem.paragraph(sentenceCount: 5),
+      ),
+    );
   }
 
   void delete(int idx) {
-    final cloneState = [...state];
-    cloneState.removeAt(idx);
-    state = cloneState;
+    update((previousPosts) {
+      final posts = [...previousPosts];
+      posts.removeAt(idx);
+      return posts;
+    });
   }
 }
 
 final postPageProvider =
-    AutoDisposeNotifierProvider<PostPageProvider, List<PostsViewModel>>(
+    AutoDisposeAsyncNotifierProvider<PostPageProvider, List<PostsViewModel>>(
   PostPageProvider.new,
 );

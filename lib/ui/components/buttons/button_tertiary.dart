@@ -73,10 +73,11 @@ class _ButtonTertiaryContent extends StatelessWidget {
             size: _iconSize,
           ),
         if (_hasIcon) BoxSpacer.h8(),
-        Center(
+        Flexible(
           child: Text(
             text,
             style: _textStyle,
+            textAlign: TextAlign.center,
           ),
         ),
       ],

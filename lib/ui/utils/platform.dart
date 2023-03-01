@@ -6,4 +6,4 @@ final deviceType = Platform.isIOS
     ? UserDeviceType.ios
     : Platform.isAndroid
         ? UserDeviceType.android
-        : null;
+        : UserDeviceType.unknown;

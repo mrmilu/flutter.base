@@ -42,6 +42,12 @@ class _AppState extends ConsumerState<App> with TickerProviderStateMixin {
   }
 
   @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: _initAppFuture,
@@ -124,7 +130,7 @@ class _MaterialApp extends StatelessWidget {
         ValidationMessage.email: (_) => LocaleKeys.errors_form_emailFormat.tr()
       },
       child: MaterialApp.router(
-        theme: moggieThemeData,
+        theme: appThemeData,
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,

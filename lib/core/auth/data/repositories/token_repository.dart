@@ -1,9 +1,10 @@
 import 'package:flutter_base/common/services/secure_storage_service.dart';
+import 'package:flutter_base/core/app/domain/models/environments_list.dart';
 import 'package:flutter_base/core/auth/domain/interfaces/token_repository.dart';
 import 'package:flutter_base/core/auth/domain/models/token_model.dart';
 import 'package:injectable/injectable.dart';
 
-@Injectable(as: ITokenRepository)
+@Injectable(as: ITokenRepository, env: onlineEnvironment)
 class TokenRepository implements ITokenRepository {
   final SecureStorageService _secureStorageService;
 

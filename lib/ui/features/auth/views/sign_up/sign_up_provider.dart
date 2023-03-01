@@ -34,7 +34,6 @@ class SignUpProvider extends AutoDisposeNotifier<SignUpModelForm> {
           userNotifier.setUserData(user.toViewModel());
           GetIt.I.get<GoRouter>().go('/home');
         },
-        rethrowError: true,
       );
     }
   }

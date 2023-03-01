@@ -20,3 +20,4 @@ targets:
             - lib/core/**/data/repositories/**.dart
             - lib/core/**/domain/use_cases/**.dart
             - lib/core/app/**/**.dart
+            - test/ioc/**.dart

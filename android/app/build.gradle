@@ -87,18 +87,18 @@ android {
     productFlavors {
         dev {
             dimension "flavor-type"
-            applicationId "com.flutterbase-mrmilu.dev"
+            applicationId "com.flutterbasemrmilu.dev"
             resValue "string", "app_name", "Flutter base (Dev)"
         }
         beta {
             dimension "flavor-type"
-            applicationId "com.flutterbase-mrmilu.beta"
+            applicationId "com.flutterbasemrmilu.beta"
             signingConfig signingConfigs.release_beta
             resValue "string", "app_name", "Flutter base (Beta)"
         }
         live {
             dimension "flavor-type"
-            applicationId "com.flutterbase-mrmilu.live"
+            applicationId "com.flutterbasemrmilu.live"
             signingConfig signingConfigs.release_live
             resValue "string", "app_name", "Flutter base"
         }

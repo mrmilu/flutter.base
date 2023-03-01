@@ -11,8 +11,6 @@ FutureOr<String?> authGuard(BuildContext context, GoRouterState state) {
   final user = providerContainer.read(userProvider).userData;
   if (user != null && user.verified) {
     return null;
-  } else if (user != null && user.verified) {
-    return '/cats-amount';
   } else if (user != null && !user.verified) {
     return '/verify-account';
   } else {

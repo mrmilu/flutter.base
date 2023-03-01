@@ -77,3 +77,15 @@ First time to run on physical iOS device, need download Apple certificates. To a
 - Execute `fastlane match development --read-only`
 
 More details on [this documentation](https://www.notion.so/mrmilu/Fastlane-y-Match-0be41150a6fe411cabd60b7d783c80b1#d6069bd171b6451497077e258d5c656f)
+
+## Testing
+
+### Integration Testing - e2e
+
+- We can define e2e test for every flavor. 
+- All integration tests must be organized in the folder `/integration_test/{flavor}/`
+
+For run test
+```bash
+ fvm flutter test integration_test/{flavor}/{test_file}.dart --flavor {flavor} -d {deviceId}
+```
