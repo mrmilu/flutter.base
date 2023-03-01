@@ -24,6 +24,6 @@ class PostPageProvider extends AutoDisposeAsyncNotifier<List<PostsViewModel>> {
 }
 
 final postPageProvider =
-AutoDisposeAsyncNotifierProvider<PostPageProvider, List<PostsViewModel>>(
+    AutoDisposeAsyncNotifierProvider<PostPageProvider, List<PostsViewModel>>(
   PostPageProvider.new,
 );

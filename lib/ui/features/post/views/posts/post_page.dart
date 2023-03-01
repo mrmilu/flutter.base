@@ -28,66 +28,63 @@ class PostPage extends ConsumerWidget {
     return postsProvider.when(
       loading: () => const SizedBox.shrink(),
       error: (e, __) => Center(child: Text(e.toString())),
-      data: (posts) =>
-          Scaffold(
-            extendBodyBehindAppBar: true,
-            appBar: FlutterBaseAppBar(),
-            body: RefreshIndicator(
-              onRefresh: () async {
-                // ignore: unused_result
-                ref.refresh(postPageProvider);
-              },
-              child: Builder(
-                builder: (context) {
-                  final basePadding = MediaQuery
-                      .of(context)
-                      .padding;
-                  return ListView.separated(
-                    padding: basePadding.copyWith(
-                      left: Spacing.sp16,
-                      right: Spacing.sp16,
-                      top: basePadding.top + Spacing.sp16,
-                      bottom: 100,
+      data: (posts) => Scaffold(
+        extendBodyBehindAppBar: true,
+        appBar: FlutterBaseAppBar(),
+        body: RefreshIndicator(
+          onRefresh: () async {
+            // ignore: unused_result
+            ref.refresh(postPageProvider);
+          },
+          child: Builder(
+            builder: (context) {
+              final basePadding = MediaQuery.of(context).padding;
+              return ListView.separated(
+                padding: basePadding.copyWith(
+                  left: Spacing.sp16,
+                  right: Spacing.sp16,
+                  top: basePadding.top + Spacing.sp16,
+                  bottom: 100,
+                ),
+                itemCount: posts.length,
+                itemBuilder: (context, idx) {
+                  dynamic post = posts[idx];
+                  final tileWidget = DecoratedBox(
+                    decoration: BoxDecoration(
+                      boxShadow: BoxShadows.bs1,
+                      color: FlutterBaseColors.specificBasicWhite,
+                      borderRadius: CircularBorderRadius.br8,
                     ),
-                    itemCount: posts.length,
-                    itemBuilder: (context, idx) {
-                      dynamic post = posts[idx];
-                      final tileWidget = DecoratedBox(
-                        decoration: BoxDecoration(
-                          boxShadow: BoxShadows.bs1,
-                          color: FlutterBaseColors.specificBasicWhite,
-                          borderRadius: CircularBorderRadius.br8,
-                        ),
-                        child: ListTile(
-                          title: Text(post.title),
-                          subtitle: Text(
-                            post.body,
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                            softWrap: false,
-                          ),
-                          trailing: IconButtonPrimary(
-                            icon: Icons.delete,
-                            size: ButtonSize.small,
-                            onPressed: () {
-                              ref.read(postPageProvider.notifier).delete(idx);
-                            },
-                          ),
-                        ),
-                      );
-                      return tileWidget;
-                    },
-                    separatorBuilder: (BuildContext context, int index) {
-                      return const Divider(
-                        height: 20,
-                        color: Colors.transparent,
-                      );
-                    },
+                    child: ListTile(
+                      title: Text(post.title),
+                      subtitle: Text(
+                        post.body,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                        softWrap: false,
+                      ),
+                      trailing: IconButtonPrimary(
+                        icon: Icons.delete,
+                        size: ButtonSize.small,
+                        onPressed: () {
+                          ref.read(postPageProvider.notifier).delete(idx);
+                        },
+                      ),
+                    ),
+                  );
+                  return tileWidget;
+                },
+                separatorBuilder: (BuildContext context, int index) {
+                  return const Divider(
+                    height: 20,
+                    color: Colors.transparent,
                   );
                 },
-              ),
-            ),
+              );
+            },
           ),
+        ),
+      ),
     );
   }
 }
