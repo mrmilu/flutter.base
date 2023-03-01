@@ -10,7 +10,6 @@ import 'package:flutter_base/core/auth/domain/models/sign_up_input_model.dart';
 import 'package:flutter_base/core/auth/domain/models/token_model.dart';
 import 'package:flutter_base/core/user/domain/interfaces/user_repository.dart';
 import 'package:flutter_base/core/user/domain/models/user.dart';
-import 'package:flutter_base/ui/components/buttons/button_primary.dart';
 import 'package:flutter_base/ui/i18n/locale_keys.g.dart';
 import 'package:flutter_base/ui/providers/user_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -18,14 +17,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mocktail/mocktail.dart';
 
+import '../../../../helpers/fake/fake_values.dart';
 import '../../../../helpers/pump_app.dart';
+import '../../../../helpers/spects.dart';
 import '../../../../ioc/locator_mock.dart';
-
-const nameString = 'Test User';
-const emailString = 'test@test.com';
-const passwordString = 'Password1';
-const invalidEmailString = 'email';
-const invalidPasswordString = 'password';
 
 class FakeSignUpInputModel extends Fake implements SignUpInputModel {}
 
@@ -54,31 +49,31 @@ void main() {
         await tester.pumpAppRoute('/sign-up');
 
         await _enterSignUpData(tester);
-        _checkRegisterButtonEnable(tester, isTrue);
+        _checkRegisterButtonEnabled(tester, true);
 
         await _enterName(tester, '');
         await tester.pumpAndSettle();
-        _checkRegisterButtonEnable(tester, isFalse);
+        _checkRegisterButtonEnabled(tester, false);
 
         await _enterSignUpData(tester);
-        _checkRegisterButtonEnable(tester, isTrue);
+        _checkRegisterButtonEnabled(tester, true);
 
         await _enterEmail(tester, '');
         await tester.pumpAndSettle();
-        _checkRegisterButtonEnable(tester, isFalse);
+        _checkRegisterButtonEnabled(tester, false);
         await _enterEmail(tester, invalidEmailString);
         await tester.pumpAndSettle();
-        _checkRegisterButtonEnable(tester, isFalse);
+        _checkRegisterButtonEnabled(tester, false);
 
         await _enterSignUpData(tester);
-        _checkRegisterButtonEnable(tester, isTrue);
+        _checkRegisterButtonEnabled(tester, true);
 
         await _enterPassword(tester, '');
         await tester.pumpAndSettle();
-        _checkRegisterButtonEnable(tester, isFalse);
+        _checkRegisterButtonEnabled(tester, false);
         await _enterPassword(tester, invalidPasswordString);
         await tester.pumpAndSettle();
-        _checkRegisterButtonEnable(tester, isFalse);
+        _checkRegisterButtonEnabled(tester, false);
       },
     );
 
@@ -112,17 +107,15 @@ void main() {
         await _enterSignUpData(tester);
         await _tapRegisterButton(tester);
 
-        expect(find.byType(SnackBar), findsOneWidget);
-        expect(find.text('Sign up error'), findsOneWidget);
+        expectSnackBarWithMessage('Sign up error');
       },
     );
   });
 }
 
-void _checkRegisterButtonEnable(WidgetTester tester, dynamic matcher) {
-  final signUpButtonWidget =
-      tester.widget<ButtonPrimary>(find.byKey(const Key('sing_up_button')));
-  expect(signUpButtonWidget.enabled, matcher);
+void _checkRegisterButtonEnabled(WidgetTester tester, bool isEnabled) {
+  final button = find.byKey(const Key('sing_up_button'));
+  expectButtonEnabled(tester, button, isEnabled: isEnabled);
 }
 
 Future<void> _tapRegisterButton(WidgetTester tester) async {

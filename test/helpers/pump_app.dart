@@ -14,7 +14,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:video_player_platform_interface/video_player_platform_interface.dart';
 
 import '../ioc/locator_mock.dart';
-import 'fake_video_player_platform.dart';
+import 'fake/fake_video_player_platform.dart';
 
 /// References
 /// - EasyLocalization widget test https://github.com/aissat/easy_localization/blob/develop/test/easy_localization_widget_test.dart

@@ -13,11 +13,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mocktail/mocktail.dart';
 
+import '../../../../helpers/fake/fake_values.dart';
 import '../../../../helpers/pump_app.dart';
+import '../../../../helpers/spects.dart';
 import '../../../../ioc/locator_mock.dart';
-
-const emailString = 'test@test.com';
-const passwordString = 'password';
 
 class FakeLoginInputModel extends Fake implements LoginInputModel {}
 
@@ -72,8 +71,7 @@ void main() {
         await _enterLoginCredentials(tester);
         await _tapLoginButton(tester);
 
-        expect(find.byType(SnackBar), findsOneWidget);
-        expect(find.text('Bad credentials'), findsOneWidget);
+        expectSnackBarWithMessage('Bad credentials');
       },
     );
   });
