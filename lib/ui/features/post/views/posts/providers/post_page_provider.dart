@@ -1,38 +1,29 @@
 import 'package:faker_dart/faker_dart.dart';
 import 'package:flutter_base/ui/features/post/view_models/posts_view_model.dart';
-import 'package:flutter_base/ui/providers/ui_provider.dart';
 import 'package:riverpod/riverpod.dart';
 
-class PostPageProvider extends AutoDisposeNotifier<List<PostsViewModel>> {
+class PostPageProvider extends AutoDisposeAsyncNotifier<List<PostsViewModel>> {
   @override
-  List<PostsViewModel> build() => [];
-
-  Future<void> loadPosts() async {
-    final uiNotifier = ref.watch(uiProvider.notifier);
-    uiNotifier.showGlobalLoader();
+  Future<List<PostsViewModel>> build() async {
+    await Future.delayed(const Duration(seconds: 2));
     final faker = Faker.instance;
-    try {
-      await Future.delayed(const Duration(seconds: 1));
-      state = List.generate(
-        50,
-        (index) => PostsViewModel(
-          title: faker.lorem.sentence(),
-          body: faker.lorem.paragraph(sentenceCount: 5),
-        ),
-      );
-    } finally {
-      uiNotifier.hideGlobalLoader();
-    }
+    return List.generate(
+      50,
+      (index) => PostsViewModel(
+        title: faker.lorem.sentence(),
+        body: faker.lorem.paragraph(sentenceCount: 5),
+      ),
+    );
   }
 
   void delete(int idx) {
-    final cloneState = [...state];
-    cloneState.removeAt(idx);
-    state = cloneState;
+    final clonePosts = [...state.value!];
+    clonePosts.removeAt(idx);
+    state = AsyncData(clonePosts);
   }
 }
 
 final postPageProvider =
-    AutoDisposeNotifierProvider<PostPageProvider, List<PostsViewModel>>(
+AutoDisposeAsyncNotifierProvider<PostPageProvider, List<PostsViewModel>>(
   PostPageProvider.new,
 );
