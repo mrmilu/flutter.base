@@ -19,7 +19,7 @@ class PostPage extends ConsumerWidget {
     final uiNotifier = ref.watch(uiProvider.notifier);
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      uiNotifier.showGlobalLoader();
+      if (postsProvider.isLoading) uiNotifier.showGlobalLoader();
     });
     ref.listen(postPageProvider, (previous, next) {
       if (!next.isLoading) uiNotifier.hideGlobalLoader();

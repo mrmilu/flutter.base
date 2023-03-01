@@ -17,9 +17,11 @@ class PostPageProvider extends AutoDisposeAsyncNotifier<List<PostsViewModel>> {
   }
 
   void delete(int idx) {
-    final clonePosts = [...state.value!];
-    clonePosts.removeAt(idx);
-    state = AsyncData(clonePosts);
+    update((previousPosts) {
+      final posts = [...previousPosts];
+      posts.removeAt(idx);
+      return posts;
+    });
   }
 }
 
