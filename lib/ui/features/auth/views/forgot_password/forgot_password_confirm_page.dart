@@ -47,6 +47,7 @@ class ForgotPasswordConfirmPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               ButtonPrimary(
+                key: const Key('forgot-pass-confirm-button'),
                 onPressed: data.token?.isNotEmpty == true
                     ? () {
                         GoRouter.of(context).push(

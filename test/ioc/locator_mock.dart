@@ -1,3 +1,4 @@
+import 'package:flutter_base/common/interfaces/deep_link_service.dart';
 import 'package:flutter_base/common/interfaces/notifications_service.dart';
 import 'package:flutter_base/core/app/domain/models/environments_list.dart';
 import 'package:flutter_base/core/auth/domain/interfaces/auth_repository.dart';
@@ -29,7 +30,10 @@ abstract class MockTestModule {
   @LazySingleton(env: testEnvironment)
   ITokenRepository get getMockTokenRepository => MockTestTokenRepository();
 
-// Add more mocks if they are necessary in the tests
+  @LazySingleton(env: testEnvironment)
+  IDeepLinkService get getMockDeepLinkService => MockTestDeepLinkService();
+
+  // Add more mocks if they are necessary in the tests
 }
 
 class MockTestNotificationsService extends Mock
@@ -40,3 +44,5 @@ class MockTestUserRepository extends Mock implements IUserRepository {}
 class MockTestAuthRepository extends Mock implements IAuthRepository {}
 
 class MockTestTokenRepository extends Mock implements ITokenRepository {}
+
+class MockTestDeepLinkService extends Mock implements IDeepLinkService {}

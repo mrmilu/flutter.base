@@ -15,6 +15,7 @@ import 'package:flutter_base/common/services/share_service.dart';
 import 'package:flutter_base/common/services/social_auth_service.dart';
 import 'package:flutter_base/core/app/domain/interfaces/env_vars.dart';
 import 'package:flutter_base/core/app/domain/models/env_vars.dart';
+import 'package:flutter_base/core/app/domain/models/environments_list.dart';
 import 'package:flutter_base/core/app/ioc/locator.config.dart';
 import 'package:flutter_base/ui/router/app_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -49,7 +50,7 @@ abstract class RegisterModule {
   @Injectable(as: IImageCompressService)
   ImageCompressService get getImageCompressService => ImageCompressService();
 
-  @Singleton(as: IDeepLinkService)
+  @Singleton(as: IDeepLinkService, env: noTestEnvironment)
   DeepLinkService get getDeepLinkService => DeepLinkService();
 
   @Injectable(as: IEditImageService)
