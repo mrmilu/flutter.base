@@ -4,6 +4,7 @@ import 'package:flutter_base/core/auth/domain/interfaces/auth_repository.dart';
 import 'package:flutter_base/core/auth/domain/models/change_password_input_model.dart';
 import 'package:flutter_base/ui/features/auth/views/change_password/change_password_page.dart';
 import 'package:flutter_base/ui/features/auth/views/change_password/change_password_sucess_page.dart';
+import 'package:flutter_base/ui/features/auth/views/login/login_page.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -63,6 +64,13 @@ void main() {
           await tester.pumpAndSettle();
 
           expect(find.byType(ChangePasswordSuccessPage), findsOneWidget);
+
+          final successButton =
+              find.byKey(const Key('change-password-success-button'));
+          await tester.tap(successButton);
+          await tester.pumpAndSettle();
+
+          expect(find.byType(LoginPage), findsOneWidget);
         },
       );
 
