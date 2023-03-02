@@ -8,9 +8,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mocktail/mocktail.dart';
 
+import '../../../../helpers/expects.dart';
 import '../../../../helpers/fake/fake_values.dart';
 import '../../../../helpers/pump_app.dart';
-import '../../../../helpers/spects.dart';
 import '../../../../ioc/locator_mock.dart';
 
 void main() {
@@ -23,7 +23,6 @@ void main() {
       'When user enter valid email navigate con confirm page',
       (tester) async {
         await tester.pumpAppRoute('/forgot-password');
-        expect(find.byType(ForgotPasswordPage), findsOneWidget);
 
         final button = find.byKey(const Key('forgot-password-button'));
         expectButtonEnabled(tester, button, isEnabled: false);

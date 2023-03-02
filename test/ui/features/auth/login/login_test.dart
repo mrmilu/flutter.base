@@ -13,9 +13,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mocktail/mocktail.dart';
 
+import '../../../../helpers/expects.dart';
 import '../../../../helpers/fake/fake_values.dart';
 import '../../../../helpers/pump_app.dart';
-import '../../../../helpers/spects.dart';
 import '../../../../ioc/locator_mock.dart';
 
 class FakeLoginInputModel extends Fake implements LoginInputModel {}
@@ -88,5 +88,5 @@ Future<void> _enterLoginCredentials(WidgetTester tester) async {
   final pass = find.byKey(const Key('sing_in_pass'));
   await tester.enterText(email, emailString);
   await tester.enterText(pass, passwordString);
-  await tester.pumpAndSettle();
+  await tester.pump();
 }

@@ -7,9 +7,9 @@ import 'package:flutter_base/ui/features/auth/views/forgot_password/forgot_passw
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
+import '../../../../helpers/expects.dart';
 import '../../../../helpers/fake/fake_values.dart';
 import '../../../../helpers/pump_app.dart';
-import '../../../../helpers/spects.dart';
 import '../../../../ioc/locator_mock.dart';
 
 void main() {

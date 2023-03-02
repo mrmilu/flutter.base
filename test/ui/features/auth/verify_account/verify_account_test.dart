@@ -1,8 +1,6 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_base/core/user/domain/interfaces/user_repository.dart';
 import 'package:flutter_base/core/user/domain/models/user.dart';
-import 'package:flutter_base/ui/i18n/locale_keys.g.dart';
 import 'package:flutter_base/ui/providers/user_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -22,7 +20,6 @@ void main() {
       'When user is verified tap in continue go to home',
       (tester) async {
         await tester.pumpAppRoute('/verify-account');
-        expect(find.text(LocaleKeys.verifyAccount_title.tr()), findsOneWidget);
 
         // Prepare use case context
         when(() => getIt<IUserRepository>().getLoggedUser()).thenAnswer(

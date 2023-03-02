@@ -17,9 +17,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mocktail/mocktail.dart';
 
+import '../../../../helpers/expects.dart';
 import '../../../../helpers/fake/fake_values.dart';
 import '../../../../helpers/pump_app.dart';
-import '../../../../helpers/spects.dart';
 import '../../../../ioc/locator_mock.dart';
 
 class FakeSignUpInputModel extends Fake implements SignUpInputModel {}
@@ -128,7 +128,7 @@ Future<void> _enterSignUpData(WidgetTester tester) async {
   await _enterName(tester, nameString);
   await _enterEmail(tester, emailString);
   await _enterPassword(tester, passwordString);
-  await tester.pumpAndSettle();
+  await tester.pump();
 }
 
 Future<void> _enterName(WidgetTester tester, String name) async {
