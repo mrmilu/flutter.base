@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base/ui/features/auth/views/change_password/change_password_page.dart';
-import 'package:flutter_base/ui/features/auth/views/change_password/change_password_sucess_page.dart';
+import 'package:flutter_base/ui/features/auth/views/change_password/change_password_success_page.dart';
 import 'package:flutter_base/ui/features/auth/views/forgot_password/forgot_password_confirm_page.dart';
 import 'package:flutter_base/ui/features/auth/views/forgot_password/forgot_password_page.dart';
 import 'package:flutter_base/ui/features/auth/views/login/login_page.dart';

@@ -3,7 +3,7 @@ import 'package:flutter_base/core/app/domain/models/app_error.dart';
 import 'package:flutter_base/core/auth/domain/interfaces/auth_repository.dart';
 import 'package:flutter_base/core/auth/domain/models/change_password_input_model.dart';
 import 'package:flutter_base/ui/features/auth/views/change_password/change_password_page.dart';
-import 'package:flutter_base/ui/features/auth/views/change_password/change_password_sucess_page.dart';
+import 'package:flutter_base/ui/features/auth/views/change_password/change_password_success_page.dart';
 import 'package:flutter_base/ui/features/auth/views/login/login_page.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';

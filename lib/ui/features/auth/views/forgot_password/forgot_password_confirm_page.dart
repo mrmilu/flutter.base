@@ -66,6 +66,7 @@ class ForgotPasswordConfirmPage extends StatelessWidget {
                 Consumer(
                   builder: (context, ref, _) {
                     return ButtonTertiary(
+                      key: const Key('forgot-pass-confirm-resend-button'),
                       onPressed: () => ref
                           .read(forgotPasswordConfirmProvider.notifier)
                           .resendRequestChange(data.email!),
