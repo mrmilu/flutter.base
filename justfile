@@ -45,7 +45,7 @@ locales:
 # Test
 # Note: on macOS you need to have lcov installed on your system (`brew install lcov`) to use this:
 test:
-    fvm flutter test --coverage
+    fvm flutter test --coverage --test-randomize-ordering-seed random
     genhtml coverage/lcov.info -o coverage/html
     open coverage/html/index.html
 

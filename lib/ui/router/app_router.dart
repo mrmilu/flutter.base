@@ -45,7 +45,8 @@ final GoRouter router = GoRouter(
     GoRoute(path: '/sign-up', builder: (context, state) => const SignUpPage()),
     GoRoute(
       path: '/verify-account',
-      builder: (context, state) => const VerifyAccountPage(),
+      builder: (context, state) =>
+          VerifyAccountPage(token: state.extra as String?),
     ),
     GoRoute(
       path: '/forgot-password',
