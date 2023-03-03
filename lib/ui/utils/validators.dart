@@ -21,8 +21,8 @@ Map<String, dynamic>? mustMatchPassword(AbstractControl<dynamic> control) {
 }
 
 class ValidationMessages {
-  static String validateIf = 'validateIf';
-  static String atLeastOne = 'atLeastOne';
+  static const String validateIf = 'validateIf';
+  static const String atLeastOne = 'atLeastOne';
 }
 
 class ValidateControlIf<T> extends Validator<dynamic> {

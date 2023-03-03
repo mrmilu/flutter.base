@@ -55,11 +55,10 @@ class FlutterBaseDialog extends StatelessWidget {
             builder: (BuildContext context) {
               return Padding(
                 padding: EdgeInsets.only(
-                  top: _hasHeader ? Spacing.sp32 : Spacing.sp8,
-                  left: Spacing.sp16,
-                  right: Spacing.sp16,
-                  bottom: deviceBottomSafeArea + Spacing.sp16,
-                ),
+                      top: _hasHeader ? Spacing.sp32 : Spacing.sp8,
+                      bottom: deviceBottomSafeArea + Spacing.sp16,
+                    ) +
+                    const EdgeInsets.symmetric(horizontal: Spacing.sp16),
                 child: IntrinsicHeight(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,

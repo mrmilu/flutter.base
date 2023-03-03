@@ -20,9 +20,9 @@ final appThemeData = ThemeData(
   bottomSheetTheme: const BottomSheetThemeData(
     backgroundColor: FlutterBaseColors.specificSurfaceLow,
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.only(
-        topRight: Radius.circular(32),
-        topLeft: Radius.circular(32),
+      borderRadius: BorderRadius.horizontal(
+        right: Radius.circular(32),
+        left: Radius.circular(32),
       ),
     ),
   ),

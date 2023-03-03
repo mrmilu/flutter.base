@@ -37,10 +37,9 @@ class CircularProgress extends StatelessWidget {
     if (Platform.isIOS) {
       return CupertinoActivityIndicator(radius: radius);
     } else {
-      if (androidProgressInsideStack == false) {
-        return SizedBox(
-          height: radius * 2,
-          width: radius * 2,
+      if (!androidProgressInsideStack) {
+        return SizedBox.square(
+          dimension: radius * 2,
           child: Center(
             child: CircularProgressIndicator(color: _indicatorColor),
           ),

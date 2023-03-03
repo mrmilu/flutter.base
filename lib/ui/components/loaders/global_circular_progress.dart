@@ -43,7 +43,7 @@ class __GlobalProgressWidgetState extends ConsumerState<_GlobalProgressWidget> {
 
   @override
   Widget build(BuildContext context) {
-    if (_opacity == 0 && _opened == false) {
+    if (_opacity == 0 && !_opened) {
       Future.delayed(Duration.zero, () {
         setState(() {
           _opacity = 1;

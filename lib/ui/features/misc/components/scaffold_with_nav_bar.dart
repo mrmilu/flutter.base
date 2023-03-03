@@ -195,20 +195,18 @@ class _NavBarTabNavigator {
   List<Page<dynamic>> pages = <Page<dynamic>>[];
 
   Widget buildNavigator(BuildContext context) {
-    if (pages.isNotEmpty) {
-      return Navigator(
-        key: navigatorKey,
-        pages: pages,
-        onPopPage: (Route<dynamic> route, result) {
-          if (pages.length == 1 || !route.didPop(result)) {
-            return false;
-          }
-          GoRouter.of(context).pop();
-          return true;
-        },
-      );
-    } else {
-      return const SizedBox.shrink();
-    }
+    return pages.isNotEmpty
+        ? Navigator(
+            key: navigatorKey,
+            pages: pages,
+            onPopPage: (Route<dynamic> route, result) {
+              if (pages.length == 1 || !route.didPop(result)) {
+                return false;
+              }
+              GoRouter.of(context).pop();
+              return true;
+            },
+          )
+        : const SizedBox.shrink();
   }
 }

@@ -42,9 +42,8 @@ class EditAvatarPage extends ConsumerWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           ClipRect(
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.width,
+            child: SizedBox.square(
+              dimension: MediaQuery.of(context).size.width,
               child: EditableImagePreview(
                 image: avatar,
                 editorKey: editorKey!,

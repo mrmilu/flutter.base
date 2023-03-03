@@ -7,5 +7,5 @@ EdgeInsets textFieldScrollPadding({BuildContext? context}) {
   double keyboardHeight =
       buildContext != null ? MediaQuery.of(buildContext).viewInsets.bottom : 0;
   double scrollPadding = keyboardHeight + 20;
-  return EdgeInsets.only(bottom: scrollPadding, top: scrollPadding);
+  return EdgeInsets.all(scrollPadding);
 }

@@ -8,7 +8,7 @@ class FlutterBaseColors {
   static const Color specificContentHigh = Color(0xff322D2A);
   static const Color specificContentMid = Color(0xff7D7A78);
   static const Color specificContentLow = Color(0xff96969A);
-  static Color specificContentExtraLow =
+  static final Color specificContentExtraLow =
       const Color(0xffFFFFFF).withOpacity(.80);
   static const Color specificContentInverse = Color(0xffFFFFFF);
   // Semantic
@@ -30,17 +30,18 @@ class FlutterBaseColors {
   static const Color medicines = Color(0xffF3B9EC);
   // Background
   static const Color specificBackgroundBase = Color(0xffFAF8F5);
-  static Color specificBackgroundOverlay1 =
+  static final Color specificBackgroundOverlay1 =
       const Color(0xff000000).withOpacity(.25);
-  static Color specificBackgroundOverlay2 =
+  static final Color specificBackgroundOverlay2 =
       const Color(0xffFFFFFF).withOpacity(.5);
   // Surface
   static const Color specificSurfaceInverse = Color(0xff000000);
   static const Color specificSurfaceHigh = Color(0xffF9ECE1);
-  static Color specificSurfaceMid = const Color(0xff000000).withOpacity(.05);
-  static Color specificSurfaceMidMainPage = const Color(0xffDBC7B8);
+  static final Color specificSurfaceMid =
+      const Color(0xff000000).withOpacity(.05);
+  static const Color specificSurfaceMidMainPage = Color(0xffDBC7B8);
   static const Color specificSurfaceLow = Color(0xffFFFFFF);
-  static Color specificSurfaceExtraLow =
+  static final Color specificSurfaceExtraLow =
       const Color(0xffFFFFFF).withOpacity(.12);
   // Border
   static const Color specificBorderMid = Color(0xffC6C6CE);
