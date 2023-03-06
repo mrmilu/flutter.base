@@ -1,3 +1,5 @@
+// ignore_for_file: avoid-dynamic
+
 import 'package:reactive_forms/reactive_forms.dart';
 
 Map<String, dynamic>? requiredValidator(AbstractControl<dynamic> control) {
@@ -50,7 +52,7 @@ class ValidateControlIf<T> extends Validator<dynamic> {
     final controlToCheck = control.control(controlNameToCheck);
     final controlToValidate = control.control(controlNameToValidate);
 
-    Map<String, dynamic>? validationError = validation(controlToValidate);
+    final Map<String, dynamic>? validationError = validation(controlToValidate);
 
     final controlMustBeValue = controlToCheck.value == valueToCheck;
     if (controlMustBeValue &&
@@ -89,8 +91,8 @@ class AtLeastOneValid<T> extends Validator<dynamic> {
     final controlOne = control.control(controlOneName);
     final controlTwo = control.control(controlTwoName);
 
-    Map<String, dynamic>? validationOne = validation(controlOne);
-    Map<String, dynamic>? validationTwo = validation(controlTwo);
+    final Map<String, dynamic>? validationOne = validation(controlOne);
+    final Map<String, dynamic>? validationTwo = validation(controlTwo);
 
     if ((validationOne != null && validationOne.isNotEmpty) &&
         (validationTwo != null && validationTwo.isNotEmpty)) {

@@ -20,16 +20,16 @@ class MockNotificationsService implements INotificationsService {
   late bool _initialized;
   late final StreamController<CustomNotification> _streamController;
 
-  MockNotificationsService() {
-    _streamController = StreamController<CustomNotification>.broadcast();
-    _initialized = false;
-  }
-
   @override
   Stream<CustomNotification> get notificationStream => _streamController.stream;
 
   @override
   bool get isInitialized => _initialized;
+
+  MockNotificationsService() {
+    _streamController = StreamController<CustomNotification>.broadcast();
+    _initialized = false;
+  }
 
   @override
   Future<void> init({

@@ -119,7 +119,7 @@ void main() {
   });
 }
 
-void _checkRegisterButtonEnable(WidgetTester tester, dynamic matcher) {
+void _checkRegisterButtonEnable(WidgetTester tester, Matcher matcher) {
   final signUpButtonWidget =
       tester.widget<ButtonPrimary>(find.byKey(const Key('sing_up_button')));
   expect(signUpButtonWidget.enabled, matcher);

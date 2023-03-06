@@ -40,6 +40,7 @@ linter:
     - use_named_constants
     - use_string_buffers
     - use_super_parameters
+    - prefer_final_locals
 analyzer:
   plugins:
     - dart_code_metrics
@@ -59,6 +60,7 @@ dart_code_metrics:
     - avoid-cascade-after-if-null
     - avoid-double-slash-imports
     - avoid-duplicate-exports
+    - avoid-dynamic
     - avoid-expanded-as-spacer
     - avoid-global-state
     - avoid-missing-enum-constant-in-map

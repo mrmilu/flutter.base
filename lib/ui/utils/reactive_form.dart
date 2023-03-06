@@ -5,8 +5,8 @@ abstract class GeneratedFormModel {
 }
 
 T buildFormModel<T>(T Function(FormGroup form) generator) {
-  var form = FormGroup({});
-  dynamic formModel = generator(form);
+  final form = FormGroup({});
+  final dynamic formModel = generator(form); // ignore: avoid-dynamic
 
   final elements = formModel.formElements();
   form.setValidators(elements.validators);

@@ -18,7 +18,7 @@ class CircularProgress extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var themeData = ThemeData(
+    ThemeData themeData = ThemeData(
       cupertinoOverrideTheme: CupertinoThemeData(
         brightness: cupertinoBrightness ?? Theme.of(context).brightness,
       ),

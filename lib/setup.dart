@@ -17,7 +17,8 @@ import 'package:stack_trace/stack_trace.dart' as stack_trace;
 
 void startApp() async {
   final env = EnvVars().environment;
-  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  final WidgetsBinding widgetsBinding =
+      WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await EasyLocalization.ensureInitialized();
   await Firebase.initializeApp();

@@ -7,14 +7,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class GlobalCircularProgress {
   static OverlayEntry build(BuildContext context) {
     return OverlayEntry(
-      builder: (context) {
-        double fullHeight = MediaQuery.of(context).size.height;
-        double fullWidth = MediaQuery.of(context).size.width;
-        return _GlobalProgressWidget(
-          fullHeight: fullHeight,
-          fullWidth: fullWidth,
-        );
-      },
+      builder: (context) => _GlobalProgressWidget(
+        fullHeight: MediaQuery.of(context).size.height,
+        fullWidth: MediaQuery.of(context).size.width,
+      ),
     );
   }
 }

@@ -1,3 +1,5 @@
+// ignore_for_file: avoid-dynamic
+
 import 'package:flutter/widgets.dart';
 import 'package:flutter_base/ui/components/app_bottom_bar.dart';
 import 'package:flutter_base/ui/styles/colors.dart';
@@ -178,11 +180,8 @@ class ScaffoldWithNavBarState extends ConsumerState<ScaffoldWithNavBar>
 /// Class representing a tab along with its navigation logic
 class _NavBarTabNavigator {
   final ScaffoldWithNavBarTabItem bottomNavigationTab;
-
-  _NavBarTabNavigator(this.bottomNavigationTab);
-
+  List<Page<dynamic>> pages = <Page<dynamic>>[];
   String? lastLocation;
-
   String get currentLocation =>
       lastLocation != null && lastLocation!.contains(rootRoutePath)
           ? lastLocation!
@@ -192,7 +191,8 @@ class _NavBarTabNavigator {
 
   GlobalKey<NavigatorState>? get navigatorKey =>
       bottomNavigationTab.navigatorKey;
-  List<Page<dynamic>> pages = <Page<dynamic>>[];
+
+  _NavBarTabNavigator(this.bottomNavigationTab);
 
   Widget buildNavigator(BuildContext context) {
     return pages.isNotEmpty
