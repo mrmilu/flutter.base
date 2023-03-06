@@ -26,3 +26,5 @@ jobs:
       run: flutter format $(find . -name "*.dart" -not -wholename "**/*.g.dart") --set-exit-if-changed
     - name: Analyze code
       run: flutter analyze
+    - name: Analyze code metrics
+      run: flutter pub run dart_code_metrics:metrics analyze lib -r github

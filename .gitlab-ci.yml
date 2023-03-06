@@ -15,3 +15,4 @@ test:
   script:
     - docker-compose -f test.yml run flutter fvm flutter format $(find . -name "*.dart" -not -wholename "**/*.g.dart") --set-exit-if-changed
     - docker-compose -f test.yml run flutter fvm flutter analyze
+    - docker-compose -f test.yml run flutter fvm flutter pub run dart_code_metrics:metrics analyze lib -r gitlab
