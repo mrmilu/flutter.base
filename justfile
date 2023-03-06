@@ -49,7 +49,7 @@ test:
     genhtml coverage/lcov.info -o coverage/html
     open coverage/html/index.html
 
-# Integration test
+# e2e test
 e2e-test flavor file deviceId:
     fvm flutter test integration_test/{{flavor}}/{{file}}.dart --flavor {{flavor}} -d {{deviceId}}
 

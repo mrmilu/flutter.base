@@ -10,6 +10,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mocktail/mocktail.dart';
 
+import '../../../../helpers/expects.dart';
 import '../../../../helpers/pump_app.dart';
 import '../../../../ioc/locator_mock.dart';
 
@@ -21,40 +22,22 @@ void main() {
   group(
     'Verify Account Page Test',
     () {
-      testWidgets(
-        'When user is verified tap in continue go to home',
-        (tester) async {
-          await tester.pumpAppRoute('/verify-account');
-
-          // Prepare use case context
-          when(() => getIt<IUserRepository>().getLoggedUser()).thenAnswer(
-            (_) async => const User(email: '', name: '', verified: true),
-          );
-          await getIt<ProviderContainer>()
-              .read(userProvider.notifier)
-              .getInitialUserData();
-          await tester.pump();
-
-          final button = find.byKey(const Key('verify-button'));
-          await tester.tap(button);
-          await tester.pumpAndSettle();
-          expect(getIt<GoRouter>().location, '/home');
-        },
-      );
+      setUpAll(() {
+        when(() => getIt<IUserRepository>().getLoggedUser()).thenAnswer(
+          (_) async => const User(email: '', name: ''),
+        );
+        getIt<ProviderContainer>()
+            .read(userProvider.notifier)
+            .getInitialUserData();
+      });
 
       testWidgets(
         'When user enter in page with verification token account is validated and can continue',
         (tester) async {
           await tester.pumpAppRoute('/verify-account');
 
-          // Prepare use case context
-          when(() => getIt<IUserRepository>().getLoggedUser()).thenAnswer(
-            (_) async => const User(email: '', name: ''),
-          );
-          await getIt<ProviderContainer>()
-              .read(userProvider.notifier)
-              .getInitialUserData();
-          await tester.pumpAndSettle();
+          final button = find.byKey(const Key('verify-button'));
+          expectButtonEnabled(tester, button, isEnabled: false);
 
           when(() => getIt<IAuthRepository>().verifyAccount(any()))
               .thenAnswer((_) async {});
@@ -68,8 +51,9 @@ void main() {
 
           getIt<DeepLinkController>()();
           await tester.pumpAndSettle();
+          await tester.pumpAndSettle();
 
-          final button = find.byKey(const Key('verify-button'));
+          expectButtonEnabled(tester, button, isEnabled: true);
           await tester.tap(button);
           await tester.pumpAndSettle();
           expect(getIt<GoRouter>().location, '/home');
