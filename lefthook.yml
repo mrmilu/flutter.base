@@ -10,6 +10,9 @@ pre-commit:
     format: 
       glob: "*.dart"
       run: fvm flutter format $(find . -name "*.dart" -not -wholename "**/*.g.dart") --set-exit-if-changed {staged_files}
+    analyze-metrics:
+      glob: "*.dart"
+      run: fvm flutter pub run dart_code_metrics:metrics analyze lib {staged_files}
 commit-msg:
   parallel: true
   commands:

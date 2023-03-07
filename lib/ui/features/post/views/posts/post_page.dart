@@ -48,8 +48,8 @@ class PostPage extends ConsumerWidget {
                 ),
                 itemCount: posts.length,
                 itemBuilder: (context, idx) {
-                  dynamic post = posts[idx];
-                  final tileWidget = DecoratedBox(
+                  final post = posts[idx];
+                  return DecoratedBox(
                     decoration: BoxDecoration(
                       boxShadow: BoxShadows.bs1,
                       color: FlutterBaseColors.specificBasicWhite,
@@ -72,7 +72,6 @@ class PostPage extends ConsumerWidget {
                       ),
                     ),
                   );
-                  return tileWidget;
                 },
                 separatorBuilder: (BuildContext context, int index) {
                   return const Divider(

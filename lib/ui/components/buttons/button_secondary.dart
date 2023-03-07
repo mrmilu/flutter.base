@@ -56,17 +56,15 @@ class ButtonSecondary extends OutlinedButton {
 
   static MaterialStateProperty<EdgeInsetsGeometry?> _padding(ButtonSize size) {
     return MaterialStateProperty.resolveWith((states) {
-      if (size == ButtonSize.small) {
-        return const EdgeInsets.symmetric(
-          vertical: Spacing.sp8,
-          horizontal: Spacing.sp12,
-        );
-      } else {
-        return const EdgeInsets.symmetric(
-          vertical: Spacing.sp12,
-          horizontal: Spacing.sp16,
-        );
-      }
+      return size == ButtonSize.small
+          ? const EdgeInsets.symmetric(
+              vertical: Spacing.sp8,
+              horizontal: Spacing.sp12,
+            )
+          : const EdgeInsets.symmetric(
+              vertical: Spacing.sp12,
+              horizontal: Spacing.sp16,
+            );
     });
   }
 
@@ -76,25 +74,17 @@ class ButtonSecondary extends OutlinedButton {
       const normalColor = FlutterBaseColors.specificSemanticPrimary;
 
       if (states.contains(MaterialState.disabled)) {
-        if (size == ButtonSize.small) {
-          return smallColor.withOpacity(.5);
-        } else {
-          return normalColor.withOpacity(.25);
-        }
+        return size == ButtonSize.small
+            ? smallColor.withOpacity(.5)
+            : normalColor.withOpacity(.25);
       }
 
       if (states.contains(MaterialState.pressed)) {
-        if (size == ButtonSize.small) {
-          return smallColor.withOpacity(.6);
-        } else {
-          return normalColor.withOpacity(.5);
-        }
+        return size == ButtonSize.small
+            ? smallColor.withOpacity(.6)
+            : normalColor.withOpacity(.5);
       }
-      if (size == ButtonSize.small) {
-        return smallColor;
-      } else {
-        return normalColor;
-      }
+      return size == ButtonSize.small ? smallColor : normalColor;
     });
   }
 
@@ -104,25 +94,17 @@ class ButtonSecondary extends OutlinedButton {
       const normalColor = FlutterBaseColors.specificBasicWhite;
 
       if (states.contains(MaterialState.disabled)) {
-        if (size == ButtonSize.small) {
-          return smallColor.withOpacity(.5);
-        } else {
-          return normalColor.withOpacity(.25);
-        }
+        return size == ButtonSize.small
+            ? smallColor.withOpacity(.5)
+            : normalColor.withOpacity(.25);
       }
 
       if (states.contains(MaterialState.pressed)) {
-        if (size == ButtonSize.small) {
-          return smallColor.withOpacity(.6);
-        } else {
-          return normalColor.withOpacity(.5);
-        }
+        return size == ButtonSize.small
+            ? smallColor.withOpacity(.6)
+            : normalColor.withOpacity(.5);
       }
-      if (size == ButtonSize.small) {
-        return smallColor;
-      } else {
-        return normalColor;
-      }
+      return size == ButtonSize.small ? smallColor : normalColor;
     });
   }
 }

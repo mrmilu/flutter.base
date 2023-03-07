@@ -27,13 +27,13 @@ class AppBottomBarItem {
 
 class AppBottomBar extends StatelessWidget {
   final List<AppBottomBarItem> items;
-  final int? selectedIndex;
+  final int selectedIndex;
   final Function(int idx)? onItemTapped;
 
   const AppBottomBar({
     super.key,
     required this.items,
-    this.selectedIndex,
+    this.selectedIndex = 0,
     this.onItemTapped,
   });
 

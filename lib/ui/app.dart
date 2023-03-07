@@ -104,13 +104,17 @@ class _AppState extends ConsumerState<App> with TickerProviderStateMixin {
       debugPrintStack(label: e.toString(), stackTrace: stackTrace);
       // swallow error
     } finally {
-      setState(() {
-        showApp = true;
-      });
+      if (mounted) {
+        setState(() {
+          splashOpacity = 0;
+        });
+      }
       await Future.delayed(const Duration(milliseconds: 2000));
-      setState(() {
-        splashOpacity = 0;
-      });
+      if (mounted) {
+        setState(() {
+          splashOpacity = 0;
+        });
+      }
       await Future.delayed(const Duration(milliseconds: 650));
       if (hasError) {
         ref
@@ -122,6 +126,7 @@ class _AppState extends ConsumerState<App> with TickerProviderStateMixin {
 }
 
 class _MaterialApp extends StatelessWidget {
+  final router = GetIt.I.get<GoRouter>();
   @override
   Widget build(BuildContext context) {
     return ReactiveFormConfig(
@@ -135,10 +140,9 @@ class _MaterialApp extends StatelessWidget {
         supportedLocales: context.supportedLocales,
         locale: context.locale,
         scaffoldMessengerKey: GetIt.I.get<GlobalKey<ScaffoldMessengerState>>(),
-        routeInformationParser: GetIt.I.get<GoRouter>().routeInformationParser,
-        routerDelegate: GetIt.I.get<GoRouter>().routerDelegate,
-        routeInformationProvider:
-            GetIt.I.get<GoRouter>().routeInformationProvider,
+        routeInformationParser: router.routeInformationParser,
+        routerDelegate: router.routerDelegate,
+        routeInformationProvider: router.routeInformationProvider,
       ),
     );
   }

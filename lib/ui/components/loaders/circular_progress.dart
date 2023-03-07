@@ -18,7 +18,7 @@ class CircularProgress extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var themeData = ThemeData(
+    ThemeData themeData = ThemeData(
       cupertinoOverrideTheme: CupertinoThemeData(
         brightness: cupertinoBrightness ?? Theme.of(context).brightness,
       ),
@@ -37,10 +37,9 @@ class CircularProgress extends StatelessWidget {
     if (Platform.isIOS) {
       return CupertinoActivityIndicator(radius: radius);
     } else {
-      if (androidProgressInsideStack == false) {
-        return SizedBox(
-          height: radius * 2,
-          width: radius * 2,
+      if (!androidProgressInsideStack) {
+        return SizedBox.square(
+          dimension: radius * 2,
           child: Center(
             child: CircularProgressIndicator(color: _indicatorColor),
           ),

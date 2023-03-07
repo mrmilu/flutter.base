@@ -43,9 +43,11 @@ class _FutureButtonState extends State<FutureButton> {
     try {
       await widget.onPressed?.call();
     } finally {
-      setState(() {
-        isLoading = false;
-      });
+      if (mounted) {
+        setState(() {
+          isLoading = false;
+        });
+      }
     }
   }
 }
