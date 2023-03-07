@@ -30,7 +30,7 @@ platform :android do
     sh("fvm", "flutter", "build", "appbundle", "--flavor", "live", "./lib/main_live.dart")
     upload_to_play_store(
       package_name: 'com.flutterbasemrmilu.live',
-      track: 'internal',
+      track: 'alpha',
       aab: '../build/app/outputs/bundle/liveRelease/app-live-release.aab'
     )
   end
