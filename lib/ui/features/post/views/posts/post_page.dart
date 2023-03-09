@@ -22,7 +22,9 @@ class PostPage extends ConsumerWidget {
       if (postsProvider.isLoading) uiNotifier.showGlobalLoader();
     });
     ref.listen(postPageProvider, (previous, next) {
-      if (!next.isLoading) uiNotifier.hideGlobalLoader();
+      if (previous?.isLoading == true && !next.isLoading) {
+        uiNotifier.hideGlobalLoader();
+      }
     });
 
     return postsProvider.when(
