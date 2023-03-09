@@ -38,7 +38,11 @@ void main() {
           expectButtonEnabled(tester, button, isEnabled: false);
 
           // Repeated invalid passwords
-          await _enterPasswords(tester, invalidPasswordString, invalidPasswordString);
+          await _enterPasswords(
+            tester,
+            invalidPasswordString,
+            invalidPasswordString,
+          );
           expectButtonEnabled(tester, button, isEnabled: false);
 
           // Different valid passwords

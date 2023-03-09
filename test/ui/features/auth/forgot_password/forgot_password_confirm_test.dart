@@ -23,7 +23,7 @@ void main() {
   group('Forgot Password Confirm Page Test', () {
     testWidgets(
       'When user go to confirm page from forgot password page can`t continue',
-          (tester) async {
+      (tester) async {
         await tester.pumpAppRoute(
           '/forgot-password/confirm',
           extra: const ForgotPasswordConfirmPageData(email: emailString),
@@ -55,7 +55,7 @@ void main() {
         when(() => deeplinkService.onLink())
             .thenAnswer((_) => const Stream.empty());
         final uri =
-        Uri.parse('https://mrmilu.com?type=reset-password&key=key&uid=uid');
+            Uri.parse('https://mrmilu.com?type=reset-password&key=key&uid=uid');
         when(() => deeplinkService.getInitialLink())
             .thenAnswer((_) async => uri);
 

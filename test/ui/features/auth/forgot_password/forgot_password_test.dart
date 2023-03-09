@@ -42,7 +42,7 @@ void main() {
 
     testWidgets(
       'When user enter invalid email show snackbar error',
-          (tester) async {
+      (tester) async {
         await tester.pumpAppRoute('/forgot-password');
         expect(find.byType(ForgotPasswordPage), findsOneWidget);
 
