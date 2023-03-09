@@ -51,14 +51,16 @@ extension PumpApp on WidgetTester {
   /// Pump any route include in GoRouter with app configuration
   /// You need call [configureMockDependencies] before call [pumpAppWidget]
   /// [configureMockDependencies] is outside to configure the mocks at a general level on each test file
-  Future<void> pumpAppRoute(String location, {Object? extra}) async {
+  Future<void> pumpAppRoute(String? location, {Object? extra}) async {
     await _preInitialization();
     await runAsync(() async {
       final router = getIt<GoRouter>();
       await _pumpApp(router);
       await pumpAndSettle();
-      router.go(location, extra: extra);
-      await pumpAndSettle();
+      if (location != null) {
+        router.go(location, extra: extra);
+        await pumpAndSettle();
+      }
     });
   }
 
