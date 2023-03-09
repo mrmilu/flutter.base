@@ -48,7 +48,7 @@ void main() {
 
     testWidgets(
       'When user go to confirm page from deeplink can continue to change password page',
-          (tester) async {
+      (tester) async {
         await tester.pumpAppRoute('/forgot-password');
 
         final deeplinkService = getIt<IDeepLinkService>();

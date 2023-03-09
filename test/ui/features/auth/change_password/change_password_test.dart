@@ -80,7 +80,7 @@ void main() {
 
       testWidgets(
         'When back return error show snack bar with message',
-            (tester) async {
+        (tester) async {
           await tester.pumpAppRoute(
             '/change-password',
             extra: const ChangePasswordPageData(token: 'token', uid: 'uid'),
