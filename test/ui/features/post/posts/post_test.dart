@@ -16,74 +16,53 @@ import '../../../../ioc/locator_mock.dart';
 void main() {
   setUpAll(() {
     configureMockDependencies();
+    when(() => getIt<IUserRepository>().getLoggedUser()).thenAnswer(
+          (_) async => const User(email: '', name: '', verified: true),
+    );
   });
 
-  group(
+  testWidgets(
     'Post Page Test',
-    () {
-      setUpAll(() {
-        when(() => getIt<IUserRepository>().getLoggedUser()).thenAnswer(
-          (_) async => const User(email: '', name: '', verified: true),
-        );
-      });
+    (tester) async {
+      final handle = tester.ensureSemantics();
 
-      testWidgets(
-        'When user enter in app logged show post list and he can make scroll',
-        (tester) async {
-          final handle = tester.ensureSemantics();
+      await tester.pumpAppRoute(null);
 
-          await tester.pumpAppRoute(null);
+      await getIt<ProviderContainer>()
+          .read(userProvider.notifier)
+          .getInitialUserData();
+      getIt<GoRouter>().go('/home');
+      await tester.pumpAndSettle();
 
-          await getIt<ProviderContainer>()
-              .read(userProvider.notifier)
-              .getInitialUserData();
-          getIt<GoRouter>().go('/home');
-          await tester.pumpAndSettle();
+      expect(find.byType(PostPage), findsOneWidget);
 
-          expect(find.byType(PostPage), findsOneWidget);
+      final listView = find.byType(ListView);
+      expect(listView, findsOneWidget);
 
-          final listView = find.byType(ListView);
-          expect(listView, findsOneWidget);
+      await tester.drag(listView, const Offset(0, 500));
+      await tester.pump();
 
-          await tester.drag(listView, const Offset(0, 500));
-          await tester.pump();
-
-          expect(
-            tester.getSemantics(find.byType(RefreshProgressIndicator)),
-            matchesSemantics(label: 'Refresh'),
-          );
-
-          final ScrollableState state = tester.state(find.byType(Scrollable));
-          state.position.jumpTo(state.position.maxScrollExtent);
-
-          handle.dispose();
-        },
+      expect(
+        tester.getSemantics(find.byType(RefreshProgressIndicator)),
+        matchesSemantics(label: 'Refresh'),
       );
 
-      testWidgets(
-        'When user delete list item, item disappears',
-        (tester) async {
-          await tester.pumpAppRoute(null);
+      await tester.pumpAndSettle();
 
-          await getIt<ProviderContainer>()
-              .read(userProvider.notifier)
-              .getInitialUserData();
-          getIt<GoRouter>().go('/home');
-          await tester.pumpAndSettle();
+      final ScrollableState state = tester.state(find.byType(Scrollable));
+      state.position.jumpTo(state.position.maxScrollExtent);
 
-          expect(find.byType(PostPage), findsOneWidget);
+      handle.dispose();
 
-          final container = getIt<ProviderContainer>();
-          final previousCount = container.read(postPageProvider).value!.length;
+      final container = getIt<ProviderContainer>();
+      final previousCount = container.read(postPageProvider).value!.length;
 
-          final firstItemButton = find.byType(IconButtonPrimary).first;
-          await tester.tap(firstItemButton);
-          await tester.pumpAndSettle(const Duration(seconds: 2));
-          final currentCount = container.read(postPageProvider).value!.length;
+      final firstItemButton = find.byType(IconButtonPrimary).first;
+      await tester.tap(firstItemButton);
+      await tester.pumpAndSettle();
+      final currentCount = container.read(postPageProvider).value!.length;
 
-          expect(currentCount, previousCount - 1);
-        },
-      );
+      expect(currentCount, previousCount - 1);
     },
   );
 }

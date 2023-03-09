@@ -59,6 +59,7 @@ class ProfilePage extends ConsumerWidget {
           ),
           const Divider(),
           ListTile(
+            key: const Key('logout-button'),
             leading: const Icon(Icons.power_settings_new),
             onTap: () {
               ref.read(userProvider.notifier).logout();
