@@ -4,11 +4,12 @@ import 'package:flutter_base/core/auth/domain/interfaces/token_repository.dart';
 import 'package:flutter_base/core/user/domain/interfaces/user_repository.dart';
 import 'package:flutter_base/core/user/domain/models/user.dart';
 import 'package:flutter_base/ui/features/misc/views/main_page.dart';
+import 'package:flutter_base/ui/features/profile/views/edit_avatar/containers/profile_photo_action_sheet.dart';
+import 'package:flutter_base/ui/features/profile/views/edit_profile/edit_profile_page.dart';
 import 'package:flutter_base/ui/features/profile/views/profile_page.dart';
 import 'package:flutter_base/ui/providers/user_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:go_router/go_router.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../../../helpers/pump_app.dart';
@@ -33,14 +34,7 @@ void main() {
       testWidgets(
         'When user enter in profile and tap logout app return main page',
         (tester) async {
-          await tester.pumpAppRoute(null);
-
-          await getIt<ProviderContainer>()
-              .read(userProvider.notifier)
-              .getInitialUserData();
-          getIt<GoRouter>().go('/profile');
-          await tester.pumpAndSettle();
-
+          await tester.pumpAppRoute('/profile');
           expect(find.byType(ProfilePage), findsOneWidget);
 
           final button = find.byKey(const Key('logout-button'));
@@ -50,6 +44,34 @@ void main() {
           expect(find.byType(MainPage), findsOneWidget);
           final user = getIt<ProviderContainer>().read(userProvider).userData;
           expect(user, isNull);
+        },
+      );
+
+      testWidgets(
+        'When user tap in edit profile go to edit profile page',
+        (tester) async {
+          await tester.pumpAppRoute('/profile');
+          expect(find.byType(ProfilePage), findsOneWidget);
+
+          final button = find.byKey(const Key('edit-profile-button'));
+          await tester.tap(button);
+          await tester.pumpAndSettle();
+
+          expect(find.byType(EditProfilePage), findsOneWidget);
+        },
+      );
+
+      testWidgets(
+        'When user tap in profile image show bottom modal sheet with options',
+        (tester) async {
+          await tester.pumpAppRoute('/profile');
+          expect(find.byType(ProfilePage), findsOneWidget);
+
+          final avatar = find.byKey(const Key('profile-avatar'));
+          await tester.tap(avatar);
+          await tester.pumpAndSettle();
+
+          expect(find.byType(ProfilePhotoActionSheet), findsOneWidget);
         },
       );
     },

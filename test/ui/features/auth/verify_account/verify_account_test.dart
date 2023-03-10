@@ -4,8 +4,6 @@ import 'package:flutter_base/core/auth/domain/interfaces/auth_repository.dart';
 import 'package:flutter_base/core/user/domain/interfaces/user_repository.dart';
 import 'package:flutter_base/core/user/domain/models/user.dart';
 import 'package:flutter_base/ui/controllers/deep_link_controller.dart';
-import 'package:flutter_base/ui/providers/user_provider.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mocktail/mocktail.dart';
@@ -26,9 +24,6 @@ void main() {
         when(() => getIt<IUserRepository>().getLoggedUser()).thenAnswer(
           (_) async => const User(email: '', name: ''),
         );
-        getIt<ProviderContainer>()
-            .read(userProvider.notifier)
-            .getInitialUserData();
       });
 
       testWidgets(

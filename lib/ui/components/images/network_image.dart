@@ -1,6 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_base/core/app/ioc/locator.dart';
 import 'package:flutter_base/ui/styles/colors.dart';
+// ignore: depend_on_referenced_packages
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 
 class FlutterBaseNetworkImage extends StatelessWidget {
   final String url;
@@ -56,6 +59,7 @@ class FlutterBaseNetworkImage extends StatelessWidget {
       height: height,
       maxWidthDiskCache: maxWidthDiskCache,
       maxHeightDiskCache: maxHeightDiskCache,
+      cacheManager: getIt<BaseCacheManager>(),
       cacheKey: cacheKey,
       placeholder: (context, _) => Center(child: placeholder),
       errorWidget: (ctx, _, __) => placeholder,
