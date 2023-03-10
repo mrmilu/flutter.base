@@ -17,7 +17,8 @@ class FakeImageCacheManager extends Mock implements ImageCacheManager {
           offset < kTransparentImage.length;
           offset += chunkSize)
         Uint8List.fromList(
-            kTransparentImage.skip(offset).take(chunkSize).toList()),
+          kTransparentImage.skip(offset).take(chunkSize).toList(),
+        ),
     ];
 
     when(
