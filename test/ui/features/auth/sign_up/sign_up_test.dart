@@ -61,7 +61,7 @@ void main() {
         await _enterEmail(tester, '');
         await tester.pumpAndSettle();
         _checkRegisterButtonEnabled(tester, false);
-        await _enterEmail(tester, invalidEmailString);
+        await _enterEmail(tester, fakeInvalidEmail);
         await tester.pumpAndSettle();
         _checkRegisterButtonEnabled(tester, false);
 
@@ -71,7 +71,7 @@ void main() {
         await _enterPassword(tester, '');
         await tester.pumpAndSettle();
         _checkRegisterButtonEnabled(tester, false);
-        await _enterPassword(tester, invalidPasswordString);
+        await _enterPassword(tester, fakeInvalidPassword);
         await tester.pumpAndSettle();
         _checkRegisterButtonEnabled(tester, false);
       },
@@ -125,9 +125,9 @@ Future<void> _tapRegisterButton(WidgetTester tester) async {
 }
 
 Future<void> _enterSignUpData(WidgetTester tester) async {
-  await _enterName(tester, nameString);
-  await _enterEmail(tester, emailString);
-  await _enterPassword(tester, passwordString);
+  await _enterName(tester, fakeName);
+  await _enterEmail(tester, fakeEmail);
+  await _enterPassword(tester, fakePassword);
   await tester.pump();
 }
 

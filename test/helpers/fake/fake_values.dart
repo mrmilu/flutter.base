@@ -1,5 +1,5 @@
-const nameString = 'Test User';
-const emailString = 'test@test.com';
-const passwordString = 'Password1';
-const invalidEmailString = 'email';
-const invalidPasswordString = 'password';
+const fakeName = 'Test User';
+const fakeEmail = 'test@test.com';
+const fakePassword = 'Password1';
+const fakeInvalidEmail = 'email';
+const fakeInvalidPassword = 'password';

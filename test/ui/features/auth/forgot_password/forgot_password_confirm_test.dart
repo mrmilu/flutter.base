@@ -26,7 +26,7 @@ void main() {
       (tester) async {
         await tester.pumpAppRoute(
           '/forgot-password/confirm',
-          extra: const ForgotPasswordConfirmPageData(email: emailString),
+          extra: const ForgotPasswordConfirmPageData(email: fakeEmail),
         );
         expect(find.byType(ForgotPasswordConfirmPage), findsOneWidget);
         final button = find.byKey(const Key('forgot-pass-confirm-button'));

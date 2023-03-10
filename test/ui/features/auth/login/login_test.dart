@@ -86,7 +86,7 @@ Future<void> _tapLoginButton(WidgetTester tester) async {
 Future<void> _enterLoginCredentials(WidgetTester tester) async {
   final email = find.byKey(const Key('sing_in_email'));
   final pass = find.byKey(const Key('sing_in_pass'));
-  await tester.enterText(email, emailString);
-  await tester.enterText(pass, passwordString);
+  await tester.enterText(email, fakeEmail);
+  await tester.enterText(pass, fakePassword);
   await tester.pump();
 }

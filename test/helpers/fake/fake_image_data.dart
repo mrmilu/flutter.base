@@ -1,4 +1,3 @@
-
 const List<int> kTransparentImage = <int>[
   0x89,
   0x50,

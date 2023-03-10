@@ -31,7 +31,7 @@ void main() {
             .thenAnswer((_) async {});
 
         final email = find.byKey(const Key('forgot-password-email'));
-        await tester.enterText(email, emailString);
+        await tester.enterText(email, fakeEmail);
         await tester.pumpAndSettle();
         await tester.tap(button);
         await tester.pumpAndSettle();
@@ -50,7 +50,7 @@ void main() {
             .thenThrow(const AppError(message: 'Email not exist'));
 
         final email = find.byKey(const Key('forgot-password-email'));
-        await tester.enterText(email, emailString);
+        await tester.enterText(email, fakeEmail);
         await tester.pumpAndSettle();
         final button = find.byKey(const Key('forgot-password-button'));
         await tester.tap(button);

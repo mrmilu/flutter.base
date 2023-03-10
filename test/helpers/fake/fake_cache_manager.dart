@@ -13,8 +13,11 @@ class FakeImageCacheManager extends Mock implements ImageCacheManager {
   FakeImageCacheManager() {
     const chunkSize = 8;
     final chunks = <Uint8List>[
-      for (int offset = 0; offset < kTransparentImage.length; offset += chunkSize)
-        Uint8List.fromList(kTransparentImage.skip(offset).take(chunkSize).toList()),
+      for (int offset = 0;
+          offset < kTransparentImage.length;
+          offset += chunkSize)
+        Uint8List.fromList(
+            kTransparentImage.skip(offset).take(chunkSize).toList()),
     ];
 
     when(

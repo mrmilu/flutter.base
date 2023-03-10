@@ -40,13 +40,14 @@ void main() {
           // Repeated invalid passwords
           await _enterPasswords(
             tester,
-            invalidPasswordString,
-            invalidPasswordString,
+            fakeInvalidPassword,
+            fakeInvalidPassword,
           );
           expectButtonEnabled(tester, button, isEnabled: false);
 
           // Different valid passwords
-          await _enterPasswords(tester, passwordString, '${passwordString}2');
+
+          await _enterPasswords(tester, fakePassword, '${fakePassword}2');
           expectButtonEnabled(tester, button, isEnabled: false);
         },
       );
@@ -63,7 +64,7 @@ void main() {
               .thenAnswer((_) async {});
 
           final button = find.byKey(const Key('change-password-button'));
-          await _enterPasswords(tester, passwordString, passwordString);
+          await _enterPasswords(tester, fakePassword, fakePassword);
           await tester.tap(button);
           await tester.pumpAndSettle();
 
@@ -90,7 +91,7 @@ void main() {
               .thenThrow(const AppError(message: 'Invalid password'));
 
           final button = find.byKey(const Key('change-password-button'));
-          await _enterPasswords(tester, passwordString, passwordString);
+          await _enterPasswords(tester, fakePassword, fakePassword);
           await tester.tap(button);
           await tester.pumpAndSettle();
 
