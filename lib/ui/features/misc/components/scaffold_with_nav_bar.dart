@@ -68,13 +68,6 @@ class ScaffoldWithNavBarState extends ConsumerState<ScaffoldWithNavBar>
   late final List<_NavBarTabNavigator> _tabs;
   int _currentIndex = 0;
 
-  int _locationToTabIndex(String location) {
-    final int index = _tabs.indexWhere(
-      (_NavBarTabNavigator t) => location.startsWith(t.rootRoutePath),
-    );
-    return index < 0 ? 0 : index;
-  }
-
   @override
   void initState() {
     super.initState();
@@ -89,16 +82,11 @@ class ScaffoldWithNavBarState extends ConsumerState<ScaffoldWithNavBar>
     _animationController.forward();
   }
 
-  @override
-  void didUpdateWidget(covariant ScaffoldWithNavBar oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    _updateForCurrentTab();
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    _updateForCurrentTab();
+  int _locationToTabIndex(String location) {
+    final int index = _tabs.indexWhere(
+      (_NavBarTabNavigator t) => location.startsWith(t.rootRoutePath),
+    );
+    return index < 0 ? 0 : index;
   }
 
   void _updateForCurrentTab() {
@@ -115,6 +103,28 @@ class ScaffoldWithNavBarState extends ConsumerState<ScaffoldWithNavBar>
     }
   }
 
+  void _onItemTapped(int index, BuildContext context) {
+    final tab = _tabs[index];
+    // (tab.navigatorKey as NavigatorState)
+    if (_currentIndex == index) {
+      GoRouter.of(context).go(tab.rootRoutePath);
+    } else {
+      GoRouter.of(context).go(tab.currentLocation);
+    }
+  }
+
+  @override
+  void didUpdateWidget(covariant ScaffoldWithNavBar oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    _updateForCurrentTab();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _updateForCurrentTab();
+  }
+
   @override
   void dispose() {
     _animationController.dispose();
@@ -123,17 +133,24 @@ class ScaffoldWithNavBarState extends ConsumerState<ScaffoldWithNavBar>
 
   @override
   Widget build(BuildContext context) {
-    return _buildMainView(context);
-  }
-
-  SizedBox _buildMainView(BuildContext context) {
     return SizedBox.expand(
       child: ColoredBox(
         color: FlutterBaseColors.specificBackgroundBase,
         child: Stack(
           children: [
             Positioned.fill(
-              child: _buildBody(context),
+              child: FadeTransition(
+                opacity: _animationController,
+                child: IndexedStack(
+                  index: _currentIndex,
+                  children: _tabs
+                      .map(
+                        (_NavBarTabNavigator tab) =>
+                            tab.buildNavigator(context),
+                      )
+                      .toList(),
+                ),
+              ),
             ),
             Positioned(
               bottom: deviceBottomSafeArea,
@@ -153,38 +170,16 @@ class ScaffoldWithNavBarState extends ConsumerState<ScaffoldWithNavBar>
       ),
     );
   }
-
-  Widget _buildBody(BuildContext context) {
-    return FadeTransition(
-      opacity: _animationController,
-      child: IndexedStack(
-        index: _currentIndex,
-        children: _tabs
-            .map((_NavBarTabNavigator tab) => tab.buildNavigator(context))
-            .toList(),
-      ),
-    );
-  }
-
-  void _onItemTapped(int index, BuildContext context) {
-    final tab = _tabs[index];
-    // (tab.navigatorKey as NavigatorState)
-    if (_currentIndex == index) {
-      GoRouter.of(context).go(tab.rootRoutePath);
-    } else {
-      GoRouter.of(context).go(tab.currentLocation);
-    }
-  }
 }
 
 /// Class representing a tab along with its navigation logic
 class _NavBarTabNavigator {
   final ScaffoldWithNavBarTabItem bottomNavigationTab;
   List<Page<dynamic>> pages = <Page<dynamic>>[];
-  String? lastLocation;
+  String lastLocation = '';
   String get currentLocation =>
-      lastLocation != null && lastLocation!.contains(rootRoutePath)
-          ? lastLocation!
+      lastLocation.isNotEmpty && lastLocation.contains(rootRoutePath)
+          ? lastLocation
           : rootRoutePath;
 
   String get rootRoutePath => bottomNavigationTab.rootRoutePath;

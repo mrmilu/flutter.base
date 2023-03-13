@@ -7,12 +7,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
 
 class NotificationsProvider extends AutoDisposeNotifier<void> {
-  INotificationsService? _notificationsService;
+  late final INotificationsService _notificationsService =
+      GetIt.I.get<INotificationsService>();
   Timer? _notificationsDialogTimer;
 
   @override
   void build() {
-    _notificationsService = GetIt.I.get<INotificationsService>();
     _init();
 
     ref.onDispose(() {
@@ -25,12 +25,11 @@ class NotificationsProvider extends AutoDisposeNotifier<void> {
   }
 
   Future<void> initPushNotifications() async {
-    if (_notificationsService!.isInitialized) return;
+    if (_notificationsService.isInitialized) return;
 
-    final status =
-        await _notificationsService!.requestNotificationPermissions();
-    if (_notificationsService!.hasPermissionsEnabled(status)) {
-      await _notificationsService!.init(
+    final status = await _notificationsService.requestNotificationPermissions();
+    if (_notificationsService.hasPermissionsEnabled(status)) {
+      await _notificationsService.init(
         onBackgroundMessage: NotificationsProvider._backgroundMessageHandler,
       );
     }
@@ -40,13 +39,16 @@ class NotificationsProvider extends AutoDisposeNotifier<void> {
   static Future<void> _backgroundMessageHandler(
     RemoteMessage notificationResponse,
   ) async {
-    debugPrintStack(label: 'notification opened on background');
+    debugPrintStack(
+      label:
+          'notification opened on background: ${notificationResponse.toString()}',
+    );
   }
 
   Future _init() async {
     final currentNotificationPermission =
-        await _notificationsService!.getCurrentNotificationPermissions();
-    if (_notificationsService!
+        await _notificationsService.getCurrentNotificationPermissions();
+    if (_notificationsService
         .hasPermissionsEnabled(currentNotificationPermission)) {
       initPushNotifications();
     }

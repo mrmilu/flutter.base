@@ -16,14 +16,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 class ForgotPasswordConfirmPageData {
-  final String? uid;
-  final String? email;
-  final String? token;
+  final String uid;
+  final String email;
+  final String token;
 
   const ForgotPasswordConfirmPageData({
-    this.uid,
-    this.email,
-    this.token,
+    this.uid = '',
+    this.email = '',
+    this.token = '',
   });
 }
 
@@ -47,13 +47,13 @@ class ForgotPasswordConfirmPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               ButtonPrimary(
-                onPressed: data.token?.isNotEmpty == true
+                onPressed: data.token.isNotEmpty
                     ? () {
                         GoRouter.of(context).push(
                           '/change-password',
                           extra: ChangePasswordPageData(
-                            token: data.token!,
-                            uid: data.uid!,
+                            token: data.token,
+                            uid: data.uid,
                           ),
                         );
                       }
@@ -61,13 +61,13 @@ class ForgotPasswordConfirmPage extends StatelessWidget {
                 text: LocaleKeys.forgotPasswordConfirm_continue.tr(),
               ),
               BoxSpacer.v8(),
-              if (data.email?.isNotEmpty == true)
+              if (data.email.isNotEmpty)
                 Consumer(
                   builder: (context, ref, _) {
                     return ButtonTertiary(
                       onPressed: () => ref
                           .read(forgotPasswordConfirmProvider.notifier)
-                          .resendRequestChange(data.email!),
+                          .resendRequestChange(data.email),
                       text: LocaleKeys.forgotPasswordConfirm_resend.tr(),
                     );
                   },
@@ -85,7 +85,7 @@ class ForgotPasswordConfirmPage extends StatelessWidget {
                 builder: (context, ref, _) {
                   final title = ref.watch(
                     forgotPasswordConfirmProvider
-                        .select((state) => state.pageTitle!),
+                        .select((state) => state.pageTitle),
                   );
                   return HighTextL(title);
                 },

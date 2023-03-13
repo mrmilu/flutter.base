@@ -9,22 +9,22 @@ import 'package:flutter_base/core/user/domain/use_cases/get_user_use_case.dart';
 import 'package:injectable/injectable.dart';
 
 class SignUpUseCaseInput {
-  final String? name;
-  final String? email;
-  final String? password;
+  final String name;
+  final String email;
+  final String password;
   final SocialAuthServiceProvider? socialAuthProvider;
 
   const SignUpUseCaseInput({
-    this.name,
-    this.email,
-    this.password,
+    this.name = '',
+    this.email = '',
+    this.password = '',
     this.socialAuthProvider,
   }) : assert(
-          (email != null && password != null) ||
+          (email.length > 0 && password.length > 0) ||
               ((socialAuthProvider == SocialAuthServiceProvider.google ||
                       socialAuthProvider == SocialAuthServiceProvider.apple) &&
-                  email == null &&
-                  password == null),
+                  email.length <= 0 &&
+                  password.length <= 0),
           'If social auth provider is chosen email and password are not required.',
         );
 }
@@ -49,13 +49,14 @@ class SignUpUseCase {
     if (input.socialAuthProvider == SocialAuthServiceProvider.google ||
         input.socialAuthProvider == SocialAuthServiceProvider.apple) {
       final socialAuthToken = await _socialAuthUseCase(
+        // ignore: avoid-non-null-assertion
         SocialAuthUseCaseInput(authProvider: input.socialAuthProvider!),
       );
       token = await _authRepository.socialAuth(socialAuthToken);
     } else {
       final signUpInput = SignUpInputModel(
-        email: input.email!,
-        password: input.password!,
+        email: input.email,
+        password: input.password,
         name: input.name,
       );
       token = await _authRepository.signUp(signUpInput);

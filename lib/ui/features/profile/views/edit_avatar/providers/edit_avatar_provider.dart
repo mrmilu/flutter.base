@@ -17,7 +17,7 @@ import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 
 class EditAvatarProvider
-    extends AutoDisposeNotifier<GlobalKey<ExtendedImageEditorState>?> {
+    extends AutoDisposeNotifier<GlobalKey<ExtendedImageEditorState>> {
   final _imageFromGalleryUseCase = GetIt.I.get<ImageFromGalleryUseCase>();
   final _imageFromCameraUseCase = GetIt.I.get<ImageFromCameraUseCase>();
   final _userRepository = GetIt.I.get<IUserRepository>();
@@ -25,7 +25,7 @@ class EditAvatarProvider
   final _appRouter = GetIt.I.get<GoRouter>();
 
   @override
-  GlobalKey<ExtendedImageEditorState>? build() {
+  GlobalKey<ExtendedImageEditorState> build() {
     return GlobalKey<ExtendedImageEditorState>();
   }
 
@@ -71,7 +71,7 @@ class EditAvatarProvider
     uiNotifier.showGlobalLoader();
     uiNotifier
         .tryAction(() async {
-          final editorState = state!.currentState;
+          final editorState = state.currentState;
           if (editorState == null) {
             return;
           }
@@ -89,13 +89,13 @@ class EditAvatarProvider
         .then((value) => rootNavigatorKey.currentState?.pop())
         .whenComplete(() {
           Timer(const Duration(milliseconds: 300), () {
-            state?.currentState?.reset();
+            state.currentState?.reset();
           });
         });
   }
 }
 
 final editAvatarProvider = AutoDisposeNotifierProvider<EditAvatarProvider,
-    GlobalKey<ExtendedImageEditorState>?>(
+    GlobalKey<ExtendedImageEditorState>>(
   EditAvatarProvider.new,
 );

@@ -12,7 +12,7 @@ class ButtonTertiary extends TextButton {
     required String text,
     Size? fixedSize,
     required super.onPressed,
-    String? iconName,
+    String iconName = '',
     IconData? iconData,
     Color? iconColor,
     ButtonSize size = ButtonSize.normal,
@@ -39,7 +39,7 @@ class ButtonTertiary extends TextButton {
 
 class _ButtonTertiaryContent extends StatelessWidget {
   final String text;
-  final String? svgIconName;
+  final String svgIconName;
   final Color? iconColor;
   final IconData? iconData;
   final ButtonSize size;
@@ -48,7 +48,7 @@ class _ButtonTertiaryContent extends StatelessWidget {
   const _ButtonTertiaryContent({
     required this.text,
     required this.size,
-    this.svgIconName,
+    this.svgIconName = '',
     this.iconColor,
     this.customTextStyle,
     this.iconData,
@@ -63,12 +63,13 @@ class _ButtonTertiaryContent extends StatelessWidget {
       children: [
         if (_hasSvgIcon)
           FlutterBaseSvgIcon(
-            iconName: svgIconName!,
+            iconName: svgIconName,
             width: _iconSize,
             height: _iconSize,
           ),
         if (_hasIconData)
           FlutterBaseIcon(
+            // ignore: avoid-non-null-assertion
             icon: iconData!,
             size: _iconSize,
           ),
@@ -85,19 +86,19 @@ class _ButtonTertiaryContent extends StatelessWidget {
   }
 
   TextStyle get _textStyle {
-    if (customTextStyle != null) return customTextStyle!;
-    return ButtonSize.small == size
-        ? TextStyles.midM
-            .copyWith(color: FlutterBaseColors.specificSemanticPrimary)
-        : TextStyles.smallL
-            .copyWith(color: FlutterBaseColors.specificSemanticPrimary);
+    return customTextStyle ??
+        (ButtonSize.small == size
+            ? TextStyles.midM
+                .copyWith(color: FlutterBaseColors.specificSemanticPrimary)
+            : TextStyles.smallL
+                .copyWith(color: FlutterBaseColors.specificSemanticPrimary));
   }
 
   double get _iconSize => size == ButtonSize.small ? 16.0 : 24.0;
 
   bool get _hasIcon => _hasIconData || _hasSvgIcon;
 
-  bool get _hasSvgIcon => svgIconName != null;
+  bool get _hasSvgIcon => svgIconName.isNotEmpty;
 
   bool get _hasIconData => iconData != null;
 }

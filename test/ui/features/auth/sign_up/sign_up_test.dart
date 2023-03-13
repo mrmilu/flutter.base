@@ -39,7 +39,7 @@ void main() {
   group('Signup Page Tests', () {
     setUpAll(() {
       final tokenRepo = getIt<ITokenRepository>();
-      when(() => tokenRepo.update(any())).thenAnswer((_) async {});
+      when(() => tokenRepo.update(any())).thenAnswer((_) => Future.value());
       final notificationService = getIt<INotificationsService>();
       when(() => notificationService.getToken()).thenAnswer((_) async => null);
       final userRepo = getIt<IUserRepository>();

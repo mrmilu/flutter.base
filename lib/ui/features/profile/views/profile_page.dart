@@ -32,7 +32,10 @@ class ProfilePage extends ConsumerWidget {
               ),
               GestureDetector(
                 onTap: Feedback.wrapForTap(
-                  () => _showActionSheet(context),
+                  () => showCupertinoModalPopup(
+                    context: context,
+                    builder: (context) => const ProfilePhotoActionSheet(),
+                  ),
                   context,
                 ),
                 child: const CircleAvatar(
@@ -66,16 +69,9 @@ class ProfilePage extends ConsumerWidget {
             title: Text(
               LocaleKeys.profile_options_logout.tr(),
             ),
-          )
+          ),
         ],
       ),
-    );
-  }
-
-  void _showActionSheet(BuildContext context) {
-    showCupertinoModalPopup(
-      context: context,
-      builder: (context) => const ProfilePhotoActionSheet(),
     );
   }
 }

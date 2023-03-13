@@ -53,7 +53,7 @@ class SignUpPage extends ConsumerWidget {
             BoxSpacer.v16(),
             const SocialAuth(type: SocialAuthType.singUp),
             BoxSpacer.v16(),
-            const TermAndPrivacy()
+            const _TermAndPrivacy(),
           ],
         ),
       ),
@@ -61,10 +61,8 @@ class SignUpPage extends ConsumerWidget {
   }
 }
 
-class TermAndPrivacy extends StatelessWidget {
-  const TermAndPrivacy({
-    super.key,
-  });
+class _TermAndPrivacy extends StatelessWidget {
+  const _TermAndPrivacy();
 
   @override
   Widget build(BuildContext context) {

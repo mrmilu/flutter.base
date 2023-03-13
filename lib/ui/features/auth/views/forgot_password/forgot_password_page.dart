@@ -43,19 +43,25 @@ class ForgotPasswordPage extends StatelessWidget {
                       formControl: formModel.emailControl,
                     ),
                     BoxSpacer.v24(),
-                    _buildContinueBtn(formModel),
+                    _ContinueButton(formModel: formModel),
                     BoxSpacer.v16(),
                   ],
                 );
               },
-            )
+            ),
           ],
         ),
       ),
     );
   }
+}
 
-  Consumer _buildContinueBtn(ForgotPasswordModelForm formModel) {
+class _ContinueButton extends StatelessWidget {
+  const _ContinueButton({required this.formModel});
+  final ForgotPasswordModelForm formModel;
+
+  @override
+  Widget build(BuildContext context) {
     return Consumer(
       builder: (context, ref, _) {
         return StreamBuilder<Map<String, Object?>?>(

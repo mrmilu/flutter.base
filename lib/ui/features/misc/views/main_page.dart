@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_base/ui/components/box_spacer.dart';
 import 'package:flutter_base/ui/components/buttons/button_primary.dart';
 import 'package:flutter_base/ui/components/buttons/button_tertiary.dart';
+import 'package:flutter_base/ui/components/loaders/circular_progress.dart';
 import 'package:flutter_base/ui/components/text/high_text.dart';
 import 'package:flutter_base/ui/components/text/small_text.dart';
 import 'package:flutter_base/ui/features/misc/providers/main_page_provider.dart';
@@ -36,8 +37,8 @@ class MainPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    error: (_, __) => Container(),
-                    loading: () => Container(),
+                    error: (_, __) => const SizedBox.shrink(),
+                    loading: () => const CircularProgress(),
                   );
             },
           ),
@@ -62,7 +63,7 @@ class MainPage extends StatelessWidget {
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );
@@ -97,7 +98,7 @@ class _BottomSheet extends StatelessWidget {
                   GoRouter.of(context).push('/login');
                 },
                 text: LocaleKeys.mainPage_loginBtn.tr(),
-              )
+              ),
             ],
           ),
         ),

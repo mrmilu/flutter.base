@@ -46,7 +46,7 @@ class SignUpForm extends ConsumerWidget {
                 placeholder: LocaleKeys.signUp_form_password_label.tr(),
                 validationMessages: {
                   ValidationMessage.pattern: (_) =>
-                      LocaleKeys.errors_form_password.tr()
+                      LocaleKeys.errors_form_password.tr(),
                 },
               ),
               BoxSpacer.v24(),
@@ -62,7 +62,7 @@ class SignUpForm extends ConsumerWidget {
                         : null,
                   );
                 },
-              )
+              ),
             ],
           );
         },

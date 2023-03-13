@@ -26,8 +26,9 @@ class NotificationsService implements INotificationsService {
     importance: Importance.max,
   );
 
-  late bool _initialized;
-  late final StreamController<CustomNotification> _streamController;
+  late bool _initialized = false;
+  late final StreamController<CustomNotification> _streamController =
+      StreamController<CustomNotification>.broadcast();
   FlutterLocalNotificationsPlugin? _flutterLocalNotificationsPlugin;
   StreamSubscription<RemoteMessage>? _onForegroundMessage;
   StreamSubscription<RemoteMessage>? _onBackgroundMessage;
@@ -38,10 +39,7 @@ class NotificationsService implements INotificationsService {
   @override
   bool get isInitialized => _initialized;
 
-  NotificationsService() {
-    _streamController = StreamController<CustomNotification>.broadcast();
-    _initialized = false;
-  }
+  NotificationsService();
 
   @override
   Future<void> init({
@@ -97,8 +95,8 @@ class NotificationsService implements INotificationsService {
       _streamController.add(customNotification);
     });
 
-    _onBackgroundMessage = FirebaseMessaging.onMessageOpenedApp
-        .listen((RemoteMessage message) async {
+    _onBackgroundMessage =
+        FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
       final customNotification = _customNotificationFromRemoteMessage(message);
       debugPrintStack(
         label:
@@ -182,13 +180,13 @@ class NotificationsService implements INotificationsService {
         AndroidInitializationSettings('ic_launcher_foreground');
     const InitializationSettings initializationSettings =
         InitializationSettings(android: initializationSettingsAndroid);
-    await _flutterLocalNotificationsPlugin!.initialize(
+    await _flutterLocalNotificationsPlugin?.initialize(
       initializationSettings,
       onDidReceiveBackgroundNotificationResponse:
           onForegroundAndroidNotificationOpen,
     );
-    _flutterLocalNotificationsPlugin!
-        .resolvePlatformSpecificImplementation<
+    _flutterLocalNotificationsPlugin
+        ?.resolvePlatformSpecificImplementation<
             AndroidFlutterLocalNotificationsPlugin>()
         ?.createNotificationChannel(channel);
   }

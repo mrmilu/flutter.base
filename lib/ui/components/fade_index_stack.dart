@@ -23,18 +23,18 @@ class _FadeIndexedStackState extends State<FadeIndexedStack>
   late AnimationController _controller;
 
   @override
+  void initState() {
+    _controller = AnimationController(vsync: this, duration: widget.duration);
+    _controller.forward();
+    super.initState();
+  }
+
+  @override
   void didUpdateWidget(FadeIndexedStack oldWidget) {
     if (widget.index != oldWidget.index) {
       _controller.forward(from: 0.0);
     }
     super.didUpdateWidget(oldWidget);
-  }
-
-  @override
-  void initState() {
-    _controller = AnimationController(vsync: this, duration: widget.duration);
-    _controller.forward();
-    super.initState();
   }
 
   @override

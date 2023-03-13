@@ -12,22 +12,22 @@ import 'package:flutter_base/core/user/domain/use_cases/set_user_device_use_case
 import 'package:injectable/injectable.dart';
 
 class LoginUseCaseInput {
-  final String? email;
-  final String? password;
+  final String email;
+  final String password;
   final SocialAuthServiceProvider? provider;
   final UserDeviceType userDeviceType;
 
   const LoginUseCaseInput({
-    this.email,
-    this.password,
+    this.email = '',
+    this.password = '',
     this.provider,
     required this.userDeviceType,
   }) : assert(
-          (email != null && password != null) ||
+          (email.length > 0 && password.length > 0) ||
               ((provider == SocialAuthServiceProvider.google ||
                       provider == SocialAuthServiceProvider.apple) &&
-                  email == null &&
-                  password == null),
+                  email.length <= 0 &&
+                  password.length <= 0),
           'If email provider is chosen email and password are required.',
         );
 }
@@ -54,18 +54,19 @@ class LoginUseCase {
     if (input.provider == SocialAuthServiceProvider.google ||
         input.provider == SocialAuthServiceProvider.apple) {
       final socialAuthToken = await _socialAuthUseCase(
+        // ignore: avoid-non-null-assertion
         SocialAuthUseCaseInput(authProvider: input.provider!),
       );
       token = await _authRepository.socialAuth(socialAuthToken);
     } else {
       final loginInput = LoginInputModel(
-        email: input.email!,
-        password: input.password!,
+        email: input.email,
+        password: input.password,
       );
       token = await _authRepository.login(loginInput);
     }
 
-    if (kDebugMode) print(token);
+    debugPrint(token);
     await _tokenRepository.update(TokenModel(token: token));
     await _setUserDeviceUseCase(
       SetUserDeviceUseCaseInput(type: input.userDeviceType),

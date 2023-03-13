@@ -27,6 +27,7 @@ extension on WidgetTester {
   Future<void> pumpApp() async {
     // To fix error: A test override FlutterError.onError but either failed to return it to its original state, or had unexpected additional errors that it could not handle. Typically, this is caused by using expect() before restoring FlutterError.onError.
     // This error is throw if override FlutterError.onError in app and then you use expect() in test.
+    // ignore: avoid-non-null-assertion
     final originalOnError = FlutterError.onError!;
     app.main();
     // Time to wait app initialization. If your device need more time, change it.

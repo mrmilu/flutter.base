@@ -24,7 +24,7 @@ class FlutterBaseDialog extends StatelessWidget {
   final FlutterBaseDialogBuilder builder;
   final bool scrollable;
   final double scrollHeight;
-  final String? title;
+  final String title;
   final Widget dialogContent;
   final Widget? footer;
   final VoidCallback? onClose;
@@ -33,7 +33,7 @@ class FlutterBaseDialog extends StatelessWidget {
   const FlutterBaseDialog({
     super.key,
     required this.builder,
-    this.title,
+    this.title = '',
     required this.dialogContent,
     this.footer,
     this.scrollable = false,
@@ -65,12 +65,12 @@ class FlutterBaseDialog extends StatelessWidget {
                     children: [
                       if (_hasHeader)
                         Row(
-                          mainAxisAlignment: title != null
+                          mainAxisAlignment: title.isNotEmpty
                               ? MainAxisAlignment.spaceBetween
                               : MainAxisAlignment.end,
                           children: [
-                            if (title != null)
-                              Expanded(child: HighTextS(title!)),
+                            if (title.isNotEmpty)
+                              Expanded(child: HighTextS(title)),
                             if (!noCloseButton)
                               SizedBox(
                                 width: 24,
@@ -83,17 +83,21 @@ class FlutterBaseDialog extends StatelessWidget {
                                     Navigator.of(context).pop();
                                   },
                                 ),
-                              )
+                              ),
                           ],
                         ),
                       BoxSpacer.v12(),
-                      if (!scrollable) dialogContent,
-                      if (scrollable)
-                        SizedBox(
-                          height: scrollHeight,
-                          child: ColumnScrollView(children: [dialogContent]),
-                        ),
-                      if (footer != null) ...[BoxSpacer.v24(), footer!]
+                      scrollable
+                          ? SizedBox(
+                              height: scrollHeight,
+                              child:
+                                  ColumnScrollView(children: [dialogContent]),
+                            )
+                          : dialogContent,
+                      if (footer != null) ...[
+                        BoxSpacer.v24(),
+                        footer ?? const SizedBox.shrink(),
+                      ],
                     ],
                   ),
                 ),
@@ -113,7 +117,7 @@ class FlutterBaseDialog extends StatelessWidget {
     );
   }
 
-  bool get _hasHeader => title != null || !noCloseButton;
+  bool get _hasHeader => title.isNotEmpty || !noCloseButton;
 }
 
 class FlutterBaseDialogDelegate {

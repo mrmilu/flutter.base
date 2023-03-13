@@ -46,7 +46,7 @@ class EditAvatarPage extends ConsumerWidget {
               dimension: MediaQuery.of(context).size.width,
               child: EditableImagePreview(
                 image: avatar,
-                editorKey: editorKey!,
+                editorKey: editorKey,
                 circleMask: true,
               ),
             ),

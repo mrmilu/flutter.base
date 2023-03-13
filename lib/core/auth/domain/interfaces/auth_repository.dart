@@ -9,7 +9,7 @@ abstract class IAuthRepository {
 
   Future logout();
 
-  Future socialAuth(String token);
+  Future<String> socialAuth(String token);
 
   Future<String> googleSocialAuth();
 

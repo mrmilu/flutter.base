@@ -1,3 +1,4 @@
+// ignore_for_file: prefer-single-widget-per-file
 import 'package:flutter/material.dart';
 import 'package:flutter_base/ui/components/buttons/icon_button_tertiary.dart';
 import 'package:flutter_base/ui/styles/colors.dart';
@@ -12,7 +13,7 @@ class FlutterBaseAppBar extends AppBar {
     super.backgroundColor,
     Widget? leading,
     bool showLeading = true,
-    String? customPopRoute,
+    String customPopRoute = '',
     VoidCallback? customPopAction,
     Widget? trailing,
   }) : super(
@@ -28,7 +29,7 @@ class FlutterBaseAppBar extends AppBar {
               Padding(
                 padding: const EdgeInsets.only(right: Spacing.sp16),
                 child: trailing,
-              )
+              ),
           ],
         );
 
@@ -59,21 +60,21 @@ class FlutterBaseAppBar extends AppBar {
 }
 
 class FlutterBaseAppBarLeading extends StatelessWidget {
-  final String? customPopRoute;
+  final String customPopRoute;
   final VoidCallback? customPopAction;
 
   const FlutterBaseAppBarLeading({
     super.key,
-    this.customPopRoute,
+    this.customPopRoute = '',
     this.customPopAction,
   });
 
   @override
   Widget build(BuildContext context) {
     if (!GoRouter.of(context).canPop() &&
-        customPopRoute == null &&
+        customPopRoute.isEmpty &&
         customPopAction == null) {
-      return Container();
+      return const SizedBox.shrink();
     }
     return Padding(
       padding: const EdgeInsets.only(left: Spacing.sp16),
@@ -82,9 +83,9 @@ class FlutterBaseAppBarLeading extends StatelessWidget {
         foregroundColor: FlutterBaseColors.specificContentLow,
         onPressed: () {
           if (customPopAction != null) {
-            customPopAction!();
-          } else if (customPopRoute != null) {
-            GoRouter.of(context).go(customPopRoute!);
+            customPopAction?.call();
+          } else if (customPopRoute.isNotEmpty) {
+            GoRouter.of(context).go(customPopRoute);
           } else {
             Navigator.of(context).pop();
           }

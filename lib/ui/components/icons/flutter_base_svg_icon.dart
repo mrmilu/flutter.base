@@ -23,6 +23,7 @@ class FlutterBaseSvgIcon extends StatelessWidget {
       width: width,
       height: height,
       colorFilter:
+          // ignore: avoid-non-null-assertion
           color != null ? ColorFilter.mode(color!, BlendMode.srcIn) : null,
       fit: BoxFit.cover,
     );

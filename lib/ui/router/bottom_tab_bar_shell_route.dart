@@ -20,7 +20,7 @@ class BottomTabBarShellRoute extends ShellRoute {
                 ScaffoldWithNavBar(
                   key: scaffoldKey,
                   tabs: tabs
-                      .map((tab) => tab.copyWith(text: tab.text?.tr()))
+                      .map((tab) => tab.copyWith(text: tab.text.tr()))
                       .toList(),
                   currentNavigator: fauxNav as Navigator,
                   currentRouterState: state,
