@@ -1,8 +1,8 @@
 name: Build
 on:
-  push:     
+  push:
 
-jobs: 
+jobs:
   build:
     name: Build and test
     runs-on: macos-latest
@@ -28,3 +28,5 @@ jobs:
       run: flutter analyze
     - name: Analyze code metrics
       run: flutter pub run dart_code_metrics:metrics analyze lib -r github
+    - name: Test
+      run: flutter test --test-randomize-ordering-seed random
