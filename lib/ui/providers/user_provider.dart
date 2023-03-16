@@ -5,7 +5,6 @@ import 'package:flutter_base/ui/view_models/user_view_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:get_it/get_it.dart';
-import 'package:go_router/go_router.dart';
 
 part 'user_provider.freezed.dart';
 
@@ -45,7 +44,6 @@ class UserProvider extends StateNotifier<UserState> {
   Future<void> logout() async {
     _uiProvider.tryAction(() async {
       await _logoutUseCase();
-      GetIt.I.get<GoRouter>().go('/');
       clearProvider();
     });
   }

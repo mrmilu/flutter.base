@@ -4,4 +4,6 @@ abstract class ITokenRepository {
   Future<void> update(TokenModel token);
   Future<void> clear();
   Future<String> getToken();
+  Stream<String> getTokenStream();
+  void dispose();
 }
