@@ -31,35 +31,34 @@ class EditAvatarProvider
 
   Future<void> chosePhotoFromGallery() async {
     final uiNotifier = ref.watch(uiProvider.notifier);
-    uiNotifier.showGlobalLoader();
-    final avatar = await _imageFromGalleryUseCase();
-    if (avatar != null) {
-      _appRouter.push(
-        '/profile/avatar',
-        extra: EditAvatarPageData(avatar: avatar),
-      );
-    }
-    uiNotifier.hideGlobalLoader();
+    uiNotifier.tryAction(() async {
+      final avatar = await _imageFromGalleryUseCase();
+      if (avatar != null) {
+        _appRouter.push(
+          '/profile/avatar',
+          extra: EditAvatarPageData(avatar: avatar),
+        );
+      }
+    });
   }
 
   Future<void> takePhoto() async {
     final uiNotifier = ref.watch(uiProvider.notifier);
-    uiNotifier.showGlobalLoader();
-    final avatar = await _imageFromCameraUseCase();
-    if (avatar != null) {
-      _appRouter.push(
-        '/profile/avatar',
-        extra: EditAvatarPageData(avatar: avatar),
-      );
-    }
-    uiNotifier.hideGlobalLoader();
+    uiNotifier.tryAction(() async {
+      final avatar = await _imageFromCameraUseCase();
+      if (avatar != null) {
+        _appRouter.push(
+          '/profile/avatar',
+          extra: EditAvatarPageData(avatar: avatar),
+        );
+      }
+    });
   }
 
   Future<void> deleteAvatar() async {
     final userNotifier = ref.watch(userProvider.notifier);
     final uiNotifier = ref.watch(uiProvider.notifier);
     uiNotifier.tryAction(() async {
-      uiNotifier.showGlobalLoader();
       final user = await _userRepository.deleteAvatar();
       userNotifier.setUserData(user.toViewModel());
     });
@@ -68,7 +67,6 @@ class EditAvatarProvider
   Future<void> cropAvatarPhotoAndSave() async {
     final userNotifier = ref.watch(userProvider.notifier);
     final uiNotifier = ref.watch(uiProvider.notifier);
-    uiNotifier.showGlobalLoader();
     uiNotifier
         .tryAction(() async {
           final editorState = state!.currentState;

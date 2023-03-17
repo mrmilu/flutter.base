@@ -17,7 +17,7 @@ class EditAvatarPageData {
   });
 }
 
-class EditAvatarPage extends ConsumerWidget {
+class EditAvatarPage extends StatelessWidget {
   final File avatar;
 
   const EditAvatarPage({
@@ -26,16 +26,19 @@ class EditAvatarPage extends ConsumerWidget {
   });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final editorKey = ref.watch(editAvatarProvider);
-
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: FlutterBaseAppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        trailing: ButtonTertiary(
-          onPressed: () =>
-              ref.watch(editAvatarProvider.notifier).cropAvatarPhotoAndSave(),
-          text: LocaleKeys.profile_avatar_edit_save.tr(),
+        trailing: Consumer(
+          builder: (context, ref, child) {
+            return ButtonTertiary(
+              onPressed: () => ref
+                  .watch(editAvatarProvider.notifier)
+                  .cropAvatarPhotoAndSave(),
+              text: LocaleKeys.profile_avatar_edit_save.tr(),
+            );
+          },
         ),
       ),
       body: Column(
@@ -44,10 +47,15 @@ class EditAvatarPage extends ConsumerWidget {
           ClipRect(
             child: SizedBox.square(
               dimension: MediaQuery.of(context).size.width,
-              child: EditableImagePreview(
-                image: avatar,
-                editorKey: editorKey!,
-                circleMask: true,
+              child: Consumer(
+                builder: (context, ref, child) {
+                  final editorKey = ref.watch(editAvatarProvider);
+                  return EditableImagePreview(
+                    image: avatar,
+                    editorKey: editorKey!,
+                    circleMask: true,
+                  );
+                },
               ),
             ),
           ),
