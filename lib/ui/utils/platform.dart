@@ -1,8 +1,7 @@
-import 'dart:io';
-
 import 'package:flutter_base/core/user/domain/enums/user_device_type.dart';
+import 'package:flutter_base/ui/utils/platform_utils.dart';
 
-final deviceType = Platform.isIOS ? UserDeviceType.ios : _androidDevice;
+final deviceType = PlatformUtils.isIOS ? UserDeviceType.ios : _androidDevice;
 
 final _androidDevice =
-    Platform.isAndroid ? UserDeviceType.android : UserDeviceType.unknown;
+    PlatformUtils.isAndroid ? UserDeviceType.android : UserDeviceType.unknown;
