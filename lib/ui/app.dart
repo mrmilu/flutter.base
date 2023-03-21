@@ -106,7 +106,7 @@ class _AppState extends ConsumerState<App> with TickerProviderStateMixin {
     } finally {
       if (mounted) {
         setState(() {
-          splashOpacity = 0;
+          showApp = true;
         });
       }
       await Future.delayed(const Duration(milliseconds: 2000));
