@@ -44,13 +44,13 @@ class FakeImageCacheManager extends Mock implements ImageCacheManager {
     List<Uint8List> chunks,
     List<int> imageData,
   ) async* {
-    var totalSize = imageData.length;
+    final totalSize = imageData.length;
     var downloaded = 0;
     for (var chunk in chunks) {
       downloaded += chunk.length;
       yield DownloadProgress(url, totalSize, downloaded);
     }
-    var file = MemoryFileSystem().systemTempDirectory.childFile('test.jpg');
+    final file = MemoryFileSystem().systemTempDirectory.childFile('test.jpg');
     await file.writeAsBytes(imageData);
     yield FileInfo(
       file,
