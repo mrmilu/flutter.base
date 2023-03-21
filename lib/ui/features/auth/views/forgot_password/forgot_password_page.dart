@@ -62,7 +62,7 @@ class ForgotPasswordPage extends StatelessWidget {
         return StreamBuilder<Map<String, Object?>?>(
           stream: formModel.form.valueChanges,
           builder: (context, snapshot) {
-            var submitDisabled = true;
+            bool submitDisabled = true;
             if (snapshot.data != null) {
               submitDisabled = formValueIsEmpty(snapshot.data, 'email');
             }

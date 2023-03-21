@@ -1,8 +1,8 @@
 name: Build
 on:
-  push:     
+  push:
 
-jobs: 
+jobs:
   build:
     name: Build and test
     runs-on: macos-latest
@@ -10,10 +10,11 @@ jobs:
     steps:
     - name: Configure enviroment
       uses: actions/checkout@v3
+    - uses: kuhnroyal/flutter-fvm-config-action@v1
     - name: Download flutter
       uses: subosito/flutter-action@v2
       with:
-        flutter-version: '3.7.1'
+        flutter-version: ${{ env.FLUTTER_VERSION }}
         cache: true
     - name: Install dependencies
       run: flutter pub get
@@ -25,3 +26,7 @@ jobs:
       run: flutter format $(find . -name "*.dart" -not -wholename "**/*.g.dart") --set-exit-if-changed
     - name: Analyze code
       run: flutter analyze
+    - name: Analyze code metrics
+      run: flutter pub run dart_code_metrics:metrics analyze lib -r github
+    - name: Test
+      run: flutter test --test-randomize-ordering-seed random

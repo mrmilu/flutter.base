@@ -21,11 +21,10 @@ class ScaffoldBottomSheet extends StatelessWidget {
         color: backgroundColor,
         child: Padding(
           padding: EdgeInsets.only(
-            top: Spacing.sp16,
-            left: Spacing.sp16,
-            bottom: deviceBottomSafeArea + Spacing.sp16,
-            right: Spacing.sp16,
-          ),
+                top: Spacing.sp16,
+                bottom: deviceBottomSafeArea + Spacing.sp16,
+              ) +
+              const EdgeInsets.symmetric(horizontal: Spacing.sp16),
           child: child,
         ),
       ),

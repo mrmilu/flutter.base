@@ -24,16 +24,6 @@ class NotificationsProvider extends AutoDisposeNotifier<void> {
     return;
   }
 
-  Future _init() async {
-    final currentNotificationPermission =
-        await _notificationsService!.getCurrentNotificationPermissions();
-    if (_notificationsService!
-        .hasPermissionsEnabled(currentNotificationPermission)) {
-      initPushNotifications();
-    }
-    debugPrintStack(label: 'Notifications enabled');
-  }
-
   Future<void> initPushNotifications() async {
     if (_notificationsService!.isInitialized) return;
 
@@ -51,6 +41,16 @@ class NotificationsProvider extends AutoDisposeNotifier<void> {
     RemoteMessage notificationResponse,
   ) async {
     debugPrintStack(label: 'notification opened on background');
+  }
+
+  Future _init() async {
+    final currentNotificationPermission =
+        await _notificationsService!.getCurrentNotificationPermissions();
+    if (_notificationsService!
+        .hasPermissionsEnabled(currentNotificationPermission)) {
+      initPushNotifications();
+    }
+    debugPrintStack(label: 'Notifications enabled');
   }
 }
 

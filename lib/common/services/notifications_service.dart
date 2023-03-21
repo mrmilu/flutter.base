@@ -19,17 +19,6 @@ FutureOr disposeNotificationsService(INotificationsService instance) {
   env: onlineEnvironment,
 )
 class NotificationsService implements INotificationsService {
-  late bool _initialized;
-  late final StreamController<CustomNotification> _streamController;
-  FlutterLocalNotificationsPlugin? _flutterLocalNotificationsPlugin;
-  StreamSubscription<RemoteMessage>? _onForegroundMessage;
-  StreamSubscription<RemoteMessage>? _onBackgroundMessage;
-
-  NotificationsService() {
-    _streamController = StreamController<CustomNotification>.broadcast();
-    _initialized = false;
-  }
-
   static const AndroidNotificationChannel channel = AndroidNotificationChannel(
     'high_importance_channel', // id
     'High Importance Notifications', // title
@@ -37,11 +26,22 @@ class NotificationsService implements INotificationsService {
     importance: Importance.max,
   );
 
+  late bool _initialized;
+  late final StreamController<CustomNotification> _streamController;
+  FlutterLocalNotificationsPlugin? _flutterLocalNotificationsPlugin;
+  StreamSubscription<RemoteMessage>? _onForegroundMessage;
+  StreamSubscription<RemoteMessage>? _onBackgroundMessage;
+
   @override
   Stream<CustomNotification> get notificationStream => _streamController.stream;
 
   @override
   bool get isInitialized => _initialized;
+
+  NotificationsService() {
+    _streamController = StreamController<CustomNotification>.broadcast();
+    _initialized = false;
+  }
 
   @override
   Future<void> init({
@@ -66,8 +66,8 @@ class NotificationsService implements INotificationsService {
 
     _onForegroundMessage =
         FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      RemoteNotification? notification = message.notification;
-      AndroidNotification? android = message.notification?.android;
+      final RemoteNotification? notification = message.notification;
+      final AndroidNotification? android = message.notification?.android;
 
       // This shows notifications in foreground for Android
       // If `onMessage` is triggered with a notification, construct our own
@@ -126,26 +126,6 @@ class NotificationsService implements INotificationsService {
     _initialized = true;
   }
 
-  Future<void> _initAndroidLocalNotifications(
-    AndroidForegroundNotificationOpenCallback
-        onForegroundAndroidNotificationOpen,
-  ) async {
-    _flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-    const AndroidInitializationSettings initializationSettingsAndroid =
-        AndroidInitializationSettings('ic_launcher_foreground');
-    const InitializationSettings initializationSettings =
-        InitializationSettings(android: initializationSettingsAndroid);
-    await _flutterLocalNotificationsPlugin!.initialize(
-      initializationSettings,
-      onDidReceiveBackgroundNotificationResponse:
-          onForegroundAndroidNotificationOpen,
-    );
-    _flutterLocalNotificationsPlugin!
-        .resolvePlatformSpecificImplementation<
-            AndroidFlutterLocalNotificationsPlugin>()
-        ?.createNotificationChannel(channel);
-  }
-
   @override
   Future<NotificationPermissionStatus> requestNotificationPermissions() async {
     final settings = await FirebaseMessaging.instance.requestPermission();
@@ -156,16 +136,6 @@ class NotificationsService implements INotificationsService {
   @override
   Future<String?> getToken() {
     return FirebaseMessaging.instance.getToken();
-  }
-
-  CustomNotification _customNotificationFromRemoteMessage(
-    RemoteMessage message,
-  ) {
-    return CustomNotification(
-      data: message.data,
-      title: message.notification?.title ?? '',
-      body: message.notification?.body ?? '',
-    );
   }
 
   @override
@@ -191,5 +161,35 @@ class NotificationsService implements INotificationsService {
     _onBackgroundMessage?.cancel();
     _streamController.close();
     _initialized = false;
+  }
+
+  CustomNotification _customNotificationFromRemoteMessage(
+    RemoteMessage message,
+  ) {
+    return CustomNotification(
+      data: message.data,
+      title: message.notification?.title ?? '',
+      body: message.notification?.body ?? '',
+    );
+  }
+
+  Future<void> _initAndroidLocalNotifications(
+    AndroidForegroundNotificationOpenCallback
+        onForegroundAndroidNotificationOpen,
+  ) async {
+    _flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+    const AndroidInitializationSettings initializationSettingsAndroid =
+        AndroidInitializationSettings('ic_launcher_foreground');
+    const InitializationSettings initializationSettings =
+        InitializationSettings(android: initializationSettingsAndroid);
+    await _flutterLocalNotificationsPlugin!.initialize(
+      initializationSettings,
+      onDidReceiveBackgroundNotificationResponse:
+          onForegroundAndroidNotificationOpen,
+    );
+    _flutterLocalNotificationsPlugin!
+        .resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>()
+        ?.createNotificationChannel(channel);
   }
 }

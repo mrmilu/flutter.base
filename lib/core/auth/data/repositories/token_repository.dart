@@ -8,9 +8,9 @@ import 'package:injectable/injectable.dart';
 class TokenRepository implements ITokenRepository {
   final SecureStorageService _secureStorageService;
 
-  TokenRepository(this._secureStorageService);
-
   final String _tokenKey = 'token';
+
+  TokenRepository(this._secureStorageService);
 
   @override
   Future<void> clear() async {

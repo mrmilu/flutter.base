@@ -2,10 +2,10 @@ import 'package:dio/dio.dart';
 import 'package:flutter_base/core/app/domain/models/app_error.dart';
 
 void errorsHandler(DioError error) {
-  String apiErrorMessage = _djangoApiRest(error.response);
+  final String apiErrorMessage = _djangoApiRest(error.response);
 
   AppErrorCode? errorCode;
-  String path = error.response?.requestOptions.path ?? '';
+  final String path = error.response?.requestOptions.path ?? '';
   if (path.contains('login')) {
     errorCode = AppErrorCode.wrongCredentials;
   }

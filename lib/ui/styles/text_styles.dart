@@ -7,34 +7,34 @@ class Fonts {
 
 class TextStyles {
   // Small
-  static TextStyle smallXxs = const TextStyle(
+  static const TextStyle smallXxs = TextStyle(
     fontFamily: Fonts.poppins,
     letterSpacing: -0.096,
     fontWeight: FontWeight.w400,
     fontSize: 9,
     height: 1.3,
   );
-  static TextStyle smallXs = const TextStyle(
+  static const TextStyle smallXs = TextStyle(
     fontFamily: Fonts.poppins,
     letterSpacing: -0.32,
     fontWeight: FontWeight.w400,
     fontSize: 10,
     height: 1.4,
   );
-  static TextStyle smallS = const TextStyle(
+  static const TextStyle smallS = TextStyle(
     fontFamily: Fonts.poppins,
     fontWeight: FontWeight.w400,
     fontSize: 12,
     height: 1.3,
   );
-  static TextStyle smallM = const TextStyle(
+  static const TextStyle smallM = TextStyle(
     fontFamily: Fonts.poppins,
     fontWeight: FontWeight.w400,
     fontSize: 14,
     height: 1.25,
     letterSpacing: -0.192,
   );
-  static TextStyle smallL = const TextStyle(
+  static const TextStyle smallL = TextStyle(
     fontFamily: Fonts.poppins,
     fontWeight: FontWeight.w400,
     fontSize: 18,
@@ -42,39 +42,39 @@ class TextStyles {
   );
 
   // Mid
-  static TextStyle midXs = const TextStyle(
+  static const TextStyle midXs = TextStyle(
     fontFamily: Fonts.poppins,
     fontWeight: FontWeight.w500,
     fontSize: 10,
     height: 1.4,
     letterSpacing: -0.32,
   );
-  static TextStyle midS = const TextStyle(
+  static const TextStyle midS = TextStyle(
     fontFamily: Fonts.poppins,
     fontWeight: FontWeight.w500,
     fontSize: 12,
     height: 1.3,
   );
-  static TextStyle midM = const TextStyle(
+  static const TextStyle midM = TextStyle(
     fontFamily: Fonts.poppins,
     fontWeight: FontWeight.w500,
     fontSize: 14,
     height: 1.15,
   );
-  static TextStyle midL = const TextStyle(
+  static const TextStyle midL = TextStyle(
     fontFamily: Fonts.poppins,
     fontWeight: FontWeight.w500,
     fontSize: 18,
     height: 1.22,
     letterSpacing: -0.32,
   );
-  static TextStyle midXl = const TextStyle(
+  static const TextStyle midXl = TextStyle(
     fontFamily: Fonts.poppins,
     fontWeight: FontWeight.w500,
     fontSize: 18,
     height: 1.4,
   );
-  static TextStyle midXxl = const TextStyle(
+  static const TextStyle midXxl = TextStyle(
     fontFamily: Fonts.poppins,
     fontWeight: FontWeight.w500,
     fontSize: 32,
@@ -83,28 +83,28 @@ class TextStyles {
   );
 
   // High
-  static TextStyle highS = const TextStyle(
+  static const TextStyle highS = TextStyle(
     fontFamily: Fonts.recoleta,
     fontWeight: FontWeight.w500,
     fontSize: 22,
     height: 1.4,
     letterSpacing: -0.24,
   );
-  static TextStyle highM = const TextStyle(
+  static const TextStyle highM = TextStyle(
     fontFamily: Fonts.recoleta,
     fontWeight: FontWeight.w500,
     fontSize: 24,
     height: 1,
     letterSpacing: -0.24,
   );
-  static TextStyle highL = const TextStyle(
+  static const TextStyle highL = TextStyle(
     fontFamily: Fonts.recoleta,
     fontWeight: FontWeight.w500,
     fontSize: 32,
-    height: 1.20,
+    height: 1.2,
     letterSpacing: -0.4,
   );
-  static TextStyle highXl = const TextStyle(
+  static const TextStyle highXl = TextStyle(
     fontFamily: Fonts.recoleta,
     fontWeight: FontWeight.w500,
     fontSize: 40,

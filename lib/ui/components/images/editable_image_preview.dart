@@ -47,9 +47,7 @@ class CircleEditorCropLayerPainter extends EditorCropLayerPainter {
     Canvas canvas,
     Size size,
     ExtendedImageCropLayerPainter painter,
-  ) {
-    // do nothing
-  }
+  );
 
   @override
   void paintMask(

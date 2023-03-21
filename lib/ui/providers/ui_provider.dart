@@ -21,15 +21,15 @@ class UiState with _$UiState {
 }
 
 class UiProvider extends StateNotifier<UiState> {
-  UiProvider() : super(UiState());
   final _snackBarKey = GetIt.I.get<GlobalKey<ScaffoldMessengerState>>();
   bool _entryAdded = false;
+  UiProvider() : super(UiState());
 
   void showGlobalLoader() {
     if (_entryAdded) return;
     final context = rootNavigatorKey.currentState?.overlay?.context;
     if (context == null) return;
-    OverlayEntry overlayEntry = GlobalCircularProgress.build(context);
+    final OverlayEntry overlayEntry = GlobalCircularProgress.build(context);
     if (rootNavigatorKey.currentState?.overlay == null) return;
     rootNavigatorKey.currentState?.overlay!.insert(overlayEntry);
     _entryAdded = true;
@@ -50,7 +50,7 @@ class UiProvider extends StateNotifier<UiState> {
     SnackBarStyle style = SnackBarStyle.error,
   }) {
     if (_snackBarKey.currentState != null) {
-      SnackBar snackBar = styledSnackBar(
+      final SnackBar snackBar = styledSnackBar(
         _snackBarKey.currentState!.context,
         message,
         style: style,
