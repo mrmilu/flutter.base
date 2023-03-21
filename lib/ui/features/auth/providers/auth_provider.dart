@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_base/core/app/ioc/locator.dart';
-import 'package:flutter_base/core/auth/domain/interfaces/token_repository.dart';
+import 'package:flutter_base/core/auth/domain/use_cases/get_token_stream_use_case.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 enum AuthStatus {
@@ -10,11 +10,11 @@ enum AuthStatus {
 }
 
 class AuthNotifier extends StateNotifier<AuthStatus> {
-  final ITokenRepository tokenRepository = getIt<ITokenRepository>();
+  final tokenStreamUseCase = getIt<GetTokenStreamUseCase>();
   late StreamSubscription subscription;
 
   AuthNotifier() : super(AuthStatus.unauthenticated) {
-    subscription = tokenRepository.getTokenStream().listen(checkState);
+    subscription = tokenStreamUseCase().listen(checkState);
   }
 
   void checkState(String token) {
