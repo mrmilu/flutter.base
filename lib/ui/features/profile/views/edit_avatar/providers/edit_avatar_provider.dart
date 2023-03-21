@@ -1,12 +1,13 @@
 import 'dart:async';
-import 'dart:typed_data';
 
 import 'package:extended_image/extended_image.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_base/common/interfaces/edit_image_service.dart';
 import 'package:flutter_base/core/app/domain/use_cases/image_from_camera_use_case.dart';
 import 'package:flutter_base/core/app/domain/use_cases/image_from_gallery_use_case.dart';
 import 'package:flutter_base/core/user/domain/interfaces/user_repository.dart';
+import 'package:flutter_base/ui/features/profile/crop_editor_helper.dart';
 import 'package:flutter_base/ui/features/profile/views/edit_avatar/edit_avatar_page.dart';
 import 'package:flutter_base/ui/providers/ui_provider.dart';
 import 'package:flutter_base/ui/providers/user_provider.dart';
@@ -74,9 +75,20 @@ class EditAvatarProvider
             return;
           }
           final Rect? rect = editorState.getCropRect();
-          final Uint8List rawImage = editorState.rawImageData;
 
           if (rect == null) return;
+
+          final cropHelper = CropEditorHelper();
+
+          final Uint8List rawImage = Uint8List.fromList(
+            kIsWeb
+                ? (await cropHelper.cropImageDataWithDartLibrary(
+                    state: editorState,
+                  ))!
+                : (await cropHelper.cropImageDataWithNativeLibrary(
+                    state: editorState,
+                  ))!,
+          );
 
           final editedAvatar = await _editImageService.crop(rect, rawImage);
           if (editedAvatar != null) {
@@ -90,6 +102,29 @@ class EditAvatarProvider
             state?.currentState?.reset();
           });
         });
+  }
+
+  /// it may be failed, due to Cross-domain
+  Future<Uint8List> _loadNetwork(ExtendedNetworkImageProvider key) async {
+    try {
+      final response = await HttpClientHelper.get(
+        Uri.parse(key.url),
+        headers: key.headers,
+        timeLimit: key.timeLimit,
+        timeRetry: key.timeRetry,
+        retries: key.retries,
+        cancelToken: key.cancelToken,
+      );
+      return response!.bodyBytes;
+    } on OperationCanceledError catch (_) {
+      return Future<Uint8List>.error(
+        StateError('User cancel request ${key.url}.'),
+      );
+    } catch (e) {
+      return Future<Uint8List>.error(
+        StateError('failed load ${key.url}. \n $e'),
+      );
+    }
   }
 }
 

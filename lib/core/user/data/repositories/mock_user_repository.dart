@@ -1,5 +1,4 @@
-import 'dart:io';
-
+import 'package:cross_file/cross_file.dart';
 import 'package:faker_dart/faker_dart.dart';
 import 'package:flutter_base/core/app/domain/models/environments_list.dart';
 import 'package:flutter_base/core/user/domain/interfaces/user_repository.dart';
@@ -24,7 +23,7 @@ class MockUserRepository implements IUserRepository {
   }
 
   @override
-  Future<User> avatar(File photo) async {
+  Future<User> avatar(XFile photo) async {
     return User(
       email: _faker.email(),
       name: _faker.name.firstName(),

@@ -1,5 +1,5 @@
-import 'dart:io';
+import 'package:cross_file/cross_file.dart';
 
 abstract class IImageCompressService {
-  Future<File?> byQuality(File file, {int quality});
+  Future<XFile?> byQuality(XFile file, {int quality});
 }

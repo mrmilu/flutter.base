@@ -73,6 +73,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
+  browser_image_compression:
+    dependency: "direct main"
+    description:
+      name: browser_image_compression
+      sha256: "47f1e0ab61ddb1f6075a1fa5a8ea35c125926315c7f4724e035bb371f5764b2b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.4"
   build:
     dependency: transitive
     description:
@@ -234,13 +242,13 @@ packages:
     source: hosted
     version: "1.6.1"
   cross_file:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: cross_file
-      sha256: f71079978789bc2fe78d79227f1f8cfe195b31bbd8db2399b0d15a4b96fb843b
+      sha256: "0b0036e8cccbfbe0555fd83c1d31a6f30b77a96b598b35a5d36dd41f718695e9"
       url: "https://pub.dev"
     source: hosted
-    version: "0.3.3+2"
+    version: "0.3.3+4"
   crypto:
     dependency: "direct main"
     description:
@@ -809,7 +817,7 @@ packages:
     source: hosted
     version: "4.0.2"
   image:
-    dependency: "direct overridden"
+    dependency: "direct main"
     description:
       name: image
       sha256: f6ffe2895e3c86c6ad5a27e6302cf807403463e397cb2f0c580f619ac2fa588b
@@ -985,10 +993,10 @@ packages:
     dependency: transitive
     description:
       name: mime
-      sha256: dab22e92b41aa1255ea90ddc4bc2feaf35544fd0728e209638cad041a6e3928a
+      sha256: e4ff8e8564c03f255408decd16e7899da1733852a9110a58fe6d1b817684a63e
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.2"
+    version: "1.0.4"
   mocktail:
     dependency: "direct dev"
     description:
@@ -1795,5 +1803,5 @@ packages:
     source: hosted
     version: "3.1.1"
 sdks:
-  dart: ">=2.19.1 <3.0.0"
+  dart: ">=2.19.3 <3.0.0"
   flutter: ">=3.7.1"

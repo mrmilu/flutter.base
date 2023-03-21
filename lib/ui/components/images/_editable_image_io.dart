@@ -1,12 +1,12 @@
 import 'dart:io';
 
+import 'package:cross_file/cross_file.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_base/ui/components/images/circle_editor_crop_layer_painter.dart';
 
 class EditableImagePreview extends StatelessWidget {
-  // ignore: no-object-declaration
-  final Object image;
+  final XFile image;
   final GlobalKey<ExtendedImageEditorState> editorKey;
   final bool circleMask;
 
@@ -20,7 +20,7 @@ class EditableImagePreview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ExtendedImage.file(
-      image as File,
+      File(image.path),
       extendedImageEditorKey: editorKey,
       mode: ExtendedImageMode.editor,
       fit: BoxFit.contain,

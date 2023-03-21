@@ -1,7 +1,7 @@
-import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui';
 
+import 'package:cross_file/cross_file.dart';
 import 'package:flutter_base/common/interfaces/edit_image_service.dart';
 import 'package:flutter_base/common/interfaces/fs_repository.dart';
 import 'package:image_editor/image_editor.dart';
@@ -14,7 +14,7 @@ class EditImageService implements IEditImageService {
   EditImageService(this._fsRepository);
 
   @override
-  Future<File?> crop(Rect rect, Uint8List rawImage, {int quality = 35}) async {
+  Future<XFile?> crop(Rect rect, Uint8List rawImage, {int quality = 35}) async {
     final ImageEditorOption option = ImageEditorOption();
 
     option.addOption(ClipOption.fromRect(rect));

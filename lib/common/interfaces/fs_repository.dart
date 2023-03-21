@@ -1,8 +1,9 @@
-import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:cross_file/cross_file.dart';
+
 abstract class IFsRepository {
-  Future<File> createFile(CreateFileInput input);
+  Future<XFile> createFile(CreateFileInput input);
 
   Future<void> deleteDirectory(String path);
 }
