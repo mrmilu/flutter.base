@@ -32,8 +32,7 @@ class ForgotPasswordProvider extends StateNotifier<ForgotPasswordConfirmState> {
 
   void resendRequestChange(String email) async {
     _uiProvider.tryAction(() async {
-      final input = ResendResetPasswordEmailUseCaseInput(email: email);
-      await _resendResetPasswordEmailUseCase(input);
+      await _resendResetPasswordEmailUseCase(email);
       state = state.copyWith(
         pageTitle: LocaleKeys.forgotPasswordConfirm_resendTitle.tr(),
       );

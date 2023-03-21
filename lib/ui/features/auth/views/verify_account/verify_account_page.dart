@@ -55,9 +55,7 @@ class _VerifyAccountPageState extends ConsumerState<VerifyAccountPage> {
                     return ButtonPrimary(
                       key: const Key('verify-button'),
                       onPressed: userVerified
-                          ? () {
-                              GoRouter.of(context).go('/home');
-                            }
+                          ? () => GoRouter.of(context).go('/home')
                           : null,
                       text: LocaleKeys.verifyAccount_continue.tr(),
                     );
