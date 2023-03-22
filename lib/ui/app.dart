@@ -6,6 +6,7 @@ import 'package:flutter_base/core/app/domain/models/app_error.dart';
 import 'package:flutter_base/core/app/domain/use_cases/init_app_use_case.dart';
 import 'package:flutter_base/ui/components/views/splash_view.dart';
 import 'package:flutter_base/ui/controllers/deep_link_controller.dart';
+import 'package:flutter_base/ui/features/auth/providers/auth_provider.dart';
 import 'package:flutter_base/ui/i18n/locale_keys.g.dart';
 import 'package:flutter_base/ui/providers/ui_provider.dart';
 import 'package:flutter_base/ui/providers/user_provider.dart';
@@ -125,10 +126,17 @@ class _AppState extends ConsumerState<App> with TickerProviderStateMixin {
   }
 }
 
-class _MaterialApp extends StatelessWidget {
+class _MaterialApp extends ConsumerWidget {
   final router = GetIt.I.get<GoRouter>();
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    ref.listen(authProvider, (previous, next) {
+      if (previous == AuthStatus.authenticated &&
+          next == AuthStatus.unauthenticated) {
+        router.go('/');
+      }
+    });
     return ReactiveFormConfig(
       validationMessages: {
         ValidationMessage.required: (_) => LocaleKeys.errors_form_required.tr(),
