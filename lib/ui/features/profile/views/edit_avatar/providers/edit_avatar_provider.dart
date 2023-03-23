@@ -7,7 +7,6 @@ import 'package:flutter_base/common/interfaces/edit_image_service.dart';
 import 'package:flutter_base/core/app/domain/use_cases/image_from_camera_use_case.dart';
 import 'package:flutter_base/core/app/domain/use_cases/image_from_gallery_use_case.dart';
 import 'package:flutter_base/core/user/domain/interfaces/user_repository.dart';
-import 'package:flutter_base/ui/features/profile/crop_editor_helper.dart';
 import 'package:flutter_base/ui/features/profile/views/edit_avatar/edit_avatar_page.dart';
 import 'package:flutter_base/ui/providers/ui_provider.dart';
 import 'package:flutter_base/ui/providers/user_provider.dart';
@@ -78,16 +77,12 @@ class EditAvatarProvider
 
           if (rect == null) return;
 
-          final cropHelper = CropEditorHelper();
-
           final Uint8List rawImage = Uint8List.fromList(
-            kIsWeb
-                ? (await cropHelper.cropImageDataWithDartLibrary(
-                    state: editorState,
-                  ))!
-                : (await cropHelper.cropImageDataWithNativeLibrary(
-                    state: editorState,
-                  ))!,
+            kIsWeb &&
+                    editorState.widget.extendedImageState.imageWidget.image
+                        is ExtendedNetworkImageProvider
+                ? await _loadNetwork(editorState)
+                : editorState.rawImageData,
           );
 
           final editedAvatar = await _editImageService.crop(rect, rawImage);
@@ -105,7 +100,11 @@ class EditAvatarProvider
   }
 
   /// it may be failed, due to Cross-domain
-  Future<Uint8List> _loadNetwork(ExtendedNetworkImageProvider key) async {
+  Future<Uint8List> _loadNetwork(
+    ExtendedImageEditorState state,
+  ) async {
+    final key = state.widget.extendedImageState.imageWidget.image
+        as ExtendedNetworkImageProvider;
     try {
       final response = await HttpClientHelper.get(
         Uri.parse(key.url),
