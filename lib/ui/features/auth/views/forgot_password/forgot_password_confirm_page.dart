@@ -47,6 +47,7 @@ class ForgotPasswordConfirmPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               ButtonPrimary(
+                key: const Key('forgot-pass-confirm-button'),
                 onPressed: data.token?.isNotEmpty == true
                     ? () {
                         GoRouter.of(context).push(
@@ -65,6 +66,7 @@ class ForgotPasswordConfirmPage extends StatelessWidget {
                 Consumer(
                   builder: (context, ref, _) {
                     return ButtonTertiary(
+                      key: const Key('forgot-pass-confirm-resend-button'),
                       onPressed: () => ref
                           .read(forgotPasswordConfirmProvider.notifier)
                           .resendRequestChange(data.email!),

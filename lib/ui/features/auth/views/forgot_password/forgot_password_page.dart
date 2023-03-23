@@ -38,6 +38,7 @@ class ForgotPasswordPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     EmailReactiveInput(
+                      key: const Key('forgot-password-email'),
                       placeholder:
                           LocaleKeys.forgotPassword_form_email_label.tr(),
                       formControl: formModel.emailControl,
@@ -67,6 +68,7 @@ class ForgotPasswordPage extends StatelessWidget {
             }
 
             return ButtonPrimary(
+              key: const Key('forgot-password-button'),
               text: LocaleKeys.forgotPassword_form_submit.tr(),
               onPressed: submitDisabled
                   ? null

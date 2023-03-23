@@ -34,6 +34,7 @@ class EditProfilePage extends ConsumerWidget {
                   children: [
                     BoxSpacer.v16(),
                     ReactiveTextField(
+                      key: const Key('profile-name-text-field'),
                       formControl: formModel.nameControl,
                       scrollPadding: textFieldScrollPadding(context: context),
                       decoration: InputDecoration(
@@ -42,6 +43,7 @@ class EditProfilePage extends ConsumerWidget {
                     ),
                     BoxSpacer.v32(),
                     ButtonPrimary(
+                      key: const Key('profile-save-button'),
                       text: LocaleKeys.profile_edit_form_submit.tr(),
                       onPressed: () => ref
                           .read(editProfileProvider.notifier)

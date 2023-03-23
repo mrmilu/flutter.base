@@ -26,6 +26,7 @@ class ChangePasswordSuccessPage extends ConsumerWidget {
       appBar: FlutterBaseAppBar.dialog(customPopRoute: '/login'),
       bottomSheet: ScaffoldBottomSheet(
         child: ButtonPrimary(
+          key: const Key('change-password-success-button'),
           onPressed: () {
             GoRouter.of(context).go('/login');
           },
