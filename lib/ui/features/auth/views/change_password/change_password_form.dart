@@ -36,12 +36,14 @@ class _BasicLoginFormWidgetState extends ConsumerState<ChangePasswordForm> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             PasswordReactiveInput(
+              key: const Key('change-password-pass1'),
               formControl: formModel.passwordControl,
               placeholder: LocaleKeys.changePassword_form_password_label.tr(),
               onSubmitted: (control) => formModel.form.focus('repeatPassword'),
             ),
             BoxSpacer.v16(),
             PasswordReactiveInput(
+              key: const Key('change-password-pass2'),
               formControl: formModel.repeatPasswordControl,
               placeholder:
                   LocaleKeys.changePassword_form_repeatPassword_label.tr(),
@@ -54,6 +56,7 @@ class _BasicLoginFormWidgetState extends ConsumerState<ChangePasswordForm> {
             ReactiveChangePasswordModelFormConsumer(
               builder: (context, consumerModel, _) {
                 return ButtonPrimary(
+                  key: const Key('change-password-button'),
                   text: LocaleKeys.changePassword_form_submit.tr(),
                   onPressed: consumerModel.form.valid
                       ? () {

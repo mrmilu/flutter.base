@@ -39,6 +39,7 @@ class ProfilePage extends ConsumerWidget {
                   context,
                 ),
                 child: const CircleAvatar(
+                  key: Key('profile-avatar'),
                   radius: 25,
                   child: ClipOval(
                     child: FlutterBaseNetworkImage(
@@ -54,6 +55,7 @@ class ProfilePage extends ConsumerWidget {
             ],
           ),
           ListTile(
+            key: const Key('edit-profile-button'),
             leading: const Icon(Icons.edit),
             title: Text(LocaleKeys.profile_options_edit.tr()),
             onTap: () {
@@ -62,6 +64,7 @@ class ProfilePage extends ConsumerWidget {
           ),
           const Divider(),
           ListTile(
+            key: const Key('logout-button'),
             leading: const Icon(Icons.power_settings_new),
             onTap: () {
               ref.read(userProvider.notifier).logout();

@@ -43,5 +43,13 @@ class DeepLinkController {
         ),
       );
     }
+    if (deepLink.queryParameters.containsKey('type') &&
+        deepLink.queryParameters['type'] == 'verify-account' &&
+        deepLink.queryParameters.containsKey('key')) {
+      _appRouter.pushReplacement(
+        '/verify-account',
+        extra: deepLink.queryParameters['key'],
+      );
+    }
   }
 }

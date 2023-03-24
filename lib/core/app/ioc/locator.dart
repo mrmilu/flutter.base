@@ -15,8 +15,11 @@ import 'package:flutter_base/common/services/share_service.dart';
 import 'package:flutter_base/common/services/social_auth_service.dart';
 import 'package:flutter_base/core/app/domain/interfaces/env_vars.dart';
 import 'package:flutter_base/core/app/domain/models/env_vars.dart';
+import 'package:flutter_base/core/app/domain/models/environments_list.dart';
 import 'package:flutter_base/core/app/ioc/locator.config.dart';
 import 'package:flutter_base/ui/router/app_router.dart';
+// ignore: depend_on_referenced_packages
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
@@ -49,7 +52,7 @@ abstract class RegisterModule {
   @Injectable(as: IImageCompressService)
   ImageCompressService get getImageCompressService => ImageCompressService();
 
-  @Singleton(as: IDeepLinkService)
+  @Singleton(as: IDeepLinkService, env: noTestEnvironment)
   DeepLinkService get getDeepLinkService => DeepLinkService();
 
   @Injectable(as: IEditImageService)
@@ -65,4 +68,7 @@ abstract class RegisterModule {
   @Singleton()
   GlobalKey<ScaffoldMessengerState> get getScaffoldKey =>
       GlobalKey<ScaffoldMessengerState>();
+
+  @LazySingleton(env: noTestEnvironment)
+  BaseCacheManager get cacheManager => DefaultCacheManager();
 }

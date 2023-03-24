@@ -30,28 +30,20 @@ class _GlobalProgressWidget extends ConsumerStatefulWidget {
 
 class __GlobalProgressWidgetState extends ConsumerState<_GlobalProgressWidget> {
   double _opacity = 0;
-  bool _opened = false;
 
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      setState(() => _opacity = 1);
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    if (_opacity == 0 && !_opened) {
-      Future.delayed(Duration.zero, () {
-        setState(() {
-          _opacity = 1;
-          _opened = true;
-        });
-      });
-    }
     ref.listen<bool>(hideOverlayProvider, (prevState, nextState) {
       if (nextState) {
-        setState(() {
-          _opacity = 0;
-        });
+        setState(() => _opacity = 0);
       }
     });
 
