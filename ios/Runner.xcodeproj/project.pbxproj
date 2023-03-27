@@ -417,7 +417,6 @@
 /* Begin XCBuildConfiguration section */
 		190FFBE770C18FD0DC40D76D /* Release-dev */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4AA7F7F67BE4C2A203242C7D /* devRelease.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "$(ASSET_PREFIX)AppIcon";
@@ -487,7 +486,6 @@
 		};
 		226A4764BD99C00304D83383 /* Debug-beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5B4C0853D412CEE7097DFCB9 /* betaDebug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "$(ASSET_PREFIX)AppIcon";
@@ -637,7 +635,6 @@
 		};
 		24D8A3E34DC32C0C026BE1B0 /* Profile-live */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FEC33162588B62AD2B4D648F /* liveProfile.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "$(ASSET_PREFIX)AppIcon";
@@ -705,7 +702,6 @@
 		};
 		2BA5D07EE70A2F65BB242F06 /* Debug-dev */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 18B6CA50B42BDAD6756182F3 /* devDebug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "$(ASSET_PREFIX)AppIcon";
@@ -904,7 +900,6 @@
 		};
 		4FB3F51C68790E82ACDF18E5 /* Release-live */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 52C4BEFA7D9BBB1A42496934 /* liveRelease.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "$(ASSET_PREFIX)AppIcon";
@@ -974,7 +969,6 @@
 		};
 		921A376D2E7E5B1AA6EF5B72 /* Profile-beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EDED93A8CDA934D706D7438B /* betaProfile.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "$(ASSET_PREFIX)AppIcon";
@@ -1204,7 +1198,6 @@
 		};
 		A955186595BBBF5B92D0802D /* Release-beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FA4FD9C4A7D24E0B03B97F17 /* betaRelease.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "$(ASSET_PREFIX)AppIcon";
@@ -1274,7 +1267,6 @@
 		};
 		DE1A8C0F6D5AD6C6F3F65D89 /* Profile-dev */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 71BCB18DFF7BCBF46E21ED2F /* devProfile.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "$(ASSET_PREFIX)AppIcon";
@@ -1342,7 +1334,6 @@
 		};
 		F24F0AD0D9097B71CEC80BB9 /* Debug-live */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6D4A43FE88D5EE1D438E41AB /* liveDebug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "$(ASSET_PREFIX)AppIcon";
