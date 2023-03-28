@@ -87,7 +87,7 @@ class ForgotPasswordConfirmPage extends StatelessWidget {
                 builder: (context, ref, _) {
                   final title = ref.watch(
                     forgotPasswordConfirmProvider
-                        .select((state) => state.pageTitle!),
+                        .select((state) => state.pageTitle ?? ''),
                   );
                   return HighTextL(title);
                 },
