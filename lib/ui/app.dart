@@ -60,7 +60,7 @@ class _AppState extends ConsumerState<App> with TickerProviderStateMixin {
               Positioned.fill(
                 child: Visibility(
                   visible: showApp,
-                  child: _MaterialApp(),
+                  child: const AppView(),
                 ),
               ),
               if (snapshot.connectionState == ConnectionState.waiting)
@@ -126,17 +126,21 @@ class _AppState extends ConsumerState<App> with TickerProviderStateMixin {
   }
 }
 
-class _MaterialApp extends ConsumerWidget {
-  final router = GetIt.I.get<GoRouter>();
+@visibleForTesting
+class AppView extends ConsumerWidget {
+  const AppView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final router = GetIt.I.get<GoRouter>();
+
     ref.listen(authProvider, (previous, next) {
       if (previous == AuthStatus.authenticated &&
           next == AuthStatus.unauthenticated) {
         router.go('/');
       }
     });
+
     return ReactiveFormConfig(
       validationMessages: {
         ValidationMessage.required: (_) => LocaleKeys.errors_form_required.tr(),

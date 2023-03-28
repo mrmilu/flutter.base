@@ -40,7 +40,7 @@ abstract class MockTestModule {
   @LazySingleton(env: testEnvironment)
   BaseCacheManager get cacheManager => FakeImageCacheManager();
 
-  // Add more mocks if they are necessary in the tests
+// Add more mocks if they are necessary in the tests
 }
 
 class MockTestNotificationsService extends Mock
