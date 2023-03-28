@@ -52,7 +52,7 @@ class EditAvatarPage extends StatelessWidget {
                   return EditableImagePreview(
                     image: avatar,
                     editorKey: editorKey!,
-                    circleMask: true,
+                    enableCircleMask: true,
                   );
                 },
               ),
