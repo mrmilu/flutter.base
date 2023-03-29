@@ -7,7 +7,7 @@ import 'package:flutter_base/ui/features/auth/containers/social_auth/social_auth
 import 'package:flutter_base/ui/i18n/locale_keys.g.dart';
 import 'package:flutter_base/ui/styles/colors.dart';
 import 'package:flutter_base/ui/styles/text_styles.dart';
-import 'package:flutter_base/ui/utils/platform_utils.dart';
+import 'package:flutter_mrmilu/flutter_mrmilu.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 enum SocialAuthType { login, singUp }

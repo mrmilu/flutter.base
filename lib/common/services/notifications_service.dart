@@ -5,8 +5,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_base/common/interfaces/notifications_service.dart';
 import 'package:flutter_base/common/models/notifications_service.dart';
 import 'package:flutter_base/core/app/domain/models/environments_list.dart';
-import 'package:flutter_base/ui/utils/platform_utils.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_mrmilu/flutter_mrmilu.dart';
 import 'package:injectable/injectable.dart';
 
 FutureOr disposeNotificationsService(INotificationsService instance) {

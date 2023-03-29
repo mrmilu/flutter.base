@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_base/ui/utils/platform_utils.dart';
+import 'package:flutter_mrmilu/flutter_mrmilu.dart';
 
 class CircularProgress extends StatelessWidget {
   final double radius;

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_base/ui/utils/platform_utils.dart';
+import 'package:flutter_mrmilu/flutter_mrmilu.dart';
 import 'package:go_router/go_router.dart';
 
 Page platformPage(
