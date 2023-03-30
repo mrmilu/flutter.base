@@ -42,7 +42,7 @@ class ChangePasswordPage extends ConsumerWidget {
             ChangePasswordForm(
               token: data.token,
               uid: data.uid,
-            )
+            ),
           ],
         ),
       ),

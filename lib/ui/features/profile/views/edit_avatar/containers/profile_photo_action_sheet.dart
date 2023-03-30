@@ -7,6 +7,21 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class ProfilePhotoActionSheet extends ConsumerWidget {
   const ProfilePhotoActionSheet({super.key});
 
+  void _photoFromGallery(BuildContext context, WidgetRef ref) {
+    Navigator.pop(context);
+    ref.read(editAvatarProvider.notifier).chosePhotoFromGallery();
+  }
+
+  void _photoFromCamera(BuildContext context, WidgetRef ref) {
+    Navigator.pop(context);
+    ref.read(editAvatarProvider.notifier).takePhoto();
+  }
+
+  void _deleteAvatar(BuildContext context, WidgetRef ref) {
+    Navigator.pop(context);
+    ref.read(editAvatarProvider.notifier).deleteAvatar();
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return CupertinoActionSheet(
@@ -32,23 +47,8 @@ class ProfilePhotoActionSheet extends ConsumerWidget {
           child: Text(
             LocaleKeys.profile_avatar_options_delete.tr(),
           ),
-        )
+        ),
       ],
     );
-  }
-
-  void _photoFromGallery(BuildContext context, WidgetRef ref) {
-    Navigator.pop(context);
-    ref.read(editAvatarProvider.notifier).chosePhotoFromGallery();
-  }
-
-  void _photoFromCamera(BuildContext context, WidgetRef ref) {
-    Navigator.pop(context);
-    ref.read(editAvatarProvider.notifier).takePhoto();
-  }
-
-  void _deleteAvatar(BuildContext context, WidgetRef ref) {
-    Navigator.pop(context);
-    ref.read(editAvatarProvider.notifier).deleteAvatar();
   }
 }

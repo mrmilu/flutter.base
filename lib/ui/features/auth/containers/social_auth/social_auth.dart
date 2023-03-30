@@ -20,6 +20,32 @@ class SocialAuth extends ConsumerWidget {
     this.type = SocialAuthType.login,
   });
 
+  void _appleAuth(WidgetRef ref) {
+    if (type == SocialAuthType.login) {
+      ref
+          .read(socialAuthProvider.notifier)
+          .socialLogin(SocialAuthServiceProvider.apple);
+    }
+    if (type == SocialAuthType.singUp) {
+      ref
+          .read(socialAuthProvider.notifier)
+          .socialSignUp(SocialAuthServiceProvider.apple);
+    }
+  }
+
+  void _googleAuth(WidgetRef ref) {
+    if (type == SocialAuthType.login) {
+      ref
+          .read(socialAuthProvider.notifier)
+          .socialLogin(SocialAuthServiceProvider.google);
+    }
+    if (type == SocialAuthType.singUp) {
+      ref
+          .read(socialAuthProvider.notifier)
+          .socialSignUp(SocialAuthServiceProvider.google);
+    }
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Column(
@@ -49,7 +75,7 @@ class SocialAuth extends ConsumerWidget {
           onPressed: () {
             _googleAuth(ref);
           },
-        )
+        ),
       ],
     );
   }
@@ -61,30 +87,4 @@ class SocialAuth extends ConsumerWidget {
   String get _googleBtnTxt => type == SocialAuthType.singUp
       ? LocaleKeys.login_socialAuth_signUp_google.tr()
       : LocaleKeys.login_socialAuth_login_google.tr();
-
-  void _appleAuth(WidgetRef ref) {
-    if (type == SocialAuthType.login) {
-      ref
-          .read(socialAuthProvider.notifier)
-          .socialLogin(SocialAuthServiceProvider.apple);
-    }
-    if (type == SocialAuthType.singUp) {
-      ref
-          .read(socialAuthProvider.notifier)
-          .socialSignUp(SocialAuthServiceProvider.apple);
-    }
-  }
-
-  void _googleAuth(WidgetRef ref) {
-    if (type == SocialAuthType.login) {
-      ref
-          .read(socialAuthProvider.notifier)
-          .socialLogin(SocialAuthServiceProvider.google);
-    }
-    if (type == SocialAuthType.singUp) {
-      ref
-          .read(socialAuthProvider.notifier)
-          .socialSignUp(SocialAuthServiceProvider.google);
-    }
-  }
 }

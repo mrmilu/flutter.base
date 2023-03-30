@@ -28,34 +28,28 @@ class CircularProgress extends StatelessWidget {
 
     return Theme(
       data: themeData,
-      child: _getPlatformIndicator,
+      child: PlatformUtils.isIOS
+          ? CupertinoActivityIndicator(radius: radius)
+          : !androidProgressInsideStack
+              ? SizedBox.square(
+                  dimension: radius * 2,
+                  child: Center(
+                    child: CircularProgressIndicator(color: _indicatorColor),
+                  ),
+                )
+              : Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Positioned(
+                      height: radius * 2,
+                      width: radius * 2,
+                      child: Center(
+                        child:
+                            CircularProgressIndicator(color: _indicatorColor),
+                      ),
+                    ),
+                  ],
+                ),
     );
-  }
-
-  Widget get _getPlatformIndicator {
-    if (PlatformUtils.isIOS) {
-      return CupertinoActivityIndicator(radius: radius);
-    } else {
-      if (!androidProgressInsideStack) {
-        return SizedBox.square(
-          dimension: radius * 2,
-          child: Center(
-            child: CircularProgressIndicator(color: _indicatorColor),
-          ),
-        );
-      }
-      return Stack(
-        alignment: Alignment.center,
-        children: [
-          Positioned(
-            height: radius * 2,
-            width: radius * 2,
-            child: Center(
-              child: CircularProgressIndicator(color: _indicatorColor),
-            ),
-          )
-        ],
-      );
-    }
   }
 }

@@ -34,7 +34,7 @@ void main() {
   group('Signup Page Tests', () {
     setUpAll(() {
       final tokenRepo = getIt<ITokenRepository>();
-      when(() => tokenRepo.update(any())).thenAnswer((_) async {});
+      when(() => tokenRepo.update(any())).thenAnswer((_) => Future.value());
       final notificationService = getIt<INotificationsService>();
       when(() => notificationService.getToken()).thenAnswer((_) async => null);
       final userRepo = getIt<IUserRepository>();
@@ -114,12 +114,12 @@ void main() {
 }
 
 void _checkRegisterButtonEnabled(WidgetTester tester, bool isEnabled) {
-  final button = find.byKey(const Key('sing_up_button'));
+  final button = find.byKey(const Key('sign_up_button'));
   expectButtonEnabled(tester, button, isEnabled: isEnabled);
 }
 
 Future<void> _tapRegisterButton(WidgetTester tester) async {
-  final signUpButton = find.byKey(const Key('sing_up_button'));
+  final signUpButton = find.byKey(const Key('sign_up_button'));
   await tester.tap(signUpButton);
   await tester.pumpAndSettle();
 }
@@ -132,16 +132,16 @@ Future<void> _enterSignUpData(WidgetTester tester) async {
 }
 
 Future<void> _enterName(WidgetTester tester, String name) async {
-  final finder = find.byKey(const Key('sing_up_name'));
+  final finder = find.byKey(const Key('sign_up_name'));
   await tester.enterText(finder, name);
 }
 
 Future<void> _enterEmail(WidgetTester tester, String email) async {
-  final finder = find.byKey(const Key('sing_up_email'));
+  final finder = find.byKey(const Key('sign_up_email'));
   await tester.enterText(finder, email);
 }
 
 Future<void> _enterPassword(WidgetTester tester, String password) async {
-  final finder = find.byKey(const Key('sing_up_pass'));
+  final finder = find.byKey(const Key('sign_up_pass'));
   await tester.enterText(finder, password);
 }

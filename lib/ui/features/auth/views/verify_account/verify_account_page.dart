@@ -30,6 +30,14 @@ class _VerifyAccountPageState extends ConsumerState<VerifyAccountPage> {
     super.initState();
   }
 
+  void _verifyAccount() {
+    if (widget.token?.isNotEmpty ?? false) {
+      WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+        ref.read(verifyAccountProvider).verifyAccount(widget.token ?? '');
+      });
+    }
+  }
+
   @override
   void didUpdateWidget(covariant VerifyAccountPage oldWidget) {
     _verifyAccount();
@@ -78,13 +86,5 @@ class _VerifyAccountPageState extends ConsumerState<VerifyAccountPage> {
         ),
       ),
     );
-  }
-
-  void _verifyAccount() {
-    if (widget.token != null) {
-      WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-        ref.read(verifyAccountProvider).verifyAccount(widget.token!);
-      });
-    }
   }
 }

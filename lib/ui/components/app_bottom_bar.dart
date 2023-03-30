@@ -11,13 +11,13 @@ import 'package:flutter_base/ui/styles/text_styles.dart';
 class AppBottomBarItem {
   final IconData? icon;
   final IconData? selectedIcon;
-  final String? text;
+  final String text;
   final Widget Function(bool selected)? customWidgetBuilder;
 
   const AppBottomBarItem({
     this.icon,
     this.selectedIcon,
-    this.text,
+    this.text = '',
     this.customWidgetBuilder,
   }) : assert(
           customWidgetBuilder != null || icon != null || selectedIcon != null,
@@ -98,22 +98,24 @@ class _AppBottomBarItemWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             item.customWidgetBuilder != null
-                ? item.customWidgetBuilder!(selected)
+                ? item.customWidgetBuilder?.call(selected) ??
+                    const SizedBox.shrink()
                 : FlutterBaseIcon(
                     icon:
+                        // ignore: avoid-non-null-assertion
                         selected ? item.selectedIcon ?? item.icon! : item.icon!,
                     color: _color,
                   ),
-            if (item.text != null) ...[
+            if (item.text.isNotEmpty) ...[
               BoxSpacer.v8(),
               DefaultTextStyle(
                 style: TextStyles.midXs,
                 child: MidTextXs(
-                  item.text!,
+                  item.text,
                   color: _color,
                 ),
-              )
-            ]
+              ),
+            ],
           ],
         ),
       ),

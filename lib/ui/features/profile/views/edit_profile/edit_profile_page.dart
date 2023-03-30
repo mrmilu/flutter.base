@@ -17,7 +17,7 @@ class EditProfilePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final formModel = ref.watch(editProfileProvider)!;
+    final formModel = ref.watch(editProfileProvider);
 
     return FormScaffold(
       appBar: FlutterBaseAppBar(),
@@ -53,7 +53,7 @@ class EditProfilePage extends ConsumerWidget {
                 );
               },
             ),
-          )
+          ),
         ],
       ),
     );

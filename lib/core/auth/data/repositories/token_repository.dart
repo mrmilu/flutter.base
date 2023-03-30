@@ -11,10 +11,9 @@ class TokenRepository implements ITokenRepository {
   final _controller = StreamController<String>();
 
   final SecureStorageService _secureStorageService;
+  final String _tokenKey = 'token';
 
   TokenRepository(this._secureStorageService);
-
-  final String _tokenKey = 'token';
 
   @override
   Future<void> clear() async {

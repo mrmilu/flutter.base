@@ -56,7 +56,7 @@ class MockAuthRepository implements IAuthRepository {
   }
 
   @override
-  Future socialAuth(String token) async {
-    await Future.delayed(const Duration(milliseconds: 500));
+  Future<String> socialAuth(String token) async {
+    return _faker.datatype.uuid();
   }
 }

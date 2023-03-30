@@ -42,44 +42,6 @@ class _AppState extends ConsumerState<App> with TickerProviderStateMixin {
     _initAppFuture = _initialize();
   }
 
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: _initAppFuture,
-      builder: (context, snapshot) {
-        return Directionality(
-          textDirection: TextDirection.ltr,
-          child: Stack(
-            children: [
-              Positioned.fill(
-                child: Visibility(
-                  visible: showApp,
-                  child: const AppView(),
-                ),
-              ),
-              if (snapshot.connectionState == ConnectionState.waiting)
-                Positioned.fill(
-                  child: AnimatedOpacity(
-                    opacity: splashOpacity,
-                    duration: const Duration(milliseconds: 500),
-                    child: MaterialApp(
-                      home: SplashView(controller: _controller),
-                    ),
-                  ),
-                ),
-            ],
-          ),
-        );
-      },
-    );
-  }
-
   Future<void> _initialize() async {
     bool hasError = false;
     _controller.repeat();
@@ -124,9 +86,48 @@ class _AppState extends ConsumerState<App> with TickerProviderStateMixin {
       }
     }
   }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+      future: _initAppFuture,
+      builder: (context, snapshot) {
+        return Directionality(
+          textDirection: TextDirection.ltr,
+          child: Stack(
+            children: [
+              Positioned.fill(
+                child: Visibility(
+                  visible: showApp,
+                  child: const AppView(),
+                ),
+              ),
+              if (snapshot.connectionState == ConnectionState.waiting)
+                Positioned.fill(
+                  child: AnimatedOpacity(
+                    opacity: splashOpacity,
+                    duration: const Duration(milliseconds: 500),
+                    child: MaterialApp(
+                      home: SplashView(controller: _controller),
+                    ),
+                  ),
+                ),
+            ],
+          ),
+        );
+      },
+    );
+  }
 }
 
 @visibleForTesting
+// ignore: prefer-single-widget-per-file
 class AppView extends ConsumerWidget {
   const AppView({super.key});
 
@@ -144,7 +145,7 @@ class AppView extends ConsumerWidget {
     return ReactiveFormConfig(
       validationMessages: {
         ValidationMessage.required: (_) => LocaleKeys.errors_form_required.tr(),
-        ValidationMessage.email: (_) => LocaleKeys.errors_form_emailFormat.tr()
+        ValidationMessage.email: (_) => LocaleKeys.errors_form_emailFormat.tr(),
       },
       child: MaterialApp.router(
         theme: appThemeData,

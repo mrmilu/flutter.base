@@ -51,7 +51,7 @@ class EditAvatarPage extends StatelessWidget {
                   final editorKey = ref.watch(editAvatarProvider);
                   return EditableImagePreview(
                     image: avatar,
-                    editorKey: editorKey!,
+                    editorKey: editorKey,
                     enableCircleMask: true,
                   );
                 },

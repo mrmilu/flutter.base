@@ -8,13 +8,11 @@ class AssetPickerService implements IAssetPickerService {
 
   @override
   Future<XFile?> imageFromCamera() async {
-    final image = await _picker.pickImage(source: ImageSource.camera);
-    return image?.path != null ? XFile(image!.path) : null;
+    return _picker.pickImage(source: ImageSource.camera);
   }
 
   @override
   Future<XFile?> imageFromGallery() async {
-    final image = await _picker.pickImage(source: ImageSource.gallery);
-    return image?.path != null ? XFile(image!.path) : null;
+    return _picker.pickImage(source: ImageSource.gallery);
   }
 }

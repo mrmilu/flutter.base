@@ -11,7 +11,7 @@ part 'forgot_password_confirm_provider.freezed.dart';
 @freezed
 class ForgotPasswordConfirmState with _$ForgotPasswordConfirmState {
   factory ForgotPasswordConfirmState({
-    String? pageTitle,
+    @Default('') String pageTitle,
     @Default(false) bool resend,
   }) = _ForgotPasswordConfirmState;
 }

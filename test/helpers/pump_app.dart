@@ -82,7 +82,7 @@ extension PumpApp on WidgetTester {
                           ValidationMessage.required: (_) =>
                               LocaleKeys.errors_form_required.tr(),
                           ValidationMessage.email: (_) =>
-                              LocaleKeys.errors_form_emailFormat.tr()
+                              LocaleKeys.errors_form_emailFormat.tr(),
                         },
                         child: MaterialApp.router(
                           theme: appThemeData,

@@ -22,7 +22,7 @@ class ButtonPrimary extends ElevatedButton {
     super.key,
     required super.onPressed,
     required String text,
-    String? svgIconName,
+    String iconName = '',
     IconData? iconData,
     ButtonSize size = ButtonSize.normal,
     visualDensity = VisualDensity.compact,
@@ -48,7 +48,7 @@ class ButtonPrimary extends ElevatedButton {
           ),
           child: _ButtonPrimaryContent(
             text: text,
-            svgIconName: svgIconName,
+            svgIconName: iconName,
             iconData: iconData,
             size: size,
           ),
@@ -115,14 +115,14 @@ class ButtonPrimary extends ElevatedButton {
 
 class _ButtonPrimaryContent extends StatelessWidget {
   final String text;
-  final String? svgIconName;
+  final String svgIconName;
   final IconData? iconData;
   final ButtonSize size;
 
   const _ButtonPrimaryContent({
     required this.text,
     required this.size,
-    this.svgIconName,
+    this.svgIconName = '',
     this.iconData,
   });
 
@@ -135,12 +135,13 @@ class _ButtonPrimaryContent extends StatelessWidget {
       children: [
         if (_hasSvgIcon)
           FlutterBaseSvgIcon(
-            iconName: svgIconName!,
+            iconName: svgIconName,
             width: _iconSize,
             height: _iconSize,
           ),
         if (_hasIconData)
           FlutterBaseIcon(
+            // ignore: avoid-non-null-assertion
             icon: iconData!,
             size: _iconSize,
           ),
@@ -160,7 +161,7 @@ class _ButtonPrimaryContent extends StatelessWidget {
 
   bool get _hasIcon => _hasIconData || _hasSvgIcon;
 
-  bool get _hasSvgIcon => svgIconName != null;
+  bool get _hasSvgIcon => svgIconName.isNotEmpty;
 
   bool get _hasIconData => iconData != null;
 }

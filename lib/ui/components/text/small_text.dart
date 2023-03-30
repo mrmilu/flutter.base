@@ -1,4 +1,5 @@
-import 'package:flutter/cupertino.dart';
+// ignore_for_file: prefer-single-widget-per-file
+import 'package:flutter/widgets.dart';
 import 'package:flutter_base/ui/styles/text_styles.dart';
 
 class SmallTextXxs extends StatelessWidget {

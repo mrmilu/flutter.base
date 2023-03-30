@@ -1,3 +1,5 @@
+// ignore_for_file: avoid-non-null-assertion
+
 import 'package:flutter/material.dart';
 import 'package:flutter_base/core/app/domain/models/app_error.dart';
 import 'package:flutter_base/ui/components/loaders/global_circular_progress.dart';
@@ -29,7 +31,7 @@ class UiProvider extends StateNotifier<UiState> {
     if (_entryAdded) return;
     final context = rootNavigatorKey.currentState?.overlay?.context;
     if (context == null) return;
-    final OverlayEntry overlayEntry = GlobalCircularProgress.build(context);
+    final OverlayEntry overlayEntry = GlobalCircularProgress.build();
     if (rootNavigatorKey.currentState?.overlay == null) return;
     rootNavigatorKey.currentState?.overlay!.insert(overlayEntry);
     _entryAdded = true;
@@ -50,7 +52,7 @@ class UiProvider extends StateNotifier<UiState> {
     SnackBarStyle style = SnackBarStyle.error,
   }) {
     if (_snackBarKey.currentState != null) {
-      final SnackBar snackBar = styledSnackBar(
+      final SnackBar snackBar = StyledSnackBar.styledSnackBar(
         _snackBarKey.currentState!.context,
         message,
         style: style,

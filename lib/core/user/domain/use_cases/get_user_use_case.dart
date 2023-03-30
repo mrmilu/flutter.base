@@ -8,7 +8,7 @@ class GetUserUseCase {
 
   GetUserUseCase(this._userRepository);
 
-  Future<User> call() async {
+  Future<User> call() {
     return _userRepository.getLoggedUser();
   }
 }

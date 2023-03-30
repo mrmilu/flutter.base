@@ -28,14 +28,6 @@ class FutureButton extends StatefulWidget {
 class _FutureButtonState extends State<FutureButton> {
   bool isLoading = false;
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialButton(
-      onPressed: widget.disableWhenIsLoading && isLoading ? null : _onPressed,
-      child: widget.childBuilder.call(isLoading),
-    );
-  }
-
   Future<void> _onPressed() async {
     setState(() {
       isLoading = true;
@@ -49,5 +41,13 @@ class _FutureButtonState extends State<FutureButton> {
         });
       }
     }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialButton(
+      onPressed: widget.disableWhenIsLoading && isLoading ? null : _onPressed,
+      child: widget.childBuilder.call(isLoading),
+    );
   }
 }

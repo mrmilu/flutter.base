@@ -10,20 +10,20 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 
-class EditProfileProvider extends AutoDisposeNotifier<EditProfileModelForm?> {
+class EditProfileProvider extends AutoDisposeNotifier<EditProfileModelForm> {
   final _updateUserUseCase = GetIt.I.get<UpdateUserUseCase>();
   final _appRouter = GetIt.I.get<GoRouter>();
 
   @override
-  EditProfileModelForm? build() {
+  EditProfileModelForm build() {
     final user = ref.watch(userProvider.select((state) => state.userData));
-    return EditProfileViewModel(name: user!.name).generateFormModel();
+    return EditProfileViewModel(name: user?.name ?? '').generateFormModel();
   }
 
   Future<void> updateProfile() async {
     final userNotifier = ref.watch(userProvider.notifier);
     final uiNotifier = ref.watch(uiProvider.notifier);
-    final formModel = state!;
+    final formModel = state;
     formModel.form.markAllAsTouched();
     if (formModel.form.valid) {
       uiNotifier.tryAction(() async {
@@ -40,6 +40,6 @@ class EditProfileProvider extends AutoDisposeNotifier<EditProfileModelForm?> {
 }
 
 final editProfileProvider =
-    AutoDisposeNotifierProvider<EditProfileProvider, EditProfileModelForm?>(
+    AutoDisposeNotifierProvider<EditProfileProvider, EditProfileModelForm>(
   EditProfileProvider.new,
 );

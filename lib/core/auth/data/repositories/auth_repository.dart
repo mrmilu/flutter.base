@@ -110,7 +110,7 @@ class AuthRepository implements IAuthRepository {
   }
 
   @override
-  Future socialAuth(String token) async {
+  Future<String> socialAuth(String token) async {
     final res = await _apiService.post(
       '/users/social-auth/',
       data: {

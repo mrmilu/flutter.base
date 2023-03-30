@@ -49,7 +49,7 @@ class _BasicLoginFormWidgetState extends ConsumerState<ChangePasswordForm> {
                   LocaleKeys.changePassword_form_repeatPassword_label.tr(),
               validationMessages: {
                 ValidationMessage.mustMatch: (_) =>
-                    LocaleKeys.errors_form_passwordMatch.tr()
+                    LocaleKeys.errors_form_passwordMatch.tr(),
               },
             ),
             BoxSpacer.v24(),

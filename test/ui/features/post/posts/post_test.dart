@@ -48,12 +48,14 @@ void main() {
         handle.dispose();
 
         final container = getIt<ProviderContainer>();
-        final previousCount = container.read(postPageProvider).value!.length;
+        final previousCount =
+            container.read(postPageProvider).value?.length ?? 0;
 
         final firstItemButton = find.byType(IconButtonPrimary).first;
         await tester.tap(firstItemButton);
         await tester.pumpAndSettle();
-        final currentCount = container.read(postPageProvider).value!.length;
+        final currentCount =
+            container.read(postPageProvider).value?.length ?? 0;
 
         expect(currentCount, previousCount - 1);
       },

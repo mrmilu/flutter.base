@@ -60,7 +60,7 @@ class LoginForm extends ConsumerWidget {
                         : null,
                   );
                 },
-              )
+              ),
             ],
           );
         },
