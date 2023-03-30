@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter_base/common/interfaces/asset_picker_service.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -9,20 +7,12 @@ class AssetPickerService implements IAssetPickerService {
   AssetPickerService() : _picker = ImagePicker();
 
   @override
-  Future<File?> imageFromCamera() async {
-    final image = await _picker.pickImage(source: ImageSource.camera);
-    if (image != null && image.path.isNotEmpty) {
-      return File(image.path);
-    }
-    return null;
+  Future<XFile?> imageFromCamera() async {
+    return _picker.pickImage(source: ImageSource.camera);
   }
 
   @override
-  Future<File?> imageFromGallery() async {
-    final image = await _picker.pickImage(source: ImageSource.gallery);
-    if (image != null && image.path.isNotEmpty) {
-      return File(image.path);
-    }
-    return null;
+  Future<XFile?> imageFromGallery() async {
+    return _picker.pickImage(source: ImageSource.gallery);
   }
 }

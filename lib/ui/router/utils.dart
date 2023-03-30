@@ -1,7 +1,6 @@
-import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mrmilu/flutter_mrmilu.dart';
 import 'package:go_router/go_router.dart';
 
 Page platformPage(
@@ -10,7 +9,7 @@ Page platformPage(
   bool maintainState = false,
   GoRouterState? state,
 }) =>
-    Platform.isIOS
+    PlatformUtils.isIOS
         ? CupertinoPage(
             key: state?.pageKey,
             name: state?.name,

@@ -15,13 +15,13 @@ import 'package:get_it/get_it.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:stack_trace/stack_trace.dart' as stack_trace;
 
-void startApp() async {
+void startApp({required FirebaseOptions? firebaseOptions}) async {
   final env = EnvVars().environment;
   final WidgetsBinding widgetsBinding =
       WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await EasyLocalization.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(options: firebaseOptions);
 
   LicenseRegistry.addLicense(() async* {
     final poppinsLicense =

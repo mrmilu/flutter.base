@@ -1,5 +1,4 @@
-import 'dart:io';
-
+import 'package:cross_file/cross_file.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_base/core/app/data/services/api_service.dart';
 import 'package:flutter_base/core/app/domain/models/environments_list.dart';
@@ -26,7 +25,7 @@ class UserRepository implements IUserRepository {
   }
 
   @override
-  Future<User> avatar(File photo) async {
+  Future<User> avatar(XFile photo) async {
     final res = await _apiService.post(
       '/user/avatar',
       data: FormData.fromMap({

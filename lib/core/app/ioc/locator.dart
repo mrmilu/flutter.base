@@ -6,6 +6,7 @@ import 'package:flutter_base/common/interfaces/fs_repository.dart';
 import 'package:flutter_base/common/interfaces/image_compress_service.dart';
 import 'package:flutter_base/common/interfaces/share_service.dart';
 import 'package:flutter_base/common/interfaces/social_auth_service.dart';
+import 'package:flutter_base/common/repositories/fs_repository.dart';
 import 'package:flutter_base/common/services/asset_picker_service.dart';
 import 'package:flutter_base/common/services/deep_link_service.dart';
 import 'package:flutter_base/common/services/edit_image_service.dart';
@@ -64,6 +65,9 @@ abstract class RegisterModule {
 
   @LazySingleton()
   SecureStorageService get getSecureStorage => SecureStorageService();
+
+  @Injectable(as: IFsRepository)
+  FsRepository get getFsRepository => FsRepository();
 
   @Singleton()
   GlobalKey<ScaffoldMessengerState> get getScaffoldKey =>

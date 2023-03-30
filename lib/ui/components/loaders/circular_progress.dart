@@ -1,7 +1,6 @@
-import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mrmilu/flutter_mrmilu.dart';
 
 class CircularProgress extends StatelessWidget {
   final double radius;
@@ -29,7 +28,7 @@ class CircularProgress extends StatelessWidget {
 
     return Theme(
       data: themeData,
-      child: Platform.isIOS
+      child: PlatformUtils.isIOS
           ? CupertinoActivityIndicator(radius: radius)
           : !androidProgressInsideStack
               ? SizedBox.square(
