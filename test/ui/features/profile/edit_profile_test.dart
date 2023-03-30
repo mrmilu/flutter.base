@@ -28,7 +28,7 @@ void main() {
           (_) async => const User(email: '', name: '', verified: true),
         );
         when(() => userRepository.update(any())).thenAnswer(
-          (_) async => const User(email: '', name: fakeName, verified: true),
+          (_) async => User(email: '', name: fakeName, verified: true),
         );
       });
 

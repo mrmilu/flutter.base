@@ -1,6 +1,12 @@
-const fakeName = 'Test User';
-const fakeEmail = 'test@test.com';
-const fakePassword = 'Password1';
+import 'package:faker_dart/faker_dart.dart';
+
+final faker = Faker.instance;
+
+final fakeName = faker.name.fullName();
+final fakeEmail = faker.internet.email();
+final fakePassword = faker.fake(
+  '${faker.lorem.word(length: 1).toUpperCase()}${faker.lorem.word(length: 7).toLowerCase()}${faker.datatype.number()}',
+);
+final fakeToken = faker.datatype.uuid();
 const fakeInvalidEmail = 'email';
 const fakeInvalidPassword = 'password';
-const fakeToken = '1431g83g1y839g1y893g2y19';
