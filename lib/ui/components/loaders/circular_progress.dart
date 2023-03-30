@@ -1,7 +1,6 @@
-import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mrmilu/flutter_mrmilu.dart';
 
 class CircularProgress extends StatelessWidget {
   final double radius;
@@ -34,7 +33,7 @@ class CircularProgress extends StatelessWidget {
   }
 
   Widget get _getPlatformIndicator {
-    if (Platform.isIOS) {
+    if (PlatformUtils.isIOS) {
       return CupertinoActivityIndicator(radius: radius);
     } else {
       if (!androidProgressInsideStack) {

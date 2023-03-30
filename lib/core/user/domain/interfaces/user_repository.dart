@@ -1,5 +1,4 @@
-import 'dart:io';
-
+import 'package:cross_file/cross_file.dart';
 import 'package:flutter_base/core/user/domain/models/device_input_model.dart';
 import 'package:flutter_base/core/user/domain/models/update_user_input_model.dart';
 import 'package:flutter_base/core/user/domain/models/user.dart';
@@ -7,7 +6,7 @@ import 'package:flutter_base/core/user/domain/models/user.dart';
 abstract class IUserRepository {
   Future<User> getLoggedUser();
 
-  Future<User> avatar(File photo);
+  Future<User> avatar(XFile photo);
 
   Future<User> deleteAvatar();
 

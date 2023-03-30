@@ -1,9 +1,9 @@
 import 'dart:io';
+
+import 'package:cross_file/cross_file.dart';
 import 'package:flutter_base/common/interfaces/fs_repository.dart';
-import 'package:injectable/injectable.dart';
 import 'package:path_provider/path_provider.dart';
 
-@Injectable(as: IFsRepository)
 class FsRepository implements IFsRepository {
   Future<String> get _localPath async {
     final directory = await getApplicationDocumentsDirectory();
@@ -11,13 +11,15 @@ class FsRepository implements IFsRepository {
   }
 
   @override
-  Future<File> createFile(CreateFileInput input) async {
+  Future<XFile> createFile(CreateFileInput input) async {
     final localPath = await _localPath;
     String? name = input.name;
     name ??= '${DateTime.now().millisecondsSinceEpoch}';
     final file = File('$localPath/${input.path}/$name')
       ..createSync(recursive: true);
-    return file..writeAsBytesSync(input.bytes);
+    final result = file..writeAsBytesSync(input.bytes);
+
+    return XFile(result.path);
   }
 
   @override

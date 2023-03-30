@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:riverpod/riverpod.dart';
 import 'package:video_player/video_player.dart';
 
@@ -8,13 +6,6 @@ final mainPageProvider = FutureProvider.autoDispose<VideoPlayerController>(
     final videoPlayerController = VideoPlayerController.network(
       'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4',
     );
-
-    if (!Platform.environment.containsKey('FLUTTER_TEST')) {
-      await videoPlayerController.initialize();
-      videoPlayerController.setLooping(true);
-      videoPlayerController.setVolume(0);
-      videoPlayerController.play();
-    }
 
     ref.onDispose(() {
       videoPlayerController.pause();

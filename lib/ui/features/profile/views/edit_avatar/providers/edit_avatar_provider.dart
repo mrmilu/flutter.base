@@ -1,7 +1,7 @@
 import 'dart:async';
-import 'dart:typed_data';
 
 import 'package:extended_image/extended_image.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_base/common/interfaces/edit_image_service.dart';
 import 'package:flutter_base/core/app/domain/use_cases/image_from_camera_use_case.dart';
@@ -31,35 +31,34 @@ class EditAvatarProvider
 
   Future<void> chosePhotoFromGallery() async {
     final uiNotifier = ref.watch(uiProvider.notifier);
-    uiNotifier.showGlobalLoader();
-    final avatar = await _imageFromGalleryUseCase();
-    if (avatar != null) {
-      _appRouter.push(
-        '/profile/avatar',
-        extra: EditAvatarPageData(avatar: avatar),
-      );
-    }
-    uiNotifier.hideGlobalLoader();
+    uiNotifier.tryAction(() async {
+      final avatar = await _imageFromGalleryUseCase();
+      if (avatar != null) {
+        _appRouter.push(
+          '/profile/avatar',
+          extra: EditAvatarPageData(avatar: avatar),
+        );
+      }
+    });
   }
 
   Future<void> takePhoto() async {
     final uiNotifier = ref.watch(uiProvider.notifier);
-    uiNotifier.showGlobalLoader();
-    final avatar = await _imageFromCameraUseCase();
-    if (avatar != null) {
-      _appRouter.push(
-        '/profile/avatar',
-        extra: EditAvatarPageData(avatar: avatar),
-      );
-    }
-    uiNotifier.hideGlobalLoader();
+    uiNotifier.tryAction(() async {
+      final avatar = await _imageFromCameraUseCase();
+      if (avatar != null) {
+        _appRouter.push(
+          '/profile/avatar',
+          extra: EditAvatarPageData(avatar: avatar),
+        );
+      }
+    });
   }
 
   Future<void> deleteAvatar() async {
     final userNotifier = ref.watch(userProvider.notifier);
     final uiNotifier = ref.watch(uiProvider.notifier);
     uiNotifier.tryAction(() async {
-      uiNotifier.showGlobalLoader();
       final user = await _userRepository.deleteAvatar();
       userNotifier.setUserData(user.toViewModel());
     });
@@ -68,7 +67,6 @@ class EditAvatarProvider
   Future<void> cropAvatarPhotoAndSave() async {
     final userNotifier = ref.watch(userProvider.notifier);
     final uiNotifier = ref.watch(uiProvider.notifier);
-    uiNotifier.showGlobalLoader();
     uiNotifier
         .tryAction(() async {
           final editorState = state!.currentState;
@@ -76,9 +74,16 @@ class EditAvatarProvider
             return;
           }
           final Rect? rect = editorState.getCropRect();
-          final Uint8List rawImage = editorState.rawImageData;
 
           if (rect == null) return;
+
+          final Uint8List rawImage = Uint8List.fromList(
+            kIsWeb &&
+                    editorState.widget.extendedImageState.imageWidget.image
+                        is ExtendedNetworkImageProvider
+                ? await _loadNetwork(editorState)
+                : editorState.rawImageData,
+          );
 
           final editedAvatar = await _editImageService.crop(rect, rawImage);
           if (editedAvatar != null) {
@@ -92,6 +97,33 @@ class EditAvatarProvider
             state?.currentState?.reset();
           });
         });
+  }
+
+  /// it may be failed, due to Cross-domain
+  Future<Uint8List> _loadNetwork(
+    ExtendedImageEditorState state,
+  ) async {
+    final key = state.widget.extendedImageState.imageWidget.image
+        as ExtendedNetworkImageProvider;
+    try {
+      final response = await HttpClientHelper.get(
+        Uri.parse(key.url),
+        headers: key.headers,
+        timeLimit: key.timeLimit,
+        timeRetry: key.timeRetry,
+        retries: key.retries,
+        cancelToken: key.cancelToken,
+      );
+      return response!.bodyBytes;
+    } on OperationCanceledError catch (_) {
+      return Future<Uint8List>.error(
+        StateError('User cancel request ${key.url}.'),
+      );
+    } catch (e) {
+      return Future<Uint8List>.error(
+        StateError('failed load ${key.url}. \n $e'),
+      );
+    }
   }
 }
 

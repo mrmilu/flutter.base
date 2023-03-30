@@ -38,10 +38,6 @@ class ShareFileUseCase {
       subject: input.subject,
       text: input.text,
     );
-    try {
-      await _shareService.file(shareInput);
-    } finally {
-      file.deleteSync();
-    }
+    await _shareService.file(shareInput);
   }
 }

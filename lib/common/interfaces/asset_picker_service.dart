@@ -1,7 +1,7 @@
-import 'dart:io';
+import 'package:cross_file/cross_file.dart';
 
 abstract class IAssetPickerService {
-  Future<File?> imageFromGallery();
+  Future<XFile?> imageFromGallery();
 
-  Future<File?> imageFromCamera();
+  Future<XFile?> imageFromCamera();
 }
