@@ -15,9 +15,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 class VerifyAccountPage extends ConsumerStatefulWidget {
-  final String token;
+  final String? token;
 
-  const VerifyAccountPage({super.key, this.token = ''});
+  const VerifyAccountPage({super.key, this.token});
 
   @override
   ConsumerState<VerifyAccountPage> createState() => _VerifyAccountPageState();
@@ -31,9 +31,9 @@ class _VerifyAccountPageState extends ConsumerState<VerifyAccountPage> {
   }
 
   void _verifyAccount() {
-    if (widget.token.isNotEmpty) {
+    if (widget.token?.isNotEmpty ?? false) {
       WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-        ref.read(verifyAccountProvider).verifyAccount(widget.token);
+        ref.read(verifyAccountProvider).verifyAccount(widget.token ?? '');
       });
     }
   }
