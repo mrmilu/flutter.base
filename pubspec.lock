@@ -5,10 +5,10 @@ packages:
     dependency: transitive
     description:
       name: _fe_analyzer_shared
-      sha256: "0c80aeab9bc807ab10022cd3b2f4cf2ecdf231949dc1ddd9442406a003f19201"
+      sha256: "503361166f4a100e0d7eb7fb5a62c6f0322512f2bcb48d6922caf98f24b0ab90"
       url: "https://pub.dev"
     source: hosted
-    version: "52.0.0"
+    version: "56.0.0"
   _flutterfire_internals:
     dependency: transitive
     description:
@@ -21,10 +21,10 @@ packages:
     dependency: transitive
     description:
       name: analyzer
-      sha256: cd8ee83568a77f3ae6b913a36093a1c9b1264e7cb7f834d9ddd2311dade9c1f4
+      sha256: "93fcd81a6716e69864516750590cf1e699420615046bda19100238aa7b429785"
       url: "https://pub.dev"
     source: hosted
-    version: "5.4.0"
+    version: "5.8.0"
   analyzer_plugin:
     dependency: transitive
     description:
@@ -277,10 +277,10 @@ packages:
     dependency: transitive
     description:
       name: dart_style
-      sha256: "7a03456c3490394c8e7665890333e91ae8a49be43542b616e414449ac358acd4"
+      sha256: "6d691edde054969f0e0f26abb1b30834b5138b963793e56f69d3a9a4435e6352"
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.4"
+    version: "2.3.0"
   dbus:
     dependency: transitive
     description:
@@ -1194,18 +1194,18 @@ packages:
     dependency: "direct main"
     description:
       name: reactive_forms_annotations
-      sha256: fb685773e8dbdedb25817b38ff5197230eb1962c7b65817d0363e4ad8bb353ca
+      sha256: "15dccae0c4853d91d9c092b54deec12a0d003b75807dc70612a7350596c44852"
       url: "https://pub.dev"
     source: hosted
-    version: "0.13.2"
+    version: "1.0.0"
   reactive_forms_generator:
     dependency: "direct dev"
     description:
       name: reactive_forms_generator
-      sha256: "13f645fab080f63d1e5e874dfad18dae994d6af5308e495bfe24e0230a806fd7"
+      sha256: "6e595b7f23277f6725dddc33a4aac7992d7726bb53a6d1f6161d073f5a6809d4"
       url: "https://pub.dev"
     source: hosted
-    version: "0.23.4"
+    version: "1.0.0"
   recase:
     dependency: transitive
     description:

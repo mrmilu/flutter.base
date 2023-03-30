@@ -15,7 +15,7 @@ class LoginProvider extends AutoDisposeNotifier<BasicLoginModelForm> {
 
   @override
   BasicLoginModelForm build() {
-    return BasicLoginViewModel().generateFormModel();
+    return BasicLoginViewModel().generateFormModel;
   }
 
   void login() async {

@@ -65,7 +65,7 @@ dependencies:
   json_annotation: 4.8.0
   path_provider: 2.0.14
   reactive_forms: 14.2.0
-  reactive_forms_annotations: 0.13.2
+  reactive_forms_annotations: 1.0.0
   riverpod: 2.3.2
   sentry_flutter: 7.4.0
   share_plus: 6.3.1
@@ -90,7 +90,7 @@ dev_dependencies:
     sdk: flutter
   json_serializable: 6.6.1
   mocktail: 0.3.0
-  reactive_forms_generator: 0.23.4
+  reactive_forms_generator: 1.0.0
 
 dependency_overrides:
   collection: 1.17.0

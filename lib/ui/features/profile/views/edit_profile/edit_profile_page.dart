@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_base/ui/components/box_spacer.dart';
 import 'package:flutter_base/ui/components/buttons/button_primary.dart';
 import 'package:flutter_base/ui/components/flutter_base_app_bar.dart';
+import 'package:flutter_base/ui/components/form/reactive_provider_form_builder.dart';
 import 'package:flutter_base/ui/components/form_scaffold.dart';
 import 'package:flutter_base/ui/components/views/column_scroll_view.dart';
 import 'package:flutter_base/ui/features/profile/views/edit_profile/providers/profile_provider.dart';
@@ -26,9 +27,9 @@ class EditProfilePage extends ConsumerWidget {
         children: [
           ReactiveEditProfileModelForm(
             form: formModel,
-            child: ReactiveFormBuilder(
-              form: () => formModel.form,
-              builder: (context, formGroup, child) {
+            child: ReactiveProviderFormBuilder(
+              formModel: formModel,
+              builder: (context, child) {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
