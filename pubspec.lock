@@ -709,10 +709,10 @@ packages:
     dependency: "direct main"
     description:
       name: go_router
-      sha256: "9e8cee9969a9f33821a5594e5822d9a7ef3ae8528e5258f5178436e3deb0e095"
+      sha256: "7f25c4bb371b74b6f32f74946707db4595fa66e68ddc7f0da4a4dafb18a21480"
       url: "https://pub.dev"
     source: hosted
-    version: "6.0.3"
+    version: "6.5.1"
   google_identity_services_web:
     dependency: transitive
     description:
