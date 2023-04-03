@@ -5,10 +5,11 @@ import 'package:flutter_base/ui/components/buttons/button_primary.dart';
 import 'package:flutter_base/ui/components/flutter_base_app_bar.dart';
 import 'package:flutter_base/ui/components/form_scaffold.dart';
 import 'package:flutter_base/ui/components/views/column_scroll_view.dart';
+import 'package:flutter_base/ui/extensions/media_query.dart';
 import 'package:flutter_base/ui/features/profile/views/edit_profile/providers/profile_provider.dart';
 import 'package:flutter_base/ui/features/profile/views/edit_profile/view_models/edit_profile_view_model.dart';
 import 'package:flutter_base/ui/i18n/locale_keys.g.dart';
-import 'package:flutter_base/ui/utils/scroll.dart';
+import 'package:flutter_base/ui/styles/paddings.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 
@@ -22,7 +23,7 @@ class EditProfilePage extends ConsumerWidget {
     return FormScaffold(
       appBar: FlutterBaseAppBar(),
       body: ColumnScrollView(
-        padding: const EdgeInsets.all(16),
+        padding: Paddings.a16,
         children: [
           ReactiveEditProfileModelForm(
             form: formModel,
@@ -36,7 +37,8 @@ class EditProfilePage extends ConsumerWidget {
                     ReactiveTextField(
                       key: const Key('profile-name-text-field'),
                       formControl: formModel.nameControl,
-                      scrollPadding: textFieldScrollPadding(context: context),
+                      scrollPadding:
+                          MediaQuery.of(context).textFieldScrollPadding,
                       decoration: InputDecoration(
                         labelText: LocaleKeys.profile_edit_form_name.tr(),
                       ),

@@ -11,6 +11,7 @@ import 'package:flutter_base/ui/components/views/column_scroll_view.dart';
 import 'package:flutter_base/ui/features/auth/views/forgot_password/providers/forgot_password_provider.dart';
 import 'package:flutter_base/ui/features/auth/views/forgot_password/view_models/forgot_password_view_model.dart';
 import 'package:flutter_base/ui/i18n/locale_keys.g.dart';
+import 'package:flutter_base/ui/styles/paddings.dart';
 import 'package:flutter_base/ui/utils/form.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -24,7 +25,7 @@ class ForgotPasswordPage extends StatelessWidget {
       body: SafeArea(
         child: ColumnScrollView(
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          padding: const EdgeInsets.symmetric(horizontal: 24),
+          padding: Paddings.h24,
           children: [
             BoxSpacer.v16(),
             HighTextL(LocaleKeys.forgotPassword_title.tr()),

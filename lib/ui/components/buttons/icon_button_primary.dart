@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base/ui/components/icons/flutter_base_icon.dart';
 import 'package:flutter_base/ui/styles/colors.dart';
+import 'package:flutter_base/ui/styles/paddings.dart';
 import 'package:flutter_base/ui/view_models/button_size.dart';
 
 const _btnSizeMap = {
@@ -30,7 +31,7 @@ class IconButtonPrimary extends ElevatedButton {
                 MaterialStateProperty.all(fixedSize ?? _btnSizeMap[size]),
             enableFeedback: true,
             splashFactory: NoSplash.splashFactory,
-            padding: MaterialStateProperty.all(EdgeInsets.zero),
+            padding: MaterialStateProperty.all(Paddings.zero),
             foregroundColor: _foregroundColor(size),
             backgroundColor: _backgroundColor(size),
             elevation: MaterialStateProperty.all(0),

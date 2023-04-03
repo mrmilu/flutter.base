@@ -8,7 +8,7 @@ import 'package:flutter_base/ui/components/text/high_text.dart';
 import 'package:flutter_base/ui/components/views/column_scroll_view.dart';
 import 'package:flutter_base/ui/extensions/media_query.dart';
 import 'package:flutter_base/ui/i18n/locale_keys.g.dart';
-import 'package:flutter_base/ui/styles/spacing.dart';
+import 'package:flutter_base/ui/styles/paddings.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -38,7 +38,7 @@ class ChangePasswordSuccessPage extends ConsumerWidget {
         children: [
           BoxSpacer.v16(),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: Spacing.sp16),
+            padding: Paddings.h16,
             child: HighTextM(LocaleKeys.changePasswordSuccess_title.tr()),
           ),
           BoxSpacer(

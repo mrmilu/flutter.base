@@ -5,7 +5,7 @@ import 'package:flutter_base/ui/components/text/mid_text.dart';
 import 'package:flutter_base/ui/styles/border_radius.dart';
 import 'package:flutter_base/ui/styles/box_shadows.dart';
 import 'package:flutter_base/ui/styles/colors.dart';
-import 'package:flutter_base/ui/styles/spacing.dart';
+import 'package:flutter_base/ui/styles/paddings.dart';
 import 'package:flutter_base/ui/styles/text_styles.dart';
 
 class AppBottomBarItem {
@@ -46,22 +46,18 @@ class AppBottomBar extends StatelessWidget {
         boxShadow: BoxShadows.bs1,
       ),
       child: Padding(
-        padding:
-            const EdgeInsets.symmetric(vertical: Spacing.sp4, horizontal: 2),
+        padding: Paddings.a4,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: items.asMap().entries.map(
             (entry) {
               final item = entry.value;
               final idx = entry.key;
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 2),
-                child: _AppBottomBarItemWidget(
-                  key: Key('bottom-bar-item-$idx'),
-                  selected: idx == selectedIndex,
-                  item: item,
-                  onTap: () => onItemTapped?.call(idx),
-                ),
+              return _AppBottomBarItemWidget(
+                key: Key('bottom-bar-item-$idx'),
+                selected: idx == selectedIndex,
+                item: item,
+                onTap: () => onItemTapped?.call(idx),
               );
             },
           ).toList(),
@@ -85,38 +81,43 @@ class _AppBottomBarItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: Feedback.wrapForTap(onTap, context),
-      child: Container(
-        width: 64,
-        height: 64,
-        decoration: BoxDecoration(
-          color: _bgColor,
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            item.customWidgetBuilder != null
-                ? item.customWidgetBuilder?.call(selected) ??
-                    const SizedBox.shrink()
-                : FlutterBaseIcon(
-                    icon:
-                        // ignore: avoid-non-null-assertion
-                        selected ? item.selectedIcon ?? item.icon! : item.icon!,
+    return Padding(
+      padding: Paddings.h4,
+      child: GestureDetector(
+        onTap: Feedback.wrapForTap(onTap, context),
+        child: Container(
+          width: 64,
+          height: 64,
+          decoration: BoxDecoration(
+            color: _bgColor,
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              item.customWidgetBuilder != null
+                  ? item.customWidgetBuilder?.call(selected) ??
+                      const SizedBox.shrink()
+                  : FlutterBaseIcon(
+                      icon: selected
+                          // ignore: avoid-non-null-assertion
+                          ? item.selectedIcon ?? item.icon!
+                          // ignore: avoid-non-null-assertion
+                          : item.icon!,
+                      color: _color,
+                    ),
+              if (item.text.isNotEmpty) ...[
+                BoxSpacer.v8(),
+                DefaultTextStyle(
+                  style: TextStyles.midXs,
+                  child: MidTextXs(
+                    item.text,
                     color: _color,
                   ),
-            if (item.text.isNotEmpty) ...[
-              BoxSpacer.v8(),
-              DefaultTextStyle(
-                style: TextStyles.midXs,
-                child: MidTextXs(
-                  item.text,
-                  color: _color,
                 ),
-              ),
+              ],
             ],
-          ],
+          ),
         ),
       ),
     );

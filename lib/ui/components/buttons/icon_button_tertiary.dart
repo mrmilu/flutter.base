@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base/ui/components/icons/flutter_base_icon.dart';
 import 'package:flutter_base/ui/styles/colors.dart';
+import 'package:flutter_base/ui/styles/paddings.dart';
 import 'package:flutter_base/ui/view_models/button_size.dart';
 
 const _btnSizeMap = {
@@ -20,7 +21,7 @@ class IconButtonTertiary extends TextButton {
           style: TextButton.styleFrom(
             foregroundColor: foregroundColor,
             splashFactory: NoSplash.splashFactory,
-            padding: EdgeInsets.zero,
+            padding: Paddings.zero,
             minimumSize: fixedSize ?? _btnSizeMap[size],
             fixedSize: fixedSize ?? _btnSizeMap[size],
             maximumSize: fixedSize ?? _btnSizeMap[size],

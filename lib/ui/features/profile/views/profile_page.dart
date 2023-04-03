@@ -8,7 +8,7 @@ import 'package:flutter_base/ui/components/views/column_scroll_view.dart';
 import 'package:flutter_base/ui/features/profile/views/edit_avatar/containers/profile_photo_action_sheet.dart';
 import 'package:flutter_base/ui/i18n/locale_keys.g.dart';
 import 'package:flutter_base/ui/providers/user_provider.dart';
-import 'package:flutter_base/ui/styles/spacing.dart';
+import 'package:flutter_base/ui/styles/paddings.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -21,7 +21,7 @@ class ProfilePage extends ConsumerWidget {
     return Scaffold(
       appBar: FlutterBaseAppBar(),
       body: ColumnScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: Spacing.sp16),
+        padding: Paddings.h16,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(

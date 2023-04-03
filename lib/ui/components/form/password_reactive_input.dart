@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base/ui/components/form/reactive_input.dart';
 import 'package:flutter_base/ui/components/icons/flutter_base_svg_icon.dart';
+import 'package:flutter_base/ui/styles/paddings.dart';
 
 import 'package:reactive_forms/reactive_forms.dart';
 
@@ -40,7 +41,7 @@ class _PasswordReactiveInputState extends State<PasswordReactiveInput> {
       validationMessages: widget.validationMessages,
       autofillHints: const [AutofillHints.password],
       suffixIcon: IconButton(
-        padding: EdgeInsets.zero,
+        padding: Paddings.zero,
         onPressed: () {
           setState(() {
             showPassword = !showPassword;

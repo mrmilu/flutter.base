@@ -2,9 +2,9 @@
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter_base/ui/components/app_bottom_bar.dart';
+import 'package:flutter_base/ui/extensions/media_query.dart';
 import 'package:flutter_base/ui/styles/colors.dart';
-import 'package:flutter_base/ui/styles/spacing.dart';
-import 'package:flutter_base/ui/utils/media_query.dart';
+import 'package:flutter_base/ui/styles/paddings.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -153,11 +153,11 @@ class ScaffoldWithNavBarState extends ConsumerState<ScaffoldWithNavBar>
               ),
             ),
             Positioned(
-              bottom: deviceBottomSafeArea,
+              bottom: MediaQuery.of(context).deviceBottomSafeArea,
               left: 0,
               right: 0,
               child: Padding(
-                padding: const EdgeInsets.all(Spacing.sp12),
+                padding: Paddings.a12,
                 child: AppBottomBar(
                   items: widget.tabs,
                   selectedIndex: _currentIndex,

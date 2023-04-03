@@ -7,6 +7,7 @@ import 'package:flutter_base/ui/components/text/high_text.dart';
 import 'package:flutter_base/ui/components/views/column_scroll_view.dart';
 import 'package:flutter_base/ui/features/auth/views/change_password/change_password_form.dart';
 import 'package:flutter_base/ui/i18n/locale_keys.g.dart';
+import 'package:flutter_base/ui/styles/paddings.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ChangePasswordPageData {
@@ -34,7 +35,7 @@ class ChangePasswordPage extends ConsumerWidget {
       body: SafeArea(
         child: ColumnScrollView(
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          padding: const EdgeInsets.symmetric(horizontal: 24),
+          padding: Paddings.h24,
           children: [
             BoxSpacer.v16(),
             HighTextL(LocaleKeys.changePassword_title.tr()),

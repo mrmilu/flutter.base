@@ -12,6 +12,7 @@ import 'package:flutter_base/ui/features/auth/containers/social_auth/social_auth
 import 'package:flutter_base/ui/features/auth/views/sign_up/sign_up_form.dart';
 import 'package:flutter_base/ui/i18n/locale_keys.g.dart';
 import 'package:flutter_base/ui/styles/colors.dart';
+import 'package:flutter_base/ui/styles/paddings.dart';
 import 'package:flutter_base/ui/styles/text_styles.dart';
 import 'package:flutter_base/ui/view_models/button_size.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -42,7 +43,7 @@ class SignUpPage extends ConsumerWidget {
       body: SafeArea(
         child: ColumnScrollView(
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          padding: const EdgeInsets.symmetric(horizontal: 24),
+          padding: Paddings.h24,
           children: [
             BoxSpacer.v16(),
             HighTextL(LocaleKeys.signUp_title.tr()),
