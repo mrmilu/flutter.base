@@ -1,78 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base/ui/components/box_spacer.dart';
 import 'package:flutter_base/ui/components/icons/flutter_base_icon.dart';
+import 'package:flutter_base/ui/components/navigation/app_navigation_item.dart';
 import 'package:flutter_base/ui/components/text/mid_text.dart';
-import 'package:flutter_base/ui/styles/border_radius.dart';
-import 'package:flutter_base/ui/styles/box_shadows.dart';
 import 'package:flutter_base/ui/styles/colors.dart';
 import 'package:flutter_base/ui/styles/paddings.dart';
 import 'package:flutter_base/ui/styles/text_styles.dart';
 
-class AppBottomBarItem {
-  final IconData? icon;
-  final IconData? selectedIcon;
-  final String text;
-  final Widget Function(bool selected)? customWidgetBuilder;
-
-  const AppBottomBarItem({
-    this.icon,
-    this.selectedIcon,
-    this.text = '',
-    this.customWidgetBuilder,
-  }) : assert(
-          customWidgetBuilder != null || icon != null || selectedIcon != null,
-          'Either an icon, selectedIcon or a customWidgetBuilder must be provided',
-        );
-}
-
-class AppBottomBar extends StatelessWidget {
-  final List<AppBottomBarItem> items;
-  final int selectedIndex;
-  final Function(int idx)? onItemTapped;
-
-  const AppBottomBar({
-    super.key,
-    required this.items,
-    this.selectedIndex = 0,
-    this.onItemTapped,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        borderRadius: CircularBorderRadius.br16,
-        color: FlutterBaseColors.specificSurfaceLow,
-        boxShadow: BoxShadows.bs1,
-      ),
-      child: Padding(
-        padding: Paddings.a4,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: items.asMap().entries.map(
-            (entry) {
-              final item = entry.value;
-              final idx = entry.key;
-              return _AppBottomBarItemWidget(
-                key: Key('bottom-bar-item-$idx'),
-                selected: idx == selectedIndex,
-                item: item,
-                onTap: () => onItemTapped?.call(idx),
-              );
-            },
-          ).toList(),
-        ),
-      ),
-    );
-  }
-}
-
-class _AppBottomBarItemWidget extends StatelessWidget {
+class AppNavigationItemWidget extends StatelessWidget {
   final bool selected;
-  final AppBottomBarItem item;
+  final AppNavigationItem item;
   final VoidCallback? onTap;
 
-  const _AppBottomBarItemWidget({
+  const AppNavigationItemWidget({
     required this.selected,
     required this.item,
     this.onTap,

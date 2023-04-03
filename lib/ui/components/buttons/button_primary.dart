@@ -135,8 +135,7 @@ class _ButtonPrimaryContent extends StatelessWidget {
           ),
         if (_hasIconData)
           FlutterBaseIcon(
-            // ignore: avoid-non-null-assertion
-            icon: iconData!,
+            icon: iconData,
             size: _iconSize,
           ),
         if (_hasIcon) BoxSpacer.h8(),

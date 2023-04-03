@@ -1,14 +1,17 @@
 // ignore_for_file: avoid-dynamic
 
 import 'package:flutter/widgets.dart';
-import 'package:flutter_base/ui/components/app_bottom_bar.dart';
+import 'package:flutter_base/ui/components/navigation/app_navigation_bottom_bar.dart';
+import 'package:flutter_base/ui/components/navigation/app_navigation_item.dart';
+import 'package:flutter_base/ui/components/navigation/app_navigation_rail.dart';
+import 'package:flutter_base/ui/extensions/context_extension.dart';
 import 'package:flutter_base/ui/extensions/media_query.dart';
 import 'package:flutter_base/ui/styles/colors.dart';
 import 'package:flutter_base/ui/styles/paddings.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-class ScaffoldWithNavBarTabItem extends AppBottomBarItem {
+class ScaffoldWithNavBarTabItem extends AppNavigationItem {
   final String rootRoutePath;
   final GlobalKey<NavigatorState> navigatorKey;
 
@@ -136,37 +139,76 @@ class ScaffoldWithNavBarState extends ConsumerState<ScaffoldWithNavBar>
     return SizedBox.expand(
       child: ColoredBox(
         color: FlutterBaseColors.specificBackgroundBase,
-        child: Stack(
-          children: [
-            Positioned.fill(
-              child: FadeTransition(
-                opacity: _animationController,
-                child: IndexedStack(
-                  index: _currentIndex,
-                  children: _tabs
-                      .map(
-                        (_NavBarTabNavigator tab) =>
-                            tab.buildNavigator(context),
-                      )
-                      .toList(),
-                ),
+        child: context.isLargeOrBigger
+            ? Row(
+                children: <Widget>[
+                  AppNavigationRail(
+                    items: widget.tabs,
+                    selectedIndex: _currentIndex,
+                    onItemTapped: (idx) => _onItemTapped(idx, context),
+                  ),
+                  Expanded(
+                    child: _ScaffoldBody(
+                      animationController: _animationController,
+                      currentIndex: _currentIndex,
+                      tabs: _tabs,
+                    ),
+                  ),
+                ],
+              )
+            : Stack(
+                children: [
+                  Positioned.fill(
+                    child: _ScaffoldBody(
+                      animationController: _animationController,
+                      currentIndex: _currentIndex,
+                      tabs: _tabs,
+                    ),
+                  ),
+                  Positioned(
+                    bottom: MediaQuery.of(context).deviceBottomSafeArea,
+                    left: 0,
+                    right: 0,
+                    child: Padding(
+                      padding: Paddings.a12,
+                      child: AppNavigationBottomBar(
+                        items: widget.tabs,
+                        selectedIndex: _currentIndex,
+                        onItemTapped: (int idx) => _onItemTapped(idx, context),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ),
-            Positioned(
-              bottom: MediaQuery.of(context).deviceBottomSafeArea,
-              left: 0,
-              right: 0,
-              child: Padding(
-                padding: Paddings.a12,
-                child: AppBottomBar(
-                  items: widget.tabs,
-                  selectedIndex: _currentIndex,
-                  onItemTapped: (int idx) => _onItemTapped(idx, context),
-                ),
-              ),
-            ),
-          ],
-        ),
+      ),
+    );
+  }
+}
+
+class _ScaffoldBody extends StatelessWidget {
+  const _ScaffoldBody({
+    required AnimationController animationController,
+    required int currentIndex,
+    required List<_NavBarTabNavigator> tabs,
+  })  : _animationController = animationController,
+        _currentIndex = currentIndex,
+        _tabs = tabs;
+
+  final AnimationController _animationController;
+  final int _currentIndex;
+  final List<_NavBarTabNavigator> _tabs;
+
+  @override
+  Widget build(BuildContext context) {
+    return FadeTransition(
+      opacity: _animationController,
+      child: IndexedStack(
+        index: _currentIndex,
+        children: _tabs
+            .map(
+              (_NavBarTabNavigator tab) => tab.buildNavigator(context),
+            )
+            .toList(),
       ),
     );
   }
