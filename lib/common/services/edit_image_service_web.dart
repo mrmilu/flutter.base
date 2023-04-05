@@ -23,10 +23,10 @@ class EditImageService implements IEditImageService {
 
     image = copyCrop(
       image,
-      rect.left.toInt(),
-      rect.top.toInt(),
-      rect.width.toInt(),
-      rect.height.toInt(),
+      x: rect.left.toInt(),
+      y: rect.top.toInt(),
+      width: rect.width.toInt(),
+      height: rect.height.toInt(),
     );
 
     final modifiedRawImage = encodeJpg(image);

@@ -1,4 +1,3 @@
-import 'package:flutter_base/ui/utils/reactive_form.dart';
 import 'package:flutter_base/ui/validators/validators.dart';
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 
@@ -11,6 +10,9 @@ class SignUpViewModel {
   final String name;
   final String password;
 
+  SignUpModelForm get generateFormModel =>
+      SignUpModelForm(this, SignUpModelForm.formElements(this), null);
+
   SignUpViewModel({
     @FormControlAnnotation(validators: [requiredValidator, emailValidator])
         this.email = '',
@@ -18,7 +20,4 @@ class SignUpViewModel {
     @FormControlAnnotation(validators: [requiredValidator, passwordValidator])
         this.password = '',
   });
-
-  SignUpModelForm generateFormModel() =>
-      buildFormModel((form) => SignUpModelForm(this, form, null));
 }

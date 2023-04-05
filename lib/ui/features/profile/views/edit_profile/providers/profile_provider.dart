@@ -17,7 +17,7 @@ class EditProfileProvider extends AutoDisposeNotifier<EditProfileModelForm> {
   @override
   EditProfileModelForm build() {
     final user = ref.watch(userProvider.select((state) => state.userData));
-    return EditProfileViewModel(name: user?.name ?? '').generateFormModel();
+    return EditProfileViewModel(name: user?.name ?? '').generateFormModel;
   }
 
   Future<void> updateProfile() async {

@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart';
+import 'package:flutter/foundation.dart' show kIsWeb, debugPrintStack;
 import 'package:flutter_base/common/interfaces/deep_link_service.dart';
 import 'package:flutter_base/ui/features/auth/views/forgot_password/forgot_password_confirm_page.dart';
 import 'package:go_router/go_router.dart';
@@ -22,7 +22,7 @@ class DeepLinkController {
       debugPrintStack(label: e.toString(), stackTrace: stack);
     });
 
-    final Uri? link = await _deepLinkService.getInitialLink();
+    final Uri? link = kIsWeb ? null : await _deepLinkService.getInitialLink();
     if (link != null) {
       _processDeepLinks(link);
     }

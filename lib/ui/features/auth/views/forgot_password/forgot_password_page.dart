@@ -12,7 +12,6 @@ import 'package:flutter_base/ui/features/auth/views/forgot_password/providers/fo
 import 'package:flutter_base/ui/features/auth/views/forgot_password/view_models/forgot_password_view_model.dart';
 import 'package:flutter_base/ui/i18n/locale_keys.g.dart';
 import 'package:flutter_base/ui/styles/paddings.dart';
-import 'package:flutter_base/ui/utils/form.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ForgotPasswordPage extends StatelessWidget {
@@ -66,24 +65,16 @@ class _ContinueButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer(
       builder: (context, ref, _) {
-        return StreamBuilder<Map<String, Object?>?>(
-          stream: formModel.form.valueChanges,
-          builder: (context, snapshot) {
-            bool submitDisabled = true;
-            if (snapshot.data != null) {
-              submitDisabled = formValueIsEmpty(snapshot.data, 'email');
-            }
-
+        return ReactiveForgotPasswordModelFormConsumer(
+          builder: (context, consumer, _) {
             return ButtonPrimary(
               key: const Key('forgot-password-button'),
               text: LocaleKeys.forgotPassword_form_submit.tr(),
-              onPressed: submitDisabled
-                  ? null
-                  : () {
-                      ref
-                          .read(forgotPasswordProvider)
-                          .requestChangePassword(formModel);
-                    },
+              onPressed: consumer.form.valid
+                  ? () => ref
+                      .read(forgotPasswordProvider)
+                      .requestChangePassword(formModel)
+                  : null,
             );
           },
         );

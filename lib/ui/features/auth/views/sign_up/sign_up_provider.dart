@@ -13,7 +13,7 @@ class SignUpProvider extends AutoDisposeNotifier<SignUpModelForm> {
 
   @override
   SignUpModelForm build() {
-    return SignUpViewModel().generateFormModel();
+    return SignUpViewModel().generateFormModel;
   }
 
   void signUp() async {

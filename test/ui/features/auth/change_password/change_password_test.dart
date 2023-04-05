@@ -64,7 +64,8 @@ void main() {
               .thenAnswer((_) async {});
 
           final button = find.byKey(const Key('change-password-button'));
-          await _enterPasswords(tester, fakePassword, fakePassword);
+          final password = fakePassword;
+          await _enterPasswords(tester, password, password);
           await tester.tap(button);
           await tester.pumpAndSettle();
 
@@ -91,7 +92,8 @@ void main() {
               .thenThrow(const AppError(message: 'Invalid password'));
 
           final button = find.byKey(const Key('change-password-button'));
-          await _enterPasswords(tester, fakePassword, fakePassword);
+          final password = fakePassword;
+          await _enterPasswords(tester, password, password);
           await tester.tap(button);
           await tester.pumpAndSettle();
 

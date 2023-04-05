@@ -1,9 +1,9 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_base/core/app/domain/models/device_type.dart';
 import 'package:flutter_base/core/auth/domain/use_cases/login_use_case.dart';
 import 'package:flutter_base/ui/features/auth/views/login/view_models/basic_login_view_model.dart';
 import 'package:flutter_base/ui/providers/ui_provider.dart';
 import 'package:flutter_base/ui/providers/user_provider.dart';
-import 'package:flutter_base/ui/utils/platform.dart';
 import 'package:flutter_base/ui/view_models/user_view_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
@@ -15,7 +15,7 @@ class LoginProvider extends AutoDisposeNotifier<BasicLoginModelForm> {
 
   @override
   BasicLoginModelForm build() {
-    return BasicLoginViewModel().generateFormModel();
+    return BasicLoginViewModel().generateFormModel;
   }
 
   void login() async {
@@ -27,7 +27,7 @@ class LoginProvider extends AutoDisposeNotifier<BasicLoginModelForm> {
         final input = LoginUseCaseInput(
           email: state.model.email.trim(),
           password: state.model.password.trim(),
-          userDeviceType: deviceType,
+          userDeviceType: DeviceType.deviceType,
         );
         FocusManager.instance.primaryFocus?.unfocus();
         final user = await _loginUseCase(input);

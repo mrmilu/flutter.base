@@ -46,15 +46,11 @@ class ScaffoldWithNavBarTabItem extends AppNavigationItem {
 class ScaffoldWithNavBar extends ConsumerStatefulWidget {
   final Navigator currentNavigator;
   final List<ScaffoldWithNavBarTabItem> tabs;
-  final GoRouterState currentRouterState;
-  final List<RouteBase> routes;
 
   List<Page<dynamic>> get pagesForCurrentRoute => currentNavigator.pages;
 
   const ScaffoldWithNavBar({
     required this.currentNavigator,
-    required this.currentRouterState,
-    required this.routes,
     required this.tabs,
     Key? key,
   }) : super(key: key ?? const ValueKey<String>('ScaffoldWithNavBar'));
@@ -108,12 +104,9 @@ class ScaffoldWithNavBarState extends ConsumerState<ScaffoldWithNavBar>
 
   void _onItemTapped(int index, BuildContext context) {
     final tab = _tabs[index];
-    // (tab.navigatorKey as NavigatorState)
-    if (_currentIndex == index) {
-      GoRouter.of(context).go(tab.rootRoutePath);
-    } else {
-      GoRouter.of(context).go(tab.currentLocation);
-    }
+
+    GoRouter.of(context)
+        .go(_currentIndex == index ? tab.rootRoutePath : tab.currentLocation);
   }
 
   @override
