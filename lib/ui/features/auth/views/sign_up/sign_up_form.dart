@@ -4,7 +4,6 @@ import 'package:flutter_base/ui/components/box_spacer.dart';
 import 'package:flutter_base/ui/components/buttons/button_primary.dart';
 import 'package:flutter_base/ui/components/form/password_reactive_input.dart';
 import 'package:flutter_base/ui/components/form/reactive_input.dart';
-import 'package:flutter_base/ui/components/form/reactive_provider_form_builder.dart';
 import 'package:flutter_base/ui/features/auth/views/sign_up/sign_up_provider.dart';
 import 'package:flutter_base/ui/features/auth/views/sign_up/view_models/sign_up_view_model.dart';
 import 'package:flutter_base/ui/i18n/locale_keys.g.dart';
@@ -20,9 +19,9 @@ class SignUpForm extends ConsumerWidget {
     return ReactiveSignUpModelForm(
       key: ObjectKey(formModel),
       form: formModel,
-      child: ReactiveProviderFormBuilder(
-        formModel: formModel,
-        builder: (context, child) {
+      child: ReactiveFormBuilder(
+        form: () => formModel.form,
+        builder: (context, formGroup, child) {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
