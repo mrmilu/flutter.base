@@ -17,10 +17,11 @@ class SignUpForm extends ConsumerWidget {
   Widget build(BuildContext context, ref) {
     final formModel = ref.watch(signUpProvider);
     return ReactiveSignUpModelForm(
+      key: ObjectKey(formModel),
       form: formModel,
       child: ReactiveFormBuilder(
         form: () => formModel.form,
-        builder: (context, formGroup, _) {
+        builder: (context, formGroup, child) {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [

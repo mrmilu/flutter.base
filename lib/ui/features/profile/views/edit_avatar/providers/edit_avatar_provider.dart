@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:extended_image/extended_image.dart';
-import 'package:flutter/foundation.dart';
+import 'package:flutter/foundation.dart' show kIsWeb, Uint8List;
 import 'package:flutter/widgets.dart';
 import 'package:flutter_base/common/interfaces/edit_image_service.dart';
 import 'package:flutter_base/core/app/domain/use_cases/image_from_camera_use_case.dart';

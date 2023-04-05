@@ -22,7 +22,7 @@ class LoginForm extends ConsumerWidget {
       form: formModel,
       child: ReactiveFormBuilder(
         form: () => formModel.form,
-        builder: (context, _, __) {
+        builder: (context, formGroup, child) {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
