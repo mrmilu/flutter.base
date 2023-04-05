@@ -2,9 +2,8 @@ name: flutter_base
 description: Mr Milu's flutter base app.
 publish_to: 'none'
 
-# This version model follow the guideline of this internal document
-# https://www.notion.so/mrmilu/Versionado-de-apps-c858d86e297c4cde986faf1b4a57ab37
-version: 0.0.1+1
+# We use the following build number guideline: yyyy+mm+dd+incremental
+version: 0.0.1+202304051
 
 environment:
   sdk: ">=2.19.3 <3.0.0"

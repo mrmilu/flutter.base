@@ -13,8 +13,7 @@
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
 
-# Variables to change
-# 
+# TODO: Variables to change
 # key_id: Get from https://appstoreconnect.apple.com/access/api
 # issuer_id: Get from https://appstoreconnect.apple.com/access/api
 # FLUTTER_BASE_APP_STORE_CONNECT_PRIVATE_KEY =>

@@ -60,3 +60,6 @@ report.xml
 
 # Test coverage
 /coverage/
+
+#TODO IMPORTANT REMOVE THIS IGNORE ON FINAL PROJECT
+.env.*

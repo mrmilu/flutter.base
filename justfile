@@ -55,7 +55,6 @@ e2e-test flavor file deviceId:
 
 # Initial project setup
 setup:
-    fvm flutter precache --ios
     just clean-and-get
     just locales
     just codegen

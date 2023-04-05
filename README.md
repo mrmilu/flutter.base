@@ -64,27 +64,32 @@ When create a new project, need complete this checklist
 
 - [ ] Rename project and identifier id. To rename from flutter_base to another package name, change the pubspec.yml file and all the imports. Also if using Idea IDE's delete the .idea folder and in Project Structure... add a new root module to the project root so the IDE can detect the actual project.
 - [ ] Search for all TODO comments and review and modify if necessary
-
-For more details about create and configure new project, see [this document](https://www.notion.so/mrmilu/Crear-y-configurar-nuevo-proyecto-c7f903599b884bba817a2db2d6b17449)
+- [ ] Create `.env` per flavor with the following structure:
+```.env.beta
+API_URL=https://api-staging.flutterbase.me
+SENTRY_DSN=https://xxxxxxxxx@apm.mrmilu.com/xx
+ENVIRONMENT=beta
+FIREBASE_REVERSED_CLIENT_ID=com.googleusercontent.apps.xxxx-xxxxxxxxx
+DYNAMIC_LINK_HOST=flutterbase.page.link
+DYNAMIC_LINKS_URL_TYPE_SCHEMA=com.flutterbasemrmilu.beta
+```
 
 ## Run
 
-For almost of actions, can be use the setup commands in `justfile`
+For almost every action needed in the project there is a command in the `justfile`.
 
-Initial setup `just setup` and then `just run {flavor}`
+Initial setup can be triggered with the following command `just setup` and then run app with `just run {flavor}`
 
 ### iOS
 
-First time to run on physical iOS device, need download Apple certificates. To acomplish this, please follow this steps
+First time to run on physical iOS device, need download Apple certificates. To accomplish this, please follow this steps
 
 - Navigate to ios folder: `cd /ios`
 - Execute `fastlane match development --read-only`
 
-More details on [this documentation](https://www.notion.so/mrmilu/Fastlane-y-Match-0be41150a6fe411cabd60b7d783c80b1#d6069bd171b6451497077e258d5c656f)
-
 ### Android
 
-- Request sign files to Jaime/Tech lead and copy files `upload-keystore-*.jks` and `*.key.properties` to `android`
+- Request sign files or generate new ones (`upload-keystore-*.jks` and `*.key.properties`) and copy them to `android` dir.
 
 ## Testing
 

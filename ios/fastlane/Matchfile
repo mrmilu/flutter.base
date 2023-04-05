@@ -1,9 +1,14 @@
-git_url("git@bitbucket.org:mrmilu/ios-certificates.git")
+# TODO: Variables to change
+# git_url: Use git repo for ios-certificates
+# team_id: Get it from https://developer.apple.com/account
+# username: Mobile mail account
+
+git_url("***ios-certificates-git***")
 
 storage_mode("git")
 
 app_identifier(["com.flutterbasemrmilu.beta", "com.flutterbasemrmilu.live"])
-username("mobile@mrmilu.com")
+username("****@****.com")
 git_branch("flutter_base")
 team_id("XXXXXXXX")
 
