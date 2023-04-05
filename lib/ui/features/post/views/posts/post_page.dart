@@ -9,6 +9,7 @@ import 'package:flutter_base/ui/styles/colors.dart';
 import 'package:flutter_base/ui/styles/spacing.dart';
 import 'package:flutter_base/ui/view_models/button_size.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class PostPage extends ConsumerWidget {
   const PostPage({super.key});
@@ -27,13 +28,13 @@ class PostPage extends ConsumerWidget {
       }
     });
 
-    return postsProvider.when(
-      loading: () => const SizedBox.shrink(),
-      error: (e, __) => Center(child: Text(e.toString())),
-      data: (posts) => Scaffold(
-        extendBodyBehindAppBar: true,
-        appBar: FlutterBaseAppBar(),
-        body: RefreshIndicator(
+    return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: FlutterBaseAppBar(),
+      body: postsProvider.when(
+        loading: () => const SizedBox.shrink(),
+        error: (e, __) => Center(child: Text(e.toString())),
+        data: (posts) => RefreshIndicator(
           onRefresh: () async {
             ref.invalidate(postPageProvider);
           },
@@ -64,6 +65,9 @@ class PostPage extends ConsumerWidget {
                         maxLines: 1,
                         softWrap: false,
                       ),
+                      onTap: () {
+                        GoRouter.of(context).push('/home/${post.id}');
+                      },
                       trailing: IconButtonPrimary(
                         icon: Icons.delete,
                         size: ButtonSize.small,
