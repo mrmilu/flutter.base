@@ -1,16 +1,18 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_adaptive_scaffold/flutter_adaptive_scaffold.dart';
+import 'package:flutter_base/ui/styles/colors.dart';
+import 'package:flutter_base/ui/styles/paddings.dart';
 
 class BaseAdaptativeLayout extends StatelessWidget {
   final Widget body;
   final Widget? secondaryBody;
-  final Widget bottomAppBar;
-  final Widget navigationRail;
+  final Widget? bottomAppBar;
+  final Widget? navigationRail;
   const BaseAdaptativeLayout({
     super.key,
     required this.body,
-    required this.bottomAppBar,
-    required this.navigationRail,
+    this.bottomAppBar,
+    this.navigationRail,
     this.secondaryBody,
   });
 
@@ -22,7 +24,7 @@ class BaseAdaptativeLayout extends StatelessWidget {
     );
     final navigationRailSlot = SlotLayout.from(
       key: const Key('navigation-rail'),
-      builder: (context) => navigationRail,
+      builder: (context) => navigationRail ?? const SizedBox.shrink(),
     );
 
     return AdaptiveLayout(
@@ -34,14 +36,20 @@ class BaseAdaptativeLayout extends StatelessWidget {
           ),
           Breakpoints.medium: SlotLayout.from(
             key: const Key('body'),
-            builder: (context) => body,
+            builder: (context) => Padding(
+              padding: Paddings.h16,
+              child: body,
+            ),
           ),
           Breakpoints.large: SlotLayout.from(
             key: const Key('body'),
-            builder: (context) => Center(
-              child: FractionallySizedBox(
-                widthFactor: 0.66,
-                child: body,
+            builder: (context) => ColoredBox(
+              color: FlutterBaseColors.specificBackgroundBase,
+              child: Center(
+                child: FractionallySizedBox(
+                  widthFactor: 0.66,
+                  child: body,
+                ),
               ),
             ),
           ),
@@ -54,20 +62,24 @@ class BaseAdaptativeLayout extends StatelessWidget {
               },
             )
           : null,
-      primaryNavigation: SlotLayout(
-        config: <Breakpoint, SlotLayoutConfig>{
-          Breakpoints.large: navigationRailSlot,
-          Breakpoints.medium: navigationRailSlot,
-        },
-      ),
-      bottomNavigation: SlotLayout(
-        config: <Breakpoint, SlotLayoutConfig>{
-          Breakpoints.small: SlotLayout.from(
-            key: const Key('navigation-bottom'),
-            builder: (context) => bottomAppBar,
-          ),
-        },
-      ),
+      primaryNavigation: navigationRail != null
+          ? SlotLayout(
+              config: <Breakpoint, SlotLayoutConfig>{
+                Breakpoints.large: navigationRailSlot,
+                Breakpoints.medium: navigationRailSlot,
+              },
+            )
+          : null,
+      bottomNavigation: bottomAppBar != null
+          ? SlotLayout(
+              config: <Breakpoint, SlotLayoutConfig>{
+                Breakpoints.small: SlotLayout.from(
+                  key: const Key('navigation-bottom'),
+                  builder: (context) => bottomAppBar ?? const SizedBox.shrink(),
+                ),
+              },
+            )
+          : null,
     );
   }
 }
