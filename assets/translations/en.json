@@ -27,6 +27,13 @@
       "passwordMatch": "Both passwords must match."
     }
   },
+  "platform_info": {
+    "title": "Platform information",
+    "version": "Version: {}",
+    "build_number": "Build number: {}",
+    "app_name": "App name: {}",
+    "package_name": "Package name: {}"
+  },
   "login": {
     "title": "Sign in",
     "or": "Or...",

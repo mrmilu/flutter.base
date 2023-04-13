@@ -14,7 +14,9 @@ import 'package:flutter_base/common/services/image_compress_service.dart';
 import 'package:flutter_base/common/services/secure_storage_service.dart';
 import 'package:flutter_base/common/services/share_service.dart';
 import 'package:flutter_base/common/services/social_auth_service.dart';
+import 'package:flutter_base/core/app/data/services/platform_service.dart';
 import 'package:flutter_base/core/app/domain/interfaces/env_vars.dart';
+import 'package:flutter_base/core/app/domain/interfaces/platform_service.dart';
 import 'package:flutter_base/core/app/domain/models/env_vars.dart';
 import 'package:flutter_base/core/app/domain/models/environments_list.dart';
 import 'package:flutter_base/core/app/ioc/locator.config.dart';
@@ -68,6 +70,9 @@ abstract class RegisterModule {
 
   @Injectable(as: IFsRepository)
   FsRepository get getFsRepository => FsRepository();
+
+  @Injectable(as: IPlatformService)
+  PlatformService get getPlatformService => PlatformService();
 
   @Singleton()
   GlobalKey<ScaffoldMessengerState> get getScaffoldKey =>
