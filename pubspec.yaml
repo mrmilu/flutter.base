@@ -55,10 +55,6 @@ dependencies:
 dev_dependencies:
   build_runner: 2.3.3
   dart_code_metrics: 5.7.0
-  flutter_flavorizr:
-    git:
-      url: https://github.com/AngeloAvv/flutter_flavorizr
-      ref: master
   flutter_launcher_icons: 0.12.0
   flutter_lints: 2.0.1
   flutter_test:
@@ -98,44 +94,3 @@ flutter:
         - asset: assets/fonts/poppins_medium.ttf
           style: normal
           weight: 500
-
-flavorizr:
-  app:
-    android:
-      flavorDimensions: "flavor-type"
-    ios:
-
-  flavors:
-    dev:
-      app:
-        name: "Flutter base (Dev)"
-
-      android:
-        applicationId: "com.flutterbasemrmilu.dev"
-
-      ios:
-        bundleId: "com.flutterbasemrmilu.dev"
-
-    beta:
-      app:
-        name: "Flutter base (Beta)"
-
-      android:
-        applicationId: "com.flutterbasemrmilu.beta"
-#        firebase:
-#          config: ".firebase/beta/google-services.json"
-        customConfig:
-          signingConfig: signingConfigs.release_beta
-      ios:
-        bundleId: "com.flutterbasemrmilu.beta"
-#        firebase:
-#          config: ".firebase/beta/GoogleService-Info.plist"
-
-    live:
-      app:
-        name: "Flutter base"
-
-      android:
-        applicationId: "com.flutterbasemrmilu.live"
-      ios:
-        bundleId: "com.flutterbasemrmilu.live"

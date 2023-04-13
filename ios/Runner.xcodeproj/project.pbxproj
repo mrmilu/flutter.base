@@ -11,7 +11,6 @@
 		0550618CF79312AD023A68FA /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90040575A7A4BF2300DDB42B /* Pods_Runner.framework */; };
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
 		2442408CFF6FFC8CEBAF13B2 /* devProfile.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 71BCB18DFF7BCBF46E21ED2F /* devProfile.xcconfig */; };
-		32578B4C28B6664C005D6906 /* temp.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 32578B4B28B6664C005D6906 /* temp.xcconfig */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
 		3FADED3928F4139A27E62825 /* betaRelease.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = FA4FD9C4A7D24E0B03B97F17 /* betaRelease.xcconfig */; };
 		5464C103E9A4F4E687AA96FE /* liveProfile.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = FEC33162588B62AD2B4D648F /* liveProfile.xcconfig */; };
@@ -50,7 +49,6 @@
 		18B6CA50B42BDAD6756182F3 /* devDebug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = devDebug.xcconfig; path = Flutter/devDebug.xcconfig; sourceTree = "<group>"; };
 		19C94B4F3A4D5BFB6EA97CE7 /* liveLaunchScreen.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; name = liveLaunchScreen.storyboard; path = Runner/liveLaunchScreen.storyboard; sourceTree = "<group>"; };
 		32065DB82780AF2F003D0F59 /* Runner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Runner.entitlements; sourceTree = "<group>"; };
-		32578B4B28B6664C005D6906 /* temp.xcconfig */ = {isa = PBXFileReference; explicitFileType = text.xcconfig; name = temp.xcconfig; path = Flutter/temp.xcconfig; sourceTree = "<group>"; };
 		3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppFrameworkInfo.plist; path = Flutter/AppFrameworkInfo.plist; sourceTree = "<group>"; };
 		4081AD9C51E8FD5704E580EA /* Pods-Runner.profile-live.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile-live.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile-live.xcconfig"; sourceTree = "<group>"; };
 		4AA7F7F67BE4C2A203242C7D /* devRelease.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = devRelease.xcconfig; path = Flutter/devRelease.xcconfig; sourceTree = "<group>"; };
@@ -114,7 +112,6 @@
 				FA4FD9C4A7D24E0B03B97F17 /* betaRelease.xcconfig */,
 				6D4A43FE88D5EE1D438E41AB /* liveDebug.xcconfig */,
 				52C4BEFA7D9BBB1A42496934 /* liveRelease.xcconfig */,
-				32578B4B28B6664C005D6906 /* temp.xcconfig */,
 				71BCB18DFF7BCBF46E21ED2F /* devProfile.xcconfig */,
 				EDED93A8CDA934D706D7438B /* betaProfile.xcconfig */,
 				FEC33162588B62AD2B4D648F /* liveProfile.xcconfig */,
@@ -284,7 +281,6 @@
 				C5A0251B2995038000107D2D /* GoogleService-Info.plist in Resources */,
 				74C966EAC4A8BADB03271014 /* betaLaunchScreen.storyboard in Resources */,
 				5AE6801FC957E955D117A617 /* liveLaunchScreen.storyboard in Resources */,
-				32578B4C28B6664C005D6906 /* temp.xcconfig in Resources */,
 				2442408CFF6FFC8CEBAF13B2 /* devProfile.xcconfig in Resources */,
 				C94DC71D023116768CF77F98 /* betaProfile.xcconfig in Resources */,
 				5464C103E9A4F4E687AA96FE /* liveProfile.xcconfig in Resources */,
@@ -419,7 +415,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "$(ASSET_PREFIX)AppIcon";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "$(ENVIRONMENT)AppIcon";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -472,7 +468,6 @@
 					"$(PROJECT_DIR)/Flutter",
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.flutterbasemrmilu.dev;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -488,7 +483,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "$(ASSET_PREFIX)AppIcon";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "$(ENVIRONMENT)AppIcon";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -548,7 +543,6 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.flutterbasemrmilu.beta;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -624,7 +618,6 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.flutterbasemrmilu.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
@@ -637,7 +630,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "$(ASSET_PREFIX)AppIcon";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "$(ENVIRONMENT)AppIcon";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -690,7 +683,6 @@
 					"$(PROJECT_DIR)/Flutter",
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.flutterbasemrmilu.live;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
@@ -704,7 +696,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "$(ASSET_PREFIX)AppIcon";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "$(ENVIRONMENT)AppIcon";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -764,7 +756,6 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.flutterbasemrmilu.dev;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -902,7 +893,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "$(ASSET_PREFIX)AppIcon";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "$(ENVIRONMENT)AppIcon";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -955,7 +946,6 @@
 					"$(PROJECT_DIR)/Flutter",
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.flutterbasemrmilu.live;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -971,7 +961,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "$(ASSET_PREFIX)AppIcon";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "$(ENVIRONMENT)AppIcon";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1024,7 +1014,7 @@
 					"$(PROJECT_DIR)/Flutter",
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.flutterbasemrmilu.beta;
+		
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
@@ -1159,7 +1149,6 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.flutterbasemrmilu.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
@@ -1187,7 +1176,6 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.flutterbasemrmilu.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
@@ -1200,7 +1188,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "$(ASSET_PREFIX)AppIcon";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "$(ENVIRONMENT)AppIcon";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1253,7 +1241,7 @@
 					"$(PROJECT_DIR)/Flutter",
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.flutterbasemrmilu.beta;
+		
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -1269,7 +1257,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "$(ASSET_PREFIX)AppIcon";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "$(ENVIRONMENT)AppIcon";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1322,7 +1310,6 @@
 					"$(PROJECT_DIR)/Flutter",
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.flutterbasemrmilu.dev;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
@@ -1336,7 +1323,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "$(ASSET_PREFIX)AppIcon";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "$(ENVIRONMENT)AppIcon";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1396,7 +1383,6 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.flutterbasemrmilu.live;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

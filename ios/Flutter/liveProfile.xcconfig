@@ -1,7 +1,4 @@
 #include "Generated.xcconfig"
-#include? "tmp.xcconfig"
+#include "Default.xcconfig"
 
 FLUTTER_TARGET=lib/main_live.dart
-ASSET_PREFIX=live
-BUNDLE_NAME=Flutter base
-BUNDLE_DISPLAY_NAME=Flutter base

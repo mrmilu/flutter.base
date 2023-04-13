@@ -52,7 +52,6 @@ The following index has a summary of configuration, common errors and how to sol
 
 ### Docs
 
-- [flutter_flavorizr](docs/flutter_flavorizr.md)
 - [flutter_native_splash](docs/flutter_native_splash.md)
 - [flutter_launcher_icons](docs/flutter_launcher_icons.md)
 - [firebase](docs/firebase.md)

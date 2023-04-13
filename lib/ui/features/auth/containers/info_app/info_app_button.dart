@@ -14,48 +14,51 @@ class InfoAppButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer(
-      builder: (context, ref, child) {
-        final watcher = ref.watch(infoAppProvider);
-        return watcher.when(
-          data: (platformInfo) => ButtonTertiary(
-            text: platformInfo.version,
-            onPressed: () {
-              showDialog(
-                context: context,
-                builder: (context) => SimpleDialog(
-                  contentPadding: const EdgeInsets.all(24),
-                  title: HighTextM(LocaleKeys.platform_info_title.tr()),
-                  children: [
-                    MidTextM(
-                      LocaleKeys.platform_info_app_name
-                          .tr(args: [platformInfo.appName]),
-                    ),
-                    BoxSpacer.v12(),
-                    MidTextM(
-                      LocaleKeys.platform_info_package_name
-                          .tr(args: [platformInfo.packageName]),
-                    ),
-                    BoxSpacer.v12(),
-                    MidTextM(
-                      LocaleKeys.platform_info_version
-                          .tr(args: [platformInfo.version]),
-                    ),
-                    BoxSpacer.v12(),
-                    MidTextM(
-                      LocaleKeys.platform_info_build_number
-                          .tr(args: [platformInfo.buildNumber]),
-                    ),
-                    BoxSpacer.v12(),
-                  ],
-                ),
-              );
-            },
-          ),
-          error: (error, stackTrace) => const SizedBox.shrink(),
-          loading: () => const CircularProgress(radius: 12),
-        );
-      },
+    return ConstrainedBox(
+      constraints: const BoxConstraints(maxHeight: 56),
+      child: Consumer(
+        builder: (context, ref, child) {
+          final watcher = ref.watch(infoAppProvider);
+          return watcher.when(
+            data: (platformInfo) => ButtonTertiary(
+              text: platformInfo.version,
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (context) => SimpleDialog(
+                    contentPadding: const EdgeInsets.all(24),
+                    title: HighTextM(LocaleKeys.platform_info_title.tr()),
+                    children: [
+                      MidTextM(
+                        LocaleKeys.platform_info_app_name
+                            .tr(args: [platformInfo.appName]),
+                      ),
+                      BoxSpacer.v12(),
+                      MidTextM(
+                        LocaleKeys.platform_info_package_name
+                            .tr(args: [platformInfo.packageName]),
+                      ),
+                      BoxSpacer.v12(),
+                      MidTextM(
+                        LocaleKeys.platform_info_version
+                            .tr(args: [platformInfo.version]),
+                      ),
+                      BoxSpacer.v12(),
+                      MidTextM(
+                        LocaleKeys.platform_info_build_number
+                            .tr(args: [platformInfo.buildNumber]),
+                      ),
+                      BoxSpacer.v12(),
+                    ],
+                  ),
+                );
+              },
+            ),
+            error: (error, stackTrace) => const SizedBox.shrink(),
+            loading: () => const CircularProgress(radius: 12),
+          );
+        },
+      ),
     );
   }
 }

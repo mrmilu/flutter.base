@@ -483,15 +483,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_flavorizr:
-    dependency: "direct dev"
-    description:
-      path: "."
-      ref: master
-      resolved-ref: db6d6371e08249c2f9af09bc9f2ff56618e17916
-      url: "https://github.com/AngeloAvv/flutter_flavorizr"
-    source: git
-    version: "3.0.0"
   flutter_image_compress:
     dependency: "direct main"
     description:
@@ -1410,14 +1401,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.9.1"
-  sprintf:
-    dependency: transitive
-    description:
-      name: sprintf
-      sha256: "1fc9ffe69d4df602376b52949af107d8f5703b77cda567c4d7d86a0693120f23"
-      url: "https://pub.dev"
-    source: hosted
-    version: "7.0.0"
   sqflite:
     dependency: transitive
     description:
