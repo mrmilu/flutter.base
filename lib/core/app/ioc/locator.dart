@@ -71,7 +71,7 @@ abstract class RegisterModule {
   @Injectable(as: IFsRepository)
   FsRepository get getFsRepository => FsRepository();
 
-  @Injectable(as: IPlatformService)
+  @Injectable(as: IPlatformService, env: noTestEnvironment)
   PlatformService get getPlatformService => PlatformService();
 
   @Singleton()

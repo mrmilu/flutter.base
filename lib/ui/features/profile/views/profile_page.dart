@@ -27,8 +27,10 @@ class ProfilePage extends ConsumerWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              HighTextXl(
-                user?.name ?? '---',
+              Flexible(
+                child: HighTextXl(
+                  user?.name ?? '---',
+                ),
               ),
               GestureDetector(
                 onTap: Feedback.wrapForTap(

@@ -2,6 +2,7 @@
 
 import 'package:flutter_base/common/interfaces/deep_link_service.dart';
 import 'package:flutter_base/common/interfaces/notifications_service.dart';
+import 'package:flutter_base/core/app/domain/interfaces/platform_service.dart';
 import 'package:flutter_base/core/app/domain/models/environments_list.dart';
 import 'package:flutter_base/core/auth/domain/interfaces/auth_repository.dart';
 import 'package:flutter_base/core/auth/domain/interfaces/token_repository.dart';
@@ -40,6 +41,9 @@ abstract class MockTestModule {
   @LazySingleton(env: testEnvironment)
   BaseCacheManager get cacheManager => FakeImageCacheManager();
 
+  @LazySingleton(env: testEnvironment)
+  IPlatformService get getPlatformService => MockTestPlatformService();
+
 // Add more mocks if they are necessary in the tests
 }
 
@@ -53,3 +57,5 @@ class MockTestAuthRepository extends Mock implements IAuthRepository {}
 class MockTestTokenRepository extends Mock implements ITokenRepository {}
 
 class MockTestDeepLinkService extends Mock implements IDeepLinkService {}
+
+class MockTestPlatformService extends Mock implements IPlatformService {}
