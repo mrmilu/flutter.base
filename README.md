@@ -63,8 +63,10 @@ When create a new project, need complete this checklist
 
 - [ ] Rename project and identifier id. To rename from flutter_base to another package name, change the pubspec.yml file and all the imports. Also if using Idea IDE's delete the .idea folder and in Project Structure... add a new root module to the project root so the IDE can detect the actual project.
 - [ ] Search for all TODO comments and review and modify if necessary
-- [ ] Create `.env` per flavor with the following structure:
-```.env.beta
+- [ ] Create `env.flavor.json` per flavor with the following structure:
+
+```json
+// env.beta.json
 API_URL=https://api-staging.flutterbase.me
 SENTRY_DSN=https://xxxxxxxxx@apm.mrmilu.com/xx
 ENVIRONMENT=beta
