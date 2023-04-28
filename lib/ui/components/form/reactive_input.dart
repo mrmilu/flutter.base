@@ -48,15 +48,14 @@ class ReactiveInput<T> extends ReactiveTextField {
                 : FloatingLabelBehavior.never,
             helperText: helperText,
           ),
-          scrollPadding:
-              GetIt.I.get<GlobalKey<ScaffoldMessengerState>>().currentContext !=
-                      null
-                  ? MediaQuery.of(
-                      // ignore: avoid-non-null-assertion
-                      GetIt.I
-                          .get<GlobalKey<ScaffoldMessengerState>>()
-                          .currentContext!,
-                    ).textFieldScrollPadding
-                  : Insets.a20,
+          scrollPadding: _getScrollPadding,
         );
+
+  static EdgeInsets get _getScrollPadding =>
+      GetIt.I.get<GlobalKey<ScaffoldMessengerState>>().currentContext != null
+          ? MediaQuery.of(
+              // ignore: avoid-non-null-assertion
+              GetIt.I.get<GlobalKey<ScaffoldMessengerState>>().currentContext!,
+            ).textFieldScrollPadding
+          : Insets.a20;
 }
