@@ -2,7 +2,7 @@
 
 import 'package:flutter_base/common/interfaces/deep_link_service.dart';
 import 'package:flutter_base/common/interfaces/notifications_service.dart';
-import 'package:flutter_base/core/app/domain/interfaces/platform_service.dart';
+import 'package:flutter_base/common/interfaces/platform_service.dart';
 import 'package:flutter_base/core/app/domain/models/environments_list.dart';
 import 'package:flutter_base/core/auth/domain/interfaces/auth_repository.dart';
 import 'package:flutter_base/core/auth/domain/interfaces/token_repository.dart';

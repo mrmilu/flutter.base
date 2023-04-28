@@ -1,4 +1,4 @@
-import 'package:flutter_base/core/app/domain/interfaces/platform_service.dart';
+import 'package:flutter_base/common/interfaces/platform_service.dart';
 import 'package:flutter_base/core/app/domain/models/platform_info.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
