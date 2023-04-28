@@ -4,7 +4,7 @@ import 'package:flutter_base/ui/components/navigation/app_navigation_item.dart';
 import 'package:flutter_base/ui/components/navigation/app_navigation_rail.dart';
 import 'package:flutter_base/ui/components/views/base_adaptative_layout.dart';
 import 'package:flutter_base/ui/styles/colors.dart';
-import 'package:flutter_base/ui/styles/paddings.dart';
+import 'package:flutter_base/ui/styles/insets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -149,7 +149,7 @@ class ScaffoldWithNavBarState extends ConsumerState<ScaffoldWithNavigation>
             onItemTapped: (int idx) => _onItemTapped(idx, context),
           ),
           bottomAppBar: Padding(
-            padding: Paddings.a12,
+            padding: Insets.a12,
             child: AppNavigationBottomBar(
               items: widget.tabItems,
               selectedIndex: _currentIndex,

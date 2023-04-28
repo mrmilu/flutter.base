@@ -1,7 +1,7 @@
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_base/ui/components/images/circle_editor_crop_layer_painter.dart';
-import 'package:flutter_base/ui/styles/paddings.dart';
+import 'package:flutter_base/ui/styles/insets.dart';
 
 // Compatibility with web and other platforms
 // Ref: https://github.com/fluttercandies/extended_image/issues/531#issuecomment-1408071991
@@ -17,7 +17,7 @@ EditorConfig getEditorConfig({bool enableCircleMask = false}) {
     cropLayerPainter: enableCircleMask
         ? const CircleEditorCropLayerPainter()
         : const EditorCropLayerPainter(),
-    cropRectPadding: Paddings.zero,
+    cropRectPadding: Insets.zero,
     initCropRectType: InitCropRectType.layoutRect,
     cornerSize: Size.zero,
   );

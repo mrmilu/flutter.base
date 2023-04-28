@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_base/ui/styles/paddings.dart';
+import 'package:flutter_base/ui/styles/insets.dart';
 
 class ColumnScrollView extends StatelessWidget {
   final List<Widget> children;
@@ -14,7 +14,7 @@ class ColumnScrollView extends StatelessWidget {
     required this.children,
     this.crossAxisAlignment = CrossAxisAlignment.center,
     this.mainAxisAlignment = MainAxisAlignment.start,
-    this.padding = Paddings.zero,
+    this.padding = Insets.zero,
     this.disableKeyboardPadding = false,
     this.controller,
   });

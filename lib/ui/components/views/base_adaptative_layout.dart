@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_adaptive_scaffold/flutter_adaptive_scaffold.dart';
 import 'package:flutter_base/ui/styles/colors.dart';
-import 'package:flutter_base/ui/styles/paddings.dart';
+import 'package:flutter_base/ui/styles/insets.dart';
 
 class BaseAdaptativeLayout extends StatelessWidget {
   final Widget body;
@@ -37,7 +37,7 @@ class BaseAdaptativeLayout extends StatelessWidget {
           Breakpoints.medium: SlotLayout.from(
             key: const Key('body'),
             builder: (context) => Padding(
-              padding: Paddings.h16,
+              padding: Insets.h16,
               child: body,
             ),
           ),

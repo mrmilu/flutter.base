@@ -5,7 +5,7 @@ import 'package:flutter_base/ui/components/text/high_text.dart';
 import 'package:flutter_base/ui/components/views/column_scroll_view.dart';
 import 'package:flutter_base/ui/extensions/media_query.dart';
 import 'package:flutter_base/ui/styles/colors.dart';
-import 'package:flutter_base/ui/styles/paddings.dart';
+import 'package:flutter_base/ui/styles/insets.dart';
 import 'package:flutter_base/ui/styles/spacing.dart';
 
 typedef FlutterBaseDialogBuilder = Widget Function(
@@ -60,7 +60,7 @@ class FlutterBaseDialog extends StatelessWidget {
                       bottom: MediaQuery.of(context).deviceBottomSafeArea +
                           Spacing.sp16,
                     ) +
-                    Paddings.h16,
+                    Insets.h16,
                 child: IntrinsicHeight(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,

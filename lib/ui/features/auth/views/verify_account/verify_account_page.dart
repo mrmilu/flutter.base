@@ -10,7 +10,7 @@ import 'package:flutter_base/ui/components/views/column_scroll_view.dart';
 import 'package:flutter_base/ui/features/auth/views/verify_account/verify_account_provider.dart';
 import 'package:flutter_base/ui/i18n/locale_keys.g.dart';
 import 'package:flutter_base/ui/providers/user_provider.dart';
-import 'package:flutter_base/ui/styles/paddings.dart';
+import 'package:flutter_base/ui/styles/insets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -76,7 +76,7 @@ class _VerifyAccountPageState extends ConsumerState<VerifyAccountPage> {
         body: SafeArea(
           child: ColumnScrollView(
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            padding: Paddings.h24,
+            padding: Insets.h24,
             children: [
               BoxSpacer.v16(),
               HighTextL(LocaleKeys.verifyAccount_title.tr()),

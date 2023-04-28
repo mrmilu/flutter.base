@@ -3,7 +3,7 @@ import 'package:flutter_base/ui/components/box_spacer.dart';
 import 'package:flutter_base/ui/components/icons/flutter_base_icon.dart';
 import 'package:flutter_base/ui/components/icons/flutter_base_svg_icon.dart';
 import 'package:flutter_base/ui/styles/colors.dart';
-import 'package:flutter_base/ui/styles/paddings.dart';
+import 'package:flutter_base/ui/styles/insets.dart';
 import 'package:flutter_base/ui/styles/text_styles.dart';
 import 'package:flutter_base/ui/view_models/button_size.dart';
 
@@ -57,8 +57,8 @@ class ButtonPrimary extends ElevatedButton {
   static MaterialStateProperty<EdgeInsetsGeometry?> _padding(ButtonSize size) {
     return MaterialStateProperty.resolveWith((states) {
       return size == ButtonSize.small
-          ? Paddings.h12 + Paddings.v8
-          : Paddings.h16 + Paddings.v12;
+          ? Insets.h12 + Insets.v8
+          : Insets.h16 + Insets.v12;
     });
   }
 

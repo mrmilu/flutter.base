@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_base/ui/extensions/media_query.dart';
 import 'package:flutter_base/ui/styles/colors.dart';
-import 'package:flutter_base/ui/styles/paddings.dart';
+import 'package:flutter_base/ui/styles/insets.dart';
 
 class ScaffoldBottomSheet extends StatelessWidget {
   final Widget child;
@@ -20,7 +20,7 @@ class ScaffoldBottomSheet extends StatelessWidget {
         width: double.infinity,
         color: backgroundColor,
         child: Padding(
-          padding: MediaQuery.of(context).bottomSafeAreaPadding + Paddings.a16,
+          padding: MediaQuery.of(context).bottomSafeAreaPadding + Insets.a16,
           child: child,
         ),
       ),

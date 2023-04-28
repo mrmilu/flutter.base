@@ -4,7 +4,7 @@ import 'package:flutter_base/ui/components/navigation/app_navigation_item_widget
 import 'package:flutter_base/ui/styles/border_radius.dart';
 import 'package:flutter_base/ui/styles/box_shadows.dart';
 import 'package:flutter_base/ui/styles/colors.dart';
-import 'package:flutter_base/ui/styles/paddings.dart';
+import 'package:flutter_base/ui/styles/insets.dart';
 
 class AppNavigationBottomBar extends StatelessWidget {
   final List<AppNavigationItem> items;
@@ -27,7 +27,7 @@ class AppNavigationBottomBar extends StatelessWidget {
         boxShadow: BoxShadows.bs1,
       ),
       child: Padding(
-        padding: Paddings.a4,
+        padding: Insets.a4,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: items.asMap().entries.map(

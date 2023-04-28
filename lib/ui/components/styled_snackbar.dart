@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base/ui/styles/border_radius.dart';
 import 'package:flutter_base/ui/styles/colors.dart';
-import 'package:flutter_base/ui/styles/paddings.dart';
+import 'package:flutter_base/ui/styles/insets.dart';
 import 'package:get_it/get_it.dart';
 
 enum SnackBarStyle { info, warning, error }
@@ -34,7 +34,7 @@ class StyledSnackBar {
     }
 
     return SnackBar(
-      margin: Paddings.h24 + Paddings.ob48,
+      margin: Insets.h24 + Insets.ob48,
       behavior: SnackBarBehavior.floating,
       backgroundColor: bgColor,
       shape: RoundedRectangleBorder(borderRadius: CircularBorderRadius.br24),

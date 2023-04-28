@@ -4,7 +4,7 @@ import 'package:flutter_base/ui/components/icons/flutter_base_icon.dart';
 import 'package:flutter_base/ui/components/navigation/app_navigation_item.dart';
 import 'package:flutter_base/ui/components/text/mid_text.dart';
 import 'package:flutter_base/ui/styles/colors.dart';
-import 'package:flutter_base/ui/styles/paddings.dart';
+import 'package:flutter_base/ui/styles/insets.dart';
 import 'package:flutter_base/ui/styles/text_styles.dart';
 
 class AppNavigationItemWidget extends StatelessWidget {
@@ -22,7 +22,7 @@ class AppNavigationItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: Paddings.h4,
+      padding: Insets.h4,
       child: GestureDetector(
         onTap: Feedback.wrapForTap(onTap, context),
         child: Container(

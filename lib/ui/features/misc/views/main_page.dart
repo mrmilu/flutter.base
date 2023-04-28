@@ -8,7 +8,7 @@ import 'package:flutter_base/ui/components/text/high_text.dart';
 import 'package:flutter_base/ui/components/text/small_text.dart';
 import 'package:flutter_base/ui/features/misc/providers/main_page_provider.dart';
 import 'package:flutter_base/ui/i18n/locale_keys.g.dart';
-import 'package:flutter_base/ui/styles/paddings.dart';
+import 'package:flutter_base/ui/styles/insets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:video_player/video_player.dart';
@@ -44,7 +44,7 @@ class MainPage extends StatelessWidget {
           ),
           Positioned.fill(
             child: Padding(
-              padding: Paddings.h16,
+              padding: Insets.h16,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -70,7 +70,7 @@ class _BottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: Paddings.h16 + Paddings.v24,
+      padding: Insets.h16 + Insets.v24,
       child: IntrinsicHeight(
         child: SizedBox(
           width: double.infinity,

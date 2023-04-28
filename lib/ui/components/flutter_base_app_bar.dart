@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base/ui/components/buttons/icon_button_tertiary.dart';
 import 'package:flutter_base/ui/styles/colors.dart';
-import 'package:flutter_base/ui/styles/paddings.dart';
+import 'package:flutter_base/ui/styles/insets.dart';
 import 'package:go_router/go_router.dart';
 
 class FlutterBaseAppBar extends AppBar {
@@ -27,7 +27,7 @@ class FlutterBaseAppBar extends AppBar {
           actions: [
             if (trailing != null)
               Padding(
-                padding: Paddings.or16,
+                padding: Insets.or16,
                 child: trailing,
               ),
           ],
@@ -77,7 +77,7 @@ class FlutterBaseAppBarLeading extends StatelessWidget {
       return const SizedBox.shrink();
     }
     return Padding(
-      padding: Paddings.ol16,
+      padding: Insets.ol16,
       child: IconButtonTertiary(
         icon: Icons.arrow_back_ios,
         foregroundColor: FlutterBaseColors.specificContentLow,

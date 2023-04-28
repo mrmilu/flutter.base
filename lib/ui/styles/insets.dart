@@ -2,7 +2,7 @@
 import 'package:flutter/painting.dart';
 import 'package:flutter_base/ui/styles/spacing.dart';
 
-class Paddings {
+class Insets {
   /// Zero
   static const zero = EdgeInsets.zero;
 

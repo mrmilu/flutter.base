@@ -7,7 +7,7 @@ import 'package:flutter_base/ui/providers/ui_provider.dart';
 import 'package:flutter_base/ui/styles/border_radius.dart';
 import 'package:flutter_base/ui/styles/box_shadows.dart';
 import 'package:flutter_base/ui/styles/colors.dart';
-import 'package:flutter_base/ui/styles/paddings.dart';
+import 'package:flutter_base/ui/styles/insets.dart';
 import 'package:flutter_base/ui/view_models/button_size.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -39,7 +39,7 @@ class PostPage extends ConsumerWidget {
             ref.invalidate(postPageProvider);
           },
           child: ListView.separated(
-            padding: Paddings.a16,
+            padding: Insets.a16,
             itemCount: posts.length,
             itemBuilder: (context, idx) {
               final post = posts[idx];

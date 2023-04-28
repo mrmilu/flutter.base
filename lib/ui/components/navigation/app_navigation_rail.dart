@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_base/ui/components/navigation/app_navigation_item.dart';
 import 'package:flutter_base/ui/components/navigation/app_navigation_item_widget.dart';
 import 'package:flutter_base/ui/styles/colors.dart';
-import 'package:flutter_base/ui/styles/paddings.dart';
+import 'package:flutter_base/ui/styles/insets.dart';
 
 class AppNavigationRail extends StatelessWidget {
   final List<AppNavigationItem> items;
@@ -23,7 +23,7 @@ class AppNavigationRail extends StatelessWidget {
         color: FlutterBaseColors.specificSurfaceLow,
       ),
       child: Padding(
-        padding: Paddings.a12,
+        padding: Insets.a12,
         child: Column(
           // mainAxisAlignment: MainAxisAlignment.start,
           children: items.asMap().entries.map(

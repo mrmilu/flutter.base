@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base/ui/extensions/media_query.dart';
-import 'package:flutter_base/ui/styles/paddings.dart';
+import 'package:flutter_base/ui/styles/insets.dart';
 import 'package:get_it/get_it.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
@@ -57,6 +57,6 @@ class ReactiveInput<T> extends ReactiveTextField {
                           .get<GlobalKey<ScaffoldMessengerState>>()
                           .currentContext!,
                     ).textFieldScrollPadding
-                  : Paddings.a20,
+                  : Insets.a20,
         );
 }

@@ -9,7 +9,7 @@ import 'package:flutter_base/ui/extensions/media_query.dart';
 import 'package:flutter_base/ui/features/profile/views/edit_profile/providers/profile_provider.dart';
 import 'package:flutter_base/ui/features/profile/views/edit_profile/view_models/edit_profile_view_model.dart';
 import 'package:flutter_base/ui/i18n/locale_keys.g.dart';
-import 'package:flutter_base/ui/styles/paddings.dart';
+import 'package:flutter_base/ui/styles/insets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 
@@ -23,7 +23,7 @@ class EditProfilePage extends ConsumerWidget {
     return FormScaffold(
       appBar: FlutterBaseAppBar(),
       body: ColumnScrollView(
-        padding: Paddings.a16,
+        padding: Insets.a16,
         children: [
           ReactiveEditProfileModelForm(
             form: formModel,
