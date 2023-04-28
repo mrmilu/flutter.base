@@ -62,4 +62,4 @@ report.xml
 /coverage/
 
 #TODO IMPORTANT REMOVE THIS IGNORE ON FINAL PROJECT
-.env.*
+env.*.json

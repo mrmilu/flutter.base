@@ -52,7 +52,12 @@ platform :ios do
         readonly: true,
       )
 
-      build_app(workspace: "Runner.xcworkspace", scheme: "beta")
+      sh("fvm", "flutter", "build", "ipa", "--flavor", "beta", "./lib/main_beta.dart", "--dart-define-from-file=env.beta.json")
+
+      build_app(
+        skip_build_archive: true,
+        archive_path: "../build/ios/archive/Runner.xcarchive",
+      )
 
       upload_to_testflight(
           api_key: api_key,
@@ -90,7 +95,12 @@ platform :ios do
         readonly: true,
       )
 
-      build_app(workspace: "Runner.xcworkspace", scheme: "live")
+      sh("fvm", "flutter", "build", "ipa", "--flavor", "live", "./lib/main_live.dart", "--dart-define-from-file=env.live.json")
+
+      build_app(
+        skip_build_archive: true,
+        archive_path: "../build/ios/archive/Runner.xcarchive",
+      )
 
       upload_to_testflight(
           api_key: api_key,

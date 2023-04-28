@@ -42,7 +42,7 @@ packages:
     source: hosted
     version: "2.0.1"
   archive:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       name: archive
       sha256: "80e5141fafcb3361653ce308776cfd7d45e6e9fbb429e14eec571382c0c5fecb"
@@ -478,37 +478,11 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.3.0"
-  flutter_config:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: HEAD
-      resolved-ref: ed3a01f687526a58bed79b804c38c3481ae34108
-      url: "https://github.com/ByneappLLC/flutter_config.git"
-    source: git
-    version: "2.0.0"
-  flutter_dotenv:
-    dependency: "direct main"
-    description:
-      name: flutter_dotenv
-      sha256: d9283d92059a22e9834bc0a31336658ffba77089fb6f3cc36751f1fc7c6661a3
-      url: "https://pub.dev"
-    source: hosted
-    version: "5.0.2"
   flutter_driver:
     dependency: transitive
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_flavorizr:
-    dependency: "direct dev"
-    description:
-      path: "."
-      ref: master
-      resolved-ref: db6d6371e08249c2f9af09bc9f2ff56618e17916
-      url: "https://github.com/AngeloAvv/flutter_flavorizr"
-    source: git
-    version: "3.0.0"
   flutter_image_compress:
     dependency: "direct main"
     description:
@@ -1023,13 +997,13 @@ packages:
     source: hosted
     version: "2.1.0"
   package_info_plus:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: package_info_plus
-      sha256: "2d01bd767b987f18e06cc44c529b4e18258f512fbb27507d8a7d7d6ce6f8d566"
+      sha256: cbff87676c352d97116af6dbea05aa28c4d65eb0f6d5677a520c11a69ca9a24d
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.1"
+    version: "3.1.0"
   package_info_plus_platform_interface:
     dependency: transitive
     description:
@@ -1427,14 +1401,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.9.1"
-  sprintf:
-    dependency: transitive
-    description:
-      name: sprintf
-      sha256: "1fc9ffe69d4df602376b52949af107d8f5703b77cda567c4d7d86a0693120f23"
-      url: "https://pub.dev"
-    source: hosted
-    version: "7.0.0"
   sqflite:
     dependency: transitive
     description:

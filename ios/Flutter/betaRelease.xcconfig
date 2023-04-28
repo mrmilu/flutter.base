@@ -1,8 +1,7 @@
 #include? "Pods/Target Support Files/Pods-Runner/Pods-Runner.release-beta.xcconfig"
 #include "Generated.xcconfig"
-#include? "tmp.xcconfig"
+#include "Default.xcconfig"
 
 FLUTTER_TARGET=lib/main_beta.dart
-ASSET_PREFIX=beta
-BUNDLE_NAME=Flutter base (Beta)
-BUNDLE_DISPLAY_NAME=Flutter base (Beta)
+
+
