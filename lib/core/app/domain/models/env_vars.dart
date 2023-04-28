@@ -1,13 +1,12 @@
 import 'package:flutter_base/core/app/domain/interfaces/env_vars.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class EnvVars implements IEnvVars {
   @override
-  String get apiUrl => dotenv.env['API_URL'] ?? '';
+  String get apiUrl => const String.fromEnvironment('API_URL');
 
   @override
-  String get sentryDSN => dotenv.env['SENTRY_DSN'] ?? '';
+  String get sentryDSN => const String.fromEnvironment('SENTRY_DSN');
 
   @override
-  String get environment => dotenv.env['ENVIRONMENT'] ?? '';
+  String get environment => const String.fromEnvironment('ENVIRONMENT');
 }

@@ -52,7 +52,6 @@ The following index has a summary of configuration, common errors and how to sol
 
 ### Docs
 
-- [flutter_flavorizr](docs/flutter_flavorizr.md)
 - [flutter_native_splash](docs/flutter_native_splash.md)
 - [flutter_launcher_icons](docs/flutter_launcher_icons.md)
 - [firebase](docs/firebase.md)
@@ -64,14 +63,20 @@ When create a new project, need complete this checklist
 
 - [ ] Rename project and identifier id. To rename from flutter_base to another package name, change the pubspec.yml file and all the imports. Also if using Idea IDE's delete the .idea folder and in Project Structure... add a new root module to the project root so the IDE can detect the actual project.
 - [ ] Search for all TODO comments and review and modify if necessary
-- [ ] Create `.env` per flavor with the following structure:
-```.env.beta
-API_URL=https://api-staging.flutterbase.me
-SENTRY_DSN=https://xxxxxxxxx@apm.mrmilu.com/xx
-ENVIRONMENT=beta
-FIREBASE_REVERSED_CLIENT_ID=com.googleusercontent.apps.xxxx-xxxxxxxxx
-DYNAMIC_LINK_HOST=flutterbase.page.link
-DYNAMIC_LINKS_URL_TYPE_SCHEMA=com.flutterbasemrmilu.beta
+- [ ] Create `env.flavor.json` per flavor with the following structure:
+
+```json
+// env.beta.json
+{
+    "APP_NAME": "Flutter Base (beta)",
+    "APP_ID": "com.flutterbasemrmilu.beta",
+    "API_URL": "https://api-staging.flutterbase.me",
+    "SENTRY_DSN": "https://xxxxxxxxx@apm.mrmilu.com/xx",
+    "ENVIRONMENT": "beta",
+    "FIREBASE_REVERSED_CLIENT_ID": "com.googleusercontent.apps.xxxx-xxxxxxxxx",
+    "DYNAMIC_LINK_HOST": "flutterbase.page.link",
+    "DYNAMIC_LINKS_URL_TYPE_SCHEMA": "com.flutterbasemrmilu.beta"
+}
 ```
 
 ## Run

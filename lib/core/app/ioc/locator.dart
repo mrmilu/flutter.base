@@ -4,6 +4,7 @@ import 'package:flutter_base/common/interfaces/deep_link_service.dart';
 import 'package:flutter_base/common/interfaces/edit_image_service.dart';
 import 'package:flutter_base/common/interfaces/fs_repository.dart';
 import 'package:flutter_base/common/interfaces/image_compress_service.dart';
+import 'package:flutter_base/common/interfaces/platform_service.dart';
 import 'package:flutter_base/common/interfaces/share_service.dart';
 import 'package:flutter_base/common/interfaces/social_auth_service.dart';
 import 'package:flutter_base/common/repositories/fs_repository.dart';
@@ -11,6 +12,7 @@ import 'package:flutter_base/common/services/asset_picker_service.dart';
 import 'package:flutter_base/common/services/deep_link_service.dart';
 import 'package:flutter_base/common/services/edit_image_service.dart';
 import 'package:flutter_base/common/services/image_compress_service.dart';
+import 'package:flutter_base/common/services/platform_service.dart';
 import 'package:flutter_base/common/services/secure_storage_service.dart';
 import 'package:flutter_base/common/services/share_service.dart';
 import 'package:flutter_base/common/services/social_auth_service.dart';
@@ -68,6 +70,9 @@ abstract class RegisterModule {
 
   @Injectable(as: IFsRepository)
   FsRepository get getFsRepository => FsRepository();
+
+  @Injectable(as: IPlatformService, env: noTestEnvironment)
+  PlatformService get getPlatformService => PlatformService();
 
   @Singleton()
   GlobalKey<ScaffoldMessengerState> get getScaffoldKey =>

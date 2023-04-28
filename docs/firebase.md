@@ -14,61 +14,9 @@ the `GoogleService-Info.plist` file.
 
 ## Config
 
-Then configure the `pubspec.yaml` flavor like this creating the corresponding folders:
-
-```yaml
-flavorizr:
-  app:
-    android:
-      flavorDimensions: "flavor-type"
-    ios:
-
-  flavors:
-    apple:
-      app:
-        name: "Apple App"
-
-      android:
-        applicationId: "com.example.apple"
-        firebase:
-          config: ".firebase/apple/google-services.json"
-
-      ios:
-        bundleId: "com.example.apple"
-        firebase:
-          config: ".firebase/apple/GoogleService-Info.plist"
-
-    banana:
-      app:
-        name: "Banana App"
-        
-      android:
-        applicationId: "com.example.banana"
-        firebase:
-          config: ".firebase/banana/google-services.json"
-      ios:
-        bundleId: "com.example.banana"
-        firebase:
-          config: ".firebase/banana/GoogleService-Info.plist"
-```
-
-## Generate
-
-After this run the following command:
-
-```bash
-flutter pub run flutter_flavorizr -p assets:download,assets:extract,google:firebase,assets:clean
-```
-
-[Bug reference](https://github.com/AngeloAvv/flutter_flavorizr/issues/65)
-
-If this command fails to work run:
-
-```bash
-flutter pub run flutter_flavorizr
-```
-
-This will execute all the `flavorizr` process. So be sure to have a clean git commit
+- Copy config files on each flavor folder.
+- Config with Xcode to add this files
+- So be sure to have a clean git commit
 and once command finishes just leave the changes made in:
 
 - `ios/Runner.xcodeproj/project.pbxproj`

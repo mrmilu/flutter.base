@@ -26,10 +26,6 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_adaptive_scaffold: 0.1.3
-  flutter_config:
-    git:
-      url: https://github.com/ByneappLLC/flutter_config.git
-  flutter_dotenv: 5.0.2
   flutter_image_compress: 1.1.3
   flutter_local_notifications: 13.0.0
   flutter_mrmilu: 1.2.0
@@ -46,6 +42,7 @@ dependencies:
   image_picker: 0.8.7+1
   injectable: 2.1.1
   json_annotation: 4.8.0
+  package_info_plus: ^3.1.0
   path_provider: 2.0.14
   reactive_forms: 14.2.0
   reactive_forms_annotations: 1.0.0
@@ -59,10 +56,6 @@ dependencies:
 dev_dependencies:
   build_runner: 2.3.3
   dart_code_metrics: 5.7.0
-  flutter_flavorizr:
-    git:
-      url: https://github.com/AngeloAvv/flutter_flavorizr
-      ref: master
   flutter_launcher_icons: 0.12.0
   flutter_lints: 2.0.1
   flutter_test:
@@ -87,9 +80,6 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/translations/
-    - .env.dev
-    - .env.beta
-    - .env.live
 
   fonts:
     - family: Recoleta
@@ -105,44 +95,3 @@ flutter:
         - asset: assets/fonts/poppins_medium.ttf
           style: normal
           weight: 500
-
-flavorizr:
-  app:
-    android:
-      flavorDimensions: "flavor-type"
-    ios:
-
-  flavors:
-    dev:
-      app:
-        name: "Flutter base (Dev)"
-
-      android:
-        applicationId: "com.flutterbasemrmilu.dev"
-
-      ios:
-        bundleId: "com.flutterbasemrmilu.dev"
-
-    beta:
-      app:
-        name: "Flutter base (Beta)"
-
-      android:
-        applicationId: "com.flutterbasemrmilu.beta"
-#        firebase:
-#          config: ".firebase/beta/google-services.json"
-        customConfig:
-          signingConfig: signingConfigs.release_beta
-      ios:
-        bundleId: "com.flutterbasemrmilu.beta"
-#        firebase:
-#          config: ".firebase/beta/GoogleService-Info.plist"
-
-    live:
-      app:
-        name: "Flutter base"
-
-      android:
-        applicationId: "com.flutterbasemrmilu.live"
-      ios:
-        bundleId: "com.flutterbasemrmilu.live"
