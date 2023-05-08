@@ -52,11 +52,13 @@ platform :ios do
         readonly: true,
       )
 
-      sh("fvm", "flutter", "build", "ipa", "--flavor", "beta", "./lib/main_beta.dart", "--dart-define-from-file=env.beta.json")
+      sh("fvm", "flutter", "build", "ipa", "--flavor", "beta", "./lib/main_beta.dart", "--dart-define-from-file=env.beta.json", "--no-codesign")
 
       build_app(
         skip_build_archive: true,
         archive_path: "../build/ios/archive/Runner.xcarchive",
+        scheme: "beta",
+        export_team_id: "XXXXXXX", # Change with apple developer account team id
       )
 
       upload_to_testflight(
@@ -95,11 +97,13 @@ platform :ios do
         readonly: true,
       )
 
-      sh("fvm", "flutter", "build", "ipa", "--flavor", "live", "./lib/main_live.dart", "--dart-define-from-file=env.live.json")
+      sh("fvm", "flutter", "build", "ipa", "--flavor", "live", "./lib/main_live.dart", "--dart-define-from-file=env.live.json", "--no-codesign")
 
       build_app(
         skip_build_archive: true,
         archive_path: "../build/ios/archive/Runner.xcarchive",
+        scheme: "live",
+        export_team_id: "XXXXXXX", # Change with apple developer account team id
       )
 
       upload_to_testflight(
