@@ -15,7 +15,6 @@
 		3FADED3928F4139A27E62825 /* betaRelease.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = FA4FD9C4A7D24E0B03B97F17 /* betaRelease.xcconfig */; };
 		5464C103E9A4F4E687AA96FE /* liveProfile.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = FEC33162588B62AD2B4D648F /* liveProfile.xcconfig */; };
 		5AE6801FC957E955D117A617 /* liveLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19C94B4F3A4D5BFB6EA97CE7 /* liveLaunchScreen.storyboard */; };
-		60FBFD9A2A090EDE004DF322 /* Default.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 60FBFD992A090EDE004DF322 /* Default.xcconfig */; };
 		74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74858FAE1ED2DC5600515810 /* AppDelegate.swift */; };
 		74C966EAC4A8BADB03271014 /* betaLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54EBC94621EF76B58D907F06 /* betaLaunchScreen.storyboard */; };
 		8C13725B088E4DCC217BA363 /* liveRelease.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 52C4BEFA7D9BBB1A42496934 /* liveRelease.xcconfig */; };
@@ -57,7 +56,6 @@
 		53975FA71976C0B8F59FBAD1 /* devLaunchScreen.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; name = devLaunchScreen.storyboard; path = Runner/devLaunchScreen.storyboard; sourceTree = "<group>"; };
 		54EBC94621EF76B58D907F06 /* betaLaunchScreen.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; name = betaLaunchScreen.storyboard; path = Runner/betaLaunchScreen.storyboard; sourceTree = "<group>"; };
 		5B4C0853D412CEE7097DFCB9 /* betaDebug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = betaDebug.xcconfig; path = Flutter/betaDebug.xcconfig; sourceTree = "<group>"; };
-		60FBFD992A090EDE004DF322 /* Default.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Default.xcconfig; path = Flutter/Default.xcconfig; sourceTree = "<group>"; };
 		6D4A43FE88D5EE1D438E41AB /* liveDebug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = liveDebug.xcconfig; path = Flutter/liveDebug.xcconfig; sourceTree = "<group>"; };
 		6DCA0CC8F7E01CBCDC801C9F /* Pods-Runner.release-dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release-dev.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release-dev.xcconfig"; sourceTree = "<group>"; };
 		71BCB18DFF7BCBF46E21ED2F /* devProfile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = devProfile.xcconfig; path = Flutter/devProfile.xcconfig; sourceTree = "<group>"; };
@@ -106,7 +104,6 @@
 			children = (
 				3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */,
 				9740EEB21CF90195004384FC /* Debug.xcconfig */,
-				60FBFD992A090EDE004DF322 /* Default.xcconfig */,
 				7AFA3C8E1D35360C0083082E /* Release.xcconfig */,
 				9740EEB31CF90195004384FC /* Generated.xcconfig */,
 				18B6CA50B42BDAD6756182F3 /* devDebug.xcconfig */,
@@ -278,7 +275,6 @@
 				B98EC48416D42A76A57CED2B /* devRelease.xcconfig in Resources */,
 				A7D2685C24A5B58F7431EE3A /* betaDebug.xcconfig in Resources */,
 				3FADED3928F4139A27E62825 /* betaRelease.xcconfig in Resources */,
-				60FBFD9A2A090EDE004DF322 /* Default.xcconfig in Resources */,
 				CEBCC260E49C6206BB0741CF /* liveDebug.xcconfig in Resources */,
 				8C13725B088E4DCC217BA363 /* liveRelease.xcconfig in Resources */,
 				D2007EAC654A893230E2A464 /* devLaunchScreen.storyboard in Resources */,
@@ -625,7 +621,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_ID)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.flutterbasemrmilu.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
@@ -782,6 +778,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6743P49855;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.flutterbasemrmilu.dev;
 				PRODUCT_NAME = Runner;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
@@ -796,6 +793,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6743P49855;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.flutterbasemrmilu.dev;
 				PRODUCT_NAME = Runner;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
@@ -810,6 +808,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6743P49855;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.flutterbasemrmilu.dev;
 				PRODUCT_NAME = Runner;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
@@ -821,9 +820,10 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6743P49855;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.flutterbasemrmilu.beta;
 				PRODUCT_NAME = Runner;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
@@ -835,9 +835,10 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6743P49855;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.flutterbasemrmilu.beta;
 				PRODUCT_NAME = Runner;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
@@ -849,9 +850,10 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "Runner/RunnerRelease-beta.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6743P49855;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.flutterbasemrmilu.beta;
 				PRODUCT_NAME = Runner;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
@@ -863,9 +865,10 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6743P49855;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.flutterbasemrmilu.live;
 				PRODUCT_NAME = Runner;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
@@ -877,9 +880,10 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6743P49855;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.flutterbasemrmilu.live;
 				PRODUCT_NAME = Runner;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
@@ -891,9 +895,10 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6743P49855;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.flutterbasemrmilu.live;
 				PRODUCT_NAME = Runner;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
@@ -1162,7 +1167,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_ID)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.flutterbasemrmilu.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
@@ -1190,7 +1195,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_ID)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.flutterbasemrmilu.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
