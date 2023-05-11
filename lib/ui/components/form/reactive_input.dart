@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_base/ui/utils/scroll.dart';
+import 'package:flutter_base/ui/extensions/media_query.dart';
+import 'package:flutter_base/ui/styles/insets.dart';
+import 'package:get_it/get_it.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 class ReactiveInput<T> extends ReactiveTextField {
@@ -46,6 +48,14 @@ class ReactiveInput<T> extends ReactiveTextField {
                 : FloatingLabelBehavior.never,
             helperText: helperText,
           ),
-          scrollPadding: textFieldScrollPadding(),
+          scrollPadding: _getScrollPadding,
         );
+
+  static EdgeInsets get _getScrollPadding =>
+      GetIt.I.get<GlobalKey<ScaffoldMessengerState>>().currentContext != null
+          ? MediaQuery.of(
+              // ignore: avoid-non-null-assertion
+              GetIt.I.get<GlobalKey<ScaffoldMessengerState>>().currentContext!,
+            ).textFieldScrollPadding
+          : Insets.a20;
 }

@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_base/ui/components/box_spacer.dart';
 import 'package:flutter_base/ui/components/buttons/button_primary.dart';
 import 'package:flutter_base/ui/components/flutter_base_app_bar.dart';
-import 'package:flutter_base/ui/components/scaffold_bottom_sheet.dart';
+import 'package:flutter_base/ui/components/sheets/scaffold_bottom_sheet.dart';
+import 'package:flutter_base/ui/components/sheets/with_transparent_bottom_sheet.dart';
 import 'package:flutter_base/ui/components/text/high_text.dart';
 import 'package:flutter_base/ui/components/views/column_scroll_view.dart';
-import 'package:flutter_base/ui/components/with_transparent_bottom_sheet.dart';
 import 'package:flutter_base/ui/features/auth/views/verify_account/verify_account_provider.dart';
 import 'package:flutter_base/ui/i18n/locale_keys.g.dart';
 import 'package:flutter_base/ui/providers/user_provider.dart';
-import 'package:flutter_base/ui/styles/spacing.dart';
+import 'package:flutter_base/ui/styles/insets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -76,7 +76,7 @@ class _VerifyAccountPageState extends ConsumerState<VerifyAccountPage> {
         body: SafeArea(
           child: ColumnScrollView(
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            padding: const EdgeInsets.symmetric(horizontal: Spacing.sp24),
+            padding: Insets.h24,
             children: [
               BoxSpacer.v16(),
               HighTextL(LocaleKeys.verifyAccount_title.tr()),

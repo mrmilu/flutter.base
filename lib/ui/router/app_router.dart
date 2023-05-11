@@ -6,8 +6,9 @@ import 'package:flutter_base/ui/features/auth/views/forgot_password/forgot_passw
 import 'package:flutter_base/ui/features/auth/views/login/login_page.dart';
 import 'package:flutter_base/ui/features/auth/views/sign_up/sign_up_page.dart';
 import 'package:flutter_base/ui/features/auth/views/verify_account/verify_account_page.dart';
-import 'package:flutter_base/ui/features/misc/components/scaffold_with_nav_bar.dart';
+import 'package:flutter_base/ui/features/misc/components/scaffold_with_navigation.dart';
 import 'package:flutter_base/ui/features/misc/views/main_page.dart';
+import 'package:flutter_base/ui/features/post/views/detail_post_page/detail_post_page.dart';
 import 'package:flutter_base/ui/features/post/views/posts/post_page.dart';
 import 'package:flutter_base/ui/features/profile/views/edit_avatar/edit_avatar_page.dart';
 import 'package:flutter_base/ui/features/profile/views/edit_profile/edit_profile_page.dart';
@@ -18,12 +19,12 @@ import 'package:flutter_base/ui/router/utils.dart';
 import 'package:go_router/go_router.dart';
 
 final _bottomBarItems = [
-  ScaffoldWithNavBarTabItem(
+  ScaffoldWithNavigationItem(
     icon: Icons.list,
     rootRoutePath: '/home',
     navigatorKey: GlobalKey<NavigatorState>(debugLabel: 'homeNav'),
   ),
-  ScaffoldWithNavBarTabItem(
+  ScaffoldWithNavigationItem(
     icon: Icons.account_circle,
     rootRoutePath: '/profile',
     navigatorKey: GlobalKey<NavigatorState>(debugLabel: 'profileNav'),
@@ -107,6 +108,13 @@ final GoRouter router = GoRouter(
           path: '/home',
           pageBuilder: (BuildContext context, GoRouterState state) =>
               fadeTransitionPage(state, const PostPage()),
+          routes: [
+            GoRoute(
+              path: ':id',
+              builder: (context, state) =>
+                  DetailPostPage(id: int.parse(state.params['id'] ?? '')),
+            ),
+          ],
         ),
       ],
     ),

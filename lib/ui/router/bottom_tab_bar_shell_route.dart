@@ -1,11 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_base/ui/features/misc/components/scaffold_with_nav_bar.dart';
+import 'package:flutter_base/ui/features/misc/components/scaffold_with_navigation.dart';
 import 'package:go_router/go_router.dart';
 
 class BottomTabBarShellRoute extends ShellRoute {
-  final List<ScaffoldWithNavBarTabItem> tabs;
+  final List<ScaffoldWithNavigationItem> tabs;
 
   BottomTabBarShellRoute({
     required this.tabs,
@@ -18,9 +18,9 @@ class BottomTabBarShellRoute extends ShellRoute {
               children: [
                 // Needed to keep the (child) shell navigator alive
                 Offstage(child: child),
-                ScaffoldWithNavBar(
+                ScaffoldWithNavigation(
                   key: scaffoldKey,
-                  tabs: tabs
+                  tabItems: tabs
                       .map((tab) => tab.copyWith(text: tab.text.tr()))
                       .toList(),
                   currentNavigator:

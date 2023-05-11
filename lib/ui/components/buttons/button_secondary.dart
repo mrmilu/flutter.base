@@ -3,7 +3,7 @@ import 'package:flutter_base/ui/components/box_spacer.dart';
 import 'package:flutter_base/ui/components/icons/flutter_base_icon.dart';
 import 'package:flutter_base/ui/components/icons/flutter_base_svg_icon.dart';
 import 'package:flutter_base/ui/styles/colors.dart';
-import 'package:flutter_base/ui/styles/spacing.dart';
+import 'package:flutter_base/ui/styles/insets.dart';
 import 'package:flutter_base/ui/styles/text_styles.dart';
 import 'package:flutter_base/ui/view_models/button_size.dart';
 
@@ -57,14 +57,8 @@ class ButtonSecondary extends OutlinedButton {
   static MaterialStateProperty<EdgeInsetsGeometry?> _padding(ButtonSize size) {
     return MaterialStateProperty.resolveWith((states) {
       return size == ButtonSize.small
-          ? const EdgeInsets.symmetric(
-              vertical: Spacing.sp8,
-              horizontal: Spacing.sp12,
-            )
-          : const EdgeInsets.symmetric(
-              vertical: Spacing.sp12,
-              horizontal: Spacing.sp16,
-            );
+          ? Insets.h12 + Insets.v8
+          : Insets.h16 + Insets.v12;
     });
   }
 
@@ -141,8 +135,7 @@ class _ButtonSecondaryContent extends StatelessWidget {
           ),
         if (_hasIconData)
           FlutterBaseIcon(
-            // ignore: avoid-non-null-assertion
-            icon: iconData!,
+            icon: iconData,
             size: _iconSize,
           ),
         if (_hasIcon) BoxSpacer.h8(),

@@ -10,6 +10,7 @@ class PostPageProvider extends AutoDisposeAsyncNotifier<List<PostsViewModel>> {
     return List.generate(
       50,
       (index) => PostsViewModel(
+        id: faker.datatype.number(max: 50),
         title: faker.lorem.sentence(),
         body: faker.lorem.paragraph(sentenceCount: 5),
       ),

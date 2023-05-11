@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 class FlutterBaseIcon extends StatelessWidget {
-  final IconData icon;
+  final IconData? icon;
   final double? size;
   final Color? color;
 

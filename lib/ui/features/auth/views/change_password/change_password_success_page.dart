@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_base/ui/components/box_spacer.dart';
 import 'package:flutter_base/ui/components/buttons/button_primary.dart';
 import 'package:flutter_base/ui/components/flutter_base_app_bar.dart';
-import 'package:flutter_base/ui/components/scaffold_bottom_sheet.dart';
+import 'package:flutter_base/ui/components/sheets/scaffold_bottom_sheet.dart';
 import 'package:flutter_base/ui/components/text/high_text.dart';
 import 'package:flutter_base/ui/components/views/column_scroll_view.dart';
 import 'package:flutter_base/ui/extensions/media_query.dart';
 import 'package:flutter_base/ui/i18n/locale_keys.g.dart';
-import 'package:flutter_base/ui/styles/spacing.dart';
+import 'package:flutter_base/ui/styles/insets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -38,7 +38,7 @@ class ChangePasswordSuccessPage extends ConsumerWidget {
         children: [
           BoxSpacer.v16(),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: Spacing.sp16),
+            padding: Insets.h16,
             child: HighTextM(LocaleKeys.changePasswordSuccess_title.tr()),
           ),
           BoxSpacer(

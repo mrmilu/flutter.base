@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_base/core/app/ioc/locator.dart';
+import 'package:flutter_base/ui/styles/border_radius.dart';
 import 'package:flutter_base/ui/styles/colors.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
@@ -48,7 +49,7 @@ class FlutterBaseNetworkImage extends StatelessWidget {
       height: height,
       decoration: BoxDecoration(
         color: FlutterBaseColors.specificContentLow.withOpacity(.20),
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: CircularBorderRadius.br16,
       ),
     );
 

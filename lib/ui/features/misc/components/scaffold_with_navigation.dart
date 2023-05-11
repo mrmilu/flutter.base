@@ -1,18 +1,18 @@
-// ignore_for_file: avoid-dynamic
-
 import 'package:flutter/widgets.dart';
-import 'package:flutter_base/ui/components/app_bottom_bar.dart';
+import 'package:flutter_base/ui/components/navigation/app_navigation_bottom_bar.dart';
+import 'package:flutter_base/ui/components/navigation/app_navigation_item.dart';
+import 'package:flutter_base/ui/components/navigation/app_navigation_rail.dart';
+import 'package:flutter_base/ui/components/views/base_adaptative_layout.dart';
 import 'package:flutter_base/ui/styles/colors.dart';
-import 'package:flutter_base/ui/styles/spacing.dart';
-import 'package:flutter_base/ui/utils/media_query.dart';
+import 'package:flutter_base/ui/styles/insets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-class ScaffoldWithNavBarTabItem extends AppBottomBarItem {
+class ScaffoldWithNavigationItem extends AppNavigationItem {
   final String rootRoutePath;
   final GlobalKey<NavigatorState> navigatorKey;
 
-  const ScaffoldWithNavBarTabItem({
+  const ScaffoldWithNavigationItem({
     required this.rootRoutePath,
     required this.navigatorKey,
     super.text,
@@ -21,7 +21,7 @@ class ScaffoldWithNavBarTabItem extends AppBottomBarItem {
     super.selectedIcon,
   });
 
-  ScaffoldWithNavBarTabItem copyWith({
+  ScaffoldWithNavigationItem copyWith({
     IconData? icon,
     IconData? selectedIcon,
     String? text,
@@ -29,7 +29,7 @@ class ScaffoldWithNavBarTabItem extends AppBottomBarItem {
     String? rootRoutePath,
     GlobalKey<NavigatorState>? navigatorKey,
   }) {
-    return ScaffoldWithNavBarTabItem(
+    return ScaffoldWithNavigationItem(
       icon: icon ?? this.icon,
       selectedIcon: selectedIcon ?? this.selectedIcon,
       text: text ?? this.text,
@@ -40,17 +40,17 @@ class ScaffoldWithNavBarTabItem extends AppBottomBarItem {
   }
 }
 
-class ScaffoldWithNavBar extends ConsumerStatefulWidget {
+class ScaffoldWithNavigation extends ConsumerStatefulWidget {
   final Navigator currentNavigator;
-  final List<ScaffoldWithNavBarTabItem> tabs;
+  final List<ScaffoldWithNavigationItem> tabItems;
 
-  List<Page<dynamic>> get pagesForCurrentRoute => currentNavigator.pages;
+  List<Page> get pagesForCurrentRoute => currentNavigator.pages;
 
-  const ScaffoldWithNavBar({
+  const ScaffoldWithNavigation({
     required this.currentNavigator,
-    required this.tabs,
-    Key? key,
-  }) : super(key: key ?? const ValueKey<String>('ScaffoldWithNavBar'));
+    required this.tabItems,
+    super.key = const ValueKey<String>('ScaffoldWithNavBar'),
+  });
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
@@ -58,17 +58,17 @@ class ScaffoldWithNavBar extends ConsumerStatefulWidget {
 }
 
 /// State for ScaffoldWithNavBar
-class ScaffoldWithNavBarState extends ConsumerState<ScaffoldWithNavBar>
+class ScaffoldWithNavBarState extends ConsumerState<ScaffoldWithNavigation>
     with SingleTickerProviderStateMixin {
   late final AnimationController _animationController;
-  late final List<_NavBarTabNavigator> _tabs;
+  late final List<_TabPagesNavigator> _tabPages;
   int _currentIndex = 0;
 
   @override
   void initState() {
     super.initState();
-    _tabs = widget.tabs
-        .map((ScaffoldWithNavBarTabItem e) => _NavBarTabNavigator(e))
+    _tabPages = widget.tabItems
+        .map((ScaffoldWithNavigationItem e) => _TabPagesNavigator(e))
         .toList();
 
     _animationController = AnimationController(
@@ -79,8 +79,8 @@ class ScaffoldWithNavBarState extends ConsumerState<ScaffoldWithNavBar>
   }
 
   int _locationToTabIndex(String location) {
-    final int index = _tabs.indexWhere(
-      (_NavBarTabNavigator t) => location.startsWith(t.rootRoutePath),
+    final int index = _tabPages.indexWhere(
+      (_TabPagesNavigator t) => location.startsWith(t.rootRoutePath),
     );
     return index < 0 ? 0 : index;
   }
@@ -90,7 +90,7 @@ class ScaffoldWithNavBarState extends ConsumerState<ScaffoldWithNavBar>
     final location = GoRouter.of(context).location;
     _currentIndex = _locationToTabIndex(location);
 
-    final _NavBarTabNavigator tabNav = _tabs[_currentIndex];
+    final _TabPagesNavigator tabNav = _tabPages[_currentIndex];
     tabNav.pages = widget.pagesForCurrentRoute;
     tabNav.lastLocation = location;
 
@@ -100,14 +100,14 @@ class ScaffoldWithNavBarState extends ConsumerState<ScaffoldWithNavBar>
   }
 
   void _onItemTapped(int index, BuildContext context) {
-    final tab = _tabs[index];
+    final tab = _tabPages[index];
 
     GoRouter.of(context)
         .go(_currentIndex == index ? tab.rootRoutePath : tab.currentLocation);
   }
 
   @override
-  void didUpdateWidget(covariant ScaffoldWithNavBar oldWidget) {
+  void didUpdateWidget(covariant ScaffoldWithNavigation oldWidget) {
     super.didUpdateWidget(oldWidget);
     _updateForCurrentTab();
   }
@@ -126,39 +126,36 @@ class ScaffoldWithNavBarState extends ConsumerState<ScaffoldWithNavBar>
 
   @override
   Widget build(BuildContext context) {
+    final tabNavigators = _tabPages
+        .map(
+          (_TabPagesNavigator tab) => tab.buildNavigator(context),
+        )
+        .toList();
+
     return SizedBox.expand(
       child: ColoredBox(
         color: FlutterBaseColors.specificBackgroundBase,
-        child: Stack(
-          children: [
-            Positioned.fill(
-              child: FadeTransition(
-                opacity: _animationController,
-                child: IndexedStack(
-                  index: _currentIndex,
-                  children: _tabs
-                      .map(
-                        (_NavBarTabNavigator tab) =>
-                            tab.buildNavigator(context),
-                      )
-                      .toList(),
-                ),
-              ),
+        child: BaseAdaptativeLayout(
+          body: FadeTransition(
+            opacity: _animationController,
+            child: IndexedStack(
+              index: _currentIndex,
+              children: tabNavigators,
             ),
-            Positioned(
-              bottom: deviceBottomSafeArea,
-              left: 0,
-              right: 0,
-              child: Padding(
-                padding: const EdgeInsets.all(Spacing.sp12),
-                child: AppBottomBar(
-                  items: widget.tabs,
-                  selectedIndex: _currentIndex,
-                  onItemTapped: (int idx) => _onItemTapped(idx, context),
-                ),
-              ),
+          ),
+          navigationRail: AppNavigationRail(
+            items: widget.tabItems,
+            selectedIndex: _currentIndex,
+            onItemTapped: (int idx) => _onItemTapped(idx, context),
+          ),
+          bottomAppBar: Padding(
+            padding: Insets.a12,
+            child: AppNavigationBottomBar(
+              items: widget.tabItems,
+              selectedIndex: _currentIndex,
+              onItemTapped: (int idx) => _onItemTapped(idx, context),
             ),
-          ],
+          ),
         ),
       ),
     );
@@ -166,9 +163,9 @@ class ScaffoldWithNavBarState extends ConsumerState<ScaffoldWithNavBar>
 }
 
 /// Class representing a tab along with its navigation logic
-class _NavBarTabNavigator {
-  final ScaffoldWithNavBarTabItem bottomNavigationTab;
-  List<Page<dynamic>> pages = <Page<dynamic>>[];
+class _TabPagesNavigator {
+  final ScaffoldWithNavigationItem bottomNavigationTab;
+  List<Page> pages = <Page>[];
   String lastLocation = '';
   String get currentLocation =>
       lastLocation.isNotEmpty && lastLocation.contains(rootRoutePath)
@@ -180,20 +177,23 @@ class _NavBarTabNavigator {
   GlobalKey<NavigatorState>? get navigatorKey =>
       bottomNavigationTab.navigatorKey;
 
-  _NavBarTabNavigator(this.bottomNavigationTab);
+  _TabPagesNavigator(this.bottomNavigationTab);
 
   Widget buildNavigator(BuildContext context) {
     return pages.isNotEmpty
-        ? Navigator(
-            key: navigatorKey,
-            pages: pages,
-            onPopPage: (Route<dynamic> route, result) {
-              if (pages.length == 1 || !route.didPop(result)) {
-                return false;
-              }
-              GoRouter.of(context).pop();
-              return true;
-            },
+        ? ClipRect(
+            child: Navigator(
+              key: navigatorKey,
+              pages: pages,
+              clipBehavior: Clip.antiAlias,
+              onPopPage: (Route route, result) {
+                if (pages.length == 1 || !route.didPop(result)) {
+                  return false;
+                }
+                GoRouter.of(context).pop();
+                return true;
+              },
+            ),
           )
         : const SizedBox.shrink();
   }

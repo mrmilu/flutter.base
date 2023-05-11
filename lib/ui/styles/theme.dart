@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base/ui/styles/colors.dart';
-import 'package:flutter_base/ui/styles/spacing.dart';
+import 'package:flutter_base/ui/styles/insets.dart';
 import 'package:flutter_base/ui/styles/text_styles.dart';
 
 const transparentBottomSheetTheme =
@@ -38,7 +38,7 @@ final appThemeData = ThemeData(
         TextStyles.smallS.copyWith(color: FlutterBaseColors.specificContentLow),
     errorStyle: TextStyles.smallS
         .copyWith(color: FlutterBaseColors.specificSemanticDanger),
-    contentPadding: const EdgeInsets.symmetric(vertical: Spacing.sp12),
+    contentPadding: Insets.v12,
     enabledBorder: const UnderlineInputBorder(
       borderSide: BorderSide(color: FlutterBaseColors.specificBorderLow),
     ),

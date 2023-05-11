@@ -3,6 +3,7 @@ import 'package:flutter_base/ui/components/box_spacer.dart';
 import 'package:flutter_base/ui/components/icons/flutter_base_icon.dart';
 import 'package:flutter_base/ui/components/icons/flutter_base_svg_icon.dart';
 import 'package:flutter_base/ui/styles/colors.dart';
+import 'package:flutter_base/ui/styles/insets.dart';
 import 'package:flutter_base/ui/styles/text_styles.dart';
 import 'package:flutter_base/ui/view_models/button_size.dart';
 
@@ -21,7 +22,7 @@ class ButtonTertiary extends TextButton {
           style: TextButton.styleFrom(
             foregroundColor: FlutterBaseColors.specificSemanticPrimary,
             splashFactory: NoSplash.splashFactory,
-            padding: EdgeInsets.zero,
+            padding: Insets.zero,
             visualDensity: VisualDensity.compact,
             fixedSize: fixedSize,
             minimumSize: fixedSize,
@@ -69,8 +70,7 @@ class _ButtonTertiaryContent extends StatelessWidget {
           ),
         if (_hasIconData)
           FlutterBaseIcon(
-            // ignore: avoid-non-null-assertion
-            icon: iconData!,
+            icon: iconData,
             size: _iconSize,
           ),
         if (_hasIcon) BoxSpacer.h8(),

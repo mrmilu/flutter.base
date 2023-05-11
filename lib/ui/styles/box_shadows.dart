@@ -5,7 +5,7 @@ class BoxShadows {
   static final List<BoxShadow> bs1 = [
     BoxShadow(
       color: FlutterBaseColors.specificBasicBlack.withOpacity(0.12),
-      blurRadius: 20,
+      blurRadius: 12,
       offset: const Offset(2, 2),
     ),
   ];

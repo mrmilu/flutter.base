@@ -3,9 +3,10 @@ import 'package:flutter_base/ui/components/box_spacer.dart';
 import 'package:flutter_base/ui/components/buttons/icon_button_tertiary.dart';
 import 'package:flutter_base/ui/components/text/high_text.dart';
 import 'package:flutter_base/ui/components/views/column_scroll_view.dart';
+import 'package:flutter_base/ui/extensions/media_query.dart';
 import 'package:flutter_base/ui/styles/colors.dart';
+import 'package:flutter_base/ui/styles/insets.dart';
 import 'package:flutter_base/ui/styles/spacing.dart';
-import 'package:flutter_base/ui/utils/media_query.dart';
 
 typedef FlutterBaseDialogBuilder = Widget Function(
   BuildContext context,
@@ -56,9 +57,10 @@ class FlutterBaseDialog extends StatelessWidget {
               return Padding(
                 padding: EdgeInsets.only(
                       top: _hasHeader ? Spacing.sp32 : Spacing.sp8,
-                      bottom: deviceBottomSafeArea + Spacing.sp16,
+                      bottom: MediaQuery.of(context).deviceBottomSafeArea +
+                          Spacing.sp16,
                     ) +
-                    const EdgeInsets.symmetric(horizontal: Spacing.sp16),
+                    Insets.h16,
                 child: IntrinsicHeight(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,

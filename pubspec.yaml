@@ -25,6 +25,7 @@ dependencies:
   firebase_messaging: 14.3.0
   flutter:
     sdk: flutter
+  flutter_adaptive_scaffold: 0.1.3
   flutter_image_compress: 1.1.3
   flutter_local_notifications: 13.0.0
   flutter_mrmilu: 1.2.0
