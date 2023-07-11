@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:faker_dart/faker_dart.dart';
 import 'package:flutter_base/common/interfaces/notifications_service.dart';
-import 'package:flutter_base/common/models/notifications_service.dart';
+import 'package:flutter_base/common/models/notifications.dart';
 import 'package:flutter_base/core/app/domain/models/environments_list.dart';
 import 'package:injectable/injectable.dart';
 
