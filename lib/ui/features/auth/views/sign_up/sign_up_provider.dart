@@ -8,7 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 
-class SignUpProvider extends AutoDisposeNotifier<SignUpModelForm> {
+class SignUpNotifier extends AutoDisposeNotifier<SignUpModelForm> {
   final _signUpUseCase = GetIt.I.get<SignUpUseCase>();
 
   @override
@@ -40,6 +40,6 @@ class SignUpProvider extends AutoDisposeNotifier<SignUpModelForm> {
 }
 
 final signUpProvider =
-    AutoDisposeNotifierProvider<SignUpProvider, SignUpModelForm>(
-  SignUpProvider.new,
+    AutoDisposeNotifierProvider<SignUpNotifier, SignUpModelForm>(
+  SignUpNotifier.new,
 );

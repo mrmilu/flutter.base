@@ -2,7 +2,7 @@ import 'package:faker_dart/faker_dart.dart';
 import 'package:flutter_base/ui/features/post/view_models/posts_view_model.dart';
 import 'package:riverpod/riverpod.dart';
 
-class PostPageProvider extends AutoDisposeAsyncNotifier<List<PostsViewModel>> {
+class PostPageNotifier extends AutoDisposeAsyncNotifier<List<PostsViewModel>> {
   @override
   Future<List<PostsViewModel>> build() async {
     await Future.delayed(const Duration(seconds: 2));
@@ -27,6 +27,6 @@ class PostPageProvider extends AutoDisposeAsyncNotifier<List<PostsViewModel>> {
 }
 
 final postPageProvider =
-    AutoDisposeAsyncNotifierProvider<PostPageProvider, List<PostsViewModel>>(
-  PostPageProvider.new,
+    AutoDisposeAsyncNotifierProvider<PostPageNotifier, List<PostsViewModel>>(
+  PostPageNotifier.new,
 );

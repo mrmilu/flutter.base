@@ -1,5 +1,5 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter_base/common/models/notifications_service.dart';
+import 'package:flutter_base/common/models/notifications.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 typedef AndroidForegroundNotificationOpenCallback = void Function(

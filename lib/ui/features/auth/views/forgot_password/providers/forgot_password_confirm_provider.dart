@@ -16,12 +16,12 @@ class ForgotPasswordConfirmState with _$ForgotPasswordConfirmState {
   }) = _ForgotPasswordConfirmState;
 }
 
-class ForgotPasswordProvider extends StateNotifier<ForgotPasswordConfirmState> {
-  late UiProvider _uiProvider;
+class ForgotPasswordNotifier extends StateNotifier<ForgotPasswordConfirmState> {
+  late UiNotifier _uiProvider;
   final _resendResetPasswordEmailUseCase =
       GetIt.I.get<ResendResetPasswordEmailUseCase>();
 
-  ForgotPasswordProvider(AutoDisposeStateNotifierProviderRef ref)
+  ForgotPasswordNotifier(AutoDisposeStateNotifierProviderRef ref)
       : super(
           ForgotPasswordConfirmState(
             pageTitle: LocaleKeys.forgotPasswordConfirm_title.tr(),
@@ -41,5 +41,5 @@ class ForgotPasswordProvider extends StateNotifier<ForgotPasswordConfirmState> {
 }
 
 final forgotPasswordConfirmProvider = AutoDisposeStateNotifierProvider<
-    ForgotPasswordProvider,
-    ForgotPasswordConfirmState>((ref) => ForgotPasswordProvider(ref));
+    ForgotPasswordNotifier,
+    ForgotPasswordConfirmState>((ref) => ForgotPasswordNotifier(ref));

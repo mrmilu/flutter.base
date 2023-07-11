@@ -6,8 +6,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
 
 class VerifyAccountProvider {
-  late UserProvider _userProvider;
-  late UiProvider _uiProvider;
+  late UserNotifier _userProvider;
+  late UiNotifier _uiProvider;
   final _verifyAccountUseCase = GetIt.I.get<VerifyAccountUseCase>();
 
   VerifyAccountProvider(AutoDisposeProviderRef ref) {

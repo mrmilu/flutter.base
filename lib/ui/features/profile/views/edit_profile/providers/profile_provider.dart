@@ -10,7 +10,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 
-class EditProfileProvider extends AutoDisposeNotifier<EditProfileModelForm> {
+class EditProfileNotifier extends AutoDisposeNotifier<EditProfileModelForm> {
   final _updateUserUseCase = GetIt.I.get<UpdateUserUseCase>();
   final _appRouter = GetIt.I.get<GoRouter>();
 
@@ -40,6 +40,6 @@ class EditProfileProvider extends AutoDisposeNotifier<EditProfileModelForm> {
 }
 
 final editProfileProvider =
-    AutoDisposeNotifierProvider<EditProfileProvider, EditProfileModelForm>(
-  EditProfileProvider.new,
+    AutoDisposeNotifierProvider<EditProfileNotifier, EditProfileModelForm>(
+  EditProfileNotifier.new,
 );

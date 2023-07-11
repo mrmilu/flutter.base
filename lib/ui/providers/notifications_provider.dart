@@ -6,7 +6,7 @@ import 'package:flutter_base/common/interfaces/notifications_service.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
 
-class NotificationsProvider extends AutoDisposeNotifier<void> {
+class NotificationsNotifier extends AutoDisposeNotifier<void> {
   late final INotificationsService _notificationsService =
       GetIt.I.get<INotificationsService>();
   Timer? _notificationsDialogTimer;
@@ -30,7 +30,7 @@ class NotificationsProvider extends AutoDisposeNotifier<void> {
     final status = await _notificationsService.requestNotificationPermissions();
     if (_notificationsService.hasPermissionsEnabled(status)) {
       await _notificationsService.init(
-        onBackgroundMessage: NotificationsProvider._backgroundMessageHandler,
+        onBackgroundMessage: NotificationsNotifier._backgroundMessageHandler,
       );
     }
   }
@@ -57,6 +57,6 @@ class NotificationsProvider extends AutoDisposeNotifier<void> {
 }
 
 final notificationsProvider =
-    AutoDisposeNotifierProvider<NotificationsProvider, void>(
-  NotificationsProvider.new,
+    AutoDisposeNotifierProvider<NotificationsNotifier, void>(
+  NotificationsNotifier.new,
 );

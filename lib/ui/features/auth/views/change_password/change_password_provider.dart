@@ -8,7 +8,7 @@ import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 
 class ChangePasswordProvider {
   final _changePasswordUseCase = GetIt.I.get<ChangePasswordUseCase>();
-  late UiProvider _uiProvider;
+  late UiNotifier _uiProvider;
   final _appRouter = GetIt.I.get<GoRouter>();
 
   ChangePasswordProvider(AutoDisposeProviderRef ref) {
