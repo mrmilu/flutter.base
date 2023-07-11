@@ -15,12 +15,12 @@ class UserState with _$UserState {
   }) = _UserState;
 }
 
-class UserProvider extends StateNotifier<UserState> {
+class UserNotifier extends StateNotifier<UserState> {
   final _userUseCase = GetIt.I.get<GetUserUseCase>();
   final LogoutUseCase _logoutUseCase = GetIt.I.get<LogoutUseCase>();
-  late final UiProvider _uiProvider;
+  late final UiNotifier _uiProvider;
 
-  UserProvider(StateNotifierProviderRef ref) : super(UserState()) {
+  UserNotifier(StateNotifierProviderRef ref) : super(UserState()) {
     _uiProvider = ref.watch(uiProvider.notifier);
   }
 
@@ -50,7 +50,7 @@ class UserProvider extends StateNotifier<UserState> {
 }
 
 final userProvider =
-    StateNotifierProvider<UserProvider, UserState>((ref) => UserProvider(ref));
+    StateNotifierProvider<UserNotifier, UserState>((ref) => UserNotifier(ref));
 
 final userVerifiedComputedProvider = Provider.autoDispose<bool>(
   (ref) => ref

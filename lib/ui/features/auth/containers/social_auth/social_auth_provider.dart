@@ -14,7 +14,7 @@ import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
-class SocialAuthProvider extends AutoDisposeNotifier {
+class SocialAuthNotifier extends AutoDisposeNotifier {
   final _loginUseCase = GetIt.I.get<LoginUseCase>();
   final _signUpUseCase = GetIt.I.get<SignUpUseCase>();
   final _appRouter = GetIt.I.get<GoRouter>();
@@ -82,6 +82,6 @@ class SocialAuthProvider extends AutoDisposeNotifier {
 }
 
 final socialAuthProvider =
-    AutoDisposeNotifierProvider<SocialAuthProvider, void>(
-  SocialAuthProvider.new,
+    AutoDisposeNotifierProvider<SocialAuthNotifier, void>(
+  SocialAuthNotifier.new,
 );

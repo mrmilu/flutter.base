@@ -9,7 +9,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 
-class LoginProvider extends AutoDisposeNotifier<BasicLoginModelForm> {
+class LoginNotifier extends AutoDisposeNotifier<BasicLoginModelForm> {
   final _loginUseCase = GetIt.I.get<LoginUseCase>();
   final _appRouter = GetIt.I.get<GoRouter>();
 
@@ -39,6 +39,6 @@ class LoginProvider extends AutoDisposeNotifier<BasicLoginModelForm> {
 }
 
 final loginProvider =
-    AutoDisposeNotifierProvider<LoginProvider, BasicLoginModelForm>(
-  LoginProvider.new,
+    AutoDisposeNotifierProvider<LoginNotifier, BasicLoginModelForm>(
+  LoginNotifier.new,
 );

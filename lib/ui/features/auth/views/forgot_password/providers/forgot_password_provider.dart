@@ -8,7 +8,7 @@ import 'package:go_router/go_router.dart';
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 
 class ForgotPasswordProvider {
-  late UiProvider _uiProvider;
+  late UiNotifier _uiProvider;
   final _resetPasswordUseCase = GetIt.I.get<ResetPasswordUseCase>();
   final _appRouter = GetIt.I.get<GoRouter>();
 

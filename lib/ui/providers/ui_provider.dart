@@ -22,10 +22,10 @@ class UiState with _$UiState {
   }) = _UiState;
 }
 
-class UiProvider extends StateNotifier<UiState> {
+class UiNotifier extends StateNotifier<UiState> {
   final _snackBarKey = GetIt.I.get<GlobalKey<ScaffoldMessengerState>>();
   bool _entryAdded = false;
-  UiProvider() : super(UiState());
+  UiNotifier() : super(UiState());
 
   void showGlobalLoader() {
     if (_entryAdded) return;
@@ -102,7 +102,7 @@ class UiProvider extends StateNotifier<UiState> {
 }
 
 final uiProvider =
-    StateNotifierProvider<UiProvider, UiState>((_) => UiProvider());
+    StateNotifierProvider<UiNotifier, UiState>((_) => UiNotifier());
 
 final hideOverlayProvider = Provider(
   (ref) => ref.watch(uiProvider.select((state) => state.hideOverlay)),

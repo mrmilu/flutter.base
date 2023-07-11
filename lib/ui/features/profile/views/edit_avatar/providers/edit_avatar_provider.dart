@@ -16,7 +16,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 
-class EditAvatarProvider
+class EditAvatarNotifier
     extends AutoDisposeNotifier<GlobalKey<ExtendedImageEditorState>> {
   final _imageFromGalleryUseCase = GetIt.I.get<ImageFromGalleryUseCase>();
   final _imageFromCameraUseCase = GetIt.I.get<ImageFromCameraUseCase>();
@@ -132,7 +132,7 @@ class EditAvatarProvider
   }
 }
 
-final editAvatarProvider = AutoDisposeNotifierProvider<EditAvatarProvider,
+final editAvatarProvider = AutoDisposeNotifierProvider<EditAvatarNotifier,
     GlobalKey<ExtendedImageEditorState>>(
-  EditAvatarProvider.new,
+  EditAvatarNotifier.new,
 );
