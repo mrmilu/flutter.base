@@ -10,11 +10,11 @@ import 'package:flutter_base/core/auth/domain/models/sign_up_input_model.dart';
 import 'package:flutter_base/core/auth/domain/models/token_model.dart';
 import 'package:flutter_base/core/user/domain/interfaces/user_repository.dart';
 import 'package:flutter_base/core/user/domain/models/user.dart';
+import 'package:flutter_base/ui/features/auth/views/verify_account/verify_account_page.dart';
 import 'package:flutter_base/ui/i18n/locale_keys.g.dart';
 import 'package:flutter_base/ui/providers/user_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:go_router/go_router.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../../../../helpers/expects.dart';
@@ -90,8 +90,8 @@ void main() {
 
         final container = getIt<ProviderContainer>();
         expect(container.read(userProvider).userData, isNotNull);
-        expect(getIt<GoRouter>().location, '/verify-account');
         expect(find.text(LocaleKeys.verifyAccount_title.tr()), findsOneWidget);
+        expect(find.byType(VerifyAccountPage), findsOneWidget);
       },
     );
 

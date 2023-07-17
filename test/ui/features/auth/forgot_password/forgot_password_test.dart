@@ -5,7 +5,6 @@ import 'package:flutter_base/core/auth/domain/interfaces/auth_repository.dart';
 import 'package:flutter_base/ui/features/auth/views/forgot_password/forgot_password_confirm_page.dart';
 import 'package:flutter_base/ui/features/auth/views/forgot_password/forgot_password_page.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:go_router/go_router.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../../../../helpers/expects.dart';
@@ -35,7 +34,6 @@ void main() {
         await tester.pumpAndSettle();
         await tester.tap(button);
         await tester.pumpAndSettle();
-        expect(getIt<GoRouter>().location, '/forgot-password/confirm');
         expect(find.byType(ForgotPasswordConfirmPage), findsOneWidget);
       },
     );
