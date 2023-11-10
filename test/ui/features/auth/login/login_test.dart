@@ -7,10 +7,10 @@ import 'package:flutter_base/core/auth/domain/models/login_input_model.dart';
 import 'package:flutter_base/core/auth/domain/models/token_model.dart';
 import 'package:flutter_base/core/user/domain/interfaces/user_repository.dart';
 import 'package:flutter_base/core/user/domain/models/user.dart';
+import 'package:flutter_base/ui/features/post/views/posts/post_page.dart';
 import 'package:flutter_base/ui/providers/user_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:go_router/go_router.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../../../../helpers/expects.dart';
@@ -55,7 +55,7 @@ void main() {
 
         final container = getIt<ProviderContainer>();
         expect(container.read(userProvider).userData, isNotNull);
-        expect(getIt<GoRouter>().location, '/home');
+        expect(find.byType(PostPage), findsOneWidget);
       },
     );
 

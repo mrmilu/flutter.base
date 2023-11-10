@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_base/ui/features/auth/views/change_password/change_password_page.dart';
 import 'package:flutter_base/ui/features/auth/views/change_password/change_password_success_page.dart';
@@ -13,7 +14,6 @@ import 'package:flutter_base/ui/features/post/views/posts/post_page.dart';
 import 'package:flutter_base/ui/features/profile/views/edit_avatar/edit_avatar_page.dart';
 import 'package:flutter_base/ui/features/profile/views/edit_profile/edit_profile_page.dart';
 import 'package:flutter_base/ui/features/profile/views/profile_page.dart';
-import 'package:flutter_base/ui/router/bottom_tab_bar_shell_route.dart';
 import 'package:flutter_base/ui/router/guards/auth_guard.dart';
 import 'package:flutter_base/ui/router/utils.dart';
 import 'package:go_router/go_router.dart';
@@ -33,8 +33,6 @@ final _bottomBarItems = [
 
 final GlobalKey<NavigatorState> rootNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'root');
-final GlobalKey<NavigatorState> _appShellNavigatorKey =
-    GlobalKey<NavigatorState>(debugLabel: 'appShell');
 
 final GoRouter router = GoRouter(
   navigatorKey: rootNavigatorKey,
@@ -79,40 +77,55 @@ final GoRouter router = GoRouter(
     ),
 
     /// Application
-    BottomTabBarShellRoute(
-      tabs: _bottomBarItems,
-      navigatorKey: _appShellNavigatorKey,
-      routes: <RouteBase>[
-        GoRoute(
-          redirect: authGuard,
-          path: '/profile',
-          pageBuilder: (BuildContext context, GoRouterState state) =>
-              fadeTransitionPage(state, const ProfilePage()),
-          routes: <RouteBase>[
+    StatefulShellRoute.indexedStack(
+      builder: (context, state, navigationShell) {
+        return ScaffoldWithNavigation(
+          tabItems: _bottomBarItems
+              .map((tab) => tab.copyWith(text: tab.text.tr()))
+              .toList(),
+          navigationShell: navigationShell,
+        );
+      },
+      branches: <StatefulShellBranch>[
+        StatefulShellBranch(
+          routes: [
             GoRoute(
-              path: 'edit',
-              builder: (BuildContext context, GoRouterState state) =>
-                  const EditProfilePage(),
-            ),
-            GoRoute(
-              path: 'avatar',
-              parentNavigatorKey: rootNavigatorKey,
-              builder: (context, state) => EditAvatarPage(
-                avatar: (state.extra as EditAvatarPageData).avatar,
-              ),
+              redirect: authGuard,
+              path: '/profile',
+              pageBuilder: (BuildContext context, GoRouterState state) =>
+                  fadeTransitionPage(state, const ProfilePage()),
+              routes: <RouteBase>[
+                GoRoute(
+                  path: 'edit',
+                  builder: (BuildContext context, GoRouterState state) =>
+                      const EditProfilePage(),
+                ),
+                GoRoute(
+                  path: 'avatar',
+                  parentNavigatorKey: rootNavigatorKey,
+                  builder: (context, state) => EditAvatarPage(
+                    avatar: (state.extra as EditAvatarPageData).avatar,
+                  ),
+                ),
+              ],
             ),
           ],
         ),
-        GoRoute(
-          redirect: authGuard,
-          path: '/home',
-          pageBuilder: (BuildContext context, GoRouterState state) =>
-              fadeTransitionPage(state, const PostPage()),
+        StatefulShellBranch(
           routes: [
             GoRoute(
-              path: ':id',
-              builder: (context, state) =>
-                  DetailPostPage(id: int.parse(state.params['id'] ?? '')),
+              redirect: authGuard,
+              path: '/home',
+              pageBuilder: (BuildContext context, GoRouterState state) =>
+                  fadeTransitionPage(state, const PostPage()),
+              routes: [
+                GoRoute(
+                  path: ':id',
+                  builder: (context, state) => DetailPostPage(
+                    id: int.parse(state.pathParameters['id'] ?? ''),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
