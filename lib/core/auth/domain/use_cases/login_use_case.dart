@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter_base/common/services/error_tracking_service.dart';
 import 'package:flutter_base/core/auth/domain/enums/auth_provider.dart';
 import 'package:flutter_base/core/auth/domain/interfaces/auth_repository.dart';
 import 'package:flutter_base/core/auth/domain/interfaces/token_repository.dart';
@@ -39,6 +40,7 @@ class LoginUseCase {
   final GetUserUseCase _getUserUseCase;
   final SocialAuthUseCase _socialAuthUseCase;
   final SetUserDeviceUseCase _setUserDeviceUseCase;
+  final IErrorTrackingService _errorTrackingService;
 
   LoginUseCase(
     this._getUserUseCase,
@@ -46,6 +48,7 @@ class LoginUseCase {
     this._tokenRepository,
     this._socialAuthUseCase,
     this._setUserDeviceUseCase,
+    this._errorTrackingService,
   );
 
   Future<User> call(LoginUseCaseInput input) async {
@@ -71,6 +74,14 @@ class LoginUseCase {
     await _setUserDeviceUseCase(
       SetUserDeviceUseCaseInput(type: input.userDeviceType),
     );
-    return _getUserUseCase();
+    final user = await _getUserUseCase();
+    _errorTrackingService.setUser(
+      ErrorTrackingUser(
+        id: user.id.toString(),
+        email: user.email,
+        name: user.name,
+      ),
+    );
+    return user;
   }
 }
