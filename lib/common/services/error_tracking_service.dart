@@ -1,5 +1,6 @@
 abstract class IErrorTrackingService {
   Future<void> setUser(ErrorTrackingUser user);
+  Future<void> logout();
   Future<void> setTag(String key, String value);
   Future<void> setTags(Map<String, String> tags);
 }

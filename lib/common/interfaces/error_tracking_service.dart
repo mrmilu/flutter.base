@@ -7,16 +7,19 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 class ErrorTrackingService implements IErrorTrackingService {
   @override
   Future<void> setUser(ErrorTrackingUser user) async {
-    await Sentry.configureScope(
-      (scope) => scope.setUser(
-        SentryUser(
-          email: user.email,
-          id: user.id,
-          name: user.name,
-          username: user.username,
-        ),
+    await _setSentryUser(
+      SentryUser(
+        email: user.email,
+        id: user.id,
+        name: user.name,
+        username: user.username,
       ),
     );
+  }
+
+  @override
+  Future<void> logout() async {
+    await _setSentryUser(null);
   }
 
   @override
@@ -31,5 +34,9 @@ class ErrorTrackingService implements IErrorTrackingService {
         tags.entries.map((entry) => scope.setTag(entry.key, entry.value)),
       ),
     );
+  }
+
+  Future<void> _setSentryUser(SentryUser? user) async {
+    await Sentry.configureScope((scope) => scope.setUser(user));
   }
 }
