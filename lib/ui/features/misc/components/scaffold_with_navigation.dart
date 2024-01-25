@@ -55,6 +55,7 @@ class ScaffoldWithNavigation extends StatelessWidget {
       initialLocation: index == navigationShell.currentIndex,
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox.expand(
