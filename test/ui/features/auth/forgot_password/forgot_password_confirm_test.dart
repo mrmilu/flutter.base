@@ -28,6 +28,7 @@ void main() {
           '/forgot-password/confirm',
           extra: ForgotPasswordConfirmPageData(email: fakeEmail),
         );
+        tester.pumpAndSettle();
         expect(find.byType(ForgotPasswordConfirmPage), findsOneWidget);
         final button = find.byKey(const Key('forgot-pass-confirm-button'));
         expectButtonEnabled(tester, button, isEnabled: false);
