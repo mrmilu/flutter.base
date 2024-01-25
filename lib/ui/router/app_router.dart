@@ -54,19 +54,27 @@ final GoRouter router = GoRouter(
     ),
     GoRoute(
       path: '/forgot-password/confirm',
-      pageBuilder: (context, state) => platformPage(
-        ForgotPasswordConfirmPage(
-          data: state.extra as ForgotPasswordConfirmPageData,
-        ),
-        fullscreenDialog: true,
-      ),
+      pageBuilder: (context, state) {
+        final data = state.extra;
+        return platformPage(
+          data is ForgotPasswordConfirmPageData
+              ? ForgotPasswordConfirmPage(data: data)
+              : const SizedBox(),
+          fullscreenDialog: true,
+        );
+      },
     ),
     GoRoute(
       path: '/change-password',
-      pageBuilder: (context, GoRouterState state) => platformPage(
-        ChangePasswordPage(data: state.extra as ChangePasswordPageData),
-        fullscreenDialog: true,
-      ),
+      pageBuilder: (context, GoRouterState state) {
+        final data = state.extra;
+        return platformPage(
+          data is ChangePasswordPageData
+              ? ChangePasswordPage(data: data)
+              : const SizedBox(),
+          fullscreenDialog: true,
+        );
+      },
     ),
     GoRoute(
       path: '/change-password/success',
