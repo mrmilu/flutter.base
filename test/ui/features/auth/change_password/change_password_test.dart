@@ -59,6 +59,7 @@ void main() {
             '/change-password',
             extra: const ChangePasswordPageData(token: 'token', uid: 'uid'),
           );
+          await tester.pumpAndSettle();
 
           when(() => getIt<IAuthRepository>().changePassword(any()))
               .thenAnswer((_) async {});

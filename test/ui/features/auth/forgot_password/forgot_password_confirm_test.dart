@@ -8,6 +8,7 @@ import 'package:flutter_base/ui/features/auth/views/change_password/change_passw
 import 'package:flutter_base/ui/features/auth/views/forgot_password/forgot_password_confirm_page.dart';
 import 'package:flutter_base/ui/i18n/locale_keys.g.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../../../../helpers/expects.dart';
@@ -19,6 +20,9 @@ void main() {
   setUpAll(() {
     configureMockDependencies();
   });
+  setUp(() {
+    getIt<GoRouter>().go('/home');
+  });
 
   group('Forgot Password Confirm Page Test', () {
     testWidgets(
@@ -28,6 +32,7 @@ void main() {
           '/forgot-password/confirm',
           extra: ForgotPasswordConfirmPageData(email: fakeEmail),
         );
+        await tester.pumpAndSettle();
         expect(find.byType(ForgotPasswordConfirmPage), findsOneWidget);
         final button = find.byKey(const Key('forgot-pass-confirm-button'));
         expectButtonEnabled(tester, button, isEnabled: false);
