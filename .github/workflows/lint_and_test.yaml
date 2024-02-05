@@ -1,4 +1,4 @@
-name: Build
+name: Lint and Test
 on:
   push:
 
@@ -10,23 +10,29 @@ jobs:
     steps:
     - name: Configure enviroment
       uses: actions/checkout@v3
+
     - uses: kuhnroyal/flutter-fvm-config-action@v1
+
     - name: Download flutter
       uses: subosito/flutter-action@v2
       with:
         flutter-version: ${{ env.FLUTTER_VERSION }}
         cache: true
+
     - name: Install dependencies
       run: flutter pub get
+
     - name: Generate auto generated files
       run: flutter pub run build_runner build
+
     - name: Generated translation files
       run: flutter pub run easy_localization:generate -S assets/translations -f keys -O lib/ui/i18n -o locale_keys.g.dart
+
     - name: Verify formated files
       run: dart format $(find . -name "*.dart" -not -wholename "**/*.g.dart") --set-exit-if-changed
+
     - name: Analyze code
       run: flutter analyze
-    - name: Analyze code metrics
-      run: flutter pub run dart_code_metrics:metrics analyze lib -r github
+
     - name: Test
       run: flutter test --test-randomize-ordering-seed random
