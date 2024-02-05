@@ -11,6 +11,7 @@ class FlutterBaseAppBar extends AppBar {
     super.automaticallyImplyLeading = false,
     super.leadingWidth = 40,
     super.backgroundColor,
+    super.title,
     Widget? leading,
     bool showLeading = true,
     String customPopRoute = '',

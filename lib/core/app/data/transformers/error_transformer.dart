@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_base/core/app/domain/models/app_error.dart';
 
-void errorsHandler(DioError error) {
+void errorsHandler(DioException error) {
   final String apiErrorMessage = _djangoApiRest(error.response);
 
   AppErrorCode? errorCode;

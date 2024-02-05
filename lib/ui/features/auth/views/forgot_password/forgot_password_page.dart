@@ -13,6 +13,7 @@ import 'package:flutter_base/ui/features/auth/views/forgot_password/view_models/
 import 'package:flutter_base/ui/i18n/locale_keys.g.dart';
 import 'package:flutter_base/ui/styles/insets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:reactive_forms/reactive_forms.dart';
 
 class ForgotPasswordPage extends StatelessWidget {
   const ForgotPasswordPage({super.key});
@@ -27,26 +28,34 @@ class ForgotPasswordPage extends StatelessWidget {
           padding: Insets.h24,
           children: [
             BoxSpacer.v16(),
-            HighTextL(LocaleKeys.forgotPassword_title.tr()),
+            HighText.l(LocaleKeys.forgotPassword_title.tr()),
             BoxSpacer.v24(),
-            SmallTextM(LocaleKeys.forgotPassword_claim.tr()),
+            SmallText.m(LocaleKeys.forgotPassword_claim.tr()),
             BoxSpacer.v16(),
-            ForgotPasswordModelFormBuilder(
-              model: ForgotPasswordViewModel(),
-              builder: (context, formModel, child) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    EmailReactiveInput(
-                      key: const Key('forgot-password-email'),
-                      placeholder:
-                          LocaleKeys.forgotPassword_form_email_label.tr(),
-                      formControl: formModel.emailControl,
-                    ),
-                    BoxSpacer.v24(),
-                    _ContinueButton(formModel: formModel),
-                    BoxSpacer.v16(),
-                  ],
+            Consumer(
+              builder: (context, ref, _) {
+                final formModel = ref.watch(forgotPasswordProvider);
+                return ReactiveForgotPasswordModelForm(
+                  form: formModel,
+                  child: ReactiveFormBuilder(
+                    form: () => formModel.form,
+                    builder: (context, _, __) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          EmailReactiveInput(
+                            key: const Key('forgot-password-email'),
+                            placeholder:
+                                LocaleKeys.forgotPassword_form_email_label.tr(),
+                            formControl: formModel.emailControl,
+                          ),
+                          BoxSpacer.v24(),
+                          const _ContinueButton(),
+                          BoxSpacer.v16(),
+                        ],
+                      );
+                    },
+                  ),
                 );
               },
             ),
@@ -58,8 +67,7 @@ class ForgotPasswordPage extends StatelessWidget {
 }
 
 class _ContinueButton extends StatelessWidget {
-  const _ContinueButton({required this.formModel});
-  final ForgotPasswordModelForm formModel;
+  const _ContinueButton();
 
   @override
   Widget build(BuildContext context) {
@@ -72,8 +80,8 @@ class _ContinueButton extends StatelessWidget {
               text: LocaleKeys.forgotPassword_form_submit.tr(),
               onPressed: consumer.form.valid
                   ? () => ref
-                      .read(forgotPasswordProvider)
-                      .requestChangePassword(formModel)
+                      .read(forgotPasswordProvider.notifier)
+                      .requestChangePassword()
                   : null,
             );
           },

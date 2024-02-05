@@ -26,7 +26,7 @@ void main() {
                   onPressedCalled = true;
                   await Future.delayed(const Duration(milliseconds: 500));
                 },
-                childBuilder: (isLoading) => const Text('Press me'),
+                childBuilder: ({isLoading = false}) => const Text('Press me'),
               ),
             ),
           );
@@ -54,7 +54,7 @@ void main() {
                 onPressed: () async {
                   await Future.delayed(const Duration(milliseconds: 500));
                 },
-                childBuilder: (isLoading) => isLoading
+                childBuilder: ({isLoading = false}) => isLoading
                     ? const CircularProgressIndicator()
                     : const Text('Press me'),
               ),
@@ -88,7 +88,7 @@ void main() {
                 onPressed: () async {
                   await Future.delayed(const Duration(milliseconds: 500));
                 },
-                childBuilder: (isLoading) => const Text('Press me'),
+                childBuilder: ({isLoading = false}) => const Text('Press me'),
               ),
             ),
           );
@@ -124,7 +124,7 @@ void main() {
                 onPressed: () async {
                   await Future.delayed(const Duration(milliseconds: 500));
                 },
-                childBuilder: (isLoading) => const Text('Press me'),
+                childBuilder: ({isLoading = false}) => const Text('Press me'),
                 disableWhenIsLoading: false,
               ),
             ),

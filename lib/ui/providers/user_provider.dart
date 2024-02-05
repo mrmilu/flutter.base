@@ -15,13 +15,13 @@ class UserState with _$UserState {
   }) = _UserState;
 }
 
-class UserNotifier extends StateNotifier<UserState> {
+class UserNotifier extends Notifier<UserState> {
   final _userUseCase = GetIt.I.get<GetUserUseCase>();
   final LogoutUseCase _logoutUseCase = GetIt.I.get<LogoutUseCase>();
-  late final UiNotifier _uiProvider;
 
-  UserNotifier(StateNotifierProviderRef ref) : super(UserState()) {
-    _uiProvider = ref.watch(uiProvider.notifier);
+  @override
+  UserState build() {
+    return UserState();
   }
 
   void setUserVerified() {
@@ -42,7 +42,7 @@ class UserNotifier extends StateNotifier<UserState> {
   }
 
   Future<void> logout() async {
-    _uiProvider.tryAction(() async {
+    ref.read(uiProvider.notifier).tryAction(() async {
       await _logoutUseCase();
       clearProvider();
     });
@@ -50,7 +50,7 @@ class UserNotifier extends StateNotifier<UserState> {
 }
 
 final userProvider =
-    StateNotifierProvider<UserNotifier, UserState>((ref) => UserNotifier(ref));
+    NotifierProvider<UserNotifier, UserState>(UserNotifier.new);
 
 final userVerifiedComputedProvider = Provider.autoDispose<bool>(
   (ref) => ref

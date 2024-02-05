@@ -2,24 +2,28 @@
 
 import 'package:reactive_forms/reactive_forms.dart';
 
-Map<String, dynamic>? requiredValidator(AbstractControl<dynamic> control) {
-  return Validators.required(control);
+class PasswordValidator extends Validator<dynamic> {
+  const PasswordValidator() : super();
+
+  @override
+  Map<String, dynamic>? validate(AbstractControl control) {
+    return Validators.pattern(
+      RegExp(r'^(?=.{8,}$)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).*'),
+    )(control);
+  }
 }
 
-Map<String, dynamic>? emailValidator(AbstractControl<dynamic> control) {
-  return Validators.email(control);
-}
+class MustMatchPassword extends Validator<dynamic> {
+  const MustMatchPassword() : super();
 
-Map<String, dynamic>? passwordValidator(AbstractControl<dynamic> control) {
-  return Validators.pattern(
-    RegExp(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d\w\W]{8,}$'),
-  )(control);
-}
-
-Map<String, dynamic>? mustMatchPassword(AbstractControl<dynamic> control) {
-  return Validators.mustMatch('password', 'repeatPassword', markAsDirty: false)(
-    control,
-  );
+  @override
+  Map<String, dynamic>? validate(AbstractControl control) {
+    return Validators.mustMatch(
+      'password',
+      'repeatPassword',
+      markAsDirty: false,
+    )(control);
+  }
 }
 
 class ValidationMessages {

@@ -3,8 +3,10 @@ import 'package:video_player/video_player.dart';
 
 final mainPageProvider = FutureProvider.autoDispose<VideoPlayerController>(
   (ref) async {
-    final videoPlayerController = VideoPlayerController.network(
-      'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4',
+    final videoPlayerController = VideoPlayerController.networkUrl(
+      Uri.https(
+        'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4',
+      ),
     );
 
     ref.onDispose(() {

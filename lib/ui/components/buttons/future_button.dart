@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 ///
 /// [onPressed] could be a Future or a [T] type. If it's not a future, the button will not disable and isLoading always will be false.
 class FutureButton extends StatefulWidget {
-  final Widget Function(bool isLoading) childBuilder;
+  final Widget Function({bool isLoading}) childBuilder;
   final FutureOr Function()? onPressed;
   final bool disableWhenIsLoading;
 
@@ -47,7 +47,7 @@ class _FutureButtonState extends State<FutureButton> {
   Widget build(BuildContext context) {
     return MaterialButton(
       onPressed: widget.disableWhenIsLoading && isLoading ? null : _onPressed,
-      child: widget.childBuilder.call(isLoading),
+      child: widget.childBuilder.call(isLoading: isLoading),
     );
   }
 }

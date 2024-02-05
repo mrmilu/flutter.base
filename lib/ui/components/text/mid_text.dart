@@ -2,15 +2,14 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_base/ui/styles/text_styles.dart';
 
-class MidTextXs extends StatelessWidget {
+class MidText extends StatelessWidget {
   final String label;
-  final Color? color;
+  final TextStyle style;
   final TextAlign? textAlign;
 
-  const MidTextXs(
+  const MidText._(
     this.label, {
-    super.key,
-    this.color,
+    required this.style,
     this.textAlign,
   });
 
@@ -19,129 +18,85 @@ class MidTextXs extends StatelessWidget {
     return Text(
       label,
       textAlign: textAlign,
-      style: TextStyles.midXs.copyWith(
-        color: color,
-      ),
+      style: style,
     );
   }
-}
 
-class MidTextS extends StatelessWidget {
-  final String label;
-  final Color? color;
-  final TextAlign? textAlign;
+  factory MidText.xs(
+    String label, {
+    Color? color,
+    TextAlign? textAlign,
+  }) =>
+      MidText._(
+        label,
+        textAlign: textAlign,
+        style: TextStyles.midXs.copyWith(
+          color: color,
+        ),
+      );
 
-  const MidTextS(
-    this.label, {
-    super.key,
-    this.color,
-    this.textAlign,
-  });
+  factory MidText.s(
+    String label, {
+    Color? color,
+    TextAlign? textAlign,
+  }) =>
+      MidText._(
+        label,
+        textAlign: textAlign,
+        style: TextStyles.midS.copyWith(
+          color: color,
+        ),
+      );
 
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      label,
-      textAlign: textAlign,
-      style: TextStyles.midS.copyWith(
-        color: color,
-      ),
-    );
-  }
-}
+  factory MidText.m(
+    String label, {
+    Color? color,
+    TextAlign? textAlign,
+  }) =>
+      MidText._(
+        label,
+        textAlign: textAlign,
+        style: TextStyles.midM.copyWith(
+          color: color,
+        ),
+      );
 
-class MidTextM extends StatelessWidget {
-  final String label;
-  final Color? color;
-  final TextAlign? textAlign;
+  factory MidText.l(
+    String label, {
+    Color? color,
+    TextAlign? textAlign,
+  }) =>
+      MidText._(
+        label,
+        textAlign: textAlign,
+        style: TextStyles.midL.copyWith(
+          color: color,
+        ),
+      );
 
-  const MidTextM(
-    this.label, {
-    super.key,
-    this.color,
-    this.textAlign,
-  });
+  factory MidText.xl(
+    String label, {
+    Color? color,
+    TextAlign? textAlign,
+  }) =>
+      MidText._(
+        label,
+        textAlign: textAlign,
+        style: TextStyles.midXl.copyWith(
+          color: color,
+        ),
+      );
 
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      label,
-      textAlign: textAlign,
-      style: TextStyles.midM.copyWith(
-        color: color,
-      ),
-    );
-  }
-}
-
-class MidTextL extends StatelessWidget {
-  final String label;
-  final Color? color;
-  final TextAlign? textAlign;
-
-  const MidTextL(
-    this.label, {
-    super.key,
-    this.color,
-    this.textAlign,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      label,
-      textAlign: textAlign,
-      style: TextStyles.midL.copyWith(
-        color: color,
-      ),
-    );
-  }
-}
-
-class MidTextXl extends StatelessWidget {
-  final String label;
-  final Color? color;
-  final TextAlign? textAlign;
-
-  const MidTextXl(
-    this.label, {
-    super.key,
-    this.color,
-    this.textAlign,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      label,
-      textAlign: textAlign,
-      style: TextStyles.midXl.copyWith(
-        color: color,
-      ),
-    );
-  }
-}
-
-class MidTextXll extends StatelessWidget {
-  final String label;
-  final Color? color;
-  final TextAlign? textAlign;
-
-  const MidTextXll(
-    this.label, {
-    super.key,
-    this.color,
-    this.textAlign,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      label,
-      textAlign: textAlign,
-      style: TextStyles.midXxl.copyWith(
-        color: color,
-      ),
-    );
-  }
+  factory MidText.xxl(
+    String label, {
+    Color? color,
+    TextAlign? textAlign,
+  }) =>
+      MidText._(
+        label,
+        textAlign: textAlign,
+        style: TextStyles.midXxl.copyWith(
+          color: color,
+        ),
+      );
 }

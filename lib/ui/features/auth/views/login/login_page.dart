@@ -25,7 +25,7 @@ class LoginPage extends ConsumerWidget {
       appBar: FlutterBaseAppBar(
         trailing: Row(
           children: [
-            SmallTextM(LocaleKeys.login_noAccount.tr()),
+            SmallText.m(LocaleKeys.login_noAccount.tr()),
             BoxSpacer.h4(),
             ButtonTertiary(
               text: LocaleKeys.login_signUp.tr(),
@@ -44,11 +44,11 @@ class LoginPage extends ConsumerWidget {
           padding: Insets.h24,
           children: [
             BoxSpacer.v16(),
-            HighTextL(LocaleKeys.login_title.tr()),
+            HighText.l(LocaleKeys.login_title.tr()),
             BoxSpacer.v24(),
             const LoginForm(),
             BoxSpacer.v48(),
-            SmallTextM(LocaleKeys.login_or.tr()),
+            SmallText.m(LocaleKeys.login_or.tr()),
             BoxSpacer.v16(),
             const SocialAuth(),
             BoxSpacer.v48(),

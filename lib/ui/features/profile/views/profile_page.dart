@@ -28,7 +28,7 @@ class ProfilePage extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Flexible(
-                child: HighTextXl(
+                child: HighText.xl(
                   user?.name ?? '---',
                 ),
               ),

@@ -11,9 +11,9 @@ abstract class IAuthRepository {
 
   Future<String> socialAuth(String token);
 
-  Future<String> googleSocialAuth();
+  Future<String?> googleSocialAuth();
 
-  Future<String> appleSocialAuth();
+  Future<String?> appleSocialAuth();
 
   Future<void> requestResetPassword(String email);
 

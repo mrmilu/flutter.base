@@ -7,22 +7,23 @@ import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 
-class ForgotPasswordProvider {
-  late UiNotifier _uiProvider;
+class ForgotPasswordNotifier
+    extends AutoDisposeNotifier<ForgotPasswordModelForm> {
   final _resetPasswordUseCase = GetIt.I.get<ResetPasswordUseCase>();
   final _appRouter = GetIt.I.get<GoRouter>();
 
-  ForgotPasswordProvider(AutoDisposeProviderRef ref) {
-    _uiProvider = ref.read(uiProvider.notifier);
+  @override
+  ForgotPasswordModelForm build() {
+    return ForgotPasswordViewModel().formModel;
   }
 
-  void requestChangePassword(ForgotPasswordModelForm formModel) async {
-    formModel.form.markAllAsTouched();
-    if (formModel.form.valid) {
-      _uiProvider.tryAction(() async {
+  void requestChangePassword() async {
+    state.form.markAllAsTouched();
+    if (state.form.valid) {
+      ref.read(uiProvider.notifier).tryAction(() async {
         FocusManager.instance.primaryFocus?.unfocus();
         final input =
-            ResetPasswordUseCaseInput(email: formModel.model.email.trim());
+            ResetPasswordUseCaseInput(email: state.model.email.trim());
         await _resetPasswordUseCase(input);
         _appRouter.push(
           '/forgot-password/confirm',
@@ -33,6 +34,7 @@ class ForgotPasswordProvider {
   }
 }
 
-final forgotPasswordProvider = AutoDisposeProvider<ForgotPasswordProvider>(
-  (ref) => ForgotPasswordProvider(ref),
+final forgotPasswordProvider = AutoDisposeNotifierProvider<
+    ForgotPasswordNotifier, ForgotPasswordModelForm>(
+  ForgotPasswordNotifier.new,
 );

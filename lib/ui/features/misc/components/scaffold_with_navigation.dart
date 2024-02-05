@@ -24,7 +24,7 @@ class ScaffoldWithNavigationItem extends AppNavigationItem {
     IconData? icon,
     IconData? selectedIcon,
     String? text,
-    Widget Function(bool selected)? customWidgetBuilder,
+    Widget Function({bool selected})? customWidgetBuilder,
     String? rootRoutePath,
     GlobalKey<NavigatorState>? navigatorKey,
   }) {

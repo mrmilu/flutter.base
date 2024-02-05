@@ -39,7 +39,7 @@ class ChangePasswordSuccessPage extends ConsumerWidget {
           BoxSpacer.v16(),
           Padding(
             padding: Insets.h16,
-            child: HighTextM(LocaleKeys.changePasswordSuccess_title.tr()),
+            child: HighText.m(LocaleKeys.changePasswordSuccess_title.tr()),
           ),
           BoxSpacer(
             verticalSpacing: MediaQuery.of(context).heightPercentage(30),

@@ -4,7 +4,7 @@ class AppNavigationItem {
   final IconData? icon;
   final IconData? selectedIcon;
   final String text;
-  final Widget Function(bool selected)? customWidgetBuilder;
+  final Widget Function({bool selected})? customWidgetBuilder;
 
   const AppNavigationItem({
     this.icon,

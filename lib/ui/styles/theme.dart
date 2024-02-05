@@ -3,8 +3,10 @@ import 'package:flutter_base/ui/styles/colors.dart';
 import 'package:flutter_base/ui/styles/insets.dart';
 import 'package:flutter_base/ui/styles/text_styles.dart';
 
-const transparentBottomSheetTheme =
-    BottomSheetThemeData(backgroundColor: Colors.transparent);
+const transparentBottomSheetTheme = BottomSheetThemeData(
+  backgroundColor: Colors.transparent,
+  surfaceTintColor: Colors.transparent,
+);
 
 final appThemeData = ThemeData(
   dividerColor: FlutterBaseColors.specificBorderLow,
@@ -14,11 +16,13 @@ final appThemeData = ThemeData(
     elevation: 0,
     backgroundColor: FlutterBaseColors.specificBackgroundBase,
     toolbarHeight: 56,
+    surfaceTintColor: Colors.transparent,
     foregroundColor: FlutterBaseColors.specificContentHigh,
   ),
   scaffoldBackgroundColor: FlutterBaseColors.specificBackgroundBase,
   bottomSheetTheme: const BottomSheetThemeData(
     backgroundColor: FlutterBaseColors.specificSurfaceLow,
+    surfaceTintColor: Colors.transparent,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.horizontal(
         right: Radius.circular(32),

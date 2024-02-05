@@ -6,29 +6,29 @@ import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 
-class ChangePasswordProvider {
+class ChangePasswordNotifier
+    extends AutoDisposeNotifier<ChangePasswordModelForm> {
   final _changePasswordUseCase = GetIt.I.get<ChangePasswordUseCase>();
-  late UiNotifier _uiProvider;
   final _appRouter = GetIt.I.get<GoRouter>();
 
-  ChangePasswordProvider(AutoDisposeProviderRef ref) {
-    _uiProvider = ref.watch(uiProvider.notifier);
+  @override
+  ChangePasswordModelForm build() {
+    return ChangePasswordViewModel().formModel;
   }
 
-  void changePassword(
-    ChangePasswordModelForm formModel, {
+  void changePassword({
     required String token,
     required String uid,
   }) async {
-    formModel.form.markAllAsTouched();
-    if (formModel.form.valid) {
-      _uiProvider.tryAction(() async {
+    state.form.markAllAsTouched();
+    if (state.form.valid) {
+      ref.read(uiProvider.notifier).tryAction(() async {
         FocusManager.instance.primaryFocus?.unfocus();
         final input = ChangePasswordUseCaseInput(
           uid: uid,
           token: token,
-          password: formModel.model.password.trim(),
-          repeatPassword: formModel.model.repeatPassword.trim(),
+          password: state.model.password.trim(),
+          repeatPassword: state.model.repeatPassword.trim(),
         );
         await _changePasswordUseCase(input);
         _appRouter.push('/change-password/success');
@@ -37,5 +37,7 @@ class ChangePasswordProvider {
   }
 }
 
-final changePasswordProvider =
-    AutoDisposeProvider((ref) => ChangePasswordProvider(ref));
+final changePasswordProvider = AutoDisposeNotifierProvider<
+    ChangePasswordNotifier, ChangePasswordModelForm>(
+  ChangePasswordNotifier.new,
+);

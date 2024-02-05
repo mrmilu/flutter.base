@@ -99,6 +99,24 @@ final GoRouter router = GoRouter(
           routes: [
             GoRoute(
               redirect: authGuard,
+              path: '/home',
+              pageBuilder: (BuildContext context, GoRouterState state) =>
+                  fadeTransitionPage(state, const PostPage()),
+              routes: [
+                GoRoute(
+                  path: ':id',
+                  builder: (context, state) => DetailPostPage(
+                    id: int.parse(state.pathParameters['id'] ?? ''),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              redirect: authGuard,
               path: '/profile',
               pageBuilder: (BuildContext context, GoRouterState state) =>
                   fadeTransitionPage(state, const ProfilePage()),
@@ -113,24 +131,6 @@ final GoRouter router = GoRouter(
                   parentNavigatorKey: rootNavigatorKey,
                   builder: (context, state) => EditAvatarPage(
                     avatar: (state.extra as EditAvatarPageData).avatar,
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-        StatefulShellBranch(
-          routes: [
-            GoRoute(
-              redirect: authGuard,
-              path: '/home',
-              pageBuilder: (BuildContext context, GoRouterState state) =>
-                  fadeTransitionPage(state, const PostPage()),
-              routes: [
-                GoRoute(
-                  path: ':id',
-                  builder: (context, state) => DetailPostPage(
-                    id: int.parse(state.pathParameters['id'] ?? ''),
                   ),
                 ),
               ],

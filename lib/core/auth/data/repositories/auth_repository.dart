@@ -47,7 +47,7 @@ class AuthRepository implements IAuthRepository {
   }
 
   @override
-  Future<String> appleSocialAuth() async {
+  Future<String?> appleSocialAuth() async {
     late firebase_auth.User user;
     try {
       user = await _socialAuthService.signInWithApple();
@@ -65,7 +65,7 @@ class AuthRepository implements IAuthRepository {
   }
 
   @override
-  Future<String> googleSocialAuth() async {
+  Future<String?> googleSocialAuth() async {
     late firebase_auth.User? user;
     user = await _socialAuthService.signInWithGoogle();
     if (user == null) {

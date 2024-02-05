@@ -33,7 +33,9 @@ class _VerifyAccountPageState extends ConsumerState<VerifyAccountPage> {
   void _verifyAccount() {
     if (widget.token?.isNotEmpty ?? false) {
       WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-        ref.read(verifyAccountProvider).verifyAccount(widget.token ?? '');
+        ref
+            .read(verifyAccountProvider.notifier)
+            .verifyAccount(widget.token ?? '');
       });
     }
   }
@@ -79,7 +81,7 @@ class _VerifyAccountPageState extends ConsumerState<VerifyAccountPage> {
             padding: Insets.h24,
             children: [
               BoxSpacer.v16(),
-              HighTextL(LocaleKeys.verifyAccount_title.tr()),
+              HighText.l(LocaleKeys.verifyAccount_title.tr()),
               BoxSpacer.v24(),
             ],
           ),

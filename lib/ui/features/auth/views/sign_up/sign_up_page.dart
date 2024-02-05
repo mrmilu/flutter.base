@@ -27,7 +27,7 @@ class SignUpPage extends ConsumerWidget {
       appBar: FlutterBaseAppBar(
         trailing: Row(
           children: [
-            SmallTextM(LocaleKeys.signUp_haveAccount.tr()),
+            SmallText.m(LocaleKeys.signUp_haveAccount.tr()),
             BoxSpacer.h4(),
             ButtonTertiary(
               text: LocaleKeys.signUp_signIn.tr(),
@@ -46,11 +46,11 @@ class SignUpPage extends ConsumerWidget {
           padding: Insets.h24,
           children: [
             BoxSpacer.v16(),
-            HighTextL(LocaleKeys.signUp_title.tr()),
+            HighText.l(LocaleKeys.signUp_title.tr()),
             BoxSpacer.v32(),
             const SignUpForm(),
             BoxSpacer.v48(),
-            SmallTextM(LocaleKeys.signUp_alternative.tr()),
+            SmallText.m(LocaleKeys.signUp_alternative.tr()),
             BoxSpacer.v16(),
             const SocialAuth(type: SocialAuthType.singUp),
             BoxSpacer.v16(),

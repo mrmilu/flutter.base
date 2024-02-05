@@ -1,3 +1,4 @@
+import 'package:flutter_base/core/app/domain/models/app_error.dart';
 import 'package:flutter_base/core/auth/domain/enums/auth_provider.dart';
 import 'package:flutter_base/core/auth/domain/interfaces/auth_repository.dart';
 import 'package:injectable/injectable.dart';
@@ -17,12 +18,15 @@ class SocialAuthUseCase {
   SocialAuthUseCase(this._authRepository);
 
   Future<String> call(SocialAuthUseCaseInput input) async {
-    late String socialToken;
+    late String? socialToken;
 
     if (input.authProvider == SocialAuthServiceProvider.apple) {
       socialToken = await _authRepository.appleSocialAuth();
     } else if (input.authProvider == SocialAuthServiceProvider.google) {
       socialToken = await _authRepository.googleSocialAuth();
+    }
+    if (socialToken == null) {
+      throw const AppError(code: AppErrorCode.errorRetrievingDeviceToken);
     }
     return socialToken;
   }

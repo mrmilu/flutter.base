@@ -32,8 +32,13 @@ class _AppState extends ConsumerState<App> with TickerProviderStateMixin {
   late Future _initAppFuture;
 
   @override
-  void initState() {
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     precacheImage(const AssetImage('assets/images/splash.png'), context);
+  }
+
+  @override
+  void initState() {
     super.initState();
     _controller = AnimationController(
       duration: const Duration(milliseconds: 1200),

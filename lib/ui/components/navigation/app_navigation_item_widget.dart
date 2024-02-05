@@ -36,7 +36,7 @@ class AppNavigationItemWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               item.customWidgetBuilder != null
-                  ? item.customWidgetBuilder?.call(selected) ??
+                  ? item.customWidgetBuilder?.call(selected: selected) ??
                       const SizedBox.shrink()
                   : FlutterBaseIcon(
                       icon: selected
@@ -50,7 +50,7 @@ class AppNavigationItemWidget extends StatelessWidget {
                 BoxSpacer.v8(),
                 DefaultTextStyle(
                   style: TextStyles.midXs,
-                  child: MidTextXs(
+                  child: MidText.xs(
                     item.text,
                     color: _color,
                   ),

@@ -2,15 +2,14 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_base/ui/styles/text_styles.dart';
 
-class SmallTextXxs extends StatelessWidget {
+class SmallText extends StatelessWidget {
   final String label;
-  final Color? color;
+  final TextStyle style;
   final TextAlign? textAlign;
 
-  const SmallTextXxs(
+  const SmallText._(
     this.label, {
-    super.key,
-    this.color,
+    required this.style,
     this.textAlign,
   });
 
@@ -19,105 +18,59 @@ class SmallTextXxs extends StatelessWidget {
     return Text(
       label,
       textAlign: textAlign,
-      style: TextStyles.smallXxs.copyWith(
-        color: color,
-      ),
+      style: style,
     );
   }
-}
 
-class SmallTextXs extends StatelessWidget {
-  final String label;
-  final Color? color;
-  final TextAlign? textAlign;
+  factory SmallText.xs(
+    String label, {
+    Color? color,
+    TextAlign? textAlign,
+  }) =>
+      SmallText._(
+        label,
+        style: TextStyles.smallXxs.copyWith(
+          color: color,
+        ),
+        textAlign: textAlign,
+      );
 
-  const SmallTextXs(
-    this.label, {
-    super.key,
-    this.color,
-    this.textAlign,
-  });
+  factory SmallText.s(
+    String label, {
+    Color? color,
+    TextAlign? textAlign,
+  }) =>
+      SmallText._(
+        label,
+        style: TextStyles.smallS.copyWith(
+          color: color,
+        ),
+        textAlign: textAlign,
+      );
 
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      label,
-      textAlign: textAlign,
-      style: TextStyles.smallXs.copyWith(
-        color: color,
-      ),
-    );
-  }
-}
+  factory SmallText.m(
+    String label, {
+    Color? color,
+    TextAlign? textAlign,
+  }) =>
+      SmallText._(
+        label,
+        style: TextStyles.smallM.copyWith(
+          color: color,
+        ),
+        textAlign: textAlign,
+      );
 
-class SmallTextS extends StatelessWidget {
-  final String label;
-  final Color? color;
-  final TextAlign? textAlign;
-
-  const SmallTextS(
-    this.label, {
-    super.key,
-    this.color,
-    this.textAlign,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      label,
-      textAlign: textAlign,
-      style: TextStyles.smallS.copyWith(
-        color: color,
-      ),
-    );
-  }
-}
-
-class SmallTextM extends StatelessWidget {
-  final String label;
-  final Color? color;
-  final TextAlign? textAlign;
-
-  const SmallTextM(
-    this.label, {
-    super.key,
-    this.color,
-    this.textAlign,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      label,
-      textAlign: textAlign,
-      style: TextStyles.smallM.copyWith(
-        color: color,
-      ),
-    );
-  }
-}
-
-class SmallTextL extends StatelessWidget {
-  final String label;
-  final Color? color;
-  final TextAlign? textAlign;
-
-  const SmallTextL(
-    this.label, {
-    super.key,
-    this.color,
-    this.textAlign,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      label,
-      textAlign: textAlign,
-      style: TextStyles.smallL.copyWith(
-        color: color,
-      ),
-    );
-  }
+  factory SmallText.l(
+    String label, {
+    Color? color,
+    TextAlign? textAlign,
+  }) =>
+      SmallText._(
+        label,
+        style: TextStyles.smallL.copyWith(
+          color: color,
+        ),
+        textAlign: textAlign,
+      );
 }

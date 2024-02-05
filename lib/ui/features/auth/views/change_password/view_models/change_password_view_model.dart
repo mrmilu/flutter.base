@@ -3,16 +3,25 @@ import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 
 part 'change_password_view_model.gform.dart';
 
-@ReactiveFormAnnotation(name: 'ChangePasswordModel')
-@FormGroupAnnotation(validators: [mustMatchPassword])
+@Rf(name: 'ChangePasswordModel')
+@FormGroupAnnotation(validators: [MustMatchPassword()])
 class ChangePasswordViewModel {
   final String password;
   final String repeatPassword;
 
   ChangePasswordViewModel({
-    @FormControlAnnotation(validators: [requiredValidator, passwordValidator])
-        this.password = '',
-    @FormControlAnnotation(validators: [requiredValidator, passwordValidator])
-        this.repeatPassword = '',
+    @RfControl(
+      validators: [RequiredValidator(), PasswordValidator()],
+    )
+    this.password = '',
+    @RfControl(
+      validators: [RequiredValidator(), PasswordValidator()],
+    )
+    this.repeatPassword = '',
   });
+
+  ChangePasswordModelForm get formModel => ChangePasswordModelForm(
+        ChangePasswordModelForm.formElements(this),
+        null,
+      );
 }

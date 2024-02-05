@@ -29,50 +29,56 @@ class _BasicLoginFormWidgetState extends ConsumerState<ChangePasswordForm> {
 
   @override
   Widget build(BuildContext context) {
-    return ChangePasswordModelFormBuilder(
-      model: ChangePasswordViewModel(),
-      builder: (context, formModel, child) {
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            PasswordReactiveInput(
-              key: const Key('change-password-pass1'),
-              formControl: formModel.passwordControl,
-              placeholder: LocaleKeys.changePassword_form_password_label.tr(),
-              onSubmitted: (control) => formModel.form.focus('repeatPassword'),
-            ),
-            BoxSpacer.v16(),
-            PasswordReactiveInput(
-              key: const Key('change-password-pass2'),
-              formControl: formModel.repeatPasswordControl,
-              placeholder:
-                  LocaleKeys.changePassword_form_repeatPassword_label.tr(),
-              validationMessages: {
-                ValidationMessage.mustMatch: (_) =>
-                    LocaleKeys.errors_form_passwordMatch.tr(),
-              },
-            ),
-            BoxSpacer.v24(),
-            ReactiveChangePasswordModelFormConsumer(
-              builder: (context, consumerModel, _) {
-                return ButtonPrimary(
-                  key: const Key('change-password-button'),
-                  text: LocaleKeys.changePassword_form_submit.tr(),
-                  onPressed: consumerModel.form.valid
-                      ? () {
-                          ref.read(changePasswordProvider).changePassword(
-                                formModel,
-                                token: widget.token,
-                                uid: widget.uid,
-                              );
-                        }
-                      : null,
-                );
-              },
-            ),
-          ],
-        );
-      },
+    final formModel = ref.watch(changePasswordProvider);
+    return ReactiveChangePasswordModelForm(
+      form: formModel,
+      child: ReactiveFormBuilder(
+        form: () => formModel.form,
+        builder: (context, _, __) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              PasswordReactiveInput(
+                key: const Key('change-password-pass1'),
+                formControl: formModel.passwordControl,
+                placeholder: LocaleKeys.changePassword_form_password_label.tr(),
+                onSubmitted: (control) =>
+                    formModel.form.focus('repeatPassword'),
+              ),
+              BoxSpacer.v16(),
+              PasswordReactiveInput(
+                key: const Key('change-password-pass2'),
+                formControl: formModel.repeatPasswordControl,
+                placeholder:
+                    LocaleKeys.changePassword_form_repeatPassword_label.tr(),
+                validationMessages: {
+                  ValidationMessage.mustMatch: (_) =>
+                      LocaleKeys.errors_form_passwordMatch.tr(),
+                },
+              ),
+              BoxSpacer.v24(),
+              ReactiveChangePasswordModelFormConsumer(
+                builder: (context, consumerModel, _) {
+                  return ButtonPrimary(
+                    key: const Key('change-password-button'),
+                    text: LocaleKeys.changePassword_form_submit.tr(),
+                    onPressed: consumerModel.form.valid
+                        ? () {
+                            ref
+                                .read(changePasswordProvider.notifier)
+                                .changePassword(
+                                  token: widget.token,
+                                  uid: widget.uid,
+                                );
+                          }
+                        : null,
+                  );
+                },
+              ),
+            ],
+          );
+        },
+      ),
     );
   }
 }

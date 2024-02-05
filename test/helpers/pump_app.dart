@@ -33,8 +33,8 @@ extension PumpApp on WidgetTester {
       navigatorKey: rootNavigatorKey,
       initialLocation: path,
       errorBuilder: (context, state) {
-        debugPrint('Navigate to route ${state.location}');
-        return Scaffold(body: Text(state.location));
+        debugPrint('Navigate to route ${state.uri.toString()}');
+        return Scaffold(body: Text(state.uri.toString()));
       },
       routes: [
         GoRoute(

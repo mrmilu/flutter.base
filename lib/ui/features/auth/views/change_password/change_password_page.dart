@@ -8,7 +8,6 @@ import 'package:flutter_base/ui/components/views/column_scroll_view.dart';
 import 'package:flutter_base/ui/features/auth/views/change_password/change_password_form.dart';
 import 'package:flutter_base/ui/i18n/locale_keys.g.dart';
 import 'package:flutter_base/ui/styles/insets.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ChangePasswordPageData {
   final String token;
@@ -20,7 +19,7 @@ class ChangePasswordPageData {
   });
 }
 
-class ChangePasswordPage extends ConsumerWidget {
+class ChangePasswordPage extends StatelessWidget {
   final ChangePasswordPageData data;
 
   const ChangePasswordPage({
@@ -29,7 +28,7 @@ class ChangePasswordPage extends ConsumerWidget {
   });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return FormScaffold(
       appBar: FlutterBaseAppBar.dialog(),
       body: SafeArea(
@@ -38,7 +37,7 @@ class ChangePasswordPage extends ConsumerWidget {
           padding: Insets.h24,
           children: [
             BoxSpacer.v16(),
-            HighTextL(LocaleKeys.changePassword_title.tr()),
+            HighText.l(LocaleKeys.changePassword_title.tr()),
             BoxSpacer.v24(),
             ChangePasswordForm(
               token: data.token,

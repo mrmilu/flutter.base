@@ -2,78 +2,32 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_base/ui/styles/text_styles.dart';
 
-class HighTextS extends StatelessWidget {
+class HighText extends StatelessWidget {
   final String label;
-  final Color? color;
+  final TextStyle style;
 
-  const HighTextS(
+  const HighText._(
     this.label, {
-    super.key,
-    this.color,
+    required this.style,
   });
 
   @override
   Widget build(BuildContext context) {
     return Text(
       label,
-      style: TextStyles.highS.copyWith(color: color),
+      style: style,
     );
   }
-}
 
-class HighTextM extends StatelessWidget {
-  final String label;
-  final Color? color;
+  factory HighText.s(String label, {Color? color}) =>
+      HighText._(label, style: TextStyles.highS.copyWith(color: color));
 
-  const HighTextM(
-    this.label, {
-    super.key,
-    this.color,
-  });
+  factory HighText.m(String label, {Color? color}) =>
+      HighText._(label, style: TextStyles.highM.copyWith(color: color));
 
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      label,
-      style: TextStyles.highM.copyWith(color: color),
-    );
-  }
-}
+  factory HighText.l(String label, {Color? color}) =>
+      HighText._(label, style: TextStyles.highL.copyWith(color: color));
 
-class HighTextL extends StatelessWidget {
-  final String label;
-  final Color? color;
-
-  const HighTextL(
-    this.label, {
-    super.key,
-    this.color,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      label,
-      style: TextStyles.highL.copyWith(color: color),
-    );
-  }
-}
-
-class HighTextXl extends StatelessWidget {
-  final String label;
-  final Color? color;
-
-  const HighTextXl(
-    this.label, {
-    super.key,
-    this.color,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      label,
-      style: TextStyles.highXl.copyWith(color: color),
-    );
-  }
+  factory HighText.xl(String label, {Color? color}) =>
+      HighText._(label, style: TextStyles.highXl.copyWith(color: color));
 }

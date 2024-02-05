@@ -89,7 +89,7 @@ class ForgotPasswordConfirmPage extends StatelessWidget {
                     forgotPasswordConfirmProvider
                         .select((state) => state.pageTitle),
                   );
-                  return HighTextL(title);
+                  return HighText.l(title);
                 },
               ),
               BoxSpacer.v64(),

@@ -5,29 +5,26 @@ import 'package:flutter_base/ui/providers/user_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
 
-class VerifyAccountProvider {
-  late UserNotifier _userProvider;
-  late UiNotifier _uiProvider;
+class VerifyAccountNotifier extends AutoDisposeNotifier<void> {
   final _verifyAccountUseCase = GetIt.I.get<VerifyAccountUseCase>();
 
-  VerifyAccountProvider(AutoDisposeProviderRef ref) {
-    _userProvider = ref.read(userProvider.notifier);
-    _uiProvider = ref.read(uiProvider.notifier);
-  }
+  @override
+  void build() {}
 
   void verifyAccount(String token) async {
-    await _uiProvider.tryAction(
+    await ref.read(uiProvider.notifier).tryAction(
       () async {
         FocusManager.instance.primaryFocus?.unfocus();
         final input = VerifyAccountUseCaseInput(token: token);
         await _verifyAccountUseCase(input);
-        _userProvider.setUserVerified();
+        ref.read(userProvider.notifier).setUserVerified();
       },
       rethrowError: true,
     );
   }
 }
 
-final verifyAccountProvider = AutoDisposeProvider<VerifyAccountProvider>(
-  (ref) => VerifyAccountProvider(ref),
+final verifyAccountProvider =
+    AutoDisposeNotifierProvider<VerifyAccountNotifier, void>(
+  VerifyAccountNotifier.new,
 );

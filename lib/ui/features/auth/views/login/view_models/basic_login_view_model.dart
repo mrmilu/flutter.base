@@ -1,4 +1,3 @@
-import 'package:flutter_base/ui/validators/validators.dart';
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 
 part 'basic_login_view_model.gform.dart';
@@ -9,10 +8,11 @@ class BasicLoginViewModel {
   final String password;
 
   BasicLoginModelForm get generateFormModel =>
-      BasicLoginModelForm(this, BasicLoginModelForm.formElements(this), null);
+      BasicLoginModelForm(BasicLoginModelForm.formElements(this), null);
 
   BasicLoginViewModel({
-    @FormControlAnnotation(validators: [requiredValidator]) this.email = '',
-    @FormControlAnnotation(validators: [requiredValidator]) this.password = '',
+    @FormControlAnnotation(validators: [RequiredValidator()]) this.email = '',
+    @FormControlAnnotation(validators: [RequiredValidator()])
+    this.password = '',
   });
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_base/ui/components/buttons/icon_button_primary.dart';
 import 'package:flutter_base/ui/components/error_message.dart';
 import 'package:flutter_base/ui/components/flutter_base_app_bar.dart';
+import 'package:flutter_base/ui/components/text/high_text.dart';
 import 'package:flutter_base/ui/features/post/views/posts/providers/post_page_provider.dart';
 import 'package:flutter_base/ui/providers/ui_provider.dart';
 import 'package:flutter_base/ui/styles/border_radius.dart';
@@ -30,7 +31,9 @@ class PostPage extends ConsumerWidget {
     });
 
     return Scaffold(
-      appBar: FlutterBaseAppBar(),
+      appBar: FlutterBaseAppBar(
+        title: HighText.m('Posts'),
+      ),
       body: postsProvider.when(
         loading: () => const SizedBox.shrink(),
         error: (e, __) => ErrorMessage(error: e),

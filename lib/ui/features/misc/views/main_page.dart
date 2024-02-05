@@ -50,9 +50,9 @@ class MainPage extends StatelessWidget {
                 children: [
                   BoxSpacer.v40(),
                   BoxSpacer.v56(),
-                  HighTextXl(LocaleKeys.mainPage_title.tr()),
+                  HighText.xl(LocaleKeys.mainPage_title.tr()),
                   BoxSpacer.v12(),
-                  SmallTextL(LocaleKeys.mainPage_claim.tr()),
+                  SmallText.l(LocaleKeys.mainPage_claim.tr()),
                   BoxSpacer.v24(),
                 ],
               ),
