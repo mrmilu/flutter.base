@@ -43,7 +43,7 @@ This project is a starting point for a Flutter application with the following fe
 - Routing ([Go Router](https://pub.dev/packages/go_router))
 - Forms ([Reactive forms](https://pub.dev/packages/reactive_forms))
 - State management with [Riverpod](https://riverpod.dev/)
-- DotEnv and Flutter Config (for env variables on native code)
+- Dart define from json file (for env variables on both dart and native code)
 - Report bugs service ([Sentry](https://pub.dev/packages/sentry))
 
 ## Setup
