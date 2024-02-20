@@ -37,7 +37,7 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
-          channel: ${{ env.FLUTTER_CHANNEL }w
+          channel: ${{ env.FLUTTER_CHANNEL }}
           architecture: x64
 
       - name: Install dependencies and build app
