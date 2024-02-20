@@ -2,10 +2,13 @@
 
 ## Requirements
 
-- Flutter (see version in ./fvm/fvm_config.json). Use [FVM](https://fvm.app/docs/getting_started/installation) to install Flutter versions
+- Flutter (see version in ./fvm/fvm_config.json).
+  Use [FVM](https://fvm.app/docs/getting_started/installation) to install Flutter versions
 - [Just](https://github.com/casey/just) to commands
-- When build to iOS, follow [this steps](https://docs.flutter.dev/get-started/install/macos#install-xcode)
-- When build to Android, follow [this steps](https://docs.flutter.dev/get-started/install/macos#install-android-studio)
+- When build to iOS,
+  follow [this steps](https://docs.flutter.dev/get-started/install/macos#install-xcode)
+- When build to Android,
+  follow [this steps](https://docs.flutter.dev/get-started/install/macos#install-android-studio)
 
 ### Commit tools
 
@@ -20,7 +23,7 @@ brew install lefthook
 lefthook install
 ```
 
-First time committing node will ask you to install `commitlit`, allow it. 
+First time committing node will ask you to install `commitlit`, allow it.
 
 For more info:
 
@@ -46,7 +49,8 @@ This project is a starting point for a Flutter application with the following fe
 
 ## Setup
 
-The following index has a summary of configuration, common errors and how to solve them for each of the features this base project has:
+The following index has a summary of configuration, common errors and how to solve them for each of
+the features this base project has:
 
 ### Docs
 
@@ -59,44 +63,53 @@ The following index has a summary of configuration, common errors and how to sol
 
 When creating a new project, you need complete the following check-list
 
-- [ ] Rename project and identifier id. To rename from flutter_base to another package name, change the pubspec.yml file and all the imports. Also if using Idea IDE's delete the .idea folder and in Project Structure... add a new root module to the project root so the IDE can detect the actual project.
+- [ ] Rename project and identifier id. To rename from flutter_base to another package name, change
+  the pubspec.yml file and all the imports. Also if using Idea IDE's delete the .idea folder and in
+  Project Structure... add a new root module to the project root so the IDE can detect the actual
+  project.
 - [ ] Search for all TODO comments and review and modify if necessary
-- [ ] For Dart compile-time variables create `env.flavor.json` per flavor with the following structure:
-- [ ] ~For iOS to work in CI/CD with Fastlane it's *necessary* to first manually sign and extract the `ExportOptions.plist` file and rename it per flavor in the ios
-folder with the following names: *ios/ExportOptionsLive.plist* and *ios/ExportOptionsBeta.plist*. This is because flutter CLI *can not* build and manually sign
-iOS apps for now ([flutter issue](https://github.com/flutter/flutter/issues/106612)). Follow [this guide](docs/ios_export_options.md) to extract the `ExportOptionsBeta.plist` file.~ Rolled back to flutter_config due
-to the removal of `--dart-define-from-file` from Flutter team because it was considered a [bug](https://github.com/flutter/flutter/issues/136444)
+- [ ] For Dart compile-time variables create `env.flavor.json` per flavor with the following
+  structure:
+- [ ] ~For iOS to work in CI/CD with Fastlane it's *necessary* to first manually sign and extract
+  the `ExportOptions.plist` file and rename it per flavor in the ios
+  folder with the following names: *ios/ExportOptionsLive.plist* and *ios/ExportOptionsBeta.plist*.
+  This is because flutter CLI *can not* build and manually sign
+  iOS apps for now ([flutter issue](https://github.com/flutter/flutter/issues/106612)).
+  Follow [this guide](docs/ios_export_options.md) to extract the `ExportOptionsBeta.plist` file.~
+  Rolled back to [flutter_config](https://pub.dev/packages/flutter_config) due
+  to the removal of `--dart-define-from-file` from Flutter team because it was considered
+  a [bug](https://github.com/flutter/flutter/issues/136444)
 
-
-```json
-{
-    "APP_NAME": "Flutter Base (beta)",
-    "APP_ID": "com.flutterbasemrmilu.beta",
-    "API_URL": "https://api-staging.flutterbase.me",
-    "SENTRY_DSN": "https://xxxxxxxxx@apm.mrmilu.com/xx",
-    "ENVIRONMENT": "beta",
-    "FIREBASE_REVERSED_CLIENT_ID": "com.googleusercontent.apps.xxxx-xxxxxxxxx",
-    "DYNAMIC_LINK_HOST": "flutterbase.page.link",
-    "DYNAMIC_LINKS_URL_TYPE_SCHEMA": "com.flutterbasemrmilu.beta"
-}
+```.env
+APP_NAME="Flutter Base (beta)"
+APP_ID="com.flutterbasemrmilu.beta"
+API_URL="https://api-staging.flutterbase.me"
+SENTRY_DSN="https://xxxxxxxxx@apm.mrmilu.com/xx"
+ENVIRONMENT="beta"
+FIREBASE_REVERSED_CLIENT_ID="com.googleusercontent.apps.xxxx-xxxxxxxxx"
+DYNAMIC_LINK_HOST="flutterbase.page.link"
+DYNAMIC_LINKS_URL_TYPE_SCHEMA="com.flutterbasemrmilu.beta"
 ```
 
 ## Run
 
 For almost every action needed in the project there is a command in the `justfile`.
 
-Initial setup can be triggered with the following command `just setup` and then run app with `just run {flavor}`
+Initial setup can be triggered with the following command `just setup` and then run app
+with `just run {flavor}`
 
 ### iOS
 
-First time to run on physical iOS device, need download Apple certificates. To accomplish this, please follow this steps
+First time to run on physical iOS device, you need download Apple certificates and provision
+profiles. To accomplish this, please follow this steps
 
 - Navigate to ios folder: `cd /ios`
 - Execute `fastlane match development --read-only`
 
 ### Android
 
-- Request sign files or generate new ones (`upload-keystore-*.jks` and `*.key.properties`) and copy them to `android` dir.
+- Request sign files or generate new ones (`upload-keystore-*.jks` and `*.key.properties`) and copy
+  them to `android` dir.
 
 ## Testing
 
