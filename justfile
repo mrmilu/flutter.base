@@ -7,15 +7,15 @@ help:
 
 # Runs app
 run flavor:
-    fvm flutter run lib/main_{{flavor}}.dart --flavor {{flavor}} --dart-define-from-file=env.{{flavor}}.json
+    fvm flutter run lib/main_{{flavor}}.dart --flavor {{flavor}}
 
 # Build ios
 build-ios flavor:
-    fvm flutter build ipa lib/main_{{flavor}}.dart --flavor {{flavor}} --dart-define-from-file=env.{{flavor}}.json
+    fvm flutter build ipa lib/main_{{flavor}}.dart --flavor {{flavor}}
 
 # Build android
 build-android flavor:
-    fvm flutter build appbundle lib/main_{{flavor}}.dart --flavor {{flavor}} --dart-define-from-file=env.{{flavor}}.json
+    fvm flutter build appbundle lib/main_{{flavor}}.dart --flavor {{flavor}}
 
 # Codgen build
 codegen:
@@ -51,7 +51,7 @@ test:
 
 # e2e test
 e2e-test flavor file deviceId:
-    fvm flutter test integration_test/{{flavor}}/{{file}}.dart --flavor {{flavor}} -d {{deviceId}} --dart-define-from-file=env.{{flavor}}.json
+    fvm flutter test integration_test/{{flavor}}/{{file}}.dart --flavor {{flavor}} -d {{deviceId}}
 
 # Initial project setup
 setup:

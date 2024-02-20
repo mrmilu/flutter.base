@@ -1,0 +1,38 @@
+name: analyze_and_test
+on:
+  workflow_dispatch:
+  pull_request:
+
+jobs:
+  build:
+    name: Analyze and test
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Reading FVM
+        uses: kuhnroyal/flutter-fvm-config-action@v1
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: ${{ env.FLUTTER_CHANNEL }}
+          cache: true
+
+      - name: Install dependencies and config
+        run: |
+          flutter pub get
+          flutter pub run build_runner build
+          flutter pub run easy_localization:generate -S assets/translations -f keys -O lib/ui/i18n -o locale_keys.g.dart
+
+      - name: Verify formatted files
+        run: dart format $(find . -name "*.dart" -not -wholename "**/*.g.dart") --set-exit-if-changed
+
+      - name: Analyze code
+        run: flutter analyze
+
+      - name: Test
+        run: flutter test --test-randomize-ordering-seed random

@@ -16,57 +16,59 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:stack_trace/stack_trace.dart' as stack_trace;
 
 void startApp({required FirebaseOptions? firebaseOptions}) async {
-  final env = EnvVars().environment;
-  final WidgetsBinding widgetsBinding =
-      WidgetsFlutterBinding.ensureInitialized();
-  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  await EasyLocalization.ensureInitialized();
-  await Firebase.initializeApp(options: firebaseOptions);
-
-  LicenseRegistry.addLicense(() async* {
-    final poppinsLicense =
-        await rootBundle.loadString('fonts/poppins_license.txt');
-    yield LicenseEntryWithLineBreaks(['google_fonts'], poppinsLicense);
-  });
-
-  configureDependencies(env: env);
-
-  final providerContainer = GetIt.I.get<ProviderContainer>();
-
-  FlutterError.onError = (details) {
-    FlutterError.presentError(details);
-  };
-
-  FlutterError.demangleStackTrace = (StackTrace stack) {
-    if (stack is stack_trace.Trace) return stack.vmTrace;
-    if (stack is stack_trace.Chain) return stack.toTrace().vmTrace;
-    return stack;
-  };
-  PlatformDispatcher.instance.onError = (error, stack) {
-    Sentry.captureException(error, stackTrace: stack);
-
-    providerContainer
-        .read(uiProvider.notifier)
-        .showSnackBar('Something went wrong');
-    debugPrintStack(label: error.toString(), stackTrace: stack);
-    return true;
-  };
-
   await SentryFlutter.init(
     (options) {
       options.dsn = !kDebugMode ? GetIt.I.get<IEnvVars>().sentryDSN : '';
       options.environment = GetIt.I.get<IEnvVars>().environment;
     },
-    appRunner: () => runApp(
-      EasyLocalization(
-        supportedLocales: const [Locale('en')],
-        path: 'assets/translations',
-        fallbackLocale: const Locale('en'),
-        child: UncontrolledProviderScope(
-          container: GetIt.I.get<ProviderContainer>(),
-          child: const App(),
+    appRunner: () async {
+      final env = EnvVars().environment;
+      final WidgetsBinding widgetsBinding =
+          WidgetsFlutterBinding.ensureInitialized();
+      FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+      await EasyLocalization.ensureInitialized();
+      await Firebase.initializeApp(options: firebaseOptions);
+
+      LicenseRegistry.addLicense(() async* {
+        final poppinsLicense =
+            await rootBundle.loadString('fonts/poppins_license.txt');
+        yield LicenseEntryWithLineBreaks(['google_fonts'], poppinsLicense);
+      });
+
+      configureDependencies(env: env);
+
+      final providerContainer = GetIt.I.get<ProviderContainer>();
+
+      FlutterError.onError = (details) {
+        FlutterError.presentError(details);
+      };
+
+      FlutterError.demangleStackTrace = (StackTrace stack) {
+        if (stack is stack_trace.Trace) return stack.vmTrace;
+        if (stack is stack_trace.Chain) return stack.toTrace().vmTrace;
+        return stack;
+      };
+      PlatformDispatcher.instance.onError = (error, stack) {
+        Sentry.captureException(error, stackTrace: stack);
+
+        providerContainer
+            .read(uiProvider.notifier)
+            .showSnackBar('Something went wrong');
+        debugPrintStack(label: error.toString(), stackTrace: stack);
+        return true;
+      };
+
+      return runApp(
+        EasyLocalization(
+          supportedLocales: const [Locale('en')],
+          path: 'assets/translations',
+          fallbackLocale: const Locale('en'),
+          child: UncontrolledProviderScope(
+            container: GetIt.I.get<ProviderContainer>(),
+            child: const App(),
+          ),
         ),
-      ),
-    ),
+      );
+    },
   );
 }

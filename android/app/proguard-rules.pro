@@ -21,3 +21,6 @@
 -keepclassmembers,allowobfuscation class * {
   @com.google.gson.annotations.SerializedName <fields>;
 }
+
+-keep class com.flutterbase.beta.BuildConfig { *; }
+-keep class com.flutterbase.live.BuildConfig { *; }

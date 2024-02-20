@@ -18,7 +18,7 @@ default_platform(:android)
 platform :android do
   desc "Build app and deploy (closed testing beta)"
   lane :build_deploy_internal_beta do
-    sh("fvm", "flutter", "build", "appbundle", "--flavor", "beta", "./lib/main_beta.dart", "--dart-define-from-file=env.beta.json")
+    sh("flutter", "build", "appbundle", "--flavor", "beta", "./lib/main_beta.dart")
     upload_to_play_store(
       package_name: 'com.flutterbasemrmilu.beta',
       track: 'internal',
@@ -27,7 +27,7 @@ platform :android do
   end
   desc "Build app and deploy (closed testing prod)"
   lane :build_deploy_internal_prod do
-    sh("fvm", "flutter", "build", "appbundle", "--flavor", "live", "./lib/main_live.dart", "--dart-define-from-file=env.live.json")
+    sh("flutter", "build", "appbundle", "--flavor", "live", "./lib/main_live.dart")
     upload_to_play_store(
       package_name: 'com.flutterbasemrmilu.live',
       track: 'alpha',

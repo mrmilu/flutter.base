@@ -1,5 +1,5 @@
 #include? "Pods/Target Support Files/Pods-Runner/Pods-Runner.debug-beta.xcconfig"
 #include "Generated.xcconfig"
-
+#include? "tmp.xcconfig"
 
 FLUTTER_TARGET=lib/main_beta.dart

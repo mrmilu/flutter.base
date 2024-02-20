@@ -42,6 +42,7 @@
 .firebase/**/GoogleService-Info.plist
 locator.config.dart
 firebase_options.*.dart
+**/ios/Flutter/tmp.xcconfig
 
 # Web related
 lib/generated_plugin_registrant.dart

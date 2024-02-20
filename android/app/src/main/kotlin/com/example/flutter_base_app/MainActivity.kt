@@ -1,4 +1,4 @@
-package com.example.flutterbase
+package com.flutterbasemrmilu.live
 
 import io.flutter.embedding.android.FlutterActivity
 

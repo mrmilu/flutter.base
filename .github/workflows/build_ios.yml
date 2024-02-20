@@ -1,0 +1,82 @@
+name: build_ios
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - 'master'
+      - 'develop'
+    paths:
+      - 'pubspec.yaml'
+
+jobs:
+  build-and-deploy:
+    environment:
+      name: ${{ github.ref_name == 'master' && 'live' || 'beta'}}
+    runs-on: macos-latest
+    env:
+      MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+      FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
+      APP_STORE_CONNECT_PRIVATE_KEY: ${{ secrets.APP_STORE_CONNECT_PRIVATE_KEY }}
+      ENVIRONMENT: ${{ github.ref_name == 'master' && 'live' || 'beta'}}
+    steps:
+      - name: Setup iOS certificates repository SSH
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          name: id_rsa
+          known_hosts: ${{ secrets.KNOWN_HOSTS }}
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Reading FVM
+        uses: kuhnroyal/flutter-fvm-config-action@v1
+
+      - name: Extract app version
+        run: echo "APP_VERSION=$(./extract_name@version.sh)" >> $GITHUB_ENV
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: ${{ env.FLUTTER_CHANNEL }}
+          architecture: x64
+
+      - name: Dependencies
+        run: |
+          flutter pub get
+          flutter pub run build_runner build --delete-conflicting-outputs
+          flutter pub run easy_localization:generate -S assets/translations -f keys -O lib/ui/i18n -o locale_keys.g.dart
+
+      - name: iOS setup
+        working-directory: ios
+        run: |
+          flutter precache --ios
+          bundle install
+          pod install
+
+      - name: Run lane
+        run: bundle exec fastlane build_deploy_internal_${{ env.ENVIRONMENT }}
+        working-directory: ios
+
+      - name: Send deploy status to Slack
+        if: always()
+        id: slack
+        uses: slackapi/slack-github-action@v1.24.0
+        with:
+          channel-id: 'SLACK_CHANNEL_ID'
+          payload: |
+            {
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": ":apple: iOS deploy result for *${{ env.ENVIRONMENT }}*: ${{ job.status == 'failure' && ':boom: *Failure!!*' || job.status == 'success' && ':white_check_mark: *Success!!*' || ':hand: *Cancelled*'}} \n *Version:* ${{ env.APP_VERSION }}"
+                  }
+                }
+              ]
+            }
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}

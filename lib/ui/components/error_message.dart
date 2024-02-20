@@ -18,7 +18,7 @@ class ErrorMessage extends StatelessWidget {
       return (error as Error).getMessage();
     }
     switch (error.runtimeType) {
-      case AppError:
+      case AppError _:
         return (error as AppError).code?.getMessage() ?? '';
       default:
         return '';

@@ -9,7 +9,7 @@
 
 ### Commit tools
 
-For this project to work correctly `lefthook` and `commitlint` must be installed in
+For this project to work correctly `lefthook` and `node` must be installed in
 your computer. We use lefthook to run git hooks and commitlint to lint commit messages.
 
 ```bash
@@ -18,11 +18,9 @@ brew install lefthook
 
 # add needed hooks
 lefthook install
-
-# install commitlint
-# node needed in system
-npm install -g @commitlint/cli @commitlint/config-conventional
 ```
+
+First time committing node will ask you to install `commitlit`, allow it. 
 
 For more info:
 
@@ -57,13 +55,18 @@ The following index has a summary of configuration, common errors and how to sol
 - [firebase](docs/firebase.md)
 - [sign apps](docs/sign_apps.md)
 
-### To do
+### TODO Check list
 
-When create a new project, need complete this checklist
+When creating a new project, you need complete the following check-list
 
 - [ ] Rename project and identifier id. To rename from flutter_base to another package name, change the pubspec.yml file and all the imports. Also if using Idea IDE's delete the .idea folder and in Project Structure... add a new root module to the project root so the IDE can detect the actual project.
 - [ ] Search for all TODO comments and review and modify if necessary
 - [ ] For Dart compile-time variables create `env.flavor.json` per flavor with the following structure:
+- [ ] ~For iOS to work in CI/CD with Fastlane it's *necessary* to first manually sign and extract the `ExportOptions.plist` file and rename it per flavor in the ios
+folder with the following names: *ios/ExportOptionsLive.plist* and *ios/ExportOptionsBeta.plist*. This is because flutter CLI *can not* build and manually sign
+iOS apps for now ([flutter issue](https://github.com/flutter/flutter/issues/106612)). Follow [this guide](docs/ios_export_options.md) to extract the `ExportOptionsBeta.plist` file.~ Rolled back to flutter_config due
+to the removal of `--dart-define-from-file` from Flutter team because it was considered a [bug](https://github.com/flutter/flutter/issues/136444)
+
 
 ```json
 {

@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:tools="http://schemas.android.com/tools"
-  package="com.example.flutterbase">
+  package="com.flutterbasemrmilu.live">
   <application android:label="@string/app_name" android:name="${applicationName}"
     android:icon="@mipmap/ic_launcher">
     <activity android:name=".MainActivity" android:exported="true" android:launchMode="singleTop"
@@ -21,7 +21,7 @@
         <action android:name="android.intent.action.VIEW" />
         <category android:name="android.intent.category.DEFAULT" />
         <category android:name="android.intent.category.BROWSABLE" />
-        <data android:host="@string/dynamicLinkHost" android:scheme="https" />
+        <data android:host="@string/DYNAMIC_LINK_HOST" android:scheme="https" />
       </intent-filter>
     </activity>
     <!-- Don't delete the meta-data below.

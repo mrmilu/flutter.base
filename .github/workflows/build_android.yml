@@ -1,0 +1,88 @@
+name: build_android
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - 'master'
+      - 'develop'
+    paths:
+      - 'pubspec.yaml'
+
+jobs:
+  build-and-deploy:
+    environment:
+      name: ${{ github.ref_name == 'master' && 'live' || 'beta'}}
+    runs-on: ubuntu-latest
+    env:
+      GOOGLE_PLAY_API_KEY: ${{ secrets.GOOGLE_PLAY_API_KEY }}
+      PLAY_STORE_UPLOAD_KEY_PROPERTIES: ${{ secrets.PLAY_STORE_UPLOAD_KEY_PROPERTIES }}
+      PLAY_STORE_UPLOAD_KEY: ${{ secrets.PLAY_STORE_UPLOAD_KEY }}
+      ENVIRONMENT: ${{ github.ref_name == 'master' && 'live' || 'beta'}}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: '17.x'
+
+      - name: Extract app version
+        run: echo "APP_VERSION=$(./extract_name@version.sh)" >> $GITHUB_ENV
+
+      - name: Reading FVM
+        uses: kuhnroyal/flutter-fvm-config-action@v1
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: ${{ env.FLUTTER_CHANNEL }}
+          architecture: x64
+
+      - name: Dependencies
+        run: |
+          flutter pub get
+          flutter pub run build_runner build --delete-conflicting-outputs
+          flutter pub run easy_localization:generate -S assets/translations -f keys -O lib/ui/i18n -o locale_keys.g.dart
+
+      - name: Setup Ruby and bundle install
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true
+          working-directory: android
+
+      - name: Get Google Play Console API key
+        run: echo $GOOGLE_PLAY_API_KEY | base64 -d > ./android/fastlane/api-access.json
+
+      - name: Get Android sign files
+        run: |
+            echo $PLAY_STORE_UPLOAD_KEY_PROPERTIES | base64 -d > ./android/${{ env.ENVIRONMENT }}.key.properties
+            echo $PLAY_STORE_UPLOAD_KEY | base64 -d > ./android/upload-keystore-${{ env.ENVIRONMENT }}.jks
+
+      - name: Run lane
+        run: bundle exec fastlane build_deploy_internal_${{ env.ENVIRONMENT }}
+        working-directory: android
+
+      - name: Send deploy status to Slack
+        if: always()
+        id: slack
+        uses: slackapi/slack-github-action@v1.24.0
+        with:
+          channel-id: 'SLACK_CHANNEL_ID'
+          payload: |
+            {
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": ":robot_face: Android deploy result for *${{ env.ENVIRONMENT }}*: ${{ job.status == 'failure' && ':boom: *Failure!!*' || job.status == 'success' && ':white_check_mark: *Success!!*' || ':hand: *Cancelled*'}} \n *Version:* ${{ env.APP_VERSION }}"
+                  }
+                }
+              ]
+            }
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}

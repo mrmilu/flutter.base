@@ -1,0 +1,132 @@
+name: build_web
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - 'master'
+      - 'develop'
+    paths:
+      - 'pubspec.yaml'
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+  IS_WORKFLOW_DISPATCH: ${{ github.event_name == 'workflow_dispatch' && 'true' || 'false' }}
+  DOCKERFILE: Dockerfile
+
+jobs:
+  build_flutter_app:
+    environment: ${{ github.ref_name == 'master' && 'production' || 'staging'}}
+    outputs:
+      image_tag: ${{ steps.set_output.outputs.image_tag }}
+    runs-on: ubuntu-latest
+    env:
+      FLAVOR: ${{ github.ref_name == 'master' && 'live' || 'beta'}}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set job output
+        id: set_output
+        run: echo "::set-output name=image_tag::CHANGE-FOR-APP-NAME"
+
+      - name: Reading FVM
+        uses: kuhnroyal/flutter-fvm-config-action@v1
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: ${{ env.FLUTTER_CHANNEL }w
+          architecture: x64
+
+      - name: Install dependencies and build app
+        run: |
+          flutter pub get
+          flutter pub run build_runner build --delete-conflicting-outputs
+          flutter pub run easy_localization:generate -S assets/translations -f keys -O lib/ui/i18n -o locale_keys.g.dart
+          flutter build web -t lib/main_${{ env.FLAVOR }}.dart --source-maps
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: flutter-web
+          path: 'build/web'
+
+
+  build_flutter_web_image:
+    environment: ${{ github.ref_name == 'master' && 'production' || 'staging'}}
+    runs-on: ubuntu-latest
+    needs: build_flutter_app
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: flutter-web
+          path: /tmp/${{ needs.build_flutter_app.outputs.image_tag }}
+
+      - name: Display structure of downloaded files
+        run: ls -R /tmp/${{ needs.build_flutter_app.outputs.image_tag }}
+
+      - name: Create the build folder
+        run: mkdir -p build
+
+      - name: Rename artifact
+        run: mv /tmp/${{ needs.build_flutter_app.outputs.image_tag }} build/web/
+
+      - name: Set up Docker Build
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to Docker Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Metadata Extraction for Main Image
+        id: meta_main
+        uses: docker/metadata-action@v4
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=raw,value=${{ needs.build_flutter_app.outputs.image_tag }}-${{ github.ref_name }}
+
+      - name: Build and Push Main Image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          file: ${{ env.DOCKERFILE }}
+          tags: ${{ steps.meta_main.outputs.tags }}
+          labels: ${{ steps.meta_main.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  deploy:
+    needs: build_flutter_web_image
+    environment: ${{ github.ref_name == 'master' && 'production' || 'staging'}}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to ${{ github.ref_name == 'master' && 'Production' || 'Staging'}}
+        uses: appleboy/ssh-action@v1.0.0
+        env:
+          PROJECT_PATH: ${{ vars.PROJECT_PATH }}
+          COMPOSE_FILE: ${{ vars.COMPOSE_FILE }}
+        with:
+          host: ${{ vars.REMOTE_HOST }}
+          username: ${{ vars.REMOTE_USER}}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ vars.SSH_PORT }}
+          script_stop: true
+          envs: PROJECT_PATH,COMPOSE_FILE
+          script: |
+            export COMPOSE_INTERACTIVE_NO_CLI=1
+            cd $PROJECT_PATH
+            set -euxo pipefail
+            git pull
+            docker login -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }} ${{ env.REGISTRY }}
+            docker compose -f ${{ vars.COMPOSE_FILE }} pull WHATEVER-COMPOSE
+            docker compose -f ${{ vars.COMPOSE_FILE }} up -d WHATEVER-COMPOSE
