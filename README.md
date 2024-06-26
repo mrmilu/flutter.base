@@ -4,6 +4,7 @@
 
 - Flutter (see version in ./fvm/fvm_config.json).
   Use [FVM](https://fvm.app/docs/getting_started/installation) to install Flutter versions
+- ruby: see [docs](docs/ruby.md)
 - [Just](https://github.com/casey/just) to commands
 - When build to iOS,
   follow [this steps](https://docs.flutter.dev/get-started/install/macos#install-xcode)
@@ -52,6 +53,17 @@ This project is a starting point for a Flutter application with the following fe
 The following index has a summary of configuration, common errors and how to solve them for each of
 the features this base project has:
 
+## Versions
+
+This project uses the following versions and has been tested in this context
+(please check if that works with yours):
+
+| Dependency | Version        | Usage                               |
+| ---------- | -------------- | ----------------------------------- |
+| `flutter`  | `3.19.0`       | `.fmv/fvm_config.json`              |
+| `ruby`     | `3.2.4`        | `.ruby-version`                     |
+| `fastlane` | `"~> 2.221.1"` | `ios/Gemfile` and `android/Gemfile` |
+
 ### Docs
 
 - [flutter_native_splash](docs/flutter_native_splash.md)
@@ -64,21 +76,21 @@ the features this base project has:
 When creating a new project, you need complete the following check-list
 
 - [ ] Rename project and identifier id. To rename from flutter_base to another package name, change
-  the pubspec.yml file and all the imports. Also if using Idea IDE's delete the .idea folder and in
-  Project Structure... add a new root module to the project root so the IDE can detect the actual
-  project.
+      the pubspec.yml file and all the imports. Also if using Idea IDE's delete the .idea folder and in
+      Project Structure... add a new root module to the project root so the IDE can detect the actual
+      project.
 - [ ] Search for all TODO comments and review and modify if necessary
 - [ ] For Dart compile-time variables create `env.flavor.json` per flavor with the following
-  structure:
-- [ ] ~For iOS to work in CI/CD with Fastlane it's *necessary* to first manually sign and extract
-  the `ExportOptions.plist` file and rename it per flavor in the ios
-  folder with the following names: *ios/ExportOptionsLive.plist* and *ios/ExportOptionsBeta.plist*.
-  This is because flutter CLI *can not* build and manually sign
-  iOS apps for now ([flutter issue](https://github.com/flutter/flutter/issues/106612)).
-  Follow [this guide](docs/ios_export_options.md) to extract the `ExportOptionsBeta.plist` file.~
-  Rolled back to [flutter_config](https://pub.dev/packages/flutter_config) due
-  to the removal of `--dart-define-from-file` from Flutter team because it was considered
-  a [bug](https://github.com/flutter/flutter/issues/136444)
+      structure:
+- [ ] ~For iOS to work in CI/CD with Fastlane it's _necessary_ to first manually sign and extract
+      the `ExportOptions.plist` file and rename it per flavor in the ios
+      folder with the following names: _ios/ExportOptionsLive.plist_ and _ios/ExportOptionsBeta.plist_.
+      This is because flutter CLI _can not_ build and manually sign
+      iOS apps for now ([flutter issue](https://github.com/flutter/flutter/issues/106612)).
+      Follow [this guide](docs/ios_export_options.md) to extract the `ExportOptionsBeta.plist` file.~
+      Rolled back to [flutter_config](https://pub.dev/packages/flutter_config) due
+      to the removal of `--dart-define-from-file` from Flutter team because it was considered
+      a [bug](https://github.com/flutter/flutter/issues/136444)
 
 ```.env
 APP_NAME="Flutter Base (beta)"
@@ -123,3 +135,9 @@ For run test
 ```bash
  fvm flutter test integration_test/{flavor}/{test_file}.dart --flavor {flavor} -d {deviceId}
 ```
+
+## Configuration
+
+- Make sure that you add the folder dev inside the ios/Runner folder and inside this brand new folder add the GoogleService-Info.plist that you can find [here]:(https://drive.google.com/drive/u/1/folders/1BoN9jnQgtPYzm3G7h7Jby3T8x3MV3hXG)
+- Also make sure that you are using the flutter version from the .fvm folder instead of your default one.
+- If you are using vscode as ide feel free to use the configuration from [here](https://drive.google.com/drive/u/1/folders/1GoSIafuhzFpkcYl0fttr77VyYmyfI34S)
