@@ -43,6 +43,13 @@ jobs:
           channel: ${{ env.FLUTTER_CHANNEL }}
           architecture: x64
 
+      - name: Setup Ruby and bundle install
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true
+          working-directory: ios
+
       - name: Dependencies
         run: |
           flutter pub get

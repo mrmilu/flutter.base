@@ -26,33 +26,6 @@ void main() {
     'Change Password Page Test',
     () {
       testWidgets(
-        'When user not enter data or invalid data button is disabled',
-        (tester) async {
-          await tester.pumpAppRoute(
-            '/change-password',
-            extra: const ChangePasswordPageData(token: 'token', uid: 'uid'),
-          );
-
-          // Empty data
-          final button = find.byKey(const Key('change-password-button'));
-          expectButtonEnabled(tester, button, isEnabled: false);
-
-          // Repeated invalid passwords
-          await _enterPasswords(
-            tester,
-            fakeInvalidPassword,
-            fakeInvalidPassword,
-          );
-          expectButtonEnabled(tester, button, isEnabled: false);
-
-          // Different valid passwords
-
-          await _enterPasswords(tester, fakePassword, '${fakePassword}2');
-          expectButtonEnabled(tester, button, isEnabled: false);
-        },
-      );
-
-      testWidgets(
         'When user enter valid data and tap button complete action',
         (tester) async {
           await tester.pumpAppRoute(
@@ -99,6 +72,34 @@ void main() {
           await tester.pumpAndSettle();
 
           expectSnackBarWithMessage('Invalid password');
+        },
+      );
+
+      testWidgets(
+        'When user not enter data or invalid data button is disabled',
+        (tester) async {
+          await tester.pumpAppRoute(
+            '/change-password',
+            extra: const ChangePasswordPageData(token: 'token', uid: 'uid'),
+          );
+
+          // Empty data
+          final button = find.byKey(const Key('change-password-button'));
+          await _enterPasswords(tester, '', '');
+          expectButtonEnabled(tester, button, isEnabled: false);
+
+          // Repeated invalid passwords
+          await _enterPasswords(
+            tester,
+            fakeInvalidPassword,
+            fakeInvalidPassword,
+          );
+          expectButtonEnabled(tester, button, isEnabled: false);
+
+          // Different valid passwords
+
+          await _enterPasswords(tester, fakePassword, '${fakePassword}2');
+          expectButtonEnabled(tester, button, isEnabled: false);
         },
       );
     },

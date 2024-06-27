@@ -54,6 +54,7 @@ void main() {
         await tester.tap(button);
         await tester.pumpAndSettle();
         expectSnackBarWithMessage('Email not exist');
+        await tester.pumpAppRoute('/login');
       },
     );
   });
