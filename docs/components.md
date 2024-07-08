@@ -1,6 +1,6 @@
 # Components
 
-List of widgets created by Mr.Milú
+List of widgets created by Milú
 
 ## Buttons
 
