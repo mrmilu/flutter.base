@@ -1,3 +1,14 @@
+# Build iOS application
+
+- When build to iOS,
+  follow [this steps](https://docs.flutter.dev/get-started/install/macos#install-xcode)
+
+## App sign 
+
+We use [`match`](https://docs.fastlane.tools/actions/match/) generate and store iOS certificates and provision profiles.
+
+## Exporting `ExportOptions.plist`
+
 In order to export the `ExportOptions.plist` to manually sign app through flutter cli in Fastlane archive and export using Xcode.
 
 1 - Select your desired schema (live or beta) and go to "Product > Archive"

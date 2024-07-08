@@ -6,10 +6,10 @@ Follow next steps for firebase manual installation:
 
 - Create [Firebase project](https://console.firebase.google.com/) for each enviroment
 - **Android**: Follow the steps [here](https://firebase.flutter.dev/docs/manual-installation/android) but **don't add yet the
-  `google-services.json` file**, just download it.
+  `google-services.json` file**, download it.
   - Add SHA:1 certificates fingerprints to firebase configuration
   - Add SHA:1 from Google Play too.
-- **iOS**: just add your app to your firebase project and download
+- **iOS**: add your app to your firebase project and download
 the `GoogleService-Info.plist` file.
 
 ## Config
@@ -17,7 +17,7 @@ the `GoogleService-Info.plist` file.
 - Copy config files on each flavor folder.
 - Config with Xcode to add this files
 - So be sure to have a clean git commit
-and once command finishes just leave the changes made in:
+and once command finishes leave the changes made in:
 
 - `ios/Runner.xcodeproj/project.pbxproj`
 - `android/app/src/{flavor}/google-services.json`

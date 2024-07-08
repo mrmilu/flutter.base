@@ -4,9 +4,9 @@
 
 Follow the following steps for firebase dynamic links configuration:
 
-1. Complete all instructions on `firebase.md` configuration
-2. Enable firebase hosting
-3. Next step, configure dynamic links
+1. Complete all instructions on [Firebase configuration](firebase.md).
+2. Enable firebase hosting.
+3. Next step, configure dynamic links.
 
 ## Config
 
