@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_base/auth/presentation/containers/info_app/info_app_button.dart';
-import 'package:flutter_base/auth/presentation/containers/social_auth/social_auth.dart';
 import 'package:flutter_base/auth/presentation/widgets/login_form.dart';
+import 'package:flutter_base/auth/presentation/widgets/social_auth.dart';
 import 'package:flutter_base/ui/components/box_spacer.dart';
 import 'package:flutter_base/ui/components/buttons/button_tertiary.dart';
 import 'package:flutter_base/ui/components/flutter_base_app_bar.dart';
