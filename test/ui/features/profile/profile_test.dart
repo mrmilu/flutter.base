@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_base/core/auth/domain/interfaces/auth_repository.dart';
-import 'package:flutter_base/core/auth/domain/interfaces/token_repository.dart';
+import 'package:flutter_base/auth/domain/interfaces/auth_repository.dart';
+import 'package:flutter_base/auth/domain/interfaces/token_repository.dart';
 import 'package:flutter_base/core/user/domain/interfaces/user_repository.dart';
 import 'package:flutter_base/core/user/domain/models/user.dart';
 import 'package:flutter_base/ui/features/misc/views/main_page.dart';

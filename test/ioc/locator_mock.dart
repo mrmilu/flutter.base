@@ -1,11 +1,11 @@
 // ignore_for_file: depend_on_referenced_packages
 
+import 'package:flutter_base/auth/domain/interfaces/auth_repository.dart';
+import 'package:flutter_base/auth/domain/interfaces/token_repository.dart';
 import 'package:flutter_base/common/interfaces/deep_link_service.dart';
 import 'package:flutter_base/common/interfaces/notifications_service.dart';
 import 'package:flutter_base/common/interfaces/platform_service.dart';
 import 'package:flutter_base/core/app/domain/models/environments_list.dart';
-import 'package:flutter_base/core/auth/domain/interfaces/auth_repository.dart';
-import 'package:flutter_base/core/auth/domain/interfaces/token_repository.dart';
 import 'package:flutter_base/core/user/domain/interfaces/user_repository.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:get_it/get_it.dart';

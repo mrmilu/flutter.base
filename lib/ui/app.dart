@@ -2,11 +2,11 @@ import 'dart:async';
 
 import 'package:easy_localization/easy_localization.dart' as easy_localization;
 import 'package:flutter/material.dart';
+import 'package:flutter_base/auth/application/auth_provider.dart';
 import 'package:flutter_base/core/app/domain/models/app_error.dart';
 import 'package:flutter_base/core/app/domain/use_cases/init_app_use_case.dart';
 import 'package:flutter_base/ui/components/views/splash_view.dart';
 import 'package:flutter_base/ui/controllers/deep_link_controller.dart';
-import 'package:flutter_base/ui/features/auth/providers/auth_provider.dart';
 import 'package:flutter_base/ui/i18n/locale_keys.g.dart';
 import 'package:flutter_base/ui/providers/ui_provider.dart';
 import 'package:flutter_base/ui/providers/user_provider.dart';

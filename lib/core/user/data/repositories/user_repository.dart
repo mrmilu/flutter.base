@@ -1,8 +1,8 @@
 import 'package:cross_file/cross_file.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter_base/auth/data/dtos/device_output_model.dart';
 import 'package:flutter_base/core/app/data/services/api_service.dart';
 import 'package:flutter_base/core/app/domain/models/environments_list.dart';
-import 'package:flutter_base/core/auth/data/models/device_output_model.dart';
 import 'package:flutter_base/core/user/data/models/update_user_output_model.dart';
 import 'package:flutter_base/core/user/data/models/user_data_model.dart';
 import 'package:flutter_base/core/user/domain/interfaces/user_repository.dart';
