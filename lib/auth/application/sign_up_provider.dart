@@ -3,7 +3,6 @@ import 'package:flutter_base/auth/domain/use_cases/sign_up_use_case.dart';
 import 'package:flutter_base/auth/presentation/view_models/sign_up_view_model.dart';
 import 'package:flutter_base/ui/providers/ui_provider.dart';
 import 'package:flutter_base/ui/providers/user_provider.dart';
-import 'package:flutter_base/ui/view_models/user_view_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
@@ -31,7 +30,7 @@ class SignUpNotifier extends AutoDisposeNotifier<SignUpModelForm> {
             name: state.model.name,
           );
           final user = await _signUpUseCase(input);
-          userNotifier.setUserData(user.toViewModel());
+          userNotifier.setUserData(user);
           GetIt.I.get<GoRouter>().go('/home');
         },
       );

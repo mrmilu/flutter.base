@@ -4,11 +4,10 @@ import 'package:flutter_base/auth/domain/use_cases/login_use_case.dart';
 import 'package:flutter_base/auth/domain/use_cases/sign_up_use_case.dart';
 import 'package:flutter_base/core/app/domain/models/app_error.dart';
 import 'package:flutter_base/core/app/domain/models/device_type.dart';
-import 'package:flutter_base/core/user/domain/enums/user_device_type.dart';
 import 'package:flutter_base/ui/i18n/locale_keys.g.dart';
 import 'package:flutter_base/ui/providers/ui_provider.dart';
 import 'package:flutter_base/ui/providers/user_provider.dart';
-import 'package:flutter_base/ui/view_models/user_view_model.dart';
+import 'package:flutter_base/user/domain/enums/user_device_type.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
@@ -36,7 +35,7 @@ class SocialAuthNotifier extends AutoDisposeNotifier {
         userDeviceType: deviceType,
       );
       final user = await _loginUseCase(input);
-      userNotifier.setUserData(user.toViewModel());
+      userNotifier.setUserData(user);
       _appRouter.go('/home');
     } on AppError catch (e, stackTrace) {
       if (e.code != AppErrorCode.appleAuthCanceled &&
@@ -63,7 +62,7 @@ class SocialAuthNotifier extends AutoDisposeNotifier {
     try {
       final input = SignUpUseCaseInput(socialAuthProvider: provider);
       final user = await _signUpUseCase(input);
-      userNotifier.setUserData(user.toViewModel());
+      userNotifier.setUserData(user);
       _appRouter.go('/home');
     } on AppError catch (e) {
       if (e.code != AppErrorCode.appleAuthCanceled &&

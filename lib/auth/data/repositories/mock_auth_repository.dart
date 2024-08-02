@@ -1,5 +1,5 @@
 import 'package:faker_dart/faker_dart.dart';
-import 'package:flutter_base/auth/domain/interfaces/auth_repository.dart';
+import 'package:flutter_base/auth/domain/interfaces/i_auth_repository.dart';
 import 'package:flutter_base/auth/domain/models/change_password_input_model.dart';
 import 'package:flutter_base/auth/domain/models/login_input_model.dart';
 import 'package:flutter_base/auth/domain/models/sign_up_input_model.dart';

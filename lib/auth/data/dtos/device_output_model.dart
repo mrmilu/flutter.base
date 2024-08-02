@@ -1,4 +1,4 @@
-import 'package:flutter_base/core/user/domain/models/device_input_model.dart';
+import 'package:flutter_base/user/domain/models/device_input_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'device_output_model.g.dart';

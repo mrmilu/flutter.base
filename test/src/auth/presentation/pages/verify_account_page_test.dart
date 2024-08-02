@@ -1,10 +1,10 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter_base/auth/domain/interfaces/auth_repository.dart';
+import 'package:flutter_base/auth/domain/interfaces/i_auth_repository.dart';
 import 'package:flutter_base/common/interfaces/deep_link_service.dart';
-import 'package:flutter_base/core/user/domain/interfaces/user_repository.dart';
-import 'package:flutter_base/core/user/domain/models/user.dart';
 import 'package:flutter_base/posts/presentation/pages/post_page.dart';
 import 'package:flutter_base/ui/controllers/deep_link_controller.dart';
+import 'package:flutter_base/user/domain/interfaces/i_user_repository.dart';
+import 'package:flutter_base/user/domain/models/user.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

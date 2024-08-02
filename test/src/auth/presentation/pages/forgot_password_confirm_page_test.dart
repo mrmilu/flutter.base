@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_base/auth/domain/interfaces/auth_repository.dart';
+import 'package:flutter_base/auth/domain/interfaces/i_auth_repository.dart';
 import 'package:flutter_base/auth/presentation/pages/change_password_page.dart';
 import 'package:flutter_base/auth/presentation/pages/forgot_password_confirm_page.dart';
 import 'package:flutter_base/common/interfaces/deep_link_service.dart';

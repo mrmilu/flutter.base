@@ -1,14 +1,14 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_base/auth/domain/enums/auth_provider.dart';
-import 'package:flutter_base/auth/domain/interfaces/auth_repository.dart';
-import 'package:flutter_base/auth/domain/interfaces/token_repository.dart';
+import 'package:flutter_base/auth/domain/interfaces/i_auth_repository.dart';
+import 'package:flutter_base/auth/domain/interfaces/i_token_repository.dart';
 import 'package:flutter_base/auth/domain/models/login_input_model.dart';
 import 'package:flutter_base/auth/domain/models/token_model.dart';
 import 'package:flutter_base/auth/domain/use_cases/social_auth_use_case.dart';
-import 'package:flutter_base/core/user/domain/enums/user_device_type.dart';
-import 'package:flutter_base/core/user/domain/models/user.dart';
-import 'package:flutter_base/core/user/domain/use_cases/get_user_use_case.dart';
-import 'package:flutter_base/core/user/domain/use_cases/set_user_device_use_case.dart';
+import 'package:flutter_base/user/domain/enums/user_device_type.dart';
+import 'package:flutter_base/user/domain/models/user.dart';
+import 'package:flutter_base/user/domain/use_cases/get_user_use_case.dart';
+import 'package:flutter_base/user/domain/use_cases/set_user_device_use_case.dart';
 import 'package:injectable/injectable.dart';
 
 class LoginUseCaseInput {

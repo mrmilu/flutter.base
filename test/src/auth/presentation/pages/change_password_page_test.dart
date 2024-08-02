@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter_base/auth/domain/interfaces/auth_repository.dart';
+import 'package:flutter_base/auth/domain/interfaces/i_auth_repository.dart';
 import 'package:flutter_base/auth/domain/models/change_password_input_model.dart';
 import 'package:flutter_base/auth/presentation/pages/change_password_page.dart';
 import 'package:flutter_base/auth/presentation/pages/change_password_success_page.dart';

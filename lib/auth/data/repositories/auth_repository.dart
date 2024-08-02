@@ -4,7 +4,7 @@ import 'package:flutter_base/auth/data/dtos/login_data_model.dart';
 import 'package:flutter_base/auth/data/dtos/login_output_model.dart';
 import 'package:flutter_base/auth/data/dtos/sign_up_data_model.dart';
 import 'package:flutter_base/auth/data/dtos/sign_up_output_model.dart';
-import 'package:flutter_base/auth/domain/interfaces/auth_repository.dart';
+import 'package:flutter_base/auth/domain/interfaces/i_auth_repository.dart';
 import 'package:flutter_base/auth/domain/models/change_password_input_model.dart';
 import 'package:flutter_base/auth/domain/models/login_input_model.dart';
 import 'package:flutter_base/auth/domain/models/sign_up_input_model.dart';

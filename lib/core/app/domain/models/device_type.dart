@@ -1,4 +1,4 @@
-import 'package:flutter_base/core/user/domain/enums/user_device_type.dart';
+import 'package:flutter_base/user/domain/enums/user_device_type.dart';
 import 'package:flutter_mrmilu/flutter_mrmilu.dart';
 
 class DeviceType {

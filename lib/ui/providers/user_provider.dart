@@ -1,7 +1,7 @@
 import 'package:flutter_base/auth/domain/use_cases/logout_use_case.dart';
-import 'package:flutter_base/core/user/domain/use_cases/get_user_use_case.dart';
 import 'package:flutter_base/ui/providers/ui_provider.dart';
-import 'package:flutter_base/ui/view_models/user_view_model.dart';
+import 'package:flutter_base/user/domain/models/user.dart';
+import 'package:flutter_base/user/domain/use_cases/get_user_use_case.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:get_it/get_it.dart';
@@ -11,7 +11,7 @@ part 'user_provider.freezed.dart';
 @freezed
 class UserState with _$UserState {
   factory UserState({
-    UserViewModel? userData,
+    User? userData,
   }) = _UserState;
 }
 
@@ -28,7 +28,7 @@ class UserNotifier extends Notifier<UserState> {
     state = state.copyWith(userData: state.userData?.copyWith(verified: true));
   }
 
-  void setUserData(UserViewModel data) {
+  void setUserData(User data) {
     state = state.copyWith(userData: data);
   }
 
@@ -38,7 +38,7 @@ class UserNotifier extends Notifier<UserState> {
 
   Future<void> getInitialUserData() async {
     final user = await _userUseCase();
-    setUserData(user.toViewModel());
+    setUserData(user);
   }
 
   Future<void> logout() async {

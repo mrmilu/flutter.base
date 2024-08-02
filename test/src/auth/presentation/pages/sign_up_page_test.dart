@@ -2,17 +2,17 @@
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_base/auth/domain/interfaces/auth_repository.dart';
-import 'package:flutter_base/auth/domain/interfaces/token_repository.dart';
+import 'package:flutter_base/auth/domain/interfaces/i_auth_repository.dart';
+import 'package:flutter_base/auth/domain/interfaces/i_token_repository.dart';
 import 'package:flutter_base/auth/domain/models/sign_up_input_model.dart';
 import 'package:flutter_base/auth/domain/models/token_model.dart';
 import 'package:flutter_base/auth/presentation/pages/verify_account_page.dart';
 import 'package:flutter_base/common/interfaces/notifications_service.dart';
 import 'package:flutter_base/core/app/domain/models/app_error.dart';
-import 'package:flutter_base/core/user/domain/interfaces/user_repository.dart';
-import 'package:flutter_base/core/user/domain/models/user.dart';
 import 'package:flutter_base/ui/i18n/locale_keys.g.dart';
 import 'package:flutter_base/ui/providers/user_provider.dart';
+import 'package:flutter_base/user/domain/interfaces/i_user_repository.dart';
+import 'package:flutter_base/user/domain/models/user.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
