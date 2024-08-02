@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_base/posts/application/detail_post_provider.dart';
 import 'package:flutter_base/ui/components/box_spacer.dart';
 import 'package:flutter_base/ui/components/error_message.dart';
 import 'package:flutter_base/ui/components/flutter_base_app_bar.dart';
 import 'package:flutter_base/ui/components/loaders/circular_progress.dart';
 import 'package:flutter_base/ui/components/text/high_text.dart';
-import 'package:flutter_base/ui/features/post/views/detail_post_page/providers/detail_post_provider.dart';
 import 'package:flutter_base/ui/styles/insets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

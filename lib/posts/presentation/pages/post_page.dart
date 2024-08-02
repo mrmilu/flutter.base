@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_base/posts/application/post_page_provider.dart';
 import 'package:flutter_base/ui/components/buttons/icon_button_primary.dart';
 import 'package:flutter_base/ui/components/error_message.dart';
 import 'package:flutter_base/ui/components/flutter_base_app_bar.dart';
 import 'package:flutter_base/ui/components/text/high_text.dart';
-import 'package:flutter_base/ui/features/post/views/posts/providers/post_page_provider.dart';
 import 'package:flutter_base/ui/providers/ui_provider.dart';
 import 'package:flutter_base/ui/styles/border_radius.dart';
 import 'package:flutter_base/ui/styles/box_shadows.dart';

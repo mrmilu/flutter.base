@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:flutter_base/ui/features/post/view_models/posts_view_model.dart';
-import 'package:flutter_base/ui/features/post/views/posts/providers/post_page_provider.dart';
+import 'package:flutter_base/posts/application/post_page_provider.dart';
+import 'package:flutter_base/posts/presentation/view_models/posts_view_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class DetailPostNotifier
