@@ -30,4 +30,5 @@ This project uses the following versions and has been tested in this context
 | `fastlane` | `"~> 2.221.1"` | `ios/Gemfile` and `android/Gemfile` |
 
 ### Authors
+
 By Milú
