@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart' show kIsWeb, debugPrintStack;
+import 'package:flutter_base/auth/presentation/pages/forgot_password_confirm_page.dart';
 import 'package:flutter_base/common/interfaces/deep_link_service.dart';
-import 'package:flutter_base/ui/features/auth/views/forgot_password/forgot_password_confirm_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:injectable/injectable.dart';
 

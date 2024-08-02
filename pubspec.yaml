@@ -1,12 +1,12 @@
 name: flutter_base
 description: Mr Milu's flutter base app.
-publish_to: 'none'
+publish_to: "none"
 
 # We use the following build number guideline: yyyy+mm+dd+incremental
 version: 0.0.1+202304051
 
 environment:
-  sdk: '>=3.3.0 <4.0.0'
+  sdk: ">=3.3.0 <4.0.0"
 
 dependencies:
   browser_image_compression: 1.0.6

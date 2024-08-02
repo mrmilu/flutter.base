@@ -1,4 +1,4 @@
-import 'package:flutter_base/core/auth/domain/use_cases/logout_use_case.dart';
+import 'package:flutter_base/auth/domain/use_cases/logout_use_case.dart';
 import 'package:flutter_base/core/user/domain/use_cases/get_user_use_case.dart';
 import 'package:flutter_base/ui/providers/ui_provider.dart';
 import 'package:flutter_base/ui/view_models/user_view_model.dart';
