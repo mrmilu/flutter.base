@@ -4,13 +4,13 @@ Milú Flutter base project
 
 ## Docs
 
-> ⚠️ When starting a new project with this template as base please check the [New project checklist](./docs/new-project-checklist.md) first.
+> ⚠️ When starting a new project with this template as base please check the [New project checklist](./docs/new-project-checklist.md) first
 
 - [App customization](./docs/app-customization/)
 - [Build Android](./docs/build/android.md)
 - [Build iOS](./docs/build/ios.md)
 - [Clean Architecture] (to include link to front.docs)
-- [Commit Lint] (to include link to front.docs)
+- [CommitLint](./docs/dev-environment-setup.md)
 - [Components](./docs/components.md)
 - [Dependencies](./docs//dependencies.md)
 - [Development environment setup](./docs/dev-environment-setup.md)
@@ -30,4 +30,5 @@ This project uses the following versions and has been tested in this context
 | `fastlane` | `"~> 2.221.1"` | `ios/Gemfile` and `android/Gemfile` |
 
 ### Authors
+
 By Milú
