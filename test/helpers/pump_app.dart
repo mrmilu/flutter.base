@@ -2,11 +2,11 @@
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_base/ui/app.dart';
-import 'package:flutter_base/ui/i18n/locale_keys.g.dart';
-import 'package:flutter_base/ui/providers/user_provider.dart';
-import 'package:flutter_base/ui/router/app_router.dart';
-import 'package:flutter_base/ui/styles/theme.dart';
+import 'package:flutter_base/app.dart';
+import 'package:flutter_base/src/shared/presentation/i18n/locale_keys.g.dart';
+import 'package:flutter_base/src/shared/presentation/router/app_router.dart';
+import 'package:flutter_base/src/shared/presentation/utils/styles/theme.dart';
+import 'package:flutter_base/src/user/application/user_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
@@ -15,7 +15,7 @@ import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:video_player_platform_interface/video_player_platform_interface.dart';
 
-import '../ioc/locator_mock.dart';
+import '../src/shared/ioc/locator_mock.dart';
 import 'fake/fake_video_player_platform.dart';
 
 /// References

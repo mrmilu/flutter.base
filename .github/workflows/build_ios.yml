@@ -4,10 +4,10 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - 'master'
-      - 'develop'
+      - "master"
+      - "develop"
     paths:
-      - 'pubspec.yaml'
+      - "pubspec.yaml"
 
 jobs:
   build-and-deploy:
@@ -46,7 +46,7 @@ jobs:
       - name: Setup Ruby and bundle install
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.2'
+          ruby-version: "3.2"
           bundler-cache: true
           working-directory: ios
 
@@ -54,7 +54,7 @@ jobs:
         run: |
           flutter pub get
           flutter pub run build_runner build --delete-conflicting-outputs
-          flutter pub run easy_localization:generate -S assets/translations -f keys -O lib/ui/i18n -o locale_keys.g.dart
+          flutter pub run easy_localization:generate -S assets/translations -f keys -O lib/src/shared/presentation/i18n -o locale_keys.g.dart
 
       - name: iOS setup
         working-directory: ios
@@ -72,7 +72,7 @@ jobs:
         id: slack
         uses: slackapi/slack-github-action@v1.24.0
         with:
-          channel-id: 'SLACK_CHANNEL_ID'
+          channel-id: "SLACK_CHANNEL_ID"
           payload: |
             {
               "blocks": [

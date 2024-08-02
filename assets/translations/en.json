@@ -117,7 +117,7 @@
     "description": "You're ready to sign in - see you there!",
     "button": "Sign in"
   },
-  "mainPage": {
+  "initialPage": {
     "title": "Hey there, we're Mr Milú!",
     "claim": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec gravida non eros id tempus.",
     "getStartedBtn": "Get started",

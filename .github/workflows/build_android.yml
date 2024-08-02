@@ -4,10 +4,10 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - 'master'
-      - 'develop'
+      - "master"
+      - "develop"
     paths:
-      - 'pubspec.yaml'
+      - "pubspec.yaml"
 
 jobs:
   build-and-deploy:
@@ -26,7 +26,7 @@ jobs:
       - name: Setup Java
         uses: actions/setup-java@v1
         with:
-          java-version: '17.x'
+          java-version: "17.x"
 
       - name: Extract app version
         run: echo "APP_VERSION=$(./extract_name@version.sh)" >> $GITHUB_ENV
@@ -45,12 +45,12 @@ jobs:
         run: |
           flutter pub get
           flutter pub run build_runner build --delete-conflicting-outputs
-          flutter pub run easy_localization:generate -S assets/translations -f keys -O lib/ui/i18n -o locale_keys.g.dart
+          flutter pub run easy_localization:generate -S assets/translations -f keys -O lib/src/shared/presentation/i18n -o locale_keys.g.dart
 
       - name: Setup Ruby and bundle install
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.2'
+          ruby-version: "3.2"
           bundler-cache: true
           working-directory: android
 
@@ -59,8 +59,8 @@ jobs:
 
       - name: Get Android sign files
         run: |
-            echo $PLAY_STORE_UPLOAD_KEY_PROPERTIES | base64 -d > ./android/${{ env.ENVIRONMENT }}.key.properties
-            echo $PLAY_STORE_UPLOAD_KEY | base64 -d > ./android/upload-keystore-${{ env.ENVIRONMENT }}.jks
+          echo $PLAY_STORE_UPLOAD_KEY_PROPERTIES | base64 -d > ./android/${{ env.ENVIRONMENT }}.key.properties
+          echo $PLAY_STORE_UPLOAD_KEY | base64 -d > ./android/upload-keystore-${{ env.ENVIRONMENT }}.jks
 
       - name: Run lane
         run: bundle exec fastlane build_deploy_internal_${{ env.ENVIRONMENT }}
@@ -71,7 +71,7 @@ jobs:
         id: slack
         uses: slackapi/slack-github-action@v1.24.0
         with:
-          channel-id: 'SLACK_CHANNEL_ID'
+          channel-id: "SLACK_CHANNEL_ID"
           payload: |
             {
               "blocks": [
