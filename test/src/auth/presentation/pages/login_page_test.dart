@@ -7,7 +7,7 @@ import 'package:flutter_base/common/interfaces/notifications_service.dart';
 import 'package:flutter_base/core/app/domain/models/app_error.dart';
 import 'package:flutter_base/core/user/domain/interfaces/user_repository.dart';
 import 'package:flutter_base/core/user/domain/models/user.dart';
-import 'package:flutter_base/ui/features/post/views/posts/post_page.dart';
+import 'package:flutter_base/posts/presentation/pages/post_page.dart';
 import 'package:flutter_base/ui/providers/user_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';

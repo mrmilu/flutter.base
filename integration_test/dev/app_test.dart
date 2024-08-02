@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base/main_dev.dart' as app;
-import 'package:flutter_base/ui/features/post/views/posts/post_page.dart';
+import 'package:flutter_base/posts/presentation/pages/post_page.dart';
 import 'package:flutter_base/ui/features/profile/views/profile_page.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
