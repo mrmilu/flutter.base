@@ -10,7 +10,7 @@ Milú Flutter base project
 - [Build Android](./docs/build/android.md)
 - [Build iOS](./docs/build/ios.md)
 - [Clean Architecture] (to include link to front.docs)
-- [CommitLint] (./docs/dev-environment-setup.md)
+- [CommitLint](./docs/dev-environment-setup.md)
 - [Components](./docs/components.md)
 - [Dependencies](./docs//dependencies.md)
 - [Development environment setup](./docs/dev-environment-setup.md)
