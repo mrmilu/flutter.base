@@ -4,7 +4,6 @@ import 'package:flutter_base/auth/presentation/view_models/basic_login_view_mode
 import 'package:flutter_base/core/app/domain/models/device_type.dart';
 import 'package:flutter_base/ui/providers/ui_provider.dart';
 import 'package:flutter_base/ui/providers/user_provider.dart';
-import 'package:flutter_base/ui/view_models/user_view_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
@@ -31,7 +30,7 @@ class LoginNotifier extends AutoDisposeNotifier<BasicLoginModelForm> {
         );
         FocusManager.instance.primaryFocus?.unfocus();
         final user = await _loginUseCase(input);
-        userNotifier.setUserData(user.toViewModel());
+        userNotifier.setUserData(user);
         _appRouter.go('/home');
       });
     }

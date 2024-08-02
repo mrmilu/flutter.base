@@ -1,4 +1,4 @@
-import 'package:flutter_base/auth/domain/interfaces/auth_repository.dart';
+import 'package:flutter_base/auth/domain/interfaces/i_auth_repository.dart';
 import 'package:injectable/injectable.dart';
 
 class ResetPasswordUseCaseInput {

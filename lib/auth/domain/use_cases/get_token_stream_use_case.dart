@@ -1,4 +1,4 @@
-import 'package:flutter_base/auth/domain/interfaces/token_repository.dart';
+import 'package:flutter_base/auth/domain/interfaces/i_token_repository.dart';
 import 'package:flutter_base/core/app/ioc/locator.dart';
 import 'package:injectable/injectable.dart';
 

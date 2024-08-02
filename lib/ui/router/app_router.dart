@@ -11,11 +11,11 @@ import 'package:flutter_base/posts/presentation/pages/detail_post_page.dart';
 import 'package:flutter_base/posts/presentation/pages/post_page.dart';
 import 'package:flutter_base/ui/features/misc/components/scaffold_with_navigation.dart';
 import 'package:flutter_base/ui/features/misc/views/main_page.dart';
-import 'package:flutter_base/ui/features/profile/views/edit_avatar/edit_avatar_page.dart';
-import 'package:flutter_base/ui/features/profile/views/edit_profile/edit_profile_page.dart';
-import 'package:flutter_base/ui/features/profile/views/profile_page.dart';
 import 'package:flutter_base/ui/router/guards/auth_guard.dart';
 import 'package:flutter_base/ui/router/utils.dart';
+import 'package:flutter_base/user/presentation/pages/edit_avatar_page.dart';
+import 'package:flutter_base/user/presentation/pages/edit_profile_page.dart';
+import 'package:flutter_base/user/presentation/pages/profile_page.dart';
 import 'package:go_router/go_router.dart';
 
 final _bottomBarItems = [

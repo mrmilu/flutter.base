@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:faker_dart/faker_dart.dart';
-import 'package:flutter_base/auth/domain/interfaces/token_repository.dart';
+import 'package:flutter_base/auth/domain/interfaces/i_token_repository.dart';
 import 'package:flutter_base/auth/domain/models/token_model.dart';
 import 'package:flutter_base/core/app/domain/models/environments_list.dart';
 import 'package:injectable/injectable.dart';

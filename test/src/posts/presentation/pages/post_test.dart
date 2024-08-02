@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_base/core/user/domain/interfaces/user_repository.dart';
-import 'package:flutter_base/core/user/domain/models/user.dart';
 import 'package:flutter_base/posts/application/post_page_provider.dart';
 import 'package:flutter_base/posts/presentation/pages/post_page.dart';
 import 'package:flutter_base/ui/components/buttons/icon_button_primary.dart';
+import 'package:flutter_base/user/domain/interfaces/i_user_repository.dart';
+import 'package:flutter_base/user/domain/models/user.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';

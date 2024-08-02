@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_base/auth/domain/interfaces/auth_repository.dart';
+import 'package:flutter_base/auth/domain/interfaces/i_auth_repository.dart';
 import 'package:flutter_base/auth/presentation/pages/forgot_password_confirm_page.dart';
 import 'package:flutter_base/auth/presentation/pages/forgot_password_page.dart';
 import 'package:flutter_base/core/app/domain/models/app_error.dart';
