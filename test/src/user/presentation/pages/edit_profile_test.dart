@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_base/user/domain/interfaces/i_user_repository.dart';
-import 'package:flutter_base/user/domain/models/update_user_input_model.dart';
-import 'package:flutter_base/user/domain/models/user.dart';
-import 'package:flutter_base/user/presentation/pages/edit_profile_page.dart';
-import 'package:flutter_base/user/presentation/pages/profile_page.dart';
+import 'package:flutter_base/src/user/domain/interfaces/i_user_repository.dart';
+import 'package:flutter_base/src/user/domain/models/update_user_input_model.dart';
+import 'package:flutter_base/src/user/domain/models/user.dart';
+import 'package:flutter_base/src/user/presentation/pages/edit_profile_page.dart';
+import 'package:flutter_base/src/user/presentation/pages/profile_page.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../../../../helpers/fake/fake_values.dart';
 import '../../../../helpers/pump_app.dart';
-import '../../../../ioc/locator_mock.dart';
+import '../../../shared/ioc/locator_mock.dart';
 
 class FakeUpdateUserInputModel extends Fake implements UpdateUserInputModel {}
 

@@ -3,10 +3,10 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - 'master'
-      - 'develop'
+      - "master"
+      - "develop"
     paths:
-      - 'pubspec.yaml'
+      - "pubspec.yaml"
 
 env:
   REGISTRY: ghcr.io
@@ -44,14 +44,13 @@ jobs:
         run: |
           flutter pub get
           flutter pub run build_runner build --delete-conflicting-outputs
-          flutter pub run easy_localization:generate -S assets/translations -f keys -O lib/ui/i18n -o locale_keys.g.dart
+          flutter pub run easy_localization:generate -S assets/translations -f keys -O lib/src/shared/presentation/i18n -o locale_keys.g.dart
           flutter build web -t lib/main_${{ env.FLAVOR }}.dart --source-maps
 
       - uses: actions/upload-artifact@v4
         with:
           name: flutter-web
-          path: 'build/web'
-
+          path: "build/web"
 
   build_flutter_web_image:
     environment: ${{ github.ref_name == 'master' && 'production' || 'staging'}}

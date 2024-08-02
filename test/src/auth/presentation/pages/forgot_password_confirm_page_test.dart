@@ -1,12 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_base/auth/domain/interfaces/i_auth_repository.dart';
-import 'package:flutter_base/auth/presentation/pages/change_password_page.dart';
-import 'package:flutter_base/auth/presentation/pages/forgot_password_confirm_page.dart';
-import 'package:flutter_base/common/interfaces/deep_link_service.dart';
-import 'package:flutter_base/ui/controllers/deep_link_controller.dart';
-import 'package:flutter_base/ui/i18n/locale_keys.g.dart';
+import 'package:flutter_base/src/auth/domain/interfaces/i_auth_repository.dart';
+import 'package:flutter_base/src/auth/presentation/pages/change_password_page.dart';
+import 'package:flutter_base/src/auth/presentation/pages/forgot_password_confirm_page.dart';
+import 'package:flutter_base/src/shared/application/deep_link_controller.dart';
+import 'package:flutter_base/src/shared/domain/interfaces/i_deep_link_service.dart';
+import 'package:flutter_base/src/shared/presentation/i18n/locale_keys.g.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mocktail/mocktail.dart';
@@ -14,7 +14,7 @@ import 'package:mocktail/mocktail.dart';
 import '../../../../helpers/expects.dart';
 import '../../../../helpers/fake/fake_values.dart';
 import '../../../../helpers/pump_app.dart';
-import '../../../../ioc/locator_mock.dart';
+import '../../../shared/ioc/locator_mock.dart';
 
 void main() {
   setUpAll(() {

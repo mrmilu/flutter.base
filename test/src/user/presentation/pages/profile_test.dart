@@ -1,22 +1,22 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_base/auth/domain/interfaces/i_auth_repository.dart';
-import 'package:flutter_base/auth/domain/interfaces/i_token_repository.dart';
-import 'package:flutter_base/ui/features/misc/views/main_page.dart';
-import 'package:flutter_base/ui/providers/user_provider.dart';
-import 'package:flutter_base/user/domain/interfaces/i_user_repository.dart';
-import 'package:flutter_base/user/domain/models/user.dart';
-import 'package:flutter_base/user/presentation/pages/edit_profile_page.dart';
-import 'package:flutter_base/user/presentation/pages/profile_page.dart';
-import 'package:flutter_base/user/presentation/widgets/containers/profile_photo_action_sheet.dart';
+import 'package:flutter_base/src/auth/domain/interfaces/i_auth_repository.dart';
+import 'package:flutter_base/src/auth/domain/interfaces/i_token_repository.dart';
+import 'package:flutter_base/src/auth/presentation/pages/initial_page.dart';
+import 'package:flutter_base/src/user/application/user_provider.dart';
+import 'package:flutter_base/src/user/domain/interfaces/i_user_repository.dart';
+import 'package:flutter_base/src/user/domain/models/user.dart';
+import 'package:flutter_base/src/user/presentation/pages/edit_profile_page.dart';
+import 'package:flutter_base/src/user/presentation/pages/profile_page.dart';
+import 'package:flutter_base/src/user/presentation/widgets/containers/profile_photo_action_sheet.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../../../../helpers/fake/fake_values.dart';
 import '../../../../helpers/pump_app.dart';
-import '../../../../ioc/locator_mock.dart';
+import '../../../shared/ioc/locator_mock.dart';
 
 void main() {
   setUpAll(() {
@@ -54,7 +54,7 @@ void main() {
           await tester.tap(button);
           await tester.pumpAndSettle();
 
-          expect(find.byType(MainPage), findsOneWidget);
+          expect(find.byType(InitialPage), findsOneWidget);
           final user = getIt<ProviderContainer>().read(userProvider).userData;
           expect(user, isNull);
         },
