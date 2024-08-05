@@ -7,7 +7,7 @@ import 'package:flutter_base/src/auth/domain/interfaces/i_token_repository.dart'
 import 'package:flutter_base/src/auth/domain/models/sign_up_input_model.dart';
 import 'package:flutter_base/src/auth/domain/models/token_model.dart';
 import 'package:flutter_base/src/auth/presentation/pages/verify_account_page.dart';
-import 'package:flutter_base/src/shared/domain/interfaces/i_notifications_service.dart';
+import 'package:flutter_base/src/notifications/domain/interfaces/i_notifications_service.dart';
 import 'package:flutter_base/src/shared/domain/models/app_error.dart';
 import 'package:flutter_base/src/shared/presentation/i18n/locale_keys.g.dart';
 import 'package:flutter_base/src/user/application/user_provider.dart';

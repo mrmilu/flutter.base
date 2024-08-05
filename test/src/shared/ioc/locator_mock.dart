@@ -2,8 +2,8 @@
 
 import 'package:flutter_base/src/auth/domain/interfaces/i_auth_repository.dart';
 import 'package:flutter_base/src/auth/domain/interfaces/i_token_repository.dart';
+import 'package:flutter_base/src/notifications/domain/interfaces/i_notifications_service.dart';
 import 'package:flutter_base/src/shared/domain/interfaces/i_deep_link_service.dart';
-import 'package:flutter_base/src/shared/domain/interfaces/i_notifications_service.dart';
 import 'package:flutter_base/src/shared/domain/interfaces/i_platform_service.dart';
 import 'package:flutter_base/src/shared/domain/models/environments_list.dart';
 import 'package:flutter_base/src/user/domain/interfaces/i_user_repository.dart';

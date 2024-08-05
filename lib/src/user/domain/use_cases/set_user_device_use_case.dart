@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:flutter_base/src/shared/domain/interfaces/i_notifications_service.dart';
+import 'package:flutter_base/src/notifications/domain/interfaces/i_notifications_service.dart';
 import 'package:flutter_base/src/user/domain/enums/user_device_type.dart';
 import 'package:flutter_base/src/user/domain/interfaces/i_user_repository.dart';
 import 'package:flutter_base/src/user/domain/models/device_input_model.dart';
