@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:faker_dart/faker_dart.dart';
-import 'package:flutter_base/src/shared/domain/interfaces/i_notifications_service.dart';
+import 'package:flutter_base/src/notifications/domain/interfaces/i_notifications_service.dart';
+import 'package:flutter_base/src/notifications/domain/models/notifications.dart';
 import 'package:flutter_base/src/shared/domain/models/environments_list.dart';
-import 'package:flutter_base/src/shared/domain/models/notifications.dart';
 import 'package:injectable/injectable.dart';
 
 FutureOr disposeNotificationsService(INotificationsService instance) {

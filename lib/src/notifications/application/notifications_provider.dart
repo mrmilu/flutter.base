@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_base/src/shared/domain/interfaces/i_notifications_service.dart';
+import 'package:flutter_base/src/notifications/domain/interfaces/i_notifications_service.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
 
