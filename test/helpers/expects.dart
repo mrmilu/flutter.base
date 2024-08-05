@@ -6,6 +6,10 @@ void expectSnackBarWithMessage(String message) {
   expect(find.text(message), findsOneWidget);
 }
 
+void expectSnackBar() {
+  expect(find.byType(SnackBar), findsOneWidget);
+}
+
 void expectButtonEnabled(
   WidgetTester tester,
   Finder finder, {

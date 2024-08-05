@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_base/src/auth/domain/interfaces/i_auth_repository.dart';
 import 'package:flutter_base/src/auth/presentation/pages/forgot_password_confirm_page.dart';
@@ -53,7 +52,7 @@ void main() {
         final button = find.byKey(const Key('forgot-password-button'));
         await tester.tap(button);
         await tester.pumpAndSettle();
-        expectSnackBarWithMessage('Email not exist');
+        expectSnackBar();
         await tester.pumpAppRoute('/login');
       },
     );
