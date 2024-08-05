@@ -4,4 +4,4 @@ Documentation about Vertical Slice Architecture
 
 ## Buttons
 
-- [SeeMore](https://www.notion.so/mrmilu/Arquitectura-7e45973fc107487294a63bac9f5c3aa4#3988e5ba713044b5adb3bfe2eab80adb)
+- [SeeMore](https://www.notion.so/mrmilu/Arquitectura-Vertical-Slice-8b32f3e9da3440fd8668afd2a5e4bb12)
