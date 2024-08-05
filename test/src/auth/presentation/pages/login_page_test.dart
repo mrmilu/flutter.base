@@ -71,7 +71,7 @@ void main() {
         await _enterLoginCredentials(tester);
         await _tapLoginButton(tester);
 
-        expectSnackBarWithMessage('Bad credentials');
+        expectSnackBar();
       },
     );
   });

@@ -10,5 +10,5 @@ FutureOr<String?> authGuard(_, __) {
   if (user != null) {
     return user.verified ? null : '/verify-account';
   }
-  return '/';
+  return '/initial';
 }
