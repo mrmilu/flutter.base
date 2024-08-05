@@ -10,6 +10,7 @@ import 'package:flutter_base/src/auth/presentation/pages/sign_up_page.dart';
 import 'package:flutter_base/src/auth/presentation/pages/verify_account_page.dart';
 import 'package:flutter_base/src/posts/presentation/pages/detail_post_page.dart';
 import 'package:flutter_base/src/posts/presentation/pages/post_page.dart';
+import 'package:flutter_base/src/shared/presentation/i18n/locale_keys.g.dart';
 import 'package:flutter_base/src/shared/presentation/pages/scaffold_with_navigation.dart';
 import 'package:flutter_base/src/shared/presentation/router/guards/auth_guard.dart';
 import 'package:flutter_base/src/shared/presentation/router/utils.dart';
@@ -22,11 +23,13 @@ final _bottomBarItems = [
   ScaffoldWithNavigationItem(
     icon: Icons.list,
     rootRoutePath: '/home',
+    text: LocaleKeys.bottom_bar_posts.tr(),
     navigatorKey: GlobalKey<NavigatorState>(debugLabel: 'homeNav'),
   ),
   ScaffoldWithNavigationItem(
     icon: Icons.account_circle,
     rootRoutePath: '/profile',
+    text: LocaleKeys.bottom_bar_profile.tr(),
     navigatorKey: GlobalKey<NavigatorState>(debugLabel: 'profileNav'),
   ),
 ];
@@ -88,9 +91,7 @@ final GoRouter router = GoRouter(
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {
         return ScaffoldWithNavigation(
-          tabItems: _bottomBarItems
-              .map((tab) => tab.copyWith(text: tab.text.tr()))
-              .toList(),
+          tabItems: _bottomBarItems,
           navigationShell: navigationShell,
         );
       },

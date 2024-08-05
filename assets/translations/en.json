@@ -27,6 +27,10 @@
       "passwordMatch": "Both passwords must match."
     }
   },
+  "bottom_bar": {
+    "posts": "Posts",
+    "profile": "Profile"
+  },
   "platform_info": {
     "title": "Platform information",
     "version": "Version: {}",
