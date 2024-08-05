@@ -13,6 +13,7 @@ import 'package:flutter_base/src/posts/presentation/pages/post_page.dart';
 import 'package:flutter_base/src/shared/presentation/pages/scaffold_with_navigation.dart';
 import 'package:flutter_base/src/shared/presentation/router/guards/auth_guard.dart';
 import 'package:flutter_base/src/shared/presentation/router/utils.dart';
+import 'package:flutter_base/src/splash/presentation/pages/splash_page.dart';
 import 'package:flutter_base/src/user/presentation/pages/edit_avatar_page.dart';
 import 'package:flutter_base/src/user/presentation/pages/edit_profile_page.dart';
 import 'package:flutter_base/src/user/presentation/pages/profile_page.dart';
@@ -36,10 +37,11 @@ final GlobalKey<NavigatorState> rootNavigatorKey =
 
 final GoRouter router = GoRouter(
   navigatorKey: rootNavigatorKey,
-  initialLocation: '/home',
+  initialLocation: '/',
   routes: <RouteBase>[
-    GoRoute(path: '/', builder: (context, state) => const InitialPage()),
+    GoRoute(path: '/', builder: (context, state) => const SplashPage()),
     // Auth routes
+    GoRoute(path: '/initial', builder: (context, state) => const InitialPage()),
     GoRoute(path: '/login', builder: (context, state) => const LoginPage()),
     GoRoute(path: '/sign-up', builder: (context, state) => const SignUpPage()),
     GoRoute(

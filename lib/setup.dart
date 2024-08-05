@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_base/app.dart';
+import 'package:flutter_base/src/shared/application/deep_link_controller.dart';
 import 'package:flutter_base/src/shared/application/ui_provider.dart';
 import 'package:flutter_base/src/shared/domain/interfaces/i_env_vars.dart';
 import 'package:flutter_base/src/shared/domain/models/env_vars.dart';
@@ -58,6 +59,9 @@ void startApp({required FirebaseOptions? firebaseOptions}) async {
         return true;
       };
 
+      GetIt.I.get<DeepLinkController>()();
+      FlutterNativeSplash.remove();
+
       return runApp(
         EasyLocalization(
           supportedLocales: const [Locale('en')],
@@ -65,7 +69,7 @@ void startApp({required FirebaseOptions? firebaseOptions}) async {
           fallbackLocale: const Locale('en'),
           child: UncontrolledProviderScope(
             container: GetIt.I.get<ProviderContainer>(),
-            child: const App(),
+            child: const AppView(),
           ),
         ),
       );
