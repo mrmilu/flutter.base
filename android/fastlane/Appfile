@@ -1,2 +1,2 @@
 json_key_file("fastlane/api-access.json")
-package_name("com.flutterbasemrmilu.live")
+package_name("com.flutterbase.live")

@@ -28,7 +28,7 @@ void startApp({required FirebaseOptions? firebaseOptions}) async {
           WidgetsFlutterBinding.ensureInitialized();
       FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
       await EasyLocalization.ensureInitialized();
-      await Firebase.initializeApp(options: firebaseOptions);
+      await Firebase.initializeApp();
 
       LicenseRegistry.addLicense(() async* {
         final poppinsLicense =

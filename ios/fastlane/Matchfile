@@ -7,7 +7,7 @@ git_url("***ios-certificates-git***")
 
 storage_mode("git")
 
-app_identifier(["com.flutterbasemrmilu.beta", "com.flutterbasemrmilu.live"])
+app_identifier(["com.flutterbase.beta", "com.flutterbase.live"])
 username("****@****.com")
 git_branch("flutter_base")
 team_id("XXXXXXXX")
