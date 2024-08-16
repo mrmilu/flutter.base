@@ -20,7 +20,7 @@ platform :android do
   lane :build_deploy_internal_beta do
     sh("flutter", "build", "appbundle", "--flavor", "beta", "./lib/main_beta.dart")
     upload_to_play_store(
-      package_name: 'com.flutterbasemrmilu.beta',
+      package_name: 'com.flutterbase.beta',
       track: 'internal',
       aab: '../build/app/outputs/bundle/betaRelease/app-beta-release.aab'
     )
@@ -29,7 +29,7 @@ platform :android do
   lane :build_deploy_internal_prod do
     sh("flutter", "build", "appbundle", "--flavor", "live", "./lib/main_live.dart")
     upload_to_play_store(
-      package_name: 'com.flutterbasemrmilu.live',
+      package_name: 'com.flutterbase.live',
       track: 'alpha',
       aab: '../build/app/outputs/bundle/liveRelease/app-live-release.aab'
     )

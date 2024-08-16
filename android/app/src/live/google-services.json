@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "795134483527",
+    "project_id": "flutter-base-live",
+    "storage_bucket": "flutter-base-live.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:795134483527:android:c23b66fa3ea2f9aefa6562",
+        "android_client_info": {
+          "package_name": "com.flutterbase.live"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCaYz5WmSYLlTylBurRPLD4wstnbZ9Hu_s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

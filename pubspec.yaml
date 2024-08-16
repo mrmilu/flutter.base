@@ -57,6 +57,7 @@ dependencies:
 
 dev_dependencies:
   build_runner: 2.4.8
+  flutter_flavorizr: 2.2.3
   flutter_launcher_icons: 0.13.1
   flutter_lints: 3.0.1
   flutter_test:
@@ -96,3 +97,50 @@ flutter:
         - asset: assets/fonts/poppins_medium.ttf
           style: normal
           weight: 500
+
+flavorizr:
+  ide: "vscode"
+  app:
+    android:
+      flavorDimensions: "flavor-type"
+
+  flavors:
+    dev:
+      app:
+        name: "FlutterBase (Dev)"
+
+      android:
+        applicationId: "com.flutterbase.dev"
+
+      ios:
+        bundleId: "com.flutterbase.dev"
+
+    beta:
+      app:
+        name: "FlutterBase (Beta)"
+
+      android:
+        applicationId: "com.flutterbase.beta"
+        firebase:
+          config: ".firebase/beta/google-services.json"
+        customConfig:
+          signingConfig: signingConfigs.release_beta
+      ios:
+        bundleId: "com.flutterbase.beta"
+        firebase:
+          config: ".firebase/beta/GoogleService-Info.plist"
+
+    live:
+      app:
+        name: "FlutterBase"
+
+      android:
+        applicationId: "com.flutterbase.live"
+        firebase:
+          config: ".firebase/live/google-services.json"
+        customConfig:
+          signingConfig: signingConfigs.release_live
+      ios:
+        bundleId: "com.flutterbase.live"
+        firebase:
+          config: ".firebase/live/GoogleService-Info.plist"

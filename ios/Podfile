@@ -7,9 +7,15 @@ platform :ios, minimum_deployment_target
 ENV['COCOAPODS_DISABLE_STATS'] = 'true'
 
 project 'Runner', {
-  'Debug' => :debug,
-  'Profile' => :release,
-  'Release' => :release,
+  'Debug-dev' => :debug,
+  'Profile-dev' => :release,
+  'Release-dev' => :release,
+  'Debug-beta' => :debug,
+  'Profile-beta' => :release,
+  'Release-beta' => :release,
+  'Debug-live' => :debug,
+  'Profile-live' => :release,
+  'Release-live' => :release,
 }
 
 def flutter_root

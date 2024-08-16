@@ -3,7 +3,7 @@
 # apple_id: Mobile mail account
 
 
-app_identifier("com.flutterbasemrmilu.live") # The bundle identifier of your app
+app_identifier("com.flutterbase.live") # The bundle identifier of your app
 apple_id("****@****.com") # Your Apple email address
 
 team_id "XXXXXXX"

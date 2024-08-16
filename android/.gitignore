@@ -17,5 +17,4 @@ app/release
 **/*.keystore
 **/*.jks
 
-# TODO: IMPORTANT REMOVE THIS IGNORE ON FINAL PROJECT
-google-services.json
+ 
