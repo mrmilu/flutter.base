@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_base/src/auth/application/social_auth_provider.dart';
 import 'package:flutter_base/src/auth/domain/enums/auth_provider.dart';
 import 'package:flutter_base/src/shared/presentation/i18n/locale_keys.g.dart';
+import 'package:flutter_base/src/shared/presentation/utils/platform_utils.dart';
 import 'package:flutter_base/src/shared/presentation/utils/styles/colors.dart';
 import 'package:flutter_base/src/shared/presentation/utils/styles/text_styles.dart';
 import 'package:flutter_base/src/shared/presentation/widgets/components/box_spacer.dart';
 import 'package:flutter_base/src/shared/presentation/widgets/components/buttons/button_secondary.dart';
-import 'package:flutter_mrmilu/flutter_mrmilu.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 enum SocialAuthType { login, singUp }
