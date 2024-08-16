@@ -18,23 +18,22 @@ class IconButtonPrimary extends ElevatedButton {
     Size? fixedSize,
   }) : super(
           style: ButtonStyle(
-            shape: MaterialStateProperty.all(
+            shape: WidgetStateProperty.all(
               RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(40.0),
               ),
             ),
             minimumSize:
-                MaterialStateProperty.all(fixedSize ?? _btnSizeMap[size]),
-            fixedSize:
-                MaterialStateProperty.all(fixedSize ?? _btnSizeMap[size]),
+                WidgetStateProperty.all(fixedSize ?? _btnSizeMap[size]),
+            fixedSize: WidgetStateProperty.all(fixedSize ?? _btnSizeMap[size]),
             maximumSize:
-                MaterialStateProperty.all(fixedSize ?? _btnSizeMap[size]),
+                WidgetStateProperty.all(fixedSize ?? _btnSizeMap[size]),
             enableFeedback: true,
             splashFactory: NoSplash.splashFactory,
-            padding: MaterialStateProperty.all(Insets.zero),
+            padding: WidgetStateProperty.all(Insets.zero),
             foregroundColor: _foregroundColor(size),
             backgroundColor: _backgroundColor(size),
-            elevation: MaterialStateProperty.all(0),
+            elevation: WidgetStateProperty.all(0),
           ),
           child: Align(
             child: FlutterBaseIcon(
@@ -44,12 +43,12 @@ class IconButtonPrimary extends ElevatedButton {
           ),
         );
 
-  static MaterialStateProperty<Color?> _foregroundColor(ButtonSize size) {
-    return MaterialStateProperty.resolveWith((states) {
+  static WidgetStateProperty<Color?> _foregroundColor(ButtonSize size) {
+    return WidgetStateProperty.resolveWith((states) {
       const smallColor = FlutterBaseColors.specificSemanticPrimary;
       const normalColor = FlutterBaseColors.specificBasicWhite;
 
-      if (states.contains(MaterialState.pressed)) {
+      if (states.contains(WidgetState.pressed)) {
         return size == ButtonSize.small
             ? smallColor.withOpacity(.6)
             : normalColor.withOpacity(.5);
@@ -58,18 +57,18 @@ class IconButtonPrimary extends ElevatedButton {
     });
   }
 
-  static MaterialStateProperty<Color?> _backgroundColor(ButtonSize size) {
-    return MaterialStateProperty.resolveWith((states) {
+  static WidgetStateProperty<Color?> _backgroundColor(ButtonSize size) {
+    return WidgetStateProperty.resolveWith((states) {
       const smallColor = FlutterBaseColors.specificSurfaceHigh;
       const normalColor = FlutterBaseColors.specificSemanticPrimary;
 
-      if (states.contains(MaterialState.disabled)) {
+      if (states.contains(WidgetState.disabled)) {
         return size == ButtonSize.small
             ? smallColor.withOpacity(.5)
             : normalColor.withOpacity(.25);
       }
 
-      if (states.contains(MaterialState.pressed)) {
+      if (states.contains(WidgetState.pressed)) {
         return size == ButtonSize.small
             ? smallColor.withOpacity(.6)
             : normalColor.withOpacity(.5);
