@@ -1,6 +1,6 @@
 import 'package:faker_dart/faker_dart.dart';
 import 'package:flutter_base/src/posts/presentation/view_models/posts_view_model.dart';
-import 'package:riverpod/riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class PostPageNotifier extends AutoDisposeAsyncNotifier<List<PostsViewModel>> {
   @override

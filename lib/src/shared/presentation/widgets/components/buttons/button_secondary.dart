@@ -29,20 +29,20 @@ class ButtonSecondary extends OutlinedButton {
     TextStyle? customTextStyle,
   }) : super(
           style: ButtonStyle(
-            shape: MaterialStateProperty.all(
+            shape: WidgetStateProperty.all(
               RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(24.0),
               ),
             ),
-            minimumSize: MaterialStateProperty.all(_btnMinSizeMap[size]),
-            fixedSize: MaterialStateProperty.all(_btnSizeMap[size]),
+            minimumSize: WidgetStateProperty.all(_btnMinSizeMap[size]),
+            fixedSize: WidgetStateProperty.all(_btnSizeMap[size]),
             enableFeedback: true,
             splashFactory: NoSplash.splashFactory,
             padding: _padding(size),
             foregroundColor: _foregroundColor(size),
             backgroundColor: _backgroundColor(size),
-            overlayColor: const MaterialStatePropertyAll(Colors.transparent),
-            elevation: MaterialStateProperty.all(0),
+            overlayColor: const WidgetStatePropertyAll(Colors.transparent),
+            elevation: WidgetStateProperty.all(0),
           ),
           child: _ButtonSecondaryContent(
             text: text,
@@ -54,26 +54,26 @@ class ButtonSecondary extends OutlinedButton {
           ),
         );
 
-  static MaterialStateProperty<EdgeInsetsGeometry?> _padding(ButtonSize size) {
-    return MaterialStateProperty.resolveWith((states) {
+  static WidgetStateProperty<EdgeInsetsGeometry?> _padding(ButtonSize size) {
+    return WidgetStateProperty.resolveWith((states) {
       return size == ButtonSize.small
           ? Insets.h12 + Insets.v8
           : Insets.h16 + Insets.v12;
     });
   }
 
-  static MaterialStateProperty<Color?> _foregroundColor(ButtonSize size) {
-    return MaterialStateProperty.resolveWith((states) {
+  static WidgetStateProperty<Color?> _foregroundColor(ButtonSize size) {
+    return WidgetStateProperty.resolveWith((states) {
       const smallColor = FlutterBaseColors.specificContentHigh;
       const normalColor = FlutterBaseColors.specificSemanticPrimary;
 
-      if (states.contains(MaterialState.disabled)) {
+      if (states.contains(WidgetState.disabled)) {
         return size == ButtonSize.small
             ? smallColor.withOpacity(.5)
             : normalColor.withOpacity(.25);
       }
 
-      if (states.contains(MaterialState.pressed)) {
+      if (states.contains(WidgetState.pressed)) {
         return size == ButtonSize.small
             ? smallColor.withOpacity(.6)
             : normalColor.withOpacity(.5);
@@ -82,18 +82,18 @@ class ButtonSecondary extends OutlinedButton {
     });
   }
 
-  static MaterialStateProperty<Color?> _backgroundColor(ButtonSize size) {
-    return MaterialStateProperty.resolveWith((states) {
+  static WidgetStateProperty<Color?> _backgroundColor(ButtonSize size) {
+    return WidgetStateProperty.resolveWith((states) {
       const smallColor = FlutterBaseColors.specificSemanticPrimary;
       const normalColor = FlutterBaseColors.specificBasicWhite;
 
-      if (states.contains(MaterialState.disabled)) {
+      if (states.contains(WidgetState.disabled)) {
         return size == ButtonSize.small
             ? smallColor.withOpacity(.5)
             : normalColor.withOpacity(.25);
       }
 
-      if (states.contains(MaterialState.pressed)) {
+      if (states.contains(WidgetState.pressed)) {
         return size == ButtonSize.small
             ? smallColor.withOpacity(.6)
             : normalColor.withOpacity(.5);
