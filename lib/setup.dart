@@ -23,12 +23,11 @@ void startApp({required FirebaseOptions? firebaseOptions}) async {
       options.environment = GetIt.I.get<IEnvVars>().environment;
     },
     appRunner: () async {
-      final env = EnvVars().environment;
       final WidgetsBinding widgetsBinding =
           WidgetsFlutterBinding.ensureInitialized();
       FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
       await EasyLocalization.ensureInitialized();
-      await Firebase.initializeApp();
+      await Firebase.initializeApp(options: firebaseOptions);
 
       LicenseRegistry.addLicense(() async* {
         final poppinsLicense =
@@ -36,6 +35,7 @@ void startApp({required FirebaseOptions? firebaseOptions}) async {
         yield LicenseEntryWithLineBreaks(['google_fonts'], poppinsLicense);
       });
 
+      final env = EnvVars().environment;
       configureDependencies(env: env);
 
       final providerContainer = GetIt.I.get<ProviderContainer>();
