@@ -11,10 +11,10 @@ import 'package:flutter_base/src/shared/presentation/utils/styles/text_styles.da
 import 'package:flutter_base/src/shared/presentation/widgets/components/box_spacer.dart';
 import 'package:flutter_base/src/shared/presentation/widgets/components/buttons/button_tertiary.dart';
 import 'package:flutter_base/src/shared/presentation/widgets/components/flutter_base_app_bar.dart';
-import 'package:flutter_base/src/shared/presentation/widgets/components/form_scaffold.dart';
 import 'package:flutter_base/src/shared/presentation/widgets/components/text/high_text.dart';
 import 'package:flutter_base/src/shared/presentation/widgets/components/text/small_text.dart';
 import 'package:flutter_base/src/shared/presentation/widgets/components/views/column_scroll_view.dart';
+import 'package:flutter_base/src/shared/presentation/widgets/components/views/form_scaffold.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 

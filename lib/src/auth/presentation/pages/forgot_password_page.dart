@@ -8,10 +8,10 @@ import 'package:flutter_base/src/shared/presentation/widgets/components/box_spac
 import 'package:flutter_base/src/shared/presentation/widgets/components/buttons/button_primary.dart';
 import 'package:flutter_base/src/shared/presentation/widgets/components/flutter_base_app_bar.dart';
 import 'package:flutter_base/src/shared/presentation/widgets/components/form/email_reactive_input.dart';
-import 'package:flutter_base/src/shared/presentation/widgets/components/form_scaffold.dart';
 import 'package:flutter_base/src/shared/presentation/widgets/components/text/high_text.dart';
 import 'package:flutter_base/src/shared/presentation/widgets/components/text/small_text.dart';
 import 'package:flutter_base/src/shared/presentation/widgets/components/views/column_scroll_view.dart';
+import 'package:flutter_base/src/shared/presentation/widgets/components/views/form_scaffold.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 

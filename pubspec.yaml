@@ -24,6 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_adaptive_scaffold: 0.2.1
+  flutter_cache_manager: 3.4.1
   flutter_config: 2.0.2 # maybe we can remove this (Published 13 months ago)
   flutter_dotenv: 5.1.0 # carefully with this, it's not updated (Published 14 months ago)
   flutter_image_compress: 2.3.0
@@ -42,6 +43,7 @@ dependencies:
   injectable: 2.4.4
   json_annotation: 4.9.0
   package_info_plus: 8.0.2
+  path: 1.9.0
   path_provider: 2.1.4
   reactive_forms: 17.0.1
   reactive_forms_annotations: 5.0.0

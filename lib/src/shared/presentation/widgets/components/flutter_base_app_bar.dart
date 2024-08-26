@@ -1,4 +1,3 @@
-// ignore_for_file: prefer-single-widget-per-file
 import 'package:flutter/material.dart';
 import 'package:flutter_base/src/shared/presentation/utils/styles/colors.dart';
 import 'package:flutter_base/src/shared/presentation/utils/styles/insets.dart';

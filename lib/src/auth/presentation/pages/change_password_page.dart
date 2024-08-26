@@ -5,9 +5,9 @@ import 'package:flutter_base/src/shared/presentation/i18n/locale_keys.g.dart';
 import 'package:flutter_base/src/shared/presentation/utils/styles/insets.dart';
 import 'package:flutter_base/src/shared/presentation/widgets/components/box_spacer.dart';
 import 'package:flutter_base/src/shared/presentation/widgets/components/flutter_base_app_bar.dart';
-import 'package:flutter_base/src/shared/presentation/widgets/components/form_scaffold.dart';
 import 'package:flutter_base/src/shared/presentation/widgets/components/text/high_text.dart';
 import 'package:flutter_base/src/shared/presentation/widgets/components/views/column_scroll_view.dart';
+import 'package:flutter_base/src/shared/presentation/widgets/components/views/form_scaffold.dart';
 
 class ChangePasswordPageData {
   final String token;
