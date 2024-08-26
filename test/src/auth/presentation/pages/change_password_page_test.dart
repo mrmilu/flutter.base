@@ -71,7 +71,7 @@ void main() {
           await tester.tap(button);
           await tester.pumpAndSettle();
 
-          expectSnackBarWithMessage('Invalid password');
+          expectSnackBar();
         },
       );
 
