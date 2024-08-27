@@ -2,20 +2,20 @@ import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 
 class DefaultFirebaseOptions {
   static const FirebaseOptions webStaging = FirebaseOptions(
-    apiKey: 'AIzaSyDnAB_UfQrBp_6RxBpn51s0BMfX3vV5a5U',
-    appId: '1:441627736227:web:c3f6f3ef5ec03f9ca66716',
-    messagingSenderId: '441627736227',
-    projectId: 'flutter-base-beta',
-    authDomain: 'flutter-base-beta.firebaseapp.com',
-    storageBucket: 'flutter-base-beta.appspot.com',
+    apiKey: 'AIzaSyD8-HkMTx3HhfSZ3mcfsIfwjwIU6bnhDeM',
+    authDomain: 'flutter-base-1e320.firebaseapp.com',
+    projectId: 'flutter-base-1e320',
+    storageBucket: 'flutter-base-1e320.appspot.com',
+    messagingSenderId: '426720039629',
+    appId: '1:426720039629:web:5f22b405b4923353fa0f84',
   );
 
   static const FirebaseOptions webProd = FirebaseOptions(
-    apiKey: 'AIzaSyDnAB_UfQrBp_6RxBpn51s0BMfX3vV5a5U',
-    appId: '1:441627736227:web:c3f6f3ef5ec03f9ca66716',
-    messagingSenderId: '441627736227',
-    projectId: 'flutter-base-beta',
-    authDomain: 'flutter-base-beta.firebaseapp.com',
-    storageBucket: 'flutter-base-beta.appspot.com',
+    apiKey: 'AIzaSyB_Pw-tffIISl8HSD0Fx_xmTz4FA7oFAqo',
+    authDomain: 'flutter-base-live.firebaseapp.com',
+    projectId: 'flutter-base-live',
+    storageBucket: 'flutter-base-live.appspot.com',
+    messagingSenderId: '795134483527',
+    appId: '1:795134483527:web:01d7f2ac638dcad5fa6562',
   );
 }
