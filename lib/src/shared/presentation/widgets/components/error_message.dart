@@ -6,7 +6,6 @@ import 'package:flutter_base/src/shared/presentation/widgets/components/box_spac
 
 class ErrorMessage extends StatelessWidget {
   // Apply object to errors.
-  // ignore: no-object-declaration
   final Object error;
   const ErrorMessage({
     super.key,

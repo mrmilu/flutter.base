@@ -27,6 +27,32 @@
       "passwordMatch": "Both passwords must match."
     }
   },
+  "times": {
+    "fromLessThanOneMinute": "Less than a minute",
+    "fromOneMinute": "1 minute ago",
+    "fromMinutes": "{value} minutes ago",
+    "fromOneHour": "1 hour ago",
+    "fromHours": "{value} hours ago",
+    "fromDays": "{value} days ago",
+    "fromOneMonth": "1 month ago",
+    "fromMonths": "{value} months ago",
+    "fromOneYear": "1 year ago",
+    "fromYears": "{value} years ago",
+    "seconds": {
+      "one": "1 second",
+      "other": "{} seconds"
+    },
+    "minutes": {
+      "one": "1 minute",
+      "other": "{} minutes"
+    }
+  },
+  "states": {
+    "noContent": "No content available",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "tryAgain": "Try again"
+  },
   "bottom_bar": {
     "posts": "Posts",
     "profile": "Profile"

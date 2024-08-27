@@ -54,7 +54,6 @@ class ReactiveInput<T> extends ReactiveTextField {
   static EdgeInsets get _getScrollPadding =>
       GetIt.I.get<GlobalKey<ScaffoldMessengerState>>().currentContext != null
           ? MediaQuery.of(
-              // ignore: avoid-non-null-assertion
               GetIt.I.get<GlobalKey<ScaffoldMessengerState>>().currentContext!,
             ).textFieldScrollPadding
           : Insets.a20;
