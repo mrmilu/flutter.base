@@ -1,11 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_base/src/shared/application/ui_provider.dart';
+import 'package:flutter_base/src/shared/application/use_cases/init_app_use_case.dart';
 import 'package:flutter_base/src/shared/domain/models/app_error.dart';
-import 'package:flutter_base/src/shared/domain/use_cases/init_app_use_case.dart';
 import 'package:flutter_base/src/shared/presentation/i18n/locale_keys.g.dart';
 import 'package:flutter_base/src/shared/presentation/router/app_router.dart';
-import 'package:flutter_base/src/user/application/user_provider.dart';
+import 'package:flutter_base/src/shared/presentation/states/ui_provider.dart';
+import 'package:flutter_base/src/user/presentation/states/user_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';

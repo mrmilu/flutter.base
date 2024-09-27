@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_base/src/auth/domain/interfaces/i_auth_repository.dart';
 import 'package:flutter_base/src/posts/presentation/pages/post_page.dart';
-import 'package:flutter_base/src/shared/application/deep_link_controller.dart';
 import 'package:flutter_base/src/shared/domain/interfaces/i_deep_link_service.dart';
+import 'package:flutter_base/src/shared/presentation/states/deep_link_controller.dart';
 import 'package:flutter_base/src/user/domain/interfaces/i_user_repository.dart';
 import 'package:flutter_base/src/user/domain/models/user.dart';
 import 'package:flutter_test/flutter_test.dart';

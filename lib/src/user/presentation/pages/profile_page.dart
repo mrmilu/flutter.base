@@ -7,7 +7,7 @@ import 'package:flutter_base/src/shared/presentation/widgets/components/flutter_
 import 'package:flutter_base/src/shared/presentation/widgets/components/images/network_image.dart';
 import 'package:flutter_base/src/shared/presentation/widgets/components/text/high_text.dart';
 import 'package:flutter_base/src/shared/presentation/widgets/components/views/column_scroll_view.dart';
-import 'package:flutter_base/src/user/application/user_provider.dart';
+import 'package:flutter_base/src/user/presentation/states/user_provider.dart';
 import 'package:flutter_base/src/user/presentation/widgets/containers/profile_photo_action_sheet.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';

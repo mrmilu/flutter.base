@@ -1,15 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
-// ignore: unused_import
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_base/app.dart';
-import 'package:flutter_base/src/shared/application/deep_link_controller.dart';
-import 'package:flutter_base/src/shared/application/ui_provider.dart';
 import 'package:flutter_base/src/shared/domain/interfaces/i_env_vars.dart';
 import 'package:flutter_base/src/shared/domain/models/env_vars.dart';
 import 'package:flutter_base/src/shared/ioc/locator.dart';
+import 'package:flutter_base/src/shared/presentation/states/deep_link_controller.dart';
+import 'package:flutter_base/src/shared/presentation/states/ui_provider.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';

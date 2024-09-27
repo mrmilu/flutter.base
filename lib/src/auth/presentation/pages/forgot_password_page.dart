@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_base/src/auth/application/forgot_password_provider.dart';
+import 'package:flutter_base/src/auth/presentation/states/forgot_password_provider.dart';
 import 'package:flutter_base/src/auth/presentation/view_models/forgot_password_view_model.dart';
 import 'package:flutter_base/src/shared/presentation/i18n/locale_keys.g.dart';
 import 'package:flutter_base/src/shared/presentation/utils/styles/insets.dart';

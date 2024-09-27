@@ -5,7 +5,7 @@ import 'package:flutter_base/src/shared/presentation/i18n/locale_keys.g.dart';
 import 'package:flutter_base/src/shared/presentation/widgets/components/buttons/button_tertiary.dart';
 import 'package:flutter_base/src/shared/presentation/widgets/components/flutter_base_app_bar.dart';
 import 'package:flutter_base/src/shared/presentation/widgets/components/images/editable_image_preview.dart';
-import 'package:flutter_base/src/user/application/edit_avatar_provider.dart';
+import 'package:flutter_base/src/user/presentation/states/edit_avatar_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class EditAvatarPageData {

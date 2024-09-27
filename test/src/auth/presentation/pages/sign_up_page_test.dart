@@ -10,9 +10,9 @@ import 'package:flutter_base/src/auth/presentation/pages/verify_account_page.dar
 import 'package:flutter_base/src/notifications/domain/interfaces/i_notifications_service.dart';
 import 'package:flutter_base/src/shared/domain/models/app_error.dart';
 import 'package:flutter_base/src/shared/presentation/i18n/locale_keys.g.dart';
-import 'package:flutter_base/src/user/application/user_provider.dart';
 import 'package:flutter_base/src/user/domain/interfaces/i_user_repository.dart';
 import 'package:flutter_base/src/user/domain/models/user.dart';
+import 'package:flutter_base/src/user/presentation/states/user_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';

@@ -1,5 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter_base/src/auth/application/change_password_provider.dart';
+import 'package:flutter_base/src/auth/presentation/states/change_password_provider.dart';
 import 'package:flutter_base/src/auth/presentation/view_models/change_password_view_model.dart';
 import 'package:flutter_base/src/shared/presentation/i18n/locale_keys.g.dart';
 import 'package:flutter_base/src/shared/presentation/widgets/components/box_spacer.dart';

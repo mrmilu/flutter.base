@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_base/src/auth/application/sign_up_provider.dart';
+import 'package:flutter_base/src/auth/presentation/states/sign_up_provider.dart';
 import 'package:flutter_base/src/auth/presentation/view_models/sign_up_view_model.dart';
 import 'package:flutter_base/src/shared/presentation/i18n/locale_keys.g.dart';
 import 'package:flutter_base/src/shared/presentation/widgets/components/box_spacer.dart';

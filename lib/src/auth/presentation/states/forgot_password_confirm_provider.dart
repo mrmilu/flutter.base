@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter_base/src/auth/domain/use_cases/resend_reset_password_email_use_case.dart';
-import 'package:flutter_base/src/shared/application/ui_provider.dart';
+import 'package:flutter_base/src/auth/application/use_cases/resend_reset_password_email_use_case.dart';
 import 'package:flutter_base/src/shared/presentation/i18n/locale_keys.g.dart';
+import 'package:flutter_base/src/shared/presentation/states/ui_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:get_it/get_it.dart';

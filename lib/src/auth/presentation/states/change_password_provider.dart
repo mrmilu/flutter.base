@@ -1,6 +1,6 @@
-import 'package:flutter_base/src/auth/domain/use_cases/change_password_use_case.dart';
+import 'package:flutter_base/src/auth/application/use_cases/change_password_use_case.dart';
 import 'package:flutter_base/src/auth/presentation/view_models/change_password_view_model.dart';
-import 'package:flutter_base/src/shared/application/ui_provider.dart';
+import 'package:flutter_base/src/shared/presentation/states/ui_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';

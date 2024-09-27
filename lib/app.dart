@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart' as easy_localization;
 import 'package:flutter/material.dart';
-import 'package:flutter_base/src/auth/application/auth_provider.dart';
+import 'package:flutter_base/src/auth/presentation/states/auth_provider.dart';
 import 'package:flutter_base/src/shared/presentation/i18n/locale_keys.g.dart';
 import 'package:flutter_base/src/shared/presentation/utils/styles/theme.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

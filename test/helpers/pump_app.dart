@@ -6,7 +6,7 @@ import 'package:flutter_base/app.dart';
 import 'package:flutter_base/src/shared/presentation/i18n/locale_keys.g.dart';
 import 'package:flutter_base/src/shared/presentation/router/app_router.dart';
 import 'package:flutter_base/src/shared/presentation/utils/styles/theme.dart';
-import 'package:flutter_base/src/user/application/user_provider.dart';
+import 'package:flutter_base/src/user/presentation/states/user_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';

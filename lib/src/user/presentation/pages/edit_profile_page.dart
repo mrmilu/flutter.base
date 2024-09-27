@@ -8,7 +8,7 @@ import 'package:flutter_base/src/shared/presentation/widgets/components/buttons/
 import 'package:flutter_base/src/shared/presentation/widgets/components/flutter_base_app_bar.dart';
 import 'package:flutter_base/src/shared/presentation/widgets/components/views/column_scroll_view.dart';
 import 'package:flutter_base/src/shared/presentation/widgets/components/views/form_scaffold.dart';
-import 'package:flutter_base/src/user/application/profile_provider.dart';
+import 'package:flutter_base/src/user/presentation/states/profile_provider.dart';
 import 'package:flutter_base/src/user/presentation/view_models/edit_profile_view_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
