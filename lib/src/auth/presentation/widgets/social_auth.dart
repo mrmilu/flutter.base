@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_base/src/auth/application/social_auth_provider.dart';
 import 'package:flutter_base/src/auth/domain/enums/auth_provider.dart';
+import 'package:flutter_base/src/auth/presentation/states/social_auth_provider.dart';
 import 'package:flutter_base/src/shared/presentation/i18n/locale_keys.g.dart';
 import 'package:flutter_base/src/shared/presentation/utils/platform_utils.dart';
 import 'package:flutter_base/src/shared/presentation/utils/styles/colors.dart';

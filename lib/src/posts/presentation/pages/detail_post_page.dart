@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_base/src/posts/application/detail_post_provider.dart';
+import 'package:flutter_base/src/posts/presentation/states/detail_post_provider.dart';
 import 'package:flutter_base/src/shared/presentation/utils/styles/insets.dart';
 import 'package:flutter_base/src/shared/presentation/widgets/components/box_spacer.dart';
 import 'package:flutter_base/src/shared/presentation/widgets/components/error_message.dart';

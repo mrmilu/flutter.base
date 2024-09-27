@@ -1,5 +1,5 @@
-import 'package:flutter_base/src/auth/domain/use_cases/logout_use_case.dart';
-import 'package:flutter_base/src/shared/application/ui_provider.dart';
+import 'package:flutter_base/src/auth/application/use_cases/logout_use_case.dart';
+import 'package:flutter_base/src/shared/presentation/states/ui_provider.dart';
 import 'package:flutter_base/src/user/domain/models/user.dart';
 import 'package:flutter_base/src/user/domain/use_cases/get_user_use_case.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

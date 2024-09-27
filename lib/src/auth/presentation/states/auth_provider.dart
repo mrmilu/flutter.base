@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter_base/src/auth/domain/use_cases/get_token_stream_use_case.dart';
+import 'package:flutter_base/src/auth/application/use_cases/get_token_stream_use_case.dart';
 import 'package:flutter_base/src/shared/ioc/locator.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

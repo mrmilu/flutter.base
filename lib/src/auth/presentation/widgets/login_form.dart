@@ -1,5 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter_base/src/auth/application/login_provider.dart';
+import 'package:flutter_base/src/auth/presentation/states/login_provider.dart';
 import 'package:flutter_base/src/auth/presentation/view_models/basic_login_view_model.dart';
 import 'package:flutter_base/src/shared/domain/types/button_size.dart';
 import 'package:flutter_base/src/shared/presentation/i18n/locale_keys.g.dart';

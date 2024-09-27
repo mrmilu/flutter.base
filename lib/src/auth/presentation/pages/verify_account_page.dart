@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_base/src/auth/application/verify_account_provider.dart';
+import 'package:flutter_base/src/auth/presentation/states/verify_account_provider.dart';
 import 'package:flutter_base/src/shared/presentation/i18n/locale_keys.g.dart';
 import 'package:flutter_base/src/shared/presentation/utils/styles/insets.dart';
 import 'package:flutter_base/src/shared/presentation/widgets/components/box_spacer.dart';
@@ -10,7 +10,7 @@ import 'package:flutter_base/src/shared/presentation/widgets/components/sheets/s
 import 'package:flutter_base/src/shared/presentation/widgets/components/sheets/with_transparent_bottom_sheet.dart';
 import 'package:flutter_base/src/shared/presentation/widgets/components/text/high_text.dart';
 import 'package:flutter_base/src/shared/presentation/widgets/components/views/column_scroll_view.dart';
-import 'package:flutter_base/src/user/application/user_provider.dart';
+import 'package:flutter_base/src/user/presentation/states/user_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 

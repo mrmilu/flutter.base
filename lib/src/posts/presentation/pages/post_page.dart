@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_base/src/posts/application/post_page_provider.dart';
-import 'package:flutter_base/src/shared/application/ui_provider.dart';
+import 'package:flutter_base/src/posts/presentation/states/post_page_provider.dart';
 import 'package:flutter_base/src/shared/domain/types/button_size.dart';
+import 'package:flutter_base/src/shared/presentation/states/ui_provider.dart';
 import 'package:flutter_base/src/shared/presentation/utils/styles/border_radius.dart';
 import 'package:flutter_base/src/shared/presentation/utils/styles/box_shadows.dart';
 import 'package:flutter_base/src/shared/presentation/utils/styles/colors.dart';

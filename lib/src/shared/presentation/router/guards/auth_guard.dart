@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter_base/src/user/application/user_provider.dart';
+import 'package:flutter_base/src/user/presentation/states/user_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
 

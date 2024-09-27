@@ -1,68 +1,76 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter_base/src/auth/application/use_cases/social_auth_use_case.dart';
 import 'package:flutter_base/src/auth/domain/enums/auth_provider.dart';
 import 'package:flutter_base/src/auth/domain/interfaces/i_auth_repository.dart';
 import 'package:flutter_base/src/auth/domain/interfaces/i_token_repository.dart';
-import 'package:flutter_base/src/auth/domain/models/sign_up_input_model.dart';
+import 'package:flutter_base/src/auth/domain/models/login_input_model.dart';
 import 'package:flutter_base/src/auth/domain/models/token_model.dart';
-import 'package:flutter_base/src/auth/domain/use_cases/social_auth_use_case.dart';
+import 'package:flutter_base/src/user/domain/enums/user_device_type.dart';
 import 'package:flutter_base/src/user/domain/models/user.dart';
 import 'package:flutter_base/src/user/domain/use_cases/get_user_use_case.dart';
+import 'package:flutter_base/src/user/domain/use_cases/set_user_device_use_case.dart';
 import 'package:injectable/injectable.dart';
 
-class SignUpUseCaseInput {
-  final String name;
+class LoginUseCaseInput {
   final String email;
   final String password;
-  final SocialAuthServiceProvider? socialAuthProvider;
+  final SocialAuthServiceProvider? provider;
+  final UserDeviceType userDeviceType;
 
-  const SignUpUseCaseInput({
-    this.name = '',
+  const LoginUseCaseInput({
     this.email = '',
     this.password = '',
-    this.socialAuthProvider,
+    this.provider,
+    required this.userDeviceType,
   }) : assert(
           (email.length > 0 && password.length > 0) ||
-              ((socialAuthProvider == SocialAuthServiceProvider.google ||
-                      socialAuthProvider == SocialAuthServiceProvider.apple) &&
+              ((provider == SocialAuthServiceProvider.google ||
+                      provider == SocialAuthServiceProvider.apple) &&
                   email.length <= 0 &&
                   password.length <= 0),
-          'If social auth provider is chosen email and password are not required.',
+          'If email provider is chosen email and password are required.',
         );
 }
 
 @Injectable()
-class SignUpUseCase {
+class LoginUseCase {
   final IAuthRepository _authRepository;
   final ITokenRepository _tokenRepository;
   final GetUserUseCase _getUserUseCase;
   final SocialAuthUseCase _socialAuthUseCase;
+  final SetUserDeviceUseCase _setUserDeviceUseCase;
 
-  SignUpUseCase(
+  LoginUseCase(
+    this._getUserUseCase,
     this._authRepository,
     this._tokenRepository,
-    this._getUserUseCase,
     this._socialAuthUseCase,
+    this._setUserDeviceUseCase,
   );
 
-  Future<User> call(SignUpUseCaseInput input) async {
+  Future<User> call(LoginUseCaseInput input) async {
     late String token;
 
-    if (input.socialAuthProvider == SocialAuthServiceProvider.google ||
-        input.socialAuthProvider == SocialAuthServiceProvider.apple) {
+    if (input.provider == SocialAuthServiceProvider.google ||
+        input.provider == SocialAuthServiceProvider.apple) {
       final socialAuthToken = await _socialAuthUseCase(
         // ignore: avoid-non-null-assertion
-        SocialAuthUseCaseInput(authProvider: input.socialAuthProvider!),
+        SocialAuthUseCaseInput(authProvider: input.provider!),
       );
       token = await _authRepository.socialAuth(socialAuthToken);
     } else {
-      final signUpInput = SignUpInputModel(
+      final loginInput = LoginInputModel(
         email: input.email,
         password: input.password,
-        name: input.name,
       );
-      token = await _authRepository.signUp(signUpInput);
+      token = await _authRepository.login(loginInput);
     }
 
+    debugPrint(token);
     await _tokenRepository.update(TokenModel(token: token));
+    await _setUserDeviceUseCase(
+      SetUserDeviceUseCaseInput(type: input.userDeviceType),
+    );
     return _getUserUseCase();
   }
 }

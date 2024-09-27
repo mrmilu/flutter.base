@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_base/src/splash/application/splash_provider.dart';
+import 'package:flutter_base/src/splash/presentation/states/splash_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SplashPage extends ConsumerStatefulWidget {

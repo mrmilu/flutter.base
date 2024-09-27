@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter_base/src/posts/application/post_page_provider.dart';
+import 'package:flutter_base/src/posts/presentation/states/post_page_provider.dart';
 import 'package:flutter_base/src/posts/presentation/view_models/posts_view_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

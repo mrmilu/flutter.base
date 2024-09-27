@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_base/src/posts/application/post_page_provider.dart';
 import 'package:flutter_base/src/posts/presentation/pages/post_page.dart';
+import 'package:flutter_base/src/posts/presentation/states/post_page_provider.dart';
 import 'package:flutter_base/src/shared/presentation/widgets/components/buttons/icon_button_primary.dart';
 import 'package:flutter_base/src/user/domain/interfaces/i_user_repository.dart';
 import 'package:flutter_base/src/user/domain/models/user.dart';

@@ -1,8 +1,8 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_base/src/auth/domain/use_cases/sign_up_use_case.dart';
+import 'package:flutter_base/src/auth/application/use_cases/sign_up_use_case.dart';
 import 'package:flutter_base/src/auth/presentation/view_models/sign_up_view_model.dart';
-import 'package:flutter_base/src/shared/application/ui_provider.dart';
-import 'package:flutter_base/src/user/application/user_provider.dart';
+import 'package:flutter_base/src/shared/presentation/states/ui_provider.dart';
+import 'package:flutter_base/src/user/presentation/states/user_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
