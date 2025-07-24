@@ -1,0 +1,107 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+# TODO: Variables to change
+# key_id: Get from https://appstoreconnect.apple.com/access/api
+# issuer_id: Get from https://appstoreconnect.apple.com/access/api
+# FASTLIGHT_APP_STORE_CONNECT_PRIVATE_KEY =>
+# git_branch:
+# app_identifier:
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Build app and deploy (internal beta)"
+  lane :build_deploy_internal_beta do
+      api_key = app_store_connect_api_key(
+        key_id: "4QTS2A8MJ2", # Get from https://appstoreconnect.apple.com/access/api
+        issuer_id: "79adca34-972c-4bad-888e-d06ea8e65326", # Get from https://appstoreconnect.apple.com/access/api
+        key_content: ENV["FASTLIGHT_APP_STORE_CONNECT_PRIVATE_KEY"],
+        in_house: false, # optional but may be required if using match/sigh
+      )
+
+      create_keychain(
+        name: "fastlane.keychain",
+        password: ENV["FASTLANE_PASSWORD"],
+        default_keychain: true,
+        unlock: true,
+        timeout: 3600,
+        lock_when_sleeps: false
+      )
+
+      match(
+        type: 'appstore',
+        app_identifier: ["com.flutterbase.beta"],
+        api_key: api_key,
+        git_branch: "flutterbase",
+        clone_branch_directly: true,
+        keychain_name: "fastlane.keychain",
+        keychain_password: ENV["FASTLANE_PASSWORD"],
+        readonly: true,
+      )
+
+      build_app(
+        workspace: "Runner.xcworkspace", 
+        scheme: "beta",
+      )
+
+      upload_to_testflight(
+          api_key: api_key,
+          app_identifier: 'com.flutterbase.beta',
+          skip_waiting_for_build_processing: true
+      )
+  end
+
+  desc "Build app and deploy (internal live)"
+  lane :build_deploy_internal_live do
+      api_key = app_store_connect_api_key(
+        key_id: "4QTS2A8MJ2", # Get from https://appstoreconnect.apple.com/access/api
+        issuer_id: "79adca34-972c-4bad-888e-d06ea8e65326", # Get from https://appstoreconnect.apple.com/access/api
+        key_content: ENV["FASTLIGHT_APP_STORE_CONNECT_PRIVATE_KEY"],
+        in_house: false, # optional but may be required if using match/sigh
+      )
+
+      create_keychain(
+        name: "fastlane.keychain",
+        password: ENV["FASTLANE_PASSWORD"],
+        default_keychain: true,
+        unlock: true,
+        timeout: 3600,
+        lock_when_sleeps: false
+      )
+
+      match(
+        type: 'appstore',
+        app_identifier: ["com.flutterbase.live"],
+        api_key: api_key,
+        git_branch: "flutterbase",
+        clone_branch_directly: true,
+        keychain_name: "fastlane.keychain",
+        keychain_password: ENV["FASTLANE_PASSWORD"],
+        readonly: true,
+      )
+
+      build_app(
+        workspace: "Runner.xcworkspace",
+        scheme: "live",
+      )
+
+      upload_to_testflight(
+          api_key: api_key,
+          app_identifier: 'com.flutterbase.live',
+          skip_waiting_for_build_processing: true
+      )
+  end
+end

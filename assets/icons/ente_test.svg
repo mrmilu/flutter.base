@@ -1,0 +1,23 @@
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Definir los gradientes -->
+  <defs>
+    <!-- Gradiente azul -->
+    <radialGradient id="blueGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+      <stop offset="0%" style="stop-color:#81D4FA;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#81D4FA;stop-opacity:0" />
+    </radialGradient>
+    <!-- Gradiente verde -->
+    <radialGradient id="greenGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+      <stop offset="0%" style="stop-color:#B2FF59;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#B2FF59;stop-opacity:0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Fondo negro -->
+  <rect width="200" height="200" fill="black" />
+
+  <!-- Círculo azul -->
+  <circle cx="80" cy="80" r="70" fill="url(#blueGradient)" />
+  <!-- Círculo verde -->
+  <circle cx="120" cy="120" r="70" fill="url(#greenGradient)" />
+</svg>

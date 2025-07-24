@@ -1,0 +1,49 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Beta Debug",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "debug",
+            "args": [
+                "--flavor",
+                "beta"
+            ],
+            "program": "lib/main.dart"
+        },
+        {
+            "name": "Live Debug",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "debug",
+            "args": [
+                "--flavor",
+                "live"
+            ],
+            "program": "lib/main.dart"
+        },
+        {
+            "name": "Beta Release",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release",
+            "args": [
+                "--flavor",
+                "beta"
+            ],
+            "program": "lib/main.dart"
+        },
+        {
+            "name": "Live Release",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release",
+            "args": [
+                "--flavor",
+                "live"
+            ],
+            "program": "lib/main.dart"
+        },
+    ]
+}

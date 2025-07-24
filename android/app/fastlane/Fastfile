@@ -1,0 +1,39 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:android)
+
+platform :android do
+  desc "Build app and deploy (internal testing beta)"
+  lane :build_deploy_internal_beta do
+    sh("flutter", "build", "appbundle", "--flavor", "beta", "./lib/main.dart")
+    upload_to_play_store(
+      package_name: 'com.flutterbase.beta',
+      track: 'internal',
+      release_status: 'draft',
+      aab: '../build/app/outputs/bundle/betaRelease/app-beta-release.aab'
+    )
+  end
+  desc "Build app and deploy (internal testing prod)"
+  lane :build_deploy_internal_live do
+    sh("flutter", "build", "appbundle", "--flavor", "live", "./lib/main.dart")
+    upload_to_play_store(
+      package_name: 'com.flutterbase.live',
+      track: 'internal',
+      release_status: 'draft',
+      aab: '../build/app/outputs/bundle/liveRelease/app-live-release.aab'
+    )
+  end
+end

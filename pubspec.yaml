@@ -1,0 +1,150 @@
+name: flutter_base
+description: "A new Flutter project."
+
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.8.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.20.2
+  intl_utils: ^2.8.11
+  cupertino_icons: ^1.0.8
+
+  # Configs
+  flutter_dotenv: ^5.2.1
+  sentry_flutter: ^9.5.0
+  go_router: ^16.0.0
+  dio: ^5.8.0+1
+  package_info_plus: ^8.3.0
+  flutter_bloc: ^9.1.1
+  flutter_secure_storage: ^9.2.4
+  shared_preferences: ^2.5.3
+  freezed_annotation: ^3.1.0
+  path_provider: ^2.1.5
+  path: ^1.9.1
+  permission_handler: ^12.0.0+1
+  webview_flutter: ^4.13.0
+  webview_flutter_wkwebview: ^3.22.1
+  webview_flutter_android: ^4.8.2
+  url_launcher: ^6.3.2
+  lottie: ^3.3.1
+  another_flushbar: ^1.12.30
+
+  # Firebase
+  firebase_core: ^3.15.2
+  firebase_auth: ^5.7.0
+  firebase_analytics: ^11.6.0
+  firebase_messaging: ^15.2.10
+  flutter_local_notifications: ^19.3.1
+  google_sign_in: ^7.1.1
+  sign_in_with_apple: ^7.0.1
+  crypto: ^3.0.6
+  app_tracking_transparency: ^2.0.6+1
+
+  # Utils 13
+  flutter_svg: ^2.2.0
+  cached_network_image: ^3.4.1
+  flutter_animate: ^4.5.2
+  flutter_animated_dialog_updated: ^1.0.1
+  dropdown_button2: ^2.3.9
+  skeletonizer: ^2.0.1+1
+  share_plus: ^11.0.0
+  flutter_html: ^3.0.0
+  appsflyer_sdk: ^6.16.21
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  flutter_flavorizr: ^2.4.1
+  flutter_launcher_icons: ^0.14.4
+  freezed: ^3.2.0
+  build_runner: ^2.6.0
+  yaml: ^3.1.3
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/fonts/
+    - assets/images/
+    - assets/icons/
+    - assets/lotties/
+    # - assets/videos/
+    - assets/rive/
+    - assets/lang/
+    - assets/lang/countries/
+    - .env.beta
+    - .env.live
+
+  fonts:
+    - family: ABCDiatype
+      fonts:
+        - asset: assets/fonts/abcdiatype-regular.otf
+          style: normal
+          weight: 400
+        - asset: assets/fonts/abcdiatype-medium.otf
+          style: normal
+          weight: 500
+        - asset: assets/fonts/abcdiatype-bold.otf
+          style: normal
+          weight: 700
+        - asset: assets/fonts/abcdiatype-regularitalic.otf
+          style: italic
+          weight: 400
+        - asset: assets/fonts/abcdiatype-mediumitalic.otf
+          style: italic
+          weight: 500
+        - asset: assets/fonts/abcdiatype-bolditalic.otf
+          style: italic
+          weight: 700
+
+flavorizr:
+  ide: "vscode"
+  app:
+    android:
+      flavorDimensions: "flavor-type"
+
+  flavors:
+    beta:
+      app:
+        name: "FlutterBase (Beta)"
+
+      android:
+        applicationId: "com.flutterbase.beta"
+        firebase:
+          config: ".firebase/beta/google-services.json"
+        customConfig:
+          signingConfig: signingConfigs.release_beta
+      ios:
+        bundleId: "com.flutterbase.beta"
+        firebase:
+          config: ".firebase/beta/GoogleService-Info.plist"
+
+    live:
+      app:
+        name: "FlutterBase"
+
+      android:
+        applicationId: "com.flutterbase.live"
+        firebase:
+          config: ".firebase/live/google-services.json"
+        customConfig:
+          signingConfig: signingConfigs.release_live
+      ios:
+        bundleId: "com.flutterbase.live"
+        firebase:
+          config: ".firebase/live/GoogleService-Info.plist"
+
+flutter_intl:
+  enabled: true
+  main_locale: es
+  arb_dir: lib/src/shared/presentation/l10n
+  output_dir: lib/src/shared/presentation/l10n/generated

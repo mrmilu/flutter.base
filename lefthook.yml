@@ -1,0 +1,23 @@
+pre-commit:
+  commands:
+    remove-google-services:
+      run: |
+        git reset HEAD -- ios/Runner/GoogleService-Info.plist
+        git checkout ios/Runner/GoogleService-Info.plist
+    analyze:
+      glob: "*.dart"
+      exclude:
+        - rive_native-0.0.6/*
+        - lib/src/shared/presentation/l10n/generated/*
+      run: fvm flutter analyze {staged_files}
+    format:
+      glob: "*.dart"
+      exclude:
+        - rive_native-0.0.6/*
+        - lib/src/shared/presentation/l10n/generated/*
+      run: fvm dart format $(find . -name "*.dart" -not \( -name "*.*freezed.dart" -o -name "*.g.dart" -o -name "*.gform.dart" \) | grep -v "^./lib/src/shared/presentation/l10n/generated/") --set-exit-if-changed {staged_files}
+commit-msg:
+  parallel: true
+  commands:
+    commitlint:
+      run: commitlint --edit $1

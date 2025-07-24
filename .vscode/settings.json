@@ -1,0 +1,23 @@
+{
+  "dart.flutterSdkPath": ".fvm/flutter_sdk",
+  // Remove .fvm files from search
+  "search.exclude": {
+    "**/.fvm": true
+  },
+  // Remove from file watching
+  "files.watcherExclude": {
+    "**/.fvm": true
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  "workbench.editorAssociations": {
+    "*.svg": "default"
+  },
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    "*_cubit.dart": "${capture}_state.dart,${capture}_cubit.freezed.dart, ${capture}_listeners.dart"
+  },
+  "editor.formatOnSave": true
+}

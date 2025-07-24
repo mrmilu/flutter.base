@@ -1,0 +1,10 @@
+git_url("git@bitbucket.org:mrmilu/ios-certificates.git")
+
+storage_mode("git")
+
+app_identifier(["com.flutterbase.beta", "com.flutterbase.live"])
+username("mobile@mrmilu.com")
+git_branch("flutterbase")
+team_id("TRJUDK7Y29")
+
+#type("development") # The default type, can be: appstore, adhoc, enterprise or development

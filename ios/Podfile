@@ -1,0 +1,74 @@
+# Uncomment this line to define a global platform for your project
+minimum_deployment_target = 13.0
+
+platform :ios, minimum_deployment_target
+
+# CocoaPods analytics sends network stats synchronously affecting flutter build latency.
+ENV['COCOAPODS_DISABLE_STATS'] = 'true'
+
+project 'Runner', {
+  'Debug-beta' => :debug,
+  'Profile-beta' => :release,
+  'Release-beta' => :release,
+  'Debug-live' => :debug,
+  'Profile-live' => :release,
+  'Release-live' => :release,
+}
+
+def flutter_root
+  generated_xcode_build_settings_path = File.expand_path(File.join('..', 'Flutter', 'Generated.xcconfig'), __FILE__)
+  unless File.exist?(generated_xcode_build_settings_path)
+    raise "#{generated_xcode_build_settings_path} must exist. If you're running pod install manually, make sure flutter pub get is executed first"
+  end
+
+  File.foreach(generated_xcode_build_settings_path) do |line|
+    matches = line.match(/FLUTTER_ROOT\=(.*)/)
+    return matches[1].strip if matches
+  end
+  raise "FLUTTER_ROOT not found in #{generated_xcode_build_settings_path}. Try deleting Generated.xcconfig, then run flutter pub get"
+end
+
+require File.expand_path(File.join('packages', 'flutter_tools', 'bin', 'podhelper'), flutter_root)
+
+flutter_ios_podfile_setup
+
+target 'Runner' do
+  use_frameworks!
+
+  flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
+  target 'RunnerTests' do
+    inherit! :search_paths
+  end
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    flutter_additional_ios_build_settings(target)
+
+    # native-change (added to make apple auth work with deployment target version)
+    target.build_configurations.each do |config|
+      # Ensure we set all Pods to match the minimum deployment target specified by the app.
+      # This ensures that we don't generate debug symbols for invalid architectures from the Pods
+      #
+      # https://github.com/CocoaPods/CocoaPods/issues/7111#issuecomment-573709158
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = minimum_deployment_target
+
+      # Xcode 14 asks for development team for GoogleSignIn Pod
+      if target.respond_to?(:product_type) and target.product_type == "com.apple.product-type.bundle"
+          target.build_configurations.each do |config|
+              config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
+          end
+      end
+      # Permission handler settings
+      config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= [
+        '$(inherited)',
+
+        ## dart: PermissionGroup.camera
+        'PERMISSION_CAMERA=1',
+
+        ## dart: PermissionGroup.photos
+        'PERMISSION_PHOTOS=1',
+      ]
+    end
+  end
+end

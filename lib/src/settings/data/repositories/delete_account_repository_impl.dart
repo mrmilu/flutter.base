@@ -1,0 +1,34 @@
+import 'dart:developer';
+
+import 'package:dio/dio.dart';
+
+import '../../../shared/helpers/result_or.dart';
+import '../../../shared/presentation/utils/extensions/dio_exception_extension.dart';
+import '../../domain/failures/delete_account_failure.dart';
+import '../../domain/interfaces/i_delete_account_repository.dart';
+
+class DeleteAccountRepositoryImpl extends IDeleteAccountRepository {
+  final Dio _httpClient;
+  DeleteAccountRepositoryImpl(this._httpClient);
+
+  @override
+  Future<ResultOr<DeleteAccountFailure>> deleteAccount() async {
+    try {
+      await _httpClient.delete(
+        '/api/users',
+      );
+
+      return ResultOr.success();
+    } on DioException catch (e) {
+      return ResultOr.failure(
+        e.toFailure(
+          DeleteAccountFailure.fromString,
+          DeleteAccountFailure.unknown,
+        ),
+      );
+    } catch (e, s) {
+      log('e, s', error: e, stackTrace: s);
+      return ResultOr.failure(DeleteAccountFailure.unknown);
+    }
+  }
+}
