@@ -3,10 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../auth/domain/interfaces/i_token_repository.dart';
 import '../../../../../shared/data/services/http_client.dart';
-import '../../../../../shared/helpers/extensions.dart';
 import '../../../../../shared/helpers/toasts.dart';
 import '../../../../../shared/presentation/providers/global_loader/global_loader_cubit.dart';
 import '../../../../../shared/presentation/router/app_router.dart';
+import '../../../../../shared/presentation/utils/extensions/buildcontext_extensions.dart';
 import '../../../../../shared/presentation/widgets/components/buttons/custom_elevated_button.dart';
 import '../../../../../shared/presentation/widgets/components/inputs/custom_text_field_widget.dart';
 import '../../../../data/repositories/personal_info_repository_impl.dart';

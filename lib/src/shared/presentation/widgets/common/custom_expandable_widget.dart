@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 
 import 'simple_block_widget.dart';
 
@@ -111,17 +110,15 @@ class _CustomExpandableWidgetState extends State<CustomExpandableWidget>
           SizeTransition(
             sizeFactor: _animation,
             child: ClipRect(
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child:
-                    Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: widget.children,
-                        )
-                        .animate(
-                          target: _isExpanded ? 1.0 : 0.0,
-                        )
-                        .fadeIn(),
+              child: FadeTransition(
+                opacity: _animation,
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: widget.children,
+                  ),
+                ),
               ),
             ),
           ),

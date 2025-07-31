@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../providers/theme_mode/theme_mode_cubit.dart';
 import '../router/app_router.dart';
 import '../router/page_names.dart';
-import '../utils/styles/colors.dart';
-import 'button_scale_widget.dart';
-import 'image_asset_widget.dart';
+import 'common/button_scale_widget.dart';
+import 'common/image_asset_widget.dart';
 
 class CustomAppBarWidget extends StatelessWidget {
   const CustomAppBarWidget({super.key});
@@ -13,7 +14,6 @@ class CustomAppBarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverAppBar(
       pinned: true,
-      backgroundColor: AppColors.specificBasicWhite,
       leading: Center(
         child: ButtonScaleWidget(
           onTap: () => routerApp.pushNamed(
@@ -48,17 +48,22 @@ class CustomAppBarWidget extends StatelessWidget {
         },
       ),
       actions: [
-        // ButtonScaleWidget(
-        //   onTap: () {},
-        //   child: const Padding(
-        //     padding: EdgeInsets.all(8.0),
-        //     child: ImageAssetWidget(
-        //       path: 'assets/icons/phone.svg',
-        //       width: 24,
-        //       height: 24,
-        //     ),
-        //   ),
-        // ),
+        BlocBuilder<ThemeModeCubit, ThemeModeState>(
+          builder: (context, state) {
+            return ButtonScaleWidget(
+              onTap: () {
+                context.read<ThemeModeCubit>().toggleTheme();
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Icon(
+                  state.isDarkMode ? Icons.dark_mode : Icons.light_mode,
+                  size: 24,
+                ),
+              ),
+            );
+          },
+        ),
         // Padding(
         //   padding: const EdgeInsets.only(right: 8.0),
         //   child: ButtonScaleWidget(

@@ -4,9 +4,11 @@ class CustomFailureWidget extends StatelessWidget {
   const CustomFailureWidget({
     super.key,
     required this.message,
+    this.textButton,
     required this.onTap,
   });
   final String message;
+  final String? textButton;
   final VoidCallback onTap;
 
   @override
@@ -23,7 +25,10 @@ class CustomFailureWidget extends StatelessWidget {
           const SizedBox(height: 16),
           ElevatedButton(
             onPressed: onTap,
-            child: const Text('Retry'),
+            child: Text(
+              textButton ?? 'Retry',
+              style: Theme.of(context).textTheme.labelLarge,
+            ),
           ),
         ],
       ),

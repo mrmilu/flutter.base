@@ -1,40 +1,52 @@
 import 'package:flutter/material.dart';
 
 import '../../../utils/styles/colors.dart';
-import '../../image_asset_widget.dart';
-import '../../text/text_body.dart';
+import '../../common/image_asset_widget.dart';
+import '../text/rm_text.dart';
 
 class CustomTagIconWidget extends StatelessWidget {
   const CustomTagIconWidget({
     super.key,
     required this.label,
     this.textColor,
-    this.backgroundColor = AppColors.background,
+    this.backgroundColor,
     this.borderColor,
     required this.iconPath,
     this.iconColor,
   });
+
   final String label;
   final Color? textColor;
-  final Color backgroundColor;
+  final Color? backgroundColor;
   final Color? borderColor;
   final String iconPath;
   final Color? iconColor;
 
   @override
   Widget build(BuildContext context) {
+    Color? effectiveBorderColor = borderColor;
+    if (borderColor == null && backgroundColor == null) {
+      final brightness = Theme.of(context).brightness;
+      effectiveBorderColor = brightness == Brightness.dark
+          ? Colors.white
+          : Colors.black;
+    }
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      constraints: const BoxConstraints(
-        minWidth: 88,
-      ),
+      constraints: const BoxConstraints(minWidth: 88),
       decoration: BoxDecoration(
         color: backgroundColor,
         borderRadius: BorderRadius.circular(80),
-        border: Border.all(
-          width: 1,
-          color: borderColor ?? backgroundColor,
-        ),
+        border: effectiveBorderColor != null || backgroundColor != null
+            ? Border.all(
+                width: 1,
+                color:
+                    effectiveBorderColor ??
+                    backgroundColor ??
+                    AppColors.background,
+              )
+            : null,
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -43,10 +55,12 @@ class CustomTagIconWidget extends StatelessWidget {
             path: iconPath,
             width: 24,
             height: 24,
+            color: iconColor,
+            useThemeColor: iconColor == null,
           ),
           const SizedBox(width: 8),
           Flexible(
-            child: TextBody.two(
+            child: RMText.bodyMedium(
               label,
               color: textColor,
               textAlign: TextAlign.center,
@@ -62,14 +76,14 @@ class CustomTagIconWidget extends StatelessWidget {
     required String iconPath,
     Color? textColor,
     Color? borderColor,
-    Color backgroundColor = AppColors.background,
+    Color? backgroundColor,
     Color? iconColor,
   }) {
     return CustomTagIconWidget(
       label: label,
       iconPath: iconPath,
       textColor: textColor,
-      backgroundColor: backgroundColor,
+      backgroundColor: backgroundColor ?? Colors.transparent,
       borderColor: borderColor,
       iconColor: iconColor,
     );
@@ -79,8 +93,8 @@ class CustomTagIconWidget extends StatelessWidget {
     required String label,
     required String iconPath,
     Color? textColor,
-    Color borderColor = AppColors.specificBasicGrey,
-    Color backgroundColor = AppColors.background,
+    Color? borderColor,
+    Color? backgroundColor,
     Color? iconColor,
   }) {
     return CustomTagIconWidget(

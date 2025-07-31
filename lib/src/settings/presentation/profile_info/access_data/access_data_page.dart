@@ -4,10 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../auth/presentation/providers/auth/auth_cubit.dart';
 import '../../../../shared/domain/types/user_auth_provider_type.dart';
-import '../../../../shared/helpers/extensions.dart';
 import '../../../../shared/presentation/router/app_router.dart';
 import '../../../../shared/presentation/router/page_names.dart';
-import '../../../../shared/presentation/widgets/text/text_title.dart';
+import '../../../../shared/presentation/utils/extensions/buildcontext_extensions.dart';
+import '../../../../shared/presentation/widgets/components/text/rm_text.dart';
 import '../../../../shared/presentation/widgets/wrapper_bottom_sheet_with_button.dart';
 import '../../widgets/settings_item_widget.dart';
 import 'required_password/modal_requiered_password_widget.dart';
@@ -19,7 +19,7 @@ class ProfileInfoAccessDataPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: TextTitle.two(
+        title: RMText.titleMedium(
           context.cl.translate('pages.profileInfoAccessData.title'),
         ),
       ),

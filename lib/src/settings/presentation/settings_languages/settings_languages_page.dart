@@ -4,13 +4,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../auth/domain/interfaces/i_token_repository.dart';
 import '../../../locale/presentation/providers/locale_cubit.dart';
 import '../../../shared/data/services/http_client.dart';
-import '../../../shared/helpers/extensions.dart';
 import '../../../shared/helpers/toasts.dart';
 import '../../../shared/presentation/providers/global_loader/global_loader_cubit.dart';
+import '../../../shared/presentation/utils/extensions/buildcontext_extensions.dart';
 import '../../../shared/presentation/utils/styles/colors.dart';
-import '../../../shared/presentation/widgets/components/inputs/custom_languages_field_widget.dart';
-import '../../../shared/presentation/widgets/text/text_body.dart';
-import '../../../shared/presentation/widgets/text/text_title.dart';
+import '../../../shared/presentation/widgets/components/inputs/custom_dropdown_field_package_widget.dart';
+import '../../../shared/presentation/widgets/components/text/rm_text.dart';
 import '../../data/repositories/change_language_repository_impl.dart';
 import '../../domain/interfaces/i_change_language_repository.dart';
 import '../../domain/types/app_language_type.dart';
@@ -54,7 +53,7 @@ class SettingsLanguagesView extends StatelessWidget {
         child: SafeArea(
           child: Scaffold(
             appBar: AppBar(
-              title: TextTitle.two(
+              title: RMText.titleMedium(
                 context.cl.translate('pages.profileInfoConfigLanguages.title'),
               ),
             ),
@@ -65,7 +64,7 @@ class SettingsLanguagesView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 20),
-                    TextBody.two(
+                    RMText.bodyMedium(
                       context.cl.translate(
                         'pages.profileInfoConfigLanguages.subtitle',
                       ),
@@ -79,7 +78,9 @@ class SettingsLanguagesView extends StatelessWidget {
                               (element) =>
                                   element.name == stateLocale.languageCode,
                             );
-                        return CustomLanguagesFieldWidget<AppLanguageType>(
+                        return CustomDowndownFieldPackageWidget<
+                          AppLanguageType
+                        >(
                           title: context.cl.translate(
                             'pages.profileInfoConfigLanguages.form.language',
                           ),

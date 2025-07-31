@@ -1,61 +1,115 @@
 import 'package:flutter/material.dart';
 
-import '../../../utils/styles/text_styles.dart';
-import '../../image_asset_widget.dart';
+import '../../../utils/styles/colors.dart';
+import '../../common/image_asset_widget.dart';
 
+/// Widget de botón de texto personalizado del design system
+///
+/// Uso:
+/// ```dart
+/// CustomTextButton.primary(
+///   key: Key('my-text-button'),
+///   label: 'Mi Botón',
+///   onPressed: () {},
+/// )
+/// ```
 class CustomTextButton extends StatelessWidget {
-  const CustomTextButton({
-    super.key,
-    this.enabled = true,
-    required this.label,
-    required this.onPressed,
-    this.iconPath,
-    this.textStyle = TextStyles.body1,
-    this.colorText,
-  });
-  const CustomTextButton._({
-    required this.enabled,
-    required this.label,
-    required this.onPressed,
-    this.iconPath,
-    this.textStyle = TextStyles.body1,
-    this.colorText,
-  });
-  final bool enabled;
+  /// Estilo del botón
+  final CustomTextButtonStyle _style;
+
+  /// Texto del botón
   final String label;
-  final String? iconPath;
-  final VoidCallback onPressed;
-  final TextStyle textStyle;
+
+  /// Función que se ejecuta al presionar el botón
+  final VoidCallback? onPressed;
+
+  /// Si el botón está habilitado
+  final bool enabled;
+
+  /// Estilo de texto personalizado
+  final TextStyle? textStyle;
+
+  /// Color del texto personalizado
   final Color? colorText;
+
+  /// Ruta del icono (solo para estilo icon)
+  final String? iconPath;
+
+  const CustomTextButton._({
+    super.key,
+    required CustomTextButtonStyle style,
+    required this.label,
+    required this.onPressed,
+    this.enabled = true,
+    this.textStyle,
+    this.colorText,
+    this.iconPath,
+  }) : _style = style;
+
+  /// Crea un botón de texto con estilo primario
+  const CustomTextButton.primary({
+    Key? key,
+    required String label,
+    required VoidCallback? onPressed,
+    bool enabled = true,
+    TextStyle? textStyle,
+    Color? colorText,
+  }) : this._(
+         key: key,
+         style: CustomTextButtonStyle.primary,
+         label: label,
+         onPressed: onPressed,
+         enabled: enabled,
+         textStyle: textStyle,
+         colorText: colorText,
+       );
+
+  /// Crea un botón de texto con icono
+  const CustomTextButton.icon({
+    Key? key,
+    required String label,
+    required String iconPath,
+    required VoidCallback? onPressed,
+    bool enabled = true,
+    TextStyle? textStyle,
+    Color? colorText,
+  }) : this._(
+         key: key,
+         style: CustomTextButtonStyle.icon,
+         label: label,
+         onPressed: onPressed,
+         enabled: enabled,
+         textStyle: textStyle,
+         colorText: colorText,
+         iconPath: iconPath,
+       );
 
   @override
   Widget build(BuildContext context) {
+    final effectiveOnPressed = enabled ? onPressed : null;
+    final textColor = _getTextColor(context);
+
     return TextButton(
-      onPressed: enabled ? onPressed : null,
+      onPressed: effectiveOnPressed,
       style: TextButton.styleFrom(
         padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 8),
-        foregroundColor: Colors.black,
-        overlayColor: Colors.transparent,
+        foregroundColor: textColor,
+        disabledForegroundColor: AppColors.disabled,
+        // overlayColor: Colors.transparent,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Flexible(
-            child: Text(
-              label,
-              style: textStyle.copyWith(
-                color: enabled ? colorText ?? Colors.black : Colors.grey,
-              ),
-            ),
-          ),
-          if (iconPath != null) ...[
+          Flexible(child: Text(label, style: textStyle)),
+          if (_style == CustomTextButtonStyle.icon &&
+              iconPath?.isNotEmpty == true) ...[
             const SizedBox(width: 8),
             ImageAssetWidget(
               path: iconPath!,
               height: 16,
               width: 16,
-              color: enabled ? colorText ?? Colors.black : Colors.grey,
+              color: _getTextColor(context),
             ),
           ],
         ],
@@ -63,21 +117,16 @@ class CustomTextButton extends StatelessWidget {
     );
   }
 
-  factory CustomTextButton.icon({
-    required String label,
-    required String iconPath,
-    required VoidCallback onPressed,
-    bool enabled = true,
-    TextStyle textStyle = TextStyles.body1,
-    Color? colorText,
-  }) {
-    return CustomTextButton._(
-      enabled: enabled,
-      label: label,
-      iconPath: iconPath,
-      onPressed: onPressed,
-      textStyle: textStyle,
-      colorText: colorText,
-    );
+  Color _getTextColor(BuildContext context) {
+    if (!enabled) return AppColors.disabled;
+
+    // Si se especifica un color personalizado, usarlo
+    if (colorText != null) return colorText!;
+
+    // Si no, usar el color primario que se adapta al tema
+    return AppColors.primary;
   }
 }
+
+/// Estilos disponibles para CustomTextButton
+enum CustomTextButtonStyle { primary, icon }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../utils/extensions/buildcontext_extensions.dart';
 import '../../../utils/styles/colors.dart';
-import '../../../utils/styles/text_styles.dart';
-import '../../row_icon_text_widget.dart';
+import '../../common/custom_row_icon_text_widget.dart';
 import 'template_verification_code.dart';
 
 class CustomCodeFieldWidget extends StatelessWidget {
@@ -40,17 +40,14 @@ class CustomCodeFieldWidget extends StatelessWidget {
           decoration: BoxDecoration(
             color: AppColors.specificBasicWhite,
             borderRadius: BorderRadius.circular(32),
-            border: Border.all(
-              width: 1,
-              color: _getBorderColor(),
-            ),
+            border: Border.all(width: 1, color: _getBorderColor()),
           ),
           alignment: Alignment.center,
           child: Center(
-            child: VerificationCode(
+            child: TemplateVerificationCode(
               enabled: true,
               length: 6,
-              textStyle: TextStyles.body2,
+              textStyle: context.textTheme.bodyMedium,
               keyboardType: TextInputType.number,
               underlineColor: Colors.white,
               cursorColor: Colors.black,
@@ -68,12 +65,8 @@ class CustomCodeFieldWidget extends StatelessWidget {
         if ((errorText != null && showError) || infoText != null) ...[
           const SizedBox(height: 8),
           showError
-              ? RowIconTextWidget.warning(
-                  errorText!,
-                )
-              : RowIconTextWidget.info(
-                  infoText!,
-                ),
+              ? CustomRowIconTextWidget.warning(errorText!)
+              : CustomRowIconTextWidget.info(infoText!),
         ],
       ],
     );

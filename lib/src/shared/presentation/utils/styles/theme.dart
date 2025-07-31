@@ -8,10 +8,22 @@ const transparentBottomSheetTheme = BottomSheetThemeData(
   surfaceTintColor: Colors.transparent,
 );
 
-final appThemeData = ThemeData(
+final lightColorScheme = const ColorScheme.light(
+  brightness: Brightness.light,
+  primary: AppColors.primary,
+  onPrimary: AppColors.specificBasicWhite,
+  secondary: AppColors.secondary,
+  onSecondary: AppColors.specificBasicWhite,
+  onError: AppColors.specificBasicWhite,
+  surface: AppColors.specificBasicWhite,
+  onSurface: AppColors.specificContentHigh,
+);
+
+final appThemeDataLight = ThemeData(
+  colorScheme: lightColorScheme, // Add color scheme for light theme
   dividerColor: AppColors.specificBorderLow,
   splashFactory: NoSplash.splashFactory,
-  highlightColor: AppColors.specificSurfaceMid,
+  highlightColor: const Color(0xffF9ECE1),
   appBarTheme: const AppBarTheme(
     elevation: 0,
     backgroundColor: AppColors.specificBasicWhite,
@@ -21,7 +33,7 @@ final appThemeData = ThemeData(
   ),
   scaffoldBackgroundColor: AppColors.specificBasicWhite,
   bottomSheetTheme: const BottomSheetThemeData(
-    backgroundColor: AppColors.specificSurfaceLow,
+    backgroundColor: Color(0xffFFFFFF),
     surfaceTintColor: Colors.transparent,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(
@@ -29,33 +41,8 @@ final appThemeData = ThemeData(
       ),
     ),
   ),
-  textTheme: const TextTheme().apply(
-    bodyColor: AppColors.specificContentHigh,
-    displayColor: AppColors.specificContentHigh,
-  ),
-  inputDecorationTheme: const InputDecorationTheme(
-    // hintStyle: TextStyles.body2.copyWith(color: AppColors.specificContentLow),
-    // floatingLabelStyle: TextStyles.caption1,
-    // helperStyle:
-    //     TextStyles.caption1.copyWith(color: AppColors.specificContentLow),
-    // errorStyle:
-    //     TextStyles.caption1.copyWith(color: AppColors.specificSemanticDanger),
-    // contentPadding: const EdgeInsets.symmetric(vertical: 12),
-    // enabledBorder: const UnderlineInputBorder(
-    //   borderSide: BorderSide(color: AppColors.specificBorderLow),
-    // ),
-    // disabledBorder: UnderlineInputBorder(
-    //   borderSide: BorderSide(
-    //     color: AppColors.specificBorderLow.withAlpha((0.25 * 255).toInt()),
-    //   ),
-    // ),
-    // errorBorder: const UnderlineInputBorder(
-    //   borderSide: BorderSide(color: AppColors.specificSemanticDanger),
-    // ),
-    // focusedBorder: const UnderlineInputBorder(
-    //   borderSide: BorderSide(color: AppColors.specificSemanticPrimary),
-    // ),
-  ),
+  textTheme: appTextStyles,
+  inputDecorationTheme: const InputDecorationTheme(),
   outlinedButtonTheme: OutlinedButtonThemeData(
     style: ButtonStyle(
       backgroundColor: WidgetStateProperty.all(Colors.transparent),
@@ -68,7 +55,7 @@ final appThemeData = ThemeData(
           borderRadius: BorderRadius.circular(100),
         ),
       ),
-      textStyle: WidgetStateProperty.all(TextStyles.title4),
+      textStyle: WidgetStateProperty.all(AppTextStyles.title4),
     ),
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
@@ -84,7 +71,87 @@ final appThemeData = ThemeData(
           borderRadius: BorderRadius.circular(100),
         ),
       ),
-      textStyle: WidgetStateProperty.all(TextStyles.title4),
+      textStyle: WidgetStateProperty.all(AppTextStyles.title4),
     ),
+  ),
+);
+
+final darkColorScheme = const ColorScheme.dark(
+  brightness: Brightness.dark,
+  primary: AppColors.primary,
+  onPrimary:
+      AppColors.specificBasicWhite, // Changed to white for better contrast
+  secondary: AppColors.secondary,
+  onSecondary: AppColors.specificBasicWhite, // Changed to white
+  onError: AppColors.specificBasicWhite, // Changed to white
+  surface:
+      AppColors.specificBasicSemiBlack, // Surface should be dark in dark mode
+  onSurface: AppColors.specificBasicWhite, // Text on background should be white
+);
+
+final appThemeDataDark = ThemeData(
+  colorScheme: darkColorScheme, // Use the dark color scheme
+  dividerColor: AppColors.specificBorderLow,
+  splashFactory: NoSplash.splashFactory,
+  highlightColor: const Color(0xffF9ECE1),
+  appBarTheme: const AppBarTheme(
+    elevation: 0,
+    backgroundColor: AppColors.specificBasicSemiBlack,
+    toolbarHeight: 56,
+    surfaceTintColor: Colors.transparent,
+    foregroundColor: AppColors.specificBasicWhite, // Changed to white
+    iconTheme: IconThemeData(
+      color: AppColors.specificBasicWhite, // Explicit icon color for AppBar
+    ),
+  ),
+  scaffoldBackgroundColor: AppColors.specificBasicSemiBlack,
+  bottomSheetTheme: const BottomSheetThemeData(
+    backgroundColor:
+        AppColors.specificBasicSemiBlack, // Dark background for dark mode
+    surfaceTintColor: Colors.transparent,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(
+        top: Radius.circular(24),
+      ),
+    ),
+  ),
+  textTheme: appTextStyles,
+  inputDecorationTheme: const InputDecorationTheme(),
+  outlinedButtonTheme: OutlinedButtonThemeData(
+    style: ButtonStyle(
+      backgroundColor: WidgetStateProperty.all(Colors.transparent),
+      foregroundColor: WidgetStateProperty.all(AppColors.specificBasicWhite),
+      padding: WidgetStateProperty.all(
+        const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+      ),
+      shape: WidgetStateProperty.all(
+        RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(100),
+        ),
+      ),
+      textStyle: WidgetStateProperty.all(AppTextStyles.title4),
+    ),
+  ),
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ButtonStyle(
+      elevation: WidgetStateProperty.all(0),
+      backgroundColor: WidgetStateProperty.all(AppColors.primary),
+      foregroundColor: WidgetStateProperty.all(AppColors.specificBasicWhite),
+      padding: WidgetStateProperty.all(
+        const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+      ),
+      shape: WidgetStateProperty.all(
+        RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(100),
+        ),
+      ),
+      textStyle: WidgetStateProperty.all(AppTextStyles.title4),
+    ),
+  ),
+  iconTheme: const IconThemeData(
+    color: AppColors.specificBasicWhite,
+  ),
+  primaryIconTheme: const IconThemeData(
+    color: AppColors.specificBasicWhite,
   ),
 );

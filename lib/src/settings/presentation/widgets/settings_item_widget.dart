@@ -4,8 +4,8 @@ import 'package:flutter_svg/svg.dart';
 import '../../../shared/presentation/utils/extensions/color_extension.dart';
 import '../../../shared/presentation/utils/styles/colors.dart';
 import '../../../shared/presentation/utils/styles/text_styles.dart';
-import '../../../shared/presentation/widgets/image_asset_widget.dart';
-import '../../../shared/presentation/widgets/image_network_widget.dart';
+import '../../../shared/presentation/widgets/common/image_asset_widget.dart';
+import '../../../shared/presentation/widgets/common/image_network_widget.dart';
 
 class SettingsItemWidget extends StatelessWidget {
   const SettingsItemWidget({
@@ -79,7 +79,7 @@ class SettingsItemWidget extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style: TextStyles.body1.copyWith(
+                    style: AppTextStyles.body1.copyWith(
                       color: isActive
                           ? Colors.black
                           : AppColors.onBackground.wOpacity(0.3),
@@ -89,9 +89,9 @@ class SettingsItemWidget extends StatelessWidget {
                     SizedBox(height: isProfileImage ? 12 : 4),
                     Text(
                       subtitle!,
-                      style: TextStyles.caption1.copyWith(
+                      style: AppTextStyles.caption1.copyWith(
                         color: isActive
-                            ? AppColors.grey
+                            ? AppColors.specificBasicGrey
                             : AppColors.onBackground.wOpacity(0.3),
                       ),
                     ),

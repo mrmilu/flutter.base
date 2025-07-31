@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../utils/styles/colors.dart';
-import '../../text/text_body.dart';
-import '../../text/text_title.dart';
+import '../text/rm_text.dart';
 
 class CustomSliderWidget extends StatefulWidget {
   const CustomSliderWidget({
@@ -55,7 +54,7 @@ class _CustomSliderWidgetState extends State<CustomSliderWidget> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        TextTitle.two(widget.min.toInt().toString()),
+        RMText.bodyMedium(widget.min.toInt().toString()),
         const SizedBox(width: 4),
         Expanded(
           child: LayoutBuilder(
@@ -84,7 +83,7 @@ class _CustomSliderWidgetState extends State<CustomSliderWidget> {
                       child: SizedBox(
                         width: labelWidth,
                         child: Center(
-                          child: TextBody.two(
+                          child: RMText.bodyMedium(
                             _selectedValue.toInt().toString(),
                           ),
                         ),
@@ -104,7 +103,7 @@ class _CustomSliderWidgetState extends State<CustomSliderWidget> {
                         divisions: widget.divisions ?? division(),
                         onChanged: widget.isDisabled ? null : _updateValue,
                         activeColor: AppColors.primary,
-                        thumbColor: Colors.black,
+                        thumbColor: thumbColor,
                         inactiveColor: Colors.grey[300],
                       ),
                     ),
@@ -115,8 +114,14 @@ class _CustomSliderWidgetState extends State<CustomSliderWidget> {
           ),
         ),
         const SizedBox(width: 4),
-        TextTitle.two(widget.max.toInt().toString()),
+        RMText.titleMedium(widget.max.toInt().toString()),
       ],
     );
+  }
+
+  Color? get thumbColor {
+    final brightness = Theme.of(context).brightness;
+    final color = brightness == Brightness.dark ? Colors.white : Colors.black;
+    return color;
   }
 }

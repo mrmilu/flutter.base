@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../../utils/extensions/buildcontext_extensions.dart';
 import '../../../utils/styles/colors.dart';
-import '../../../utils/styles/text_styles.dart';
-import '../../row_icon_text_widget.dart';
-import '../../text/text_body.dart';
+import '../../common/custom_row_icon_text_widget.dart';
+import '../text/rm_text.dart';
 
 class CustomTextFieldWidget extends StatefulWidget {
   final FormFieldSetter<String>? onSaved;
@@ -136,7 +136,7 @@ class _CustomTextFieldWidgetState extends State<CustomTextFieldWidget> {
                     color:
                         widget.backgroundColor ??
                         (widget.readOnly
-                            ? AppColors.background
+                            ? AppColors.specificBasicGrey
                             : AppColors.specificBasicWhite),
                     borderRadius: BorderRadius.circular(widget.borderRadius),
                     border: widget.showBorder
@@ -145,6 +145,8 @@ class _CustomTextFieldWidgetState extends State<CustomTextFieldWidget> {
                             color:
                                 (widget.showError && widget.errorText != null)
                                 ? AppColors.specificSemanticError
+                                : !widget.enabled
+                                ? AppColors.disabled
                                 : widget.borderColor ??
                                       (widget.readOnly
                                           ? AppColors.specificBasicGrey
@@ -182,7 +184,9 @@ class _CustomTextFieldWidgetState extends State<CustomTextFieldWidget> {
                               onChanged: widget.onChanged,
                               controller: widget.controller,
                               validator: widget.validator,
-                              style: widget.textStyle ?? TextStyles.body2,
+                              style:
+                                  widget.textStyle ??
+                                  context.textTheme.bodyMedium,
                               keyboardType: widget.keyboardType,
                               textAlign: widget.textAlign ?? TextAlign.start,
                               maxLines: widget.maxLines,
@@ -208,7 +212,8 @@ class _CustomTextFieldWidgetState extends State<CustomTextFieldWidget> {
                                               _obscureText
                                                   ? Icons.visibility_off
                                                   : Icons.visibility,
-                                              color: AppColors.grey,
+                                              color:
+                                                  AppColors.specificBasicGrey,
                                             ),
                                             onPressed: () {
                                               setState(() {
@@ -218,18 +223,18 @@ class _CustomTextFieldWidgetState extends State<CustomTextFieldWidget> {
                                           )
                                         : widget.suffixIcon,
                                     label: widget.labelText != null
-                                        ? TextBody.two(
+                                        ? RMText.bodyMedium(
                                             widget.labelText!,
                                             color: widget.enabled
                                                 ? AppColors.specificBasicBlack
-                                                : AppColors.grey,
+                                                : AppColors.specificBasicGrey,
                                           )
                                         : null,
                                     contentPadding:
                                         widget.contentPadding ??
                                         const EdgeInsets.only(top: 0),
                                     counterStyle: const TextStyle(
-                                      color: AppColors.grey,
+                                      color: AppColors.specificBasicGrey,
                                     ),
                                     suffixIconConstraints: const BoxConstraints(
                                       maxWidth: 60,
@@ -244,9 +249,7 @@ class _CustomTextFieldWidgetState extends State<CustomTextFieldWidget> {
                             const SizedBox(
                               height: 20,
                               width: 20,
-                              child: CircularProgressIndicator(
-                                strokeWidth: 2,
-                              ),
+                              child: CircularProgressIndicator(strokeWidth: 2),
                             ),
                           if (widget.isAccepted)
                             const Icon(
@@ -265,12 +268,8 @@ class _CustomTextFieldWidgetState extends State<CustomTextFieldWidget> {
               widget.infoText != null) ...[
             const SizedBox(height: 6),
             widget.showError && widget.errorText != null
-                ? RowIconTextWidget.error(
-                    widget.errorText!,
-                  )
-                : RowIconTextWidget.info(
-                    widget.infoText!,
-                  ),
+                ? CustomRowIconTextWidget.error(widget.errorText!)
+                : CustomRowIconTextWidget.info(widget.infoText!),
           ],
         ],
       ),

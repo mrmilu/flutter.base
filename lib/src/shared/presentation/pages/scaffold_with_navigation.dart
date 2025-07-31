@@ -1,4 +1,4 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 
@@ -18,6 +18,8 @@ class ScaffoldWithNavigation extends StatelessWidget {
     final paddingBottom = MediaQuery.paddingOf(context).bottom - 14 <= 0
         ? 0.0
         : MediaQuery.paddingOf(context).bottom - 14;
+    final brightness = Theme.of(context).brightness;
+    final isDarkMode = brightness == Brightness.dark;
     return Column(
       children: [
         Expanded(
@@ -32,7 +34,9 @@ class ScaffoldWithNavigation extends StatelessWidget {
         ),
         Container(
           height: paddingBottom,
-          color: AppColors.specificBasicWhite,
+          color: isDarkMode
+              ? AppColors.specificBasicSemiBlack
+              : AppColors.specificBasicWhite,
         ),
       ],
     );

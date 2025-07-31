@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../text/text_body.dart';
+import '../components/text/rm_text.dart';
 
 class PointWithTextWidget extends StatelessWidget {
   const PointWithTextWidget({
@@ -31,7 +31,7 @@ class PointWithTextWidget extends StatelessWidget {
         Flexible(
           child:
               child ??
-              TextBody.two(
+              RMText.bodyMedium(
                 title,
                 height: 1.5,
               ),

@@ -27,10 +27,7 @@ class CircularProgress extends StatelessWidget {
       colorScheme: themeData.colorScheme.copyWith(secondary: _indicatorColor),
     );
 
-    return Theme(
-      data: themeData,
-      child: _getPlatformIndicator,
-    );
+    return Theme(data: themeData, child: _getPlatformIndicator);
   }
 
   Widget get _getPlatformIndicator {

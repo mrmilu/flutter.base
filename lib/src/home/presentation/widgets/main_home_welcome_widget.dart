@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../auth/presentation/providers/auth/auth_cubit.dart';
-import '../../../shared/helpers/extensions.dart';
-import '../../../shared/presentation/widgets/text/text_title.dart';
+import '../../../shared/presentation/utils/extensions/buildcontext_extensions.dart';
+import '../../../shared/presentation/widgets/components/text/rm_text.dart';
 
 class MainHomeWelcomeWidget extends StatelessWidget {
   const MainHomeWelcomeWidget({super.key});
@@ -21,7 +21,7 @@ class MainHomeWelcomeWidget extends StatelessWidget {
                 builder: (context, stateAuth) {
                   final name = stateAuth.user?.name ?? 'Unkown';
                   return Expanded(
-                    child: TextTitle.two(
+                    child: RMText.titleMedium(
                       context.cl.translate('pages.mainHome.title', {
                         'name': name,
                       }),

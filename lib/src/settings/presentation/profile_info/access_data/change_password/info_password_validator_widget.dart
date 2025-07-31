@@ -5,7 +5,7 @@ import '../../../../../shared/domain/failures_extensions/password_failure_extens
 import '../../../../../shared/domain/vos/password_vos.dart';
 import '../../../../../shared/presentation/utils/styles/colors.dart';
 import '../../../../../shared/presentation/utils/styles/text_styles.dart';
-import '../../../../../shared/presentation/widgets/image_asset_widget.dart';
+import '../../../../../shared/presentation/widgets/common/image_asset_widget.dart';
 
 class InfoPasswordValidatorWidget extends StatelessWidget {
   const InfoPasswordValidatorWidget({
@@ -85,7 +85,7 @@ class InfoPasswordValidatorWidget extends StatelessWidget {
                 TextSpan(
                   text:
                       '${PasswordFailure.minLength(8).toTranslation(context)}\n',
-                  style: TextStyles.caption1.copyWith(
+                  style: AppTextStyles.caption1.copyWith(
                     color: getColorMinLength(),
                     height: 1.5,
                   ),
@@ -93,7 +93,7 @@ class InfoPasswordValidatorWidget extends StatelessWidget {
                 TextSpan(
                   text:
                       '${PasswordFailure.includeUppercase().toTranslation(context)}\n',
-                  style: TextStyles.caption1.copyWith(
+                  style: AppTextStyles.caption1.copyWith(
                     color: getColorIncludeUppercase(),
                     height: 1.5,
                   ),
@@ -101,14 +101,14 @@ class InfoPasswordValidatorWidget extends StatelessWidget {
                 TextSpan(
                   text:
                       '${PasswordFailure.includeLowercase().toTranslation(context)}\n',
-                  style: TextStyles.caption1.copyWith(
+                  style: AppTextStyles.caption1.copyWith(
                     color: getColorIncludeLowercase(),
                     height: 1.5,
                   ),
                 ),
                 TextSpan(
                   text: PasswordFailure.includeDigit().toTranslation(context),
-                  style: TextStyles.caption1.copyWith(
+                  style: AppTextStyles.caption1.copyWith(
                     color: getColorIncludeDigit(),
                     height: 1.5,
                   ),

@@ -5,18 +5,17 @@ import '../../../auth/domain/interfaces/i_token_repository.dart';
 import '../../../auth/presentation/pages/initial_page.dart';
 import '../../../auth/presentation/providers/auth/auth_cubit.dart';
 import '../../../shared/data/services/http_client.dart';
-import '../../../shared/helpers/extensions.dart';
 import '../../../shared/helpers/toasts.dart';
 import '../../../shared/presentation/providers/global_loader/global_loader_cubit.dart';
 import '../../../shared/presentation/router/app_router.dart';
 import '../../../shared/presentation/router/page_names.dart';
 import '../../../shared/presentation/utils/const.dart';
+import '../../../shared/presentation/utils/extensions/buildcontext_extensions.dart';
 import '../../../shared/presentation/utils/styles/colors.dart';
 import '../../../shared/presentation/widgets/common/point_with_text_widget.dart';
 import '../../../shared/presentation/widgets/components/buttons/custom_elevated_button.dart';
 import '../../../shared/presentation/widgets/components/buttons/custom_outlined_button.dart';
-import '../../../shared/presentation/widgets/text/text_body.dart';
-import '../../../shared/presentation/widgets/text/text_title.dart';
+import '../../../shared/presentation/widgets/components/text/rm_text.dart';
 import '../../../shared/presentation/widgets/wrapper_bottom_sheet_with_button.dart';
 import '../../data/repositories/delete_account_repository_impl.dart';
 import '../../domain/interfaces/i_delete_account_repository.dart';
@@ -101,12 +100,12 @@ class ModalDeleteAccountWidgetContent extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         const SizedBox(height: 20),
-                        TextTitle.four(
+                        RMText.titleSmall(
                           context.cl.translate('modals.deleteAccount.subtitle'),
                           height: 1.5,
                         ),
                         const SizedBox(height: 20),
-                        TextBody.two(
+                        RMText.bodyMedium(
                           context.cl.translate(
                             'modals.deleteAccount.description.first',
                           ),
@@ -136,12 +135,12 @@ class ModalDeleteAccountWidgetContent extends StatelessWidget {
                             ),
                           ),
                         ),
-                        TextBody.two(
+                        RMText.bodyMedium(
                           context.cl.translate('modals.deleteAccount.warning'),
                           height: 1.5,
                         ),
                         const SizedBox(height: 20),
-                        TextTitle.four(
+                        RMText.titleSmall(
                           context.cl.translate(
                             'modals.deleteAccount.confirmation',
                           ),

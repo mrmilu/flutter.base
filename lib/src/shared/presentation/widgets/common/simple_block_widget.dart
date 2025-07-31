@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../utils/styles/colors.dart';
+import '../../utils/styles/colors.dart';
 
 class SimpleBlockWidget extends StatelessWidget {
   const SimpleBlockWidget({
@@ -43,7 +43,7 @@ class SimpleBlockWidget extends StatelessWidget {
       padding: padding,
       borderRadius: borderRadius,
       backgroundColor: backgroundColor,
-      border: Border.all(color: bordeColor ?? AppColors.specificBasicGrey),
+      border: Border.all(color: bordeColor ?? AppColors.disabled),
       child: child,
     );
   }

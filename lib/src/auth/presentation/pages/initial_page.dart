@@ -8,8 +8,7 @@ import '../../../shared/presentation/providers/global_loader/global_loader_cubit
 import '../../../shared/presentation/router/app_router.dart';
 import '../../../shared/presentation/router/page_names.dart';
 import '../../../shared/presentation/utils/styles/colors.dart';
-import '../../../shared/presentation/widgets/common/ente_anim_widget.dart';
-import '../../../shared/presentation/widgets/image_asset_widget.dart';
+import '../../../shared/presentation/widgets/common/image_asset_widget.dart';
 import '../../domain/failures/oauth_sign_in_failure.dart';
 import '../../domain/failures_extensions/oauth_sign_in_failure_extension.dart';
 import '../../domain/failures_extensions/signin_failure_extension.dart';
@@ -162,19 +161,6 @@ class _InitialViewState extends State<InitialView> {
         resizeToAvoidBottomInset: false,
         body: Stack(
           children: [
-            Positioned(
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: MediaQuery.sizeOf(context).height - 200,
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: Transform.scale(
-                  scale: 4,
-                  child: const EnteAnimWidget(),
-                ),
-              ),
-            ),
             Positioned(
               left: 0,
               right: 0,

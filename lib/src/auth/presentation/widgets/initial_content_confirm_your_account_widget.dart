@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../shared/helpers/extensions.dart';
 import '../../../shared/presentation/utils/const.dart';
+import '../../../shared/presentation/utils/extensions/buildcontext_extensions.dart';
 import '../../../shared/presentation/utils/styles/colors.dart';
 import '../../../shared/presentation/widgets/components/buttons/custom_outlined_button.dart';
-import '../../../shared/presentation/widgets/text/text_body.dart';
-import '../../../shared/presentation/widgets/text/text_title.dart';
+import '../../../shared/presentation/widgets/components/text/rm_text.dart';
 import '../pages/initial_page.dart';
 import '../providers/auth/auth_cubit.dart';
 import '../providers/validate_email/validate_email_cubit.dart';
@@ -48,11 +47,11 @@ class _InitialContentConfirmYourAccountWidgetState
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 40),
-                TextTitle.two(
+                RMText.titleMedium(
                   context.cl.translate('modals.confirmYourAccount.title'),
                 ),
                 const SizedBox(height: 24),
-                TextBody.two(
+                RMText.bodyMedium(
                   context.cl.translate('modals.confirmYourAccount.subtitle'),
                   height: 1.5,
                 ),

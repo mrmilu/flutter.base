@@ -8,6 +8,7 @@ class AppColors {
   static const Color background = Color(0xFFF8F8F8);
   static const Color onBackground = Color(0xFF172121);
   static const Color grey = Color(0xFF888498);
+  static const Color disabled = Color(0xFFDADADA);
   // Basic
   static const Color specificBasicBlack = Color(0xff000000);
   static const Color specificBasicSemiBlack = Color(0xFF676767);

@@ -16,5 +16,4 @@ class F {
         return 'FlutterBase';
     }
   }
-
 }

@@ -2,13 +2,12 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 
 import '../../../utils/styles/colors.dart';
-import '../../image_asset_widget.dart';
-import '../../row_icon_text_widget.dart';
-import '../../text/text_body.dart';
-import '../../text/text_caption.dart';
+import '../../common/custom_row_icon_text_widget.dart';
+import '../../common/image_asset_widget.dart';
+import '../text/rm_text.dart';
 
-class CustomLanguagesFieldWidget<T> extends StatelessWidget {
-  const CustomLanguagesFieldWidget({
+class CustomDowndownFieldPackageWidget<T> extends StatelessWidget {
+  const CustomDowndownFieldPackageWidget({
     super.key,
     this.enabled = true,
     this.title,
@@ -68,7 +67,7 @@ class CustomLanguagesFieldWidget<T> extends StatelessWidget {
                     const SizedBox(height: 6),
                     Padding(
                       padding: const EdgeInsets.only(left: 20.0),
-                      child: TextCaption.one(
+                      child: RMText.labelSmall(
                         title!,
                         color: AppColors.specificBasicBlack,
                       ),
@@ -102,7 +101,7 @@ class CustomLanguagesFieldWidget<T> extends StatelessWidget {
                                     padding: const EdgeInsets.only(bottom: 2.0),
                                     child: Container(
                                       alignment: Alignment.center,
-                                      child: TextBody.two(
+                                      child: RMText.bodyMedium(
                                         initialValue ?? value.toString(),
                                         color: readOnly
                                             ? AppColors.grey
@@ -129,12 +128,8 @@ class CustomLanguagesFieldWidget<T> extends StatelessWidget {
               if ((errorText != null && showError) || infoText != null) ...[
                 const SizedBox(height: 8),
                 showError
-                    ? RowIconTextWidget.error(
-                        errorText!,
-                      )
-                    : RowIconTextWidget.info(
-                        infoText!,
-                      ),
+                    ? CustomRowIconTextWidget.error(errorText!)
+                    : CustomRowIconTextWidget.info(infoText!),
               ],
             ],
           ),

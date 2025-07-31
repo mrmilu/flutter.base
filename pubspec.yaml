@@ -59,6 +59,9 @@ dependencies:
   flutter_html: ^3.0.0
   appsflyer_sdk: ^6.16.21
 
+  # rainmakers_design_system:
+  #   path: ../../DesignSystem/rainmakers_design_system
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

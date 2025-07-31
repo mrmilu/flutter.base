@@ -10,10 +10,10 @@ import '../../../shared/presentation/providers/global_loader/global_loader_cubit
 import '../../../shared/presentation/router/app_router.dart';
 import '../../../shared/presentation/router/page_names.dart';
 import '../../../shared/presentation/utils/styles/colors.dart';
+import '../../../shared/presentation/widgets/common/image_asset_widget.dart';
 import '../../../shared/presentation/widgets/components/buttons/custom_elevated_button.dart';
 import '../../../shared/presentation/widgets/components/inputs/custom_text_field_widget.dart';
-import '../../../shared/presentation/widgets/image_asset_widget.dart';
-import '../../../shared/presentation/widgets/text/text_title.dart';
+import '../../../shared/presentation/widgets/components/text/rm_text.dart';
 import '../../domain/failures_extensions/signup_failure_extension.dart';
 import '../../domain/interfaces/i_auth_repository.dart';
 import '../providers/auth/auth_cubit.dart';
@@ -73,7 +73,7 @@ class SignUpView extends StatelessWidget {
                       children: [
                         const SizedBox(width: 50),
                         const Spacer(),
-                        TextTitle.three('Crea tu cuenta'),
+                        const RMText.bodyLarge('Crea tu cuenta'),
                         const Spacer(),
                         InkWell(
                           onTap: () => routerApp.pop(),

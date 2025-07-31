@@ -3,11 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../settings/presentation/profile_info/access_data/change_password/info_password_validator_widget.dart';
 import '../../../shared/data/services/app_flyer_service.dart';
-import '../../../shared/helpers/extensions.dart';
 import '../../../shared/presentation/l10n/generated/l10n.dart';
+import '../../../shared/presentation/utils/extensions/buildcontext_extensions.dart';
 import '../../../shared/presentation/widgets/components/buttons/custom_elevated_button.dart';
 import '../../../shared/presentation/widgets/components/inputs/custom_text_field_widget.dart';
-import '../../../shared/presentation/widgets/text/text_title.dart';
+import '../../../shared/presentation/widgets/components/text/rm_text.dart';
 import '../providers/reset_password/reset_password_cubit.dart';
 
 class InitialContentResetPasswordWidget extends StatefulWidget {
@@ -38,7 +38,7 @@ class _InitialContentResetPasswordWidgetState
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   const SizedBox(height: 20),
-                  TextTitle.three(
+                  RMText.titleSmall(
                     context.cl.translate('pages.auth.resetPassword.title'),
                   ),
                   const SizedBox(height: 24),

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../shared/domain/failures_extensions/email_failure.extension.dart';
-import '../../../shared/helpers/extensions.dart';
+import '../../../shared/presentation/utils/extensions/buildcontext_extensions.dart';
 import '../../../shared/presentation/utils/open_web_view_utils.dart';
 import '../../../shared/presentation/utils/styles/colors.dart';
 import '../../../shared/presentation/utils/styles/text_styles.dart';
@@ -13,8 +13,7 @@ import '../../../shared/presentation/widgets/components/buttons/custom_elevated_
 import '../../../shared/presentation/widgets/components/buttons/custom_outlined_button.dart';
 import '../../../shared/presentation/widgets/components/buttons/custom_text_button.dart';
 import '../../../shared/presentation/widgets/components/inputs/custom_text_field_widget.dart';
-import '../../../shared/presentation/widgets/text/text_body.dart';
-import '../../../shared/presentation/widgets/text/text_title.dart';
+import '../../../shared/presentation/widgets/components/text/rm_text.dart';
 import '../pages/initial_page.dart';
 import '../providers/signin_social/signin_social_cubit.dart';
 import '../signin/providers/signin_cubit.dart';
@@ -45,11 +44,11 @@ class InitialContentSignInEmailWidget extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             const SizedBox(height: 20),
-            TextTitle.two(
+            RMText.titleMedium(
               context.cl.translate('pages.auth.signIn.contentEmail.title'),
             ),
             const SizedBox(height: 24),
-            TextBody.two(
+            RMText.bodyMedium(
               context.cl.translate('pages.auth.signIn.contentEmail.subtitle'),
             ),
             const SizedBox(height: 32),
@@ -88,7 +87,7 @@ class InitialContentSignInEmailWidget extends StatelessWidget {
               children: [
                 const Expanded(child: Divider()),
                 const SizedBox(width: 8),
-                TextBody.two(
+                RMText.bodyMedium(
                   context.cl.translate('pages.auth.signIn.contentEmail.or'),
                 ),
                 const SizedBox(width: 8),
@@ -144,7 +143,7 @@ class InitialContentSignInEmailWidget extends StatelessWidget {
                       'pages.auth.signIn.contentEmail.review',
                     ) +
                     ' ',
-                style: TextStyles.caption3.copyWith(
+                style: AppTextStyles.caption3.copyWith(
                   color: AppColors.specificBasicBlack,
                 ),
                 children: [
@@ -152,7 +151,7 @@ class InitialContentSignInEmailWidget extends StatelessWidget {
                     text: context.cl.translate(
                       'pages.auth.signIn.contentEmail.terms',
                     ),
-                    style: TextStyles.caption3.copyWith(
+                    style: AppTextStyles.caption3.copyWith(
                       decoration: TextDecoration.underline,
                     ),
                     recognizer: TapGestureRecognizer()
@@ -176,7 +175,7 @@ class InitialContentSignInEmailWidget extends StatelessWidget {
                     text: context.cl.translate(
                       'pages.auth.signIn.contentEmail.privacy',
                     ),
-                    style: TextStyles.caption3.copyWith(
+                    style: AppTextStyles.caption3.copyWith(
                       decoration: TextDecoration.underline,
                     ),
                     recognizer: TapGestureRecognizer()

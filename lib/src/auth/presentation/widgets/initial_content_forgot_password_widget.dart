@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../shared/domain/failures_extensions/email_failure.extension.dart';
-import '../../../shared/helpers/extensions.dart';
+import '../../../shared/presentation/utils/extensions/buildcontext_extensions.dart';
 import '../../../shared/presentation/widgets/components/buttons/custom_elevated_button.dart';
 import '../../../shared/presentation/widgets/components/buttons/custom_text_button.dart';
 import '../../../shared/presentation/widgets/components/inputs/custom_text_field_widget.dart';
-import '../../../shared/presentation/widgets/text/text_body.dart';
-import '../../../shared/presentation/widgets/text/text_title.dart';
+import '../../../shared/presentation/widgets/components/text/rm_text.dart';
 import '../pages/initial_page.dart';
 import '../providers/forgot_password/forgot_password_cubit.dart';
 
@@ -32,11 +31,11 @@ class InitialContentForgotPasswordWidget extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             const SizedBox(height: 20),
-            TextTitle.two(
+            RMText.titleMedium(
               context.cl.translate('pages.auth.forgotPassword.title'),
             ),
             const SizedBox(height: 24),
-            TextBody.two(
+            RMText.bodyMedium(
               context.cl.translate('pages.auth.forgotPassword.subtitle'),
               height: 1.5,
             ),

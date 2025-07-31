@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../utils/styles/colors.dart';
-import '../../row_icon_text_widget.dart';
-import '../../text/text_body.dart';
+import '../../common/custom_row_icon_text_widget.dart';
+import '../text/rm_text.dart';
 
 class CustomCheckboxWidget extends StatelessWidget {
   const CustomCheckboxWidget({
@@ -29,7 +29,7 @@ class CustomCheckboxWidget extends StatelessWidget {
 
   Color _getColor() {
     if (!enabled) {
-      return AppColors.specificBasicGrey;
+      return AppColors.disabled;
     }
     if (showError && value) {
       return AppColors.specificSemanticError;
@@ -42,7 +42,7 @@ class CustomCheckboxWidget extends StatelessWidget {
 
   Color _getBorderColor() {
     if (!enabled) {
-      return AppColors.specificBasicGrey;
+      return AppColors.disabled;
     }
     if (showError) {
       return AppColors.specificSemanticError;
@@ -69,7 +69,7 @@ class CustomCheckboxWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (title != null) ...[
-          TextBody.two(title!),
+          RMText.bodyMedium(title!),
           const SizedBox(height: 6),
         ],
         Row(
@@ -84,9 +84,7 @@ class CustomCheckboxWidget extends StatelessWidget {
                   width: 16,
                   decoration: BoxDecoration(
                     color: _getColor(),
-                    border: Border.all(
-                      color: _getBorderColor(),
-                    ),
+                    border: Border.all(color: _getBorderColor()),
                     borderRadius: BorderRadius.circular(4),
                   ),
                   child: value
@@ -101,7 +99,7 @@ class CustomCheckboxWidget extends StatelessWidget {
                   childContent ??
                   Padding(
                     padding: const EdgeInsets.only(top: 4.0),
-                    child: TextBody.two(textCheckbox),
+                    child: RMText.bodyMedium(textCheckbox),
                   ),
             ),
           ],
@@ -109,12 +107,8 @@ class CustomCheckboxWidget extends StatelessWidget {
         if ((errorText != null && showError) || infoText != null) ...[
           const SizedBox(height: 8),
           showError
-              ? RowIconTextWidget.warning(
-                  errorText!,
-                )
-              : RowIconTextWidget.info(
-                  infoText!,
-                ),
+              ? CustomRowIconTextWidget.error(errorText!)
+              : CustomRowIconTextWidget.info(infoText!),
         ],
       ],
     );

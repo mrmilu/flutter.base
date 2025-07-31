@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../../utils/extensions/buildcontext_extensions.dart';
 import '../../../utils/styles/colors.dart';
-import '../../../utils/styles/text_styles.dart';
-import '../../row_icon_text_widget.dart';
-import '../../text/text_body.dart';
+import '../../common/custom_row_icon_text_widget.dart';
+import '../text/rm_text.dart';
 
 class CustomSwitchWidget extends StatelessWidget {
   const CustomSwitchWidget({
@@ -11,7 +11,7 @@ class CustomSwitchWidget extends StatelessWidget {
     this.enabled = true,
     this.title,
     required this.text,
-    this.textStyle = TextStyles.body2,
+    this.textStyle,
     required this.value,
     required this.onChanged,
     this.infoText,
@@ -34,7 +34,7 @@ class CustomSwitchWidget extends StatelessWidget {
 
   Color _getBackgroundColorActive() {
     if (!enabled) {
-      return AppColors.specificBasicGrey;
+      return AppColors.disabled;
     }
     if (showError) {
       return AppColors.specificSemanticError;
@@ -47,7 +47,7 @@ class CustomSwitchWidget extends StatelessWidget {
 
   Color _getBackgroundColorInactive() {
     if (!enabled) {
-      return AppColors.specificBasicGrey;
+      return AppColors.disabled;
     }
     if (showError) {
       return AppColors.specificSemanticError;
@@ -64,7 +64,7 @@ class CustomSwitchWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (title != null) ...[
-          TextBody.two(title!),
+          RMText.bodyMedium(title!),
           const SizedBox(height: 6),
         ],
         InkWell(
@@ -92,10 +92,7 @@ class CustomSwitchWidget extends StatelessWidget {
                       thumbIcon: WidgetStateProperty.resolveWith<Icon?>((
                         Set<WidgetState> states,
                       ) {
-                        return const Icon(
-                          Icons.abc,
-                          color: Colors.white,
-                        );
+                        return const Icon(Icons.abc, color: Colors.white);
                       }),
                       padding: EdgeInsets.zero,
                       value: value,
@@ -109,13 +106,19 @@ class CustomSwitchWidget extends StatelessWidget {
                   ? Expanded(
                       child: Padding(
                         padding: const EdgeInsets.only(top: 4.0),
-                        child: Text(text, style: textStyle),
+                        child: Text(
+                          text,
+                          style: textStyle ?? context.textTheme.bodyMedium,
+                        ),
                       ),
                     )
                   : Flexible(
                       child: Padding(
                         padding: const EdgeInsets.only(top: 4.0),
-                        child: Text(text, style: textStyle),
+                        child: Text(
+                          text,
+                          style: textStyle ?? context.textTheme.bodyMedium,
+                        ),
                       ),
                     ),
               if (!switchLeft) ...[
@@ -140,10 +143,7 @@ class CustomSwitchWidget extends StatelessWidget {
                       thumbIcon: WidgetStateProperty.resolveWith<Icon?>((
                         Set<WidgetState> states,
                       ) {
-                        return const Icon(
-                          Icons.abc,
-                          color: Colors.white,
-                        );
+                        return const Icon(Icons.abc, color: Colors.white);
                       }),
                       padding: EdgeInsets.zero,
                       value: value,
@@ -158,12 +158,8 @@ class CustomSwitchWidget extends StatelessWidget {
         if ((errorText != null && showError) || infoText != null) ...[
           const SizedBox(height: 4),
           showError
-              ? RowIconTextWidget.warning(
-                  errorText!,
-                )
-              : RowIconTextWidget.info(
-                  infoText!,
-                ),
+              ? CustomRowIconTextWidget.warning(errorText!)
+              : CustomRowIconTextWidget.info(infoText!),
         ],
       ],
     );

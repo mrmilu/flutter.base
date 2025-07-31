@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../shared/helpers/extensions.dart';
+import '../../../shared/presentation/utils/extensions/buildcontext_extensions.dart';
 
 enum ChangeLanguageFailure {
   noPermission,

@@ -6,17 +6,16 @@ import '../../../../auth/presentation/providers/auth/auth_cubit.dart';
 import '../../../../shared/data/services/http_client.dart';
 import '../../../../shared/domain/failures_extensions/fullname_failure_extension.dart';
 import '../../../../shared/domain/types/document_type.dart';
-import '../../../../shared/helpers/extensions.dart';
 import '../../../../shared/helpers/toasts.dart';
 import '../../../../shared/presentation/providers/global_loader/global_loader_cubit.dart';
 import '../../../../shared/presentation/router/app_router.dart';
 import '../../../../shared/presentation/utils/call_utils.dart';
+import '../../../../shared/presentation/utils/extensions/buildcontext_extensions.dart';
 import '../../../../shared/presentation/utils/styles/colors.dart';
 import '../../../../shared/presentation/widgets/components/buttons/custom_elevated_button.dart';
 import '../../../../shared/presentation/widgets/components/inputs/custom_dropdown_field_widget.dart';
 import '../../../../shared/presentation/widgets/components/inputs/custom_text_field_widget.dart';
-import '../../../../shared/presentation/widgets/text/text_body.dart';
-import '../../../../shared/presentation/widgets/text/text_title.dart';
+import '../../../../shared/presentation/widgets/components/text/rm_text.dart';
 import '../../../data/repositories/personal_info_repository_impl.dart';
 import '../../../domain/interfaces/i_personal_info_repository.dart';
 import 'personal_data_cubit.dart';
@@ -58,7 +57,7 @@ class ProfileInfoPersonalDataView extends StatelessWidget {
       child: SafeArea(
         child: Scaffold(
           appBar: AppBar(
-            title: TextTitle.two(
+            title: RMText.titleMedium(
               context.cl.translate('pages.profileInfoPersonalData.title'),
             ),
           ),
@@ -78,7 +77,7 @@ class ProfileInfoPersonalDataView extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const SizedBox(height: 20),
-                            TextBody.two(
+                            RMText.bodySmall(
                               context.cl.translate(
                                 'pages.profileInfoPersonalData.subtitle',
                               ),

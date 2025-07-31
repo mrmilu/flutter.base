@@ -5,16 +5,15 @@ import '../../../../../auth/domain/interfaces/i_token_repository.dart';
 import '../../../../../auth/presentation/providers/auth/auth_cubit.dart';
 import '../../../../../shared/data/services/http_client.dart';
 import '../../../../../shared/domain/failures_extensions/email_failure.extension.dart';
-import '../../../../../shared/helpers/extensions.dart';
 import '../../../../../shared/helpers/toasts.dart';
 import '../../../../../shared/presentation/l10n/generated/l10n.dart';
 import '../../../../../shared/presentation/providers/global_loader/global_loader_cubit.dart';
 import '../../../../../shared/presentation/router/app_router.dart';
+import '../../../../../shared/presentation/utils/extensions/buildcontext_extensions.dart';
 import '../../../../../shared/presentation/utils/styles/colors.dart';
 import '../../../../../shared/presentation/widgets/components/buttons/custom_elevated_button.dart';
 import '../../../../../shared/presentation/widgets/components/inputs/custom_text_field_widget.dart';
-import '../../../../../shared/presentation/widgets/text/text_body.dart';
-import '../../../../../shared/presentation/widgets/text/text_title.dart';
+import '../../../../../shared/presentation/widgets/components/text/rm_text.dart';
 import '../../../../data/repositories/personal_info_repository_impl.dart';
 import '../../../../domain/interfaces/i_personal_info_repository.dart';
 import 'change_email_cubit.dart';
@@ -55,7 +54,7 @@ class ChangeEmailView extends StatelessWidget {
       child: SafeArea(
         child: Scaffold(
           appBar: AppBar(
-            title: TextTitle.two(
+            title: RMText.titleMedium(
               context.cl.translate('pages.profileInfoAccessDataEmail.title'),
             ),
           ),
@@ -75,7 +74,7 @@ class ChangeEmailView extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const SizedBox(height: 20),
-                            TextBody.two(
+                            RMText.bodyMedium(
                               context.cl.translate(
                                 'pages.profileInfoAccessDataEmail.subtitle',
                               ),
@@ -205,7 +204,7 @@ class GuionText extends StatelessWidget {
         ),
         const SizedBox(width: 8),
         Flexible(
-          child: TextBody.two(
+          child: RMText.bodyMedium(
             text,
             height: 1.5,
           ),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../providers/global_loader/global_loader_cubit.dart';
-import 'circular_progress.dart';
+import 'common/circular_progress.dart';
 
 class GlobalCircularProgress {
   static OverlayEntry build(BuildContext context) {

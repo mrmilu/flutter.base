@@ -1,10 +1,10 @@
 import 'dart:io';
 
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
-import '../../locale/presentation/utils/custom_localization_delegate.dart';
-import '../presentation/l10n/generated/l10n.dart';
-import 'value_object.dart';
+import '../../../../locale/presentation/utils/custom_localization_delegate.dart';
+import '../../../helpers/value_object.dart';
+import '../../l10n/generated/l10n.dart';
 
 extension ContextExtension on BuildContext {
   S get l10n => S.of(this);
@@ -15,6 +15,8 @@ extension ContextExtension on BuildContext {
 
   double get paddingBottomPlus =>
       MediaQuery.of(this).viewPadding.bottom + (Platform.isAndroid ? 12 : 0);
+
+  TextTheme get textTheme => Theme.of(this).textTheme;
 }
 
 extension IterableOfValueObject on Iterable<ValueObject> {

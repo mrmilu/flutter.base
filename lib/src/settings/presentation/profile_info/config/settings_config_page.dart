@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
-import '../../../../shared/helpers/extensions.dart';
 import '../../../../shared/presentation/router/app_router.dart';
 import '../../../../shared/presentation/router/page_names.dart';
-import '../../../../shared/presentation/widgets/text/text_title.dart';
+import '../../../../shared/presentation/utils/extensions/buildcontext_extensions.dart';
+import '../../../../shared/presentation/widgets/components/text/rm_text.dart';
 import '../../widgets/settings_item_widget.dart';
 
 class SettingsConfigPage extends StatelessWidget {
@@ -14,7 +14,7 @@ class SettingsConfigPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: TextTitle.two(
+        title: RMText.titleMedium(
           context.cl.translate('pages.profileInfoConfig.title'),
         ),
       ),

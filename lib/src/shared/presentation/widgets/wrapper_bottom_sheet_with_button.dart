@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'image_asset_widget.dart';
-import 'text/text_title.dart';
+import 'common/image_asset_widget.dart';
+import 'components/text/rm_text.dart';
 
 class WrapperBottomSheetWithButton extends StatelessWidget {
   const WrapperBottomSheetWithButton({
@@ -26,7 +26,7 @@ class WrapperBottomSheetWithButton extends StatelessWidget {
             children: [
               const SizedBox(width: 50),
               Expanded(
-                child: TextTitle.three(
+                child: RMText.titleLarge(
                   title,
                   textAlign: TextAlign.center,
                 ),

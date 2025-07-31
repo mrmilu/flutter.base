@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../../utils/extensions/buildcontext_extensions.dart';
 import '../../../utils/styles/colors.dart';
-import '../../../utils/styles/text_styles.dart';
-import '../../row_icon_text_widget.dart';
-import '../../text/text_body.dart';
-import 'cups_input_formatter.dart';
+import '../../common/custom_row_icon_text_widget.dart';
+import '../text/rm_text.dart';
 
-class CustomCupsFieldWidget extends StatefulWidget {
+class CustomStatesTextFieldWidget extends StatefulWidget {
   final Function(String) onCompleted;
   final Function(String)? onChanged;
   final FormFieldSetter<String>? onSaved;
@@ -41,8 +40,10 @@ class CustomCupsFieldWidget extends StatefulWidget {
   final bool isLoading;
   final bool isAccepted;
   final bool isError;
+  final List<TextInputFormatter>? inputFormatters;
+  final int limitOnCompleted;
 
-  const CustomCupsFieldWidget({
+  const CustomStatesTextFieldWidget({
     super.key,
     required this.onCompleted,
     this.onChanged,
@@ -77,13 +78,17 @@ class CustomCupsFieldWidget extends StatefulWidget {
     this.isLoading = false,
     this.isAccepted = false,
     this.isError = false,
+    this.inputFormatters,
+    this.limitOnCompleted = 28,
   });
 
   @override
-  State<CustomCupsFieldWidget> createState() => _CustomCupsFieldWidgetState();
+  State<CustomStatesTextFieldWidget> createState() =>
+      _CustomStatesTextFieldWidgetState();
 }
 
-class _CustomCupsFieldWidgetState extends State<CustomCupsFieldWidget> {
+class _CustomStatesTextFieldWidgetState
+    extends State<CustomStatesTextFieldWidget> {
   late final TextEditingController _controller;
   late FocusNode _focusNode;
   late ValueNotifier<double> _borderWidthNotifier;
@@ -92,8 +97,7 @@ class _CustomCupsFieldWidgetState extends State<CustomCupsFieldWidget> {
   void initState() {
     super.initState();
     _controller =
-        widget.controller ??
-        TextEditingController(text: _formatCUPS(widget.initialValue ?? ''));
+        widget.controller ?? TextEditingController(text: widget.initialValue);
 
     _focusNode = widget.focusNode ?? FocusNode();
     _borderWidthNotifier = ValueNotifier(1.0);
@@ -112,18 +116,6 @@ class _CustomCupsFieldWidgetState extends State<CustomCupsFieldWidget> {
     }
     _borderWidthNotifier.dispose();
     super.dispose();
-  }
-
-  String _formatCUPS(String text) {
-    final cleanText = text.replaceAll(' ', '').toUpperCase();
-    final formattedText = StringBuffer();
-    for (int i = 0; i < cleanText.length; i++) {
-      if (i == 2 || i == 6 || i == 18 || i == 20) {
-        formattedText.write(' ');
-      }
-      formattedText.write(cleanText[i]);
-    }
-    return formattedText.toString();
   }
 
   @override
@@ -163,9 +155,7 @@ class _CustomCupsFieldWidgetState extends State<CustomCupsFieldWidget> {
                           Expanded(
                             child: TextFormField(
                               enabled: widget.enabled,
-                              inputFormatters: [
-                                CUPSInputFormatter(),
-                              ],
+                              inputFormatters: widget.inputFormatters,
                               maxLengthEnforcement: MaxLengthEnforcement
                                   .truncateAfterCompositionEnds,
                               textCapitalization:
@@ -177,16 +167,15 @@ class _CustomCupsFieldWidgetState extends State<CustomCupsFieldWidget> {
                               obscureText: widget.obscureText ?? false,
                               onChanged: (text) {
                                 widget.onChanged?.call(text);
-                              },
-                              onTapOutside: (event) {
-                                _focusNode.unfocus();
-                                widget.onCompleted('');
+                                if (text.length == widget.limitOnCompleted) {
+                                  widget.onCompleted(text);
+                                }
                               },
                               controller: _controller,
                               validator: widget.validator,
                               style:
                                   widget.textStyle ??
-                                  TextStyles.body2.copyWith(
+                                  context.textTheme.bodyMedium?.copyWith(
                                     color: widget.isError
                                         ? AppColors.specificSemanticError
                                         : AppColors.specificBasicBlack,
@@ -202,11 +191,11 @@ class _CustomCupsFieldWidgetState extends State<CustomCupsFieldWidget> {
                                     isDense: true,
                                     filled: false,
                                     prefix: widget.prefixText != null
-                                        ? TextBody.two(
+                                        ? RMText.bodyMedium(
                                             widget.prefixText!,
                                             color: widget.enabled
                                                 ? AppColors.specificBasicBlack
-                                                : AppColors.grey,
+                                                : AppColors.specificBasicGrey,
                                           )
                                         : null,
                                     border: InputBorder.none,
@@ -214,18 +203,18 @@ class _CustomCupsFieldWidgetState extends State<CustomCupsFieldWidget> {
                                     prefixIcon: widget.prefixIcon,
                                     suffixIcon: widget.suffixIcon,
                                     label: widget.labelText != null
-                                        ? TextBody.two(
+                                        ? RMText.bodyMedium(
                                             widget.labelText!,
                                             color: widget.enabled
                                                 ? AppColors.specificBasicBlack
-                                                : AppColors.grey,
+                                                : AppColors.specificBasicGrey,
                                           )
                                         : null,
                                     contentPadding:
                                         widget.contentPadding ??
                                         const EdgeInsets.only(top: 0),
                                     counterStyle: const TextStyle(
-                                      color: AppColors.grey,
+                                      color: AppColors.specificBasicGrey,
                                     ),
                                     suffixIconConstraints: const BoxConstraints(
                                       maxWidth: 60,
@@ -240,9 +229,7 @@ class _CustomCupsFieldWidgetState extends State<CustomCupsFieldWidget> {
                             const SizedBox(
                               height: 20,
                               width: 20,
-                              child: CircularProgressIndicator(
-                                strokeWidth: 2,
-                              ),
+                              child: CircularProgressIndicator(strokeWidth: 2),
                             ),
                           if (widget.isAccepted)
                             const Icon(
@@ -265,12 +252,8 @@ class _CustomCupsFieldWidgetState extends State<CustomCupsFieldWidget> {
           if (widget.showError || widget.infoText != null) ...[
             const SizedBox(height: 6),
             widget.showError
-                ? RowIconTextWidget.error(
-                    widget.errorText ?? '',
-                  )
-                : RowIconTextWidget.info(
-                    widget.infoText ?? '',
-                  ),
+                ? CustomRowIconTextWidget.warning(widget.errorText!)
+                : CustomRowIconTextWidget.info(widget.infoText!),
           ],
         ],
       ),
