@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../shared/presentation/utils/extensions/buildcontext_extensions.dart';
 import '../../../shared/presentation/utils/extensions/color_extension.dart';
 import '../../../shared/presentation/utils/styles/colors.dart';
-import '../../../shared/presentation/utils/styles/text_styles.dart';
 import '../../../shared/presentation/widgets/common/image_asset_widget.dart';
 import '../../../shared/presentation/widgets/common/image_network_widget.dart';
 
@@ -79,9 +79,9 @@ class SettingsItemWidget extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style: AppTextStyles.body1.copyWith(
+                    style: context.textTheme.bodyLarge?.copyWith(
                       color: isActive
-                          ? Colors.black
+                          ? null
                           : AppColors.onBackground.wOpacity(0.3),
                     ),
                   ),
@@ -89,7 +89,7 @@ class SettingsItemWidget extends StatelessWidget {
                     SizedBox(height: isProfileImage ? 12 : 4),
                     Text(
                       subtitle!,
-                      style: AppTextStyles.caption1.copyWith(
+                      style: context.textTheme.bodySmall?.copyWith(
                         color: isActive
                             ? AppColors.specificBasicGrey
                             : AppColors.onBackground.wOpacity(0.3),
@@ -114,7 +114,7 @@ class SettingsItemWidget extends StatelessWidget {
                           width: 24,
                           height: 24,
                           color: isActive
-                              ? AppColors.specificBasicBlack
+                              ? null
                               : AppColors.onBackground.wOpacity(0.3),
                         ),
                       ),

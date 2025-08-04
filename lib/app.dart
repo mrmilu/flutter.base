@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -35,12 +34,6 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-      const SystemUiOverlayStyle(
-        statusBarColor: Colors.black,
-        statusBarIconBrightness: Brightness.dark,
-      ),
-    );
     return MultiRepositoryProvider(
       providers: [
         // Token user
@@ -119,7 +112,10 @@ class AppView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ThemeModeCubit, ThemeModeState>(
+    return BlocConsumer<ThemeModeCubit, ThemeModeState>(
+      listener: (context, state) {
+        // SystemUIHelper.setSystemUIForTheme(state.isDarkMode);
+      },
       builder: (context, stateTheme) {
         return BlocBuilder<LocaleCubit, LocaleState>(
           builder: (context, stateLocale) {

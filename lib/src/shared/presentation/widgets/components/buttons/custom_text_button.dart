@@ -64,6 +64,24 @@ class CustomTextButton extends StatelessWidget {
          colorText: colorText,
        );
 
+  /// Crea un botón de texto con estilo blanco/negro
+  const CustomTextButton.secondary({
+    Key? key,
+    required String label,
+    required VoidCallback? onPressed,
+    bool enabled = true,
+    TextStyle? textStyle,
+    Color? colorText,
+  }) : this._(
+         key: key,
+         style: CustomTextButtonStyle.secondary,
+         label: label,
+         onPressed: onPressed,
+         enabled: enabled,
+         textStyle: textStyle,
+         colorText: colorText,
+       );
+
   /// Crea un botón de texto con icono
   const CustomTextButton.icon({
     Key? key,
@@ -81,6 +99,24 @@ class CustomTextButton extends StatelessWidget {
          enabled: enabled,
          textStyle: textStyle,
          colorText: colorText,
+         iconPath: iconPath,
+       );
+
+  /// Crea un botón de texto con icono secundario
+  const CustomTextButton.iconSecondary({
+    Key? key,
+    required String label,
+    required String iconPath,
+    required VoidCallback? onPressed,
+    bool enabled = true,
+    TextStyle? textStyle,
+  }) : this._(
+         key: key,
+         style: CustomTextButtonStyle.iconSecondary,
+         label: label,
+         onPressed: onPressed,
+         enabled: enabled,
+         textStyle: textStyle,
          iconPath: iconPath,
        );
 
@@ -102,7 +138,8 @@ class CustomTextButton extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Flexible(child: Text(label, style: textStyle)),
-          if (_style == CustomTextButtonStyle.icon &&
+          if ((_style == CustomTextButtonStyle.icon ||
+                  _style == CustomTextButtonStyle.iconSecondary) &&
               iconPath?.isNotEmpty == true) ...[
             const SizedBox(width: 8),
             ImageAssetWidget(
@@ -117,11 +154,20 @@ class CustomTextButton extends StatelessWidget {
     );
   }
 
-  Color _getTextColor(BuildContext context) {
+  Color? _getTextColor(BuildContext context) {
     if (!enabled) return AppColors.disabled;
 
     // Si se especifica un color personalizado, usarlo
     if (colorText != null) return colorText!;
+
+    if (_style == CustomTextButtonStyle.secondary ||
+        _style == CustomTextButtonStyle.iconSecondary) {
+      // Si es estilo secundario, usar color específico
+      final brightness = Theme.of(context).brightness;
+      return brightness == Brightness.dark
+          ? AppColors.specificBasicWhite
+          : AppColors.specificBasicBlack;
+    }
 
     // Si no, usar el color primario que se adapta al tema
     return AppColors.primary;
@@ -129,4 +175,4 @@ class CustomTextButton extends StatelessWidget {
 }
 
 /// Estilos disponibles para CustomTextButton
-enum CustomTextButtonStyle { primary, icon }
+enum CustomTextButtonStyle { primary, secondary, icon, iconSecondary }

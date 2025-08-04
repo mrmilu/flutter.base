@@ -14,7 +14,7 @@ extension ContextExtension on BuildContext {
   Locale get locale => Localizations.localeOf(this);
 
   double get paddingBottomPlus =>
-      MediaQuery.of(this).viewPadding.bottom + (Platform.isAndroid ? 12 : 0);
+      MediaQuery.paddingOf(this).bottom + (Platform.isAndroid ? 24 : 24);
 
   TextTheme get textTheme => Theme.of(this).textTheme;
 }

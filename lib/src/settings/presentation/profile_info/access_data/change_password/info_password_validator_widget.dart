@@ -70,7 +70,7 @@ class InfoPasswordValidatorWidget extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(top: 2.0),
           child: ImageAssetWidget(
-            path: 'assets/icons/top_bar_info.svg',
+            path: 'assets/icons/info.svg',
             width: 16,
             height: 16,
             color: getIconColor(),

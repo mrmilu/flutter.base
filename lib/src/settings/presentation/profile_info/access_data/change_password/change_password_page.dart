@@ -51,90 +51,85 @@ class ChangePasswordView extends StatelessWidget {
     if (user == null) {
       return const SizedBox.shrink();
     }
-    return ColoredBox(
-      color: AppColors.specificBasicWhite,
-      child: SafeArea(
-        child: Scaffold(
-          appBar: AppBar(
-            title: RMText.titleMedium(
-              context.cl.translate('pages.profileInfoAccessDataPassword.title'),
-            ),
+    return Scaffold(
+      appBar: AppBar(
+        title: RMText.titleMedium(
+          context.cl.translate('pages.profileInfoAccessDataPassword.title'),
+        ),
+      ),
+      bottomSheet: const ChangeEmailBottomSheet(),
+      body: SingleChildScrollView(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            minHeight: MediaQuery.of(context).size.height * 0.6,
           ),
-          bottomSheet: const ChangeEmailBottomSheet(),
-          body: SingleChildScrollView(
-            child: ConstrainedBox(
-              constraints: BoxConstraints(
-                minHeight: MediaQuery.of(context).size.height * 0.6,
-              ),
-              child: IntrinsicHeight(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: BlocBuilder<ChangePasswordCubit, ChangePasswordState>(
-                    builder: (context, state) {
-                      return Form(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const SizedBox(height: 20),
-                            RMText.bodyMedium(
-                              context.cl.translate(
-                                'pages.profileInfoAccessDataPassword.subtitle',
-                              ),
-                              height: 1.5,
-                            ),
-                            const SizedBox(height: 20),
-                            CustomTextFieldWidget(
-                              enabled: !state.resultOr.isLoading,
-                              obscureText: true,
-                              labelText: context.cl.translate(
-                                'pages.profileInfoAccessDataPassword.form.oldPassword',
-                              ),
-                              onChanged: context
-                                  .read<ChangePasswordCubit>()
-                                  .changeOldPassword,
-                              showError: state.showError,
-                              errorText: PasswordVos(state.oldPassword).map(
-                                isLeft: (e) => e.toTranslation(context),
-                                isRight: (_) => null,
-                              ),
-                            ),
-                            const SizedBox(height: 12),
-                            CustomTextFieldWidget(
-                              enabled: !state.resultOr.isLoading,
-                              obscureText: true,
-                              labelText: context.cl.translate(
-                                'pages.profileInfoAccessDataPassword.form.password',
-                              ),
-                              onChanged: context
-                                  .read<ChangePasswordCubit>()
-                                  .changePassword,
-                            ),
-                            const SizedBox(height: 4),
-                            InfoPasswordValidatorWidget(
-                              password: state.password,
-                              showError: state.showError,
-                            ),
-                            const SizedBox(height: 8),
-                            CustomTextFieldWidget(
-                              enabled: !state.resultOr.isLoading,
-                              obscureText: true,
-                              labelText: context.cl.translate(
-                                'pages.profileInfoAccessDataPassword.form.repeatPassword',
-                              ),
-                              showError: state.showError,
-                              onChanged: context
-                                  .read<ChangePasswordCubit>()
-                                  .changePasswordRepeat,
-                              errorText: state.passwordRepeat != state.password
-                                  ? S.of(context).mismatchedPasswords
-                                  : null,
-                            ),
-                          ],
+          child: IntrinsicHeight(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: BlocBuilder<ChangePasswordCubit, ChangePasswordState>(
+                builder: (context, state) {
+                  return Form(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(height: 20),
+                        RMText.bodyMedium(
+                          context.cl.translate(
+                            'pages.profileInfoAccessDataPassword.subtitle',
+                          ),
+                          height: 1.5,
                         ),
-                      );
-                    },
-                  ),
-                ),
+                        const SizedBox(height: 20),
+                        CustomTextFieldWidget(
+                          enabled: !state.resultOr.isLoading,
+                          obscureText: true,
+                          labelText: context.cl.translate(
+                            'pages.profileInfoAccessDataPassword.form.oldPassword',
+                          ),
+                          onChanged: context
+                              .read<ChangePasswordCubit>()
+                              .changeOldPassword,
+                          showError: state.showError,
+                          errorText: PasswordVos(state.oldPassword).map(
+                            isLeft: (e) => e.toTranslation(context),
+                            isRight: (_) => null,
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        CustomTextFieldWidget(
+                          enabled: !state.resultOr.isLoading,
+                          obscureText: true,
+                          labelText: context.cl.translate(
+                            'pages.profileInfoAccessDataPassword.form.password',
+                          ),
+                          onChanged: context
+                              .read<ChangePasswordCubit>()
+                              .changePassword,
+                        ),
+                        const SizedBox(height: 4),
+                        InfoPasswordValidatorWidget(
+                          password: state.password,
+                          showError: state.showError,
+                        ),
+                        const SizedBox(height: 8),
+                        CustomTextFieldWidget(
+                          enabled: !state.resultOr.isLoading,
+                          obscureText: true,
+                          labelText: context.cl.translate(
+                            'pages.profileInfoAccessDataPassword.form.repeatPassword',
+                          ),
+                          showError: state.showError,
+                          onChanged: context
+                              .read<ChangePasswordCubit>()
+                              .changePasswordRepeat,
+                          errorText: state.passwordRepeat != state.password
+                              ? S.of(context).mismatchedPasswords
+                              : null,
+                        ),
+                      ],
+                    ),
+                  );
+                },
               ),
             ),
           ),
@@ -192,7 +187,7 @@ class ChangeEmailBottomSheet extends StatelessWidget {
             );
           },
         ),
-        const SizedBox(height: 20),
+        SizedBox(height: context.paddingBottomPlus),
       ],
     );
   }

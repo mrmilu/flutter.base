@@ -53,7 +53,7 @@ class CustomDropdownFieldWidget<T> extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
               color: readOnly
-                  ? AppColors.background
+                  ? AppColors.specificBasicGrey
                   : AppColors.specificBasicWhite,
               borderRadius: BorderRadius.circular(borderRadius),
               border: Border.all(width: 1, color: _getBorderColor()),
@@ -115,7 +115,7 @@ class CustomDropdownFieldWidget<T> extends StatelessWidget {
                                 child: RMText.bodyMedium(
                                   initialValue ?? value.toString(),
                                   color: readOnly
-                                      ? AppColors.grey
+                                      ? null
                                       : AppColors.specificBasicBlack,
                                 ),
                               ),

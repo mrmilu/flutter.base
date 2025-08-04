@@ -7,7 +7,6 @@ import '../../../shared/data/services/http_client.dart';
 import '../../../shared/helpers/toasts.dart';
 import '../../../shared/presentation/providers/global_loader/global_loader_cubit.dart';
 import '../../../shared/presentation/utils/extensions/buildcontext_extensions.dart';
-import '../../../shared/presentation/utils/styles/colors.dart';
 import '../../../shared/presentation/widgets/components/inputs/custom_dropdown_field_package_widget.dart';
 import '../../../shared/presentation/widgets/components/text/rm_text.dart';
 import '../../data/repositories/change_language_repository_impl.dart';
@@ -48,74 +47,65 @@ class SettingsLanguagesView extends StatelessWidget {
           },
         );
       },
-      child: ColoredBox(
-        color: AppColors.specificBasicWhite,
-        child: SafeArea(
-          child: Scaffold(
-            appBar: AppBar(
-              title: RMText.titleMedium(
-                context.cl.translate('pages.profileInfoConfigLanguages.title'),
-              ),
-            ),
-            body: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 20),
-                    RMText.bodyMedium(
-                      context.cl.translate(
-                        'pages.profileInfoConfigLanguages.subtitle',
+      child: Scaffold(
+        appBar: AppBar(
+          title: RMText.titleMedium(
+            context.cl.translate('pages.profileInfoConfigLanguages.title'),
+          ),
+        ),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 20),
+                RMText.bodyMedium(
+                  context.cl.translate(
+                    'pages.profileInfoConfigLanguages.subtitle',
+                  ),
+                  height: 1.5,
+                ),
+                const SizedBox(height: 20),
+                BlocBuilder<LocaleCubit, LocaleState>(
+                  builder: (context, stateLocale) {
+                    final myLocale = AppLanguageType.values.firstWhereOrNull(
+                      (element) => element.name == stateLocale.languageCode,
+                    );
+                    return CustomDowndownFieldPackageWidget<AppLanguageType>(
+                      title: context.cl.translate(
+                        'pages.profileInfoConfigLanguages.form.language',
                       ),
-                      height: 1.5,
-                    ),
-                    const SizedBox(height: 20),
-                    BlocBuilder<LocaleCubit, LocaleState>(
-                      builder: (context, stateLocale) {
-                        final myLocale = AppLanguageType.values
-                            .firstWhereOrNull(
-                              (element) =>
-                                  element.name == stateLocale.languageCode,
-                            );
-                        return CustomDowndownFieldPackageWidget<
-                          AppLanguageType
-                        >(
-                          title: context.cl.translate(
-                            'pages.profileInfoConfigLanguages.form.language',
-                          ),
-                          value: myLocale,
-                          initialValue: myLocale?.toTranslate(context),
-                          items: AppLanguageType.values
-                              .map(
-                                (item) => DropdownMenuItem<AppLanguageType>(
-                                  value: item,
-                                  child: Text(
-                                    item.toTranslate(context),
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                      color:
-                                          stateLocale.languageCode == item.name
-                                          ? Colors.grey
-                                          : Colors.black,
-                                    ),
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
+                      value: myLocale,
+                      initialValue: myLocale?.toTranslate(context),
+                      items: AppLanguageType.values
+                          .map(
+                            (item) => DropdownMenuItem<AppLanguageType>(
+                              value: item,
+                              child: Text(
+                                item.toTranslate(context),
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: stateLocale.languageCode == item.name
+                                      ? Colors.grey
+                                      : null,
                                 ),
-                              )
-                              .toList(),
-                          onChanged: (p0) {
-                            context.read<ChangeLanguageCubit>().changeLanguage(
-                              p0.name,
-                            );
-                          },
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          )
+                          .toList(),
+                      onChanged: (p0) {
+                        context.read<ChangeLanguageCubit>().changeLanguage(
+                          p0.name,
                         );
                       },
-                    ),
-                  ],
+                    );
+                  },
                 ),
-              ),
+                SizedBox(height: context.paddingBottomPlus),
+              ],
             ),
           ),
         ),

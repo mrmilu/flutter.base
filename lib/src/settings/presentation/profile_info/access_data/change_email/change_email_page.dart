@@ -49,74 +49,68 @@ class ChangeEmailView extends StatelessWidget {
     if (user == null) {
       return const SizedBox.shrink();
     }
-    return ColoredBox(
-      color: AppColors.specificBasicWhite,
-      child: SafeArea(
-        child: Scaffold(
-          appBar: AppBar(
-            title: RMText.titleMedium(
-              context.cl.translate('pages.profileInfoAccessDataEmail.title'),
-            ),
+    return Scaffold(
+      appBar: AppBar(
+        title: RMText.titleMedium(
+          context.cl.translate('pages.profileInfoAccessDataEmail.title'),
+        ),
+      ),
+      bottomSheet: const ChangeEmailBottomSheet(),
+      body: SingleChildScrollView(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            minHeight: MediaQuery.of(context).size.height * 0.6,
           ),
-          bottomSheet: const ChangeEmailBottomSheet(),
-          body: SingleChildScrollView(
-            child: ConstrainedBox(
-              constraints: BoxConstraints(
-                minHeight: MediaQuery.of(context).size.height * 0.6,
-              ),
-              child: IntrinsicHeight(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: BlocBuilder<ChangeEmailCubit, ChangeEmailState>(
-                    builder: (context, state) {
-                      return Form(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const SizedBox(height: 20),
-                            RMText.bodyMedium(
-                              context.cl.translate(
-                                'pages.profileInfoAccessDataEmail.subtitle',
-                              ),
-                              height: 1.5,
-                            ),
-                            const SizedBox(height: 24),
-                            CustomTextFieldWidget(
-                              enabled: !state.resultOr.isLoading,
-                              labelText: context.cl.translate(
-                                'pages.profileInfoAccessDataEmail.form.email',
-                              ),
-                              showError: state.showError,
-                              onChanged: context
-                                  .read<ChangeEmailCubit>()
-                                  .changeEmail,
-                              errorText: state.email.value.map(
-                                isLeft: (p0) => p0.toTranslation(context),
-                                isRight: (p0) => null,
-                              ),
-                            ),
-                            const SizedBox(height: 8),
-                            CustomTextFieldWidget(
-                              enabled: !state.resultOr.isLoading,
-                              labelText: context.cl.translate(
-                                'pages.profileInfoAccessDataEmail.form.repeatEmail',
-                              ),
-                              showError: state.showError,
-                              onChanged: context
-                                  .read<ChangeEmailCubit>()
-                                  .changeEmailRepeat,
-                              errorText:
-                                  state.emailRepeat !=
-                                      state.email.getOrElse('-1')
-                                  ? S.of(context).mismatchedEmail
-                                  : null,
-                            ),
-                          ],
+          child: IntrinsicHeight(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: BlocBuilder<ChangeEmailCubit, ChangeEmailState>(
+                builder: (context, state) {
+                  return Form(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(height: 20),
+                        RMText.bodyMedium(
+                          context.cl.translate(
+                            'pages.profileInfoAccessDataEmail.subtitle',
+                          ),
+                          height: 1.5,
                         ),
-                      );
-                    },
-                  ),
-                ),
+                        const SizedBox(height: 24),
+                        CustomTextFieldWidget(
+                          enabled: !state.resultOr.isLoading,
+                          labelText: context.cl.translate(
+                            'pages.profileInfoAccessDataEmail.form.email',
+                          ),
+                          showError: state.showError,
+                          onChanged: context
+                              .read<ChangeEmailCubit>()
+                              .changeEmail,
+                          errorText: state.email.value.map(
+                            isLeft: (p0) => p0.toTranslation(context),
+                            isRight: (p0) => null,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        CustomTextFieldWidget(
+                          enabled: !state.resultOr.isLoading,
+                          labelText: context.cl.translate(
+                            'pages.profileInfoAccessDataEmail.form.repeatEmail',
+                          ),
+                          showError: state.showError,
+                          onChanged: context
+                              .read<ChangeEmailCubit>()
+                              .changeEmailRepeat,
+                          errorText:
+                              state.emailRepeat != state.email.getOrElse('-1')
+                              ? S.of(context).mismatchedEmail
+                              : null,
+                        ),
+                      ],
+                    ),
+                  );
+                },
               ),
             ),
           ),
@@ -175,7 +169,7 @@ class ChangeEmailBottomSheet extends StatelessWidget {
             );
           },
         ),
-        const SizedBox(height: 20),
+        SizedBox(height: context.paddingBottomPlus),
       ],
     );
   }

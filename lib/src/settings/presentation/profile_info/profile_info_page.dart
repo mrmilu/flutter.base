@@ -104,7 +104,7 @@ class ProfileInfoPage extends StatelessWidget {
                             routerApp.pushNamed(PageNames.profileInfoInfoExtra),
                       ),
                       const SizedBox(height: 52),
-                      CustomTextButton.icon(
+                      CustomTextButton.iconSecondary(
                         onPressed: () async => showModalBottomSheet(
                           context: context,
                           isScrollControlled: true,
