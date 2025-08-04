@@ -125,6 +125,7 @@ class ProfileInfoPersonalDataView extends StatelessWidget {
                           ),
                           onChanged: (value) {},
                           readOnly: true,
+                          forzeBlackColor: true,
                           initialValue: user.document?.$1.toTranslate(
                             context,
                           ),

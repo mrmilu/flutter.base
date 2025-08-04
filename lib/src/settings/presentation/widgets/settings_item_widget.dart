@@ -68,7 +68,7 @@ class SettingsItemWidget extends StatelessWidget {
                                 BlendMode.srcATop,
                               )
                             : ColorFilter.mode(
-                                AppColors.onBackground.wOpacity(0.3),
+                                AppColors.disabled.wOpacity(0.3),
                                 BlendMode.srcATop,
                               ),
                       ),
@@ -80,9 +80,7 @@ class SettingsItemWidget extends StatelessWidget {
                   Text(
                     title,
                     style: context.textTheme.bodyLarge?.copyWith(
-                      color: isActive
-                          ? null
-                          : AppColors.onBackground.wOpacity(0.3),
+                      color: isActive ? null : AppColors.disabled.wOpacity(0.3),
                     ),
                   ),
                   if (subtitle != null) ...[
@@ -92,7 +90,7 @@ class SettingsItemWidget extends StatelessWidget {
                       style: context.textTheme.bodySmall?.copyWith(
                         color: isActive
                             ? AppColors.specificBasicGrey
-                            : AppColors.onBackground.wOpacity(0.3),
+                            : AppColors.disabled.wOpacity(0.3),
                       ),
                     ),
                   ],
@@ -115,7 +113,7 @@ class SettingsItemWidget extends StatelessWidget {
                           height: 24,
                           color: isActive
                               ? null
-                              : AppColors.onBackground.wOpacity(0.3),
+                              : AppColors.disabled.wOpacity(0.3),
                         ),
                       ),
               ),

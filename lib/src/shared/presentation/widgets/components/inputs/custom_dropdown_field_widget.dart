@@ -20,6 +20,7 @@ class CustomDropdownFieldWidget<T> extends StatelessWidget {
     this.value,
     required this.items,
     this.borderRadius = 32.0,
+    this.forzeBlackColor = false,
   });
   final bool enabled;
   final String? title;
@@ -30,6 +31,7 @@ class CustomDropdownFieldWidget<T> extends StatelessWidget {
   final String? errorText;
   final bool readOnly;
   final double borderRadius;
+  final bool forzeBlackColor;
 
   final T? value;
   final List<DropdownMenuItem<T>>? items;
@@ -115,7 +117,9 @@ class CustomDropdownFieldWidget<T> extends StatelessWidget {
                                 child: RMText.bodyMedium(
                                   initialValue ?? value.toString(),
                                   color: readOnly
-                                      ? null
+                                      ? forzeBlackColor
+                                            ? AppColors.specificBasicBlack
+                                            : null
                                       : AppColors.specificBasicBlack,
                                 ),
                               ),

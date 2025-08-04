@@ -186,7 +186,9 @@ class _CustomTextFieldWidgetState extends State<CustomTextFieldWidget> {
                               validator: widget.validator,
                               style:
                                   widget.textStyle ??
-                                  context.textTheme.bodyMedium,
+                                  context.textTheme.bodyMedium?.copyWith(
+                                    color: Colors.black,
+                                  ),
                               keyboardType: widget.keyboardType,
                               textAlign: widget.textAlign ?? TextAlign.start,
                               maxLines: widget.maxLines,
