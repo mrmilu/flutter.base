@@ -34,7 +34,6 @@ class SettingsConfigPage extends StatelessWidget {
                 children: [
                   const SizedBox(height: 32),
                   SettingsItemWidget(
-                    iconUrl: 'assets/icons/planet_outline.svg',
                     showIcon: false,
                     title: context.cl.translate(
                       'pages.profileInfoConfig.languages.title',
@@ -49,7 +48,6 @@ class SettingsConfigPage extends StatelessWidget {
                   const SizedBox(height: 20),
                   SettingsItemWidget(
                     isActive: false,
-                    iconUrl: 'assets/icons/planet_outline.svg',
                     showIcon: false,
                     title: context.cl.translate(
                       'pages.profileInfoConfig.notifications.title',

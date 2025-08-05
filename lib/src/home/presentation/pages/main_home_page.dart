@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../auth/domain/interfaces/i_token_repository.dart';
 import '../../../shared/data/services/http_client.dart';
-import '../../../shared/presentation/utils/styles/colors.dart';
+import '../../../shared/presentation/utils/styles/colors/colors_context.dart';
 import '../../../shared/presentation/widgets/common/image_asset_widget.dart';
 import '../../../shared/presentation/widgets/common/image_network_widget.dart';
 import '../../../shared/presentation/widgets/custom_app_bar_widget.dart';
@@ -88,7 +88,7 @@ class _MainHomeViewState extends State<MainHomeView> {
                   Container(
                     height: 200,
                     width: 300,
-                    color: AppColors.primary,
+                    color: context.colors.primary,
                     child: const Center(
                       child: ImageNetworkWidget(
                         imageUrl: null,

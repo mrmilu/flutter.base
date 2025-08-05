@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../utils/styles/app_assets.dart';
-import '../../../utils/styles/colors.dart';
+import '../../../utils/assets/app_assets_icons.dart';
+import '../../../utils/styles/colors/colors_context.dart';
 import '../../common/custom_row_icon_text_widget.dart';
 import '../../common/image_asset_widget.dart';
 import '../text/rm_text.dart';
@@ -36,14 +36,14 @@ class CustomDropdownFieldWidget<T> extends StatelessWidget {
   final T? value;
   final List<DropdownMenuItem<T>>? items;
 
-  Color _getBorderColor() {
+  Color _getBorderColor(BuildContext context) {
     if (!enabled || readOnly) {
-      return AppColors.specificBasicGrey;
+      return context.colors.specificBasicGrey;
     }
     if (showError) {
-      return AppColors.specificSemanticError;
+      return context.colors.specificSemanticError;
     }
-    return AppColors.specificBasicBlack;
+    return context.colors.specificBasicBlack;
   }
 
   @override
@@ -55,10 +55,10 @@ class CustomDropdownFieldWidget<T> extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
               color: readOnly
-                  ? AppColors.specificBasicGrey
-                  : AppColors.specificBasicWhite,
+                  ? context.colors.specificBasicGrey
+                  : context.colors.specificBasicWhite,
               borderRadius: BorderRadius.circular(borderRadius),
-              border: Border.all(width: 1, color: _getBorderColor()),
+              border: Border.all(width: 1, color: _getBorderColor(context)),
             ),
             alignment: Alignment.center,
             child: Column(
@@ -70,7 +70,7 @@ class CustomDropdownFieldWidget<T> extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 20.0),
                     child: RMText.labelSmall(
                       title!,
-                      color: AppColors.specificBasicBlack,
+                      color: context.colors.specificBasicBlack,
                     ),
                   ),
                 ],
@@ -89,8 +89,8 @@ class CustomDropdownFieldWidget<T> extends StatelessWidget {
                             ? RMText.bodyMedium(
                                 initialValue!,
                                 color: enabled && !readOnly
-                                    ? AppColors.specificBasicBlack
-                                    : AppColors.specificBasicGrey,
+                                    ? context.colors.specificBasicBlack
+                                    : context.colors.specificBasicGrey,
                               )
                             : null,
                         icon: Padding(
@@ -99,10 +99,10 @@ class CustomDropdownFieldWidget<T> extends StatelessWidget {
                             bottom: title != null ? 16.0 : 0,
                           ),
                           child: ImageAssetWidget(
-                            path: AppAssets.iconArrowDown,
+                            path: AppAssetsIcons.arrowDown,
                             color: enabled && !readOnly
-                                ? AppColors.specificBasicBlack
-                                : AppColors.specificBasicGrey,
+                                ? context.colors.specificBasicBlack
+                                : context.colors.specificBasicGrey,
                           ),
                         ),
                         items: items,
@@ -118,9 +118,9 @@ class CustomDropdownFieldWidget<T> extends StatelessWidget {
                                   initialValue ?? value.toString(),
                                   color: readOnly
                                       ? forzeBlackColor
-                                            ? AppColors.specificBasicBlack
+                                            ? context.colors.specificBasicBlack
                                             : null
-                                      : AppColors.specificBasicBlack,
+                                      : context.colors.specificBasicBlack,
                                 ),
                               ),
                             )
@@ -143,8 +143,8 @@ class CustomDropdownFieldWidget<T> extends StatelessWidget {
           if ((errorText != null && showError) || infoText != null) ...[
             const SizedBox(height: 8),
             showError
-                ? CustomRowIconTextWidget.error(errorText!)
-                : CustomRowIconTextWidget.info(infoText!),
+                ? CustomRowIconTextWidget.error(errorText!, context: context)
+                : CustomRowIconTextWidget.info(infoText!, context: context),
           ],
         ],
       ),

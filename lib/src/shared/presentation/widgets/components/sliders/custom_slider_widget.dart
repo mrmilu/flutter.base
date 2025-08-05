@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../utils/styles/colors.dart';
+import '../../../utils/styles/colors/colors_context.dart';
 import '../text/rm_text.dart';
 
 class CustomSliderWidget extends StatefulWidget {
@@ -102,7 +102,7 @@ class _CustomSliderWidgetState extends State<CustomSliderWidget> {
                         max: widget.max,
                         divisions: widget.divisions ?? division(),
                         onChanged: widget.isDisabled ? null : _updateValue,
-                        activeColor: AppColors.primary,
+                        activeColor: context.colors.primary,
                         thumbColor: thumbColor,
                         inactiveColor: Colors.grey[300],
                       ),

@@ -34,7 +34,6 @@ class InfoExtraPage extends StatelessWidget {
                 children: [
                   const SizedBox(height: 32),
                   SettingsItemWidget(
-                    iconUrl: 'assets/icons/planet_outline.svg',
                     showIcon: false,
                     title: context.cl.translate(
                       'pages.profileInfoInfoExtra.privacy.title',
@@ -54,7 +53,6 @@ class InfoExtraPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
                   SettingsItemWidget(
-                    iconUrl: 'assets/icons/planet_outline.svg',
                     showIcon: false,
                     title: context.cl.translate(
                       'pages.profileInfoInfoExtra.terms.title',
@@ -76,7 +74,6 @@ class InfoExtraPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
                   SettingsItemWidget(
-                    iconUrl: 'assets/icons/planet_outline.svg',
                     showIcon: false,
                     title: context.cl.translate(
                       'pages.profileInfoInfoExtra.legalNotice.title',
@@ -96,7 +93,6 @@ class InfoExtraPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
                   SettingsItemWidget(
-                    iconUrl: 'assets/icons/planet_outline.svg',
                     showIcon: false,
                     showButton: false,
                     title: context.cl.translate(

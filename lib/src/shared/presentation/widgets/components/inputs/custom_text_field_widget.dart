@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../../utils/extensions/buildcontext_extensions.dart';
-import '../../../utils/styles/colors.dart';
+import '../../../utils/styles/colors/colors_context.dart';
 import '../../common/custom_row_icon_text_widget.dart';
 import '../text/rm_text.dart';
 
@@ -136,21 +136,21 @@ class _CustomTextFieldWidgetState extends State<CustomTextFieldWidget> {
                     color:
                         widget.backgroundColor ??
                         (widget.readOnly
-                            ? AppColors.specificBasicGrey
-                            : AppColors.specificBasicWhite),
+                            ? context.colors.specificBasicGrey
+                            : context.colors.specificBasicWhite),
                     borderRadius: BorderRadius.circular(widget.borderRadius),
                     border: widget.showBorder
                         ? Border.all(
                             width: borderWidth,
                             color:
                                 (widget.showError && widget.errorText != null)
-                                ? AppColors.specificSemanticError
+                                ? context.colors.specificSemanticError
                                 : !widget.enabled
-                                ? AppColors.disabled
+                                ? context.colors.disabled
                                 : widget.borderColor ??
                                       (widget.readOnly
-                                          ? AppColors.specificBasicGrey
-                                          : AppColors.specificBasicBlack),
+                                          ? context.colors.specificBasicGrey
+                                          : context.colors.specificBasicBlack),
                           )
                         : null,
                   ),
@@ -193,7 +193,7 @@ class _CustomTextFieldWidgetState extends State<CustomTextFieldWidget> {
                               textAlign: widget.textAlign ?? TextAlign.start,
                               maxLines: widget.maxLines,
                               maxLength: widget.maxLength,
-                              cursorColor: AppColors.specificBasicBlack,
+                              cursorColor: context.colors.specificBasicBlack,
                               autocorrect: widget.obscureText == true
                                   ? false
                                   : true,
@@ -214,8 +214,9 @@ class _CustomTextFieldWidgetState extends State<CustomTextFieldWidget> {
                                               _obscureText
                                                   ? Icons.visibility_off
                                                   : Icons.visibility,
-                                              color:
-                                                  AppColors.specificBasicGrey,
+                                              color: context
+                                                  .colors
+                                                  .specificBasicGrey,
                                             ),
                                             onPressed: () {
                                               setState(() {
@@ -228,15 +229,19 @@ class _CustomTextFieldWidgetState extends State<CustomTextFieldWidget> {
                                         ? RMText.bodyMedium(
                                             widget.labelText!,
                                             color: widget.enabled
-                                                ? AppColors.specificBasicBlack
-                                                : AppColors.specificBasicGrey,
+                                                ? context
+                                                      .colors
+                                                      .specificBasicBlack
+                                                : context
+                                                      .colors
+                                                      .specificBasicGrey,
                                           )
                                         : null,
                                     contentPadding:
                                         widget.contentPadding ??
                                         const EdgeInsets.only(top: 0),
-                                    counterStyle: const TextStyle(
-                                      color: AppColors.specificBasicGrey,
+                                    counterStyle: TextStyle(
+                                      color: context.colors.specificBasicGrey,
                                     ),
                                     suffixIconConstraints: const BoxConstraints(
                                       maxWidth: 60,
@@ -254,9 +259,9 @@ class _CustomTextFieldWidgetState extends State<CustomTextFieldWidget> {
                               child: CircularProgressIndicator(strokeWidth: 2),
                             ),
                           if (widget.isAccepted)
-                            const Icon(
+                            Icon(
                               Icons.check,
-                              color: AppColors.specificSemanticSuccess,
+                              color: context.colors.specificSemanticSuccess,
                             ),
                         ],
                       ),
@@ -270,8 +275,14 @@ class _CustomTextFieldWidgetState extends State<CustomTextFieldWidget> {
               widget.infoText != null) ...[
             const SizedBox(height: 6),
             widget.showError && widget.errorText != null
-                ? CustomRowIconTextWidget.error(widget.errorText!)
-                : CustomRowIconTextWidget.info(widget.infoText!),
+                ? CustomRowIconTextWidget.error(
+                    widget.errorText!,
+                    context: context,
+                  )
+                : CustomRowIconTextWidget.info(
+                    widget.infoText!,
+                    context: context,
+                  ),
           ],
         ],
       ),

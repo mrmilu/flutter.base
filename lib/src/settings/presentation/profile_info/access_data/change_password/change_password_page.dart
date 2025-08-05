@@ -11,7 +11,7 @@ import '../../../../../shared/presentation/l10n/generated/l10n.dart';
 import '../../../../../shared/presentation/providers/global_loader/global_loader_cubit.dart';
 import '../../../../../shared/presentation/router/app_router.dart';
 import '../../../../../shared/presentation/utils/extensions/buildcontext_extensions.dart';
-import '../../../../../shared/presentation/utils/styles/colors.dart';
+import '../../../../../shared/presentation/utils/styles/colors/colors_context.dart';
 import '../../../../../shared/presentation/widgets/components/buttons/custom_elevated_button.dart';
 import '../../../../../shared/presentation/widgets/components/inputs/custom_text_field_widget.dart';
 import '../../../../../shared/presentation/widgets/components/text/rm_text.dart';
@@ -148,9 +148,9 @@ class ChangeEmailBottomSheet extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisSize: MainAxisSize.min,
       children: [
-        const Divider(
+        Divider(
           height: 1,
-          color: AppColors.specificBasicGrey,
+          color: context.colors.specificBasicGrey,
         ),
         const SizedBox(height: 20),
         BlocConsumer<ChangePasswordCubit, ChangePasswordState>(
@@ -208,8 +208,8 @@ class GuionText extends StatelessWidget {
           child: Container(
             height: 5,
             width: 5,
-            decoration: const BoxDecoration(
-              color: AppColors.specificBasicBlack,
+            decoration: BoxDecoration(
+              color: context.colors.specificBasicBlack,
               shape: BoxShape.circle,
             ),
           ),

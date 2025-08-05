@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../shared/domain/failures_extensions/email_failure.extension.dart';
+import '../../../shared/presentation/utils/assets/app_assets_icons.dart';
 import '../../../shared/presentation/utils/extensions/buildcontext_extensions.dart';
 import '../../../shared/presentation/widgets/common/image_asset_widget.dart';
 import '../../../shared/presentation/widgets/components/buttons/custom_elevated_button.dart';
@@ -44,7 +45,7 @@ class InitialContentSignInEmailPasswordWidget extends StatelessWidget {
                     child: const Padding(
                       padding: EdgeInsets.all(8.0),
                       child: ImageAssetWidget(
-                        path: 'assets/icons/arrow_ios_left.svg',
+                        path: AppAssetsIcons.arrowIosLeft,
                       ),
                     ),
                   ),
@@ -105,7 +106,7 @@ class InitialContentSignInEmailPasswordWidget extends StatelessWidget {
                   label: context.cl.translate(
                     'pages.auth.signIn.contentPassword.forgotPassword',
                   ),
-                  iconPath: 'assets/icons/arrow_right.svg',
+                  iconPath: AppAssetsIcons.arrowRight,
                 ),
               ),
               const Divider(),

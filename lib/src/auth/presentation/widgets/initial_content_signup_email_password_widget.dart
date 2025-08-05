@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../settings/presentation/profile_info/access_data/change_password/info_password_validator_widget.dart';
 import '../../../shared/domain/failures_extensions/email_failure.extension.dart';
 import '../../../shared/presentation/l10n/generated/l10n.dart';
+import '../../../shared/presentation/utils/assets/app_assets_icons.dart';
 import '../../../shared/presentation/utils/extensions/buildcontext_extensions.dart';
 import '../../../shared/presentation/widgets/common/image_asset_widget.dart';
 import '../../../shared/presentation/widgets/components/buttons/custom_elevated_button.dart';
@@ -42,7 +43,7 @@ class InitialContentSignUpEmailPasswordWidget extends StatelessWidget {
                       child: const Padding(
                         padding: EdgeInsets.all(8.0),
                         child: ImageAssetWidget(
-                          path: 'assets/icons/arrow_ios_left.svg',
+                          path: AppAssetsIcons.arrowIosLeft,
                         ),
                       ),
                     ),

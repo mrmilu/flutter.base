@@ -11,7 +11,7 @@ import '../../../shared/presentation/router/app_router.dart';
 import '../../../shared/presentation/router/page_names.dart';
 import '../../../shared/presentation/utils/const.dart';
 import '../../../shared/presentation/utils/extensions/buildcontext_extensions.dart';
-import '../../../shared/presentation/utils/styles/colors.dart';
+import '../../../shared/presentation/utils/styles/colors/colors_context.dart';
 import '../../../shared/presentation/widgets/common/point_with_text_widget.dart';
 import '../../../shared/presentation/widgets/components/buttons/custom_elevated_button.dart';
 import '../../../shared/presentation/widgets/components/buttons/custom_outlined_button.dart';
@@ -158,7 +158,7 @@ class ModalDeleteAccountWidgetContent extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: CustomElevatedButton.inverse(
-                  backgroundColor: AppColors.specificSemanticError,
+                  backgroundColor: context.colors.specificSemanticError,
                   padding: const EdgeInsets.symmetric(
                     vertical: paddingHightButtons,
                   ),

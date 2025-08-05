@@ -1,7 +1,8 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 
-import '../../../utils/styles/colors.dart';
+import '../../../utils/assets/app_assets_icons.dart';
+import '../../../utils/styles/colors/colors_context.dart';
 import '../../common/custom_row_icon_text_widget.dart';
 import '../../common/image_asset_widget.dart';
 import '../text/rm_text.dart';
@@ -32,14 +33,14 @@ class CustomDowndownFieldPackageWidget<T> extends StatelessWidget {
 
   final List<DropdownMenuItem<T>>? items;
 
-  Color _getBorderColor() {
+  Color _getBorderColor(BuildContext context) {
     if (!enabled || readOnly) {
-      return AppColors.specificBasicGrey;
+      return context.colors.specificBasicGrey;
     }
     if (showError) {
-      return AppColors.specificSemanticError;
+      return context.colors.specificSemanticError;
     }
-    return AppColors.specificBasicBlack;
+    return context.colors.specificBasicBlack;
   }
 
   @override
@@ -53,12 +54,12 @@ class CustomDowndownFieldPackageWidget<T> extends StatelessWidget {
               Container(
                 decoration: BoxDecoration(
                   color: readOnly
-                      ? AppColors.background
-                      : AppColors.specificBasicWhite,
+                      ? context.colors.background
+                      : context.colors.specificBasicWhite,
                   borderRadius: BorderRadius.circular(32),
                   border: Border.all(
                     width: 1,
-                    color: _getBorderColor(),
+                    color: _getBorderColor(context),
                   ),
                 ),
                 child: Column(
@@ -69,7 +70,7 @@ class CustomDowndownFieldPackageWidget<T> extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 20.0),
                       child: RMText.labelSmall(
                         title!,
-                        color: AppColors.specificBasicBlack,
+                        color: context.colors.specificBasicBlack,
                       ),
                     ),
                     Padding(
@@ -86,10 +87,10 @@ class CustomDowndownFieldPackageWidget<T> extends StatelessWidget {
                                   bottom: 16,
                                 ),
                                 child: ImageAssetWidget(
-                                  path: 'assets/icons/arrow_ios_down.svg',
+                                  path: AppAssetsIcons.arrowIosDown,
                                   color: enabled && !readOnly
-                                      ? AppColors.specificBasicBlack
-                                      : AppColors.specificBasicGrey,
+                                      ? context.colors.specificBasicBlack
+                                      : context.colors.specificBasicGrey,
                                 ),
                               ),
                             ),
@@ -104,8 +105,8 @@ class CustomDowndownFieldPackageWidget<T> extends StatelessWidget {
                                       child: RMText.bodyMedium(
                                         initialValue ?? value.toString(),
                                         color: readOnly
-                                            ? AppColors.grey
-                                            : AppColors.specificBasicBlack,
+                                            ? context.colors.grey
+                                            : context.colors.specificBasicBlack,
                                       ),
                                     ),
                                   ),
@@ -128,8 +129,11 @@ class CustomDowndownFieldPackageWidget<T> extends StatelessWidget {
               if ((errorText != null && showError) || infoText != null) ...[
                 const SizedBox(height: 8),
                 showError
-                    ? CustomRowIconTextWidget.error(errorText!)
-                    : CustomRowIconTextWidget.info(infoText!),
+                    ? CustomRowIconTextWidget.error(
+                        errorText!,
+                        context: context,
+                      )
+                    : CustomRowIconTextWidget.info(infoText!, context: context),
               ],
             ],
           ),

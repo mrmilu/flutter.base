@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../utils/styles/colors.dart';
+import '../../../utils/styles/colors/colors_context.dart';
 import '../../common/button_scale_widget.dart';
 import '../../common/image_asset_widget.dart';
 
@@ -152,8 +152,8 @@ class CustomElevatedButton extends StatelessWidget {
               }
             : null,
         style: ElevatedButton.styleFrom(
-          disabledBackgroundColor: AppColors.disabled,
-          // disabledForegroundColor: Colors.white,
+          disabledBackgroundColor: context.colors.disabled,
+          disabledForegroundColor: context.colors.onDisabled,
           backgroundColor: _getBackgroundColor(context),
           foregroundColor: _getForegroundColor(context),
           padding: padding,
@@ -198,18 +198,18 @@ class CustomElevatedButton extends StatelessWidget {
   }
 
   Color _getBackgroundColor(BuildContext context) {
-    if (isDisabled) return AppColors.disabled;
+    if (isDisabled) return context.colors.disabled;
     if (backgroundColor != null) return backgroundColor!;
 
     switch (_style) {
       case CustomElevatedButtonStyle.primary:
-        return AppColors.primary;
+        return context.colors.primary;
       case CustomElevatedButtonStyle.inverse:
         // En inverse, el fondo debe adaptarse al tema
         final brightness = Theme.of(context).brightness;
         return brightness == Brightness.dark
             ? Colors.white
-            : AppColors.onBackground;
+            : context.colors.onBackground;
     }
   }
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../utils/styles/colors.dart';
+import '../../../utils/styles/colors/colors_context.dart';
 import '../../common/image_asset_widget.dart';
 import '../text/rm_text.dart';
 
@@ -44,7 +44,7 @@ class CustomTagIconWidget extends StatelessWidget {
                 color:
                     effectiveBorderColor ??
                     backgroundColor ??
-                    AppColors.background,
+                    context.colors.background,
               )
             : null,
       ),

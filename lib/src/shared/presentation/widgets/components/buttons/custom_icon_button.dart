@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../utils/styles/colors.dart';
+import '../../../utils/styles/colors/colors_context.dart';
 import '../../common/image_asset_widget.dart';
 
 /// Widget de botón de icono personalizado del design system
@@ -90,40 +90,44 @@ class CustomIconButton extends StatelessWidget {
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         visualDensity: VisualDensity.compact,
         // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        foregroundColor: Colors.black,
+        disabledBackgroundColor: context.colors.disabled,
+        disabledForegroundColor: context.colors.onDisabled,
+        foregroundColor: _getForegroundColor(context),
+        backgroundColor: _getBackgroundColor(context),
         overlayColor: Colors.transparent,
-        backgroundColor: _getBackgroundColor(),
       ),
+      autofocus: true,
       child: isLoading
           ? SizedBox(
               height: 20,
               width: 20,
-              child: CircularProgressIndicator(
-                strokeWidth: 2,
-                color: _getForegroundColor(),
+              child: Padding(
+                padding: const EdgeInsets.all(2.0),
+                child: CircularProgressIndicator(
+                  strokeWidth: 2,
+                  color: _getForegroundColor(context),
+                ),
               ),
             )
           : ImageAssetWidget(
               path: iconPath,
               height: 20,
               width: 20,
-              color: _getIconColor(),
+              color: _getForegroundColor(context),
             ),
     );
   }
 
-  Color? _getBackgroundColor() {
-    if (!enabled) return AppColors.disabled;
-    return backgroundColor ?? AppColors.primary;
+  Color? _getBackgroundColor(BuildContext context) {
+    if (!enabled) return context.colors.disabled;
+    return backgroundColor ?? context.colors.primary;
   }
 
-  Color _getForegroundColor() {
-    return foregroundColor ?? AppColors.specificBasicWhite;
-  }
-
-  Color? _getIconColor() {
+  Color _getForegroundColor(BuildContext context) {
     if (!enabled) return Colors.white;
-    return foregroundColor ?? AppColors.specificBasicBlack;
+    if (foregroundColor != null) return foregroundColor!;
+    final brightness = Theme.of(context).brightness;
+    return brightness == Brightness.dark ? Colors.white : Colors.black;
   }
 }
 

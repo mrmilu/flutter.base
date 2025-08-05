@@ -5,7 +5,7 @@ import '../../../auth/presentation/providers/auth/auth_cubit.dart';
 import '../../domain/types/app_navigation_type.dart';
 import '../../domain/types/user_status_type.dart';
 import '../utils/extensions/buildcontext_extensions.dart';
-import '../utils/styles/colors.dart';
+import '../utils/styles/colors/colors_context.dart';
 import 'common/image_asset_widget.dart';
 
 const double paddingDot = 50;
@@ -38,8 +38,8 @@ class BottomBarWidget extends StatelessWidget {
 
         return ColoredBox(
           color: isDarkMode
-              ? AppColors.specificBasicSemiBlack
-              : AppColors.specificBasicWhite,
+              ? context.colors.specificBasicSemiBlack
+              : context.colors.specificBasicWhite,
           child: Column(
             children: [
               const Divider(
@@ -157,7 +157,7 @@ class ItemBottomBar extends StatelessWidget {
                     child: AnimatedDefaultTextStyle(
                       duration: const Duration(milliseconds: 300),
                       style: context.textTheme.labelMedium!.copyWith(
-                        color: isSelected ? null : AppColors.grey,
+                        color: isSelected ? null : context.colors.grey,
                         fontWeight: isSelected ? FontWeight.bold : null,
                       ),
                       child: Text(name),

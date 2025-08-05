@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 
-import '../utils/styles/colors.dart';
+import '../utils/styles/colors/colors_context.dart';
 import '../widgets/bottom_bar_widget.dart';
 
 class ScaffoldWithNavigation extends StatelessWidget {
@@ -26,7 +26,7 @@ class ScaffoldWithNavigation extends StatelessWidget {
           child: navigationShell,
         ),
         ColoredBox(
-          color: AppColors.background,
+          color: context.colors.background,
           child: BottomBarWidget(
             itemSelected: navigationShell.currentIndex,
             itemOnTap: _onTap,
@@ -35,8 +35,8 @@ class ScaffoldWithNavigation extends StatelessWidget {
         Container(
           height: paddingBottom,
           color: isDarkMode
-              ? AppColors.specificBasicSemiBlack
-              : AppColors.specificBasicWhite,
+              ? context.colors.specificBasicSemiBlack
+              : context.colors.specificBasicWhite,
         ),
       ],
     );

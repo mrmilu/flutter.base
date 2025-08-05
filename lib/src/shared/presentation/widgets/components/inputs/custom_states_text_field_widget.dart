@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../../utils/extensions/buildcontext_extensions.dart';
-import '../../../utils/styles/colors.dart';
+import '../../../utils/styles/colors/colors_context.dart';
 import '../../common/custom_row_icon_text_widget.dart';
 import '../text/rm_text.dart';
 
@@ -137,13 +137,15 @@ class _CustomStatesTextFieldWidgetState
                   ),
                   decoration: BoxDecoration(
                     color:
-                        widget.backgroundColor ?? AppColors.specificBasicWhite,
+                        widget.backgroundColor ??
+                        context.colors.specificBasicWhite,
                     borderRadius: BorderRadius.circular(widget.borderRadius),
                     border: Border.all(
                       width: borderWidth,
                       color: widget.showError
-                          ? AppColors.specificSemanticError
-                          : widget.borderColor ?? AppColors.specificBasicBlack,
+                          ? context.colors.specificSemanticError
+                          : widget.borderColor ??
+                                context.colors.specificBasicBlack,
                     ),
                   ),
                   child: Column(
@@ -177,14 +179,14 @@ class _CustomStatesTextFieldWidgetState
                                   widget.textStyle ??
                                   context.textTheme.bodyMedium?.copyWith(
                                     color: widget.isError
-                                        ? AppColors.specificSemanticError
-                                        : AppColors.specificBasicBlack,
+                                        ? context.colors.specificSemanticError
+                                        : context.colors.specificBasicBlack,
                                   ),
                               keyboardType: widget.keyboardType,
                               textAlign: widget.textAlign ?? TextAlign.start,
                               maxLines: widget.maxLines ?? 1,
                               maxLength: widget.maxLength,
-                              cursorColor: AppColors.specificBasicBlack,
+                              cursorColor: context.colors.specificBasicBlack,
                               decoration:
                                   widget.decoration ??
                                   InputDecoration(
@@ -194,8 +196,12 @@ class _CustomStatesTextFieldWidgetState
                                         ? RMText.bodyMedium(
                                             widget.prefixText!,
                                             color: widget.enabled
-                                                ? AppColors.specificBasicBlack
-                                                : AppColors.specificBasicGrey,
+                                                ? context
+                                                      .colors
+                                                      .specificBasicBlack
+                                                : context
+                                                      .colors
+                                                      .specificBasicGrey,
                                           )
                                         : null,
                                     border: InputBorder.none,
@@ -206,15 +212,19 @@ class _CustomStatesTextFieldWidgetState
                                         ? RMText.bodyMedium(
                                             widget.labelText!,
                                             color: widget.enabled
-                                                ? AppColors.specificBasicBlack
-                                                : AppColors.specificBasicGrey,
+                                                ? context
+                                                      .colors
+                                                      .specificBasicBlack
+                                                : context
+                                                      .colors
+                                                      .specificBasicGrey,
                                           )
                                         : null,
                                     contentPadding:
                                         widget.contentPadding ??
                                         const EdgeInsets.only(top: 0),
-                                    counterStyle: const TextStyle(
-                                      color: AppColors.specificBasicGrey,
+                                    counterStyle: TextStyle(
+                                      color: context.colors.specificBasicGrey,
                                     ),
                                     suffixIconConstraints: const BoxConstraints(
                                       maxWidth: 60,
@@ -232,14 +242,14 @@ class _CustomStatesTextFieldWidgetState
                               child: CircularProgressIndicator(strokeWidth: 2),
                             ),
                           if (widget.isAccepted)
-                            const Icon(
+                            Icon(
                               Icons.check,
-                              color: AppColors.specificSemanticSuccess,
+                              color: context.colors.specificSemanticSuccess,
                             ),
                           if (widget.isError)
-                            const Icon(
+                            Icon(
                               Icons.error,
-                              color: AppColors.specificSemanticError,
+                              color: context.colors.specificSemanticError,
                             ),
                         ],
                       ),
@@ -252,8 +262,14 @@ class _CustomStatesTextFieldWidgetState
           if (widget.showError || widget.infoText != null) ...[
             const SizedBox(height: 6),
             widget.showError
-                ? CustomRowIconTextWidget.warning(widget.errorText!)
-                : CustomRowIconTextWidget.info(widget.infoText!),
+                ? CustomRowIconTextWidget.warning(
+                    widget.errorText!,
+                    context: context,
+                  )
+                : CustomRowIconTextWidget.info(
+                    widget.infoText!,
+                    context: context,
+                  ),
           ],
         ],
       ),

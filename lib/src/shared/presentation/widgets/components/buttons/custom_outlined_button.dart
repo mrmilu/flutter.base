@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../utils/styles/colors.dart';
+import '../../../utils/styles/colors/colors_context.dart';
 import '../../common/button_scale_widget.dart';
 import '../../common/image_asset_widget.dart';
 
@@ -114,14 +114,16 @@ class CustomOutlinedButton extends StatelessWidget {
         },
         style: OutlinedButton.styleFrom(
           disabledBackgroundColor: Colors.transparent,
-          disabledForegroundColor: AppColors.disabled,
+          disabledForegroundColor: context.colors.onDisabled,
           side: isDisabled
-              ? const BorderSide(color: AppColors.disabled)
+              ? BorderSide(color: context.colors.disabled)
               : foregroundColor != null
               ? BorderSide(color: foregroundColor!)
               : null,
           backgroundColor: isDisabled ? Colors.transparent : backgroundColor,
-          foregroundColor: isDisabled ? AppColors.disabled : foregroundColor,
+          foregroundColor: isDisabled
+              ? context.colors.onDisabled
+              : foregroundColor,
           padding: padding,
         ),
         child: isLoading
@@ -178,6 +180,6 @@ class CustomOutlinedButton extends StatelessWidget {
     final brightness = Theme.of(context).brightness;
     return brightness == Brightness.dark
         ? Colors.white
-        : AppColors.specificContentHigh;
+        : context.colors.specificContentHigh;
   }
 }

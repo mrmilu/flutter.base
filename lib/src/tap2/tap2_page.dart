@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../shared/presentation/providers/theme_mode/theme_mode_cubit.dart';
-import '../shared/presentation/utils/styles/colors.dart';
+import '../shared/presentation/utils/assets/app_assets_icons.dart';
+import '../shared/presentation/utils/styles/colors/colors_context.dart';
 import '../shared/presentation/widgets/common/button_scale_widget.dart';
 import '../shared/presentation/widgets/components/buttons/custom_elevated_button.dart';
 import '../shared/presentation/widgets/components/buttons/custom_icon_button.dart';
@@ -75,14 +76,14 @@ class MainTap2Page extends StatelessWidget {
                       ),
                       const SizedBox(height: 8.0),
                       CustomIconButton.primary(
-                        iconPath: 'assets/icons/mail.svg',
-                        backgroundColor: AppColors.primary,
+                        iconPath: AppAssetsIcons.mail,
+                        backgroundColor: context.colors.primary,
                         onPressed: () {},
                       ),
                       const SizedBox(height: 8.0),
                       CustomIconButton.primary(
-                        iconPath: 'assets/icons/mail.svg',
-                        backgroundColor: AppColors.primary,
+                        iconPath: AppAssetsIcons.mail,
+                        backgroundColor: context.colors.primary,
                         enabled: false,
                         onPressed: () {},
                       ),
@@ -103,13 +104,13 @@ class MainTap2Page extends StatelessWidget {
                       CustomTextButton.icon(
                         key: const Key('tap2_text_button_icon'),
                         label: 'Tap 2 Button',
-                        iconPath: 'assets/icons/mail.svg',
+                        iconPath: AppAssetsIcons.mail,
                         onPressed: () {},
                       ),
                       CustomTextButton.icon(
                         enabled: false,
                         label: 'Tap 2 Button',
-                        iconPath: 'assets/icons/mail.svg',
+                        iconPath: AppAssetsIcons.mail,
                         onPressed: () {},
                       ),
                     ],
@@ -199,12 +200,12 @@ class MainTap2Page extends StatelessWidget {
               const SizedBox(height: 8.0),
               CustomTagIconWidget.fill(
                 label: 'Tap 2 Tag',
-                iconPath: 'assets/icons/mail.svg',
+                iconPath: AppAssetsIcons.mail,
               ),
               const SizedBox(height: 8.0),
               CustomTagIconWidget.outlined(
                 label: 'Tap 2 Tag',
-                iconPath: 'assets/icons/mail.svg',
+                iconPath: AppAssetsIcons.mail,
               ),
               const SizedBox(height: 24.0),
               const RMText.titleMedium('Inputs'),

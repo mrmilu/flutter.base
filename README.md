@@ -34,7 +34,7 @@ This project is a starting point for a Flutter application with the following fe
 - App icons configured
 - Routing (Go Router)
 - State management with [Bloc](https://bloclibrary.dev/)
-- DotEnv and Flutter Config (for env variables on native code)
+- DotEnv (for env variables on native code)
 
 The following index has a summary of configuration, common errors and how to solve them for each of the features this base project has:
 
@@ -60,3 +60,8 @@ For create unions type use this extension from vscode
 8. Replace values in IOS-Build Settings to "DYNAMIC_LINKS_URL_TYPE_SCHEMA", "DYNAMIC_LINK_HOST" and "FIREBASE_REVERSED_CLIENT_ID"
 9. Replace values in .env.beta and .env.live
 10. Ready to start, run "just setup".
+
+
+###  New assets
+1. Add assets in folder assets.
+2. Run "just generate_assets_app_files".

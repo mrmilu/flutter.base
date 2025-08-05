@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../../utils/styles/colors.dart';
+import '../../../utils/styles/colors/colors_context.dart';
 import '../../common/custom_row_icon_text_widget.dart';
 
-class CustomDropdownFieldWidget<T> extends StatelessWidget {
-  const CustomDropdownFieldWidget({
+class CustomDropdownSearchFieldWidget<T> extends StatelessWidget {
+  const CustomDropdownSearchFieldWidget({
     super.key,
     this.enabled = true,
     this.title,
@@ -31,14 +31,14 @@ class CustomDropdownFieldWidget<T> extends StatelessWidget {
   final T? value;
   final List<DropdownMenuEntry<T>> items;
 
-  Color _getBorderColor() {
+  Color _getBorderColor(BuildContext context) {
     if (!enabled || readOnly) {
-      return AppColors.specificBasicGrey;
+      return context.colors.specificBasicGrey;
     }
     if (showError) {
-      return AppColors.specificSemanticError;
+      return context.colors.specificSemanticError;
     }
-    return AppColors.specificBasicBlack;
+    return context.colors.specificBasicBlack;
   }
 
   @override
@@ -50,10 +50,10 @@ class CustomDropdownFieldWidget<T> extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
               color: readOnly
-                  ? AppColors.background
-                  : AppColors.specificBasicWhite,
+                  ? context.colors.background
+                  : context.colors.specificBasicWhite,
               borderRadius: BorderRadius.circular(borderRadius),
-              border: Border.all(width: 1, color: _getBorderColor()),
+              border: Border.all(width: 1, color: _getBorderColor(context)),
             ),
             alignment: Alignment.center,
             child: Column(
@@ -82,8 +82,8 @@ class CustomDropdownFieldWidget<T> extends StatelessWidget {
           if ((errorText != null && showError) || infoText != null) ...[
             const SizedBox(height: 8),
             showError
-                ? CustomRowIconTextWidget.error(errorText!)
-                : CustomRowIconTextWidget.info(infoText!),
+                ? CustomRowIconTextWidget.error(errorText!, context: context)
+                : CustomRowIconTextWidget.info(infoText!, context: context),
           ],
         ],
       ),

@@ -11,7 +11,7 @@ import '../../../../shared/presentation/providers/global_loader/global_loader_cu
 import '../../../../shared/presentation/router/app_router.dart';
 import '../../../../shared/presentation/utils/call_utils.dart';
 import '../../../../shared/presentation/utils/extensions/buildcontext_extensions.dart';
-import '../../../../shared/presentation/utils/styles/colors.dart';
+import '../../../../shared/presentation/utils/styles/colors/colors_context.dart';
 import '../../../../shared/presentation/widgets/components/buttons/custom_elevated_button.dart';
 import '../../../../shared/presentation/widgets/components/inputs/custom_dropdown_field_widget.dart';
 import '../../../../shared/presentation/widgets/components/inputs/custom_text_field_widget.dart';
@@ -176,9 +176,9 @@ class PersonalDataBottomSheet extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisSize: MainAxisSize.min,
       children: [
-        const Divider(
+        Divider(
           height: 1,
-          color: AppColors.specificBasicGrey,
+          color: context.colors.specificBasicGrey,
         ),
         const SizedBox(height: 20),
         BlocConsumer<PersonalDataCubit, PersonalDataState>(

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../shared/presentation/utils/assets/app_assets_icons.dart';
 import '../../../shared/presentation/utils/extensions/buildcontext_extensions.dart';
 import '../../../shared/presentation/utils/extensions/color_extension.dart';
-import '../../../shared/presentation/utils/styles/colors.dart';
+import '../../../shared/presentation/utils/styles/colors/colors_context.dart';
 import '../../../shared/presentation/widgets/common/image_asset_widget.dart';
 import '../../../shared/presentation/widgets/common/image_network_widget.dart';
 
@@ -50,8 +51,8 @@ class SettingsItemWidget extends StatelessWidget {
                         height: 80,
                         width: 80,
                         clipBehavior: Clip.antiAlias,
-                        decoration: const BoxDecoration(
-                          color: AppColors.secondary,
+                        decoration: BoxDecoration(
+                          color: context.colors.secondary,
                           shape: BoxShape.circle,
                         ),
                         child: ImageNetworkWidget(
@@ -63,12 +64,12 @@ class SettingsItemWidget extends StatelessWidget {
                         height: 30,
                         width: 30,
                         colorFilter: isActive
-                            ? const ColorFilter.mode(
-                                AppColors.secondary,
+                            ? ColorFilter.mode(
+                                context.colors.secondary,
                                 BlendMode.srcATop,
                               )
                             : ColorFilter.mode(
-                                AppColors.disabled.wOpacity(0.3),
+                                context.colors.disabled.wOpacity(0.3),
                                 BlendMode.srcATop,
                               ),
                       ),
@@ -80,7 +81,9 @@ class SettingsItemWidget extends StatelessWidget {
                   Text(
                     title,
                     style: context.textTheme.bodyLarge?.copyWith(
-                      color: isActive ? null : AppColors.disabled.wOpacity(0.3),
+                      color: isActive
+                          ? null
+                          : context.colors.disabled.wOpacity(0.3),
                     ),
                   ),
                   if (subtitle != null) ...[
@@ -89,8 +92,8 @@ class SettingsItemWidget extends StatelessWidget {
                       subtitle!,
                       style: context.textTheme.bodySmall?.copyWith(
                         color: isActive
-                            ? AppColors.specificBasicGrey
-                            : AppColors.disabled.wOpacity(0.3),
+                            ? context.colors.specificBasicGrey
+                            : context.colors.disabled.wOpacity(0.3),
                       ),
                     ),
                   ],
@@ -108,12 +111,12 @@ class SettingsItemWidget extends StatelessWidget {
                     : Padding(
                         padding: const EdgeInsets.only(left: 2.0),
                         child: ImageAssetWidget(
-                          path: 'assets/icons/arrow_ios_right.svg',
+                          path: AppAssetsIcons.arrowIosRight,
                           width: 24,
                           height: 24,
                           color: isActive
                               ? null
-                              : AppColors.disabled.wOpacity(0.3),
+                              : context.colors.disabled.wOpacity(0.3),
                         ),
                       ),
               ),

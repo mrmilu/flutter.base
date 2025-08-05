@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../utils/styles/colors.dart';
+import '../../utils/styles/colors/colors_context.dart';
 
 class SimpleBlockWidget extends StatelessWidget {
   const SimpleBlockWidget({
@@ -33,6 +33,7 @@ class SimpleBlockWidget extends StatelessWidget {
   }
 
   factory SimpleBlockWidget.withBorder({
+    required BuildContext context,
     required Widget child,
     EdgeInsets? padding,
     BorderRadius? borderRadius,
@@ -43,7 +44,7 @@ class SimpleBlockWidget extends StatelessWidget {
       padding: padding,
       borderRadius: borderRadius,
       backgroundColor: backgroundColor,
-      border: Border.all(color: bordeColor ?? AppColors.disabled),
+      border: Border.all(color: bordeColor ?? context.colors.disabled),
       child: child,
     );
   }

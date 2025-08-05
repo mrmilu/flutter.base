@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../domain/types/app_status_type.dart';
 import '../l10n/generated/l10n.dart';
-import '../utils/styles/colors.dart';
+import '../utils/styles/colors/colors_context.dart';
 
 class AppStatusPage extends StatelessWidget {
   const AppStatusPage({super.key, required this.status});
@@ -15,7 +15,7 @@ class AppStatusPage extends StatelessWidget {
     }
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: AppColors.primary,
+      backgroundColor: context.colors.primary,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

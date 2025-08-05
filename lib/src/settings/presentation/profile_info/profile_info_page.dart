@@ -5,8 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../auth/presentation/providers/auth/auth_cubit.dart';
 import '../../../shared/presentation/router/app_router.dart';
 import '../../../shared/presentation/router/page_names.dart';
+import '../../../shared/presentation/utils/assets/app_assets_icons.dart';
 import '../../../shared/presentation/utils/extensions/buildcontext_extensions.dart';
-import '../../../shared/presentation/utils/styles/colors.dart';
+import '../../../shared/presentation/utils/styles/colors/colors_context.dart';
 import '../../../shared/presentation/widgets/common/image_asset_widget.dart';
 import '../../../shared/presentation/widgets/components/buttons/custom_text_button.dart';
 import '../../../shared/presentation/widgets/components/text/rm_text.dart';
@@ -46,7 +47,7 @@ class ProfileInfoPage extends StatelessWidget {
                           return Row(
                             children: [
                               const ImageAssetWidget(
-                                path: 'assets/icons/top_bar_profile.svg',
+                                path: AppAssetsIcons.topBarProfile,
                                 width: 24,
                                 height: 24,
                               ),
@@ -118,15 +119,15 @@ class ProfileInfoPage extends StatelessWidget {
                           ),
                         ),
                         label: context.cl.translate('pages.profileInfo.logout'),
-                        iconPath: 'assets/icons/arrow_right.svg',
+                        iconPath: AppAssetsIcons.arrowRight,
                       ),
                       CustomTextButton.icon(
                         onPressed: () => showModalDeleteAccount(context),
                         label: context.cl.translate(
                           'pages.profileInfo.deleteAccount',
                         ),
-                        iconPath: 'assets/icons/arrow_right.svg',
-                        colorText: AppColors.specificSemanticError,
+                        iconPath: AppAssetsIcons.arrowRight,
+                        colorText: context.colors.specificSemanticError,
                       ),
                       SizedBox(height: context.paddingBottomPlus),
                     ].animate(interval: 40.milliseconds).slideY().fadeIn(),

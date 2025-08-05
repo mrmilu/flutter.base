@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
+import '../../presentation/utils/assets/app_assets_icons.dart';
 import '../../presentation/utils/extensions/buildcontext_extensions.dart';
 
 enum AppNavigationType {
-  home(iconPath: 'assets/icons/main_home.svg'),
-  invoices(iconPath: 'assets/icons/main_invoices.svg'),
-  efforts(iconPath: 'assets/icons/main_effors.svg'),
-  ente(iconPath: 'assets/icons/main_ente.png');
+  home(iconPath: AppAssetsIcons.mainHome),
+  invoices(iconPath: AppAssetsIcons.mainInvoices),
+  efforts(iconPath: AppAssetsIcons.mainEffors),
+  ente(iconPath: AppAssetsIcons.mainEnte);
 
   final String iconPath;
   const AppNavigationType({required this.iconPath});

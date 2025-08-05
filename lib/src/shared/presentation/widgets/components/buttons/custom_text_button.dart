@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../utils/styles/colors.dart';
+import '../../../utils/styles/colors/colors_context.dart';
 import '../../common/image_asset_widget.dart';
 
 /// Widget de botón de texto personalizado del design system
@@ -130,7 +130,7 @@ class CustomTextButton extends StatelessWidget {
       style: TextButton.styleFrom(
         padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 8),
         foregroundColor: textColor,
-        disabledForegroundColor: AppColors.disabled,
+        disabledForegroundColor: context.colors.disabled,
         // overlayColor: Colors.transparent,
       ),
       child: Row(
@@ -155,7 +155,7 @@ class CustomTextButton extends StatelessWidget {
   }
 
   Color? _getTextColor(BuildContext context) {
-    if (!enabled) return AppColors.disabled;
+    if (!enabled) return context.colors.disabled;
 
     // Si se especifica un color personalizado, usarlo
     if (colorText != null) return colorText!;
@@ -165,12 +165,12 @@ class CustomTextButton extends StatelessWidget {
       // Si es estilo secundario, usar color específico
       final brightness = Theme.of(context).brightness;
       return brightness == Brightness.dark
-          ? AppColors.specificBasicWhite
-          : AppColors.specificBasicBlack;
+          ? context.colors.specificBasicWhite
+          : context.colors.specificBasicBlack;
     }
 
     // Si no, usar el color primario que se adapta al tema
-    return AppColors.primary;
+    return context.colors.primary;
   }
 }
 

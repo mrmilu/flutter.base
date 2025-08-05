@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
+import '../../utils/assets/app_assets_icons.dart';
 import '../../utils/extensions/buildcontext_extensions.dart';
-import '../../utils/styles/app_assets.dart';
-import '../../utils/styles/colors.dart';
+import '../../utils/styles/colors/colors_context.dart';
 import 'image_asset_widget.dart';
 
 class CustomRowIconTextWidget extends StatelessWidget {
   const CustomRowIconTextWidget({
     super.key,
+    required this.context,
     required this.text,
     this.textStyle,
     this.iconPath,
@@ -16,6 +17,7 @@ class CustomRowIconTextWidget extends StatelessWidget {
     this.textColor,
     this.spacing = 4.0,
   });
+  final BuildContext context;
   final String text;
   final TextStyle? textStyle;
   final String? iconPath;
@@ -62,30 +64,33 @@ class CustomRowIconTextWidget extends StatelessWidget {
   const CustomRowIconTextWidget.info(
     this.text, {
     super.key,
-  }) : iconPath = AppAssets.iconInfo,
+    required this.context,
+  }) : iconPath = AppAssetsIcons.info,
        iconSize = 16,
        iconColor = null,
        textColor = null,
        textStyle = null,
        spacing = 4.0;
 
-  const CustomRowIconTextWidget.warning(
+  CustomRowIconTextWidget.warning(
     this.text, {
     super.key,
-    this.textColor = AppColors.specificSemanticWarning,
-  }) : iconPath = AppAssets.iconWarning,
+    required this.context,
+  }) : iconPath = AppAssetsIcons.warning,
        iconSize = 16,
-       iconColor = AppColors.specificSemanticWarning,
+       iconColor = context.colors.specificSemanticWarning,
        textStyle = null,
-       spacing = 4.0;
+       spacing = 4.0,
+       textColor = context.colors.specificSemanticWarning;
 
-  const CustomRowIconTextWidget.error(
+  CustomRowIconTextWidget.error(
     this.text, {
     super.key,
-    this.textColor = AppColors.specificSemanticError,
-  }) : iconPath = AppAssets.iconError,
+    required this.context,
+  }) : iconPath = AppAssetsIcons.warning,
        iconSize = 16,
-       iconColor = AppColors.specificSemanticError,
+       iconColor = context.colors.specificSemanticError,
+       textColor = context.colors.specificSemanticError,
        textStyle = null,
        spacing = 4.0;
 }

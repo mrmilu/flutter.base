@@ -26,7 +26,8 @@ import 'src/shared/presentation/pages/app_status_page.dart';
 import 'src/shared/presentation/providers/global_loader/global_loader_cubit.dart';
 import 'src/shared/presentation/providers/theme_mode/theme_mode_cubit.dart';
 import 'src/shared/presentation/router/app_router.dart';
-import 'src/shared/presentation/utils/styles/theme.dart';
+import 'src/shared/presentation/utils/styles/themes/theme_dark.dart';
+import 'src/shared/presentation/utils/styles/themes/theme_light.dart';
 import 'src/splash/presentation/providers/app_settings_cubit.dart';
 
 class App extends StatelessWidget {

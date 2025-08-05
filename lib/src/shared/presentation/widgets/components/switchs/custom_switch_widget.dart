@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../utils/extensions/buildcontext_extensions.dart';
-import '../../../utils/styles/colors.dart';
+import '../../../utils/styles/colors/colors_context.dart';
 import '../../common/custom_row_icon_text_widget.dart';
 import '../text/rm_text.dart';
 
@@ -32,30 +32,30 @@ class CustomSwitchWidget extends StatelessWidget {
   final bool switchLeft;
   final bool withSpanded;
 
-  Color _getBackgroundColorActive() {
+  Color _getBackgroundColorActive(BuildContext context) {
     if (!enabled) {
-      return AppColors.disabled;
+      return context.colors.disabled;
     }
     if (showError) {
-      return AppColors.specificSemanticError;
+      return context.colors.specificSemanticError;
     }
     if (value) {
-      return AppColors.specificSemanticSuccess;
+      return context.colors.specificSemanticSuccess;
     }
-    return AppColors.specificSemanticSuccess;
+    return context.colors.specificSemanticSuccess;
   }
 
-  Color _getBackgroundColorInactive() {
+  Color _getBackgroundColorInactive(BuildContext context) {
     if (!enabled) {
-      return AppColors.disabled;
+      return context.colors.disabled;
     }
     if (showError) {
-      return AppColors.specificSemanticError;
+      return context.colors.specificSemanticError;
     }
     if (value) {
-      return AppColors.specificBasicSemiBlack;
+      return context.colors.specificBasicSemiBlack;
     }
-    return AppColors.specificBasicSemiBlack;
+    return context.colors.specificBasicSemiBlack;
   }
 
   @override
@@ -79,9 +79,9 @@ class CustomSwitchWidget extends StatelessWidget {
                     fit: BoxFit.fill,
                     child: Switch(
                       activeColor: Colors.white,
-                      activeTrackColor: _getBackgroundColorActive(),
+                      activeTrackColor: _getBackgroundColorActive(context),
                       inactiveThumbColor: Colors.white,
-                      inactiveTrackColor: _getBackgroundColorInactive(),
+                      inactiveTrackColor: _getBackgroundColorInactive(context),
                       trackOutlineColor:
                           WidgetStateProperty.resolveWith<Color?>((
                             Set<WidgetState> states,
@@ -130,9 +130,9 @@ class CustomSwitchWidget extends StatelessWidget {
                     fit: BoxFit.fill,
                     child: Switch(
                       activeColor: Colors.white,
-                      activeTrackColor: _getBackgroundColorActive(),
+                      activeTrackColor: _getBackgroundColorActive(context),
                       inactiveThumbColor: Colors.white,
-                      inactiveTrackColor: _getBackgroundColorInactive(),
+                      inactiveTrackColor: _getBackgroundColorInactive(context),
                       trackOutlineColor:
                           WidgetStateProperty.resolveWith<Color?>((
                             Set<WidgetState> states,
@@ -158,8 +158,8 @@ class CustomSwitchWidget extends StatelessWidget {
         if ((errorText != null && showError) || infoText != null) ...[
           const SizedBox(height: 4),
           showError
-              ? CustomRowIconTextWidget.warning(errorText!)
-              : CustomRowIconTextWidget.info(infoText!),
+              ? CustomRowIconTextWidget.warning(errorText!, context: context)
+              : CustomRowIconTextWidget.info(infoText!, context: context),
         ],
       ],
     );

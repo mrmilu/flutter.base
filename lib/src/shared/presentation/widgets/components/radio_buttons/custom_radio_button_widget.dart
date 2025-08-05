@@ -85,8 +85,8 @@ class CustomRadioButtonWidget extends StatelessWidget {
         if ((errorText != null && showError) || infoText != null) ...[
           const SizedBox(height: 8),
           showError
-              ? CustomRowIconTextWidget.warning(errorText!)
-              : CustomRowIconTextWidget.info(infoText!),
+              ? CustomRowIconTextWidget.warning(errorText!, context: context)
+              : CustomRowIconTextWidget.info(infoText!, context: context),
         ],
       ],
     );

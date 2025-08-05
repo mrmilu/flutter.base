@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../utils/extensions/buildcontext_extensions.dart';
-import '../../../utils/styles/colors.dart';
+import '../../../utils/styles/colors/colors_context.dart';
 import '../../common/custom_row_icon_text_widget.dart';
 import 'template_verification_code.dart';
 
@@ -22,14 +22,14 @@ class CustomCodeFieldWidget extends StatelessWidget {
   final bool showError;
   final String? errorText;
 
-  Color _getBorderColor() {
+  Color _getBorderColor(BuildContext context) {
     if (!enabled) {
-      return AppColors.specificBasicGrey;
+      return context.colors.specificBasicGrey;
     }
     if (showError) {
-      return AppColors.specificSemanticError;
+      return context.colors.specificSemanticError;
     }
-    return AppColors.specificBasicBlack;
+    return context.colors.specificBasicBlack;
   }
 
   @override
@@ -38,9 +38,9 @@ class CustomCodeFieldWidget extends StatelessWidget {
       children: [
         Container(
           decoration: BoxDecoration(
-            color: AppColors.specificBasicWhite,
+            color: context.colors.specificBasicWhite,
             borderRadius: BorderRadius.circular(32),
-            border: Border.all(width: 1, color: _getBorderColor()),
+            border: Border.all(width: 1, color: _getBorderColor(context)),
           ),
           alignment: Alignment.center,
           child: Center(
@@ -65,8 +65,8 @@ class CustomCodeFieldWidget extends StatelessWidget {
         if ((errorText != null && showError) || infoText != null) ...[
           const SizedBox(height: 8),
           showError
-              ? CustomRowIconTextWidget.warning(errorText!)
-              : CustomRowIconTextWidget.info(infoText!),
+              ? CustomRowIconTextWidget.warning(errorText!, context: context)
+              : CustomRowIconTextWidget.info(infoText!, context: context),
         ],
       ],
     );

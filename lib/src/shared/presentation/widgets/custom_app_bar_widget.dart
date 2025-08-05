@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../providers/theme_mode/theme_mode_cubit.dart';
 import '../router/app_router.dart';
 import '../router/page_names.dart';
+import '../utils/assets/app_assets_icons.dart';
 import 'common/button_scale_widget.dart';
 import 'common/image_asset_widget.dart';
 
@@ -22,7 +23,7 @@ class CustomAppBarWidget extends StatelessWidget {
           child: const Padding(
             padding: EdgeInsets.all(8.0),
             child: ImageAssetWidget(
-              path: 'assets/icons/top_bar_profile.svg',
+              path: AppAssetsIcons.topBarProfile,
               width: 24,
               height: 24,
             ),

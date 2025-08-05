@@ -2,7 +2,7 @@ import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 
 import '../presentation/utils/extensions/buildcontext_extensions.dart';
-import '../presentation/utils/styles/colors.dart';
+import '../presentation/utils/styles/colors/colors_context.dart';
 
 void showError(
   BuildContext context, {
@@ -12,7 +12,7 @@ void showError(
   message: message,
   margin: const EdgeInsets.all(20),
   borderRadius: BorderRadius.circular(4),
-  backgroundColor: AppColors.specificSemanticError,
+  backgroundColor: context.colors.specificSemanticError,
   icon: const Icon(
     Icons.error_outline,
     color: Colors.white,
