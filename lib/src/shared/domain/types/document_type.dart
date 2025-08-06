@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../shared/helpers/extensions.dart';
+import '../../presentation/utils/extensions/buildcontext_extensions.dart';
 
 enum DocumentType {
   nif,

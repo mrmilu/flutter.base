@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../utils/styles/colors.dart';
-import '../../row_icon_text_widget.dart';
-import '../../text/text_body.dart';
+import '../../../utils/styles/colors/colors_context.dart';
+import '../../common/custom_row_icon_text_widget.dart';
+import '../text/rm_text.dart';
 
 class CustomCheckboxWidget extends StatelessWidget {
   const CustomCheckboxWidget({
@@ -27,40 +27,40 @@ class CustomCheckboxWidget extends StatelessWidget {
   final String? errorText;
   final Widget? childContent;
 
-  Color _getColor() {
+  Color _getColor(BuildContext context) {
     if (!enabled) {
-      return AppColors.specificBasicGrey;
+      return context.colors.disabled;
     }
     if (showError && value) {
-      return AppColors.specificSemanticError;
+      return context.colors.specificSemanticError;
     }
     if (value) {
-      return AppColors.specificBasicBlack;
+      return context.colors.specificBasicBlack;
     }
-    return AppColors.specificBasicWhite;
+    return context.colors.specificBasicWhite;
   }
 
-  Color _getBorderColor() {
+  Color _getBorderColor(BuildContext context) {
     if (!enabled) {
-      return AppColors.specificBasicGrey;
+      return context.colors.disabled;
     }
     if (showError) {
-      return AppColors.specificSemanticError;
+      return context.colors.specificSemanticError;
     }
-    return AppColors.specificBasicBlack;
+    return context.colors.specificBasicBlack;
   }
 
-  Color _getColorCheck() {
+  Color _getColorCheck(BuildContext context) {
     if (!enabled) {
-      return AppColors.specificBasicBlack;
+      return context.colors.specificBasicBlack;
     }
     if (showError) {
-      return AppColors.specificBasicWhite;
+      return context.colors.specificBasicWhite;
     }
     if (value) {
-      return AppColors.specificBasicWhite;
+      return context.colors.specificBasicWhite;
     }
-    return AppColors.specificBasicWhite;
+    return context.colors.specificBasicWhite;
   }
 
   @override
@@ -69,7 +69,7 @@ class CustomCheckboxWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (title != null) ...[
-          TextBody.two(title!),
+          RMText.bodyMedium(title!),
           const SizedBox(height: 6),
         ],
         Row(
@@ -83,14 +83,16 @@ class CustomCheckboxWidget extends StatelessWidget {
                   height: 16,
                   width: 16,
                   decoration: BoxDecoration(
-                    color: _getColor(),
-                    border: Border.all(
-                      color: _getBorderColor(),
-                    ),
+                    color: _getColor(context),
+                    border: Border.all(color: _getBorderColor(context)),
                     borderRadius: BorderRadius.circular(4),
                   ),
                   child: value
-                      ? Icon(Icons.check, size: 12, color: _getColorCheck())
+                      ? Icon(
+                          Icons.check,
+                          size: 12,
+                          color: _getColorCheck(context),
+                        )
                       : null,
                 ),
               ),
@@ -101,7 +103,7 @@ class CustomCheckboxWidget extends StatelessWidget {
                   childContent ??
                   Padding(
                     padding: const EdgeInsets.only(top: 4.0),
-                    child: TextBody.two(textCheckbox),
+                    child: RMText.bodyMedium(textCheckbox),
                   ),
             ),
           ],
@@ -109,12 +111,8 @@ class CustomCheckboxWidget extends StatelessWidget {
         if ((errorText != null && showError) || infoText != null) ...[
           const SizedBox(height: 8),
           showError
-              ? RowIconTextWidget.warning(
-                  errorText!,
-                )
-              : RowIconTextWidget.info(
-                  infoText!,
-                ),
+              ? CustomRowIconTextWidget.error(errorText!, context: context)
+              : CustomRowIconTextWidget.info(infoText!, context: context),
         ],
       ],
     );

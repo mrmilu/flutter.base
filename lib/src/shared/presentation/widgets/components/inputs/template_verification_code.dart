@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class VerificationCode extends StatefulWidget {
+class TemplateVerificationCode extends StatefulWidget {
   /// is completed
   final ValueChanged<String> onCompleted;
 
@@ -36,7 +36,7 @@ class VerificationCode extends StatefulWidget {
   final double? underlineWidth;
 
   /// style of the input text
-  final TextStyle textStyle;
+  final TextStyle? textStyle;
 
   /// auto focus when screen appears
   final bool autofocus;
@@ -61,7 +61,7 @@ class VerificationCode extends StatefulWidget {
 
   final bool enabled;
 
-  const VerificationCode({
+  const TemplateVerificationCode({
     super.key,
     required this.onCompleted,
     required this.onEditing,
@@ -86,10 +86,11 @@ class VerificationCode extends StatefulWidget {
   });
 
   @override
-  State<VerificationCode> createState() => _VerificationCodeState();
+  State<TemplateVerificationCode> createState() =>
+      _TemplateVerificationCodeState();
 }
 
-class _VerificationCodeState extends State<VerificationCode> {
+class _TemplateVerificationCodeState extends State<TemplateVerificationCode> {
   final List<FocusNode> _listFocusNode = <FocusNode>[];
   final List<FocusNode> _listFocusNodeKeyListener = <FocusNode>[];
   final List<TextEditingController> _listControllerText =
@@ -166,7 +167,7 @@ class _VerificationCodeState extends State<VerificationCode> {
 
     final fullDecoration = InputDecoration(
       hintText: '-',
-      hintStyle: widget.textStyle.copyWith(color: Colors.grey),
+      hintStyle: widget.textStyle?.copyWith(color: Colors.grey),
       border: InputBorder.none,
       counter: const Offstage(),
       contentPadding: padding,

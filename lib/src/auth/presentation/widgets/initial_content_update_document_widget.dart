@@ -6,15 +6,14 @@ import '../../../shared/domain/failures_extensions/fullname_failure_extension.da
 import '../../../shared/domain/types/document_type.dart';
 import '../../../shared/domain/vos/nie_vos.dart';
 import '../../../shared/domain/vos/nif_vos.dart';
-import '../../../shared/helpers/extensions.dart';
 import '../../../shared/presentation/utils/const.dart';
+import '../../../shared/presentation/utils/extensions/buildcontext_extensions.dart';
 import '../../../shared/presentation/widgets/components/buttons/custom_elevated_button.dart';
 import '../../../shared/presentation/widgets/components/buttons/custom_outlined_button.dart';
 import '../../../shared/presentation/widgets/components/inputs/custom_dropdown_field_widget.dart';
 import '../../../shared/presentation/widgets/components/inputs/custom_text_field_widget.dart';
-import '../../../shared/presentation/widgets/components/inputs/uppercase_input_formatter.dart';
-import '../../../shared/presentation/widgets/text/text_body.dart';
-import '../../../shared/presentation/widgets/text/text_title.dart';
+import '../../../shared/presentation/widgets/components/inputs/imput_formatters/uppercase_input_formatter.dart';
+import '../../../shared/presentation/widgets/components/text/rm_text.dart';
 import '../pages/initial_page.dart';
 import '../providers/auth/auth_cubit.dart';
 import '../providers/link_encoded/link_encoded_cubit.dart';
@@ -79,11 +78,11 @@ class _InitialContentUpdateDocumentWidgetState
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   const SizedBox(height: 20),
-                  TextTitle.three(
+                  RMText.titleSmall(
                     context.cl.translate('pages.auth.updateDocument.title'),
                   ),
                   const SizedBox(height: 20),
-                  TextBody.two(
+                  RMText.bodyMedium(
                     context.cl.translate('pages.auth.updateDocument.subtitle'),
                   ),
                   const SizedBox(height: 24),

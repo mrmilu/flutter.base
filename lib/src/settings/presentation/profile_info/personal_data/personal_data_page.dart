@@ -6,17 +6,16 @@ import '../../../../auth/presentation/providers/auth/auth_cubit.dart';
 import '../../../../shared/data/services/http_client.dart';
 import '../../../../shared/domain/failures_extensions/fullname_failure_extension.dart';
 import '../../../../shared/domain/types/document_type.dart';
-import '../../../../shared/helpers/extensions.dart';
 import '../../../../shared/helpers/toasts.dart';
 import '../../../../shared/presentation/providers/global_loader/global_loader_cubit.dart';
 import '../../../../shared/presentation/router/app_router.dart';
 import '../../../../shared/presentation/utils/call_utils.dart';
-import '../../../../shared/presentation/utils/styles/colors.dart';
+import '../../../../shared/presentation/utils/extensions/buildcontext_extensions.dart';
+import '../../../../shared/presentation/utils/styles/colors/colors_context.dart';
 import '../../../../shared/presentation/widgets/components/buttons/custom_elevated_button.dart';
 import '../../../../shared/presentation/widgets/components/inputs/custom_dropdown_field_widget.dart';
 import '../../../../shared/presentation/widgets/components/inputs/custom_text_field_widget.dart';
-import '../../../../shared/presentation/widgets/text/text_body.dart';
-import '../../../../shared/presentation/widgets/text/text_title.dart';
+import '../../../../shared/presentation/widgets/components/text/rm_text.dart';
 import '../../../data/repositories/personal_info_repository_impl.dart';
 import '../../../domain/interfaces/i_personal_info_repository.dart';
 import 'personal_data_cubit.dart';
@@ -53,115 +52,112 @@ class ProfileInfoPersonalDataView extends StatelessWidget {
     if (user == null) {
       return const SizedBox.shrink();
     }
-    return ColoredBox(
-      color: AppColors.specificBasicWhite,
-      child: SafeArea(
-        child: Scaffold(
-          appBar: AppBar(
-            title: TextTitle.two(
-              context.cl.translate('pages.profileInfoPersonalData.title'),
-            ),
+    return Scaffold(
+      appBar: AppBar(
+        title: RMText.titleMedium(
+          context.cl.translate('pages.profileInfoPersonalData.title'),
+        ),
+      ),
+      bottomSheet: const PersonalDataBottomSheet(),
+      body: SingleChildScrollView(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            minHeight: MediaQuery.of(context).size.height * 0.6,
           ),
-          bottomSheet: const PersonalDataBottomSheet(),
-          body: SingleChildScrollView(
-            child: ConstrainedBox(
-              constraints: BoxConstraints(
-                minHeight: MediaQuery.of(context).size.height * 0.6,
-              ),
-              child: IntrinsicHeight(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: BlocBuilder<PersonalDataCubit, PersonalDataState>(
-                    builder: (context, state) {
-                      return Form(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const SizedBox(height: 20),
-                            TextBody.two(
-                              context.cl.translate(
-                                'pages.profileInfoPersonalData.subtitle',
+          child: IntrinsicHeight(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: BlocBuilder<PersonalDataCubit, PersonalDataState>(
+                builder: (context, state) {
+                  return Form(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(height: 20),
+                        RMText.bodySmall(
+                          context.cl.translate(
+                            'pages.profileInfoPersonalData.subtitle',
+                          ),
+                          height: 1.5,
+                        ),
+                        const SizedBox(height: 32),
+                        CustomTextFieldWidget(
+                          readOnly: true,
+                          enabled: !state.resultOrPersonalData.isLoading,
+                          initialValue: state.name.getOrElse(''),
+                          labelText: context.cl.translate(
+                            'pages.profileInfoPersonalData.form.name',
+                          ),
+                          textInputAction: TextInputAction.next,
+                          textCapitalization: TextCapitalization.words,
+                          showError: state.showError,
+                          onChanged: context
+                              .read<PersonalDataCubit>()
+                              .changeName,
+                          errorText: state.name.value.map(
+                            isLeft: (p0) => p0.toTranslation(context),
+                            isRight: (p0) => null,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        CustomTextFieldWidget(
+                          readOnly: true,
+                          enabled: !state.resultOrPersonalData.isLoading,
+                          initialValue: state.lastName.getOrElse(''),
+                          labelText: context.cl.translate(
+                            'pages.profileInfoPersonalData.form.surname',
+                          ),
+                          textInputAction: TextInputAction.next,
+                          textCapitalization: TextCapitalization.words,
+                          showError: state.showError,
+                          onChanged: context
+                              .read<PersonalDataCubit>()
+                              .changeLastName,
+                          errorText: state.lastName.value.map(
+                            isLeft: (p0) => p0.toTranslation(context),
+                            isRight: (p0) => null,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        CustomDropdownFieldWidget<DocumentType>(
+                          title: context.cl.translate(
+                            'pages.profileInfoPersonalData.form.documentType',
+                          ),
+                          onChanged: (value) {},
+                          readOnly: true,
+                          forzeBlackColor: true,
+                          initialValue: user.document?.$1.toTranslate(
+                            context,
+                          ),
+                          value: user.document?.$1,
+                          items: [
+                            DropdownMenuItem(
+                              value: DocumentType.nif,
+                              child: Text(
+                                DocumentType.nif.toTranslate(context),
                               ),
-                              height: 1.5,
                             ),
-                            const SizedBox(height: 32),
-                            CustomTextFieldWidget(
-                              readOnly: true,
-                              enabled: !state.resultOrPersonalData.isLoading,
-                              initialValue: state.name.getOrElse(''),
-                              labelText: context.cl.translate(
-                                'pages.profileInfoPersonalData.form.name',
-                              ),
-                              textInputAction: TextInputAction.next,
-                              textCapitalization: TextCapitalization.words,
-                              showError: state.showError,
-                              onChanged: context
-                                  .read<PersonalDataCubit>()
-                                  .changeName,
-                              errorText: state.name.value.map(
-                                isLeft: (p0) => p0.toTranslation(context),
-                                isRight: (p0) => null,
-                              ),
-                            ),
-                            const SizedBox(height: 8),
-                            CustomTextFieldWidget(
-                              readOnly: true,
-                              enabled: !state.resultOrPersonalData.isLoading,
-                              initialValue: state.lastName.getOrElse(''),
-                              labelText: context.cl.translate(
-                                'pages.profileInfoPersonalData.form.surname',
-                              ),
-                              textInputAction: TextInputAction.next,
-                              textCapitalization: TextCapitalization.words,
-                              showError: state.showError,
-                              onChanged: context
-                                  .read<PersonalDataCubit>()
-                                  .changeLastName,
-                              errorText: state.lastName.value.map(
-                                isLeft: (p0) => p0.toTranslation(context),
-                                isRight: (p0) => null,
-                              ),
-                            ),
-                            const SizedBox(height: 8),
-                            CustomDropdownFieldWidget<DocumentType>(
-                              title: context.cl.translate(
-                                'pages.profileInfoPersonalData.form.documentType',
-                              ),
-                              onChanged: (value) {},
-                              readOnly: true,
-                              initialValue: user.document?.$1.toTranslate(
-                                context,
-                              ),
-                              items: [
-                                DropdownMenuItem(
-                                  value: DocumentType.nif,
-                                  child: Text(
-                                    DocumentType.nif.toTranslate(context),
-                                  ),
-                                ),
-                                DropdownMenuItem(
-                                  value: DocumentType.nie,
-                                  child: Text(
-                                    DocumentType.nie.toTranslate(context),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 8),
-                            CustomTextFieldWidget(
-                              initialValue: user.document?.$2 ?? '',
-                              onChanged: (value) {},
-                              readOnly: true,
-                              labelText: context.cl.translate(
-                                'pages.profileInfoPersonalData.form.documentNumber',
+                            DropdownMenuItem(
+                              value: DocumentType.nie,
+                              child: Text(
+                                DocumentType.nie.toTranslate(context),
                               ),
                             ),
                           ],
                         ),
-                      );
-                    },
-                  ),
-                ),
+                        const SizedBox(height: 8),
+                        CustomTextFieldWidget(
+                          initialValue: user.document?.$2 ?? '',
+                          onChanged: (value) {},
+                          readOnly: true,
+                          labelText: context.cl.translate(
+                            'pages.profileInfoPersonalData.form.documentNumber',
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
               ),
             ),
           ),
@@ -180,9 +176,9 @@ class PersonalDataBottomSheet extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisSize: MainAxisSize.min,
       children: [
-        const Divider(
+        Divider(
           height: 1,
-          color: AppColors.specificBasicGrey,
+          color: context.colors.specificBasicGrey,
         ),
         const SizedBox(height: 20),
         BlocConsumer<PersonalDataCubit, PersonalDataState>(
@@ -218,7 +214,7 @@ class PersonalDataBottomSheet extends StatelessWidget {
             );
           },
         ),
-        const SizedBox(height: 20),
+        SizedBox(height: context.paddingBottomPlus),
       ],
     );
   }

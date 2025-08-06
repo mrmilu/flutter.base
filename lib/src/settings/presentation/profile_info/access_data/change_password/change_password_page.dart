@@ -6,16 +6,15 @@ import '../../../../../auth/presentation/providers/auth/auth_cubit.dart';
 import '../../../../../shared/data/services/http_client.dart';
 import '../../../../../shared/domain/failures_extensions/password_failure_extension.dart';
 import '../../../../../shared/domain/vos/password_vos.dart';
-import '../../../../../shared/helpers/extensions.dart';
 import '../../../../../shared/helpers/toasts.dart';
 import '../../../../../shared/presentation/l10n/generated/l10n.dart';
 import '../../../../../shared/presentation/providers/global_loader/global_loader_cubit.dart';
 import '../../../../../shared/presentation/router/app_router.dart';
-import '../../../../../shared/presentation/utils/styles/colors.dart';
+import '../../../../../shared/presentation/utils/extensions/buildcontext_extensions.dart';
+import '../../../../../shared/presentation/utils/styles/colors/colors_context.dart';
 import '../../../../../shared/presentation/widgets/components/buttons/custom_elevated_button.dart';
 import '../../../../../shared/presentation/widgets/components/inputs/custom_text_field_widget.dart';
-import '../../../../../shared/presentation/widgets/text/text_body.dart';
-import '../../../../../shared/presentation/widgets/text/text_title.dart';
+import '../../../../../shared/presentation/widgets/components/text/rm_text.dart';
 import '../../../../data/repositories/personal_info_repository_impl.dart';
 import '../../../../domain/interfaces/i_personal_info_repository.dart';
 import 'change_password_cubit.dart';
@@ -52,90 +51,85 @@ class ChangePasswordView extends StatelessWidget {
     if (user == null) {
       return const SizedBox.shrink();
     }
-    return ColoredBox(
-      color: AppColors.specificBasicWhite,
-      child: SafeArea(
-        child: Scaffold(
-          appBar: AppBar(
-            title: TextTitle.two(
-              context.cl.translate('pages.profileInfoAccessDataPassword.title'),
-            ),
+    return Scaffold(
+      appBar: AppBar(
+        title: RMText.titleMedium(
+          context.cl.translate('pages.profileInfoAccessDataPassword.title'),
+        ),
+      ),
+      bottomSheet: const ChangeEmailBottomSheet(),
+      body: SingleChildScrollView(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            minHeight: MediaQuery.of(context).size.height * 0.6,
           ),
-          bottomSheet: const ChangeEmailBottomSheet(),
-          body: SingleChildScrollView(
-            child: ConstrainedBox(
-              constraints: BoxConstraints(
-                minHeight: MediaQuery.of(context).size.height * 0.6,
-              ),
-              child: IntrinsicHeight(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: BlocBuilder<ChangePasswordCubit, ChangePasswordState>(
-                    builder: (context, state) {
-                      return Form(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const SizedBox(height: 20),
-                            TextBody.two(
-                              context.cl.translate(
-                                'pages.profileInfoAccessDataPassword.subtitle',
-                              ),
-                              height: 1.5,
-                            ),
-                            const SizedBox(height: 20),
-                            CustomTextFieldWidget(
-                              enabled: !state.resultOr.isLoading,
-                              obscureText: true,
-                              labelText: context.cl.translate(
-                                'pages.profileInfoAccessDataPassword.form.oldPassword',
-                              ),
-                              onChanged: context
-                                  .read<ChangePasswordCubit>()
-                                  .changeOldPassword,
-                              showError: state.showError,
-                              errorText: PasswordVos(state.oldPassword).map(
-                                isLeft: (e) => e.toTranslation(context),
-                                isRight: (_) => null,
-                              ),
-                            ),
-                            const SizedBox(height: 12),
-                            CustomTextFieldWidget(
-                              enabled: !state.resultOr.isLoading,
-                              obscureText: true,
-                              labelText: context.cl.translate(
-                                'pages.profileInfoAccessDataPassword.form.password',
-                              ),
-                              onChanged: context
-                                  .read<ChangePasswordCubit>()
-                                  .changePassword,
-                            ),
-                            const SizedBox(height: 4),
-                            InfoPasswordValidatorWidget(
-                              password: state.password,
-                              showError: state.showError,
-                            ),
-                            const SizedBox(height: 8),
-                            CustomTextFieldWidget(
-                              enabled: !state.resultOr.isLoading,
-                              obscureText: true,
-                              labelText: context.cl.translate(
-                                'pages.profileInfoAccessDataPassword.form.repeatPassword',
-                              ),
-                              showError: state.showError,
-                              onChanged: context
-                                  .read<ChangePasswordCubit>()
-                                  .changePasswordRepeat,
-                              errorText: state.passwordRepeat != state.password
-                                  ? S.of(context).mismatchedPasswords
-                                  : null,
-                            ),
-                          ],
+          child: IntrinsicHeight(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: BlocBuilder<ChangePasswordCubit, ChangePasswordState>(
+                builder: (context, state) {
+                  return Form(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(height: 20),
+                        RMText.bodyMedium(
+                          context.cl.translate(
+                            'pages.profileInfoAccessDataPassword.subtitle',
+                          ),
+                          height: 1.5,
                         ),
-                      );
-                    },
-                  ),
-                ),
+                        const SizedBox(height: 20),
+                        CustomTextFieldWidget(
+                          enabled: !state.resultOr.isLoading,
+                          obscureText: true,
+                          labelText: context.cl.translate(
+                            'pages.profileInfoAccessDataPassword.form.oldPassword',
+                          ),
+                          onChanged: context
+                              .read<ChangePasswordCubit>()
+                              .changeOldPassword,
+                          showError: state.showError,
+                          errorText: PasswordVos(state.oldPassword).map(
+                            isLeft: (e) => e.toTranslation(context),
+                            isRight: (_) => null,
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        CustomTextFieldWidget(
+                          enabled: !state.resultOr.isLoading,
+                          obscureText: true,
+                          labelText: context.cl.translate(
+                            'pages.profileInfoAccessDataPassword.form.password',
+                          ),
+                          onChanged: context
+                              .read<ChangePasswordCubit>()
+                              .changePassword,
+                        ),
+                        const SizedBox(height: 4),
+                        InfoPasswordValidatorWidget(
+                          password: state.password,
+                          showError: state.showError,
+                        ),
+                        const SizedBox(height: 8),
+                        CustomTextFieldWidget(
+                          enabled: !state.resultOr.isLoading,
+                          obscureText: true,
+                          labelText: context.cl.translate(
+                            'pages.profileInfoAccessDataPassword.form.repeatPassword',
+                          ),
+                          showError: state.showError,
+                          onChanged: context
+                              .read<ChangePasswordCubit>()
+                              .changePasswordRepeat,
+                          errorText: state.passwordRepeat != state.password
+                              ? S.of(context).mismatchedPasswords
+                              : null,
+                        ),
+                      ],
+                    ),
+                  );
+                },
               ),
             ),
           ),
@@ -154,9 +148,9 @@ class ChangeEmailBottomSheet extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisSize: MainAxisSize.min,
       children: [
-        const Divider(
+        Divider(
           height: 1,
-          color: AppColors.specificBasicGrey,
+          color: context.colors.specificBasicGrey,
         ),
         const SizedBox(height: 20),
         BlocConsumer<ChangePasswordCubit, ChangePasswordState>(
@@ -193,7 +187,7 @@ class ChangeEmailBottomSheet extends StatelessWidget {
             );
           },
         ),
-        const SizedBox(height: 20),
+        SizedBox(height: context.paddingBottomPlus),
       ],
     );
   }
@@ -214,15 +208,15 @@ class GuionText extends StatelessWidget {
           child: Container(
             height: 5,
             width: 5,
-            decoration: const BoxDecoration(
-              color: AppColors.specificBasicBlack,
+            decoration: BoxDecoration(
+              color: context.colors.specificBasicBlack,
               shape: BoxShape.circle,
             ),
           ),
         ),
         const SizedBox(width: 8),
         Flexible(
-          child: TextBody.two(
+          child: RMText.bodyMedium(
             text,
             height: 1.5,
           ),

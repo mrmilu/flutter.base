@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-import '../widgets/text/text_title.dart';
+import '../widgets/components/text/rm_text.dart';
 
 class WebViewPage extends StatefulWidget {
   final String title;
@@ -57,7 +57,7 @@ class _WebViewPageState extends State<WebViewPage> {
             Icons.arrow_back_ios,
           ),
         ),
-        title: TextTitle.two(
+        title: RMText.titleMedium(
           widget.title,
         ),
         elevation: 0,

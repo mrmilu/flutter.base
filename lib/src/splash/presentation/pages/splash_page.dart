@@ -10,7 +10,7 @@ import '../../../auth/presentation/providers/auth/auth_cubit.dart';
 import '../../../shared/presentation/l10n/generated/l10n.dart';
 import '../../../shared/presentation/router/app_router.dart';
 import '../../../shared/presentation/router/page_names.dart';
-import '../../../shared/presentation/utils/styles/colors.dart';
+import '../../../shared/presentation/utils/styles/colors/colors_context.dart';
 import '../providers/app_settings_cubit.dart';
 import '../providers/splash_cubit.dart';
 
@@ -138,9 +138,9 @@ class _SplashViewState extends State<SplashView>
           }
           if (state.errorLoading) {
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Huebo un error al cargar la app'),
-                backgroundColor: AppColors.specificSemanticError,
+              SnackBar(
+                content: const Text('Huebo un error al cargar la app'),
+                backgroundColor: context.colors.specificSemanticError,
               ),
             );
           }
@@ -148,7 +148,7 @@ class _SplashViewState extends State<SplashView>
         builder: (context, stateSplash) {
           final size = MediaQuery.sizeOf(context);
           return Scaffold(
-            backgroundColor: AppColors.specificBasicWhite,
+            backgroundColor: context.colors.specificBasicWhite,
             body: Stack(
               children: [
                 SizedBox(
@@ -217,7 +217,7 @@ class _SplashViewState extends State<SplashView>
                             ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 padding: const EdgeInsets.all(20.0),
-                                backgroundColor: AppColors.secondary,
+                                backgroundColor: context.colors.secondary,
                               ),
                               onPressed: context
                                   .read<SplashCubit>()
@@ -244,7 +244,7 @@ class _SplashViewState extends State<SplashView>
                             ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 padding: const EdgeInsets.all(20.0),
-                                backgroundColor: AppColors.secondary,
+                                backgroundColor: context.colors.secondary,
                               ),
                               onPressed: context.read<SplashCubit>().loadData,
                               child: Text(
@@ -278,7 +278,7 @@ class _SplashViewState extends State<SplashView>
                               child: Container(
                                 height: 8,
                                 width: size.width - 66,
-                                color: AppColors.tertiary,
+                                color: context.colors.tertiary,
                                 alignment: Alignment.centerLeft,
                                 child: ClipRRect(
                                   borderRadius: const BorderRadius.all(
@@ -341,7 +341,7 @@ class SplashDialog extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           clipBehavior: Clip.antiAlias,
           decoration: BoxDecoration(
-            color: AppColors.primary,
+            color: context.colors.primary,
             borderRadius: BorderRadius.circular(32),
             border: Border.all(
               color: Colors.black,

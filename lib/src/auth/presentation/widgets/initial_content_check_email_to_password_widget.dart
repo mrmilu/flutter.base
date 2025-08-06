@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../shared/helpers/extensions.dart';
 import '../../../shared/presentation/utils/const.dart';
-import '../../../shared/presentation/utils/styles/colors.dart';
+import '../../../shared/presentation/utils/extensions/buildcontext_extensions.dart';
+import '../../../shared/presentation/utils/styles/colors/colors_context.dart';
 import '../../../shared/presentation/widgets/components/buttons/custom_outlined_button.dart';
-import '../../../shared/presentation/widgets/text/text_body.dart';
-import '../../../shared/presentation/widgets/text/text_title.dart';
+import '../../../shared/presentation/widgets/components/text/rm_text.dart';
 import '../pages/initial_page.dart';
 import '../providers/forgot_password/forgot_password_cubit.dart';
 import 'resend_email_counter_widget.dart';
@@ -28,11 +27,11 @@ class _InitialContentCheckEmailToPasswordWidgetState
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
         border: Border(
           top: BorderSide(
-            color: AppColors.specificBasicGrey,
+            color: context.colors.specificBasicGrey,
             width: 1,
           ),
         ),
@@ -47,11 +46,11 @@ class _InitialContentCheckEmailToPasswordWidgetState
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 40),
-                TextTitle.two(
+                RMText.titleMedium(
                   context.cl.translate('modals.verifyResetPassword.title'),
                 ),
                 const SizedBox(height: 24),
-                TextBody.two(
+                RMText.bodyMedium(
                   context.cl.translate('modals.verifyResetPassword.subtitle'),
                   height: 1.5,
                 ),

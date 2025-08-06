@@ -53,6 +53,15 @@ Future<void> main() async {
         return true;
       };
 
+      // RMConfig.configure(
+      //   colors: appColors,
+      //   textTheme: appTextStyles,
+      //   themeData: RMThemeData(
+      //     darkTheme: appThemeDataDark,
+      //     lightTheme: appThemeDataLight,
+      //   ),
+      // );
+
       runApp(const App());
     },
   );

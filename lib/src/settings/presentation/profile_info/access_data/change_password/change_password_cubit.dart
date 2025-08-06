@@ -2,10 +2,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../../shared/domain/vos/password_vos.dart';
-import '../../../../../shared/helpers/extensions.dart';
 import '../../../../../shared/helpers/result_or.dart';
 import '../../../../../shared/helpers/value_object.dart';
 import '../../../../../shared/presentation/providers/global_loader/global_loader_cubit.dart';
+import '../../../../../shared/presentation/utils/extensions/buildcontext_extensions.dart';
 import '../../../../domain/failures/change_password_failure.dart';
 import '../../../../domain/interfaces/i_personal_info_repository.dart';
 

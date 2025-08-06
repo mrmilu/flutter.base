@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../shared/domain/failures_extensions/email_failure.extension.dart';
-import '../../../shared/helpers/extensions.dart';
+import '../../../shared/presentation/utils/assets/app_assets_icons.dart';
+import '../../../shared/presentation/utils/extensions/buildcontext_extensions.dart';
+import '../../../shared/presentation/widgets/common/image_asset_widget.dart';
 import '../../../shared/presentation/widgets/components/buttons/custom_elevated_button.dart';
 import '../../../shared/presentation/widgets/components/buttons/custom_text_button.dart';
 import '../../../shared/presentation/widgets/components/inputs/custom_text_field_widget.dart';
-import '../../../shared/presentation/widgets/image_asset_widget.dart';
-import '../../../shared/presentation/widgets/text/text_body.dart';
-import '../../../shared/presentation/widgets/text/text_title.dart';
+import '../../../shared/presentation/widgets/components/text/rm_text.dart';
 import '../pages/initial_page.dart';
 import '../signin/providers/signin_cubit.dart';
 
@@ -45,12 +45,12 @@ class InitialContentSignInEmailPasswordWidget extends StatelessWidget {
                     child: const Padding(
                       padding: EdgeInsets.all(8.0),
                       child: ImageAssetWidget(
-                        path: 'assets/icons/arrow_ios_left.svg',
+                        path: AppAssetsIcons.arrowIosLeft,
                       ),
                     ),
                   ),
                   Expanded(
-                    child: TextTitle.three(
+                    child: RMText.titleSmall(
                       context.cl.translate(
                         'pages.auth.signIn.contentPassword.title',
                       ),
@@ -63,7 +63,7 @@ class InitialContentSignInEmailPasswordWidget extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 20),
-              TextBody.two(
+              RMText.bodyMedium(
                 context.cl.translate(
                   'pages.auth.signIn.contentPassword.subtitle',
                 ),
@@ -106,7 +106,7 @@ class InitialContentSignInEmailPasswordWidget extends StatelessWidget {
                   label: context.cl.translate(
                     'pages.auth.signIn.contentPassword.forgotPassword',
                   ),
-                  iconPath: 'assets/icons/arrow_right.svg',
+                  iconPath: AppAssetsIcons.arrowRight,
                 ),
               ),
               const Divider(),

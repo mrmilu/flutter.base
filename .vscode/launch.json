@@ -45,5 +45,16 @@
             ],
             "program": "lib/main.dart"
         },
+        {
+            "name": "Flutter for web (hot reloadable)",
+            "type": "dart",
+            "request": "launch",
+            "program": "lib/main_web.dart",
+            "args": [
+                "-d",
+                "chrome",
+                "--web-experimental-hot-reload",
+            ]
+        }
     ]
 }

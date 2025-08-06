@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../row_icon_text_widget.dart';
-import '../../text/text_body.dart';
+import '../../common/custom_row_icon_text_widget.dart';
+import '../text/rm_text.dart';
 
 // TODO: Do this widget to use the CustomRadioButtonWidget
 class CustomRadioButtonWidget extends StatelessWidget {
@@ -54,7 +54,7 @@ class CustomRadioButtonWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (title != null) ...[
-          TextBody.two(title!),
+          RMText.bodyMedium(title!),
           const SizedBox(height: 6),
         ],
         InkWell(
@@ -76,7 +76,7 @@ class CustomRadioButtonWidget extends StatelessWidget {
                     vertical: VisualDensity.minimumDensity,
                   ),
                   activeColor: Colors.black,
-                  title: TextBody.two(text),
+                  title: RMText.bodyMedium(text),
                 ),
               ),
             ],
@@ -85,12 +85,8 @@ class CustomRadioButtonWidget extends StatelessWidget {
         if ((errorText != null && showError) || infoText != null) ...[
           const SizedBox(height: 8),
           showError
-              ? RowIconTextWidget.warning(
-                  errorText!,
-                )
-              : RowIconTextWidget.info(
-                  infoText!,
-                ),
+              ? CustomRowIconTextWidget.warning(errorText!, context: context)
+              : CustomRowIconTextWidget.info(infoText!, context: context),
         ],
       ],
     );

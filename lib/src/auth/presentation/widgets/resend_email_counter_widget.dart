@@ -53,7 +53,7 @@ class _ResendEmailCounterWidgetState extends State<ResendEmailCounterWidget> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        CustomTextButton(
+        CustomTextButton.primary(
           label: widget.text,
           enabled: secondsLeft == 0,
           onPressed: secondsLeft == 0

@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import '../../../../../shared/domain/failures/password_failure.dart';
 import '../../../../../shared/domain/failures_extensions/password_failure_extension.dart';
 import '../../../../../shared/domain/vos/password_vos.dart';
-import '../../../../../shared/presentation/utils/styles/colors.dart';
-import '../../../../../shared/presentation/utils/styles/text_styles.dart';
-import '../../../../../shared/presentation/widgets/image_asset_widget.dart';
+import '../../../../../shared/presentation/utils/assets/app_assets_icons.dart';
+import '../../../../../shared/presentation/utils/extensions/buildcontext_extensions.dart';
+import '../../../../../shared/presentation/utils/styles/colors/colors_context.dart';
+import '../../../../../shared/presentation/widgets/common/image_asset_widget.dart';
 
 class InfoPasswordValidatorWidget extends StatelessWidget {
   const InfoPasswordValidatorWidget({
@@ -16,50 +17,50 @@ class InfoPasswordValidatorWidget extends StatelessWidget {
   final String password;
   final bool showError;
 
-  Color getColorMinLength() {
+  Color getColorMinLength(BuildContext context) {
     if (showError) {
       return password.length < 8
-          ? AppColors.specificSemanticError
-          : AppColors.specificSemanticSuccess;
+          ? context.colors.specificSemanticError
+          : context.colors.specificSemanticSuccess;
     }
-    return AppColors.specificBasicBlack;
+    return context.colors.specificBasicBlack;
   }
 
-  Color getColorIncludeUppercase() {
+  Color getColorIncludeUppercase(BuildContext context) {
     if (showError) {
       return !RegExp(r'^(?=.*[A-Z])').hasMatch(password)
-          ? AppColors.specificSemanticError
-          : AppColors.specificSemanticSuccess;
+          ? context.colors.specificSemanticError
+          : context.colors.specificSemanticSuccess;
     }
-    return AppColors.specificBasicBlack;
+    return context.colors.specificBasicBlack;
   }
 
-  Color getColorIncludeLowercase() {
+  Color getColorIncludeLowercase(BuildContext context) {
     if (showError) {
       return !RegExp(r'^(?=.*[a-z])').hasMatch(password)
-          ? AppColors.specificSemanticError
-          : AppColors.specificSemanticSuccess;
+          ? context.colors.specificSemanticError
+          : context.colors.specificSemanticSuccess;
     }
-    return AppColors.specificBasicBlack;
+    return context.colors.specificBasicBlack;
   }
 
-  Color getColorIncludeDigit() {
+  Color getColorIncludeDigit(BuildContext context) {
     if (showError) {
       return !RegExp(r'^(?=.*[!@#$%^&*])').hasMatch(password)
-          ? AppColors.specificSemanticError
-          : AppColors.specificSemanticSuccess;
+          ? context.colors.specificSemanticError
+          : context.colors.specificSemanticSuccess;
     }
-    return AppColors.specificBasicBlack;
+    return context.colors.specificBasicBlack;
   }
 
-  Color getIconColor() {
+  Color getIconColor(BuildContext context) {
     final passwordVos = PasswordVos(password);
     if (showError) {
       return passwordVos.isInvalid()
-          ? AppColors.specificSemanticError
-          : AppColors.specificSemanticSuccess;
+          ? context.colors.specificSemanticError
+          : context.colors.specificSemanticSuccess;
     }
-    return AppColors.specificBasicBlack;
+    return context.colors.specificBasicBlack;
   }
 
   @override
@@ -70,10 +71,10 @@ class InfoPasswordValidatorWidget extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(top: 2.0),
           child: ImageAssetWidget(
-            path: 'assets/icons/top_bar_info.svg',
+            path: AppAssetsIcons.info,
             width: 16,
             height: 16,
-            color: getIconColor(),
+            color: getIconColor(context),
           ),
         ),
         const SizedBox(width: 4),
@@ -85,31 +86,31 @@ class InfoPasswordValidatorWidget extends StatelessWidget {
                 TextSpan(
                   text:
                       '${PasswordFailure.minLength(8).toTranslation(context)}\n',
-                  style: TextStyles.caption1.copyWith(
-                    color: getColorMinLength(),
+                  style: context.textTheme.labelMedium?.copyWith(
+                    color: getColorMinLength(context),
                     height: 1.5,
                   ),
                 ),
                 TextSpan(
                   text:
                       '${PasswordFailure.includeUppercase().toTranslation(context)}\n',
-                  style: TextStyles.caption1.copyWith(
-                    color: getColorIncludeUppercase(),
+                  style: context.textTheme.labelMedium?.copyWith(
+                    color: getColorIncludeUppercase(context),
                     height: 1.5,
                   ),
                 ),
                 TextSpan(
                   text:
                       '${PasswordFailure.includeLowercase().toTranslation(context)}\n',
-                  style: TextStyles.caption1.copyWith(
-                    color: getColorIncludeLowercase(),
+                  style: context.textTheme.labelMedium?.copyWith(
+                    color: getColorIncludeLowercase(context),
                     height: 1.5,
                   ),
                 ),
                 TextSpan(
                   text: PasswordFailure.includeDigit().toTranslation(context),
-                  style: TextStyles.caption1.copyWith(
-                    color: getColorIncludeDigit(),
+                  style: context.textTheme.labelMedium?.copyWith(
+                    color: getColorIncludeDigit(context),
                     height: 1.5,
                   ),
                 ),

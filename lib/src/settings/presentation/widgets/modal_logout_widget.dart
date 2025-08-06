@@ -3,12 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../auth/presentation/pages/initial_page.dart';
 import '../../../auth/presentation/providers/auth/auth_cubit.dart';
-import '../../../shared/helpers/extensions.dart';
 import '../../../shared/presentation/router/app_router.dart';
 import '../../../shared/presentation/router/page_names.dart';
+import '../../../shared/presentation/utils/extensions/buildcontext_extensions.dart';
 import '../../../shared/presentation/widgets/components/buttons/custom_elevated_button.dart';
 import '../../../shared/presentation/widgets/components/buttons/custom_outlined_button.dart';
-import '../../../shared/presentation/widgets/text/text_body.dart';
+import '../../../shared/presentation/widgets/components/text/rm_text.dart';
 
 class ModalLogoutWidget extends StatelessWidget {
   const ModalLogoutWidget({super.key});
@@ -46,7 +46,7 @@ class ModalLogoutWidgetContent extends StatelessWidget {
               child: Column(
                 children: [
                   const SizedBox(height: 20),
-                  TextBody.one(
+                  RMText.bodyLarge(
                     context.cl.translate('modals.logout.subtitle'),
                     height: 1.5,
                   ),

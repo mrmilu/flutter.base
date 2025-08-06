@@ -4,8 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../auth/presentation/providers/auth/auth_cubit.dart';
 import '../../domain/types/app_navigation_type.dart';
 import '../../domain/types/user_status_type.dart';
-import '../utils/styles/colors.dart';
-import 'image_asset_widget.dart';
+import '../utils/extensions/buildcontext_extensions.dart';
+import '../utils/styles/colors/colors_context.dart';
+import 'common/image_asset_widget.dart';
 
 const double paddingDot = 50;
 
@@ -32,8 +33,13 @@ class BottomBarWidget extends StatelessWidget {
             ? 1
             : itemSelected;
 
+        final brightness = Theme.of(context).brightness;
+        final isDarkMode = brightness == Brightness.dark;
+
         return ColoredBox(
-          color: AppColors.specificBasicWhite,
+          color: isDarkMode
+              ? context.colors.specificBasicSemiBlack
+              : context.colors.specificBasicWhite,
           child: Column(
             children: [
               const Divider(
@@ -83,9 +89,9 @@ class BottomBarWidget extends StatelessWidget {
                           child: Container(
                             height: 3,
                             width: (size.width / countNavigation) - paddingDot,
-                            decoration: const BoxDecoration(
-                              color: Colors.black,
-                              borderRadius: BorderRadius.only(
+                            decoration: BoxDecoration(
+                              color: isDarkMode ? Colors.white : Colors.black,
+                              borderRadius: const BorderRadius.only(
                                 topLeft: Radius.circular(10),
                                 topRight: Radius.circular(10),
                               ),
@@ -150,12 +156,9 @@ class ItemBottomBar extends StatelessWidget {
                     fit: BoxFit.fitWidth,
                     child: AnimatedDefaultTextStyle(
                       duration: const Duration(milliseconds: 300),
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: isSelected ? Colors.black : Colors.grey,
-                        fontWeight: isSelected
-                            ? FontWeight.bold
-                            : FontWeight.normal,
+                      style: context.textTheme.labelMedium!.copyWith(
+                        color: isSelected ? null : context.colors.grey,
+                        fontWeight: isSelected ? FontWeight.bold : null,
                       ),
                       child: Text(name),
                     ),

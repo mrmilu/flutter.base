@@ -62,9 +62,13 @@ setup:
   just clean-and-get
   just locales
   just codegen
+  just generate_assets_app_files
 
 generate_openapi:
   openapi-generator generate \
   -i "../fastlight-clientes.api/openapi.yml" \
   -g dart \
   -o ./lib/src/api
+
+generate_assets_app_files:
+  dart run scripts/generate_assets_app_files.dart

@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -25,8 +24,10 @@ import 'src/shared/domain/interfaces/i_settings_repository.dart';
 import 'src/shared/presentation/l10n/generated/l10n.dart';
 import 'src/shared/presentation/pages/app_status_page.dart';
 import 'src/shared/presentation/providers/global_loader/global_loader_cubit.dart';
+import 'src/shared/presentation/providers/theme_mode/theme_mode_cubit.dart';
 import 'src/shared/presentation/router/app_router.dart';
-import 'src/shared/presentation/utils/styles/theme.dart';
+import 'src/shared/presentation/utils/styles/themes/theme_dark.dart';
+import 'src/shared/presentation/utils/styles/themes/theme_light.dart';
 import 'src/splash/presentation/providers/app_settings_cubit.dart';
 
 class App extends StatelessWidget {
@@ -34,12 +35,6 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-      const SystemUiOverlayStyle(
-        statusBarColor: Colors.black,
-        statusBarIconBrightness: Brightness.dark,
-      ),
-    );
     return MultiRepositoryProvider(
       providers: [
         // Token user
@@ -89,6 +84,9 @@ class App extends StatelessWidget {
                     repository: context.read<ISettingsRepository>(),
                   ),
                 ),
+                BlocProvider<ThemeModeCubit>(
+                  create: (context) => ThemeModeCubit(),
+                ),
                 BlocProvider<LocaleCubit>(
                   create: (context) => LocaleCubit(
                     localeRepository: context.read<ILocaleRepository>(),
@@ -115,51 +113,62 @@ class AppView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LocaleCubit, LocaleState>(
-      builder: (context, stateLocale) {
-        return MaterialApp.router(
-          debugShowCheckedModeBanner: false,
-          theme: appThemeData,
-          localizationsDelegates: [
-            CustomLocalizationDelegate(stateLocale.locale.languageCode),
-            S.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          locale: stateLocale.locale,
-          localeResolutionCallback: (locale, supportedLocales) {
-            final localeApp = locale == null
-                ? supportedLocales.first
-                : supportedLocales.contains(locale)
-                ? locale
-                : supportedLocales.first;
-            context.read<LocaleCubit>().loadLocale(localeApp.languageCode);
-            return localeApp;
-          },
-          supportedLocales: S.delegate.supportedLocales,
-          routerDelegate: routerApp.routerDelegate,
-          routeInformationParser: routerApp.routeInformationParser,
-          routeInformationProvider: routerApp.routeInformationProvider,
-          builder: (context, child) {
-            return FlavorBanner(
-              show: !kReleaseMode,
-              child: Stack(
-                children: [
-                  child!,
-                  BlocBuilder<AppSettingsCubit, AppSettingsState>(
-                    builder: (context, stateSettings) {
-                      return stateSettings.resource.map(
-                        isNone: () => const SizedBox.shrink(),
-                        isLoading: () => const SizedBox.shrink(),
-                        isFailure: (_) => const SizedBox.shrink(),
-                        isSuccess: (resource) =>
-                            AppStatusPage(status: resource.status),
-                      );
-                    },
+    return BlocConsumer<ThemeModeCubit, ThemeModeState>(
+      listener: (context, state) {
+        // SystemUIHelper.setSystemUIForTheme(state.isDarkMode);
+      },
+      builder: (context, stateTheme) {
+        return BlocBuilder<LocaleCubit, LocaleState>(
+          builder: (context, stateLocale) {
+            return MaterialApp.router(
+              debugShowCheckedModeBanner: false,
+              theme: appThemeDataLight,
+              darkTheme: appThemeDataDark,
+              themeMode: stateTheme.isDarkMode
+                  ? ThemeMode.dark
+                  : ThemeMode.light,
+              localizationsDelegates: [
+                CustomLocalizationDelegate(stateLocale.locale.languageCode),
+                S.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              locale: stateLocale.locale,
+              localeResolutionCallback: (locale, supportedLocales) {
+                final localeApp = locale == null
+                    ? supportedLocales.first
+                    : supportedLocales.contains(locale)
+                    ? locale
+                    : supportedLocales.first;
+                context.read<LocaleCubit>().loadLocale(localeApp.languageCode);
+                return localeApp;
+              },
+              supportedLocales: S.delegate.supportedLocales,
+              routerDelegate: routerApp.routerDelegate,
+              routeInformationParser: routerApp.routeInformationParser,
+              routeInformationProvider: routerApp.routeInformationProvider,
+              builder: (context, child) {
+                return FlavorBanner(
+                  show: !kReleaseMode,
+                  child: Stack(
+                    children: [
+                      child!,
+                      BlocBuilder<AppSettingsCubit, AppSettingsState>(
+                        builder: (context, stateSettings) {
+                          return stateSettings.resource.map(
+                            isNone: () => const SizedBox.shrink(),
+                            isLoading: () => const SizedBox.shrink(),
+                            isFailure: (_) => const SizedBox.shrink(),
+                            isSuccess: (resource) =>
+                                AppStatusPage(status: resource.status),
+                          );
+                        },
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                );
+              },
             );
           },
         );

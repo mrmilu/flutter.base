@@ -1,8 +1,8 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 
-import '../utils/styles/colors.dart';
+import '../utils/styles/colors/colors_context.dart';
 import '../widgets/bottom_bar_widget.dart';
 
 class ScaffoldWithNavigation extends StatelessWidget {
@@ -18,13 +18,15 @@ class ScaffoldWithNavigation extends StatelessWidget {
     final paddingBottom = MediaQuery.paddingOf(context).bottom - 14 <= 0
         ? 0.0
         : MediaQuery.paddingOf(context).bottom - 14;
+    final brightness = Theme.of(context).brightness;
+    final isDarkMode = brightness == Brightness.dark;
     return Column(
       children: [
         Expanded(
           child: navigationShell,
         ),
         ColoredBox(
-          color: AppColors.background,
+          color: context.colors.background,
           child: BottomBarWidget(
             itemSelected: navigationShell.currentIndex,
             itemOnTap: _onTap,
@@ -32,7 +34,9 @@ class ScaffoldWithNavigation extends StatelessWidget {
         ),
         Container(
           height: paddingBottom,
-          color: AppColors.specificBasicWhite,
+          color: isDarkMode
+              ? context.colors.specificBasicSemiBlack
+              : context.colors.specificBasicWhite,
         ),
       ],
     );

@@ -5,16 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../shared/domain/failures_extensions/email_failure.extension.dart';
-import '../../../shared/helpers/extensions.dart';
+import '../../../shared/presentation/utils/assets/app_assets_icons.dart';
+import '../../../shared/presentation/utils/extensions/buildcontext_extensions.dart';
 import '../../../shared/presentation/utils/open_web_view_utils.dart';
-import '../../../shared/presentation/utils/styles/colors.dart';
-import '../../../shared/presentation/utils/styles/text_styles.dart';
+import '../../../shared/presentation/utils/styles/colors/colors_context.dart';
 import '../../../shared/presentation/widgets/components/buttons/custom_elevated_button.dart';
 import '../../../shared/presentation/widgets/components/buttons/custom_outlined_button.dart';
 import '../../../shared/presentation/widgets/components/buttons/custom_text_button.dart';
 import '../../../shared/presentation/widgets/components/inputs/custom_text_field_widget.dart';
-import '../../../shared/presentation/widgets/text/text_body.dart';
-import '../../../shared/presentation/widgets/text/text_title.dart';
+import '../../../shared/presentation/widgets/components/text/rm_text.dart';
 import '../pages/initial_page.dart';
 import '../providers/signin_social/signin_social_cubit.dart';
 import '../signup/providers/signup_cubit.dart';
@@ -45,11 +44,11 @@ class InitialContentSignUpEmailWidget extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             const SizedBox(height: 20),
-            TextTitle.two(
+            RMText.titleMedium(
               context.cl.translate('pages.auth.signUp.contentEmail.title'),
             ),
             const SizedBox(height: 24),
-            TextBody.two(
+            RMText.bodyMedium(
               context.cl.translate('pages.auth.signUp.contentEmail.subtitle'),
             ),
             const SizedBox(height: 32),
@@ -88,7 +87,7 @@ class InitialContentSignUpEmailWidget extends StatelessWidget {
               children: [
                 const Expanded(child: Divider()),
                 const SizedBox(width: 8),
-                TextBody.two(
+                RMText.bodyMedium(
                   context.cl.translate('pages.auth.signUp.contentEmail.or'),
                 ),
                 const SizedBox(width: 8),
@@ -106,7 +105,7 @@ class InitialContentSignUpEmailWidget extends StatelessWidget {
                       label: context.cl.translate(
                         'pages.auth.signUp.contentEmail.socials.apple',
                       ),
-                      iconPath: 'assets/icons/logo_apple.svg',
+                      iconPath: AppAssetsIcons.logoApple,
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -119,7 +118,7 @@ class InitialContentSignUpEmailWidget extends StatelessWidget {
                     label: context.cl.translate(
                       'pages.auth.signUp.contentEmail.socials.google',
                     ),
-                    iconPath: 'assets/icons/logo_google.svg',
+                    iconPath: AppAssetsIcons.logoGoogle,
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -133,7 +132,7 @@ class InitialContentSignUpEmailWidget extends StatelessWidget {
                 label: context.cl.translate(
                   'pages.auth.signUp.contentEmail.amClient',
                 ),
-                iconPath: 'assets/icons/arrow_right.svg',
+                iconPath: AppAssetsIcons.arrowRight,
               ),
             ),
             const SizedBox(height: 40),
@@ -144,15 +143,15 @@ class InitialContentSignUpEmailWidget extends StatelessWidget {
                       'pages.auth.signUp.contentEmail.review',
                     ) +
                     ' ',
-                style: TextStyles.caption3.copyWith(
-                  color: AppColors.specificBasicBlack,
+                style: context.textTheme.labelSmall?.copyWith(
+                  color: context.colors.specificBasicBlack,
                 ),
                 children: [
                   TextSpan(
                     text: context.cl.translate(
                       'pages.auth.signUp.contentEmail.terms',
                     ),
-                    style: TextStyles.caption3.copyWith(
+                    style: context.textTheme.labelSmall?.copyWith(
                       decoration: TextDecoration.underline,
                     ),
                     recognizer: TapGestureRecognizer()
@@ -176,7 +175,7 @@ class InitialContentSignUpEmailWidget extends StatelessWidget {
                     text: context.cl.translate(
                       'pages.auth.signUp.contentEmail.privacy',
                     ),
-                    style: TextStyles.caption3.copyWith(
+                    style: context.textTheme.labelSmall?.copyWith(
                       decoration: TextDecoration.underline,
                     ),
                     recognizer: TapGestureRecognizer()

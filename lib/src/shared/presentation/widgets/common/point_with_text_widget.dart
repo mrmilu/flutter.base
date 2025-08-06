@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../text/text_body.dart';
+import '../components/text/rm_text.dart';
 
 class PointWithTextWidget extends StatelessWidget {
   const PointWithTextWidget({
@@ -15,6 +15,8 @@ class PointWithTextWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final brightness = Theme.of(context).brightness;
+    final isDark = brightness == Brightness.dark;
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -22,8 +24,8 @@ class PointWithTextWidget extends StatelessWidget {
           height: pointSize,
           width: pointSize,
           margin: const EdgeInsets.only(top: 8),
-          decoration: const BoxDecoration(
-            color: Colors.black,
+          decoration: BoxDecoration(
+            color: isDark ? Colors.white : Colors.black,
             shape: BoxShape.circle,
           ),
         ),
@@ -31,7 +33,7 @@ class PointWithTextWidget extends StatelessWidget {
         Flexible(
           child:
               child ??
-              TextBody.two(
+              RMText.bodyMedium(
                 title,
                 height: 1.5,
               ),
