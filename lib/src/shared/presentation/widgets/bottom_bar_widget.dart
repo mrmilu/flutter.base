@@ -38,7 +38,7 @@ class BottomBarWidget extends StatelessWidget {
 
         return ColoredBox(
           color: isDarkMode
-              ? context.colors.specificBasicSemiBlack
+              ? context.colors.background
               : context.colors.specificBasicWhite,
           child: Column(
             children: [

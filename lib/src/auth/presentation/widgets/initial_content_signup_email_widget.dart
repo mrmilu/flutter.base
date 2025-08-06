@@ -127,7 +127,7 @@ class InitialContentSignUpEmailWidget extends StatelessWidget {
             const SizedBox(height: 16),
             Align(
               alignment: Alignment.centerLeft,
-              child: CustomTextButton.icon(
+              child: CustomTextButton.iconSecondary(
                 onPressed: onTapLogin,
                 label: context.cl.translate(
                   'pages.auth.signUp.contentEmail.amClient',

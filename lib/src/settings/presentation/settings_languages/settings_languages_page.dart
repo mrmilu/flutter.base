@@ -72,7 +72,7 @@ class SettingsLanguagesView extends StatelessWidget {
                     final myLocale = AppLanguageType.values.firstWhereOrNull(
                       (element) => element.name == stateLocale.languageCode,
                     );
-                    return CustomDowndownFieldPackageWidget<AppLanguageType>(
+                    return CustomDropdownFieldPackageWidget<AppLanguageType>(
                       title: context.cl.translate(
                         'pages.profileInfoConfigLanguages.form.language',
                       ),

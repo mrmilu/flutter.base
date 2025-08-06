@@ -82,7 +82,7 @@ class InitialContentForgotPasswordWidget extends StatelessWidget {
             const SizedBox(height: 16),
             Align(
               alignment: Alignment.centerLeft,
-              child: CustomTextButton.icon(
+              child: CustomTextButton.iconSecondary(
                 onPressed: onTapSignIn,
                 label: context.cl.translate(
                   'pages.auth.forgotPassword.backToLogin',

@@ -48,6 +48,8 @@ class CustomDropdownFieldWidget<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final brightness = Theme.of(context).brightness;
+    final isDarkMode = brightness == Brightness.dark;
     return IgnorePointer(
       ignoring: readOnly,
       child: Column(
@@ -55,7 +57,9 @@ class CustomDropdownFieldWidget<T> extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
               color: readOnly
-                  ? context.colors.specificBasicGrey
+                  ? isDarkMode
+                        ? context.colors.grey
+                        : context.colors.specificBasicGrey
                   : context.colors.specificBasicWhite,
               borderRadius: BorderRadius.circular(borderRadius),
               border: Border.all(width: 1, color: _getBorderColor(context)),

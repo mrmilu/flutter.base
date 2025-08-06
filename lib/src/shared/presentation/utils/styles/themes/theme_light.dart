@@ -58,7 +58,7 @@ final appThemeDataLight = ThemeData(
           borderRadius: BorderRadius.circular(100),
         ),
       ),
-      textStyle: WidgetStateProperty.all(appTextStylesLight.titleSmall),
+      textStyle: WidgetStateProperty.all(appTextStylesLight.headlineSmall),
     ),
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
@@ -76,7 +76,7 @@ final appThemeDataLight = ThemeData(
           borderRadius: BorderRadius.circular(100),
         ),
       ),
-      textStyle: WidgetStateProperty.all(appTextStylesLight.titleSmall),
+      textStyle: WidgetStateProperty.all(appTextStylesLight.headlineSmall),
     ),
   ),
 );

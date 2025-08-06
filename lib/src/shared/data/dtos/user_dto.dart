@@ -10,6 +10,7 @@ class UserDto {
   final String id;
   final String? name;
   final String? lastName;
+  final String? imageUrl;
   final String email;
   final String? contactEmail;
   // prefix_number
@@ -24,6 +25,7 @@ class UserDto {
     required this.id,
     required this.name,
     required this.lastName,
+    required this.imageUrl,
     required this.email,
     required this.contactEmail,
     required this.phone,
@@ -37,6 +39,7 @@ class UserDto {
     required this.id,
     required this.name,
     required this.lastName,
+    required this.imageUrl,
     required this.email,
     required this.contactEmail,
     required this.phone,
@@ -52,6 +55,7 @@ class UserDto {
       id: model.id,
       name: model.name,
       lastName: model.lastName,
+      imageUrl: model.imageUrl,
       email: model.email,
       contactEmail: model.contactEmail,
       phone: model.phone != null
@@ -72,6 +76,7 @@ class UserDto {
       id: id,
       name: name,
       lastName: lastName,
+      imageUrl: imageUrl,
       email: email,
       contactEmail: contactEmail,
       phone: phone != null
@@ -92,6 +97,7 @@ class UserDto {
       'id': id,
       'name': name,
       'last_name': lastName,
+      'image_url': imageUrl,
       'email': email,
       'contact_email': contactEmail,
       'phone': phone != null
@@ -118,6 +124,7 @@ class UserDto {
       id: map['id'] ?? '',
       name: map['name'],
       lastName: map['last_name'],
+      imageUrl: map['image_url'],
       email: map['email'] ?? '',
       contactEmail: map['contact_email'],
       phone: map['phone'] != null

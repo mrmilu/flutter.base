@@ -58,6 +58,7 @@ dependencies:
   share_plus: ^11.0.0
   flutter_html: ^3.0.0
   appsflyer_sdk: ^6.16.21
+  image_picker: ^1.1.2
 
   # rainmakers_design_system:
   #   path: ../../DesignSystem/rainmakers_design_system

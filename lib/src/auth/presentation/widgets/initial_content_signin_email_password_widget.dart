@@ -101,7 +101,7 @@ class InitialContentSignInEmailPasswordWidget extends StatelessWidget {
               const SizedBox(height: 8),
               Align(
                 alignment: Alignment.centerLeft,
-                child: CustomTextButton.icon(
+                child: CustomTextButton.iconSecondary(
                   onPressed: onTapForgotPassword,
                   label: context.cl.translate(
                     'pages.auth.signIn.contentPassword.forgotPassword',

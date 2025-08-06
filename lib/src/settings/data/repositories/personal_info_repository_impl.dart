@@ -26,11 +26,8 @@ class PersonalInfoRepositoryImpl extends IPersonalInfoRepository {
     required String phone,
   }) async {
     try {
-      // Simulate a network request
-      await Future.delayed(const Duration(seconds: 2));
-
       await httpClient.patch(
-        'update_user',
+        '/api/update_user',
         data: {
           'name': name,
           'lastName': lastName,

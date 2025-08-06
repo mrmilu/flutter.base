@@ -8,6 +8,7 @@ final mockUser = UserModel(
   id: 'mock-user-id',
   name: 'Mock',
   lastName: 'User',
+  imageUrl: null,
   email: 'mock.user@example.com',
   contactEmail: 'mock.user@example.com',
   phone: (PrefixPhoneType.spain, '600123456'),

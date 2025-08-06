@@ -115,6 +115,8 @@ class _CustomTextFieldWidgetState extends State<CustomTextFieldWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final brightness = Theme.of(context).brightness;
+    final isDarkMode = brightness == Brightness.dark;
     return Padding(
       padding: widget.padding ?? EdgeInsets.zero,
       child: Column(
@@ -136,7 +138,9 @@ class _CustomTextFieldWidgetState extends State<CustomTextFieldWidget> {
                     color:
                         widget.backgroundColor ??
                         (widget.readOnly
-                            ? context.colors.specificBasicGrey
+                            ? isDarkMode
+                                  ? context.colors.grey
+                                  : context.colors.specificBasicGrey
                             : context.colors.specificBasicWhite),
                     borderRadius: BorderRadius.circular(widget.borderRadius),
                     border: widget.showBorder

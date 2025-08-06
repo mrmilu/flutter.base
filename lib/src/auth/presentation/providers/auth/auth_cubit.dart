@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -22,6 +23,7 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> initUser() async {
     final user = await authRepository.getUser();
     if (user != null) {
+      log('User $user');
       if (user.document != null) {
         createTokenDevice();
       }

@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../../shared/domain/models/user_model.dart';
 import '../../../../shared/domain/vos/fullname_vos.dart';
@@ -19,37 +20,45 @@ class PersonalDataCubit extends Cubit<PersonalDataState> {
   final IPersonalInfoRepository repository;
   final GlobalLoaderCubit globalLoaderCubit;
 
+  String beforeImageUrl = '';
   String beforeName = '';
   String beforeLastName = '';
 
   void init(UserModel? user) {
+    beforeImageUrl = user?.imageUrl ?? '';
     beforeName = user?.name ?? '';
     beforeLastName = user?.lastName ?? '';
 
     emit(
       state.copyWith(
-        name: FullnameVos(beforeName),
-        lastName: FullnameVos(beforeLastName),
+        imageUrl: beforeImageUrl,
+        name: beforeName,
+        lastName: beforeLastName,
       ),
     );
   }
 
   bool isChanged() {
-    return state.name.getOrElse('') != beforeName ||
-        state.lastName.getOrElse('') != beforeLastName;
+    return state.name != beforeName ||
+        state.lastName != beforeLastName ||
+        state.imageUrl != beforeImageUrl;
+  }
+
+  void changeImage(XFile? image) {
+    emit(state.copyWith(imageSelected: image, imageUrl: image?.path ?? ''));
   }
 
   void changeName(String value) {
-    emit(state.copyWith(name: FullnameVos(value)));
+    emit(state.copyWith(name: value));
   }
 
   void changeLastName(String value) {
-    emit(state.copyWith(lastName: FullnameVos(value)));
+    emit(state.copyWith(lastName: value));
   }
 
   bool _allFieldsAreValid() => <ValueObject>[
-    state.name,
-    state.lastName,
+    state.nameVos,
+    state.lastNameVos,
   ].areValid;
 
   Future<void> save() async {
@@ -66,8 +75,8 @@ class PersonalDataCubit extends Cubit<PersonalDataState> {
       );
       globalLoaderCubit.show();
       final result = await repository.setPersonalData(
-        name: state.name.getOrCrash(),
-        lastName: state.lastName.getOrCrash(),
+        name: state.name,
+        lastName: state.lastName,
         phone: '',
       );
       globalLoaderCubit.hide();

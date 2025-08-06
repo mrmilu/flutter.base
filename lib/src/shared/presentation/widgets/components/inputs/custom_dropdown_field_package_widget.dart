@@ -7,8 +7,8 @@ import '../../common/custom_row_icon_text_widget.dart';
 import '../../common/image_asset_widget.dart';
 import '../text/rm_text.dart';
 
-class CustomDowndownFieldPackageWidget<T> extends StatelessWidget {
-  const CustomDowndownFieldPackageWidget({
+class CustomDropdownFieldPackageWidget<T> extends StatelessWidget {
+  const CustomDropdownFieldPackageWidget({
     super.key,
     this.enabled = true,
     this.title,
@@ -45,6 +45,8 @@ class CustomDowndownFieldPackageWidget<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final brightness = Theme.of(context).brightness;
+    final isDarkMode = brightness == Brightness.dark;
     return Builder(
       builder: (context) {
         return IgnorePointer(
@@ -54,7 +56,9 @@ class CustomDowndownFieldPackageWidget<T> extends StatelessWidget {
               Container(
                 decoration: BoxDecoration(
                   color: readOnly
-                      ? context.colors.background
+                      ? isDarkMode
+                            ? context.colors.grey
+                            : context.colors.specificBasicGrey
                       : context.colors.specificBasicWhite,
                   borderRadius: BorderRadius.circular(32),
                   border: Border.all(
@@ -105,7 +109,7 @@ class CustomDowndownFieldPackageWidget<T> extends StatelessWidget {
                                       child: RMText.bodyMedium(
                                         initialValue ?? value.toString(),
                                         color: readOnly
-                                            ? context.colors.grey
+                                            ? context.colors.specificBasicBlack
                                             : context.colors.specificBasicBlack,
                                       ),
                                     ),

@@ -35,7 +35,7 @@ class ScaffoldWithNavigation extends StatelessWidget {
         Container(
           height: paddingBottom,
           color: isDarkMode
-              ? context.colors.specificBasicSemiBlack
+              ? context.colors.background
               : context.colors.specificBasicWhite,
         ),
       ],

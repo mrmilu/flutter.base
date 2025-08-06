@@ -117,6 +117,18 @@ class MainTap2Page extends StatelessWidget {
                   ),
                 ],
               ),
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.add),
+              ),
+              IconButton.filled(
+                onPressed: () {},
+                icon: const Icon(Icons.add),
+              ),
+              IconButton.outlined(
+                onPressed: () {},
+                icon: const Icon(Icons.add),
+              ),
               const SizedBox(height: 24.0),
               const RMText.titleMedium('Checkboxes'),
               const SizedBox(height: 8.0),

@@ -109,6 +109,7 @@ class InitialContentSignUpEmailPasswordWidget extends StatelessWidget {
                       ? S.of(context).mismatchedPasswords
                       : null,
                 ),
+                const SizedBox(height: 8),
                 const Divider(),
                 const SizedBox(height: 8),
                 CustomElevatedButton.inverse(
