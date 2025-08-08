@@ -16,6 +16,7 @@ import 'src/shared/helpers/error_monitoring.dart';
 Future<void> main() async {
   F.appFlavor = Flavor.values.firstWhere(
     (element) => element.name == appFlavor,
+    orElse: () => Flavor.beta,
   );
 
   await dotenv.load(fileName: '.env.${F.name}');
@@ -52,15 +53,6 @@ Future<void> main() async {
         debugPrintStack(label: error.toString(), stackTrace: stack);
         return true;
       };
-
-      // RMConfig.configure(
-      //   colors: appColors,
-      //   textTheme: appTextStyles,
-      //   themeData: RMThemeData(
-      //     darkTheme: appThemeDataDark,
-      //     lightTheme: appThemeDataLight,
-      //   ),
-      // );
 
       runApp(const App());
     },
