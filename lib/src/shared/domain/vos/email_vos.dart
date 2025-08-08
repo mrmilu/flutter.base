@@ -15,7 +15,7 @@ class EmailVos extends ValueObject<EmailFailure, String> {
 
   static Either<EmailFailure, String> _validate(String input) {
     const emailRegex =
-        r"""^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9.-]+\.[a-zA-Z]+""";
+        r"""^[a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]([a-zA-Z0-9.-]*[a-zA-Z0-9])?(\.[a-zA-Z0-9]([a-zA-Z0-9-]*[a-zA-Z0-9])?)*\.[a-zA-Z]{2,}$""";
 
     if (input.isEmpty) {
       return left(EmailFailure.empty());

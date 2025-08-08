@@ -5,10 +5,6 @@ class AppRouterObserver extends NavigatorObserver {
   void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
     final screenName = route.settings.name;
 
-    if (screenName != null) {
-      // GetIt.I.getAsync<IAnalyticsService>().then((service) {
-      //   service.logPageView(screenName: screenName);
-      // });
-    }
+    if (screenName != null) {}
   }
 }

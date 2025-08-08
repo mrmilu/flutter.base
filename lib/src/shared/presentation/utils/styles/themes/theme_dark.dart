@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../colors/colors_base.dart';
-import '../texts/text_styles_dark.dart';
+import '../texts/app_text_styles.dart';
 
 const transparentBottomSheetTheme = BottomSheetThemeData(
   backgroundColor: Colors.transparent,
