@@ -58,3 +58,38 @@ Future<void> main() async {
     },
   );
 }
+
+Future<void> mainTest() async {
+  // Solo inicializar appFlavor si no está ya inicializado
+  try {
+    F.appFlavor = Flavor.values.firstWhere(
+      (element) => element.name == appFlavor,
+      orElse: () => Flavor.beta,
+    );
+  } catch (e) {
+    // Si ya está inicializado, continúa
+    debugPrint('appFlavor ya está inicializado: ${F.name}');
+  }
+
+  await dotenv.load(fileName: '.env.${F.name}');
+  final env = EnvVars();
+  debugPrint('appId: ${env.appId}, flavor: ${F.name}');
+
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Solo inicializar Firebase si no está ya inicializado
+  try {
+    await Firebase.initializeApp();
+  } catch (e) {
+    debugPrint('Firebase ya está inicializado');
+  }
+
+  // appFlyerService = AppFlyerService();
+  // await Future.wait([
+  //   appFlyerService!.init(),
+  //   PushNotificationService.initialize(),
+  //   MyAnalyticsHelper.initialize(enableInDebug: !kReleaseMode),
+  // ]);
+
+  runApp(const App());
+}
