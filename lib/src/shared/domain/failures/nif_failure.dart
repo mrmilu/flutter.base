@@ -1,7 +1,3 @@
-import 'package:flutter/material.dart';
-
-import '../../presentation/utils/extensions/buildcontext_extensions.dart';
-
 enum NifFailure {
   tooLong,
   tooShort,
@@ -34,17 +30,6 @@ enum NifFailure {
         return NifFailure.invalidFormat;
       default:
         return NifFailure.invalidFormat;
-    }
-  }
-
-  String toTranslate(BuildContext context) {
-    switch (this) {
-      case NifFailure.tooLong:
-        return context.l10n.tooLong;
-      case NifFailure.tooShort:
-        return context.l10n.tooShort;
-      case NifFailure.invalidFormat:
-        return context.l10n.nifInvalid;
     }
   }
 }

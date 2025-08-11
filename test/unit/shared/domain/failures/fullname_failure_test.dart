@@ -362,6 +362,280 @@ void main() {
       });
     });
 
+    group('maybeMap method', () {
+      test(
+        'Debería mapear FullnameFailureEmpty cuando callback está presente',
+        () {
+          // Arrange
+          final failure = FullnameFailure.empty();
+
+          // Act
+          final result = failure.maybeMap<String>(
+            empty: (failure) => 'mapped_empty',
+            orElse: () => 'orElse_called',
+          );
+
+          // Assert
+          expect(result, equals('mapped_empty'));
+        },
+      );
+
+      test(
+        'Debería mapear FullnameFailureInvalid cuando callback está presente',
+        () {
+          // Arrange
+          final failure = FullnameFailure.invalid();
+
+          // Act
+          final result = failure.maybeMap<String>(
+            invalid: (failure) => 'mapped_invalid',
+            orElse: () => 'orElse_called',
+          );
+
+          // Assert
+          expect(result, equals('mapped_invalid'));
+        },
+      );
+
+      test(
+        'Debería mapear FullnameFailureTooLong cuando callback está presente',
+        () {
+          // Arrange
+          final failure = FullnameFailure.tooLong(65);
+
+          // Act
+          final result = failure.maybeMap<String>(
+            tooLong: (failure) => 'mapped_tooLong_${failure.length}',
+            orElse: () => 'orElse_called',
+          );
+
+          // Assert
+          expect(result, equals('mapped_tooLong_65'));
+        },
+      );
+
+      test('Debería ejecutar orElse cuando callback específico es null', () {
+        // Arrange
+        final failure = FullnameFailure.empty();
+
+        // Act
+        final result = failure.maybeMap<String>(
+          invalid: (failure) => 'invalid_mapped',
+          tooLong: (failure) => 'tooLong_mapped',
+          orElse: () => 'orElse_executed',
+        );
+
+        // Assert
+        expect(result, equals('orElse_executed'));
+      });
+
+      test('Debería mapear a diferentes tipos de retorno', () {
+        // Arrange
+        final emptyFailure = FullnameFailure.empty();
+        final tooLongFailure = FullnameFailure.tooLong(45);
+
+        // Act
+        final intResult = emptyFailure.maybeMap<int>(
+          empty: (failure) => 42,
+          orElse: () => 0,
+        );
+
+        final boolResult = tooLongFailure.maybeMap<bool>(
+          tooLong: (failure) => failure.length > 40,
+          orElse: () => false,
+        );
+
+        // Assert
+        expect(intResult, equals(42));
+        expect(boolResult, isTrue);
+      });
+
+      test('Debería manejar casos donde no hay callback específico', () {
+        // Arrange
+        final invalidFailure = FullnameFailure.invalid();
+
+        // Act
+        final result = invalidFailure.maybeMap<String>(
+          empty: (failure) => 'empty_mapped',
+          tooLong: (failure) => 'tooLong_mapped',
+          orElse: () => 'default_value',
+        );
+
+        // Assert
+        expect(result, equals('default_value'));
+      });
+    });
+
+    group('fromString method', () {
+      test('Debería crear FullnameFailureEmpty desde string "empty"', () {
+        // Act
+        final failure = FullnameFailure.fromString('empty');
+
+        // Assert
+        expect(failure, isA<FullnameFailureEmpty>());
+        expect(failure.toString(), equals('empty'));
+      });
+
+      test('Debería crear FullnameFailureInvalid desde string "invalid"', () {
+        // Act
+        final failure = FullnameFailure.fromString('invalid');
+
+        // Assert
+        expect(failure, isA<FullnameFailureInvalid>());
+        expect(failure.toString(), equals('invalid'));
+      });
+
+      test('Debería crear FullnameFailureTooLong desde string "tooLong"', () {
+        // Act
+        final failure = FullnameFailure.fromString('tooLong');
+
+        // Assert
+        expect(failure, isA<FullnameFailureTooLong>());
+        expect(failure.toString(), equals('tooLong'));
+        // Default length should be 0 when not specified
+        expect((failure as FullnameFailureTooLong).length, equals(0));
+      });
+
+      test('Debería crear FullnameFailureEmpty para string no reconocido', () {
+        // Act
+        final failure1 = FullnameFailure.fromString('unknown');
+        final failure2 = FullnameFailure.fromString('');
+        final failure3 = FullnameFailure.fromString('INVALID');
+
+        // Assert
+        expect(failure1, isA<FullnameFailureEmpty>());
+        expect(failure2, isA<FullnameFailureEmpty>());
+        expect(failure3, isA<FullnameFailureEmpty>());
+      });
+
+      test('Debería ser case-sensitive', () {
+        // Act
+        final failure1 = FullnameFailure.fromString('Empty');
+        final failure2 = FullnameFailure.fromString('INVALID');
+        final failure3 = FullnameFailure.fromString('TooLong');
+
+        // Assert
+        expect(failure1, isA<FullnameFailureEmpty>());
+        expect(failure2, isA<FullnameFailureEmpty>());
+        expect(failure3, isA<FullnameFailureEmpty>());
+      });
+    });
+
+    group('Edge cases', () {
+      test('Debería manejar FullnameFailureTooLong con length 0', () {
+        // Act
+        final failure = FullnameFailure.tooLong(0);
+
+        // Assert
+        expect(failure, isA<FullnameFailureTooLong>());
+        expect((failure as FullnameFailureTooLong).length, equals(0));
+      });
+
+      test('Debería manejar FullnameFailureTooLong con length negativo', () {
+        // Act
+        final failure = FullnameFailure.tooLong(-1);
+
+        // Assert
+        expect(failure, isA<FullnameFailureTooLong>());
+        expect((failure as FullnameFailureTooLong).length, equals(-1));
+      });
+
+      test('Debería manejar FullnameFailureTooLong con length muy grande', () {
+        // Act
+        final failure = FullnameFailure.tooLong(999999);
+
+        // Assert
+        expect(failure, isA<FullnameFailureTooLong>());
+        expect((failure as FullnameFailureTooLong).length, equals(999999));
+      });
+
+      test('Debería mantener consistencia en múltiples creaciones', () {
+        // Act
+        final failure1 = FullnameFailure.empty();
+        final failure2 = FullnameFailure.empty();
+        final failure3 = FullnameFailure.invalid();
+        final failure4 = FullnameFailure.invalid();
+
+        // Assert
+        expect(failure1.runtimeType, equals(failure2.runtimeType));
+        expect(failure3.runtimeType, equals(failure4.runtimeType));
+        expect(failure1.toString(), equals(failure2.toString()));
+        expect(failure3.toString(), equals(failure4.toString()));
+      });
+    });
+
+    group('Roundtrip serialization', () {
+      test('Debería mantener consistencia empty -> toString -> fromString', () {
+        // Arrange
+        final original = FullnameFailure.empty();
+
+        // Act
+        final serialized = original.toString();
+        final deserialized = FullnameFailure.fromString(serialized);
+
+        // Assert
+        expect(deserialized.runtimeType, equals(original.runtimeType));
+        expect(deserialized.toString(), equals(original.toString()));
+      });
+
+      test(
+        'Debería mantener consistencia invalid -> toString -> fromString',
+        () {
+          // Arrange
+          final original = FullnameFailure.invalid();
+
+          // Act
+          final serialized = original.toString();
+          final deserialized = FullnameFailure.fromString(serialized);
+
+          // Assert
+          expect(deserialized.runtimeType, equals(original.runtimeType));
+          expect(deserialized.toString(), equals(original.toString()));
+        },
+      );
+
+      test('Debería mantener consistencia tooLong -> toString -> fromString', () {
+        // Arrange
+        final original = FullnameFailure.tooLong(75);
+
+        // Act
+        final serialized = original.toString();
+        final deserialized = FullnameFailure.fromString(serialized);
+
+        // Assert
+        expect(deserialized.runtimeType, equals(original.runtimeType));
+        expect(deserialized.toString(), equals(original.toString()));
+        // Note: length information is lost in toString, so fromString creates with default length 0
+        expect((deserialized as FullnameFailureTooLong).length, equals(0));
+      });
+
+      test('Debería ser idempotente para múltiples roundtrips', () {
+        // Arrange
+        final failures = [
+          FullnameFailure.empty(),
+          FullnameFailure.invalid(),
+          FullnameFailure.tooLong(50),
+        ];
+
+        for (final original in failures) {
+          // Act
+          final firstRoundtrip = FullnameFailure.fromString(
+            original.toString(),
+          );
+          final secondRoundtrip = FullnameFailure.fromString(
+            firstRoundtrip.toString(),
+          );
+
+          // Assert
+          expect(
+            firstRoundtrip.runtimeType,
+            equals(secondRoundtrip.runtimeType),
+          );
+          expect(firstRoundtrip.toString(), equals(secondRoundtrip.toString()));
+        }
+      });
+    });
+
     group('Type checking', () {
       test('Debería identificar correctamente los tipos', () {
         // Arrange

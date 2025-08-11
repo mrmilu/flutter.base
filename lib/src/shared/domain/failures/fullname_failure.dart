@@ -101,6 +101,10 @@ abstract class FullnameFailure {
       return FullnameFailure.invalid();
     }
 
+    if (value == 'tooLong') {
+      return FullnameFailure.tooLong(0);
+    }
+
     return FullnameFailure.empty();
   }
 

@@ -1,7 +1,3 @@
-import 'package:flutter/material.dart';
-
-import '../../presentation/utils/extensions/buildcontext_extensions.dart';
-
 enum DownloadFileFailure {
   notFound,
   noPermission,
@@ -40,19 +36,6 @@ enum DownloadFileFailure {
         return DownloadFileFailure.problemWithSaveFile;
       default:
         return DownloadFileFailure.unknown;
-    }
-  }
-
-  String toTranslate(BuildContext context) {
-    switch (this) {
-      case DownloadFileFailure.notFound:
-        return context.l10n.fileNotFound;
-      case DownloadFileFailure.noPermission:
-        return context.l10n.operationNotAllowed;
-      case DownloadFileFailure.unknown:
-        return context.l10n.getDocumentError;
-      case DownloadFileFailure.problemWithSaveFile:
-        return context.l10n.problemWithSaveFile;
     }
   }
 }

@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../shared/data/services/app_flyer_service.dart';
 import '../../../shared/domain/failures_extensions/fullname_failure_extension.dart';
+import '../../../shared/domain/failures_extensions/nie_failure_extension.dart';
+import '../../../shared/domain/failures_extensions/nif_failure_extension.dart';
 import '../../../shared/domain/types/document_type.dart';
 import '../../../shared/domain/vos/nie_vos.dart';
 import '../../../shared/domain/vos/nif_vos.dart';

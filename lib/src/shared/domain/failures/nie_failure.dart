@@ -1,7 +1,3 @@
-import 'package:flutter/material.dart';
-
-import '../../presentation/utils/extensions/buildcontext_extensions.dart';
-
 enum NieFailure {
   tooLong,
   tooShort,
@@ -34,17 +30,6 @@ enum NieFailure {
         return NieFailure.invalidFormat;
       default:
         return NieFailure.invalidFormat;
-    }
-  }
-
-  String toTranslate(BuildContext context) {
-    switch (this) {
-      case NieFailure.tooLong:
-        return context.l10n.tooLong;
-      case NieFailure.tooShort:
-        return context.l10n.tooShort;
-      case NieFailure.invalidFormat:
-        return context.l10n.nieInvalid;
     }
   }
 }

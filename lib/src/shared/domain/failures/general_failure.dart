@@ -1,7 +1,3 @@
-import 'package:flutter/material.dart';
-
-import '../../presentation/utils/extensions/buildcontext_extensions.dart';
-
 enum GeneralFailure {
   noPermission,
   internalError,
@@ -40,19 +36,6 @@ enum GeneralFailure {
         return GeneralFailure.unknown;
       default:
         return GeneralFailure.unknown;
-    }
-  }
-
-  String toTranslate(BuildContext context) {
-    switch (this) {
-      case GeneralFailure.noPermission:
-        return context.l10n.operationNotAllowed;
-      case GeneralFailure.internalError:
-        return context.l10n.internalError;
-      case GeneralFailure.serverError:
-        return context.l10n.serverError;
-      case GeneralFailure.unknown:
-        return context.l10n.unknownError;
     }
   }
 }

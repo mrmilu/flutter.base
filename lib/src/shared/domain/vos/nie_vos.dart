@@ -69,10 +69,7 @@ class NieVos extends ValueObject<NieFailure, String> {
     numberStr = prefixValue + input.substring(1, 8);
 
     // Convertir el número a entero
-    final number = int.tryParse(numberStr);
-    if (number == null) {
-      return left(NieFailure.invalidFormat);
-    }
+    final number = int.parse(numberStr);
 
     // Calcular la letra esperada usando el módulo 23
     final remainder = number % 23;

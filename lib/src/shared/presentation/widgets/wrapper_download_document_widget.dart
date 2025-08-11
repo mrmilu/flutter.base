@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../domain/failures_extensions/download_failure_extension.dart';
 import '../../domain/interfaces/i_download_file_repository.dart';
 import '../../helpers/toasts.dart';
 import '../providers/download_file/download_file_cubit.dart';

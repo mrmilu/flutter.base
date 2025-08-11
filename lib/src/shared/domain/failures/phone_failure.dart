@@ -101,6 +101,10 @@ abstract class PhoneFailure {
       return PhoneFailure.invalid();
     }
 
+    if (value == 'tooLong') {
+      return PhoneFailure.tooLong(0);
+    }
+
     return PhoneFailure.empty();
   }
 

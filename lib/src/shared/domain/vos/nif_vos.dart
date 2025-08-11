@@ -61,10 +61,7 @@ class NifVos extends ValueObject<NifFailure, String> {
     final letter = input.substring(8);
 
     // Convertir el número a entero
-    final number = int.tryParse(numberStr);
-    if (number == null) {
-      return left(NifFailure.invalidFormat);
-    }
+    final number = int.parse(numberStr);
 
     // Calcular la letra esperada usando el módulo 23
     final remainder = number % 23;
