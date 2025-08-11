@@ -11,14 +11,17 @@ abstract class PhoneFailure {
   }) {
     if (this is PhoneFailureEmpty) {
       empty.call(this as PhoneFailureEmpty);
+      return;
     }
 
     if (this is PhoneFailureInvalid) {
       invalid.call(this as PhoneFailureInvalid);
+      return;
     }
 
     if (this is PhoneFailureTooLong) {
       tooLong.call(this as PhoneFailureTooLong);
+      return;
     }
 
     empty.call(this as PhoneFailureEmpty);
@@ -52,14 +55,17 @@ abstract class PhoneFailure {
   }) {
     if (this is PhoneFailureEmpty && empty != null) {
       empty.call(this as PhoneFailureEmpty);
+      return;
     }
 
     if (this is PhoneFailureInvalid && invalid != null) {
       invalid.call(this as PhoneFailureInvalid);
+      return;
     }
 
     if (this is PhoneFailureTooLong && tooLong != null) {
       tooLong.call(this as PhoneFailureTooLong);
+      return;
     }
 
     orElse.call();

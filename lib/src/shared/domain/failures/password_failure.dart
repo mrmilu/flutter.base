@@ -13,18 +13,22 @@ abstract class PasswordFailure {
   }) {
     if (this is PasswordFailureInvalidMinLength) {
       minLength.call(this as PasswordFailureInvalidMinLength);
+      return;
     }
 
     if (this is PasswordFailureIncludeUppercase) {
       includeUppercase.call(this as PasswordFailureIncludeUppercase);
+      return;
     }
 
     if (this is PasswordFailureIncludeLowercase) {
       includeLowercase.call(this as PasswordFailureIncludeLowercase);
+      return;
     }
 
     if (this is PasswordFailureIncludeDigit) {
       includeDigit.call(this as PasswordFailureIncludeDigit);
+      return;
     }
 
     minLength.call(this as PasswordFailureInvalidMinLength);
@@ -64,18 +68,22 @@ abstract class PasswordFailure {
   }) {
     if (this is PasswordFailureInvalidMinLength && minLength != null) {
       minLength.call(this as PasswordFailureInvalidMinLength);
+      return;
     }
 
     if (this is PasswordFailureIncludeUppercase && includeUppercase != null) {
       includeUppercase.call(this as PasswordFailureIncludeUppercase);
+      return;
     }
 
     if (this is PasswordFailureIncludeLowercase && includeLowercase != null) {
       includeLowercase.call(this as PasswordFailureIncludeLowercase);
+      return;
     }
 
     if (this is PasswordFailureIncludeDigit && includeDigit != null) {
       includeDigit.call(this as PasswordFailureIncludeDigit);
+      return;
     }
 
     orElse.call();

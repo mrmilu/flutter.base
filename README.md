@@ -65,3 +65,9 @@ For create unions type use this extension from vscode
 ###  New assets
 1. Add assets in folder assets.
 2. Run "just generate_assets_app_files".
+
+
+### Tests
+flutter test --coverage
+genhtml coverage/lcov.info -o coverage/html
+open coverage/html/index.html 

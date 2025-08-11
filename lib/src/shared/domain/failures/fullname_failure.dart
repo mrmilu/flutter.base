@@ -11,14 +11,17 @@ abstract class FullnameFailure {
   }) {
     if (this is FullnameFailureEmpty) {
       empty.call(this as FullnameFailureEmpty);
+      return;
     }
 
     if (this is FullnameFailureInvalid) {
       invalid.call(this as FullnameFailureInvalid);
+      return;
     }
 
     if (this is FullnameFailureTooLong) {
       tooLong.call(this as FullnameFailureTooLong);
+      return;
     }
 
     empty.call(this as FullnameFailureEmpty);
@@ -52,14 +55,17 @@ abstract class FullnameFailure {
   }) {
     if (this is FullnameFailureEmpty && empty != null) {
       empty.call(this as FullnameFailureEmpty);
+      return;
     }
 
     if (this is FullnameFailureInvalid && invalid != null) {
       invalid.call(this as FullnameFailureInvalid);
+      return;
     }
 
     if (this is FullnameFailureTooLong && tooLong != null) {
       tooLong.call(this as FullnameFailureTooLong);
+      return;
     }
 
     orElse.call();

@@ -7,6 +7,7 @@ abstract class RepeatEmailFailure {
   }) {
     if (this is MismatchedEmail) {
       mismatchedPasswords.call(this as MismatchedEmail);
+      return;
     }
 
     mismatchedPasswords.call(this as MismatchedEmail);
@@ -28,6 +29,7 @@ abstract class RepeatEmailFailure {
   }) {
     if (this is MismatchedEmail && mismatchedPasswords != null) {
       mismatchedPasswords.call(this as MismatchedEmail);
+      return;
     }
 
     orElse.call();

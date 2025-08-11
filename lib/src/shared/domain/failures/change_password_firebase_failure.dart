@@ -21,24 +21,28 @@ abstract class ChangePasswordFirebaseFailure {
   }) {
     if (this is ChangePasswordFirebaseFailureWrongPassword) {
       wrongPassword.call(this as ChangePasswordFirebaseFailureWrongPassword);
+      return;
     }
 
     if (this is ChangePasswordFirebaseFailureInvalidCredential) {
       invalidCredential.call(
         this as ChangePasswordFirebaseFailureInvalidCredential,
       );
+      return;
     }
 
     if (this is ChangePasswordFirebaseFailureInvalidArgument) {
       invalidArgument.call(
         this as ChangePasswordFirebaseFailureInvalidArgument,
       );
+      return;
     }
 
     if (this is ChangePasswordFirebaseFailureTooManyRequests) {
       tooManyRequests.call(
         this as ChangePasswordFirebaseFailureTooManyRequests,
       );
+      return;
     }
 
     wrongPassword.call(this as ChangePasswordFirebaseFailureWrongPassword);
@@ -96,6 +100,7 @@ abstract class ChangePasswordFirebaseFailure {
     if (this is ChangePasswordFirebaseFailureWrongPassword &&
         wrongPassword != null) {
       wrongPassword.call(this as ChangePasswordFirebaseFailureWrongPassword);
+      return;
     }
 
     if (this is ChangePasswordFirebaseFailureInvalidCredential &&
@@ -103,6 +108,7 @@ abstract class ChangePasswordFirebaseFailure {
       invalidCredential.call(
         this as ChangePasswordFirebaseFailureInvalidCredential,
       );
+      return;
     }
 
     if (this is ChangePasswordFirebaseFailureInvalidArgument &&
@@ -110,6 +116,7 @@ abstract class ChangePasswordFirebaseFailure {
       invalidArgument.call(
         this as ChangePasswordFirebaseFailureInvalidArgument,
       );
+      return;
     }
 
     if (this is ChangePasswordFirebaseFailureTooManyRequests &&
@@ -117,6 +124,7 @@ abstract class ChangePasswordFirebaseFailure {
       tooManyRequests.call(
         this as ChangePasswordFirebaseFailureTooManyRequests,
       );
+      return;
     }
 
     orElse.call();

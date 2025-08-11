@@ -39,7 +39,7 @@ enum DownloadFileFailure {
       case 'problemWithSaveFile':
         return DownloadFileFailure.problemWithSaveFile;
       default:
-        throw Exception('Unsupported DownloadFileFailure value');
+        return DownloadFileFailure.unknown;
     }
   }
 

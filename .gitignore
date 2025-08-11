@@ -63,3 +63,6 @@ report.xml
 
 # Skeleton package
 /android/app/.cxx
+
+# Test coverage
+coverage/

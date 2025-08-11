@@ -13,18 +13,22 @@ abstract class PowerFailure {
   }) {
     if (this is PowerFailureEmpty) {
       empty.call(this as PowerFailureEmpty);
+      return;
     }
 
     if (this is PowerFailureInvalid) {
       invalid.call(this as PowerFailureInvalid);
+      return;
     }
 
     if (this is PowerFailureLess) {
       less.call(this as PowerFailureLess);
+      return;
     }
 
     if (this is PowerFailureMore) {
       more.call(this as PowerFailureMore);
+      return;
     }
 
     empty.call(this as PowerFailureEmpty);
@@ -64,18 +68,22 @@ abstract class PowerFailure {
   }) {
     if (this is PowerFailureEmpty && empty != null) {
       empty.call(this as PowerFailureEmpty);
+      return;
     }
 
     if (this is PowerFailureInvalid && invalid != null) {
       invalid.call(this as PowerFailureInvalid);
+      return;
     }
 
     if (this is PowerFailureLess && less != null) {
       less.call(this as PowerFailureLess);
+      return;
     }
 
     if (this is PowerFailureMore && more != null) {
       more.call(this as PowerFailureMore);
+      return;
     }
 
     orElse.call();

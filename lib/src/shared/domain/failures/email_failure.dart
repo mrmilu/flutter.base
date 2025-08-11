@@ -9,10 +9,12 @@ abstract class EmailFailure {
   }) {
     if (this is EmailFailureEmpty) {
       empty.call(this as EmailFailureEmpty);
+      return;
     }
 
     if (this is EmailFailureInvalid) {
       invalid.call(this as EmailFailureInvalid);
+      return;
     }
 
     empty.call(this as EmailFailureEmpty);
@@ -40,10 +42,12 @@ abstract class EmailFailure {
   }) {
     if (this is EmailFailureEmpty && empty != null) {
       empty.call(this as EmailFailureEmpty);
+      return;
     }
 
     if (this is EmailFailureInvalid && invalid != null) {
       invalid.call(this as EmailFailureInvalid);
+      return;
     }
 
     orElse.call();

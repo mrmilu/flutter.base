@@ -14,7 +14,7 @@ class FullnameVos extends ValueObject<FullnameFailure, String> {
   const FullnameVos._(this.value);
 
   static Either<FullnameFailure, String> _validate(String input) {
-    const userNameRegex = r'^[ña-zÑA-ZÀ-ÿ]{2,}(?: [ña-zÑA-ZÀ-ÿ]+){0,3}$';
+    const userNameRegex = r'^[ña-zÑA-ZÀ-ÿ]{2,}(?: [ña-zÑA-ZÀ-ÿ]{2,}){0,3}$';
 
     if (input.isEmpty) {
       return left(FullnameFailure.empty());

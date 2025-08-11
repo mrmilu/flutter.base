@@ -7,6 +7,7 @@ abstract class FirebaseFailure {
   }) {
     if (this is FirebaseFailureServerError) {
       serverError.call(this as FirebaseFailureServerError);
+      return;
     }
 
     serverError.call(this as FirebaseFailureServerError);
@@ -28,6 +29,7 @@ abstract class FirebaseFailure {
   }) {
     if (this is FirebaseFailureServerError && serverError != null) {
       serverError.call(this as FirebaseFailureServerError);
+      return;
     }
 
     orElse.call();

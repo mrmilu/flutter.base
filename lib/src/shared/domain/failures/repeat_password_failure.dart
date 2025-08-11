@@ -38,7 +38,7 @@ abstract class RepeatPasswordFailure {
     required void Function() orElse,
   }) {
     if (this is MismatchedPasswords && mismatchedPasswords != null) {
-      mismatchedPasswords.call(this as MismatchedPasswords);
+      return mismatchedPasswords.call(this as MismatchedPasswords);
     }
 
     orElse.call();
@@ -57,7 +57,7 @@ abstract class RepeatPasswordFailure {
     required void Function(MismatchedPasswords) mismatchedPasswords,
   }) {
     if (this is MismatchedPasswords) {
-      mismatchedPasswords.call(this as MismatchedPasswords);
+      return mismatchedPasswords.call(this as MismatchedPasswords);
     }
 
     mismatchedPasswords.call(this as MismatchedPasswords);
