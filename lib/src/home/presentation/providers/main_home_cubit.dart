@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../shared/domain/failures/general_failure.dart';
+import '../../../shared/domain/failures/endpoints/unions/user_endpoint_failure.dart';
 import '../../../shared/helpers/resource.dart';
 import '../../domain/interfaces/i_main_home_repository.dart';
 

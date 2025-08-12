@@ -50,7 +50,8 @@ locales:
 # Note: on macOS you need to have lcov installed on your system (`brew install lcov`) to use this:
 test: 
   fvm flutter test --coverage --test-randomize-ordering-seed random
-  genhtml coverage/lcov.info -o coverage/html
+  grep -v ".freezed.dart" coverage/lcov.info > coverage/lcov_clean.info
+  genhtml coverage/lcov_clean.info -o coverage/html
   open coverage/html/index.html
 
 # e2e test
