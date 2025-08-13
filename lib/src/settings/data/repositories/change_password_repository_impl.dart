@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
-import '../../../shared/domain/failures/change_password_firebase_failure.dart';
+import '../../../shared/domain/failures/endpoints/change_password_firebase_failure.dart';
 import '../../../shared/helpers/result_or.dart';
 import '../../domain/interfaces/i_change_password_repository.dart';
 

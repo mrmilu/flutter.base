@@ -88,7 +88,7 @@ class ChangeEmailView extends StatelessWidget {
                               .read<ChangeEmailCubit>()
                               .changeEmail,
                           errorText: state.email.value.map(
-                            isLeft: (p0) => p0.toTranslation(context),
+                            isLeft: (p0) => p0.toTranslate(context),
                             isRight: (p0) => null,
                           ),
                         ),

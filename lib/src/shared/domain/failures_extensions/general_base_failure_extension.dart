@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 import '../../presentation/l10n/generated/l10n.dart';
-import '../failures/general_base_failure.dart';
+import '../failures/endpoints/general_base_failure.dart';
 
 extension GeneralBaseFailureExtension on GeneralBaseFailure {
   String toTranslate(BuildContext context) {

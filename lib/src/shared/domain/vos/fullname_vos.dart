@@ -17,15 +17,15 @@ class FullnameVos extends ValueObject<FullnameFailure, String> {
     const userNameRegex = r'^[ña-zÑA-ZÀ-ÿ]{2,}(?: [ña-zÑA-ZÀ-ÿ]{2,}){0,3}$';
 
     if (input.isEmpty) {
-      return left(FullnameFailure.empty());
+      return left(const FullnameFailure.empty());
     }
 
     if (!RegExp(userNameRegex).hasMatch(input)) {
-      return left(FullnameFailure.invalid());
+      return left(const FullnameFailure.invalid());
     }
 
     if (input.length > 30) {
-      return left(FullnameFailure.tooLong(30));
+      return left(const FullnameFailure.tooLong(length: 30));
     }
 
     return right(input);

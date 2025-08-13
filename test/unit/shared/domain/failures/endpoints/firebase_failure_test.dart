@@ -1,4 +1,4 @@
-import 'package:flutter_base/src/shared/domain/failures/firebase_failure.dart';
+import 'package:flutter_base/src/shared/domain/failures/endpoints/firebase_failure.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

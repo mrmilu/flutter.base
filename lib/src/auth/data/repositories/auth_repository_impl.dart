@@ -8,7 +8,7 @@ import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import '../../../shared/data/dtos/user_dto.dart';
 import '../../../shared/data/services/app_flyer_service.dart';
 import '../../../shared/data/services/simple_notifications_push_service.dart';
-import '../../../shared/domain/failures/general_base_failure.dart';
+import '../../../shared/domain/failures/endpoints/general_base_failure.dart';
 import '../../../shared/domain/models/user_model.dart';
 import '../../../shared/helpers/analytics_helper.dart';
 import '../../../shared/helpers/result_or.dart';

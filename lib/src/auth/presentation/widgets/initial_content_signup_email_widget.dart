@@ -63,7 +63,7 @@ class InitialContentSignUpEmailWidget extends StatelessWidget {
                   keyboardType: TextInputType.emailAddress,
                   showError: state.showErrors,
                   errorText: state.emailVos.map(
-                    isLeft: (e) => e.toTranslation(context),
+                    isLeft: (e) => e.toTranslate(context),
                     isRight: (_) => null,
                   ),
                 );

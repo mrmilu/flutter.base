@@ -15,11 +15,11 @@ class TitleVos extends ValueObject<FullnameFailure, String> {
 
   static Either<FullnameFailure, String> _validate(String input) {
     if (input.isEmpty) {
-      return left(FullnameFailure.empty());
+      return left(const FullnameFailure.empty());
     }
 
     if (input.length > 50) {
-      return left(FullnameFailure.tooLong(50));
+      return left(const FullnameFailure.tooLong(length: 50));
     }
 
     return right(input);

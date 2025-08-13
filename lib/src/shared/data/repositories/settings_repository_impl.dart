@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
-import '../../domain/failures/firebase_failure.dart';
+import '../../domain/failures/endpoints/firebase_failure.dart';
 import '../../domain/interfaces/i_settings_repository.dart';
 import '../../domain/models/app_settings_model.dart';
 import '../../domain/types/app_status_type.dart';

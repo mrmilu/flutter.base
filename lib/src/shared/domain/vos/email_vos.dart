@@ -18,11 +18,11 @@ class EmailVos extends ValueObject<EmailFailure, String> {
         r"""^[a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]([a-zA-Z0-9.-]*[a-zA-Z0-9])?(\.[a-zA-Z0-9]([a-zA-Z0-9-]*[a-zA-Z0-9])?)*\.[a-zA-Z]{2,}$""";
 
     if (input.isEmpty) {
-      return left(EmailFailure.empty());
+      return left(const EmailFailure.empty());
     }
 
     if (!RegExp(emailRegex).hasMatch(input)) {
-      return left(EmailFailure.invalid());
+      return left(const EmailFailure.invalid());
     }
 
     return right(input);

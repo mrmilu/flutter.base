@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../domain/failures/download_file_failure.dart';
+import '../../../domain/failures/endpoints/download_file_failure.dart';
 import '../../../domain/interfaces/i_download_file_repository.dart';
 import '../../../helpers/resource.dart';
 import '../base_cubit.dart';

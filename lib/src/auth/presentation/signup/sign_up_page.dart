@@ -147,8 +147,7 @@ class SignUpView extends StatelessWidget {
                                         labelText: 'Email',
                                         showError: stateSignUp.showErrors,
                                         errorText: stateSignUp.emailVos.map(
-                                          isLeft: (f) =>
-                                              f.toTranslation(context),
+                                          isLeft: (f) => f.toTranslate(context),
                                           isRight: (_) => null,
                                         ),
                                       ),

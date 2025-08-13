@@ -102,7 +102,7 @@ void main() {
         // Assert
         expect(emptyEmail.isValid(), isFalse);
         emptyEmail.when(
-          isLeft: (failure) => expect(failure, isA<EmailFailureEmpty>()),
+          isLeft: (failure) => expect(failure, const EmailFailure.empty()),
           isRight: (value) => fail('Debería retornar failure para email vacío'),
         );
       });
@@ -114,7 +114,7 @@ void main() {
         // Assert
         expect(invalidEmail.isValid(), isFalse);
         invalidEmail.when(
-          isLeft: (failure) => expect(failure, isA<EmailFailureInvalid>()),
+          isLeft: (failure) => expect(failure, const EmailFailure.invalid()),
           isRight: (value) =>
               fail('Debería retornar failure para email inválido'),
         );
@@ -129,7 +129,7 @@ void main() {
 
         // Verificar que es un EmailFailureInvalid
         problematicEmail.when(
-          isLeft: (failure) => expect(failure, isA<EmailFailureInvalid>()),
+          isLeft: (failure) => expect(failure, const EmailFailure.invalid()),
           isRight: (value) =>
               fail('Debería retornar failure para email inválido'),
         );

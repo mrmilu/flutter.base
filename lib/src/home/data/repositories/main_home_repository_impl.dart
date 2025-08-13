@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 
-import '../../../shared/domain/failures/general_base_failure.dart';
-import '../../../shared/domain/failures/get_user_failure.dart';
+import '../../../shared/domain/failures/endpoints/general_base_failure.dart';
+import '../../../shared/domain/failures/endpoints/get_user_failure.dart';
 import '../../../shared/helpers/resource.dart';
 import '../../domain/interfaces/i_main_home_repository.dart';
 

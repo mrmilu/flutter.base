@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 import '../../presentation/utils/extensions/buildcontext_extensions.dart';
-import '../failures/download_file_failure.dart';
+import '../failures/endpoints/download_file_failure.dart';
 import 'general_base_failure_extension.dart';
 
 extension DownloadFileFailureTranslation on DownloadFileFailure {
