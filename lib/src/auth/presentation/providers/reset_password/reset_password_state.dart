@@ -6,7 +6,7 @@ abstract class ResetPasswordState with _$ResetPasswordState {
     required String password,
     required String repeatPassword,
     required bool showErrors,
-    required ResultOr<GeneralFailure> resultOr,
+    required ResultOr<GeneralBaseFailure> resultOr,
   }) = _ResetPasswordState;
 
   factory ResetPasswordState.initial() => _ResetPasswordState(

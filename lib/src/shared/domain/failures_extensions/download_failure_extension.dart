@@ -2,18 +2,15 @@ import 'package:flutter/cupertino.dart';
 
 import '../../presentation/utils/extensions/buildcontext_extensions.dart';
 import '../failures/download_file_failure.dart';
+import 'general_base_failure_extension.dart';
 
 extension DownloadFileFailureTranslation on DownloadFileFailure {
   String toTranslate(BuildContext context) {
-    switch (this) {
-      case DownloadFileFailure.notFound:
-        return context.l10n.fileNotFound;
-      case DownloadFileFailure.noPermission:
-        return context.l10n.operationNotAllowed;
-      case DownloadFileFailure.unknown:
-        return context.l10n.getDocumentError;
-      case DownloadFileFailure.problemWithSaveFile:
-        return context.l10n.problemWithSaveFile;
-    }
+    return when(
+      problemWithSaveFile: (code, msg) => context.l10n.problemWithSaveFile,
+      notFound: (code, msg) => context.l10n.fileNotFound,
+      noPermission: (code, msg) => context.l10n.operationNotAllowed,
+      general: (appError) => appError.toTranslate(context),
+    );
   }
 }

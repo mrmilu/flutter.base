@@ -8,7 +8,7 @@ import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import '../../../shared/data/dtos/user_dto.dart';
 import '../../../shared/data/services/app_flyer_service.dart';
 import '../../../shared/data/services/simple_notifications_push_service.dart';
-import '../../../shared/domain/failures/general_failure.dart';
+import '../../../shared/domain/failures/general_base_failure.dart';
 import '../../../shared/domain/models/user_model.dart';
 import '../../../shared/helpers/analytics_helper.dart';
 import '../../../shared/helpers/result_or.dart';
@@ -344,7 +344,7 @@ class AuthRepositoryImpl extends IAuthRepository {
   }
 
   @override
-  Future<ResultOr<GeneralFailure>> resetPassword({
+  Future<ResultOr<GeneralBaseFailure>> resetPassword({
     required String tokenKey,
     required String newPassword,
   }) async {
@@ -362,17 +362,17 @@ class AuthRepositoryImpl extends IAuthRepository {
     } on DioException catch (e) {
       return ResultOr.failure(
         e.toFailure(
-          GeneralFailure.fromString,
-          GeneralFailure.serverError,
+          GeneralBaseFailure.fromString,
+          const GeneralBaseFailure.internalError(),
         ),
       );
     } on Exception catch (e, _) {
-      return ResultOr.failure(GeneralFailure.serverError);
+      return ResultOr.failure(const GeneralBaseFailure.internalError());
     }
   }
 
   @override
-  Future<ResultOr<GeneralFailure>> createUserDevice({
+  Future<ResultOr<GeneralBaseFailure>> createUserDevice({
     required String token,
   }) async {
     try {
@@ -383,17 +383,17 @@ class AuthRepositoryImpl extends IAuthRepository {
     } on DioException catch (e) {
       return ResultOr.failure(
         e.toFailure(
-          GeneralFailure.fromString,
-          GeneralFailure.serverError,
+          GeneralBaseFailure.fromString,
+          const GeneralBaseFailure.internalError(),
         ),
       );
     } on Exception catch (e, _) {
-      return ResultOr.failure(GeneralFailure.serverError);
+      return ResultOr.failure(const GeneralBaseFailure.internalError());
     }
   }
 
   @override
-  Future<ResultOr<GeneralFailure>> deleteUserDevice({
+  Future<ResultOr<GeneralBaseFailure>> deleteUserDevice({
     required String token,
   }) async {
     try {
@@ -404,12 +404,12 @@ class AuthRepositoryImpl extends IAuthRepository {
     } on DioException catch (e) {
       return ResultOr.failure(
         e.toFailure(
-          GeneralFailure.fromString,
-          GeneralFailure.serverError,
+          GeneralBaseFailure.fromString,
+          const GeneralBaseFailure.internalError(),
         ),
       );
     } on Exception catch (e, _) {
-      return ResultOr.failure(GeneralFailure.serverError);
+      return ResultOr.failure(const GeneralBaseFailure.internalError());
     }
   }
 }

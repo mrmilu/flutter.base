@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:path_provider/path_provider.dart';
 
 import '../../domain/failures/download_file_failure.dart';
+import '../../domain/failures/general_base_failure.dart';
 import '../../domain/interfaces/i_download_file_repository.dart';
 import '../../helpers/resource.dart';
 import '../../presentation/utils/extensions/dio_exception_extension.dart';
@@ -26,11 +27,11 @@ class DownloadFileRepositoryImpl extends IDownloadFileRepository {
       return Resource.failure(
         e.toFailure(
           DownloadFileFailure.fromString,
-          DownloadFileFailure.unknown,
+          const DownloadFileFailure.problemWithSaveFile(),
         ),
       );
     } catch (e) {
-      return Resource.failure(DownloadFileFailure.problemWithSaveFile);
+      return Resource.failure(const DownloadFileFailure.problemWithSaveFile());
     }
   }
 
@@ -62,11 +63,13 @@ class DownloadFileRepositoryImpl extends IDownloadFileRepository {
       return Resource.failure(
         e.toFailure(
           DownloadFileFailure.fromString,
-          DownloadFileFailure.unknown,
+          const DownloadFileFailure.general(
+            GeneralBaseFailure.unexpectedError(),
+          ),
         ),
       );
     } catch (e) {
-      return Resource.failure(DownloadFileFailure.problemWithSaveFile);
+      return Resource.failure(const DownloadFileFailure.problemWithSaveFile());
     }
   }
 
@@ -85,7 +88,7 @@ class DownloadFileRepositoryImpl extends IDownloadFileRepository {
       await file.writeAsBytes(bytes);
       return Resource.success(file.path);
     } catch (e) {
-      return Resource.failure(DownloadFileFailure.problemWithSaveFile);
+      return Resource.failure(const DownloadFileFailure.problemWithSaveFile());
     }
   }
 }

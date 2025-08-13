@@ -24,23 +24,23 @@ class ChangePasswordRepositoryImpl extends IChangePasswordRepository {
       switch (e.code) {
         case 'wrong-password':
           return ResultOr.failure(
-            ChangePasswordFirebaseFailure.wrongPassword(),
+            const ChangePasswordFirebaseFailure.wrongPassword(),
           );
         case 'invalid-credential':
           return ResultOr.failure(
-            ChangePasswordFirebaseFailure.invalidCredential(),
+            const ChangePasswordFirebaseFailure.invalidCredential(),
           );
         case 'invalid-argument':
           return ResultOr.failure(
-            ChangePasswordFirebaseFailure.invalidArgument(),
+            const ChangePasswordFirebaseFailure.invalidArgument(),
           );
         case 'too-many-requests':
           return ResultOr.failure(
-            ChangePasswordFirebaseFailure.tooManyRequests(),
+            const ChangePasswordFirebaseFailure.tooManyRequests(),
           );
         default:
           return ResultOr.failure(
-            ChangePasswordFirebaseFailure.invalidArgument(),
+            const ChangePasswordFirebaseFailure.invalidArgument(),
           );
       }
     }

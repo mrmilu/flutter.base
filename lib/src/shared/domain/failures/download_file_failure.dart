@@ -1,41 +1,66 @@
-enum DownloadFileFailure {
-  notFound,
-  noPermission,
-  unknown,
-  problemWithSaveFile;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  const DownloadFileFailure();
+import 'general_base_failure.dart';
 
-  R map<R>({
-    required R Function() notFound,
-    required R Function() noPermission,
-    required R Function() unknown,
-    required R Function() problemWithSaveFile,
-  }) {
-    switch (this) {
-      case DownloadFileFailure.notFound:
-        return notFound();
-      case DownloadFileFailure.noPermission:
-        return noPermission();
-      case DownloadFileFailure.unknown:
-        return unknown();
-      case DownloadFileFailure.problemWithSaveFile:
-        return problemWithSaveFile();
-    }
-  }
+part 'download_file_failure.freezed.dart';
 
-  static DownloadFileFailure fromString(String value) {
-    switch (value) {
-      case 'notFound':
-        return DownloadFileFailure.notFound;
-      case 'noPermission':
-        return DownloadFileFailure.noPermission;
-      case 'unknown':
-        return DownloadFileFailure.unknown;
-      case 'problemWithSaveFile':
-        return DownloadFileFailure.problemWithSaveFile;
-      default:
-        return DownloadFileFailure.unknown;
-    }
+@freezed
+abstract class DownloadFileFailure with _$DownloadFileFailure {
+  const factory DownloadFileFailure.problemWithSaveFile({
+    @Default('problemWithSaveFile') String code,
+    @Default('Problema al guardar el archivo.') String msg,
+  }) = DownloadFileFailureProblemWithSaveFile;
+
+  const factory DownloadFileFailure.notFound({
+    @Default('notFound') String code,
+    @Default('Archivo no encontrado.') String msg,
+  }) = DownloadFileFailureNotFound;
+
+  const factory DownloadFileFailure.noPermission({
+    @Default('noPermission') String code,
+    @Default('No tienes permiso para descargar este archivo.') String msg,
+  }) = DownloadFileFailureNoPermission;
+
+  const factory DownloadFileFailure.general(
+    GeneralBaseFailure error,
+  ) = DownloadFileFailureGeneral;
+
+  const DownloadFileFailure._();
+
+  String get message => when(
+    problemWithSaveFile: (code, msg) => msg,
+    notFound: (code, msg) => msg,
+    noPermission: (code, msg) => msg,
+    general: (appError) => appError.message,
+  );
+
+  dynamic get typeError => when(
+    problemWithSaveFile: (code, msg) =>
+        DownloadFileFailure.problemWithSaveFile(code: code, msg: msg),
+    notFound: (code, msg) => DownloadFileFailure.notFound(code: code, msg: msg),
+    noPermission: (code, msg) =>
+        DownloadFileFailure.noPermission(code: code, msg: msg),
+    general: (appError) =>
+        GeneralBaseFailure.fromString(appError.code, appError.message),
+  );
+
+  static DownloadFileFailure fromString(
+    String code, [
+    String? message,
+  ]) {
+    return switch (code) {
+      'problemWithSaveFile' => DownloadFileFailure.problemWithSaveFile(
+        msg: message ?? 'Problema al guardar el archivo.',
+      ),
+      'notFound' => DownloadFileFailure.notFound(
+        msg: message ?? 'Archivo no encontrado.',
+      ),
+      'noPermission' => DownloadFileFailure.noPermission(
+        msg: message ?? 'No tienes permiso para descargar este archivo.',
+      ),
+      _ => DownloadFileFailure.general(
+        GeneralBaseFailure.fromString(code, message),
+      ),
+    };
   }
 }

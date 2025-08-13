@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../../shared/domain/failures/general_failure.dart';
+import '../../../../shared/domain/failures/general_base_failure.dart';
 import '../../../../shared/domain/vos/password_vos.dart';
 import '../../../../shared/helpers/result_or.dart';
 import '../../../../shared/helpers/value_object.dart';

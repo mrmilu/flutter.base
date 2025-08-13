@@ -4,7 +4,7 @@ import '../../presentation/l10n/generated/l10n.dart';
 import '../failures/general_base_failure.dart';
 
 extension GeneralBaseFailureExtension on GeneralBaseFailure {
-  String toTranslation(BuildContext context) {
+  String toTranslate(BuildContext context) {
     return when(
       unauthorized: (_, _) => S.of(context).unauthorized,
       internalError: (_, _) => S.of(context).internalError,

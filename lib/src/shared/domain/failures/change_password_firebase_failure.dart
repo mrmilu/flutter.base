@@ -1,224 +1,79 @@
-abstract class ChangePasswordFirebaseFailure {
-  const ChangePasswordFirebaseFailure();
-  factory ChangePasswordFirebaseFailure.wrongPassword() =
-      ChangePasswordFirebaseFailureWrongPassword;
-  factory ChangePasswordFirebaseFailure.invalidCredential() =
-      ChangePasswordFirebaseFailureInvalidCredential;
-  factory ChangePasswordFirebaseFailure.invalidArgument() =
-      ChangePasswordFirebaseFailureInvalidArgument;
-  factory ChangePasswordFirebaseFailure.tooManyRequests() =
-      ChangePasswordFirebaseFailureTooManyRequests;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  void when({
-    required void Function(ChangePasswordFirebaseFailureWrongPassword)
-    wrongPassword,
-    required void Function(ChangePasswordFirebaseFailureInvalidCredential)
-    invalidCredential,
-    required void Function(ChangePasswordFirebaseFailureInvalidArgument)
-    invalidArgument,
-    required void Function(ChangePasswordFirebaseFailureTooManyRequests)
-    tooManyRequests,
-  }) {
-    if (this is ChangePasswordFirebaseFailureWrongPassword) {
-      wrongPassword.call(this as ChangePasswordFirebaseFailureWrongPassword);
-      return;
-    }
+import 'general_base_failure.dart';
 
-    if (this is ChangePasswordFirebaseFailureInvalidCredential) {
-      invalidCredential.call(
-        this as ChangePasswordFirebaseFailureInvalidCredential,
-      );
-      return;
-    }
+part 'change_password_firebase_failure.freezed.dart';
 
-    if (this is ChangePasswordFirebaseFailureInvalidArgument) {
-      invalidArgument.call(
-        this as ChangePasswordFirebaseFailureInvalidArgument,
-      );
-      return;
-    }
+@freezed
+abstract class ChangePasswordFirebaseFailure
+    with _$ChangePasswordFirebaseFailure {
+  const factory ChangePasswordFirebaseFailure.wrongPassword({
+    @Default('wrongPassword') String code,
+    @Default('Contraseña incorrecta.') String msg,
+  }) = ChangePasswordFirebaseFailureWrongPassword;
 
-    if (this is ChangePasswordFirebaseFailureTooManyRequests) {
-      tooManyRequests.call(
-        this as ChangePasswordFirebaseFailureTooManyRequests,
-      );
-      return;
-    }
+  const factory ChangePasswordFirebaseFailure.invalidCredential({
+    @Default('invalidCredential') String code,
+    @Default('Credenciales inválidas.') String msg,
+  }) = ChangePasswordFirebaseFailureInvalidCredential;
 
-    wrongPassword.call(this as ChangePasswordFirebaseFailureWrongPassword);
-  }
+  const factory ChangePasswordFirebaseFailure.invalidArgument({
+    @Default('invalidArgument') String code,
+    @Default('Argumento inválido.') String msg,
+  }) = ChangePasswordFirebaseFailureInvalidArgument;
 
-  R map<R>({
-    required R Function(ChangePasswordFirebaseFailureWrongPassword)
-    wrongPassword,
-    required R Function(ChangePasswordFirebaseFailureInvalidCredential)
-    invalidCredential,
-    required R Function(ChangePasswordFirebaseFailureInvalidArgument)
-    invalidArgument,
-    required R Function(ChangePasswordFirebaseFailureTooManyRequests)
-    tooManyRequests,
-  }) {
-    if (this is ChangePasswordFirebaseFailureWrongPassword) {
-      return wrongPassword.call(
-        this as ChangePasswordFirebaseFailureWrongPassword,
-      );
-    }
+  const factory ChangePasswordFirebaseFailure.tooManyRequests({
+    @Default('tooManyRequests') String code,
+    @Default('Demasiadas solicitudes. Intenta más tarde.') String msg,
+  }) = ChangePasswordFirebaseFailureTooManyRequests;
 
-    if (this is ChangePasswordFirebaseFailureInvalidCredential) {
-      return invalidCredential.call(
-        this as ChangePasswordFirebaseFailureInvalidCredential,
-      );
-    }
+  const factory ChangePasswordFirebaseFailure.general(
+    GeneralBaseFailure error,
+  ) = ChangePasswordFirebaseFailureGeneral;
 
-    if (this is ChangePasswordFirebaseFailureInvalidArgument) {
-      return invalidArgument.call(
-        this as ChangePasswordFirebaseFailureInvalidArgument,
-      );
-    }
+  const ChangePasswordFirebaseFailure._();
 
-    if (this is ChangePasswordFirebaseFailureTooManyRequests) {
-      return tooManyRequests.call(
-        this as ChangePasswordFirebaseFailureTooManyRequests,
-      );
-    }
+  String get message => when(
+    wrongPassword: (code, msg) => msg,
+    invalidCredential: (code, msg) => msg,
+    invalidArgument: (code, msg) => msg,
+    tooManyRequests: (code, msg) => msg,
+    general: (appError) => appError.message,
+  );
 
-    return wrongPassword.call(
-      this as ChangePasswordFirebaseFailureWrongPassword,
-    );
-  }
+  dynamic get typeError => when(
+    wrongPassword: (code, msg) =>
+        ChangePasswordFirebaseFailure.wrongPassword(code: code, msg: msg),
+    invalidCredential: (code, msg) =>
+        ChangePasswordFirebaseFailure.invalidCredential(code: code, msg: msg),
+    invalidArgument: (code, msg) =>
+        ChangePasswordFirebaseFailure.invalidArgument(code: code, msg: msg),
+    tooManyRequests: (code, msg) =>
+        ChangePasswordFirebaseFailure.tooManyRequests(code: code, msg: msg),
+    general: (appError) =>
+        GeneralBaseFailure.fromString(appError.code, appError.message),
+  );
 
-  void maybeWhen({
-    void Function(ChangePasswordFirebaseFailureWrongPassword)? wrongPassword,
-    void Function(ChangePasswordFirebaseFailureInvalidCredential)?
-    invalidCredential,
-    void Function(ChangePasswordFirebaseFailureInvalidArgument)?
-    invalidArgument,
-    void Function(ChangePasswordFirebaseFailureTooManyRequests)?
-    tooManyRequests,
-    required void Function() orElse,
-  }) {
-    if (this is ChangePasswordFirebaseFailureWrongPassword &&
-        wrongPassword != null) {
-      wrongPassword.call(this as ChangePasswordFirebaseFailureWrongPassword);
-      return;
-    }
-
-    if (this is ChangePasswordFirebaseFailureInvalidCredential &&
-        invalidCredential != null) {
-      invalidCredential.call(
-        this as ChangePasswordFirebaseFailureInvalidCredential,
-      );
-      return;
-    }
-
-    if (this is ChangePasswordFirebaseFailureInvalidArgument &&
-        invalidArgument != null) {
-      invalidArgument.call(
-        this as ChangePasswordFirebaseFailureInvalidArgument,
-      );
-      return;
-    }
-
-    if (this is ChangePasswordFirebaseFailureTooManyRequests &&
-        tooManyRequests != null) {
-      tooManyRequests.call(
-        this as ChangePasswordFirebaseFailureTooManyRequests,
-      );
-      return;
-    }
-
-    orElse.call();
-  }
-
-  R maybeMap<R>({
-    R Function(ChangePasswordFirebaseFailureWrongPassword)? wrongPassword,
-    R Function(ChangePasswordFirebaseFailureInvalidCredential)?
-    invalidCredential,
-    R Function(ChangePasswordFirebaseFailureInvalidArgument)? invalidArgument,
-    R Function(ChangePasswordFirebaseFailureTooManyRequests)? tooManyRequests,
-    required R Function() orElse,
-  }) {
-    if (this is ChangePasswordFirebaseFailureWrongPassword &&
-        wrongPassword != null) {
-      return wrongPassword.call(
-        this as ChangePasswordFirebaseFailureWrongPassword,
-      );
-    }
-
-    if (this is ChangePasswordFirebaseFailureInvalidCredential &&
-        invalidCredential != null) {
-      return invalidCredential.call(
-        this as ChangePasswordFirebaseFailureInvalidCredential,
-      );
-    }
-
-    if (this is ChangePasswordFirebaseFailureInvalidArgument &&
-        invalidArgument != null) {
-      return invalidArgument.call(
-        this as ChangePasswordFirebaseFailureInvalidArgument,
-      );
-    }
-
-    if (this is ChangePasswordFirebaseFailureTooManyRequests &&
-        tooManyRequests != null) {
-      return tooManyRequests.call(
-        this as ChangePasswordFirebaseFailureTooManyRequests,
-      );
-    }
-
-    return orElse.call();
-  }
-
-  factory ChangePasswordFirebaseFailure.fromString(String value) {
-    if (value == 'wrongPassword') {
-      return ChangePasswordFirebaseFailure.wrongPassword();
-    }
-
-    if (value == 'invalidCredential') {
-      return ChangePasswordFirebaseFailure.invalidCredential();
-    }
-
-    if (value == 'invalidArgument') {
-      return ChangePasswordFirebaseFailure.invalidArgument();
-    }
-
-    if (value == 'tooManyRequests') {
-      return ChangePasswordFirebaseFailure.tooManyRequests();
-    }
-
-    return ChangePasswordFirebaseFailure.wrongPassword();
-  }
-
-  @override
-  String toString() {
-    if (this is ChangePasswordFirebaseFailureWrongPassword) {
-      return 'wrongPassword';
-    }
-
-    if (this is ChangePasswordFirebaseFailureInvalidCredential) {
-      return 'invalidCredential';
-    }
-
-    if (this is ChangePasswordFirebaseFailureInvalidArgument) {
-      return 'invalidArgument';
-    }
-
-    if (this is ChangePasswordFirebaseFailureTooManyRequests) {
-      return 'tooManyRequests';
-    }
-
-    return 'wrongPassword';
+  static ChangePasswordFirebaseFailure fromString(
+    String code, [
+    String? message,
+  ]) {
+    return switch (code) {
+      'wrongPassword' => ChangePasswordFirebaseFailure.wrongPassword(
+        msg: message ?? 'Contraseña incorrecta.',
+      ),
+      'invalidCredential' => ChangePasswordFirebaseFailure.invalidCredential(
+        msg: message ?? 'Credenciales inválidas.',
+      ),
+      'invalidArgument' => ChangePasswordFirebaseFailure.invalidArgument(
+        msg: message ?? 'Argumento inválido.',
+      ),
+      'tooManyRequests' => ChangePasswordFirebaseFailure.tooManyRequests(
+        msg: message ?? 'Demasiadas solicitudes. Intenta más tarde.',
+      ),
+      _ => ChangePasswordFirebaseFailure.general(
+        GeneralBaseFailure.fromString(code, message),
+      ),
+    };
   }
 }
-
-class ChangePasswordFirebaseFailureWrongPassword
-    extends ChangePasswordFirebaseFailure {}
-
-class ChangePasswordFirebaseFailureInvalidCredential
-    extends ChangePasswordFirebaseFailure {}
-
-class ChangePasswordFirebaseFailureInvalidArgument
-    extends ChangePasswordFirebaseFailure {}
-
-class ChangePasswordFirebaseFailureTooManyRequests
-    extends ChangePasswordFirebaseFailure {}

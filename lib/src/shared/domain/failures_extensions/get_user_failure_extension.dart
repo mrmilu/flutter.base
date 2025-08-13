@@ -9,7 +9,7 @@ extension GetUserFailureExtension on GetUserFailure {
     return when(
       userNotFound: (_, _) => S.of(context).cancelledByUser,
       userInvalid: (_, _) => S.of(context).internalError,
-      general: (appError) => appError.toTranslation(context),
+      general: (appError) => appError.toTranslate(context),
     );
   }
 }
