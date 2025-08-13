@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../auth/domain/interfaces/i_token_repository.dart';
 import '../../../shared/data/services/http_client.dart';
-import '../../../shared/domain/failures/endpoints/unions/app_error.dart';
+import '../../../shared/domain/failures/get_user_failure.dart';
 import '../../../shared/presentation/utils/styles/colors/colors_context.dart';
 import '../../../shared/presentation/widgets/common/image_asset_widget.dart';
 import '../../../shared/presentation/widgets/common/image_network_widget.dart';
@@ -113,8 +113,7 @@ class _MainHomeViewState extends State<MainHomeView> {
                           const Center(child: CircularProgressIndicator()),
                       isFailure: (error) {
                         final isUserError =
-                            error.typeError ==
-                            const AppBaseError.networkError();
+                            error.typeError is GetUserFailureUserNotFound;
 
                         return Text(
                           'Error: ${error.message}, bool: $isUserError ',

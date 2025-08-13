@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 
-import '../../../shared/domain/failures/endpoints/unions/app_error.dart';
-import '../../../shared/domain/failures/endpoints/unions/user_endpoint_failure.dart';
+import '../../../shared/domain/failures/general_base_failure.dart';
+import '../../../shared/domain/failures/get_user_failure.dart';
 import '../../../shared/helpers/resource.dart';
 import '../../domain/interfaces/i_main_home_repository.dart';
 
@@ -12,13 +12,13 @@ class MainHomeRepositoryImpl extends IMainHomeRepository {
   });
 
   @override
-  Future<Resource<UserEndpointError, List<String>>> getProducts() async {
+  Future<Resource<GetUserFailure, List<String>>> getProducts() async {
     try {
       await Future.delayed(const Duration(seconds: 2));
 
       // Ahora puedes usar mensajes personalizados!
       return Resource.failure(
-        const UserEndpointError.general(AppBaseError.networkError()),
+        const GetUserFailure.general(GeneralBaseFailure.networkError()),
       );
 
       // O usar el mensaje por defecto
@@ -30,7 +30,7 @@ class MainHomeRepositoryImpl extends IMainHomeRepository {
     } on DioException catch (_) {
       // Mensaje personalizado con información del error
       return Resource.failure(
-        const UserEndpointError.general(AppBaseError.networkError()),
+        const GetUserFailure.general(GeneralBaseFailure.networkError()),
       );
       // return Resource.failure(
       //   e.toFailure(
@@ -40,7 +40,7 @@ class MainHomeRepositoryImpl extends IMainHomeRepository {
       // );
     } on Exception catch (e, _) {
       return Resource.failure(
-        const UserEndpointError.general(AppBaseError.networkError()),
+        const GetUserFailure.general(GeneralBaseFailure.networkError()),
       );
     }
   }

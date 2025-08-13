@@ -1,4 +1,4 @@
-import 'package:flutter_base/src/shared/domain/failures/api_failure_example.dart';
+import 'package:flutter_base/src/shared/domain/failures/endpoints/sealed_examples/api_failure_example.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
