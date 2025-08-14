@@ -37,19 +37,19 @@ Feature = Data + Domain + Presentation
 
 ```
 feature_name/
-├── data/                    # Capa de datos (más externa)
-│   ├── dtos/               # Data Transfer Objects
-│   ├── mocks/              # Datos mock para testing
-│   ├── repositories/       # Implementaciones de repositorios
-│   └── services/           # Servicios específicos del feature
-├── domain/                 # Capa de dominio (más interna)
-│   ├── failures/          # Tipos de errores específicos
-│   ├── failures_extensions/ # Extensiones para manejo de errores
-│   ├── interfaces/        # Interfaces de repositorios y servicios
-│   ├── models/            # Modelos de dominio
-│   ├── types/             # Tipos y enums del dominio
-│   └── vos/               # Value Objects (objetos de valor)
-└── presentation/          # Capa de presentación (externa)
+├── data/                 # Capa de datos (más externa)
+│   ├── dtos/             # Data Transfer Objects
+│   ├── mocks/            # Datos mock para testing
+│   ├── repositories/     # Implementaciones de repositorios
+│   └── services/         # Servicios específicos del feature
+├── domain/               # Capa de dominio (más interna)
+│   ├── failures/         # Tipos de errores específicos
+│   ├── interfaces/       # Interfaces de repositorios y servicios
+│   ├── models/           # Modelos de dominio
+│   ├── types/            # Tipos y enums del dominio
+│   └── vos/              # Value Objects (objetos de valor)
+└── presentation/         # Capa de presentación (externa)
+    ├── extensions/       # Extensiones
     ├── pages/            # Páginas/pantallas
     ├── providers/        # Gestión de estado (BLoC, Provider, etc.)
     └── widgets/          # Widgets específicos del feature
@@ -474,7 +474,7 @@ result.fold(
 **Propósito**: Extensiones para manejo de errores específicos
 
 ```dart
-// shared/domain/failures_extensions/email_failure_extension.dart
+// shared/presentation/extensions/failures_extensions/email_failure_extension.dart
 extension EmailFailureExtension on EmailFailure {
   String get message {
     switch (runtimeType) {
@@ -590,7 +590,7 @@ class AuthState with _$AuthState {
 
 ```
 auth/presentation/
-├── signin/                 # Todo lo relacionado con Sign In
+├── signin/                # Todo lo relacionado con Sign In
 │   ├── providers/         # Providers específicos de Sign In
 │   └── sign_in_page.dart  # Página principal de Sign In
 ├── signup/                # Todo lo relacionado con Sign Up
@@ -664,7 +664,6 @@ shared/
 │   └── services/          # Servicios globales (HTTP, Push, Analytics)
 ├── domain/
 │   ├── failures/          # Tipos de errores base
-│   ├── failures_extensions/ # Extensiones para errores
 │   ├── interfaces/        # Interfaces compartidas
 │   ├── models/            # Modelos de dominio compartidos
 │   ├── types/             # Enums y tipos globales
@@ -672,6 +671,7 @@ shared/
 ├── helpers/               # Funciones de utilidad y helpers
 └── presentation/
     ├── l10n/             # Internacionalización
+    ├── extensions/       # Extensiones para errores
     ├── pages/            # Páginas globales
     ├── providers/        # Providers globales (tema, loader, etc.)
     ├── router/           # Configuración de navegación
@@ -749,11 +749,11 @@ auth/
 │   │   ├── signup_failure.dart
 │   │   ├── update_document_failure.dart
 │   │   └── validate_email_failure.dart
-│   ├── failures_extensions/
-│   │   └── auth_failure_extensions.dart
 │   └── interfaces/
 │       └── i_auth_repository.dart
 └── presentation/
+    ├── extensions/
+│   │   └── oauth_sign_in_failure_extensions.dart
     ├── pages/
     │   ├── auth_page.dart
     │   └── welcome_page.dart

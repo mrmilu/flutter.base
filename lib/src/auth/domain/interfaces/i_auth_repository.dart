@@ -8,13 +8,13 @@ import '../failures/update_document_failure.dart';
 import '../failures/validate_email_failure.dart';
 
 abstract class IAuthRepository {
-  Future<ResultOr<SignInFailure>> signInWithEmailAndPassword({
+  Future<ResultOr<SigninFailure>> signInWithEmailAndPassword({
     required String email,
     required String password,
   });
   Future<void> logout();
 
-  Future<ResultOr<SignUpFailure>> signUp({
+  Future<ResultOr<SignupFailure>> signUp({
     required String email,
     required String password,
   });
@@ -46,7 +46,7 @@ abstract class IAuthRepository {
     required String encodedIdentifier,
   });
 
-  Future<ResultOr<SignInFailure>> forgotPassword({
+  Future<ResultOr<SigninFailure>> forgotPassword({
     required String email,
   });
 

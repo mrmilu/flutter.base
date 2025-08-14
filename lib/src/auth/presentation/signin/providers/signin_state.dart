@@ -6,7 +6,7 @@ abstract class SigninState with _$SigninState {
     required String email,
     required String password,
     required bool showErrors,
-    required ResultOr<SignInFailure> resultOr,
+    required ResultOr<SigninFailure> resultOr,
   }) = _SigninState;
 
   factory SigninState.initial() => _SigninState(

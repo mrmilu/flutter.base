@@ -71,13 +71,7 @@ Feature State (Feature Level)
 └── Shared Feature
     └── DownloadFileCubit (Descarga de archivos)
 ```
-          },
-        ),
-      ],
-    );
-  }
-}
-```
+
 
 ## BaseCubit
 

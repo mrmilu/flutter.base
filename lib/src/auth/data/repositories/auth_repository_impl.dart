@@ -46,7 +46,7 @@ class AuthRepositoryImpl implements IAuthRepository {
   }
 
   @override
-  Future<ResultOr<SignInFailure>> signInWithEmailAndPassword({
+  Future<ResultOr<SigninFailure>> signInWithEmailAndPassword({
     required String email,
     required String password,
   }) async {
@@ -70,12 +70,12 @@ class AuthRepositoryImpl implements IAuthRepository {
     } on DioException catch (e) {
       return ResultOr.failure(
         e.toFailure(
-          SignInFailure.fromString,
-          SignInFailure.serverError(),
+          SigninFailure.fromString,
+          const SigninFailure.notExistEmail(),
         ),
       );
     } on Exception catch (e, _) {
-      return ResultOr.failure(SignInFailure.serverError());
+      return ResultOr.failure(const SigninFailure.notExistEmail());
     }
   }
 
@@ -93,7 +93,7 @@ class AuthRepositoryImpl implements IAuthRepository {
   }
 
   @override
-  Future<ResultOr<SignUpFailure>> signUp({
+  Future<ResultOr<SignupFailure>> signUp({
     required String email,
     required String password,
   }) async {
@@ -117,18 +117,20 @@ class AuthRepositoryImpl implements IAuthRepository {
     } on DioException catch (e) {
       return ResultOr.failure(
         e.toFailure(
-          SignUpFailure.fromString,
-          SignUpFailure.invalidEmail(),
+          SignupFailure.fromString,
+          const SignupFailure.emailAlreadyExist(),
         ),
       );
     } catch (e) {
-      return ResultOr.failure(SignUpFailure.operationNotAllowed());
+      return ResultOr.failure(
+        const SignupFailure.general(GeneralBaseFailure.internalError()),
+      );
     }
   }
 
   @override
   Future<ResultOr<OAuthSignInFailure>> signInWithFacebook() async {
-    return ResultOr.failure(OAuthSignInFailure.serverError());
+    return ResultOr.failure(const OAuthSignInFailure.invalidCredential());
   }
 
   @override
@@ -139,29 +141,37 @@ class AuthRepositoryImpl implements IAuthRepository {
       ).getFirebaseTokenSignInWithApple();
       final result = await socialAuth(firebaseToken);
       if (result.isFailure) {
-        return ResultOr.failure(OAuthSignInFailure.serverError());
+        return ResultOr.failure(
+          const OAuthSignInFailure.general(GeneralBaseFailure.internalError()),
+        );
       }
       return ResultOr.success();
     } on FirebaseAuthException catch (e) {
       if (e.code == 'account-exists-with-different-credential') {
         return ResultOr.failure(
-          OAuthSignInFailure.accountExistsWithDifferentCredential(),
+          const OAuthSignInFailure.accountExistsWithDifferentCredential(),
         );
       }
       if (e.code == 'invalid-credential') {
-        return ResultOr.failure(OAuthSignInFailure.invalidCredential());
+        return ResultOr.failure(const OAuthSignInFailure.invalidCredential());
       }
-      return ResultOr.failure(OAuthSignInFailure.serverError());
+      return ResultOr.failure(
+        const OAuthSignInFailure.general(GeneralBaseFailure.internalError()),
+      );
     } on SignInWithAppleAuthorizationException catch (e) {
       if (e.code == AuthorizationErrorCode.canceled) {
-        return ResultOr.failure(OAuthSignInFailure.cancel());
+        return ResultOr.failure(const OAuthSignInFailure.cancel());
       }
-      return ResultOr.failure(OAuthSignInFailure.serverError());
+      return ResultOr.failure(
+        const OAuthSignInFailure.general(GeneralBaseFailure.internalError()),
+      );
     } catch (e, _) {
       if (e is CanceledByUserException) {
         throw CanceledByUserException();
       }
-      return ResultOr.failure(OAuthSignInFailure.serverError());
+      return ResultOr.failure(
+        const OAuthSignInFailure.general(GeneralBaseFailure.internalError()),
+      );
     }
   }
 
@@ -173,24 +183,30 @@ class AuthRepositoryImpl implements IAuthRepository {
       ).getFirebaseTokenSignInWithGoogle();
       final result = await socialAuth(firebaseToken);
       if (result.isFailure) {
-        return ResultOr.failure(OAuthSignInFailure.serverError());
+        return ResultOr.failure(
+          const OAuthSignInFailure.general(GeneralBaseFailure.internalError()),
+        );
       }
       return ResultOr.success();
     } on FirebaseAuthException catch (e) {
       if (e.code == 'account-exists-with-different-credential') {
         return ResultOr.failure(
-          OAuthSignInFailure.accountExistsWithDifferentCredential(),
+          const OAuthSignInFailure.accountExistsWithDifferentCredential(),
         );
       }
       if (e.code == 'invalid-credential') {
-        return ResultOr.failure(OAuthSignInFailure.invalidCredential());
+        return ResultOr.failure(const OAuthSignInFailure.invalidCredential());
       }
-      return ResultOr.failure(OAuthSignInFailure.serverError());
+      return ResultOr.failure(
+        const OAuthSignInFailure.general(GeneralBaseFailure.internalError()),
+      );
     } catch (e, _) {
       if (e is CanceledByUserException) {
-        return ResultOr.failure(OAuthSignInFailure.cancel());
+        return ResultOr.failure(const OAuthSignInFailure.cancel());
       }
-      return ResultOr.failure(OAuthSignInFailure.serverError());
+      return ResultOr.failure(
+        const OAuthSignInFailure.general(GeneralBaseFailure.internalError()),
+      );
     }
   }
 
@@ -212,11 +228,13 @@ class AuthRepositoryImpl implements IAuthRepository {
       return ResultOr.failure(
         e.toFailure(
           OAuthSignInFailure.fromString,
-          OAuthSignInFailure.serverError(),
+          const OAuthSignInFailure.general(GeneralBaseFailure.internalError()),
         ),
       );
     } on Exception catch (e, _) {
-      return ResultOr.failure(OAuthSignInFailure.serverError());
+      return ResultOr.failure(
+        const OAuthSignInFailure.general(GeneralBaseFailure.internalError()),
+      );
     }
   }
 
@@ -244,11 +262,11 @@ class AuthRepositoryImpl implements IAuthRepository {
       return ResultOr.failure(
         e.toFailure(
           UpdateDocumentFailure.fromString,
-          UpdateDocumentFailure.unknown,
+          const UpdateDocumentFailure.noSupported(),
         ),
       );
     } on Exception catch (e, _) {
-      return ResultOr.failure(UpdateDocumentFailure.unknown);
+      return ResultOr.failure(const UpdateDocumentFailure.noSupported());
     }
   }
 
@@ -268,11 +286,11 @@ class AuthRepositoryImpl implements IAuthRepository {
       return ResultOr.failure(
         e.toFailure(
           ValidateEmailFailure.fromString,
-          ValidateEmailFailure.unknown,
+          const ValidateEmailFailure.noSupported(),
         ),
       );
     } on Exception catch (e, _) {
-      return ResultOr.failure(ValidateEmailFailure.unknown);
+      return ResultOr.failure(const ValidateEmailFailure.noSupported());
     }
   }
 
@@ -287,11 +305,11 @@ class AuthRepositoryImpl implements IAuthRepository {
       return ResultOr.failure(
         e.toFailure(
           ValidateEmailFailure.fromString,
-          ValidateEmailFailure.unknown,
+          const ValidateEmailFailure.noSupported(),
         ),
       );
     } on Exception catch (e, _) {
-      return ResultOr.failure(ValidateEmailFailure.unknown);
+      return ResultOr.failure(const ValidateEmailFailure.noSupported());
     }
   }
 
@@ -311,16 +329,16 @@ class AuthRepositoryImpl implements IAuthRepository {
       return ResultOr.failure(
         e.toFailure(
           ValidateEmailFailure.fromString,
-          ValidateEmailFailure.unknown,
+          const ValidateEmailFailure.noSupported(),
         ),
       );
     } on Exception catch (e, _) {
-      return ResultOr.failure(ValidateEmailFailure.unknown);
+      return ResultOr.failure(const ValidateEmailFailure.noSupported());
     }
   }
 
   @override
-  Future<ResultOr<SignInFailure>> forgotPassword({
+  Future<ResultOr<SigninFailure>> forgotPassword({
     required String email,
   }) async {
     try {
@@ -334,12 +352,12 @@ class AuthRepositoryImpl implements IAuthRepository {
     } on DioException catch (e) {
       return ResultOr.failure(
         e.toFailure(
-          SignInFailure.fromString,
-          SignInFailure.serverError(),
+          SigninFailure.fromString,
+          const SigninFailure.notExistEmail(),
         ),
       );
     } on Exception catch (e, _) {
-      return ResultOr.failure(SignInFailure.serverError());
+      return ResultOr.failure(const SigninFailure.notExistEmail());
     }
   }
 

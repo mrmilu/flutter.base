@@ -9,7 +9,7 @@ abstract class SignupState with _$SignupState {
     required String password,
     required String repeatPassword,
     required bool showErrors,
-    required ResultOr<SignUpFailure> resultOr,
+    required ResultOr<SignupFailure> resultOr,
   }) = _SignupState;
 
   factory SignupState.initial() => _SignupState(

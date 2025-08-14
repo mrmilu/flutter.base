@@ -15,8 +15,8 @@ import '../../../shared/presentation/widgets/common/image_asset_widget.dart';
 import '../../../shared/presentation/widgets/components/buttons/custom_elevated_button.dart';
 import '../../../shared/presentation/widgets/components/inputs/custom_text_field_widget.dart';
 import '../../../shared/presentation/widgets/components/text/rm_text.dart';
-import '../../domain/failures_extensions/signup_failure_extension.dart';
 import '../../domain/interfaces/i_auth_repository.dart';
+import '../extensions/signup_failure_extension.dart';
 import '../providers/auth/auth_cubit.dart';
 import 'providers/signup_cubit.dart';
 
