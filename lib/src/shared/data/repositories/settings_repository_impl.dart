@@ -1,18 +1,19 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
-import '../../domain/failures/endpoints/firebase_failure.dart';
+import '../../domain/failures/endpoints/general_base_failure.dart';
 import '../../domain/interfaces/i_settings_repository.dart';
 import '../../domain/models/app_settings_model.dart';
 import '../../domain/types/app_status_type.dart';
 import '../../helpers/resource.dart';
 
-class SettingsRepositoryImpl extends ISettingsRepository {
+class SettingsRepositoryImpl implements ISettingsRepository {
   final Dio httpClient;
   SettingsRepositoryImpl(this.httpClient);
 
   @override
-  Future<Resource<FirebaseFailure, AppSettingsModel>> getAppSettings() async {
+  Future<Resource<GeneralBaseFailure, AppSettingsModel>>
+  getAppSettings() async {
     try {
       final result = await httpClient.get('/settings');
 

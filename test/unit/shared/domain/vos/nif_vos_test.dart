@@ -50,7 +50,7 @@ void main() {
             expect(result.isValid(), isFalse);
             result.when(
               isLeft: (failure) =>
-                  expect(failure, equals(NifFailure.invalidFormat)),
+                  expect(failure, equals(const NifFailure.invalid())),
               isRight: (_) => fail('Se esperaba un fallo, pero fue exitoso'),
             );
           });
@@ -71,7 +71,8 @@ void main() {
             final result = NifVos(dni);
             expect(result.isValid(), isFalse);
             result.when(
-              isLeft: (failure) => expect(failure, equals(NifFailure.tooShort)),
+              isLeft: (failure) =>
+                  expect(failure, equals(const NifFailure.tooShort(length: 9))),
               isRight: (_) => fail('Se esperaba un fallo, pero fue exitoso'),
             );
           });
@@ -83,7 +84,8 @@ void main() {
           final result = NifVos('1234567890');
           expect(result.isValid(), isFalse);
           result.when(
-            isLeft: (failure) => expect(failure, equals(NifFailure.tooLong)),
+            isLeft: (failure) =>
+                expect(failure, equals(const NifFailure.tooLong(length: 9))),
             isRight: (_) => fail('Se esperaba un fallo, pero fue exitoso'),
           );
         });
@@ -111,7 +113,7 @@ void main() {
               expect(result.isValid(), isFalse);
               result.when(
                 isLeft: (failure) =>
-                    expect(failure, equals(NifFailure.invalidFormat)),
+                    expect(failure, equals(const NifFailure.invalid())),
                 isRight: (_) => fail('Se esperaba un fallo, pero fue exitoso'),
               );
             },
@@ -295,7 +297,7 @@ void main() {
         expect(result.isValid(), isFalse);
         result.when(
           isLeft: (failure) =>
-              expect(failure, equals(NifFailure.invalidFormat)),
+              expect(failure, equals(const NifFailure.invalid())),
           isRight: (_) => fail('Debería fallar con letra incorrecta'),
         );
       });

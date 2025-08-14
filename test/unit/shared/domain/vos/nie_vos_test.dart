@@ -58,7 +58,7 @@ void main() {
             // Assert
             expect(nieVos.isValid(), isFalse);
             nieVos.when(
-              isLeft: (failure) => expect(failure, NieFailure.invalidFormat),
+              isLeft: (failure) => expect(failure, const NieFailure.invalid()),
               isRight: (value) =>
                   fail('Debería retornar failure para formato inválido'),
             );
@@ -83,7 +83,8 @@ void main() {
             // Assert
             expect(nieVos.isValid(), isFalse);
             nieVos.when(
-              isLeft: (failure) => expect(failure, NieFailure.tooLong),
+              isLeft: (failure) =>
+                  expect(failure, const NieFailure.tooLong(length: 9)),
               isRight: (value) =>
                   fail('Debería retornar failure para NIE muy largo'),
             );
@@ -109,7 +110,8 @@ void main() {
             // Assert
             expect(nieVos.isValid(), isFalse);
             nieVos.when(
-              isLeft: (failure) => expect(failure, NieFailure.tooLong),
+              isLeft: (failure) =>
+                  expect(failure, const NieFailure.tooLong(length: 9)),
               isRight: (value) =>
                   fail('Debería retornar failure para NIE muy largo'),
             );
@@ -137,7 +139,7 @@ void main() {
             // Assert
             expect(nieVos.isValid(), isFalse);
             nieVos.when(
-              isLeft: (failure) => expect(failure, NieFailure.invalidFormat),
+              isLeft: (failure) => expect(failure, const NieFailure.invalid()),
               isRight: (value) =>
                   fail('Debería retornar failure para NIE muy corto'),
             );
@@ -169,7 +171,8 @@ void main() {
               // Assert
               expect(nieVos.isValid(), isFalse);
               nieVos.when(
-                isLeft: (failure) => expect(failure, NieFailure.invalidFormat),
+                isLeft: (failure) =>
+                    expect(failure, const NieFailure.invalid()),
                 isRight: (value) => fail(
                   'Debería retornar failure para letra de control incorrecta',
                 ),

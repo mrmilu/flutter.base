@@ -4,7 +4,7 @@ import '../../../shared/domain/failures/endpoints/change_password_firebase_failu
 import '../../../shared/helpers/result_or.dart';
 import '../../domain/interfaces/i_change_password_repository.dart';
 
-class ChangePasswordRepositoryImpl extends IChangePasswordRepository {
+class ChangePasswordRepositoryImpl implements IChangePasswordRepository {
   @override
   Future<ResultOr<ChangePasswordFirebaseFailure>> changePassword({
     required String oldPassword,

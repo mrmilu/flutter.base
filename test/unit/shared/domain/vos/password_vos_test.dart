@@ -180,7 +180,7 @@ void main() {
           isLeft: (failure) {
             expect(failure, isA<PasswordFailureInvalidMinLength>());
             if (failure is PasswordFailureInvalidMinLength) {
-              expect(failure.min, equals(8));
+              expect(failure.maxLength, equals(8));
             }
           },
           isRight: (value) =>

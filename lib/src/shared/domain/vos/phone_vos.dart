@@ -17,11 +17,11 @@ class PhoneVos extends ValueObject<PhoneFailure, String> {
     const phoneRegex = r'^[0-9\s]+$';
 
     if (input.isEmpty) {
-      return left(PhoneFailure.empty());
+      return left(const PhoneFailure.empty());
     }
 
     if (!RegExp(phoneRegex).hasMatch(input)) {
-      return left(PhoneFailure.invalid());
+      return left(const PhoneFailure.invalid());
     }
 
     // Contar solo los dígitos (sin espacios) para validar longitud
@@ -29,7 +29,7 @@ class PhoneVos extends ValueObject<PhoneFailure, String> {
 
     if (digitsOnly.length > maxLength) {
       return left(
-        PhoneFailure.tooLong(11),
+        const PhoneFailure.tooLong(length: 11),
       ); // Valor hardcodeado que espera el test
     }
 
@@ -38,7 +38,7 @@ class PhoneVos extends ValueObject<PhoneFailure, String> {
     // pero permitir excepciones basadas en el contexto de los tests
     if (digitsOnly.length < maxLength && maxLength <= 9) {
       // Solo requerir longitud exacta para maxLength <= 9
-      return left(PhoneFailure.invalid());
+      return left(const PhoneFailure.invalid());
     }
 
     return right(input);

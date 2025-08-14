@@ -5,7 +5,7 @@ import '../../../shared/domain/failures/endpoints/get_user_failure.dart';
 import '../../../shared/helpers/resource.dart';
 import '../../domain/interfaces/i_main_home_repository.dart';
 
-class MainHomeRepositoryImpl extends IMainHomeRepository {
+class MainHomeRepositoryImpl implements IMainHomeRepository {
   final Dio httpClient;
   MainHomeRepositoryImpl({
     required this.httpClient,

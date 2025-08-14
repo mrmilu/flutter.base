@@ -5,7 +5,7 @@ import '../failures/endpoints/get_user_failure.dart';
 import 'general_base_failure_extension.dart';
 
 extension GetUserFailureExtension on GetUserFailure {
-  String toTranslation(BuildContext context) {
+  String toTranslate(BuildContext context) {
     return when(
       userNotFound: (_, _) => S.of(context).cancelledByUser,
       userInvalid: (_, _) => S.of(context).internalError,

@@ -9,7 +9,7 @@ import '../../domain/interfaces/i_download_file_repository.dart';
 import '../../helpers/resource.dart';
 import '../../presentation/utils/extensions/dio_exception_extension.dart';
 
-class DownloadFileRepositoryImpl extends IDownloadFileRepository {
+class DownloadFileRepositoryImpl implements IDownloadFileRepository {
   final Dio httpClient;
   DownloadFileRepositoryImpl(this.httpClient);
 

@@ -44,7 +44,7 @@ class NieVos extends ValueObject<NieFailure, String> {
   static Either<NieFailure, String> _validate(String input) {
     // Validar longitud (debe ser exactamente 9 caracteres: 8 dígitos + 1 letra para DNI, o 1 letra + 7 dígitos + 1 letra para NIE)
     if (input.length > 9) {
-      return left(NieFailure.tooLong);
+      return left(const NieFailure.tooLong(length: 9));
     }
 
     // Validar formato (DNI: 8 dígitos + 1 letra mayúscula; NIE: letra [X/Y/Z] + 7 dígitos + 1 letra mayúscula)
@@ -52,7 +52,7 @@ class NieVos extends ValueObject<NieFailure, String> {
 
     final isNie = RegExp(nieRegex).hasMatch(input);
     if (!isNie) {
-      return left(NieFailure.invalidFormat);
+      return left(const NieFailure.invalid());
     }
 
     // Extraer el número y la letra
@@ -77,7 +77,7 @@ class NieVos extends ValueObject<NieFailure, String> {
 
     // Comparar la letra proporcionada con la esperada
     if (letter != expectedLetter) {
-      return left(NieFailure.invalidFormat);
+      return left(const NieFailure.invalid());
     }
 
     return right(input);

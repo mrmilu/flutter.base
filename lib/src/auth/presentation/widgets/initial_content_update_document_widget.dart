@@ -99,7 +99,7 @@ class _InitialContentUpdateDocumentWidgetState
                         .read<UpdateDocumentCubit>()
                         .changeFirstName,
                     errorText: state.firstNameVos.value.map(
-                      isLeft: (p0) => p0.toTranslation(context),
+                      isLeft: (p0) => p0.toTranslate(context),
                       isRight: (_) => null,
                     ),
                   ),
@@ -115,7 +115,7 @@ class _InitialContentUpdateDocumentWidgetState
                         .read<UpdateDocumentCubit>()
                         .changeLastName,
                     errorText: state.lastNameVos.value.map(
-                      isLeft: (p0) => p0.toTranslation(context),
+                      isLeft: (p0) => p0.toTranslate(context),
                       isRight: (_) => null,
                     ),
                   ),

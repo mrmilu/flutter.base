@@ -4,7 +4,7 @@ import '../../../shared/presentation/l10n/generated/l10n.dart';
 import '../../domain/failures/fullname_failure.dart';
 
 extension FullnameFailureTranslation on FullnameFailure {
-  String toTranslation(BuildContext context) {
+  String toTranslate(BuildContext context) {
     if (this is FullnameFailureEmpty) {
       return S.of(context).empty;
     }

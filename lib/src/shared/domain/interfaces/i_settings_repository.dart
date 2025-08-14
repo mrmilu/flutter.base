@@ -1,7 +1,7 @@
 import '../../helpers/resource.dart';
-import '../failures/endpoints/firebase_failure.dart';
+import '../failures/endpoints/general_base_failure.dart';
 import '../models/app_settings_model.dart';
 
 abstract class ISettingsRepository {
-  Future<Resource<FirebaseFailure, AppSettingsModel>> getAppSettings();
+  Future<Resource<GeneralBaseFailure, AppSettingsModel>> getAppSettings();
 }

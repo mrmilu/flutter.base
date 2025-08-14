@@ -21,7 +21,7 @@ class RepeatPasswordVos extends ValueObject<RepeatPasswordFailure, String> {
     required String passToMatchWith,
   }) {
     if (password != passToMatchWith) {
-      return left(MismatchedPasswords());
+      return left(const RepeatPasswordFailure.mismatched());
     }
 
     return right(password);

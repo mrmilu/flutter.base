@@ -103,7 +103,7 @@ class ProfileInfoPersonalDataView extends StatelessWidget {
                               .read<PersonalDataCubit>()
                               .changeName,
                           errorText: state.nameVos.value.map(
-                            isLeft: (p0) => p0.toTranslation(context),
+                            isLeft: (p0) => p0.toTranslate(context),
                             isRight: (p0) => null,
                           ),
                         ),
@@ -121,7 +121,7 @@ class ProfileInfoPersonalDataView extends StatelessWidget {
                               .read<PersonalDataCubit>()
                               .changeLastName,
                           errorText: state.lastNameVos.value.map(
-                            isLeft: (p0) => p0.toTranslation(context),
+                            isLeft: (p0) => p0.toTranslate(context),
                             isRight: (p0) => null,
                           ),
                         ),

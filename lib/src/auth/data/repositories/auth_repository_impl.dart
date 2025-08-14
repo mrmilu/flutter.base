@@ -23,7 +23,7 @@ import '../../domain/interfaces/i_token_repository.dart';
 import '../mocks/mock_user.dart';
 import '../services/firebase_social_auth_service.dart';
 
-class AuthRepositoryImpl extends IAuthRepository {
+class AuthRepositoryImpl implements IAuthRepository {
   final Dio httpClient;
   final FirebaseAuth firebaseAuth;
   final ITokenRepository tokenRepository;

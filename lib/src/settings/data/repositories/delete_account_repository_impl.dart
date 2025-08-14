@@ -7,7 +7,7 @@ import '../../../shared/presentation/utils/extensions/dio_exception_extension.da
 import '../../domain/failures/delete_account_failure.dart';
 import '../../domain/interfaces/i_delete_account_repository.dart';
 
-class DeleteAccountRepositoryImpl extends IDeleteAccountRepository {
+class DeleteAccountRepositoryImpl implements IDeleteAccountRepository {
   final Dio _httpClient;
   DeleteAccountRepositoryImpl(this._httpClient);
 

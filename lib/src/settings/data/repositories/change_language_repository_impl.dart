@@ -7,7 +7,7 @@ import '../../../shared/presentation/utils/extensions/dio_exception_extension.da
 import '../../domain/failures/change_language_failure.dart';
 import '../../domain/interfaces/i_change_language_repository.dart';
 
-class ChangeLanguageRepositoryImpl extends IChangeLanguageRepository {
+class ChangeLanguageRepositoryImpl implements IChangeLanguageRepository {
   final Dio _httpClient;
   ChangeLanguageRepositoryImpl(this._httpClient);
 

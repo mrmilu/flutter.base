@@ -120,8 +120,7 @@ class SignUpView extends StatelessWidget {
                                         labelText: 'Nombre',
                                         showError: stateSignUp.showErrors,
                                         errorText: stateSignUp.name.map(
-                                          isLeft: (f) =>
-                                              f.toTranslation(context),
+                                          isLeft: (f) => f.toTranslate(context),
                                           isRight: (_) => null,
                                         ),
                                       ),
@@ -133,8 +132,7 @@ class SignUpView extends StatelessWidget {
                                         labelText: 'LastName',
                                         showError: stateSignUp.showErrors,
                                         errorText: stateSignUp.lastName.map(
-                                          isLeft: (f) =>
-                                              f.toTranslation(context),
+                                          isLeft: (f) => f.toTranslate(context),
                                           isRight: (_) => null,
                                         ),
                                       ),
@@ -160,8 +158,7 @@ class SignUpView extends StatelessWidget {
                                         obscureText: false,
                                         showError: stateSignUp.showErrors,
                                         errorText: stateSignUp.passwordVos.map(
-                                          isLeft: (f) =>
-                                              f.toTranslation(context),
+                                          isLeft: (f) => f.toTranslate(context),
                                           isRight: (_) => null,
                                         ),
                                       ),

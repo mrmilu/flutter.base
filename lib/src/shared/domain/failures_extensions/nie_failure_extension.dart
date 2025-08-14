@@ -5,13 +5,11 @@ import '../failures/nie_failure.dart';
 
 extension NieFailureTranslation on NieFailure {
   String toTranslate(BuildContext context) {
-    switch (this) {
-      case NieFailure.tooLong:
-        return context.l10n.tooLong;
-      case NieFailure.tooShort:
-        return context.l10n.tooShort;
-      case NieFailure.invalidFormat:
-        return context.l10n.nieInvalid;
-    }
+    return when(
+      empty: (_) => context.l10n.empty,
+      invalid: (_) => context.l10n.nieInvalid,
+      tooLong: (_, length) => context.l10n.tooLong,
+      tooShort: (_, length) => context.l10n.tooShort,
+    );
   }
 }

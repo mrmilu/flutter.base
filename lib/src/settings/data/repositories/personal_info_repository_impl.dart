@@ -11,7 +11,7 @@ import '../../domain/failures/personal_data_failure.dart';
 import '../../domain/failures/required_password_failure.dart';
 import '../../domain/interfaces/i_personal_info_repository.dart';
 
-class PersonalInfoRepositoryImpl extends IPersonalInfoRepository {
+class PersonalInfoRepositoryImpl implements IPersonalInfoRepository {
   final Dio httpClient;
   final ITokenRepository tokenRepository;
   PersonalInfoRepositoryImpl({

@@ -4,23 +4,13 @@ import '../../../shared/presentation/l10n/generated/l10n.dart';
 import '../../domain/failures/password_failure.dart';
 
 extension PasswordFailureTranslation on PasswordFailure {
-  String toTranslation(BuildContext context) {
-    if (this is PasswordFailureInvalidMinLength) {
-      return S.of(context).minLength(8);
-    }
-
-    if (this is PasswordFailureIncludeUppercase) {
-      return S.of(context).includeUppercase;
-    }
-
-    if (this is PasswordFailureIncludeLowercase) {
-      return S.of(context).includeLowercase;
-    }
-
-    if (this is PasswordFailureIncludeDigit) {
-      return S.of(context).includeDigit;
-    }
-
-    return S.of(context).empty;
+  String toTranslate(BuildContext context) {
+    return when(
+      empty: (_) => S.of(context).empty,
+      minLength: (_, length) => S.of(context).minLength(length),
+      includeUppercase: (_) => S.of(context).includeUppercase,
+      includeLowercase: (_) => S.of(context).includeLowercase,
+      includeDigit: (_) => S.of(context).includeDigit,
+    );
   }
 }

@@ -91,7 +91,7 @@ class ChangePasswordView extends StatelessWidget {
                               .changeOldPassword,
                           showError: state.showError,
                           errorText: PasswordVos(state.oldPassword).map(
-                            isLeft: (e) => e.toTranslation(context),
+                            isLeft: (e) => e.toTranslate(context),
                             isRight: (_) => null,
                           ),
                         ),

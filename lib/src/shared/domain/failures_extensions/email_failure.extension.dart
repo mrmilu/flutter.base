@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 import '../../../shared/presentation/l10n/generated/l10n.dart';
-import '../../domain/failures/email_failure.dart';
+import '../failures/email_failure.dart';
 
 extension EmailFailureTranslation on EmailFailure {
   String toTranslate(BuildContext context) {

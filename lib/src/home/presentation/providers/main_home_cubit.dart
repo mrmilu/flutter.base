@@ -15,7 +15,7 @@ class MainHomeCubit extends Cubit<MainHomeState> {
   final IMainHomeRepository repository;
 
   Future<void> init() async {
-    getProducts();
+    await getProducts();
   }
 
   Future<void> getProducts() async {

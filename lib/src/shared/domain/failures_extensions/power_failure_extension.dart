@@ -4,23 +4,12 @@ import '../../../shared/presentation/l10n/generated/l10n.dart';
 import '../failures/power_failure.dart';
 
 extension PowerFailureTranslation on PowerFailure {
-  String toTranslation(BuildContext context) {
-    if (this is PowerFailureEmpty) {
-      return S.of(context).empty;
-    }
-
-    if (this is PowerFailureInvalid) {
-      return S.of(context).powerIsNotValid;
-    }
-
-    if (this is PowerFailureLess) {
-      return S.of(context).powerIsLess;
-    }
-
-    if (this is PowerFailureMore) {
-      return S.of(context).powerIsMore;
-    }
-
-    return S.of(context).empty;
+  String toTranslate(BuildContext context) {
+    return when(
+      empty: (_) => S.of(context).empty,
+      invalid: (_) => S.of(context).powerIsNotValid,
+      less: (_) => S.of(context).powerIsLess,
+      more: (_) => S.of(context).powerIsMore,
+    );
   }
 }

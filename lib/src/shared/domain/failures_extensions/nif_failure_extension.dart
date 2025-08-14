@@ -5,13 +5,11 @@ import '../failures/nif_failure.dart';
 
 extension NifFailureTranslation on NifFailure {
   String toTranslate(BuildContext context) {
-    switch (this) {
-      case NifFailure.tooLong:
-        return context.l10n.tooLong;
-      case NifFailure.tooShort:
-        return context.l10n.tooShort;
-      case NifFailure.invalidFormat:
-        return context.l10n.nifInvalid;
-    }
+    return when(
+      empty: (_) => context.l10n.empty,
+      invalid: (_) => context.l10n.nifInvalid,
+      tooLong: (_, length) => context.l10n.tooLong,
+      tooShort: (_, length) => context.l10n.tooShort,
+    );
   }
 }

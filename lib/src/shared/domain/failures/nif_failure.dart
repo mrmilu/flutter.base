@@ -1,35 +1,35 @@
-enum NifFailure {
-  tooLong,
-  tooShort,
-  invalidFormat;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  const NifFailure();
+part 'nif_failure.freezed.dart';
 
-  R map<R>({
-    required R Function() tooLong,
-    required R Function() tooShort,
-    required R Function() invalidFormat,
-  }) {
-    switch (this) {
-      case NifFailure.tooLong:
-        return tooLong();
-      case NifFailure.tooShort:
-        return tooShort();
-      case NifFailure.invalidFormat:
-        return invalidFormat();
-    }
-  }
+@freezed
+abstract class NifFailure with _$NifFailure {
+  const factory NifFailure.empty({
+    @Default('empty') String code,
+  }) = NifFailureEmpty;
 
-  static NifFailure fromString(String value) {
-    switch (value) {
-      case 'tooLong':
-        return NifFailure.tooLong;
-      case 'tooShort':
-        return NifFailure.tooShort;
-      case 'invalidFormat':
-        return NifFailure.invalidFormat;
-      default:
-        return NifFailure.invalidFormat;
-    }
+  const factory NifFailure.invalid({
+    @Default('invalid') String code,
+  }) = NifFailureInvalid;
+
+  const factory NifFailure.tooLong({
+    @Default('tooLong') String code,
+    required int length,
+  }) = NifFailureTooLong;
+
+  const factory NifFailure.tooShort({
+    @Default('tooShort') String code,
+    required int length,
+  }) = NifFailureTooShort;
+
+  const NifFailure._();
+
+  int get maxLength {
+    return when(
+      empty: (_) => 0,
+      invalid: (_) => 0,
+      tooLong: (_, length) => length,
+      tooShort: (_, length) => length,
+    );
   }
 }

@@ -84,7 +84,8 @@ void main() {
             expect(repeatPasswordVos.isValid(), isFalse);
             expect(repeatPasswordVos.isInvalid(), isTrue);
             repeatPasswordVos.when(
-              isLeft: (failure) => expect(failure, isA<MismatchedPasswords>()),
+              isLeft: (failure) =>
+                  expect(failure, isA<RepeatPasswordFailureMismatched>()),
               isRight: (value) =>
                   fail('Debería retornar failure para contraseñas diferentes'),
             );
@@ -104,7 +105,8 @@ void main() {
         // Assert
         expect(differentCaseVos.isValid(), isFalse);
         differentCaseVos.when(
-          isLeft: (failure) => expect(failure, isA<MismatchedPasswords>()),
+          isLeft: (failure) =>
+              expect(failure, isA<RepeatPasswordFailureMismatched>()),
           isRight: (value) => fail('Debería ser sensible a mayúsculas'),
         );
       });
@@ -261,7 +263,8 @@ void main() {
         // Assert
         expect(repeatPasswordVos.isValid(), isFalse);
         repeatPasswordVos.when(
-          isLeft: (failure) => expect(failure, isA<MismatchedPasswords>()),
+          isLeft: (failure) =>
+              expect(failure, isA<RepeatPasswordFailureMismatched>()),
           isRight: (value) =>
               fail('Debería detectar diferencia en contraseñas largas'),
         );
@@ -419,7 +422,8 @@ void main() {
         // Assert
         expect(repeatPasswordVos.isValid(), isFalse);
         repeatPasswordVos.when(
-          isLeft: (failure) => expect(failure, isA<MismatchedPasswords>()),
+          isLeft: (failure) =>
+              expect(failure, isA<RepeatPasswordFailureMismatched>()),
           isRight: (value) =>
               fail('Contraseñas fuertes diferentes deberían fallar'),
         );

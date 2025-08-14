@@ -17,7 +17,8 @@
   },
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.patterns": {
-    "*_cubit.dart": "${capture}_state.dart,${capture}_cubit.freezed.dart, ${capture}_listeners.dart"
+    "*_cubit.dart": "${capture}_state.dart,${capture}_cubit.freezed.dart, ${capture}_listeners.dart",
+    "*_failure.dart": "${capture}_failure.freezed.dart",
   },
   "editor.formatOnSave": true
 }

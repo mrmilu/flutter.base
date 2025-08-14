@@ -592,6 +592,7 @@ void main() {
 
         // Act - Usar el getter typeError
         final typeError = error.typeError;
+        error.message;
 
         // Assert
         expect(typeError, isA<GetUserFailure>());
@@ -603,6 +604,7 @@ void main() {
           userInvalid: (code, msg) => msg,
           general: (appError) => appError.message,
         );
+
         expect(recreatedMessage, customMessage);
       });
 
