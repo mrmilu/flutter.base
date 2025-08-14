@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../shared/presentation/providers/theme_mode/theme_mode_cubit.dart';
 import '../shared/presentation/utils/assets/app_assets_icons.dart';
+import '../shared/presentation/utils/extensions/buildcontext_extensions.dart';
 import '../shared/presentation/utils/styles/colors/colors_context.dart';
 import '../shared/presentation/widgets/common/button_scale_widget.dart';
 import '../shared/presentation/widgets/components/buttons/custom_elevated_button.dart';
@@ -57,7 +58,7 @@ class MainTap2Page extends StatelessWidget {
                   Column(
                     children: [
                       CustomElevatedButton.primary(
-                        label: 'Tap 2 Button',
+                        label: context.cl.translate('pages.mainHome.title'),
                         onPressed: () {},
                       ),
                       CustomElevatedButton.primary(

@@ -9,7 +9,8 @@ import '../../l10n/generated/l10n.dart';
 extension ContextExtension on BuildContext {
   S get l10n => S.of(this);
 
-  CustomLocalization get cl => CustomLocalization.of(this);
+  CustomLocalization get cl =>
+      Localizations.of<CustomLocalization>(this, CustomLocalization)!;
 
   Locale get locale => Localizations.localeOf(this);
 
