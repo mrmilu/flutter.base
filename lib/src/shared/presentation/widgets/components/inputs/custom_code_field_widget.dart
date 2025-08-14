@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../utils/extensions/buildcontext_extensions.dart';
+import '../../../extensions/buildcontext_extensions.dart';
 import '../../../utils/styles/colors/colors_context.dart';
 import '../../common/custom_row_icon_text_widget.dart';
 import 'template_verification_code.dart';

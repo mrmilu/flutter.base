@@ -47,8 +47,8 @@ class UserModel {
       document: null,
       language: 'ES',
       isValidated: false,
-      authProvider: UserAuthProviderType.email(),
-      status: UserStatusType.noClient,
+      authProvider: UserAuthProviderType.email,
+      status: UserStatusType.active,
     );
   }
 

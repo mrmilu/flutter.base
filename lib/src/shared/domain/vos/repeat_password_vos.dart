@@ -1,5 +1,5 @@
-import '../../helpers/either.dart';
-import '../../helpers/value_object.dart';
+import '../../presentation/helpers/either.dart';
+import '../../presentation/helpers/value_object.dart';
 import '../failures/repeat_password_failure.dart';
 
 class RepeatPasswordVos extends ValueObject<RepeatPasswordFailure, String> {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../extensions/buildcontext_extensions.dart';
 import '../../utils/assets/app_assets_icons.dart';
-import '../../utils/extensions/buildcontext_extensions.dart';
 import '../../utils/styles/colors/colors_context.dart';
 import 'image_asset_widget.dart';
 

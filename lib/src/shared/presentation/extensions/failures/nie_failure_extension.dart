@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 
-import '../../presentation/utils/extensions/buildcontext_extensions.dart';
-import '../failures/nie_failure.dart';
+import '../../../domain/failures/nie_failure.dart';
+import '../buildcontext_extensions.dart';
 
-extension NieFailureTranslation on NieFailure {
+extension NieFailureExtension on NieFailure {
   String toTranslate(BuildContext context) {
     return when(
       empty: (_) => context.l10n.empty,

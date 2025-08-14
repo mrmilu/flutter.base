@@ -21,6 +21,20 @@
     "documentType": {
       "nif": "NIF",
       "nie": "NIE"
+    },
+    "appStatusType": {
+      "open": "Open",
+      "close": "Close",
+      "maintenance": "Maintenance"
+    },
+    "userStatusType": {
+      "active": "Active",
+      "inactive": "Inactive",
+      "suspended": "Suspended"
+    },
+    "userRoleType": {
+      "admin": "Admin",
+      "user": "User"
     }
   },
   "navigation": {

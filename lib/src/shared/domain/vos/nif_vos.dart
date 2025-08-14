@@ -1,5 +1,5 @@
-import '../../../shared/helpers/either.dart';
-import '../../../shared/helpers/value_object.dart';
+import '../../presentation/helpers/either.dart';
+import '../../presentation/helpers/value_object.dart';
 import '../failures/nif_failure.dart';
 
 class NifVos extends ValueObject<NifFailure, String> {

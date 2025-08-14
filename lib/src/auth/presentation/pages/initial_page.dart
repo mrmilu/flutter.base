@@ -3,12 +3,12 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../shared/data/services/app_flyer_service.dart';
-import '../../../shared/domain/failures_extensions/general_base_failure_extension.dart';
-import '../../../shared/helpers/toasts.dart';
+import '../../../shared/presentation/extensions/buildcontext_extensions.dart';
+import '../../../shared/presentation/extensions/failures/general_base_failure_extension.dart';
+import '../../../shared/presentation/helpers/toasts.dart';
 import '../../../shared/presentation/providers/global_loader/global_loader_cubit.dart';
 import '../../../shared/presentation/router/app_router.dart';
 import '../../../shared/presentation/router/page_names.dart';
-import '../../../shared/presentation/utils/extensions/buildcontext_extensions.dart';
 import '../../../shared/presentation/utils/styles/colors/colors_context.dart';
 import '../../../shared/presentation/widgets/components/text/rm_text.dart';
 import '../../domain/failures/oauth_sign_in_failure.dart';

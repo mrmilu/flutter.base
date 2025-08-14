@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../../../shared/helpers/result_or.dart';
+import '../../../../../shared/presentation/helpers/result_or.dart';
 import '../../../../../shared/presentation/providers/global_loader/global_loader_cubit.dart';
 import '../../../../domain/failures/required_password_failure.dart';
 import '../../../../domain/interfaces/i_personal_info_repository.dart';

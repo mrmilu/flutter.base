@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../auth/presentation/pages/initial_page.dart';
 import '../../../auth/presentation/providers/auth/auth_cubit.dart';
+import '../../../shared/presentation/extensions/buildcontext_extensions.dart';
 import '../../../shared/presentation/router/app_router.dart';
 import '../../../shared/presentation/router/page_names.dart';
-import '../../../shared/presentation/utils/extensions/buildcontext_extensions.dart';
 import '../../../shared/presentation/widgets/components/buttons/custom_elevated_button.dart';
 import '../../../shared/presentation/widgets/components/buttons/custom_outlined_button.dart';
 import '../../../shared/presentation/widgets/components/text/rm_text.dart';

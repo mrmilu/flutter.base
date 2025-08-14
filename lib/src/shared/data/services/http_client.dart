@@ -6,10 +6,10 @@ import '../../../auth/domain/interfaces/i_token_repository.dart';
 import '../../../auth/presentation/pages/initial_page.dart';
 import '../../../locale/presentation/providers/locale_cubit.dart';
 import '../../../splash/presentation/providers/splash_cubit.dart';
-import '../../helpers/toasts.dart';
+import '../../presentation/extensions/buildcontext_extensions.dart';
+import '../../presentation/helpers/toasts.dart';
 import '../../presentation/router/app_router.dart';
 import '../../presentation/router/page_names.dart';
-import '../../presentation/utils/extensions/buildcontext_extensions.dart';
 
 final baseOptions = BaseOptions(
   baseUrl:

@@ -3,8 +3,8 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 
 import '../../../auth/domain/interfaces/i_token_repository.dart';
-import '../../../shared/helpers/result_or.dart';
-import '../../../shared/presentation/utils/extensions/dio_exception_extension.dart';
+import '../../../shared/presentation/extensions/dio_exception_extension.dart';
+import '../../../shared/presentation/helpers/result_or.dart';
 import '../../domain/failures/change_email_failure.dart';
 import '../../domain/failures/change_password_failure.dart';
 import '../../domain/failures/personal_data_failure.dart';

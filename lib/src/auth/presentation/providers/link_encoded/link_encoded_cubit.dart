@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../../shared/helpers/result_or.dart';
+import '../../../../shared/presentation/helpers/result_or.dart';
 import '../../../../shared/presentation/providers/base_cubit.dart';
 import '../../../../shared/presentation/providers/global_loader/global_loader_cubit.dart';
 import '../../../domain/failures/validate_email_failure.dart';

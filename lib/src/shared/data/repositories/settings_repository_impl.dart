@@ -5,7 +5,7 @@ import '../../domain/failures/endpoints/general_base_failure.dart';
 import '../../domain/interfaces/i_settings_repository.dart';
 import '../../domain/models/app_settings_model.dart';
 import '../../domain/types/app_status_type.dart';
-import '../../helpers/resource.dart';
+import '../../presentation/helpers/resource.dart';
 
 class SettingsRepositoryImpl implements ISettingsRepository {
   final Dio httpClient;
@@ -20,7 +20,7 @@ class SettingsRepositoryImpl implements ISettingsRepository {
       debugPrint('result: $result');
 
       final appSettings = AppSettingsModel(
-        status: AppStatusType.open(),
+        status: AppStatusType.open,
       );
 
       // final appSettings = AppSettingsDto.fromMap(doc.data()!).toDomain();
@@ -28,7 +28,7 @@ class SettingsRepositoryImpl implements ISettingsRepository {
       return Resource.success(appSettings);
     } catch (e) {
       final appSettings = AppSettingsModel(
-        status: AppStatusType.open(),
+        status: AppStatusType.open,
       );
       return Resource.success(appSettings);
       // return Resource.failure(FirebaseFailure.serverError());

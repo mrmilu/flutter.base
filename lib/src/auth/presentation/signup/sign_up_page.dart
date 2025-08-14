@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../shared/domain/failures_extensions/email_failure.extension.dart';
-import '../../../shared/domain/failures_extensions/fullname_failure_extension.dart';
-import '../../../shared/domain/failures_extensions/password_failure_extension.dart';
-import '../../../shared/helpers/toasts.dart';
+import '../../../shared/presentation/extensions/failures/email_failure.extension.dart';
+import '../../../shared/presentation/extensions/failures/fullname_failure_extension.dart';
+import '../../../shared/presentation/extensions/failures/password_failure_extension.dart';
+import '../../../shared/presentation/helpers/toasts.dart';
 import '../../../shared/presentation/l10n/generated/l10n.dart';
 import '../../../shared/presentation/providers/global_loader/global_loader_cubit.dart';
 import '../../../shared/presentation/router/app_router.dart';

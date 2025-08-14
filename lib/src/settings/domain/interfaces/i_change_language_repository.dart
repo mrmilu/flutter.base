@@ -1,4 +1,4 @@
-import '../../../shared/helpers/result_or.dart';
+import '../../../shared/presentation/helpers/result_or.dart';
 import '../failures/change_language_failure.dart';
 
 abstract class IChangeLanguageRepository {

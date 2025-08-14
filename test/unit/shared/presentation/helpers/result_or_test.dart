@@ -1,4 +1,4 @@
-import 'package:flutter_base/src/shared/helpers/result_or.dart';
+import 'package:flutter_base/src/shared/presentation/helpers/result_or.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

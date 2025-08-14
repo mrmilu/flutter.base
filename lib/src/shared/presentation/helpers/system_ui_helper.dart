@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../presentation/utils/styles/colors/colors_context.dart';
+import '../utils/styles/colors/colors_context.dart';
 
 class SystemUIHelper {
   static void setLightStatusBar(BuildContext context) {

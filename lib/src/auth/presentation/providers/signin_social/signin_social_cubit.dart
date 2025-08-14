@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../../shared/helpers/result_or.dart';
+import '../../../../shared/presentation/helpers/result_or.dart';
 import '../../../../shared/presentation/providers/base_cubit.dart';
 import '../../../domain/failures/oauth_sign_in_failure.dart';
 import '../../../domain/interfaces/i_auth_repository.dart';

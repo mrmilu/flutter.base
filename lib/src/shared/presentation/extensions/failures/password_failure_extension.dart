@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 
-import '../../../shared/presentation/l10n/generated/l10n.dart';
-import '../../domain/failures/password_failure.dart';
+import '../../../domain/failures/password_failure.dart';
+import '../../l10n/generated/l10n.dart';
 
-extension PasswordFailureTranslation on PasswordFailure {
+extension PasswordFailureExtension on PasswordFailure {
   String toTranslate(BuildContext context) {
     return when(
       empty: (_) => S.of(context).empty,

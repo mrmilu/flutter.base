@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 
-import '../../presentation/utils/extensions/buildcontext_extensions.dart';
-import '../failures/nif_failure.dart';
+import '../../../domain/failures/nif_failure.dart';
+import '../buildcontext_extensions.dart';
 
-extension NifFailureTranslation on NifFailure {
+extension NifFailureExtension on NifFailure {
   String toTranslate(BuildContext context) {
     return when(
       empty: (_) => context.l10n.empty,

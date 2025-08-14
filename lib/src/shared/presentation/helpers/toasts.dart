@@ -1,8 +1,8 @@
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 
-import '../presentation/utils/extensions/buildcontext_extensions.dart';
-import '../presentation/utils/styles/colors/colors_context.dart';
+import '../extensions/buildcontext_extensions.dart';
+import '../utils/styles/colors/colors_context.dart';
 
 void showError(
   BuildContext context, {

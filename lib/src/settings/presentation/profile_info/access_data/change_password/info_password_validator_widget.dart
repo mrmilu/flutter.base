@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../shared/domain/failures/password_failure.dart';
-import '../../../../../shared/domain/failures_extensions/password_failure_extension.dart';
 import '../../../../../shared/domain/vos/password_vos.dart';
+import '../../../../../shared/presentation/extensions/buildcontext_extensions.dart';
+import '../../../../../shared/presentation/extensions/failures/password_failure_extension.dart';
 import '../../../../../shared/presentation/utils/assets/app_assets_icons.dart';
-import '../../../../../shared/presentation/utils/extensions/buildcontext_extensions.dart';
 import '../../../../../shared/presentation/utils/styles/colors/colors_context.dart';
 import '../../../../../shared/presentation/widgets/common/image_asset_widget.dart';
 

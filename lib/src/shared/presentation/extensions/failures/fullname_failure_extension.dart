@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 
-import '../../../shared/presentation/l10n/generated/l10n.dart';
-import '../../domain/failures/fullname_failure.dart';
+import '../../../domain/failures/fullname_failure.dart';
+import '../../l10n/generated/l10n.dart';
 
-extension FullnameFailureTranslation on FullnameFailure {
+extension FullnameFailureExtension on FullnameFailure {
   String toTranslate(BuildContext context) {
     if (this is FullnameFailureEmpty) {
       return S.of(context).empty;

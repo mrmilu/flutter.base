@@ -4,7 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../auth/presentation/providers/auth/auth_cubit.dart';
 import '../../domain/types/app_navigation_type.dart';
 import '../../domain/types/user_status_type.dart';
-import '../utils/extensions/buildcontext_extensions.dart';
+import '../extensions/buildcontext_extensions.dart';
+import '../extensions/types/app_navigation_type_extension.dart';
 import '../utils/styles/colors/colors_context.dart';
 import 'common/image_asset_widget.dart';
 
@@ -26,7 +27,7 @@ class BottomBarWidget extends StatelessWidget {
     return BlocBuilder<AuthCubit, AuthState>(
       builder: (context, state) {
         final userIsClient =
-            state.user?.status.name != UserStatusType.noClient.name;
+            state.user?.status.name != UserStatusType.active.name;
         double paddingDot = userIsClient ? 50 : 120;
         int countNavigation = userIsClient ? 4 : 2;
         int indexSelected = (!userIsClient && (itemSelected == 3))

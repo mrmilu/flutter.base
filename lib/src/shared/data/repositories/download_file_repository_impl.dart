@@ -6,8 +6,8 @@ import 'package:path_provider/path_provider.dart';
 import '../../domain/failures/endpoints/download_file_failure.dart';
 import '../../domain/failures/endpoints/general_base_failure.dart';
 import '../../domain/interfaces/i_download_file_repository.dart';
-import '../../helpers/resource.dart';
-import '../../presentation/utils/extensions/dio_exception_extension.dart';
+import '../../presentation/extensions/dio_exception_extension.dart';
+import '../../presentation/helpers/resource.dart';
 
 class DownloadFileRepositoryImpl implements IDownloadFileRepository {
   final Dio httpClient;

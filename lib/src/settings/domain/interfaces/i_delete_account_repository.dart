@@ -1,4 +1,4 @@
-import '../../../shared/helpers/result_or.dart';
+import '../../../shared/presentation/helpers/result_or.dart';
 import '../failures/delete_account_failure.dart';
 
 abstract class IDeleteAccountRepository {

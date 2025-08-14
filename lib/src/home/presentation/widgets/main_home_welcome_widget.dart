@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../auth/presentation/providers/auth/auth_cubit.dart';
-import '../../../shared/presentation/utils/extensions/buildcontext_extensions.dart';
+import '../../../shared/presentation/extensions/buildcontext_extensions.dart';
 import '../../../shared/presentation/widgets/components/text/rm_text.dart';
 
 class MainHomeWelcomeWidget extends StatelessWidget {

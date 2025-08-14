@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 
-import '../const.dart';
+import '../utils/const.dart';
 
 extension DioExceptionExtension on DioException {
   /// Obtiene el código de error desde la respuesta.

@@ -23,21 +23,21 @@ El proyecto utiliza **Vertical Slice Architecture**, donde cada funcionalidad (f
 ```
 feature/
 ├── data/
-│   ├── dtos/               # Data Transfer Objects para API
-│   ├── mocks/              # Datos mock para testing
-│   ├── repositories/       # Implementaciones de repositorios
-│   └── services/          # Servicios de datos externos
+│   ├── dtos/             # Data Transfer Objects para API
+│   ├── mocks/            # Datos mock para testing
+│   ├── repositories/     # Implementaciones de repositorios
+│   └── services/         # Servicios de datos externos
 ├── domain/
-│   ├── failures/          # Definiciones de errores
-│   ├── failures_extensions/ # Extensiones para failures
-│   ├── interfaces/        # Contratos e interfaces
+│   ├── failures/         # Definiciones de errores
+│   ├── interfaces/       # Contratos e interfaces
 │   ├── models/           # Modelos de dominio (entidades)
 │   ├── types/            # Tipos y enums específicos del dominio
 │   └── vos/              # Value Objects
 └── presentation/
+    ├── extensions/       # Extensiones
     ├── pages/            # Páginas/pantallas del feature
     ├── providers/        # Providers/BLoCs específicos
-    ├── widgets/         # Widgets reutilizables del feature
+    ├── widgets/          # Widgets reutilizables del feature
     └── [subdirectorios]  # Organizados por funcionalidad específica (ej: signin/, signup/)
 ```
 
@@ -71,8 +71,7 @@ Responsable del acceso a datos externos e internos:
 ### Capa de Domain
 Contiene la lógica de negocio pura:
 
-- **`failures/`**: Definiciones de errores específicos del dominio
-- **`failures_extensions/`**: Extensiones para manejo de errores
+- **`failures/`**: Definiciones de errores específicos del dominio 
 - **`interfaces/`**: Contratos y abstracciones (repositorios, services)
 - **`models/`**: Entidades y modelos de dominio
 - **`types/`**: Tipos, enums y definiciones específicas del dominio
@@ -81,6 +80,7 @@ Contiene la lógica de negocio pura:
 ### Capa de Presentation
 Maneja la interfaz de usuario y estado:
 
+- **`extensions/`**: Extensiones
 - **`pages/`**: Pantallas principales del feature
 - **`providers/`**: BLoCs, Cubits o Providers para gestión de estado
 - **`widgets/`**: Widgets reutilizables específicos del feature
@@ -113,10 +113,10 @@ Presentation → Domain ← Data
 
 ```
 flutter_base/
-├── android/                    # Configuración Android
-├── ios/                       # Configuración iOS
-├── web/                       # Configuración Web
-├── assets/                    # Recursos estáticos
+├── android/                  # Configuración Android
+├── ios/                      # Configuración iOS
+├── web/                      # Configuración Web
+├── assets/                   # Recursos estáticos
 │   ├── fonts/                # Fuentes tipográficas
 │   ├── icons/                # Iconos SVG
 │   ├── images/               # Imágenes
@@ -135,7 +135,7 @@ flutter_base/
 
 ```
 lib/
-├── main.dart                 # Punto de entrada principal
+├── main.dart                # Punto de entrada principal
 ├── main_web.dart            # Punto de entrada para web
 ├── app.dart                 # Configuración de la aplicación
 ├── flavors.dart             # Configuración de flavors
@@ -153,6 +153,7 @@ lib/
         ├── helpers/         # Funciones de utilidad
         └── presentation/    # UI compartida
             ├── l10n/        # Localización
+            ├── extensions/  # Extensiones
             ├── pages/       # Páginas compartidas
             ├── providers/   # Providers globales
             ├── router/      # Configuración de navegación

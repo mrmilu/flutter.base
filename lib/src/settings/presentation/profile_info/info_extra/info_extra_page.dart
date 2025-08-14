@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
-import '../../../../shared/presentation/utils/extensions/buildcontext_extensions.dart';
+import '../../../../shared/presentation/extensions/buildcontext_extensions.dart';
 import '../../../../shared/presentation/utils/open_web_view_utils.dart';
 import '../../../../shared/presentation/widgets/components/text/rm_text.dart';
 import '../../../../splash/presentation/providers/splash_cubit.dart';

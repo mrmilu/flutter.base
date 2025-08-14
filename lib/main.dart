@@ -10,8 +10,8 @@ import 'flavors.dart';
 import 'src/shared/data/services/app_flyer_service.dart';
 import 'src/shared/data/services/simple_notifications_push_service.dart';
 import 'src/shared/domain/models/env_vars.dart';
-import 'src/shared/helpers/analytics_helper.dart';
-import 'src/shared/helpers/error_monitoring.dart';
+import 'src/shared/presentation/helpers/analytics_helper.dart';
+import 'src/shared/presentation/helpers/error_monitoring.dart';
 
 Future<void> main() async {
   F.appFlavor = Flavor.values.firstWhere(

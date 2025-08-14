@@ -1,5 +1,5 @@
-import 'package:flutter_base/src/shared/helpers/either.dart';
-import 'package:flutter_base/src/shared/helpers/value_object.dart';
+import 'package:flutter_base/src/shared/presentation/helpers/either.dart';
+import 'package:flutter_base/src/shared/presentation/helpers/value_object.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 // Implementaciones concretas para testing

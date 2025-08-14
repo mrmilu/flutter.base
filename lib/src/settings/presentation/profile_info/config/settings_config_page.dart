@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
+import '../../../../shared/presentation/extensions/buildcontext_extensions.dart';
 import '../../../../shared/presentation/router/app_router.dart';
 import '../../../../shared/presentation/router/page_names.dart';
-import '../../../../shared/presentation/utils/extensions/buildcontext_extensions.dart';
 import '../../../../shared/presentation/widgets/components/text/rm_text.dart';
 import '../../widgets/settings_item_widget.dart';
 

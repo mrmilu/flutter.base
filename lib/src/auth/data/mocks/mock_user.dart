@@ -15,6 +15,6 @@ final mockUser = UserModel(
   document: (DocumentType.nif, '12345678A'),
   language: 'ES',
   isValidated: true,
-  authProvider: UserAuthProviderType.email(),
-  status: UserStatusType.client,
+  authProvider: UserAuthProviderType.email,
+  status: UserStatusType.active,
 );

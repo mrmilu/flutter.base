@@ -2,8 +2,8 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 
-import '../../../shared/helpers/result_or.dart';
-import '../../../shared/presentation/utils/extensions/dio_exception_extension.dart';
+import '../../../shared/presentation/extensions/dio_exception_extension.dart';
+import '../../../shared/presentation/helpers/result_or.dart';
 import '../../domain/failures/delete_account_failure.dart';
 import '../../domain/interfaces/i_delete_account_repository.dart';
 

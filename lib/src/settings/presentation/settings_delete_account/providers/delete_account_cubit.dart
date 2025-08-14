@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../shared/helpers/result_or.dart';
+import '../../../../shared/presentation/helpers/result_or.dart';
 import '../../../../shared/presentation/providers/global_loader/global_loader_cubit.dart';
 import '../../../domain/failures/delete_account_failure.dart';
 import '../../../domain/interfaces/i_delete_account_repository.dart';

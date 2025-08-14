@@ -5,7 +5,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 
 import '../../../auth/domain/interfaces/i_token_repository.dart';
 import '../../../auth/presentation/providers/auth/auth_cubit.dart';
-import '../../../shared/helpers/result_or.dart';
+import '../../../shared/presentation/helpers/result_or.dart';
 import '../../../shared/presentation/providers/base_cubit.dart';
 import '../../domain/splash_failure.dart';
 import 'app_settings_cubit.dart';

@@ -1,6 +1,6 @@
 import '../../../shared/domain/failures/endpoints/general_base_failure.dart';
 import '../../../shared/domain/models/user_model.dart';
-import '../../../shared/helpers/result_or.dart';
+import '../../../shared/presentation/helpers/result_or.dart';
 import '../failures/oauth_sign_in_failure.dart';
 import '../failures/signin_failure.dart';
 import '../failures/signup_failure.dart';

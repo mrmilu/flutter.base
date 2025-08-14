@@ -1,28 +1,20 @@
-import 'package:flutter/material.dart';
-
-import '../../presentation/utils/extensions/buildcontext_extensions.dart';
-
 enum UserStatusType {
-  client,
-  noClient,
-  pending,
+  active,
+  inactive,
   suspended;
 
   const UserStatusType();
 
   R map<R>({
-    required R Function() client,
-    required R Function() noClient,
-    required R Function() pending,
+    required R Function() active,
+    required R Function() inactive,
     required R Function() suspended,
   }) {
     switch (this) {
-      case UserStatusType.client:
-        return client();
-      case UserStatusType.noClient:
-        return noClient();
-      case UserStatusType.pending:
-        return pending();
+      case UserStatusType.active:
+        return active();
+      case UserStatusType.inactive:
+        return inactive();
       case UserStatusType.suspended:
         return suspended();
     }
@@ -31,12 +23,10 @@ enum UserStatusType {
   @override
   String toString() {
     switch (this) {
-      case UserStatusType.client:
-        return 'CLIENT';
-      case UserStatusType.noClient:
-        return 'NO_CLIENT';
-      case UserStatusType.pending:
-        return 'PENDING';
+      case UserStatusType.active:
+        return 'ACTIVE';
+      case UserStatusType.inactive:
+        return 'INACTIVE';
       case UserStatusType.suspended:
         return 'SUSPENDED';
     }
@@ -44,29 +34,14 @@ enum UserStatusType {
 
   static UserStatusType fromString(String status) {
     switch (status) {
-      case 'CLIENT':
-        return UserStatusType.client;
-      case 'NO_CLIENT':
-        return UserStatusType.noClient;
-      case 'PENDING':
-        return UserStatusType.pending;
+      case 'ACTIVE':
+        return UserStatusType.active;
+      case 'INACTIVE':
+        return UserStatusType.inactive;
       case 'SUSPENDED':
         return UserStatusType.suspended;
       default:
-        return UserStatusType.noClient;
-    }
-  }
-
-  String toTranslate(BuildContext context) {
-    switch (this) {
-      case UserStatusType.client:
-        return context.cl.translate('enums.UserStatusType.client');
-      case UserStatusType.noClient:
-        return context.cl.translate('enums.UserStatusType.noClient');
-      case UserStatusType.pending:
-        return context.cl.translate('enums.UserStatusType.pending');
-      case UserStatusType.suspended:
-        return context.cl.translate('enums.UserStatusType.suspended');
+        return UserStatusType.inactive;
     }
   }
 }

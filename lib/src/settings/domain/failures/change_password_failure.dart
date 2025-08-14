@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../shared/presentation/utils/extensions/buildcontext_extensions.dart';
+import '../../../shared/presentation/extensions/buildcontext_extensions.dart';
 
 enum ChangePasswordFailure {
   noPermission,
