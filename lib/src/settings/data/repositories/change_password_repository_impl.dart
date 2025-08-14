@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
-import '../../../shared/domain/failures/change_password_firebase_failure.dart';
-import '../../../shared/helpers/result_or.dart';
+import '../../../shared/domain/failures/endpoints/change_password_firebase_failure.dart';
+import '../../../shared/presentation/helpers/result_or.dart';
 import '../../domain/interfaces/i_change_password_repository.dart';
 
-class ChangePasswordRepositoryImpl extends IChangePasswordRepository {
+class ChangePasswordRepositoryImpl implements IChangePasswordRepository {
   @override
   Future<ResultOr<ChangePasswordFirebaseFailure>> changePassword({
     required String oldPassword,
@@ -24,23 +24,23 @@ class ChangePasswordRepositoryImpl extends IChangePasswordRepository {
       switch (e.code) {
         case 'wrong-password':
           return ResultOr.failure(
-            ChangePasswordFirebaseFailure.wrongPassword(),
+            const ChangePasswordFirebaseFailure.wrongPassword(),
           );
         case 'invalid-credential':
           return ResultOr.failure(
-            ChangePasswordFirebaseFailure.invalidCredential(),
+            const ChangePasswordFirebaseFailure.invalidCredential(),
           );
         case 'invalid-argument':
           return ResultOr.failure(
-            ChangePasswordFirebaseFailure.invalidArgument(),
+            const ChangePasswordFirebaseFailure.invalidArgument(),
           );
         case 'too-many-requests':
           return ResultOr.failure(
-            ChangePasswordFirebaseFailure.tooManyRequests(),
+            const ChangePasswordFirebaseFailure.tooManyRequests(),
           );
         default:
           return ResultOr.failure(
-            ChangePasswordFirebaseFailure.invalidArgument(),
+            const ChangePasswordFirebaseFailure.invalidArgument(),
           );
       }
     }

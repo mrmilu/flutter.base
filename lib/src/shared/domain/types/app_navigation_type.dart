@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-
 import '../../presentation/utils/assets/app_assets_icons.dart';
-import '../../presentation/utils/extensions/buildcontext_extensions.dart';
 
 enum AppNavigationType {
   home(iconPath: AppAssetsIcons.mainHome),
@@ -56,19 +53,6 @@ enum AppNavigationType {
         return AppNavigationType.efforts;
       default:
         return AppNavigationType.home;
-    }
-  }
-
-  String toTranslate(BuildContext context) {
-    switch (this) {
-      case AppNavigationType.home:
-        return context.cl.translate('navigation.home');
-      case AppNavigationType.ente:
-        return context.cl.translate('navigation.ente');
-      case AppNavigationType.invoices:
-        return context.cl.translate('navigation.invoices');
-      case AppNavigationType.efforts:
-        return context.cl.translate('navigation.efforts');
     }
   }
 

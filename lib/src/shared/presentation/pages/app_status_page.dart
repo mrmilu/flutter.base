@@ -10,7 +10,7 @@ class AppStatusPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (status is AppStatusTypeOpen) {
+    if (status == AppStatusType.open) {
       return const SizedBox.shrink();
     }
     final size = MediaQuery.of(context).size;
@@ -55,17 +55,17 @@ class AppStatusPage extends StatelessWidget {
 
   String _getStatusTitle(BuildContext context, AppStatusType status) {
     return status.map(
-      open: (_) => '',
-      close: (_) => S.of(context).pageAppStatus_titleClose,
-      maintenance: (_) => S.of(context).pageAppStatus_titleMaintenance,
+      open: () => '',
+      close: () => S.of(context).pageAppStatus_titleClose,
+      maintenance: () => S.of(context).pageAppStatus_titleMaintenance,
     );
   }
 
   String _getStatusDescription(BuildContext context, AppStatusType status) {
     return status.map(
-      open: (_) => '',
-      close: (_) => S.of(context).pageAppStatus_descClose,
-      maintenance: (_) => S.of(context).pageAppStatus_descMaintenance,
+      open: () => '',
+      close: () => S.of(context).pageAppStatus_descClose,
+      maintenance: () => S.of(context).pageAppStatus_descMaintenance,
     );
   }
 }

@@ -10,6 +10,7 @@ class UserModel {
   final String? lastName;
   final String email;
   final String? contactEmail;
+  final String? imageUrl;
   // prefix_number
   final (PrefixPhoneType, String)? phone;
   // type_code
@@ -23,6 +24,7 @@ class UserModel {
     required this.id,
     required this.name,
     required this.lastName,
+    required this.imageUrl,
     required this.email,
     required this.contactEmail,
     required this.phone,
@@ -38,14 +40,15 @@ class UserModel {
       id: '',
       name: null,
       lastName: null,
+      imageUrl: '',
       email: '',
       contactEmail: null,
       phone: null,
       document: null,
       language: 'ES',
       isValidated: false,
-      authProvider: UserAuthProviderType.email(),
-      status: UserStatusType.noClient,
+      authProvider: UserAuthProviderType.email,
+      status: UserStatusType.active,
     );
   }
 
@@ -53,6 +56,7 @@ class UserModel {
     String? id,
     String? name,
     String? lastName,
+    String? imageUrl,
     String? email,
     String? contactEmail,
     (PrefixPhoneType, String)? phone,
@@ -66,6 +70,7 @@ class UserModel {
       id: id ?? this.id,
       name: name ?? this.name,
       lastName: lastName ?? this.lastName,
+      imageUrl: imageUrl ?? this.imageUrl,
       email: email ?? this.email,
       contactEmail: contactEmail ?? this.contactEmail,
       phone: phone ?? this.phone,
@@ -79,7 +84,7 @@ class UserModel {
 
   @override
   String toString() {
-    return 'UserModel(id: $id, name: $name, lastName: $lastName, email: $email, contactEmail: $contactEmail, phone: $phone, document: $document, language: $language, isValidated: $isValidated, authProvider: $authProvider, status: $status)';
+    return 'UserModel(id: $id, name: $name, lastName: $lastName, imageUrl: $imageUrl, email: $email, contactEmail: $contactEmail, phone: $phone, document: $document, language: $language, isValidated: $isValidated, authProvider: $authProvider, status: $status)';
   }
 
   @override
@@ -90,6 +95,7 @@ class UserModel {
         other.id == id &&
         other.name == name &&
         other.lastName == lastName &&
+        other.imageUrl == imageUrl &&
         other.email == email &&
         other.contactEmail == contactEmail &&
         other.phone == phone &&
@@ -105,6 +111,7 @@ class UserModel {
     return id.hashCode ^
         name.hashCode ^
         lastName.hashCode ^
+        imageUrl.hashCode ^
         email.hashCode ^
         contactEmail.hashCode ^
         phone.hashCode ^

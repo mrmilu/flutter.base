@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../shared/domain/failures/password_failure.dart';
-import '../../../../../shared/domain/failures_extensions/password_failure_extension.dart';
 import '../../../../../shared/domain/vos/password_vos.dart';
+import '../../../../../shared/presentation/extensions/buildcontext_extensions.dart';
+import '../../../../../shared/presentation/extensions/failures/password_failure_extension.dart';
 import '../../../../../shared/presentation/utils/assets/app_assets_icons.dart';
-import '../../../../../shared/presentation/utils/extensions/buildcontext_extensions.dart';
 import '../../../../../shared/presentation/utils/styles/colors/colors_context.dart';
 import '../../../../../shared/presentation/widgets/common/image_asset_widget.dart';
 
@@ -85,7 +85,7 @@ class InfoPasswordValidatorWidget extends StatelessWidget {
               children: [
                 TextSpan(
                   text:
-                      '${PasswordFailure.minLength(8).toTranslation(context)}\n',
+                      '${const PasswordFailure.minLength(length: 8).toTranslate(context)}\n',
                   style: context.textTheme.labelMedium?.copyWith(
                     color: getColorMinLength(context),
                     height: 1.5,
@@ -93,7 +93,7 @@ class InfoPasswordValidatorWidget extends StatelessWidget {
                 ),
                 TextSpan(
                   text:
-                      '${PasswordFailure.includeUppercase().toTranslation(context)}\n',
+                      '${const PasswordFailure.includeUppercase().toTranslate(context)}\n',
                   style: context.textTheme.labelMedium?.copyWith(
                     color: getColorIncludeUppercase(context),
                     height: 1.5,
@@ -101,14 +101,16 @@ class InfoPasswordValidatorWidget extends StatelessWidget {
                 ),
                 TextSpan(
                   text:
-                      '${PasswordFailure.includeLowercase().toTranslation(context)}\n',
+                      '${const PasswordFailure.includeLowercase().toTranslate(context)}\n',
                   style: context.textTheme.labelMedium?.copyWith(
                     color: getColorIncludeLowercase(context),
                     height: 1.5,
                   ),
                 ),
                 TextSpan(
-                  text: PasswordFailure.includeDigit().toTranslation(context),
+                  text: const PasswordFailure.includeDigit().toTranslate(
+                    context,
+                  ),
                   style: context.textTheme.labelMedium?.copyWith(
                     color: getColorIncludeDigit(context),
                     height: 1.5,

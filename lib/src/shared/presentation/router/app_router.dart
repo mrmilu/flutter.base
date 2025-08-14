@@ -18,7 +18,7 @@ import '../../../settings/presentation/profile_info/profile_info_page.dart';
 import '../../../settings/presentation/settings_languages/settings_languages_page.dart';
 import '../../../splash/presentation/pages/splash_page.dart';
 import '../../../tap2/tap2_page.dart';
-import '../../helpers/analytics_helper.dart';
+import '../helpers/analytics_helper.dart';
 import '../pages/scaffold_with_navigation.dart';
 import '../pages/web_view_page.dart';
 import 'guards/auth_guard.dart';

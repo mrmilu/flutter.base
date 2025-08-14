@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../shared/domain/failures/general_failure.dart';
-import '../../../shared/helpers/resource.dart';
+import '../../../shared/domain/failures/endpoints/get_user_failure.dart';
+import '../../../shared/presentation/helpers/resource.dart';
 import '../../domain/interfaces/i_main_home_repository.dart';
 
 part 'main_home_cubit.freezed.dart';
@@ -15,7 +15,7 @@ class MainHomeCubit extends Cubit<MainHomeState> {
   final IMainHomeRepository repository;
 
   Future<void> init() async {
-    getProducts();
+    await getProducts();
   }
 
   Future<void> getProducts() async {

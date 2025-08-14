@@ -1,58 +1,41 @@
-import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../shared/presentation/utils/extensions/buildcontext_extensions.dart';
+import '../../../shared/domain/failures/endpoints/general_base_failure.dart';
 
-enum ValidateEmailFailure {
-  noPermission,
-  noSupported,
-  unknown,
-  cancel;
+part 'validate_email_failure.freezed.dart';
 
-  const ValidateEmailFailure();
+@freezed
+abstract class ValidateEmailFailure with _$ValidateEmailFailure {
+  const factory ValidateEmailFailure.noSupported({
+    @Default('noSupported') String code,
+    @Default('No soportado.') String msg,
+  }) = ValidateEmailFailureNoSupported;
 
-  R map<R>({
-    required R Function() noPermission,
-    required R Function() noSupported,
-    required R Function() unknown,
-    required R Function() cancel,
-  }) {
-    switch (this) {
-      case ValidateEmailFailure.noPermission:
-        return noPermission();
-      case ValidateEmailFailure.noSupported:
-        return noSupported();
-      case ValidateEmailFailure.unknown:
-        return unknown();
-      case ValidateEmailFailure.cancel:
-        return cancel();
-    }
-  }
+  const factory ValidateEmailFailure.general(GeneralBaseFailure error) =
+      ValidateEmailFailureGeneral;
 
-  static ValidateEmailFailure fromString(String value) {
-    switch (value) {
-      case 'noPermission':
-        return ValidateEmailFailure.noPermission;
-      case 'noSupported':
-        return ValidateEmailFailure.noSupported;
-      case 'unknown':
-        return ValidateEmailFailure.unknown;
-      case 'cancel':
-        return ValidateEmailFailure.cancel;
-      default:
-        return ValidateEmailFailure.unknown;
-    }
-  }
+  const ValidateEmailFailure._();
 
-  String toTranslate(BuildContext context) {
-    switch (this) {
-      case ValidateEmailFailure.noPermission:
-        return context.l10n.operationNotAllowed;
-      case ValidateEmailFailure.noSupported:
-        return context.l10n.notSupported;
-      case ValidateEmailFailure.unknown:
-        return context.l10n.unknownError;
-      case ValidateEmailFailure.cancel:
-        return context.l10n.cancel;
-    }
+  String get message => when(
+    noSupported: (code, msg) => msg,
+    general: (appError) => appError.message,
+  );
+
+  dynamic get typeError => when(
+    noSupported: (code, msg) =>
+        ValidateEmailFailure.noSupported(code: code, msg: msg),
+    general: (appError) =>
+        GeneralBaseFailure.fromString(appError.code, appError.message),
+  );
+
+  static ValidateEmailFailure fromString(String code, [String? message]) {
+    return switch (code) {
+      'noSupported' => ValidateEmailFailure.noSupported(
+        msg: message ?? 'No soportado.',
+      ),
+      _ => ValidateEmailFailure.general(
+        GeneralBaseFailure.fromString(code, message),
+      ),
+    };
   }
 }

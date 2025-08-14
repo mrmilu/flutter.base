@@ -1,5 +1,5 @@
-import '../../helpers/either.dart';
-import '../../helpers/value_object.dart';
+import '../../presentation/helpers/either.dart';
+import '../../presentation/helpers/value_object.dart';
 import '../failures/power_failure.dart';
 
 class PowerVos extends ValueObject<PowerFailure, String> {
@@ -24,21 +24,21 @@ class PowerVos extends ValueObject<PowerFailure, String> {
     double max,
   ) {
     if (input.isEmpty) {
-      return left(PowerFailure.empty());
+      return left(const PowerFailure.empty());
     }
 
     final value = double.tryParse(input.replaceAll(',', '.'));
 
     if (value == null) {
-      return left(PowerFailure.invalid());
+      return left(const PowerFailure.invalid());
     }
 
     if (value < min) {
-      return left(PowerFailure.less());
+      return left(const PowerFailure.less());
     }
 
     if (value > max) {
-      return left(PowerFailure.more());
+      return left(const PowerFailure.more());
     }
 
     return right(input);

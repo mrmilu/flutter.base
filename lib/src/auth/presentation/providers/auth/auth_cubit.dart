@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -6,7 +7,7 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 
 import '../../../../shared/data/services/simple_notifications_push_service.dart';
 import '../../../../shared/domain/models/user_model.dart';
-import '../../../../shared/helpers/analytics_helper.dart';
+import '../../../../shared/presentation/helpers/analytics_helper.dart';
 import '../../../../shared/presentation/providers/global_loader/global_loader_cubit.dart';
 import '../../../domain/interfaces/i_auth_repository.dart';
 
@@ -22,6 +23,7 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> initUser() async {
     final user = await authRepository.getUser();
     if (user != null) {
+      log('User $user');
       if (user.document != null) {
         createTokenDevice();
       }

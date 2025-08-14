@@ -1,58 +1,41 @@
-import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../shared/presentation/utils/extensions/buildcontext_extensions.dart';
+import '../../../shared/domain/failures/endpoints/general_base_failure.dart';
 
-enum UpdateDocumentFailure {
-  noPermission,
-  noSupported,
-  unknown,
-  cancel;
+part 'update_document_failure.freezed.dart';
 
-  const UpdateDocumentFailure();
+@freezed
+abstract class UpdateDocumentFailure with _$UpdateDocumentFailure {
+  const factory UpdateDocumentFailure.noSupported({
+    @Default('noSupported') String code,
+    @Default('No soportado.') String msg,
+  }) = UpdateDocumentFailureNoSupported;
 
-  R map<R>({
-    required R Function() noPermission,
-    required R Function() noSupported,
-    required R Function() unknown,
-    required R Function() cancel,
-  }) {
-    switch (this) {
-      case UpdateDocumentFailure.noPermission:
-        return noPermission();
-      case UpdateDocumentFailure.noSupported:
-        return noSupported();
-      case UpdateDocumentFailure.unknown:
-        return unknown();
-      case UpdateDocumentFailure.cancel:
-        return cancel();
-    }
-  }
+  const factory UpdateDocumentFailure.general(GeneralBaseFailure error) =
+      UpdateDocumentFailureGeneral;
 
-  static UpdateDocumentFailure fromString(String value) {
-    switch (value) {
-      case 'noPermission':
-        return UpdateDocumentFailure.noPermission;
-      case 'noSupported':
-        return UpdateDocumentFailure.noSupported;
-      case 'unknown':
-        return UpdateDocumentFailure.unknown;
-      case 'cancel':
-        return UpdateDocumentFailure.cancel;
-      default:
-        return UpdateDocumentFailure.unknown;
-    }
-  }
+  const UpdateDocumentFailure._();
 
-  String toTranslate(BuildContext context) {
-    switch (this) {
-      case UpdateDocumentFailure.noPermission:
-        return context.l10n.operationNotAllowed;
-      case UpdateDocumentFailure.noSupported:
-        return context.l10n.notSupported;
-      case UpdateDocumentFailure.unknown:
-        return context.l10n.unknownError;
-      case UpdateDocumentFailure.cancel:
-        return context.l10n.cancel;
-    }
+  String get message => when(
+    noSupported: (code, msg) => msg,
+    general: (appError) => appError.message,
+  );
+
+  dynamic get typeError => when(
+    noSupported: (code, msg) =>
+        UpdateDocumentFailure.noSupported(code: code, msg: msg),
+    general: (appError) =>
+        GeneralBaseFailure.fromString(appError.code, appError.message),
+  );
+
+  static UpdateDocumentFailure fromString(String code, [String? message]) {
+    return switch (code) {
+      'noSupported' => UpdateDocumentFailure.noSupported(
+        msg: message ?? 'No soportado.',
+      ),
+      _ => UpdateDocumentFailure.general(
+        GeneralBaseFailure.fromString(code, message),
+      ),
+    };
   }
 }

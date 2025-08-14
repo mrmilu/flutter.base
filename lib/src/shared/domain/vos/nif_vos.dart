@@ -1,5 +1,5 @@
-import '../../../shared/helpers/either.dart';
-import '../../../shared/helpers/value_object.dart';
+import '../../presentation/helpers/either.dart';
+import '../../presentation/helpers/value_object.dart';
 import '../failures/nif_failure.dart';
 
 class NifVos extends ValueObject<NifFailure, String> {
@@ -43,17 +43,17 @@ class NifVos extends ValueObject<NifFailure, String> {
   static Either<NifFailure, String> _validate(String input) {
     // Validar longitud (debe ser exactamente 9 caracteres: 8 dígitos + 1 letra)
     if (input.length > 9) {
-      return left(NifFailure.tooLong);
+      return left(const NifFailure.tooLong(length: 9));
     }
 
     if (input.length < 9) {
-      return left(NifFailure.tooShort);
+      return left(const NifFailure.tooShort(length: 9));
     }
 
     // Validar formato (8 dígitos seguidos de una letra mayúscula)
     const regex = r'^[0-9]{8}[A-Z]$';
     if (!RegExp(regex).hasMatch(input)) {
-      return left(NifFailure.invalidFormat);
+      return left(const NifFailure.invalid());
     }
 
     // Extraer el número (primeros 8 caracteres) y la letra (último carácter)
@@ -61,10 +61,7 @@ class NifVos extends ValueObject<NifFailure, String> {
     final letter = input.substring(8);
 
     // Convertir el número a entero
-    final number = int.tryParse(numberStr);
-    if (number == null) {
-      return left(NifFailure.invalidFormat);
-    }
+    final number = int.parse(numberStr);
 
     // Calcular la letra esperada usando el módulo 23
     final remainder = number % 23;
@@ -72,7 +69,7 @@ class NifVos extends ValueObject<NifFailure, String> {
 
     // Comparar la letra proporcionada con la esperada
     if (letter != expectedLetter) {
-      return left(NifFailure.invalidFormat);
+      return left(const NifFailure.invalid());
     }
 
     // Si todas las validaciones pasan, devolver el DNI

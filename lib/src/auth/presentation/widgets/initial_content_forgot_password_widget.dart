@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../shared/domain/failures_extensions/email_failure.extension.dart';
+import '../../../shared/presentation/extensions/buildcontext_extensions.dart';
+import '../../../shared/presentation/extensions/failures/email_failure.extension.dart';
 import '../../../shared/presentation/utils/assets/app_assets_icons.dart';
-import '../../../shared/presentation/utils/extensions/buildcontext_extensions.dart';
 import '../../../shared/presentation/widgets/components/buttons/custom_elevated_button.dart';
 import '../../../shared/presentation/widgets/components/buttons/custom_text_button.dart';
 import '../../../shared/presentation/widgets/components/inputs/custom_text_field_widget.dart';
@@ -52,7 +52,7 @@ class InitialContentForgotPasswordWidget extends StatelessWidget {
                   keyboardType: TextInputType.emailAddress,
                   showError: state.showErrors,
                   errorText: state.emailVos.map(
-                    isLeft: (e) => e.toTranslation(context),
+                    isLeft: (e) => e.toTranslate(context),
                     isRight: (_) => null,
                   ),
                 );
@@ -82,7 +82,7 @@ class InitialContentForgotPasswordWidget extends StatelessWidget {
             const SizedBox(height: 16),
             Align(
               alignment: Alignment.centerLeft,
-              child: CustomTextButton.icon(
+              child: CustomTextButton.iconSecondary(
                 onPressed: onTapSignIn,
                 label: context.cl.translate(
                   'pages.auth.forgotPassword.backToLogin',

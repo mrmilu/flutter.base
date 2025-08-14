@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../colors/colors_base.dart';
-import '../texts/text_styles_light.dart';
+import '../texts/app_text_styles.dart';
 
 const transparentBottomSheetTheme = BottomSheetThemeData(
   backgroundColor: Colors.transparent,
@@ -58,7 +58,7 @@ final appThemeDataLight = ThemeData(
           borderRadius: BorderRadius.circular(100),
         ),
       ),
-      textStyle: WidgetStateProperty.all(appTextStylesLight.titleSmall),
+      textStyle: WidgetStateProperty.all(appTextStylesLight.headlineSmall),
     ),
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
@@ -76,7 +76,7 @@ final appThemeDataLight = ThemeData(
           borderRadius: BorderRadius.circular(100),
         ),
       ),
-      textStyle: WidgetStateProperty.all(appTextStylesLight.titleSmall),
+      textStyle: WidgetStateProperty.all(appTextStylesLight.headlineSmall),
     ),
   ),
 );

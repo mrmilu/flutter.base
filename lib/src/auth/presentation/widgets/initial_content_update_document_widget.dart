@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../shared/data/services/app_flyer_service.dart';
-import '../../../shared/domain/failures_extensions/fullname_failure_extension.dart';
 import '../../../shared/domain/types/document_type.dart';
 import '../../../shared/domain/vos/nie_vos.dart';
 import '../../../shared/domain/vos/nif_vos.dart';
+import '../../../shared/presentation/extensions/buildcontext_extensions.dart';
+import '../../../shared/presentation/extensions/failures/fullname_failure_extension.dart';
+import '../../../shared/presentation/extensions/failures/nie_failure_extension.dart';
+import '../../../shared/presentation/extensions/failures/nif_failure_extension.dart';
+import '../../../shared/presentation/extensions/types/document_type_extension.dart';
 import '../../../shared/presentation/utils/const.dart';
-import '../../../shared/presentation/utils/extensions/buildcontext_extensions.dart';
 import '../../../shared/presentation/widgets/components/buttons/custom_elevated_button.dart';
 import '../../../shared/presentation/widgets/components/buttons/custom_outlined_button.dart';
 import '../../../shared/presentation/widgets/components/inputs/custom_dropdown_field_widget.dart';
@@ -97,7 +100,7 @@ class _InitialContentUpdateDocumentWidgetState
                         .read<UpdateDocumentCubit>()
                         .changeFirstName,
                     errorText: state.firstNameVos.value.map(
-                      isLeft: (p0) => p0.toTranslation(context),
+                      isLeft: (p0) => p0.toTranslate(context),
                       isRight: (_) => null,
                     ),
                   ),
@@ -113,7 +116,7 @@ class _InitialContentUpdateDocumentWidgetState
                         .read<UpdateDocumentCubit>()
                         .changeLastName,
                     errorText: state.lastNameVos.value.map(
-                      isLeft: (p0) => p0.toTranslation(context),
+                      isLeft: (p0) => p0.toTranslate(context),
                       isRight: (_) => null,
                     ),
                   ),

@@ -1,5 +1,5 @@
-import '../../helpers/either.dart';
-import '../../helpers/value_object.dart';
+import '../../presentation/helpers/either.dart';
+import '../../presentation/helpers/value_object.dart';
 import '../failures/email_failure.dart';
 
 class EmailVos extends ValueObject<EmailFailure, String> {
@@ -15,14 +15,14 @@ class EmailVos extends ValueObject<EmailFailure, String> {
 
   static Either<EmailFailure, String> _validate(String input) {
     const emailRegex =
-        r"""^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9.-]+\.[a-zA-Z]+""";
+        r"""^[a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]([a-zA-Z0-9.-]*[a-zA-Z0-9])?(\.[a-zA-Z0-9]([a-zA-Z0-9-]*[a-zA-Z0-9])?)*\.[a-zA-Z]{2,}$""";
 
     if (input.isEmpty) {
-      return left(EmailFailure.empty());
+      return left(const EmailFailure.empty());
     }
 
     if (!RegExp(emailRegex).hasMatch(input)) {
-      return left(EmailFailure.invalid());
+      return left(const EmailFailure.invalid());
     }
 
     return right(input);

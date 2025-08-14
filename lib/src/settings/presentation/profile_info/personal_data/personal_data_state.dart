@@ -3,16 +3,25 @@ part of 'personal_data_cubit.dart';
 @freezed
 abstract class PersonalDataState with _$PersonalDataState {
   factory PersonalDataState({
-    required FullnameVos name,
-    required FullnameVos lastName,
+    required XFile? imageSelected,
+    required String imageUrl,
+    required String name,
+    required String lastName,
     required bool showError,
     required ResultOr<PersonalDataFailure> resultOrPersonalData,
   }) = _PersonalDataState;
 
   factory PersonalDataState.initial() => _PersonalDataState(
-    name: FullnameVos(''),
-    lastName: FullnameVos(''),
+    imageSelected: null,
+    imageUrl: '',
+    name: '',
+    lastName: '',
     showError: false,
     resultOrPersonalData: ResultOr.none(),
   );
+
+  PersonalDataState._();
+
+  FullnameVos get nameVos => FullnameVos(name);
+  FullnameVos get lastNameVos => FullnameVos(lastName);
 }

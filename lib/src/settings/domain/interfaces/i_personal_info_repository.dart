@@ -1,4 +1,4 @@
-import '../../../shared/helpers/result_or.dart';
+import '../../../shared/presentation/helpers/result_or.dart';
 import '../failures/change_email_failure.dart';
 import '../failures/change_password_failure.dart';
 import '../failures/personal_data_failure.dart';

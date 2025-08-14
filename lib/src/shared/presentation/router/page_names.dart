@@ -40,4 +40,5 @@ class PageNames {
   static const String modalForgetPassword = 'Modal forget password';
   static const String modalLogout = 'Modal logout';
   static const String modalDeleteAccount = 'Modal delete account';
+  static const String modalSelectImage = 'Modal select image';
 }

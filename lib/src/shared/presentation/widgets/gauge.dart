@@ -2,7 +2,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-import '../utils/extensions/color_extension.dart';
+import '../extensions/color_extension.dart';
 
 class Gauge extends StatefulWidget {
   const Gauge({

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../utils/extensions/buildcontext_extensions.dart';
+import '../../extensions/buildcontext_extensions.dart';
 
 class TextWithArrowWidget extends StatelessWidget {
   const TextWithArrowWidget({

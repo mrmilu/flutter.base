@@ -1,113 +1,41 @@
-abstract class SignInFailure {
-  const SignInFailure();
-  factory SignInFailure.nonExistentUserWithEmailAndPassword() =
-      NonExistentUserAndPassword;
-  factory SignInFailure.serverError() = ServerError;
-  factory SignInFailure.fromString(String value) {
-    if (value == 'nonExistentUserWithEmailAndPassword') {
-      return SignInFailure.nonExistentUserWithEmailAndPassword();
-    }
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-    if (value == 'serverError') {
-      return SignInFailure.serverError();
-    }
+import '../../../shared/domain/failures/endpoints/general_base_failure.dart';
 
-    return SignInFailure.nonExistentUserWithEmailAndPassword();
-  }
+part 'signin_failure.freezed.dart';
 
-  void when({
-    required void Function(NonExistentUserAndPassword)
-    nonExistentUserWithEmailAndPassword,
-    required void Function(ServerError) serverError,
-  }) {
-    if (this is NonExistentUserAndPassword) {
-      nonExistentUserWithEmailAndPassword.call(
-        this as NonExistentUserAndPassword,
-      );
-    }
+@freezed
+abstract class SigninFailure with _$SigninFailure {
+  const factory SigninFailure.notExistEmail({
+    @Default('notExistEmail') String code,
+    @Default('No existe el correo electrónico.') String msg,
+  }) = SigninFailureNotExistEmail;
 
-    if (this is ServerError) {
-      serverError.call(this as ServerError);
-    }
+  const factory SigninFailure.general(GeneralBaseFailure error) =
+      SigninFailureGeneral;
 
-    nonExistentUserWithEmailAndPassword.call(
-      this as NonExistentUserAndPassword,
-    );
-  }
+  const SigninFailure._();
 
-  R map<R>({
-    required R Function(NonExistentUserAndPassword)
-    nonExistentUserWithEmailAndPassword,
-    required R Function(ServerError) serverError,
-  }) {
-    if (this is NonExistentUserAndPassword) {
-      return nonExistentUserWithEmailAndPassword.call(
-        this as NonExistentUserAndPassword,
-      );
-    }
+  String get message => when(
+    notExistEmail: (code, msg) => msg,
+    general: (appError) => appError.message,
+  );
 
-    if (this is ServerError) {
-      return serverError.call(this as ServerError);
-    }
+  dynamic get typeError => when(
+    notExistEmail: (code, msg) =>
+        SigninFailure.notExistEmail(code: code, msg: msg),
+    general: (appError) =>
+        GeneralBaseFailure.fromString(appError.code, appError.message),
+  );
 
-    return nonExistentUserWithEmailAndPassword.call(
-      this as NonExistentUserAndPassword,
-    );
-  }
-
-  void maybeWhen({
-    void Function(NonExistentUserAndPassword)?
-    nonExistentUserWithEmailAndPassword,
-    void Function(ServerError)? serverError,
-    required void Function() orElse,
-  }) {
-    if (this is NonExistentUserAndPassword &&
-        nonExistentUserWithEmailAndPassword != null) {
-      nonExistentUserWithEmailAndPassword.call(
-        this as NonExistentUserAndPassword,
-      );
-    }
-
-    if (this is ServerError && serverError != null) {
-      serverError.call(this as ServerError);
-    }
-
-    orElse.call();
-  }
-
-  R maybeMap<R>({
-    R Function(NonExistentUserAndPassword)? nonExistentUserWithEmailAndPassword,
-    R Function(ServerError)? serverError,
-    required R Function() orElse,
-  }) {
-    if (this is NonExistentUserAndPassword &&
-        nonExistentUserWithEmailAndPassword != null) {
-      return nonExistentUserWithEmailAndPassword.call(
-        this as NonExistentUserAndPassword,
-      );
-    }
-
-    if (this is ServerError && serverError != null) {
-      return serverError.call(this as ServerError);
-    }
-
-    return orElse.call();
-  }
-
-  @override
-  String toString() {
-    if (this is NonExistentUserAndPassword) {
-      return 'nonExistentUserWithEmailAndPassword';
-    }
-
-    if (this is ServerError) {
-      return 'serverError';
-    }
-
-    return 'nonExistentUserWithEmailAndPassword';
+  static SigninFailure fromString(String code, [String? message]) {
+    return switch (code) {
+      'notExistEmail' => SigninFailure.notExistEmail(
+        msg: message ?? 'No existe el correo electrónico.',
+      ),
+      _ => SigninFailure.general(
+        GeneralBaseFailure.fromString(code, message),
+      ),
+    };
   }
 }
-
-class NonExistentUserAndPassword extends SignInFailure {}
-
-class ServerError extends SignInFailure {}

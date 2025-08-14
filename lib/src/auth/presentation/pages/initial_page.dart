@@ -3,18 +3,21 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../shared/data/services/app_flyer_service.dart';
-import '../../../shared/helpers/toasts.dart';
+import '../../../shared/presentation/extensions/buildcontext_extensions.dart';
+import '../../../shared/presentation/extensions/failures/general_base_failure_extension.dart';
+import '../../../shared/presentation/helpers/toasts.dart';
 import '../../../shared/presentation/providers/global_loader/global_loader_cubit.dart';
 import '../../../shared/presentation/router/app_router.dart';
 import '../../../shared/presentation/router/page_names.dart';
-import '../../../shared/presentation/utils/assets/app_assets_icons.dart';
 import '../../../shared/presentation/utils/styles/colors/colors_context.dart';
-import '../../../shared/presentation/widgets/common/image_asset_widget.dart';
+import '../../../shared/presentation/widgets/components/text/rm_text.dart';
 import '../../domain/failures/oauth_sign_in_failure.dart';
-import '../../domain/failures_extensions/oauth_sign_in_failure_extension.dart';
-import '../../domain/failures_extensions/signin_failure_extension.dart';
-import '../../domain/failures_extensions/signup_failure_extension.dart';
 import '../../domain/interfaces/i_auth_repository.dart';
+import '../extensions/oauth_sign_in_failure_extension.dart';
+import '../extensions/signin_failure_extension.dart';
+import '../extensions/signup_failure_extension.dart';
+import '../extensions/update_document_failure_extension.dart';
+import '../extensions/validate_email_failure_extension.dart';
 import '../providers/auth/auth_cubit.dart';
 import '../providers/forgot_password/forgot_password_cubit.dart';
 import '../providers/link_encoded/link_encoded_cubit.dart';
@@ -160,6 +163,7 @@ class _InitialViewState extends State<InitialView> {
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         resizeToAvoidBottomInset: false,
+        backgroundColor: context.colors.specificBackgroundOverlay2,
         body: Stack(
           children: [
             Positioned(
@@ -171,12 +175,19 @@ class _InitialViewState extends State<InitialView> {
                   onTap: () {
                     routerApp.pushNamed(PageNames.signIn);
                   },
-                  child: const ImageAssetWidget(
-                    path: AppAssetsIcons.nibaLogo,
-                    height: 60,
-                    fit: BoxFit.contain,
+                  child: const Center(
+                    child: RMText.displayLarge('Flutter base'),
                   ),
                 ),
+              ),
+            ),
+            Positioned(
+              left: 0,
+              right: 0,
+              bottom: 0,
+              child: Container(
+                height: context.paddingBottomPlus,
+                color: context.colors.specificBasicWhite,
               ),
             ),
             Positioned(

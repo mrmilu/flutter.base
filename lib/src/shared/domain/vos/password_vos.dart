@@ -1,5 +1,5 @@
-import '../../helpers/either.dart';
-import '../../helpers/value_object.dart';
+import '../../presentation/helpers/either.dart';
+import '../../presentation/helpers/value_object.dart';
 import '../failures/password_failure.dart';
 
 class PasswordVos extends ValueObject<PasswordFailure, String> {
@@ -18,19 +18,19 @@ class PasswordVos extends ValueObject<PasswordFailure, String> {
     // }
 
     if (input.length < 8) {
-      return left(PasswordFailure.minLength(8));
+      return left(const PasswordFailure.minLength(length: 8));
     }
 
     if (!RegExp(r'^(?=.*[A-Z])').hasMatch(input)) {
-      return left(PasswordFailure.includeUppercase());
+      return left(const PasswordFailure.includeUppercase());
     }
 
     if (!RegExp(r'^(?=.*[a-z])').hasMatch(input)) {
-      return left(PasswordFailure.includeLowercase());
+      return left(const PasswordFailure.includeLowercase());
     }
 
     if (!RegExp(r'^(?=.*[!@#$%^&*])').hasMatch(input)) {
-      return left(PasswordFailure.includeDigit());
+      return left(const PasswordFailure.includeDigit());
     }
 
     return right(input);

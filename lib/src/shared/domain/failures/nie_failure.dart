@@ -1,50 +1,35 @@
-import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../presentation/utils/extensions/buildcontext_extensions.dart';
+part 'nie_failure.freezed.dart';
 
-enum NieFailure {
-  tooLong,
-  tooShort,
-  invalidFormat;
+@freezed
+abstract class NieFailure with _$NieFailure {
+  const factory NieFailure.empty({
+    @Default('empty') String code,
+  }) = NieFailureEmpty;
 
-  const NieFailure();
+  const factory NieFailure.invalid({
+    @Default('invalid') String code,
+  }) = NieFailureInvalid;
 
-  R map<R>({
-    required R Function() tooLong,
-    required R Function() tooShort,
-    required R Function() invalidFormat,
-  }) {
-    switch (this) {
-      case NieFailure.tooLong:
-        return tooLong();
-      case NieFailure.tooShort:
-        return tooShort();
-      case NieFailure.invalidFormat:
-        return invalidFormat();
-    }
-  }
+  const factory NieFailure.tooLong({
+    @Default('tooLong') String code,
+    required int length,
+  }) = NieFailureTooLong;
 
-  static NieFailure fromString(String value) {
-    switch (value) {
-      case 'tooLong':
-        return NieFailure.tooLong;
-      case 'tooShort':
-        return NieFailure.tooShort;
-      case 'invalidFormat':
-        return NieFailure.invalidFormat;
-      default:
-        return NieFailure.invalidFormat;
-    }
-  }
+  const factory NieFailure.tooShort({
+    @Default('tooShort') String code,
+    required int length,
+  }) = NieFailureTooShort;
 
-  String toTranslate(BuildContext context) {
-    switch (this) {
-      case NieFailure.tooLong:
-        return context.l10n.tooLong;
-      case NieFailure.tooShort:
-        return context.l10n.tooShort;
-      case NieFailure.invalidFormat:
-        return context.l10n.nieInvalid;
-    }
+  const NieFailure._();
+
+  int get maxLength {
+    return when(
+      empty: (_) => 0,
+      invalid: (_) => 0,
+      tooLong: (_, length) => length,
+      tooShort: (_, length) => length,
+    );
   }
 }

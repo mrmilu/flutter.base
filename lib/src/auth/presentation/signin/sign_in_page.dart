@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../shared/helpers/toasts.dart';
+import '../../../shared/presentation/helpers/toasts.dart';
 import '../../../shared/presentation/providers/global_loader/global_loader_cubit.dart';
 import '../../../shared/presentation/router/app_router.dart';
 import '../../../shared/presentation/router/page_names.dart';
 import '../../domain/failures/oauth_sign_in_failure.dart';
-import '../../domain/failures_extensions/oauth_sign_in_failure_extension.dart';
 import '../../domain/interfaces/i_auth_repository.dart';
+import '../extensions/oauth_sign_in_failure_extension.dart';
 import '../providers/signin_social/signin_social_cubit.dart';
 import '../widgets/social_card.dart';
 import 'providers/signin_cubit.dart';

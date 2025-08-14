@@ -4,14 +4,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../auth/domain/interfaces/i_token_repository.dart';
 import '../../../locale/presentation/providers/locale_cubit.dart';
 import '../../../shared/data/services/http_client.dart';
-import '../../../shared/helpers/toasts.dart';
+import '../../../shared/presentation/extensions/buildcontext_extensions.dart';
+import '../../../shared/presentation/extensions/iterable_extension.dart';
+import '../../../shared/presentation/helpers/toasts.dart';
 import '../../../shared/presentation/providers/global_loader/global_loader_cubit.dart';
-import '../../../shared/presentation/utils/extensions/buildcontext_extensions.dart';
 import '../../../shared/presentation/widgets/components/inputs/custom_dropdown_field_package_widget.dart';
 import '../../../shared/presentation/widgets/components/text/rm_text.dart';
 import '../../data/repositories/change_language_repository_impl.dart';
 import '../../domain/interfaces/i_change_language_repository.dart';
 import '../../domain/types/app_language_type.dart';
+import '../extensions/app_language_type_extension.dart';
 import 'providers/change_language_cubit.dart';
 
 class SettingsLanguagesPage extends StatelessWidget {
@@ -72,7 +74,7 @@ class SettingsLanguagesView extends StatelessWidget {
                     final myLocale = AppLanguageType.values.firstWhereOrNull(
                       (element) => element.name == stateLocale.languageCode,
                     );
-                    return CustomDowndownFieldPackageWidget<AppLanguageType>(
+                    return CustomDropdownFieldPackageWidget<AppLanguageType>(
                       title: context.cl.translate(
                         'pages.profileInfoConfigLanguages.form.language',
                       ),

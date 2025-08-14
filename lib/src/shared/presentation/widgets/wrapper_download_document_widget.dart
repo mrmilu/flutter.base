@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../domain/interfaces/i_download_file_repository.dart';
-import '../../helpers/toasts.dart';
+import '../extensions/failures/download_failure_extension.dart';
+import '../helpers/toasts.dart';
 import '../providers/download_file/download_file_cubit.dart';
 import '../utils/share_utils.dart';
 

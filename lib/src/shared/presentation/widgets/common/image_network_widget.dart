@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -65,16 +66,13 @@ class ImageNetworkWidget extends StatelessWidget {
       );
     }
 
-    final widget = Image.network(
-      imageUrl!,
+    final widget = CachedNetworkImage(
+      imageUrl: imageUrl!,
       fit: boxFit,
       height: height,
       width: width,
-      loadingBuilder: (context, child, loadingProgress) {
-        if (loadingProgress == null) return child;
-        return buildPlaceholder(); // Mostrar placeholder mientras carga
-      },
-      errorBuilder: (context, value, e) => buildErrorWidget(),
+      placeholder: (context, url) => buildPlaceholder(),
+      errorWidget: (context, value, e) => buildErrorWidget(),
     );
 
     if (!allowFullscreen) {

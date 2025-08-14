@@ -1,5 +1,5 @@
-import '../../helpers/resource.dart';
-import '../failures/download_file_failure.dart';
+import '../../presentation/helpers/resource.dart';
+import '../failures/endpoints/download_file_failure.dart';
 
 abstract class IDownloadFileRepository {
   Future<Resource<DownloadFileFailure, String>> generateFile(String documentId);

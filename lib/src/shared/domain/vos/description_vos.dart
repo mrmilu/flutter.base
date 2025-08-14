@@ -1,5 +1,5 @@
-import '../../helpers/either.dart';
-import '../../helpers/value_object.dart';
+import '../../presentation/helpers/either.dart';
+import '../../presentation/helpers/value_object.dart';
 import '../failures/fullname_failure.dart';
 
 class DescriptionVos extends ValueObject<FullnameFailure, String> {
@@ -15,11 +15,11 @@ class DescriptionVos extends ValueObject<FullnameFailure, String> {
 
   static Either<FullnameFailure, String> _validate(String input) {
     if (input.isEmpty) {
-      return left(FullnameFailure.empty());
+      return left(const FullnameFailure.empty());
     }
 
     if (input.length > 320) {
-      return left(FullnameFailure.tooLong(320));
+      return left(const FullnameFailure.tooLong(length: 320));
     }
 
     return right(input);

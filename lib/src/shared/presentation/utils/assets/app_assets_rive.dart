@@ -2,7 +2,7 @@
 /// Generado automáticamente - NO EDITAR MANUALMENTE
 class AppAssetsRive {
   /// Previene instanciación de la clase
-  AppAssetsRive._();
+  AppAssetsRive();
 
   // =============================================================================
   // 🎮 ANIMACIONES RIVE

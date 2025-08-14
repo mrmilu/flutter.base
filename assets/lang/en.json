@@ -1,10 +1,7 @@
 {
   "languages": {
     "en": "Ingles",
-    "es": "Español",
-    "ca": "Catalán",
-    "eu": "Euskera",
-    "gl": "Gallego"
+    "es": "Español"
   },
   "urls": {
     "privacyPolicy": "https://niba.es/politica-de-privacidad",
@@ -24,6 +21,20 @@
     "documentType": {
       "nif": "NIF",
       "nie": "NIE"
+    },
+    "appStatusType": {
+      "open": "Open",
+      "close": "Close",
+      "maintenance": "Maintenance"
+    },
+    "userStatusType": {
+      "active": "Active",
+      "inactive": "Inactive",
+      "suspended": "Suspended"
+    },
+    "userRoleType": {
+      "admin": "Admin",
+      "user": "User"
     }
   },
   "navigation": {
@@ -178,7 +189,7 @@
         "phone": "Teléfono de España",
         "documentType": "Tipo de documento",
         "documentNumber": "Número de documento",
-        "button": "Llámanos"
+        "button": "Guardar"
       },
       "success": "Datos guardados correctamente"
     },
@@ -343,6 +354,14 @@
         "cancel": "Cancelar",
         "confirm": "Eliminar mi cuenta"
       }
+    },
+    "selectImage": {
+      "title": "Seleccionar imagen",
+      "subtitle": "Elige una imagen de tu galería o toma una foto nueva.",
+      "gallery": "Galería",
+      "galleryPermission": "Para seleccionar fotos, necesitamos acceso a tu galería. Por favor, otorga el permiso en configuración.",
+      "camera": "Cámara",
+      "cameraPermission": "Para tomar fotos, necesitamos acceso a tu cámara. Por favor, otorga el permiso en configuración."
     }
   }
 }

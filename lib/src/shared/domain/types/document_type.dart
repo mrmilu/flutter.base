@@ -1,7 +1,3 @@
-import 'package:flutter/material.dart';
-
-import '../../presentation/utils/extensions/buildcontext_extensions.dart';
-
 enum DocumentType {
   nif,
   nie;
@@ -38,15 +34,6 @@ enum DocumentType {
         return DocumentType.nif;
       default:
         return DocumentType.nif;
-    }
-  }
-
-  String toTranslate(BuildContext context) {
-    switch (this) {
-      case DocumentType.nie:
-        return context.cl.translate('enums.documentType.nie');
-      case DocumentType.nif:
-        return context.cl.translate('enums.documentType.nif');
     }
   }
 }

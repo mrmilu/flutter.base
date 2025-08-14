@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../shared/presentation/extensions/buildcontext_extensions.dart';
 import '../shared/presentation/providers/theme_mode/theme_mode_cubit.dart';
 import '../shared/presentation/utils/assets/app_assets_icons.dart';
 import '../shared/presentation/utils/styles/colors/colors_context.dart';
@@ -57,7 +58,7 @@ class MainTap2Page extends StatelessWidget {
                   Column(
                     children: [
                       CustomElevatedButton.primary(
-                        label: 'Tap 2 Button',
+                        label: context.cl.translate('pages.mainHome.title'),
                         onPressed: () {},
                       ),
                       CustomElevatedButton.primary(
@@ -116,6 +117,18 @@ class MainTap2Page extends StatelessWidget {
                     ],
                   ),
                 ],
+              ),
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.add),
+              ),
+              IconButton.filled(
+                onPressed: () {},
+                icon: const Icon(Icons.add),
+              ),
+              IconButton.outlined(
+                onPressed: () {},
+                icon: const Icon(Icons.add),
               ),
               const SizedBox(height: 24.0),
               const RMText.titleMedium('Checkboxes'),

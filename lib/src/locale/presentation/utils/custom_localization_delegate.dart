@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
@@ -70,28 +71,29 @@ class CustomLocalization {
     return 0;
   }
 
-  static Future<CustomLocalization> load(String locale) async {
+  static Future<CustomLocalization> load(String locale, [Dio? dio]) async {
+    dio ??= Dio();
     try {
-      // final response =
-      //     await Dio().get('https://example.com/translations/intl_$locale.arb');
+      final response = await dio.get(
+        'https://example.com/translations/intl_$locale.arb',
+      );
 
-      // if (response.statusCode == 200) {
-      //   final Map<String, dynamic> jsonMap = jsonDecode(response.data);
-      //   final Map<String, String> localizedStrings =
-      //       jsonMap.map((key, value) => MapEntry(key, value.toString()));
-      //   return CustomLocalization(localizedStrings);
-      // } else {
-      //   return CustomLocalization(defaultJsonES);
-      // }
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> jsonMap = jsonDecode(response.data);
+        final Map<String, String> localizedStrings = jsonMap.map(
+          (key, value) => MapEntry(key, value.toString()),
+        );
+        return CustomLocalization(localizedStrings);
+      }
       return _getLocalization(locale);
     } catch (e) {
       return _getLocalization(locale);
     }
   }
 
-  static CustomLocalization of(BuildContext context) {
-    return Localizations.of<CustomLocalization>(context, CustomLocalization)!;
-  }
+  // static CustomLocalization of(BuildContext context) {
+  //   return Localizations.of<CustomLocalization>(context, CustomLocalization)!;
+  // }
 }
 
 class CustomLocalizationDelegate

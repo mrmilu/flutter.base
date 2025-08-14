@@ -1,12 +1,12 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../../shared/domain/failures/general_failure.dart';
+import '../../../../shared/domain/failures/endpoints/general_base_failure.dart';
 import '../../../../shared/domain/vos/password_vos.dart';
-import '../../../../shared/helpers/result_or.dart';
-import '../../../../shared/helpers/value_object.dart';
+import '../../../../shared/presentation/extensions/buildcontext_extensions.dart';
+import '../../../../shared/presentation/helpers/result_or.dart';
+import '../../../../shared/presentation/helpers/value_object.dart';
 import '../../../../shared/presentation/providers/base_cubit.dart';
 import '../../../../shared/presentation/providers/global_loader/global_loader_cubit.dart';
-import '../../../../shared/presentation/utils/extensions/buildcontext_extensions.dart';
 import '../../../domain/interfaces/i_auth_repository.dart';
 
 part 'reset_password_cubit.freezed.dart';

@@ -3,15 +3,15 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 
 import '../../../auth/domain/interfaces/i_token_repository.dart';
-import '../../../shared/helpers/result_or.dart';
-import '../../../shared/presentation/utils/extensions/dio_exception_extension.dart';
+import '../../../shared/presentation/extensions/dio_exception_extension.dart';
+import '../../../shared/presentation/helpers/result_or.dart';
 import '../../domain/failures/change_email_failure.dart';
 import '../../domain/failures/change_password_failure.dart';
 import '../../domain/failures/personal_data_failure.dart';
 import '../../domain/failures/required_password_failure.dart';
 import '../../domain/interfaces/i_personal_info_repository.dart';
 
-class PersonalInfoRepositoryImpl extends IPersonalInfoRepository {
+class PersonalInfoRepositoryImpl implements IPersonalInfoRepository {
   final Dio httpClient;
   final ITokenRepository tokenRepository;
   PersonalInfoRepositoryImpl({
@@ -26,11 +26,8 @@ class PersonalInfoRepositoryImpl extends IPersonalInfoRepository {
     required String phone,
   }) async {
     try {
-      // Simulate a network request
-      await Future.delayed(const Duration(seconds: 2));
-
       await httpClient.patch(
-        'update_user',
+        '/api/update_user',
         data: {
           'name': name,
           'lastName': lastName,

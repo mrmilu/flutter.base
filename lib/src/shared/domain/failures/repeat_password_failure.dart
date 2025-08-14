@@ -1,65 +1,12 @@
-class MismatchedPasswords extends RepeatPasswordFailure {}
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-abstract class RepeatPasswordFailure {
-  const RepeatPasswordFailure();
-  factory RepeatPasswordFailure.fromString(String value) {
-    if (value == 'mismatchedPasswords') {
-      return RepeatPasswordFailure.mismatchedPasswords();
-    }
+part 'repeat_password_failure.freezed.dart';
 
-    return RepeatPasswordFailure.mismatchedPasswords();
-  }
+@freezed
+abstract class RepeatPasswordFailure with _$RepeatPasswordFailure {
+  const factory RepeatPasswordFailure.mismatched({
+    @Default('mismatched') String code,
+  }) = RepeatPasswordFailureMismatched;
 
-  factory RepeatPasswordFailure.mismatchedPasswords() = MismatchedPasswords;
-
-  R map<R>({
-    required R Function(MismatchedPasswords) mismatchedPasswords,
-  }) {
-    if (this is MismatchedPasswords) {
-      return mismatchedPasswords.call(this as MismatchedPasswords);
-    }
-
-    return mismatchedPasswords.call(this as MismatchedPasswords);
-  }
-
-  R maybeMap<R>({
-    R Function(MismatchedPasswords)? mismatchedPasswords,
-    required R Function() orElse,
-  }) {
-    if (this is MismatchedPasswords && mismatchedPasswords != null) {
-      return mismatchedPasswords.call(this as MismatchedPasswords);
-    }
-
-    return orElse.call();
-  }
-
-  void maybeWhen({
-    void Function(MismatchedPasswords)? mismatchedPasswords,
-    required void Function() orElse,
-  }) {
-    if (this is MismatchedPasswords && mismatchedPasswords != null) {
-      mismatchedPasswords.call(this as MismatchedPasswords);
-    }
-
-    orElse.call();
-  }
-
-  @override
-  String toString() {
-    if (this is MismatchedPasswords) {
-      return 'mismatchedPasswords';
-    }
-
-    return 'mismatchedPasswords';
-  }
-
-  void when({
-    required void Function(MismatchedPasswords) mismatchedPasswords,
-  }) {
-    if (this is MismatchedPasswords) {
-      mismatchedPasswords.call(this as MismatchedPasswords);
-    }
-
-    mismatchedPasswords.call(this as MismatchedPasswords);
-  }
+  const RepeatPasswordFailure._();
 }

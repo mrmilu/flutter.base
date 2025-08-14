@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../shared/domain/failures_extensions/email_failure.extension.dart';
-import '../../../shared/domain/failures_extensions/fullname_failure_extension.dart';
-import '../../../shared/domain/failures_extensions/password_failure_extension.dart';
-import '../../../shared/helpers/toasts.dart';
+import '../../../shared/presentation/extensions/failures/email_failure.extension.dart';
+import '../../../shared/presentation/extensions/failures/fullname_failure_extension.dart';
+import '../../../shared/presentation/extensions/failures/password_failure_extension.dart';
+import '../../../shared/presentation/helpers/toasts.dart';
 import '../../../shared/presentation/l10n/generated/l10n.dart';
 import '../../../shared/presentation/providers/global_loader/global_loader_cubit.dart';
 import '../../../shared/presentation/router/app_router.dart';
@@ -15,8 +15,8 @@ import '../../../shared/presentation/widgets/common/image_asset_widget.dart';
 import '../../../shared/presentation/widgets/components/buttons/custom_elevated_button.dart';
 import '../../../shared/presentation/widgets/components/inputs/custom_text_field_widget.dart';
 import '../../../shared/presentation/widgets/components/text/rm_text.dart';
-import '../../domain/failures_extensions/signup_failure_extension.dart';
 import '../../domain/interfaces/i_auth_repository.dart';
+import '../extensions/signup_failure_extension.dart';
 import '../providers/auth/auth_cubit.dart';
 import 'providers/signup_cubit.dart';
 
@@ -120,8 +120,7 @@ class SignUpView extends StatelessWidget {
                                         labelText: 'Nombre',
                                         showError: stateSignUp.showErrors,
                                         errorText: stateSignUp.name.map(
-                                          isLeft: (f) =>
-                                              f.toTranslation(context),
+                                          isLeft: (f) => f.toTranslate(context),
                                           isRight: (_) => null,
                                         ),
                                       ),
@@ -133,8 +132,7 @@ class SignUpView extends StatelessWidget {
                                         labelText: 'LastName',
                                         showError: stateSignUp.showErrors,
                                         errorText: stateSignUp.lastName.map(
-                                          isLeft: (f) =>
-                                              f.toTranslation(context),
+                                          isLeft: (f) => f.toTranslate(context),
                                           isRight: (_) => null,
                                         ),
                                       ),
@@ -147,8 +145,7 @@ class SignUpView extends StatelessWidget {
                                         labelText: 'Email',
                                         showError: stateSignUp.showErrors,
                                         errorText: stateSignUp.emailVos.map(
-                                          isLeft: (f) =>
-                                              f.toTranslation(context),
+                                          isLeft: (f) => f.toTranslate(context),
                                           isRight: (_) => null,
                                         ),
                                       ),
@@ -161,8 +158,7 @@ class SignUpView extends StatelessWidget {
                                         obscureText: false,
                                         showError: stateSignUp.showErrors,
                                         errorText: stateSignUp.passwordVos.map(
-                                          isLeft: (f) =>
-                                              f.toTranslation(context),
+                                          isLeft: (f) => f.toTranslate(context),
                                           isRight: (_) => null,
                                         ),
                                       ),

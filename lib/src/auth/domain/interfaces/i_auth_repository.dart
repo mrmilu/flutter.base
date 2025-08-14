@@ -1,6 +1,6 @@
-import '../../../shared/domain/failures/general_failure.dart';
+import '../../../shared/domain/failures/endpoints/general_base_failure.dart';
 import '../../../shared/domain/models/user_model.dart';
-import '../../../shared/helpers/result_or.dart';
+import '../../../shared/presentation/helpers/result_or.dart';
 import '../failures/oauth_sign_in_failure.dart';
 import '../failures/signin_failure.dart';
 import '../failures/signup_failure.dart';
@@ -8,13 +8,13 @@ import '../failures/update_document_failure.dart';
 import '../failures/validate_email_failure.dart';
 
 abstract class IAuthRepository {
-  Future<ResultOr<SignInFailure>> signInWithEmailAndPassword({
+  Future<ResultOr<SigninFailure>> signInWithEmailAndPassword({
     required String email,
     required String password,
   });
   Future<void> logout();
 
-  Future<ResultOr<SignUpFailure>> signUp({
+  Future<ResultOr<SignupFailure>> signUp({
     required String email,
     required String password,
   });
@@ -46,16 +46,20 @@ abstract class IAuthRepository {
     required String encodedIdentifier,
   });
 
-  Future<ResultOr<SignInFailure>> forgotPassword({
+  Future<ResultOr<SigninFailure>> forgotPassword({
     required String email,
   });
 
-  Future<ResultOr<GeneralFailure>> resetPassword({
+  Future<ResultOr<GeneralBaseFailure>> resetPassword({
     required String tokenKey,
     required String newPassword,
   });
 
-  Future<ResultOr<GeneralFailure>> createUserDevice({required String token});
+  Future<ResultOr<GeneralBaseFailure>> createUserDevice({
+    required String token,
+  });
 
-  Future<ResultOr<GeneralFailure>> deleteUserDevice({required String token});
+  Future<ResultOr<GeneralBaseFailure>> deleteUserDevice({
+    required String token,
+  });
 }

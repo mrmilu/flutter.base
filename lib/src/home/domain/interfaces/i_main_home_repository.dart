@@ -1,6 +1,6 @@
-import '../../../shared/domain/failures/general_failure.dart';
-import '../../../shared/helpers/resource.dart';
+import '../../../shared/domain/failures/endpoints/get_user_failure.dart';
+import '../../../shared/presentation/helpers/resource.dart';
 
 abstract class IMainHomeRepository {
-  Future<Resource<GeneralFailure, List<String>>> getProducts();
+  Future<Resource<GetUserFailure, List<String>>> getProducts();
 }

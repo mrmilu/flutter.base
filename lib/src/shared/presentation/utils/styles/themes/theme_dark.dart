@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../colors/colors_base.dart';
-import '../texts/text_styles_dark.dart';
+import '../texts/app_text_styles.dart';
 
 const transparentBottomSheetTheme = BottomSheetThemeData(
   backgroundColor: Colors.transparent,
@@ -27,7 +27,7 @@ final appThemeDataDark = ThemeData(
   highlightColor: const Color(0xffF9ECE1),
   appBarTheme: AppBarTheme(
     elevation: 0,
-    backgroundColor: AppColors.dark.specificBasicSemiBlack,
+    backgroundColor: AppColors.dark.background,
     toolbarHeight: 56,
     surfaceTintColor: Colors.transparent,
     foregroundColor: AppColors.dark.specificBasicWhite,
@@ -35,9 +35,9 @@ final appThemeDataDark = ThemeData(
       color: AppColors.dark.specificBasicWhite,
     ),
   ),
-  scaffoldBackgroundColor: AppColors.dark.specificBasicSemiBlack,
+  scaffoldBackgroundColor: AppColors.dark.background,
   bottomSheetTheme: BottomSheetThemeData(
-    backgroundColor: AppColors.dark.specificBasicSemiBlack,
+    backgroundColor: AppColors.dark.background,
     surfaceTintColor: Colors.transparent,
     shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(
@@ -61,7 +61,7 @@ final appThemeDataDark = ThemeData(
           borderRadius: BorderRadius.circular(100),
         ),
       ),
-      textStyle: WidgetStateProperty.all(appTextStylesDark.titleSmall),
+      textStyle: WidgetStateProperty.all(appTextStylesDark.headlineSmall),
     ),
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
@@ -79,7 +79,7 @@ final appThemeDataDark = ThemeData(
           borderRadius: BorderRadius.circular(100),
         ),
       ),
-      textStyle: WidgetStateProperty.all(appTextStylesDark.titleSmall),
+      textStyle: WidgetStateProperty.all(appTextStylesDark.headlineSmall),
     ),
   ),
   iconTheme: IconThemeData(

@@ -5,7 +5,7 @@ abstract class ForgotPasswordState with _$ForgotPasswordState {
   factory ForgotPasswordState({
     required String email,
     required bool showErrors,
-    required ResultOr<SignInFailure> resultOr,
+    required ResultOr<SigninFailure> resultOr,
   }) = _ForgotPasswordState;
 
   factory ForgotPasswordState.initial() => _ForgotPasswordState(

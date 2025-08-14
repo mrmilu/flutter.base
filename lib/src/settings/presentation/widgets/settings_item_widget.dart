@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../shared/presentation/extensions/buildcontext_extensions.dart';
 import '../../../shared/presentation/utils/assets/app_assets_icons.dart';
-import '../../../shared/presentation/utils/extensions/buildcontext_extensions.dart';
-import '../../../shared/presentation/utils/extensions/color_extension.dart';
 import '../../../shared/presentation/utils/styles/colors/colors_context.dart';
 import '../../../shared/presentation/widgets/common/image_asset_widget.dart';
 import '../../../shared/presentation/widgets/common/image_network_widget.dart';
@@ -69,7 +68,7 @@ class SettingsItemWidget extends StatelessWidget {
                                 BlendMode.srcATop,
                               )
                             : ColorFilter.mode(
-                                context.colors.disabled.wOpacity(0.3),
+                                context.colors.disabled,
                                 BlendMode.srcATop,
                               ),
                       ),
@@ -81,9 +80,7 @@ class SettingsItemWidget extends StatelessWidget {
                   Text(
                     title,
                     style: context.textTheme.bodyLarge?.copyWith(
-                      color: isActive
-                          ? null
-                          : context.colors.disabled.wOpacity(0.3),
+                      color: isActive ? null : context.colors.disabled,
                     ),
                   ),
                   if (subtitle != null) ...[
@@ -92,8 +89,8 @@ class SettingsItemWidget extends StatelessWidget {
                       subtitle!,
                       style: context.textTheme.bodySmall?.copyWith(
                         color: isActive
-                            ? context.colors.specificBasicGrey
-                            : context.colors.disabled.wOpacity(0.3),
+                            ? context.colors.specificBasicSemiBlack
+                            : context.colors.disabled,
                       ),
                     ),
                   ],
@@ -114,9 +111,7 @@ class SettingsItemWidget extends StatelessWidget {
                           path: AppAssetsIcons.arrowIosRight,
                           width: 24,
                           height: 24,
-                          color: isActive
-                              ? null
-                              : context.colors.disabled.wOpacity(0.3),
+                          color: isActive ? null : context.colors.disabled,
                         ),
                       ),
               ),

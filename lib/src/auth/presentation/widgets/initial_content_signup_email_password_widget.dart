@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../settings/presentation/profile_info/access_data/change_password/info_password_validator_widget.dart';
-import '../../../shared/domain/failures_extensions/email_failure.extension.dart';
+import '../../../shared/presentation/extensions/buildcontext_extensions.dart';
+import '../../../shared/presentation/extensions/failures/email_failure.extension.dart';
 import '../../../shared/presentation/l10n/generated/l10n.dart';
 import '../../../shared/presentation/utils/assets/app_assets_icons.dart';
-import '../../../shared/presentation/utils/extensions/buildcontext_extensions.dart';
 import '../../../shared/presentation/widgets/common/image_asset_widget.dart';
 import '../../../shared/presentation/widgets/components/buttons/custom_elevated_button.dart';
 import '../../../shared/presentation/widgets/components/inputs/custom_text_field_widget.dart';
@@ -76,7 +76,7 @@ class InitialContentSignUpEmailPasswordWidget extends StatelessWidget {
                   ),
                   showError: state.showErrors,
                   errorText: state.emailVos.map(
-                    isLeft: (e) => e.toTranslation(context),
+                    isLeft: (e) => e.toTranslate(context),
                     isRight: (_) => null,
                   ),
                 ),
@@ -109,6 +109,7 @@ class InitialContentSignUpEmailPasswordWidget extends StatelessWidget {
                       ? S.of(context).mismatchedPasswords
                       : null,
                 ),
+                const SizedBox(height: 8),
                 const Divider(),
                 const SizedBox(height: 8),
                 CustomElevatedButton.inverse(

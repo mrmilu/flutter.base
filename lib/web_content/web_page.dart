@@ -345,7 +345,7 @@ class WebPage extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 8.0),
-              CustomDowndownFieldPackageWidget<String>(
+              CustomDropdownFieldPackageWidget<String>(
                 title: 'Select Language',
                 items: [
                   const DropdownMenuItem(
