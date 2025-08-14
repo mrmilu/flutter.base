@@ -2,7 +2,7 @@
 /// Generado automáticamente - NO EDITAR MANUALMENTE
 class AppAssetsImages {
   /// Previene instanciación de la clase
-  AppAssetsImages._();
+  AppAssetsImages();
 
   // =============================================================================
   // 🖼️ IMÁGENES

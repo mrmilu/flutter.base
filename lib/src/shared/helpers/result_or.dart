@@ -43,8 +43,6 @@ abstract class ResultOr<F> {
     if (this is _ResultOrSuccess) {
       return isSuccess.call();
     }
-
-    isNone.call();
   }
 
   R map<R>({
@@ -65,11 +63,7 @@ abstract class ResultOr<F> {
       return isFailure.call((this as _ResultOrFailure).failure as F);
     }
 
-    if (this is _ResultOrSuccess) {
-      return isSuccess.call();
-    }
-
-    return isNone.call();
+    return isSuccess.call();
   }
 
   void maybeWhen({

@@ -2,7 +2,7 @@
 /// Generado automáticamente - NO EDITAR MANUALMENTE
 class AppAssetsLotties {
   /// Previene instanciación de la clase
-  AppAssetsLotties._();
+  AppAssetsLotties();
 
   // =============================================================================
   // 🎭 ANIMACIONES LOTTIE

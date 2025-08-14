@@ -50,7 +50,26 @@ locales:
 # Note: on macOS you need to have lcov installed on your system (`brew install lcov`) to use this:
 test: 
   fvm flutter test --coverage --test-randomize-ordering-seed random
-  grep -v ".freezed.dart" coverage/lcov.info > coverage/lcov_clean.info
+  lcov --remove coverage/lcov.info \
+    '**/generated/**' \
+    '**/*.g.dart' \
+    '**/*.freezed.dart' \
+    '**/generated_plugin_registrant.dart' \
+    --ignore-errors unused \
+    -o coverage/lcov_clean.info
+  genhtml coverage/lcov_clean.info -o coverage/html
+  open coverage/html/index.html
+
+# Test specific file with coverage
+test-file file: 
+  fvm flutter test --coverage {{file}}
+  lcov --remove coverage/lcov.info \
+    '**/generated/**' \
+    '**/*.g.dart' \
+    '**/*.freezed.dart' \
+    '**/generated_plugin_registrant.dart' \
+    --ignore-errors unused \
+    -o coverage/lcov_clean.info
   genhtml coverage/lcov_clean.info -o coverage/html
   open coverage/html/index.html
 

@@ -2,7 +2,7 @@
 /// Generado automáticamente - NO EDITAR MANUALMENTE
 class AppAssetsIcons {
   /// Previene instanciación de la clase
-  AppAssetsIcons._();
+  AppAssetsIcons();
 
   // =============================================================================
   // 🎨 ICONOS

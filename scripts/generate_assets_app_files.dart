@@ -156,7 +156,7 @@ class AssetGenerator {
     buffer.writeln('/// Generado automáticamente - NO EDITAR MANUALMENTE');
     buffer.writeln('class AppAssetsIcons {');
     buffer.writeln('  /// Previene instanciación de la clase');
-    buffer.writeln('  AppAssetsIcons._();');
+    buffer.writeln('  AppAssetsIcons();');
     buffer.writeln();
     buffer.writeln(
       '  // =============================================================================',
@@ -209,7 +209,7 @@ class AssetGenerator {
     buffer.writeln('/// Generado automáticamente - NO EDITAR MANUALMENTE');
     buffer.writeln('class AppAssetsImages {');
     buffer.writeln('  /// Previene instanciación de la clase');
-    buffer.writeln('  AppAssetsImages._();');
+    buffer.writeln('  AppAssetsImages();');
     buffer.writeln();
     buffer.writeln(
       '  // =============================================================================',
@@ -262,7 +262,7 @@ class AssetGenerator {
     buffer.writeln('/// Generado automáticamente - NO EDITAR MANUALMENTE');
     buffer.writeln('class AppAssetsLotties {');
     buffer.writeln('  /// Previene instanciación de la clase');
-    buffer.writeln('  AppAssetsLotties._();');
+    buffer.writeln('  AppAssetsLotties();');
     buffer.writeln();
     buffer.writeln(
       '  // =============================================================================',
@@ -313,7 +313,7 @@ class AssetGenerator {
     buffer.writeln('/// Generado automáticamente - NO EDITAR MANUALMENTE');
     buffer.writeln('class AppAssetsRive {');
     buffer.writeln('  /// Previene instanciación de la clase');
-    buffer.writeln('  AppAssetsRive._();');
+    buffer.writeln('  AppAssetsRive();');
     buffer.writeln();
     buffer.writeln(
       '  // =============================================================================',
