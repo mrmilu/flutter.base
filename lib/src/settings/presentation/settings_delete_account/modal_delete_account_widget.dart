@@ -28,7 +28,7 @@ Future<dynamic> showModalDeleteAccount(BuildContext context) {
     useSafeArea: true,
     routeSettings: const RouteSettings(name: PageNames.modalDeleteAccount),
     builder: (context) => Padding(
-      padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+      padding: EdgeInsets.only(top: MediaQuery.paddingOf(context).top),
       child: WrapperBottomSheetWithButton(
         title: context.cl.translate('modals.deleteAccount.title'),
         child: const ModalDeleteAccountWidget(),

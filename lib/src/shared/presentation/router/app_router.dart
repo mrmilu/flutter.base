@@ -9,7 +9,6 @@ import '../../../auth/presentation/signin/sign_in_page.dart';
 import '../../../auth/presentation/signup/sign_up_page.dart';
 import '../../../home/presentation/pages/main_home_page.dart';
 import '../../../settings/presentation/profile_info/access_data/access_data_page.dart';
-import '../../../settings/presentation/profile_info/access_data/change_email/change_email_page.dart';
 import '../../../settings/presentation/profile_info/access_data/change_password/change_password_page.dart';
 import '../../../settings/presentation/profile_info/config/settings_config_page.dart';
 import '../../../settings/presentation/profile_info/info_extra/info_extra_page.dart';
@@ -228,11 +227,6 @@ final GoRouter routerApp = GoRouter(
           name: PageNames.profileInfoAccessData,
           builder: (context, state) => const ProfileInfoAccessDataPage(),
           routes: [
-            GoRoute(
-              path: 'change_email',
-              name: PageNames.profileInfoAccessDataChangeEmail,
-              builder: (context, state) => const ChangeEmailPage(),
-            ),
             GoRoute(
               path: 'change_password',
               name: PageNames.profileInfoAccessDataChangePassword,

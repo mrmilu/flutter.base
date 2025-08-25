@@ -61,7 +61,7 @@ class ChangePasswordView extends StatelessWidget {
       body: SingleChildScrollView(
         child: ConstrainedBox(
           constraints: BoxConstraints(
-            minHeight: MediaQuery.of(context).size.height * 0.6,
+            minHeight: MediaQuery.sizeOf(context).height * 0.6,
           ),
           child: IntrinsicHeight(
             child: Padding(

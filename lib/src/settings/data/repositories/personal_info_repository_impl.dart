@@ -5,7 +5,6 @@ import 'package:dio/dio.dart';
 import '../../../auth/domain/interfaces/i_token_repository.dart';
 import '../../../shared/presentation/extensions/dio_exception_extension.dart';
 import '../../../shared/presentation/helpers/result_or.dart';
-import '../../domain/failures/change_email_failure.dart';
 import '../../domain/failures/change_password_failure.dart';
 import '../../domain/failures/personal_data_failure.dart';
 import '../../domain/failures/required_password_failure.dart';
@@ -72,31 +71,6 @@ class PersonalInfoRepositoryImpl implements IPersonalInfoRepository {
     } catch (e, s) {
       log('e, s', error: e, stackTrace: s);
       return ResultOr.failure(RequiredPasswordFailure.unknown);
-    }
-  }
-
-  @override
-  Future<ResultOr<ChangeEmailFailure>> changeEmail({
-    required String email,
-  }) async {
-    try {
-      await httpClient.patch(
-        '/api/users',
-        data: {
-          'email': email,
-        },
-      );
-      return ResultOr.success();
-    } on DioException catch (e) {
-      return ResultOr.failure(
-        e.toFailure(
-          ChangeEmailFailure.fromString,
-          ChangeEmailFailure.unknown,
-        ),
-      );
-    } catch (e, s) {
-      log('e, s', error: e, stackTrace: s);
-      return ResultOr.failure(ChangeEmailFailure.unknown);
     }
   }
 

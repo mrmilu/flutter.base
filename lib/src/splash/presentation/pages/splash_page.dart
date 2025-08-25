@@ -7,10 +7,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../auth/domain/interfaces/i_token_repository.dart';
 import '../../../auth/presentation/pages/initial_page.dart';
 import '../../../auth/presentation/providers/auth/auth_cubit.dart';
+import '../../../shared/presentation/helpers/toasts.dart';
 import '../../../shared/presentation/l10n/generated/l10n.dart';
 import '../../../shared/presentation/router/app_router.dart';
 import '../../../shared/presentation/router/page_names.dart';
 import '../../../shared/presentation/utils/styles/colors/colors_context.dart';
+import '../extensions/splash_failure_extension.dart';
 import '../providers/app_settings_cubit.dart';
 import '../providers/splash_cubit.dart';
 
@@ -124,7 +126,6 @@ class _SplashViewState extends State<SplashView>
 
   @override
   Widget build(BuildContext context) {
-    // final size = MediaQuery.sizeOf(context);
     return BlocListener<SplashCubit, SplashState>(
       listenWhen: (previous, current) =>
           previous.splashIsLoaded != current.splashIsLoaded,
@@ -136,14 +137,10 @@ class _SplashViewState extends State<SplashView>
           if (state.readyToNavigate) {
             redirectToPage(context);
           }
-          if (state.errorLoading) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: const Text('Huebo un error al cargar la app'),
-                backgroundColor: context.colors.specificSemanticError,
-              ),
-            );
-          }
+          state.resultOrLoad.whenIsFailure(
+            (failure) =>
+                showError(context, message: failure.toTranslate(context)),
+          );
         },
         builder: (context, stateSplash) {
           final size = MediaQuery.sizeOf(context);

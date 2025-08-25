@@ -161,6 +161,18 @@ class ProfileInfoPersonalDataView extends StatelessWidget {
                             'pages.profileInfoPersonalData.form.documentNumber',
                           ),
                         ),
+                        const SizedBox(height: 8),
+                        CustomTextFieldWidget(
+                          initialValue: user.email,
+                          readOnly: true,
+                          onChanged: (value) {},
+                          labelText: context.cl.translate(
+                            'pages.profileInfoPersonalData.form.email',
+                          ),
+                        ),
+                        SizedBox(
+                          height: MediaQuery.viewInsetsOf(context).bottom + 130,
+                        ),
                       ],
                     ),
                   );

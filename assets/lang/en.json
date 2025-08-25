@@ -1,7 +1,7 @@
 {
   "languages": {
-    "en": "Ingles",
-    "es": "Español"
+    "en": "English",
+    "es": "Spanish"
   },
   "urls": {
     "privacyPolicy": "https://niba.es/politica-de-privacidad",
@@ -16,7 +16,7 @@
   "phones": {
     "support": "900926161"
   },
-  "change": "Cambiar",
+  "change": "Change",
   "enums": {
     "documentType": {
       "nif": "NIF",
@@ -38,330 +38,331 @@
     }
   },
   "navigation": {
-    "home": "Mi Hogar",
-    "invoices": "Facturas",
-    "efforts": "Gestiones",
-    "ente": "Asesor"
+    "home": "My Home",
+    "invoices": "Invoices",
+    "efforts": "Management",
+    "ente": "Advisor"
   },
   "pages": {
     "auth": {
-      "resendEmail": "Reenviar email",
+      "resendEmail": "Resend email",
       "initial": {
         "title": "niba"
       },
       "signIn": {
         "contentEmail": {
-          "title": "¡Hola de nuevo!",
-          "subtitle": "Accede y sigue disfrutando de todas tus ventajas.",
+          "title": "Hello again!",
+          "subtitle": "Log in and keep enjoying all your benefits.",
           "form": {
             "email": "Email",
-            "button": "Continuar"
+            "button": "Continue"
           },
-          "or": "O",
+          "or": "Or",
           "socials": {
-            "apple": "Iniciar sesión con Apple",
-            "google": "Iniciar sesión con Google"
+            "apple": "Sign in with Apple",
+            "google": "Sign in with Google"
           },
-          "biometrics": "Accede con biometría",
-          "noAccount": "¿No tienes cuenta todavía? Regístrate",
-          "review": "Revisa las",
-          "terms": "Condiciones",
-          "and": "y",
-          "privacy": "Política de Privacidad"
+          "biometrics": "Access with biometrics",
+          "noAccount": "Don't have an account yet? Sign up",
+          "review": "Review the",
+          "terms": "Terms",
+          "and": "and",
+          "privacy": "Privacy Policy"
         },
         "contentPassword": {
-          "title": "Introduce tu contraseña",
-          "subtitle": "Accede y sigue disfrutando de todas tus ventajas.",
+          "title": "Enter your password",
+          "subtitle": "Log in and keep enjoying all your benefits.",
           "form": {
             "email": "Email",
-            "password": "Contraseña",
-            "button": "Continuar"
+            "password": "Password",
+            "button": "Continue"
           },
-          "forgotPassword": "He olvidado mi contraseña"
+          "forgotPassword": "I forgot my password"
         }
       },
       "signUp": {
         "contentEmail": {
-          "title": "¡Te damos la bienvenida!",
-          "subtitle": "Accede a tu área niba y empieza a gestionar tu energía como nunca antes.",
+          "title": "Welcome!",
+          "subtitle": "Access your niba area and start managing your energy like never before.",
           "form": {
             "email": "Email",
-            "button": "Continuar"
+            "button": "Continue"
           },
-          "or": "O",
+          "or": "Or",
           "socials": {
-            "apple": "Iniciar sesión con Apple",
-            "google": "Iniciar sesión con Google"
+            "apple": "Sign in with Apple",
+            "google": "Sign in with Google"
           },
-          "amClient": "¿Ya eres cliente? Inicia sesión",
-          "review": "Revisa las",
-          "terms": "Condiciones",
-          "and": "y",
-          "privacy": "Política de Privacidad"
+          "amClient": "Already a client? Sign in",
+          "review": "Review the",
+          "terms": "Terms",
+          "and": "and",
+          "privacy": "Privacy Policy"
         },
         "contentPassword": {
-          "title": "Establece tu contraseña",
-          "subtitle": "Accede a tu área personal y gestiona tu información energética desde donde quieras.",
+          "title": "Set your password",
+          "subtitle": "Access your personal area and manage your energy information from anywhere.",
           "form": {
             "email": "Email",
-            "password": "Contraseña",
+            "password": "Password",
             "infoPassword": {
-              "one": "Debe contener al menos 8 caracteres",
-              "two": "Debe incluir al menos una minúscula",
-              "three": "Debe incluir al menos una mayúscula",
-              "four": "Debe incluir al menos un carácter especial"
+              "one": "Must contain at least 8 characters",
+              "two": "Must include at least one lowercase letter",
+              "three": "Must include at least one uppercase letter",
+              "four": "Must include at least one special character"
             },
-            "repeatPassword": "Confirmar nueva contraseña",
-            "button": "Continuar"
+            "repeatPassword": "Confirm new password",
+            "button": "Continue"
           },
-          "forgetPassword": "He olvidado mi contraseña"
+          "forgetPassword": "I forgot my password"
         }
       },
       "forgotPassword": {
-        "title": "¿Has olvidado tu contraseña?",
-        "subtitle": "Ingresa el correo electrónico asociado a tu cuenta y te enviaremos un enlace para restablecer tu contraseña.",
+        "title": "Forgot your password?",
+        "subtitle": "Enter the email address associated with your account and we'll send you a link to reset your password.",
         "form": {
           "email": "Email",
-          "button": "Continuar"
+          "button": "Continue"
         },
-        "backToLogin": "Volver a iniciar sesión"
+        "backToLogin": "Back to sign in"
       },
       "resetPassword": {
-        "title": "Restablece tu contraseña",
+        "title": "Reset your password",
         "form": {
-          "newPassword": "Nueva contraseña",
-          "confirmPassword": "Confirmar nueva contraseña",
-          "button": "Continuar"
+          "newPassword": "New password",
+          "confirmPassword": "Confirm new password",
+          "button": "Continue"
         }
       }
     },
     "mainHome": {
-      "title": "¡Hola, {name}!"
+      "title": "Hello, {name}!"
     },
     "mainInvoices": {},
     "mainEfforts": {},
     "mainEnte": {},
     "help": {
-      "title": "Ayuda",
-      "myContract": "Mi contrato",
-      "billingAndPayment": "Facturas y pagos",
-      "consumption": "Consumo",
-      "myPlans": "Mis planes",
-      "assistance": "Asistencia",
-      "clientAssistance": "Atención al cliente",
-      "efforts": "Gestiones",
-      "otherCategory": "Otra categoría"
+      "title": "Help",
+      "myContract": "My contract",
+      "billingAndPayment": "Billing and payment",
+      "consumption": "Consumption",
+      "myPlans": "My plans",
+      "assistance": "Assistance",
+      "clientAssistance": "Customer service",
+      "efforts": "Management",
+      "otherCategory": "Other category"
     },
     "profileInfo": {
       "personalData": {
-        "title": "Datos personales",
-        "subtitle": "Nombre, apellidos, documento"
+        "title": "Personal data",
+        "subtitle": "Name, surname, document"
       },
       "accessData": {
-        "title": "Datos de acceso",
-        "subtitle": "Email, contraseña"
+        "title": "Access data",
+        "subtitle": "Email, password"
       },
       "contactData": {
-        "title": "Datos de contacto",
-        "subtitle": "Email, teléfono"
+        "title": "Contact data",
+        "subtitle": "Email, phone"
       },
       "myProducts": {
-        "title": "Mis productos",
-        "subtitle": "Detalle de tus productos contratados"
+        "title": "My products",
+        "subtitle": "Details of your contracted products"
       },
       "settings": {
-        "title": "Configuración",
-        "subtitle": "Idioma, Preferencias de notificación"
+        "title": "Settings",
+        "subtitle": "Language, Notification preferences"
       },
       "infoExtra": {
-        "title": "Información adicional",
-        "subtitle": "Política de privacidad, Términos de uso"
+        "title": "Additional information",
+        "subtitle": "Privacy policy, Terms of use"
       },
-      "logout": "Cerrar sesión",
-      "deleteAccount": "Dar de baja mi cuenta en Área privada"
+      "logout": "Sign out",
+      "deleteAccount": "Delete my private area account"
     },
     "profileInfoPersonalData": {
-      "title": "Datos personales",
-      "subtitle": "Si necesitas modificar tus datos personales, llámanos al 900 92 61 61.",
+      "title": "Personal data",
+      "subtitle": "If you need to modify your personal data, call us at 900 92 61 61.",
       "form": {
-        "name": "Nombre",
-        "surname": "Apellidos",
-        "phone": "Teléfono de España",
-        "documentType": "Tipo de documento",
-        "documentNumber": "Número de documento",
-        "button": "Guardar"
+        "name": "Name",
+        "surname": "Surname",
+        "phone": "Spain phone number",
+        "documentType": "Document type",
+        "documentNumber": "Document number",
+        "email": "Email",
+        "button": "Save"
       },
-      "success": "Datos guardados correctamente"
+      "success": "Data saved successfully"
     },
     "profileInfoAccessData": {
-      "title": "Datos de acceso",
+      "title": "Access data",
       "email": {
         "title": "Email"
       },
       "password": {
-        "title": "Contraseña"
+        "title": "Password"
       },
-      "biometrics": "Acceso con biometría"
+      "biometrics": "Biometric access"
     },
     "profileInfoAccessDataEmail": {
       "title": "Email",
-      "subtitle": "¡Recuerda! Si cambias tu correo, a partir de ahora lo usarás para acceder a todos los servicios de niba.",
+      "subtitle": "Remember! If you change your email, from now on you'll use it to access all niba services.",
       "form": {
         "email": "Email",
-        "repeatEmail": "Repetir email",
-        "button": "Guardar"
+        "repeatEmail": "Repeat email",
+        "button": "Save"
       },
-      "success": "Email guardado correctamente"
+      "success": "Email saved successfully"
     },
     "profileInfoAccessDataPassword": {
-      "title": "Contraseña",
-      "subtitle": "Tu nueva contraseña será tu llave de acceso a todos los servicios de niba desde ahora.\n¡Elígela bien!",
+      "title": "Password",
+      "subtitle": "Your new password will be your access key to all niba services from now on.\nChoose wisely!",
       "form": {
-        "oldPassword": "Contraseña actual",
-        "password": "Nueva contraseña",
+        "oldPassword": "Current password",
+        "password": "New password",
         "infoPassword": {
-          "one": "Debe contener al menos 8 caracteres",
-          "two": "Debe incluir al menos una minúscula",
-          "three": "Debe incluir al menos una mayúscula",
-          "four": "Debe incluir al menos un carácter especial"
+          "one": "Must contain at least 8 characters",
+          "two": "Must include at least one lowercase letter",
+          "three": "Must include at least one uppercase letter",
+          "four": "Must include at least one special character"
         },
-        "repeatPassword": "Confirmar nueva contraseña",
-        "button": "Guardar"
+        "repeatPassword": "Confirm new password",
+        "button": "Save"
       },
-      "success": "Contraseña guardada correctamente"
+      "success": "Password saved successfully"
     },
     "profileInfoContactData": {
-      "title": "Datos de contacto",
+      "title": "Contact data",
       "email": {
         "title": "Email"
       },
       "phone": {
-        "title": "Teléfono"
+        "title": "Phone"
       }
     },
     "profileInfoContactDataChangeEmail": {
       "title": "Email",
-      "subtitle": "¡Recuerda! Si cambias tu correo, a partir de ahora:",
-      "extra1": "Recibirás todas nuestras comunicaciones en esta dirección.",
-      "extra2": "Aquí te llegarán tus facturas.",
+      "subtitle": "Remember! If you change your email, from now on:",
+      "extra1": "You'll receive all our communications at this address.",
+      "extra2": "Your invoices will arrive here.",
       "form": {
         "email": "Email",
-        "repeatEmail": "Repetir email",
-        "button": "Guardar"
+        "repeatEmail": "Repeat email",
+        "button": "Save"
       },
-      "success": "Email guardado correctamente"
+      "success": "Email saved successfully"
     },
     "profileInfoContactDataChangePhone": {
-      "title": "Teléfono",
-      "subtitle": "¡Recuerda! Si cambias tu teléfono, a partir de ahora recibirás todas nuestras comunicaciones por SMS a este número.",
+      "title": "Phone",
+      "subtitle": "Remember! If you change your phone number, from now on you'll receive all our SMS communications at this number.",
       "form": {
-        "phone": "Teléfono",
-        "button": "Guardar"
+        "phone": "Phone",
+        "button": "Save"
       },
-      "success": "Teléfono guardado correctamente"
+      "success": "Phone saved successfully"
     },
     "profileInfoConfig": {
-      "title": "Configuración",
+      "title": "Settings",
       "languages": {
-        "title": "Idiomas",
-        "subtitle": "Editar idioma"
+        "title": "Languages",
+        "subtitle": "Edit language"
       },
       "notifications": {
-        "title": "Notificaciones",
-        "subtitle": "Editar preferencias de notificación"
+        "title": "Notifications",
+        "subtitle": "Edit notification preferences"
       }
     },
     "profileInfoConfigLanguages": {
-      "title": "Idiomas",
-      "subtitle": "Selecciona el idioma que prefieres para la app.",
+      "title": "Languages",
+      "subtitle": "Select your preferred language for the app.",
       "form": {
-        "language": "Idioma"
+        "language": "Language"
       }
     },
     "profileInfoInfoExtra": {
-      "title": "Información adicional",
+      "title": "Additional information",
       "privacy": {
-        "title": "Política de privacidad",
-        "subtitle": "Revisa la política de privacidad"
+        "title": "Privacy policy",
+        "subtitle": "Review the privacy policy"
       },
       "terms": {
-        "title": "Términos de uso y condiciones",
-        "subtitle": "Revisa los términos de uso y condiciones"
+        "title": "Terms of use and conditions",
+        "subtitle": "Review the terms of use and conditions"
       },
       "legalNotice": {
-        "title": "Aviso legal",
-        "subtitle": "Revisa el aviso legal"
+        "title": "Legal notice",
+        "subtitle": "Review the legal notice"
       },
       "appVersion": {
-        "title": "Versión de la app"
+        "title": "App version"
       }
     },
     "webviewpff": {
-      "download": "Descargar PDF"
+      "download": "Download PDF"
     }
   },
   "modals": {
     "confirmYourAccount": {
-      "title": "Confirma tu cuenta",
-      "subtitle": "¡Gracias! Hemos enviado un correo para que nos confirmes tu cuenta.",
+      "title": "Confirm your account",
+      "subtitle": "Thank you! We've sent an email to confirm your account.",
       "button": {
-        "logout": "Cerrar sesión"
+        "logout": "Sign out"
       }
     },
     "verifyResetPassword": {
-      "title": "¡Enlace enviado!",
-      "subtitle": "¡Gracias! Hemos enviado un correo con las instrucciones para restablecer tu contraseña.",
+      "title": "Link sent!",
+      "subtitle": "Thank you! We've sent an email with instructions to reset your password.",
       "button": {
-        "login": "Iniciar sesión"
+        "login": "Sign in"
       }
     },
     "changeEmail": {
-      "title": "Modificar email",
-      "subtitle": "Introduce tu contraseña para cambiar tus datos de email.",
+      "title": "Change email",
+      "subtitle": "Enter your password to change your email data.",
       "form": {
-        "password": "Contraseña",
-        "button": "Continuar"
+        "password": "Password",
+        "button": "Continue"
       }
     },
     "changePassword": {
-      "title": "Modificar contraseña",
-      "subtitle": "Introduce tu contraseña para crear una nueva contraseña.",
+      "title": "Change password",
+      "subtitle": "Enter your password to create a new password.",
       "form": {
-        "password": "Contraseña",
-        "button": "Continuar"
+        "password": "Password",
+        "button": "Continue"
       }
     },
     "logout": {
-      "title": "Cerrar sesión",
-      "subtitle": "¿Estás seguro de que quieres cerrar tu sesión en el Área privada?",
+      "title": "Sign out",
+      "subtitle": "Are you sure you want to sign out of the private area?",
       "button": {
-        "cancel": "Cancelar",
-        "confirm": "Confirmar"
+        "cancel": "Cancel",
+        "confirm": "Confirm"
       }
     },
     "deleteAccount": {
-      "title": "Dar de baja mi cuenta",
-      "subtitle": "¿Estás seguro de que deseas eliminar tu cuenta?",
+      "title": "Delete my account",
+      "subtitle": "Are you sure you want to delete your account?",
       "description": {
-        "first": "Antes de continuar, ten en cuenta lo siguiente:",
-        "second": "Si tienes contratos de suministro activos, la eliminación de tu cuenta no implica la cancelación de dichos servicios.",
-        "third": "Continuarás recibiendo facturas y comunicaciones importantes por los canales que hayas indicado (correo electrónico).",
-        "fourth": "Conservaremos parte de tu información durante el tiempo necesario para cumplir con nuestras obligaciones legales y contractuales (por ejemplo, facturación y garantías)."
+        "first": "Before continuing, please consider the following:",
+        "second": "If you have active supply contracts, deleting your account does not imply cancellation of those services.",
+        "third": "You will continue to receive invoices and important communications through the channels you have indicated (email).",
+        "fourth": "We will retain part of your information for the time necessary to comply with our legal and contractual obligations (for example, billing and warranties)."
       },
-      "warning": "Si deseas gestionar tus contratos o darte de baja del servicio de suministro eléctrico, por favor contáctanos a través de Soporte al cliente al número 900 92 61 61.",
-      "confirmation": "¿Deseas continuar con la eliminación de tu área privada?",
+      "warning": "If you wish to manage your contracts or unsubscribe from the electrical supply service, please contact us through Customer Support at 900 92 61 61.",
+      "confirmation": "Do you want to continue with the deletion of your private area?",
       "button": {
-        "cancel": "Cancelar",
-        "confirm": "Eliminar mi cuenta"
+        "cancel": "Cancel",
+        "confirm": "Delete my account"
       }
     },
     "selectImage": {
-      "title": "Seleccionar imagen",
-      "subtitle": "Elige una imagen de tu galería o toma una foto nueva.",
-      "gallery": "Galería",
-      "galleryPermission": "Para seleccionar fotos, necesitamos acceso a tu galería. Por favor, otorga el permiso en configuración.",
-      "camera": "Cámara",
-      "cameraPermission": "Para tomar fotos, necesitamos acceso a tu cámara. Por favor, otorga el permiso en configuración."
+      "title": "Select image",
+      "subtitle": "Choose an image from your gallery or take a new photo.",
+      "gallery": "Gallery",
+      "galleryPermission": "To select photos, we need access to your gallery. Please grant permission in settings.",
+      "camera": "Camera",
+      "cameraPermission": "To take photos, we need access to your camera. Please grant permission in settings."
     }
   }
 }

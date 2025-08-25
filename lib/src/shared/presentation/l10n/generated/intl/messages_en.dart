@@ -41,6 +41,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "alreadyRegisteredInDatadis": MessageLookupByLibrary.simpleMessage(
       "You are already registered in Datadis",
     ),
+    "appSettingsError": MessageLookupByLibrary.simpleMessage(
+      "Error in app settings",
+    ),
     "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
     "cancelledByUser": MessageLookupByLibrary.simpleMessage(
       "Cancelled by user",
@@ -109,6 +112,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "invalidPhone": MessageLookupByLibrary.simpleMessage(
       "Invalid phone number",
     ),
+    "invalidSurname": MessageLookupByLibrary.simpleMessage("Invalid surname"),
     "minLength": m0,
     "minutes": MessageLookupByLibrary.simpleMessage("minutes"),
     "mismatchedEmail": MessageLookupByLibrary.simpleMessage(
