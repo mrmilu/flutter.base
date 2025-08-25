@@ -8,7 +8,7 @@ import '../../../../shared/presentation/extensions/buildcontext_extensions.dart'
 import '../../../../shared/presentation/helpers/result_or.dart';
 import '../../../../shared/presentation/helpers/value_object.dart';
 import '../../../../shared/presentation/providers/global_loader/global_loader_cubit.dart';
-import '../../../domain/failures/personal_data_failure.dart';
+import '../../../domain/failures/change_user_info_failure.dart';
 import '../../../domain/interfaces/i_personal_info_repository.dart';
 
 part 'personal_data_cubit.freezed.dart';

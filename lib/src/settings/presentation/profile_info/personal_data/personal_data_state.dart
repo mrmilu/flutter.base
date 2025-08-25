@@ -8,7 +8,7 @@ abstract class PersonalDataState with _$PersonalDataState {
     required String name,
     required String lastName,
     required bool showError,
-    required ResultOr<PersonalDataFailure> resultOrPersonalData,
+    required ResultOr<ChangeUserInfoFailure> resultOrPersonalData,
   }) = _PersonalDataState;
 
   factory PersonalDataState.initial() => _PersonalDataState(

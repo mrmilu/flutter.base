@@ -12,6 +12,7 @@ import '../shared/presentation/widgets/components/buttons/custom_outlined_button
 import '../shared/presentation/widgets/components/buttons/custom_text_button.dart';
 import '../shared/presentation/widgets/components/checkboxs/custom_checkbox_widget.dart';
 import '../shared/presentation/widgets/components/inputs/custom_text_field_widget.dart';
+import '../shared/presentation/widgets/components/radio_buttons/custom_radio_button_widget.dart';
 import '../shared/presentation/widgets/components/sliders/custom_slider_widget.dart';
 import '../shared/presentation/widgets/components/switchs/custom_switch_widget.dart';
 import '../shared/presentation/widgets/components/tags/custom_tag_icon_widget.dart';
@@ -207,6 +208,43 @@ class MainTap2Page extends StatelessWidget {
                 value: false,
                 enabled: false,
                 onChanged: (value) {},
+              ),
+
+              const SizedBox(height: 24.0),
+              const RMText.titleMedium('Radio Buttons'),
+              const SizedBox(height: 8.0),
+              CustomRadioButtonWidget(
+                text: 'Tap 2 Radio Button',
+                value: true,
+                onChanged: (value) {},
+              ),
+              const SizedBox(height: 8.0),
+              CustomRadioButtonWidget(
+                text: 'Tap 2 Radio Button',
+                value: false,
+                onChanged: (value) {},
+              ),
+              const SizedBox(height: 8.0),
+              CustomRadioButtonWidget(
+                text: 'Tap 2 Radio Button',
+                value: false,
+                enabled: false,
+                onChanged: (value) {},
+              ),
+              const SizedBox(height: 8.0),
+              CustomRadioButtonWidget(
+                text: 'Tap 2 Radio Button',
+                value: false,
+                onChanged: (value) {},
+                showError: true,
+                errorText: 'Error message',
+              ),
+              const SizedBox(height: 8.0),
+              CustomRadioButtonWidget(
+                text: 'Tap 2 Radio Button',
+                value: false,
+                onChanged: (value) {},
+                infoText: 'Info message',
               ),
               const SizedBox(height: 24.0),
               const RMText.titleMedium('Tags'),

@@ -24,118 +24,123 @@ class ProfileInfoPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: SingleChildScrollView(
-        child: ConstrainedBox(
-          constraints: BoxConstraints(
-            minHeight:
-                MediaQuery.sizeOf(context).height -
-                MediaQuery.paddingOf(context).top -
-                kToolbarHeight,
-          ),
-          child: IntrinsicHeight(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Column(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 20),
+              Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 20),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      BlocBuilder<AuthCubit, AuthState>(
-                        builder: (context, stateAuth) {
-                          final userName = stateAuth.user?.name ?? '';
-                          return Row(
-                            children: [
-                              const ImageAssetWidget(
-                                path: AppAssetsIcons.topBarProfile,
-                                width: 24,
-                                height: 24,
+                children:
+                    [
+                          BlocBuilder<AuthCubit, AuthState>(
+                            builder: (context, stateAuth) {
+                              final userName = stateAuth.user?.name ?? '';
+                              return Row(
+                                children: [
+                                  const ImageAssetWidget(
+                                    path: AppAssetsIcons.topBarProfile,
+                                    width: 24,
+                                    height: 24,
+                                  ),
+                                  const SizedBox(width: 12),
+                                  Flexible(
+                                    child: RMText.titleSmall(userName),
+                                  ),
+                                ],
+                              );
+                            },
+                          ),
+                          const SizedBox(height: 32),
+                          SettingsItemWidget(
+                            title: context.cl.translate(
+                              'pages.profileInfo.personalData.title',
+                            ),
+                            subtitle: context.cl.translate(
+                              'pages.profileInfo.personalData.subtitle',
+                            ),
+                            onTap: () => routerApp.pushNamed(
+                              PageNames.profileInfoPersonalData,
+                            ),
+                          ),
+                          const SizedBox(height: 20),
+                          SettingsItemWidget(
+                            title: context.cl.translate(
+                              'pages.profileInfo.accessData.title',
+                            ),
+                            subtitle: context.cl.translate(
+                              'pages.profileInfo.accessData.subtitle',
+                            ),
+                            onTap: () => routerApp.pushNamed(
+                              PageNames.profileInfoAccessData,
+                            ),
+                          ),
+                          const SizedBox(height: 52),
+                          SettingsItemWidget(
+                            title: context.cl.translate(
+                              'pages.profileInfo.settings.title',
+                            ),
+                            subtitle: context.cl.translate(
+                              'pages.profileInfo.settings.subtitle',
+                            ),
+                            onTap: () => routerApp.pushNamed(
+                              PageNames.profileInfoSettingsConfig,
+                            ),
+                          ),
+                          const SizedBox(height: 20),
+                          SettingsItemWidget(
+                            title: context.cl.translate(
+                              'pages.profileInfo.infoExtra.title',
+                            ),
+                            subtitle: context.cl.translate(
+                              'pages.profileInfo.infoExtra.subtitle',
+                            ),
+                            onTap: () => routerApp.pushNamed(
+                              PageNames.profileInfoInfoExtra,
+                            ),
+                          ),
+                          const SizedBox(height: 52),
+                          CustomTextButton.iconSecondary(
+                            onPressed: () async => showModalBottomSheet(
+                              context: context,
+                              isScrollControlled: true,
+                              routeSettings: const RouteSettings(
+                                name: PageNames.modalLogout,
                               ),
-                              const SizedBox(width: 12),
-                              Flexible(child: RMText.titleSmall(userName)),
-                            ],
-                          );
-                        },
-                      ),
-                      const SizedBox(height: 32),
-                      SettingsItemWidget(
-                        title: context.cl.translate(
-                          'pages.profileInfo.personalData.title',
-                        ),
-                        subtitle: context.cl.translate(
-                          'pages.profileInfo.personalData.subtitle',
-                        ),
-                        onTap: () => routerApp.pushNamed(
-                          PageNames.profileInfoPersonalData,
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      SettingsItemWidget(
-                        title: context.cl.translate(
-                          'pages.profileInfo.accessData.title',
-                        ),
-                        subtitle: context.cl.translate(
-                          'pages.profileInfo.accessData.subtitle',
-                        ),
-                        onTap: () => routerApp.pushNamed(
-                          PageNames.profileInfoAccessData,
-                        ),
-                      ),
-                      const SizedBox(height: 52),
-                      SettingsItemWidget(
-                        title: context.cl.translate(
-                          'pages.profileInfo.settings.title',
-                        ),
-                        subtitle: context.cl.translate(
-                          'pages.profileInfo.settings.subtitle',
-                        ),
-                        onTap: () => routerApp.pushNamed(
-                          PageNames.profileInfoSettingsConfig,
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      SettingsItemWidget(
-                        title: context.cl.translate(
-                          'pages.profileInfo.infoExtra.title',
-                        ),
-                        subtitle: context.cl.translate(
-                          'pages.profileInfo.infoExtra.subtitle',
-                        ),
-                        onTap: () =>
-                            routerApp.pushNamed(PageNames.profileInfoInfoExtra),
-                      ),
-                      const SizedBox(height: 52),
-                      CustomTextButton.iconSecondary(
-                        onPressed: () async => showModalBottomSheet(
-                          context: context,
-                          isScrollControlled: true,
-                          routeSettings: const RouteSettings(
-                            name: PageNames.modalLogout,
+                              builder: (context) =>
+                                  WrapperBottomSheetWithButton(
+                                    hasScroll: false,
+                                    title: context.cl.translate(
+                                      'modals.logout.title',
+                                    ),
+                                    child: const ModalLogoutWidget(),
+                                  ),
+                            ),
+                            label: context.cl.translate(
+                              'pages.profileInfo.logout',
+                            ),
+                            iconPath: AppAssetsIcons.arrowRight,
                           ),
-                          builder: (context) => WrapperBottomSheetWithButton(
-                            hasScroll: false,
-                            title: context.cl.translate('modals.logout.title'),
-                            child: const ModalLogoutWidget(),
+                          CustomTextButton.icon(
+                            onPressed: () => showModalDeleteAccount(context),
+                            label: context.cl.translate(
+                              'pages.profileInfo.deleteAccount',
+                            ),
+                            iconPath: AppAssetsIcons.arrowRight,
+                            colorText: context.colors.specificSemanticError,
                           ),
-                        ),
-                        label: context.cl.translate('pages.profileInfo.logout'),
-                        iconPath: AppAssetsIcons.arrowRight,
-                      ),
-                      CustomTextButton.icon(
-                        onPressed: () => showModalDeleteAccount(context),
-                        label: context.cl.translate(
-                          'pages.profileInfo.deleteAccount',
-                        ),
-                        iconPath: AppAssetsIcons.arrowRight,
-                        colorText: context.colors.specificSemanticError,
-                      ),
-                      SizedBox(height: context.paddingBottomPlus),
-                    ].animate(interval: 40.milliseconds).slideY().fadeIn(),
-                  ),
-                  const SizedBox(height: 32),
-                ],
+                          SizedBox(height: context.paddingBottomPlus),
+                        ]
+                        .animate(
+                          delay: 200.milliseconds,
+                          interval: 40.milliseconds,
+                        )
+                        .slideY()
+                        .fadeIn(),
               ),
-            ),
+              const SizedBox(height: 32),
+            ],
           ),
         ),
       ),

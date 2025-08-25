@@ -19,6 +19,7 @@ import '../../../../shared/presentation/widgets/components/selects/select_image_
 import '../../../../shared/presentation/widgets/components/text/rm_text.dart';
 import '../../../data/repositories/personal_info_repository_impl.dart';
 import '../../../domain/interfaces/i_personal_info_repository.dart';
+import '../../extensions/change_user_info_faillure_extension.dart';
 import 'personal_data_cubit.dart';
 
 class ProfileInfoPersonalDataPage extends StatelessWidget {

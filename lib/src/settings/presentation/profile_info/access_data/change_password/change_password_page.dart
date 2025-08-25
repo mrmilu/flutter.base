@@ -17,6 +17,7 @@ import '../../../../../shared/presentation/widgets/components/inputs/custom_text
 import '../../../../../shared/presentation/widgets/components/text/rm_text.dart';
 import '../../../../data/repositories/personal_info_repository_impl.dart';
 import '../../../../domain/interfaces/i_personal_info_repository.dart';
+import '../../../extensions/change_password_failure_extension.dart';
 import 'change_password_cubit.dart';
 import 'info_password_validator_widget.dart';
 

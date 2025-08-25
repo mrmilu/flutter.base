@@ -3,10 +3,11 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 
 import '../../../auth/domain/interfaces/i_token_repository.dart';
+import '../../../shared/domain/failures/endpoints/general_base_failure.dart';
 import '../../../shared/presentation/extensions/dio_exception_extension.dart';
 import '../../../shared/presentation/helpers/result_or.dart';
 import '../../domain/failures/change_password_failure.dart';
-import '../../domain/failures/personal_data_failure.dart';
+import '../../domain/failures/change_user_info_failure.dart';
 import '../../domain/failures/required_password_failure.dart';
 import '../../domain/interfaces/i_personal_info_repository.dart';
 
@@ -19,7 +20,7 @@ class PersonalInfoRepositoryImpl implements IPersonalInfoRepository {
   });
 
   @override
-  Future<ResultOr<PersonalDataFailure>> setPersonalData({
+  Future<ResultOr<ChangeUserInfoFailure>> setPersonalData({
     required String name,
     required String lastName,
     required String phone,
@@ -38,13 +39,19 @@ class PersonalInfoRepositoryImpl implements IPersonalInfoRepository {
     } on DioException catch (e) {
       return ResultOr.failure(
         e.toFailure(
-          PersonalDataFailure.fromString,
-          PersonalDataFailure.unknown,
+          ChangeUserInfoFailure.fromString,
+          const ChangeUserInfoFailure.general(
+            GeneralBaseFailure.unexpectedError(),
+          ),
         ),
       );
     } catch (e, s) {
       log('e, s', error: e, stackTrace: s);
-      return ResultOr.failure(PersonalDataFailure.unknown);
+      return ResultOr.failure(
+        const ChangeUserInfoFailure.general(
+          GeneralBaseFailure.unexpectedError(),
+        ),
+      );
     }
   }
 
@@ -65,12 +72,18 @@ class PersonalInfoRepositoryImpl implements IPersonalInfoRepository {
       return ResultOr.failure(
         e.toFailure(
           RequiredPasswordFailure.fromString,
-          RequiredPasswordFailure.unknown,
+          const RequiredPasswordFailure.general(
+            GeneralBaseFailure.unexpectedError(),
+          ),
         ),
       );
     } catch (e, s) {
       log('e, s', error: e, stackTrace: s);
-      return ResultOr.failure(RequiredPasswordFailure.unknown);
+      return ResultOr.failure(
+        const RequiredPasswordFailure.general(
+          GeneralBaseFailure.unexpectedError(),
+        ),
+      );
     }
   }
 
@@ -95,12 +108,18 @@ class PersonalInfoRepositoryImpl implements IPersonalInfoRepository {
       return ResultOr.failure(
         e.toFailure(
           ChangePasswordFailure.fromString,
-          ChangePasswordFailure.unknown,
+          const ChangePasswordFailure.general(
+            GeneralBaseFailure.unexpectedError(),
+          ),
         ),
       );
     } catch (e, s) {
       log('e, s', error: e, stackTrace: s);
-      return ResultOr.failure(ChangePasswordFailure.unknown);
+      return ResultOr.failure(
+        const ChangePasswordFailure.general(
+          GeneralBaseFailure.unexpectedError(),
+        ),
+      );
     }
   }
 }

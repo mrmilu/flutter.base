@@ -1,10 +1,10 @@
 import '../../../shared/presentation/helpers/result_or.dart';
 import '../failures/change_password_failure.dart';
-import '../failures/personal_data_failure.dart';
+import '../failures/change_user_info_failure.dart';
 import '../failures/required_password_failure.dart';
 
 abstract class IPersonalInfoRepository {
-  Future<ResultOr<PersonalDataFailure>> setPersonalData({
+  Future<ResultOr<ChangeUserInfoFailure>> setPersonalData({
     required String name,
     required String lastName,
     required String phone,
