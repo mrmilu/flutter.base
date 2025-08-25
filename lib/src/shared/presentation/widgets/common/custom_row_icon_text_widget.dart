@@ -52,8 +52,7 @@ class CustomRowIconTextWidget extends StatelessWidget {
                   textStyle ??
                   context.textTheme.labelSmall?.copyWith(
                     color: textColor,
-                  ) ??
-                  TextStyle(color: textColor),
+                  ),
             ),
           ),
         ),
