@@ -27,11 +27,15 @@ class DownloadFileRepositoryImpl implements IDownloadFileRepository {
       return Resource.failure(
         e.toFailure(
           DownloadFileFailure.fromString,
-          const DownloadFileFailure.problemWithSaveFile(),
+          (generalFailure) => DownloadFileFailure.general(generalFailure),
         ),
       );
     } catch (e) {
-      return Resource.failure(const DownloadFileFailure.problemWithSaveFile());
+      return Resource.failure(
+        DownloadFileFailure.general(
+          GeneralBaseFailure.unexpectedError(message: e.toString()),
+        ),
+      );
     }
   }
 
@@ -63,13 +67,15 @@ class DownloadFileRepositoryImpl implements IDownloadFileRepository {
       return Resource.failure(
         e.toFailure(
           DownloadFileFailure.fromString,
-          const DownloadFileFailure.general(
-            GeneralBaseFailure.unexpectedError(),
-          ),
+          (generalFailure) => DownloadFileFailure.general(generalFailure),
         ),
       );
     } catch (e) {
-      return Resource.failure(const DownloadFileFailure.problemWithSaveFile());
+      return Resource.failure(
+        DownloadFileFailure.general(
+          GeneralBaseFailure.unexpectedError(message: e.toString()),
+        ),
+      );
     }
   }
 
@@ -88,7 +94,11 @@ class DownloadFileRepositoryImpl implements IDownloadFileRepository {
       await file.writeAsBytes(bytes);
       return Resource.success(file.path);
     } catch (e) {
-      return Resource.failure(const DownloadFileFailure.problemWithSaveFile());
+      return Resource.failure(
+        DownloadFileFailure.general(
+          GeneralBaseFailure.unexpectedError(message: e.toString()),
+        ),
+      );
     }
   }
 }

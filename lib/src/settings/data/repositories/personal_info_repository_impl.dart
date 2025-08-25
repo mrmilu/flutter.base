@@ -40,16 +40,14 @@ class PersonalInfoRepositoryImpl implements IPersonalInfoRepository {
       return ResultOr.failure(
         e.toFailure(
           ChangeUserInfoFailure.fromString,
-          const ChangeUserInfoFailure.general(
-            GeneralBaseFailure.unexpectedError(),
-          ),
+          (gF) => ChangeUserInfoFailure.general(gF),
         ),
       );
     } catch (e, s) {
       log('e, s', error: e, stackTrace: s);
       return ResultOr.failure(
-        const ChangeUserInfoFailure.general(
-          GeneralBaseFailure.unexpectedError(),
+        ChangeUserInfoFailure.general(
+          GeneralBaseFailure.unexpectedError(message: e.toString()),
         ),
       );
     }
@@ -72,16 +70,14 @@ class PersonalInfoRepositoryImpl implements IPersonalInfoRepository {
       return ResultOr.failure(
         e.toFailure(
           RequiredPasswordFailure.fromString,
-          const RequiredPasswordFailure.general(
-            GeneralBaseFailure.unexpectedError(),
-          ),
+          (gF) => RequiredPasswordFailure.general(gF),
         ),
       );
     } catch (e, s) {
       log('e, s', error: e, stackTrace: s);
       return ResultOr.failure(
-        const RequiredPasswordFailure.general(
-          GeneralBaseFailure.unexpectedError(),
+        RequiredPasswordFailure.general(
+          GeneralBaseFailure.unexpectedError(message: e.toString()),
         ),
       );
     }
@@ -108,16 +104,14 @@ class PersonalInfoRepositoryImpl implements IPersonalInfoRepository {
       return ResultOr.failure(
         e.toFailure(
           ChangePasswordFailure.fromString,
-          const ChangePasswordFailure.general(
-            GeneralBaseFailure.unexpectedError(),
-          ),
+          (gF) => ChangePasswordFailure.general(gF),
         ),
       );
     } catch (e, s) {
       log('e, s', error: e, stackTrace: s);
       return ResultOr.failure(
-        const ChangePasswordFailure.general(
-          GeneralBaseFailure.unexpectedError(),
+        ChangePasswordFailure.general(
+          GeneralBaseFailure.unexpectedError(message: e.toString()),
         ),
       );
     }

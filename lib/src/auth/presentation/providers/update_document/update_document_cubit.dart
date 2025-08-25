@@ -5,7 +5,7 @@ import '../../../../shared/domain/types/document_type.dart';
 import '../../../../shared/domain/vos/fullname_vos.dart';
 import '../../../../shared/domain/vos/nie_vos.dart';
 import '../../../../shared/domain/vos/nif_vos.dart';
-import '../../../../shared/presentation/extensions/buildcontext_extensions.dart';
+import '../../../../shared/presentation/extensions/iterable_extension.dart';
 import '../../../../shared/presentation/helpers/result_or.dart';
 import '../../../../shared/presentation/helpers/value_object.dart';
 import '../../../../shared/presentation/providers/global_loader/global_loader_cubit.dart';

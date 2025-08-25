@@ -24,16 +24,14 @@ class DeleteAccountRepositoryImpl implements IDeleteAccountRepository {
       return ResultOr.failure(
         e.toFailure(
           DeleteAccountFailure.fromString,
-          const DeleteAccountFailure.general(
-            GeneralBaseFailure.unexpectedError(),
-          ),
+          (gF) => DeleteAccountFailure.general(gF),
         ),
       );
     } catch (e, s) {
       log('e, s', error: e, stackTrace: s);
       return ResultOr.failure(
-        const DeleteAccountFailure.general(
-          GeneralBaseFailure.unexpectedError(),
+        DeleteAccountFailure.general(
+          GeneralBaseFailure.unexpectedError(message: e.toString()),
         ),
       );
     }

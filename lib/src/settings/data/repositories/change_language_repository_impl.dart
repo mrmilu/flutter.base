@@ -32,16 +32,14 @@ class ChangeLanguageRepositoryImpl implements IChangeLanguageRepository {
       return ResultOr.failure(
         e.toFailure(
           ChangeLanguageFailure.fromString,
-          const ChangeLanguageFailure.general(
-            GeneralBaseFailure.unexpectedError(),
-          ),
+          (gF) => ChangeLanguageFailure.general(gF),
         ),
       );
     } catch (e, s) {
       log('e, s', error: e, stackTrace: s);
       return ResultOr.failure(
-        const ChangeLanguageFailure.general(
-          GeneralBaseFailure.unexpectedError(),
+        ChangeLanguageFailure.general(
+          GeneralBaseFailure.unexpectedError(message: e.toString()),
         ),
       );
     }

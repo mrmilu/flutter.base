@@ -71,11 +71,15 @@ class AuthRepositoryImpl implements IAuthRepository {
       return ResultOr.failure(
         e.toFailure(
           SigninFailure.fromString,
-          const SigninFailure.notExistEmail(),
+          (gF) => SigninFailure.general(gF),
         ),
       );
     } on Exception catch (e, _) {
-      return ResultOr.failure(const SigninFailure.notExistEmail());
+      return ResultOr.failure(
+        SigninFailure.general(
+          GeneralBaseFailure.unexpectedError(message: e.toString()),
+        ),
+      );
     }
   }
 
@@ -118,12 +122,14 @@ class AuthRepositoryImpl implements IAuthRepository {
       return ResultOr.failure(
         e.toFailure(
           SignupFailure.fromString,
-          const SignupFailure.emailAlreadyExist(),
+          (gF) => SignupFailure.general(gF),
         ),
       );
     } catch (e) {
       return ResultOr.failure(
-        const SignupFailure.general(GeneralBaseFailure.internalError()),
+        SignupFailure.general(
+          GeneralBaseFailure.unexpectedError(message: e.toString()),
+        ),
       );
     }
   }
@@ -170,7 +176,9 @@ class AuthRepositoryImpl implements IAuthRepository {
         throw CanceledByUserException();
       }
       return ResultOr.failure(
-        const OAuthSignInFailure.general(GeneralBaseFailure.internalError()),
+        OAuthSignInFailure.general(
+          GeneralBaseFailure.unexpectedError(message: e.toString()),
+        ),
       );
     }
   }
@@ -205,7 +213,9 @@ class AuthRepositoryImpl implements IAuthRepository {
         return ResultOr.failure(const OAuthSignInFailure.cancel());
       }
       return ResultOr.failure(
-        const OAuthSignInFailure.general(GeneralBaseFailure.internalError()),
+        OAuthSignInFailure.general(
+          GeneralBaseFailure.unexpectedError(message: e.toString()),
+        ),
       );
     }
   }
@@ -228,12 +238,14 @@ class AuthRepositoryImpl implements IAuthRepository {
       return ResultOr.failure(
         e.toFailure(
           OAuthSignInFailure.fromString,
-          const OAuthSignInFailure.general(GeneralBaseFailure.internalError()),
+          (gF) => OAuthSignInFailure.general(gF),
         ),
       );
     } on Exception catch (e, _) {
       return ResultOr.failure(
-        const OAuthSignInFailure.general(GeneralBaseFailure.internalError()),
+        OAuthSignInFailure.general(
+          GeneralBaseFailure.unexpectedError(message: e.toString()),
+        ),
       );
     }
   }
@@ -262,11 +274,15 @@ class AuthRepositoryImpl implements IAuthRepository {
       return ResultOr.failure(
         e.toFailure(
           UpdateDocumentFailure.fromString,
-          const UpdateDocumentFailure.noSupported(),
+          (gF) => UpdateDocumentFailure.general(gF),
         ),
       );
     } on Exception catch (e, _) {
-      return ResultOr.failure(const UpdateDocumentFailure.noSupported());
+      return ResultOr.failure(
+        UpdateDocumentFailure.general(
+          GeneralBaseFailure.unexpectedError(message: e.toString()),
+        ),
+      );
     }
   }
 
@@ -286,11 +302,15 @@ class AuthRepositoryImpl implements IAuthRepository {
       return ResultOr.failure(
         e.toFailure(
           ValidateEmailFailure.fromString,
-          const ValidateEmailFailure.noSupported(),
+          (gF) => ValidateEmailFailure.general(gF),
         ),
       );
     } on Exception catch (e, _) {
-      return ResultOr.failure(const ValidateEmailFailure.noSupported());
+      return ResultOr.failure(
+        ValidateEmailFailure.general(
+          GeneralBaseFailure.unexpectedError(message: e.toString()),
+        ),
+      );
     }
   }
 
@@ -305,11 +325,15 @@ class AuthRepositoryImpl implements IAuthRepository {
       return ResultOr.failure(
         e.toFailure(
           ValidateEmailFailure.fromString,
-          const ValidateEmailFailure.noSupported(),
+          (gF) => ValidateEmailFailure.general(gF),
         ),
       );
     } on Exception catch (e, _) {
-      return ResultOr.failure(const ValidateEmailFailure.noSupported());
+      return ResultOr.failure(
+        ValidateEmailFailure.general(
+          GeneralBaseFailure.unexpectedError(message: e.toString()),
+        ),
+      );
     }
   }
 
@@ -329,11 +353,15 @@ class AuthRepositoryImpl implements IAuthRepository {
       return ResultOr.failure(
         e.toFailure(
           ValidateEmailFailure.fromString,
-          const ValidateEmailFailure.noSupported(),
+          (gF) => ValidateEmailFailure.general(gF),
         ),
       );
     } on Exception catch (e, _) {
-      return ResultOr.failure(const ValidateEmailFailure.noSupported());
+      return ResultOr.failure(
+        ValidateEmailFailure.general(
+          GeneralBaseFailure.unexpectedError(message: e.toString()),
+        ),
+      );
     }
   }
 
@@ -353,11 +381,15 @@ class AuthRepositoryImpl implements IAuthRepository {
       return ResultOr.failure(
         e.toFailure(
           SigninFailure.fromString,
-          const SigninFailure.notExistEmail(),
+          (gF) => SigninFailure.general(gF),
         ),
       );
     } on Exception catch (e, _) {
-      return ResultOr.failure(const SigninFailure.notExistEmail());
+      return ResultOr.failure(
+        SigninFailure.general(
+          GeneralBaseFailure.unexpectedError(message: e.toString()),
+        ),
+      );
     }
   }
 
@@ -381,11 +413,13 @@ class AuthRepositoryImpl implements IAuthRepository {
       return ResultOr.failure(
         e.toFailure(
           GeneralBaseFailure.fromString,
-          const GeneralBaseFailure.internalError(),
+          (gF) => const GeneralBaseFailure.internalError(),
         ),
       );
     } on Exception catch (e, _) {
-      return ResultOr.failure(const GeneralBaseFailure.internalError());
+      return ResultOr.failure(
+        GeneralBaseFailure.unexpectedError(message: e.toString()),
+      );
     }
   }
 
@@ -402,11 +436,13 @@ class AuthRepositoryImpl implements IAuthRepository {
       return ResultOr.failure(
         e.toFailure(
           GeneralBaseFailure.fromString,
-          const GeneralBaseFailure.internalError(),
+          (gF) => gF,
         ),
       );
     } on Exception catch (e, _) {
-      return ResultOr.failure(const GeneralBaseFailure.internalError());
+      return ResultOr.failure(
+        GeneralBaseFailure.unexpectedError(message: e.toString()),
+      );
     }
   }
 
@@ -423,11 +459,13 @@ class AuthRepositoryImpl implements IAuthRepository {
       return ResultOr.failure(
         e.toFailure(
           GeneralBaseFailure.fromString,
-          const GeneralBaseFailure.internalError(),
+          (gF) => gF,
         ),
       );
     } on Exception catch (e, _) {
-      return ResultOr.failure(const GeneralBaseFailure.internalError());
+      return ResultOr.failure(
+        GeneralBaseFailure.unexpectedError(message: e.toString()),
+      );
     }
   }
 }
