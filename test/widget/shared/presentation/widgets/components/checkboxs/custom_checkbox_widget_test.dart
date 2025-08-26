@@ -512,53 +512,5 @@ void main() {
         },
       );
     });
-
-    group('Edge case coverage for line 63', () {
-      testWidgets('should cover the unreachable return statement in _getColorCheck', (
-        tester,
-      ) async {
-        // This test is designed to cover line 63: return context.colors.specificBasicWhite;
-        // This line is theoretically unreachable in normal widget flow because:
-        // - _getColorCheck is only called when value=true (check icon is shown)
-        // - But the line executes when enabled=true, showError=false, value=false
-
-        // Even though this is unreachable in practice, we test the widget configuration
-        // that would lead to this code path if it were reachable
-
-        await tester.pumpApp(
-          CustomCheckboxWidget(
-            textCheckbox: 'Test for line 63 coverage',
-            value: false, // This prevents the check icon from rendering
-            enabled: true, // This allows the first condition to pass
-            showError: false, // This allows the second condition to pass
-            onChanged: (value) {},
-          ),
-        );
-
-        // Verify the widget builds correctly with these parameters
-        expect(find.text('Test for line 63 coverage'), findsOneWidget);
-        expect(
-          find.byIcon(Icons.check),
-          findsNothing,
-        ); // No check icon when value=false
-
-        // Verify it's interactive (enabled=true)
-        bool wasCalled = false;
-        await tester.pumpApp(
-          CustomCheckboxWidget(
-            textCheckbox: 'Test interactive',
-            value: false,
-            enabled: true,
-            showError: false,
-            onChanged: (value) => wasCalled = true,
-          ),
-        );
-
-        await tester.tap(find.byType(InkWell));
-        expect(wasCalled, isTrue); // Should be callable when enabled
-
-        await tester.pumpAndSettle();
-      });
-    });
   });
 }
