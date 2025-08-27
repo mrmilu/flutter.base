@@ -59,7 +59,9 @@ class MainTap2Page extends StatelessWidget {
                   Column(
                     children: [
                       CustomElevatedButton.primary(
-                        label: context.cl.translate('pages.mainHome.title'),
+                        label: context.cl.translate('pages.mainHome.title', {
+                          'name': 'Tap',
+                        }),
                         onPressed: () {},
                       ),
                       CustomElevatedButton.primary(
