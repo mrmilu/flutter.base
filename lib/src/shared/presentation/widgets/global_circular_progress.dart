@@ -8,8 +8,8 @@ class GlobalCircularProgress {
   static OverlayEntry build(BuildContext context) {
     return OverlayEntry(
       builder: (context) {
-        double fullHeight = MediaQuery.of(context).size.height;
-        double fullWidth = MediaQuery.of(context).size.width;
+        double fullHeight = MediaQuery.sizeOf(context).height;
+        double fullWidth = MediaQuery.sizeOf(context).width;
         return _GlobalProgressWidget(
           fullHeight: fullHeight,
           fullWidth: fullWidth,

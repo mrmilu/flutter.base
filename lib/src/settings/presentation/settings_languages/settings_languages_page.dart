@@ -14,6 +14,7 @@ import '../../data/repositories/change_language_repository_impl.dart';
 import '../../domain/interfaces/i_change_language_repository.dart';
 import '../../domain/types/app_language_type.dart';
 import '../extensions/app_language_type_extension.dart';
+import '../extensions/change_language_failure_extension.dart';
 import 'providers/change_language_cubit.dart';
 
 class SettingsLanguagesPage extends StatelessWidget {

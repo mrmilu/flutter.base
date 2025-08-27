@@ -189,6 +189,7 @@
         "phone": "Teléfono de España",
         "documentType": "Tipo de documento",
         "documentNumber": "Número de documento",
+        "email": "Email",
         "button": "Guardar"
       },
       "success": "Datos guardados correctamente"

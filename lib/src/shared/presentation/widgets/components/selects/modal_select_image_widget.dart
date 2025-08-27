@@ -19,7 +19,7 @@ Future<dynamic> showSelectImage(BuildContext context) {
 
     routeSettings: const RouteSettings(name: PageNames.modalSelectImage),
     builder: (context) => Padding(
-      padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+      padding: EdgeInsets.only(top: MediaQuery.paddingOf(context).top),
       child: WrapperBottomSheetWithButton(
         title: context.cl.translate('modals.selectImage.title'),
         hasScroll: false,

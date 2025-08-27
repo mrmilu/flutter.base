@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../../shared/domain/vos/password_vos.dart';
-import '../../../../../shared/presentation/extensions/buildcontext_extensions.dart';
+import '../../../../../shared/presentation/extensions/iterable_extension.dart';
 import '../../../../../shared/presentation/helpers/result_or.dart';
 import '../../../../../shared/presentation/helpers/value_object.dart';
 import '../../../../../shared/presentation/providers/global_loader/global_loader_cubit.dart';

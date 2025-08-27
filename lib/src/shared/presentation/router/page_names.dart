@@ -18,8 +18,6 @@ class PageNames {
   static const String profileInfoPersonalData =
       'Profile info personal data page';
   static const String profileInfoAccessData = 'Profile info access data page';
-  static const String profileInfoAccessDataChangeEmail =
-      'Profile info access data change email page';
   static const String profileInfoAccessDataChangePassword =
       'Profile info access data change password page';
   static const String profileInfoSettingsConfig =

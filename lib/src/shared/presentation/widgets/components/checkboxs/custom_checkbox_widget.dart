@@ -57,9 +57,6 @@ class CustomCheckboxWidget extends StatelessWidget {
     if (showError) {
       return context.colors.specificBasicWhite;
     }
-    if (value) {
-      return context.colors.specificBasicWhite;
-    }
     return context.colors.specificBasicWhite;
   }
 

@@ -114,11 +114,31 @@ class S {
     );
   }
 
+  /// `Apellido inválido`
+  String get invalidSurname {
+    return Intl.message(
+      'Apellido inválido',
+      name: 'invalidSurname',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Demasiado corto`
   String get tooShort {
     return Intl.message(
       'Demasiado corto',
       name: 'tooShort',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error en la configuración de la aplicación.`
+  String get appSettingsError {
+    return Intl.message(
+      'Error en la configuración de la aplicación.',
+      name: 'appSettingsError',
       desc: '',
       args: [],
     );

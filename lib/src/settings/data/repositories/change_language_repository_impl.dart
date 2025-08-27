@@ -1,7 +1,9 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/rendering.dart';
 
+import '../../../shared/domain/failures/endpoints/general_base_failure.dart';
 import '../../../shared/presentation/extensions/dio_exception_extension.dart';
 import '../../../shared/presentation/helpers/result_or.dart';
 import '../../domain/failures/change_language_failure.dart';
@@ -16,24 +18,30 @@ class ChangeLanguageRepositoryImpl implements IChangeLanguageRepository {
     String languageCode,
   ) async {
     try {
-      await _httpClient.patch(
-        '/api/users',
-        data: {
-          'language': languageCode,
-        },
-      );
-
+      debugPrint('Changing language to: $_httpClient');
       return ResultOr.success();
+      // await _httpClient.patch(
+      //   '/api/users',
+      //   data: {
+      //     'language': languageCode,
+      //   },
+      // );
+
+      // return ResultOr.success();
     } on DioException catch (e) {
       return ResultOr.failure(
         e.toFailure(
           ChangeLanguageFailure.fromString,
-          ChangeLanguageFailure.unknown,
+          (gF) => ChangeLanguageFailure.general(gF),
         ),
       );
     } catch (e, s) {
       log('e, s', error: e, stackTrace: s);
-      return ResultOr.failure(ChangeLanguageFailure.unknown);
+      return ResultOr.failure(
+        ChangeLanguageFailure.general(
+          GeneralBaseFailure.unexpectedError(message: e.toString()),
+        ),
+      );
     }
   }
 }

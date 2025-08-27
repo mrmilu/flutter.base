@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 
+import '../../../shared/domain/failures/endpoints/general_base_failure.dart';
 import '../../../shared/presentation/extensions/dio_exception_extension.dart';
 import '../../../shared/presentation/helpers/result_or.dart';
 import '../../domain/failures/delete_account_failure.dart';
@@ -23,12 +24,16 @@ class DeleteAccountRepositoryImpl implements IDeleteAccountRepository {
       return ResultOr.failure(
         e.toFailure(
           DeleteAccountFailure.fromString,
-          DeleteAccountFailure.unknown,
+          (gF) => DeleteAccountFailure.general(gF),
         ),
       );
     } catch (e, s) {
       log('e, s', error: e, stackTrace: s);
-      return ResultOr.failure(DeleteAccountFailure.unknown);
+      return ResultOr.failure(
+        DeleteAccountFailure.general(
+          GeneralBaseFailure.unexpectedError(message: e.toString()),
+        ),
+      );
     }
   }
 }

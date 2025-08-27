@@ -3,11 +3,11 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 
 import '../../../auth/domain/interfaces/i_token_repository.dart';
+import '../../../shared/domain/failures/endpoints/general_base_failure.dart';
 import '../../../shared/presentation/extensions/dio_exception_extension.dart';
 import '../../../shared/presentation/helpers/result_or.dart';
-import '../../domain/failures/change_email_failure.dart';
 import '../../domain/failures/change_password_failure.dart';
-import '../../domain/failures/personal_data_failure.dart';
+import '../../domain/failures/change_user_info_failure.dart';
 import '../../domain/failures/required_password_failure.dart';
 import '../../domain/interfaces/i_personal_info_repository.dart';
 
@@ -20,7 +20,7 @@ class PersonalInfoRepositoryImpl implements IPersonalInfoRepository {
   });
 
   @override
-  Future<ResultOr<PersonalDataFailure>> setPersonalData({
+  Future<ResultOr<ChangeUserInfoFailure>> setPersonalData({
     required String name,
     required String lastName,
     required String phone,
@@ -39,13 +39,17 @@ class PersonalInfoRepositoryImpl implements IPersonalInfoRepository {
     } on DioException catch (e) {
       return ResultOr.failure(
         e.toFailure(
-          PersonalDataFailure.fromString,
-          PersonalDataFailure.unknown,
+          ChangeUserInfoFailure.fromString,
+          (gF) => ChangeUserInfoFailure.general(gF),
         ),
       );
     } catch (e, s) {
       log('e, s', error: e, stackTrace: s);
-      return ResultOr.failure(PersonalDataFailure.unknown);
+      return ResultOr.failure(
+        ChangeUserInfoFailure.general(
+          GeneralBaseFailure.unexpectedError(message: e.toString()),
+        ),
+      );
     }
   }
 
@@ -66,37 +70,16 @@ class PersonalInfoRepositoryImpl implements IPersonalInfoRepository {
       return ResultOr.failure(
         e.toFailure(
           RequiredPasswordFailure.fromString,
-          RequiredPasswordFailure.unknown,
+          (gF) => RequiredPasswordFailure.general(gF),
         ),
       );
     } catch (e, s) {
       log('e, s', error: e, stackTrace: s);
-      return ResultOr.failure(RequiredPasswordFailure.unknown);
-    }
-  }
-
-  @override
-  Future<ResultOr<ChangeEmailFailure>> changeEmail({
-    required String email,
-  }) async {
-    try {
-      await httpClient.patch(
-        '/api/users',
-        data: {
-          'email': email,
-        },
-      );
-      return ResultOr.success();
-    } on DioException catch (e) {
       return ResultOr.failure(
-        e.toFailure(
-          ChangeEmailFailure.fromString,
-          ChangeEmailFailure.unknown,
+        RequiredPasswordFailure.general(
+          GeneralBaseFailure.unexpectedError(message: e.toString()),
         ),
       );
-    } catch (e, s) {
-      log('e, s', error: e, stackTrace: s);
-      return ResultOr.failure(ChangeEmailFailure.unknown);
     }
   }
 
@@ -121,12 +104,16 @@ class PersonalInfoRepositoryImpl implements IPersonalInfoRepository {
       return ResultOr.failure(
         e.toFailure(
           ChangePasswordFailure.fromString,
-          ChangePasswordFailure.unknown,
+          (gF) => ChangePasswordFailure.general(gF),
         ),
       );
     } catch (e, s) {
       log('e, s', error: e, stackTrace: s);
-      return ResultOr.failure(ChangePasswordFailure.unknown);
+      return ResultOr.failure(
+        ChangePasswordFailure.general(
+          GeneralBaseFailure.unexpectedError(message: e.toString()),
+        ),
+      );
     }
   }
 }

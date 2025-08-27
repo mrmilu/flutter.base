@@ -11,6 +11,7 @@ import '../../../../../shared/presentation/widgets/components/buttons/custom_ele
 import '../../../../../shared/presentation/widgets/components/inputs/custom_text_field_widget.dart';
 import '../../../../data/repositories/personal_info_repository_impl.dart';
 import '../../../../domain/interfaces/i_personal_info_repository.dart';
+import '../../../extensions/required_password_failure_extension.dart';
 import 'required_password_cubit.dart';
 
 class ModalRequiredPassword extends StatelessWidget {

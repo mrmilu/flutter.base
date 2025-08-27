@@ -1,42 +1,30 @@
-import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../shared/presentation/extensions/buildcontext_extensions.dart';
+import '../../../shared/domain/failures/endpoints/general_base_failure.dart';
 
-enum RequiredPasswordFailure {
-  noPermission,
-  unknown;
+part 'required_password_failure.freezed.dart';
 
-  const RequiredPasswordFailure();
+@freezed
+abstract class RequiredPasswordFailure with _$RequiredPasswordFailure {
+  const factory RequiredPasswordFailure.general(GeneralBaseFailure error) =
+      RequiredPasswordFailureGeneral;
 
-  R map<R>({
-    required R Function() noPermission,
-    required R Function() unknown,
-  }) {
-    switch (this) {
-      case RequiredPasswordFailure.noPermission:
-        return noPermission();
-      case RequiredPasswordFailure.unknown:
-        return unknown();
-    }
-  }
+  const RequiredPasswordFailure._();
 
-  static RequiredPasswordFailure fromString(String value) {
-    switch (value) {
-      case 'noPermission':
-        return RequiredPasswordFailure.noPermission;
-      case 'unknown':
-        return RequiredPasswordFailure.unknown;
-      default:
-        return RequiredPasswordFailure.unknown;
-    }
-  }
+  String get message => when(
+    general: (appError) => appError.message,
+  );
 
-  String toTranslate(BuildContext context) {
-    switch (this) {
-      case RequiredPasswordFailure.noPermission:
-        return context.l10n.operationNotAllowed;
-      case RequiredPasswordFailure.unknown:
-        return context.l10n.unknownError;
-    }
+  dynamic get typeError => when(
+    general: (appError) =>
+        GeneralBaseFailure.fromString(appError.code, appError.message),
+  );
+
+  static RequiredPasswordFailure fromString(String code, [String? message]) {
+    return switch (code) {
+      _ => RequiredPasswordFailure.general(
+        GeneralBaseFailure.fromString(code, message),
+      ),
+    };
   }
 }

@@ -56,10 +56,10 @@ class ButtonScaleWidget extends StatefulWidget {
 class _ButtonScaleWidgetState extends State<ButtonScaleWidget>
     with SingleTickerProviderStateMixin {
   double squareScaleA = 1;
-  late AnimationController _controllerA;
+  AnimationController? _controllerA;
 
   /// Si percentScale es 1, no hay animación
-  bool get _shouldAnimate => widget.percentScale < 1.0;
+  bool get _shouldAnimate => widget.percentScale < 1.0 && widget.onTap != null;
 
   @override
   void initState() {
@@ -70,9 +70,9 @@ class _ButtonScaleWidgetState extends State<ButtonScaleWidget>
         value: 1,
         duration: const Duration(milliseconds: 100),
       );
-      _controllerA.addListener(() {
+      _controllerA?.addListener(() {
         setState(() {
-          squareScaleA = _controllerA.value;
+          squareScaleA = _controllerA?.value ?? 1;
         });
       });
     }
@@ -85,25 +85,25 @@ class _ButtonScaleWidgetState extends State<ButtonScaleWidget>
       behavior: HitTestBehavior.translucent,
       onTap: () {
         if (_shouldAnimate) {
-          _controllerA.reverse();
+          _controllerA?.reverse();
         }
         if (widget.onTap != null) widget.onTap!();
       },
       onTapDown: (dp) {
         if (_shouldAnimate) {
-          _controllerA.reverse();
+          _controllerA?.reverse();
         }
       },
       onTapUp: (dp) {
         if (_shouldAnimate) {
           Timer(const Duration(milliseconds: 50), () {
-            if (mounted) _controllerA.fling();
+            if (mounted) _controllerA?.fling();
           });
         }
       },
       onTapCancel: () {
         if (_shouldAnimate) {
-          _controllerA.fling();
+          _controllerA?.fling();
         }
       },
       child: Transform.scale(
@@ -116,9 +116,7 @@ class _ButtonScaleWidgetState extends State<ButtonScaleWidget>
 
   @override
   void dispose() {
-    if (_shouldAnimate) {
-      _controllerA.dispose();
-    }
+    _controllerA?.dispose();
     super.dispose();
   }
 }

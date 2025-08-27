@@ -7,6 +7,7 @@ import '../router/page_names.dart';
 import '../utils/assets/app_assets_icons.dart';
 import 'common/button_scale_widget.dart';
 import 'common/image_asset_widget.dart';
+import 'components/text/rm_text.dart';
 
 class CustomAppBarWidget extends StatelessWidget {
   const CustomAppBarWidget({super.key});
@@ -44,7 +45,7 @@ class CustomAppBarWidget extends StatelessWidget {
               right: paddingDynamic,
             ),
             expandedTitleScale: 1.4,
-            title: const Text('data'),
+            title: const RMText.titleLarge('data'),
           );
         },
       ),

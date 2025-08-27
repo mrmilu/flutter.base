@@ -22,8 +22,8 @@ class InfoExtraPage extends StatelessWidget {
         child: ConstrainedBox(
           constraints: BoxConstraints(
             minHeight:
-                MediaQuery.of(context).size.height -
-                MediaQuery.of(context).padding.top -
+                MediaQuery.sizeOf(context).height -
+                MediaQuery.paddingOf(context).top -
                 kToolbarHeight,
           ),
           child: IntrinsicHeight(

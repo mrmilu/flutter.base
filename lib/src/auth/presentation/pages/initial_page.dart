@@ -162,6 +162,7 @@ class _InitialViewState extends State<InitialView> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
+        key: const Key('initial_page'),
         resizeToAvoidBottomInset: false,
         backgroundColor: context.colors.specificBackgroundOverlay2,
         body: Stack(

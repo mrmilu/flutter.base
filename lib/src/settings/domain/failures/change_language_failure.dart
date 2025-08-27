@@ -1,42 +1,30 @@
-import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../shared/presentation/extensions/buildcontext_extensions.dart';
+import '../../../shared/domain/failures/endpoints/general_base_failure.dart';
 
-enum ChangeLanguageFailure {
-  noPermission,
-  unknown;
+part 'change_language_failure.freezed.dart';
 
-  const ChangeLanguageFailure();
+@freezed
+abstract class ChangeLanguageFailure with _$ChangeLanguageFailure {
+  const factory ChangeLanguageFailure.general(GeneralBaseFailure error) =
+      ChangeLanguageFailureGeneral;
 
-  R map<R>({
-    required R Function() noPermission,
-    required R Function() unknown,
-  }) {
-    switch (this) {
-      case ChangeLanguageFailure.noPermission:
-        return noPermission();
-      case ChangeLanguageFailure.unknown:
-        return unknown();
-    }
-  }
+  const ChangeLanguageFailure._();
 
-  static ChangeLanguageFailure fromString(String value) {
-    switch (value) {
-      case 'noPermission':
-        return ChangeLanguageFailure.noPermission;
-      case 'unknown':
-        return ChangeLanguageFailure.unknown;
-      default:
-        return ChangeLanguageFailure.unknown;
-    }
-  }
+  String get message => when(
+    general: (appError) => appError.message,
+  );
 
-  String toTranslate(BuildContext context) {
-    switch (this) {
-      case ChangeLanguageFailure.noPermission:
-        return context.l10n.operationNotAllowed;
-      case ChangeLanguageFailure.unknown:
-        return context.l10n.unknownError;
-    }
+  dynamic get typeError => when(
+    general: (appError) =>
+        GeneralBaseFailure.fromString(appError.code, appError.message),
+  );
+
+  static ChangeLanguageFailure fromString(String code, [String? message]) {
+    return switch (code) {
+      _ => ChangeLanguageFailure.general(
+        GeneralBaseFailure.fromString(code, message),
+      ),
+    };
   }
 }
