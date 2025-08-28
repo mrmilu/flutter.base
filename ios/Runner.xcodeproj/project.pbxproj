@@ -787,6 +787,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B326FB09AD8710E07EC3251E /* liveRelease.xcconfig */;
 			buildSettings = {
+				FIREBASE_REVERSED_CLIENT_ID = "com.googleusercontent.apps.795134483527-ip95dpf1p3580e5sb8putaa479qrpugj";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = "Release-live";
@@ -937,6 +938,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 62A7C55E4E3FA63CA1D47DD6 /* liveDebug.xcconfig */;
 			buildSettings = {
+				FIREBASE_REVERSED_CLIENT_ID = "com.googleusercontent.apps.795134483527-ip95dpf1p3580e5sb8putaa479qrpugj";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = "Debug-live";
@@ -1095,6 +1097,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 11654C106D2A831C9DDC79DB /* betaRelease.xcconfig */;
 			buildSettings = {
+				FIREBASE_REVERSED_CLIENT_ID = "com.googleusercontent.apps.426720039629-53dtb81m2jij0kp9c96idol3ss7fcn1s";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = "Release-beta";
@@ -1270,6 +1273,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 459781006C73EF2F5486CC8C /* betaProfile.xcconfig */;
 			buildSettings = {
+				FIREBASE_REVERSED_CLIENT_ID = "com.googleusercontent.apps.426720039629-53dtb81m2jij0kp9c96idol3ss7fcn1s";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = "Profile-beta";
@@ -1278,6 +1282,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3815F3ED93D15CA62E7727B2 /* liveProfile.xcconfig */;
 			buildSettings = {
+				FIREBASE_REVERSED_CLIENT_ID = "com.googleusercontent.apps.795134483527-ip95dpf1p3580e5sb8putaa479qrpugj";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = "Profile-live";
@@ -1286,6 +1291,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 20880E4345C29E334A896B5F /* betaDebug.xcconfig */;
 			buildSettings = {
+				FIREBASE_REVERSED_CLIENT_ID = "com.googleusercontent.apps.426720039629-53dtb81m2jij0kp9c96idol3ss7fcn1s";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = "Debug-beta";

@@ -44,78 +44,74 @@
     "ente": "Advisor"
   },
   "pages": {
+    "splash": {
+      "title": "Flutter base",
+      "subtitle": "The best of Flutter",
+      "version": "Version {value}",
+      "progressBar": "© 2025 Flutter base. All rights reserved."
+    },
+    "onboarding": {
+      "skip": "Skip",
+      "continue": "Continue",
+      "finish": "Finish"
+    },
     "auth": {
       "resendEmail": "Resend email",
       "initial": {
-        "title": "niba"
+        "title": "Get Started Today",
+        "welcome": "Welcome",
+        "description": "Discover all the features we have prepared for you in this amazing application.",
+        "createAccount": "Create Account",
+        "signIn": "Sign In"
       },
       "signIn": {
-        "contentEmail": {
-          "title": "Hello again!",
-          "subtitle": "Log in and keep enjoying all your benefits.",
-          "form": {
-            "email": "Email",
-            "button": "Continue"
-          },
-          "or": "Or",
-          "socials": {
-            "apple": "Sign in with Apple",
-            "google": "Sign in with Google"
-          },
-          "biometrics": "Access with biometrics",
-          "noAccount": "Don't have an account yet? Sign up",
-          "review": "Review the",
-          "terms": "Terms",
-          "and": "and",
-          "privacy": "Privacy Policy"
+        "title": "Welcome Back",
+        "subtitle": "Sign in with your account",
+        "form": {
+          "email": "Email",
+          "password": "Password",
+          "button": "Sign In"
         },
-        "contentPassword": {
-          "title": "Enter your password",
-          "subtitle": "Log in and keep enjoying all your benefits.",
-          "form": {
-            "email": "Email",
-            "password": "Password",
-            "button": "Continue"
-          },
-          "forgotPassword": "I forgot my password"
-        }
+        "rememberMe": "Remember Me",
+        "forgotPassword": "Forgot your password?",
+        "or": "Or continue with",
+        "socials": {
+          "apple": "Continue with Apple",
+          "google": "Continue with Google"
+        },
+        "noAccount": "Don't have an account yet?",
+        "signup": "Sign Up",
+        "review": "By signing in, you agree to our",
+        "terms": "Terms and Conditions",
+        "and": "and",
+        "privacy": "Privacy Policy"
       },
       "signUp": {
-        "contentEmail": {
-          "title": "Welcome!",
-          "subtitle": "Access your niba area and start managing your energy like never before.",
-          "form": {
-            "email": "Email",
-            "button": "Continue"
+        "title": "Create your account",
+        "subtitle": "Join us and get started today",
+        "form": {
+          "name": "Name",
+          "email": "Email",
+          "password": "Password",
+          "infoPassword": {
+            "one": "Must contain at least 8 characters",
+            "two": "Must include at least one lowercase letter",
+            "three": "Must include at least one uppercase letter",
+            "four": "Must include at least one special character"
           },
-          "or": "Or",
-          "socials": {
-            "apple": "Sign in with Apple",
-            "google": "Sign in with Google"
-          },
-          "amClient": "Already a client? Sign in",
-          "review": "Review the",
-          "terms": "Terms",
-          "and": "and",
-          "privacy": "Privacy Policy"
+          "repeatPassword": "Confirm new password",
+          "button": "Create Account"
         },
-        "contentPassword": {
-          "title": "Set your password",
-          "subtitle": "Access your personal area and manage your energy information from anywhere.",
-          "form": {
-            "email": "Email",
-            "password": "Password",
-            "infoPassword": {
-              "one": "Must contain at least 8 characters",
-              "two": "Must include at least one lowercase letter",
-              "three": "Must include at least one uppercase letter",
-              "four": "Must include at least one special character"
-            },
-            "repeatPassword": "Confirm new password",
-            "button": "Continue"
-          },
-          "forgetPassword": "I forgot my password"
-        }
+        "or": "Or continue with",
+        "socials": {
+          "apple": "Continue with Apple",
+          "google": "Continue with Google"
+        },
+        "amClient": "Don't have an account yet? Sign Up",
+        "agree": "I agree to the",
+        "terms": "Terms and Conditions",
+        "and": "and",
+        "privacy": "Privacy Policy"
       },
       "forgotPassword": {
         "title": "Forgot your password?",

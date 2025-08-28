@@ -70,7 +70,7 @@ class CustomCheckboxWidget extends StatelessWidget {
           const SizedBox(height: 6),
         ],
         Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             InkWell(
               onTap: enabled ? () => onChanged(!value) : null,

@@ -30,11 +30,11 @@ class SignupCubit extends Cubit<SignupState> {
   }
 
   void changeName(String value) {
-    emit(state.copyWith(name: FullnameVos(value)));
+    emit(state.copyWith(name: value));
   }
 
   void changeLastName(String value) {
-    emit(state.copyWith(lastName: FullnameVos(value)));
+    emit(state.copyWith(lastName: value));
   }
 
   void changeEmail(String value) {
@@ -47,6 +47,10 @@ class SignupCubit extends Cubit<SignupState> {
 
   void changeRepeatPassword(String value) {
     emit(state.copyWith(repeatPassword: value));
+  }
+
+  void changeAgreeTerms(bool value) {
+    emit(state.copyWith(agreeTerms: value));
   }
 
   void changeShowErrors(bool value) {

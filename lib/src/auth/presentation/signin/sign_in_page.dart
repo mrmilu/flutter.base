@@ -1,11 +1,20 @@
+import 'dart:io';
+
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../shared/presentation/extensions/buildcontext_extensions.dart';
 import '../../../shared/presentation/helpers/toasts.dart';
 import '../../../shared/presentation/providers/global_loader/global_loader_cubit.dart';
 import '../../../shared/presentation/router/app_router.dart';
 import '../../../shared/presentation/router/page_names.dart';
+import '../../../shared/presentation/utils/assets/app_assets_icons.dart';
+import '../../../shared/presentation/utils/open_web_view_utils.dart';
+import '../../../shared/presentation/utils/styles/colors/colors_context.dart';
+import '../../../shared/presentation/widgets/components/buttons/custom_outlined_button.dart';
+import '../../../shared/presentation/widgets/components/text/rm_text.dart';
 import '../../domain/failures/oauth_sign_in_failure.dart';
 import '../../domain/interfaces/i_auth_repository.dart';
 import '../extensions/oauth_sign_in_failure_extension.dart';
@@ -157,31 +166,6 @@ class SignInView extends StatelessWidget {
                                     ),
                               ),
                             ),
-                            TextButton(
-                              onPressed: () =>
-                                  routerApp.pushNamed(PageNames.signUp),
-                              child: Text.rich(
-                                const TextSpan(
-                                  text: "Don’t have an account? ",
-                                  children: [
-                                    TextSpan(
-                                      text: "Sign Up",
-                                      style: TextStyle(
-                                        color: Color(0xFF00BF6D),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                style: Theme.of(context).textTheme.bodyMedium!
-                                    .copyWith(
-                                      color: Theme.of(context)
-                                          .textTheme
-                                          .bodyLarge!
-                                          .color!
-                                          .withAlpha((0.64 * 255).toInt()),
-                                    ),
-                              ),
-                            ),
                           ],
                         ),
                         Row(
@@ -210,6 +194,136 @@ class SignInView extends StatelessWidget {
                             ),
                           ],
                         ),
+                        const SizedBox(height: 16),
+                        Row(
+                          children: [
+                            const Expanded(child: Divider()),
+                            const SizedBox(width: 8),
+                            RMText.bodyMedium(
+                              context.cl.translate(
+                                'pages.auth.signIn.contentEmail.or',
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                            const Expanded(child: Divider()),
+                          ],
+                        ),
+                        const SizedBox(height: 16),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            if (Platform.isIOS) ...[
+                              CustomOutlinedButton.primary(
+                                onPressed: () => context
+                                    .read<SigninSocialCubit>()
+                                    .signInWithApple(),
+                                label: context.cl.translate(
+                                  'pages.auth.signIn.socials.apple',
+                                ),
+                                iconPath: AppAssetsIcons.logoApple,
+                                textAlign: TextAlign.center,
+                              ),
+                              const SizedBox(height: 8),
+                            ],
+                            CustomOutlinedButton.primary(
+                              onPressed: () => context
+                                  .read<SigninSocialCubit>()
+                                  .signInWithGoogle(),
+                              label: context.cl.translate(
+                                'pages.auth.signIn.socials.google',
+                              ),
+                              iconPath: AppAssetsIcons.logoGoogle,
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 16),
+                        TextButton(
+                          onPressed: () =>
+                              routerApp.pushReplacementNamed(PageNames.signUp),
+                          child: Text.rich(
+                            TextSpan(
+                              text: "Don’t have an account? ",
+                              children: [
+                                TextSpan(
+                                  text: "Sign Up",
+                                  style: TextStyle(
+                                    color:
+                                        context.colors.specificSemanticSuccess,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            style: Theme.of(context).textTheme.bodyMedium!
+                                .copyWith(
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .bodyLarge!
+                                      .color!
+                                      .withAlpha((0.64 * 255).toInt()),
+                                ),
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        RichText(
+                          text: TextSpan(
+                            text:
+                                '${context.cl.translate(
+                                  'pages.auth.signUp.agree',
+                                )} ',
+                            style: context.textTheme.labelMedium?.copyWith(
+                              color: context.colors.specificBasicBlack,
+                            ),
+                            children: [
+                              TextSpan(
+                                text: context.cl.translate(
+                                  'pages.auth.signUp.terms',
+                                ),
+                                style: context.textTheme.labelMedium?.copyWith(
+                                  decoration: TextDecoration.underline,
+                                ),
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () {
+                                    openWebView(
+                                      context: context,
+                                      title: context.cl.translate(
+                                        'pages.auth.signUp.terms',
+                                      ),
+                                      url: context.cl.translate(
+                                        'urls.termsAndConditions',
+                                      ),
+                                    );
+                                  },
+                              ),
+                              TextSpan(
+                                text:
+                                    ' ${context.cl.translate('pages.auth.signUp.and')} ',
+                              ),
+                              TextSpan(
+                                text: context.cl.translate(
+                                  'pages.auth.signUp.privacy',
+                                ),
+                                style: context.textTheme.labelMedium?.copyWith(
+                                  decoration: TextDecoration.underline,
+                                ),
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () {
+                                    openWebView(
+                                      context: context,
+                                      title: context.cl.translate(
+                                        'pages.auth.signUp.privacy',
+                                      ),
+                                      url: context.cl.translate(
+                                        'urls.privacyPolicy',
+                                      ),
+                                    );
+                                  },
+                              ),
+                              const TextSpan(text: '.'),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 40),
                       ],
                     ),
                   );

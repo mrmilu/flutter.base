@@ -7,11 +7,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../auth/domain/interfaces/i_token_repository.dart';
 import '../../../auth/presentation/pages/initial_page.dart';
 import '../../../auth/presentation/providers/auth/auth_cubit.dart';
+import '../../../shared/presentation/extensions/buildcontext_extensions.dart';
 import '../../../shared/presentation/helpers/toasts.dart';
 import '../../../shared/presentation/l10n/generated/l10n.dart';
 import '../../../shared/presentation/router/app_router.dart';
 import '../../../shared/presentation/router/page_names.dart';
 import '../../../shared/presentation/utils/styles/colors/colors_context.dart';
+import '../../../shared/presentation/widgets/components/buttons/custom_elevated_button.dart';
+import '../../../shared/presentation/widgets/components/text/rm_text.dart';
 import '../extensions/splash_failure_extension.dart';
 import '../providers/app_settings_cubit.dart';
 import '../providers/splash_cubit.dart';
@@ -98,7 +101,7 @@ class _SplashViewState extends State<SplashView>
 
     if (user == null) {
       routerApp.pushReplacementNamed(
-        PageNames.initial,
+        PageNames.onboarding,
         extra: InitialStep.signUpEmail.index,
       );
       return;
@@ -163,41 +166,100 @@ class _SplashViewState extends State<SplashView>
                               return Opacity(
                                 opacity: opacity.value,
                                 child: const FlutterLogo(
-                                  size: 200,
+                                  size: 120,
                                 ),
                               );
                             },
                           ),
+
                           stateSplash.canUpdate
                               ? Column(
                                   children: [
-                                    const SizedBox(height: 70),
-                                    Text(
+                                    const SizedBox(height: 24),
+                                    RMText.headlineLarge(
                                       S.of(context).pageSplashUpdateAvailable,
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.bold,
-                                      ),
                                     ),
                                     const SizedBox(height: 20),
                                     SizedBox(
                                       width: size.width * 0.65,
-                                      child: Text(
+                                      child: RMText.bodyLarge(
                                         S
                                             .of(context)
                                             .pageSplashUpdateAvailableDesc,
-                                        style: const TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 18,
-                                        ),
                                         textAlign: TextAlign.center,
                                       ),
                                     ),
-                                    SizedBox(height: size.height * 0.2),
                                   ],
                                 )
-                              : const SizedBox.shrink(),
+                              : Column(
+                                  children: [
+                                    const SizedBox(height: 24),
+                                    RMText.headlineLarge(
+                                      context.cl.translate(
+                                        'pages.splash.title',
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    const SizedBox(height: 4),
+                                    RMText.bodyLarge(
+                                      context.cl.translate(
+                                        'pages.splash.subtitle',
+                                      ),
+
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    const SizedBox(height: 32),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Container(
+                                          width: 4,
+                                          height: 4,
+                                          decoration: BoxDecoration(
+                                            color: context
+                                                .colors
+                                                .specificContentLow,
+                                            shape: BoxShape.circle,
+                                          ),
+                                        ),
+                                        const SizedBox(width: 4),
+                                        Container(
+                                          width: 4,
+                                          height: 4,
+                                          decoration: BoxDecoration(
+                                            color: context
+                                                .colors
+                                                .specificContentLow,
+                                            shape: BoxShape.circle,
+                                          ),
+                                        ),
+                                        const SizedBox(width: 4),
+                                        Container(
+                                          width: 4,
+                                          height: 4,
+                                          decoration: BoxDecoration(
+                                            color: context
+                                                .colors
+                                                .specificContentLow,
+                                            shape: BoxShape.circle,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 24),
+                                    RMText.bodySmall(
+                                      context.cl.translate(
+                                        'pages.splash.version',
+                                        {
+                                          'value': appVersion,
+                                        },
+                                      ),
+                                      color: context.colors.specificContentLow,
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ],
+                                ),
                         ],
                       ),
                     ],
@@ -211,21 +273,11 @@ class _SplashViewState extends State<SplashView>
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                padding: const EdgeInsets.all(20.0),
-                                backgroundColor: context.colors.secondary,
-                              ),
+                            CustomElevatedButton.inverse(
                               onPressed: context
                                   .read<SplashCubit>()
                                   .onTapUpdateApp,
-                              child: Text(
-                                S.of(context).pageSplashUpdate,
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                ),
-                              ),
+                              label: S.of(context).pageSplashUpdate,
                             ),
                           ],
                         ),
@@ -256,7 +308,7 @@ class _SplashViewState extends State<SplashView>
                         ),
                       )
                     : Positioned(
-                        bottom: 43,
+                        bottom: 60,
                         left: 33,
                         right: 33,
                         child: Column(
@@ -265,7 +317,9 @@ class _SplashViewState extends State<SplashView>
                               _getProgressTextByValue(
                                 stateSplash.progressValue,
                               ),
-                              style: const TextStyle(color: Colors.white),
+                              style: TextStyle(
+                                color: context.colors.specificContentLow,
+                              ),
                             ),
                             const SizedBox(height: 16),
                             ClipRRect(
@@ -273,9 +327,9 @@ class _SplashViewState extends State<SplashView>
                                 Radius.circular(10),
                               ),
                               child: Container(
-                                height: 8,
+                                height: 6,
                                 width: size.width - 66,
-                                color: context.colors.tertiary,
+                                color: context.colors.specificBasicGrey,
                                 alignment: Alignment.centerLeft,
                                 child: ClipRRect(
                                   borderRadius: const BorderRadius.all(
@@ -283,10 +337,10 @@ class _SplashViewState extends State<SplashView>
                                   ),
                                   child: AnimatedContainer(
                                     duration: const Duration(
-                                      milliseconds: 300,
+                                      milliseconds: 1300,
                                     ),
                                     curve: Curves.easeInOut,
-                                    color: Colors.white,
+                                    color: Colors.black,
                                     width:
                                         (stateSplash.progressValue *
                                         (size.width - 66)),
@@ -307,18 +361,19 @@ class _SplashViewState extends State<SplashView>
   }
 
   String _getProgressTextByValue(double value) {
-    if (value == (1 / 4)) {
-      return S.of(context).pageSplash_progress1;
-    }
-    if (value == (2 / 4)) {
-      return S.of(context).pageSplash_progress2;
-    } else if (value == (3 / 4)) {
-      return S.of(context).pageSplash_progress3;
-    } else if (value == (4 / 4)) {
-      return S.of(context).pageSplash_progress4;
-    } else {
-      return '';
-    }
+    // if (value == (1 / 4)) {
+    //   return S.of(context).pageSplash_progress1;
+    // }
+    // if (value == (2 / 4)) {
+    //   return S.of(context).pageSplash_progress2;
+    // } else if (value == (3 / 4)) {
+    //   return S.of(context).pageSplash_progress3;
+    // } else if (value == (4 / 4)) {
+    //   return S.of(context).pageSplash_progress4;
+    // } else {
+    //   return '';
+    // }
+    return context.cl.translate('pages.splash.progressBar');
   }
 }
 

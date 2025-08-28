@@ -49,8 +49,8 @@ enum InitialStep {
   updatePassword,
 }
 
-class InitialPage extends StatelessWidget {
-  const InitialPage({super.key, required this.initialStep});
+class InitialPage2 extends StatelessWidget {
+  const InitialPage2({super.key, this.initialStep = 0});
   final int initialStep;
 
   @override

@@ -44,78 +44,74 @@
     "ente": "Asesor"
   },
   "pages": {
+    "splash": {
+      "title": "Flutter base",
+      "subtitle": "Lo mejor de Flutter",
+      "version": "Versión {value}",
+      "progressBar": "© 2025 Flutter base. All rights reserved."
+    },
+    "onboarding": {
+      "skip": "Saltar",
+      "continue": "Continuar",
+      "finish": "Comenzar"
+    },
     "auth": {
       "resendEmail": "Reenviar email",
       "initial": {
-        "title": "niba"
+        "title": "Comienza hoy",
+        "welcome": "Bienvenido",
+        "description": "Descubre todas las características que hemos preparado para ti en esta increíble aplicación.",
+        "createAccount": "Crear Cuenta",
+        "signIn": "Iniciar Sesión"
       },
       "signIn": {
-        "contentEmail": {
-          "title": "¡Hola de nuevo!",
-          "subtitle": "Accede y sigue disfrutando de todas tus ventajas.",
-          "form": {
-            "email": "Email",
-            "button": "Continuar"
-          },
-          "or": "O",
-          "socials": {
-            "apple": "Iniciar sesión con Apple",
-            "google": "Iniciar sesión con Google"
-          },
-          "biometrics": "Accede con biometría",
-          "noAccount": "¿No tienes cuenta todavía? Regístrate",
-          "review": "Revisa las",
-          "terms": "Condiciones",
-          "and": "y",
-          "privacy": "Política de Privacidad"
+        "title": "¡Hola de nuevo!",
+        "subtitle": "Inicia sesión con tu cuenta",
+        "form": {
+          "email": "Email",
+          "password": "Contraseña",
+          "button": "Iniciar sesión"
         },
-        "contentPassword": {
-          "title": "Introduce tu contraseña",
-          "subtitle": "Accede y sigue disfrutando de todas tus ventajas.",
-          "form": {
-            "email": "Email",
-            "password": "Contraseña",
-            "button": "Continuar"
-          },
-          "forgotPassword": "He olvidado mi contraseña"
-        }
+        "rememberMe": "Recuérdame",
+        "forgotPassword": "¿Olvidaste la contraseña?",
+        "or": "O continua con",
+        "socials": {
+          "apple": "Continua con Apple",
+          "google": "Continua con Google"
+        },
+        "noAccount": "¿No tienes cuenta todavía?",
+        "signup": "Regístrate",
+        "review": "Al iniciar sesión, aceptas nuestros",
+        "terms": "Términos de Condiciones",
+        "and": "y",
+        "privacy": "Política de Privacidad"
       },
       "signUp": {
-        "contentEmail": {
-          "title": "¡Te damos la bienvenida!",
-          "subtitle": "Accede a tu área niba y empieza a gestionar tu energía como nunca antes.",
-          "form": {
-            "email": "Email",
-            "button": "Continuar"
+        "title": "Crea tu cuenta",
+        "subtitle": "Únete a nosotros y comienza hoy",
+        "form": {
+          "name": "Nombre",
+          "email": "Email",
+          "password": "Contraseña",
+          "infoPassword": {
+            "one": "Debe contener al menos 8 caracteres",
+            "two": "Debe incluir al menos una minúscula",
+            "three": "Debe incluir al menos una mayúscula",
+            "four": "Debe incluir al menos un carácter especial"
           },
-          "or": "O",
-          "socials": {
-            "apple": "Iniciar sesión con Apple",
-            "google": "Iniciar sesión con Google"
-          },
-          "amClient": "¿Ya eres cliente? Inicia sesión",
-          "review": "Revisa las",
-          "terms": "Condiciones",
-          "and": "y",
-          "privacy": "Política de Privacidad"
+          "repeatPassword": "Confirmar nueva contraseña",
+          "button": "Crear Cuenta"
         },
-        "contentPassword": {
-          "title": "Establece tu contraseña",
-          "subtitle": "Accede a tu área personal y gestiona tu información energética desde donde quieras.",
-          "form": {
-            "email": "Email",
-            "password": "Contraseña",
-            "infoPassword": {
-              "one": "Debe contener al menos 8 caracteres",
-              "two": "Debe incluir al menos una minúscula",
-              "three": "Debe incluir al menos una mayúscula",
-              "four": "Debe incluir al menos un carácter especial"
-            },
-            "repeatPassword": "Confirmar nueva contraseña",
-            "button": "Continuar"
-          },
-          "forgetPassword": "He olvidado mi contraseña"
-        }
+        "or": "O continua con",
+        "socials": {
+          "apple": "Iniciar sesión con Apple",
+          "google": "Iniciar sesión con Google"
+        },
+        "amClient": "¿Tienes una cuenta? Inicia sesión",
+        "agree": "Estoy de acuerdo con los",
+        "terms": "Términos de Condiciones",
+        "and": "y",
+        "privacy": "Política de Privacidad"
       },
       "forgotPassword": {
         "title": "¿Has olvidado tu contraseña?",
