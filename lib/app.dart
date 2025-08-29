@@ -24,11 +24,13 @@ import 'src/shared/domain/interfaces/i_settings_repository.dart';
 import 'src/shared/presentation/l10n/generated/l10n.dart';
 import 'src/shared/presentation/pages/app_status_page.dart';
 import 'src/shared/presentation/providers/global_loader/global_loader_cubit.dart';
-import 'src/shared/presentation/providers/theme_mode/theme_mode_cubit.dart';
 import 'src/shared/presentation/router/app_router.dart';
 import 'src/shared/presentation/utils/styles/themes/theme_dark.dart';
 import 'src/shared/presentation/utils/styles/themes/theme_light.dart';
 import 'src/splash/presentation/providers/app_settings_cubit.dart';
+import 'src/theme_mode/data/theme_mode_repository_impl.dart';
+import 'src/theme_mode/domain/i_theme_mode_repository.dart';
+import 'src/theme_mode/presentation/providers/theme_mode_cubit.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -50,6 +52,10 @@ class App extends StatelessWidget {
           final httpClient = getMyHttpClient(context.read<ITokenRepository>());
           return MultiRepositoryProvider(
             providers: [
+              // Theme Mode
+              RepositoryProvider<IThemeModeRepository>(
+                create: (_) => ThemeModeRepositoryImpl(),
+              ),
               // Locale
               RepositoryProvider<ILocaleRepository>(
                 create: (_) => LocaleRepositoryImpl(),
@@ -85,7 +91,9 @@ class App extends StatelessWidget {
                   ),
                 ),
                 BlocProvider<ThemeModeCubit>(
-                  create: (context) => ThemeModeCubit(),
+                  create: (context) => ThemeModeCubit(
+                    themeModeRepository: context.read<IThemeModeRepository>(),
+                  )..init(),
                 ),
                 BlocProvider<LocaleCubit>(
                   create: (context) => LocaleCubit(

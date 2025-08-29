@@ -148,7 +148,6 @@ class _SplashViewState extends State<SplashView>
         builder: (context, stateSplash) {
           final size = MediaQuery.sizeOf(context);
           return Scaffold(
-            backgroundColor: context.colors.specificBasicWhite,
             body: Stack(
               children: [
                 SizedBox(
@@ -248,16 +247,18 @@ class _SplashViewState extends State<SplashView>
                                       ],
                                     ),
                                     const SizedBox(height: 24),
-                                    RMText.bodySmall(
-                                      context.cl.translate(
-                                        'pages.splash.version',
-                                        {
-                                          'value': appVersion,
-                                        },
+                                    if (appVersion.isNotEmpty)
+                                      RMText.bodySmall(
+                                        context.cl.translate(
+                                          'pages.splash.version',
+                                          {
+                                            'value': appVersion,
+                                          },
+                                        ),
+                                        color:
+                                            context.colors.specificContentLow,
+                                        textAlign: TextAlign.center,
                                       ),
-                                      color: context.colors.specificContentLow,
-                                      textAlign: TextAlign.center,
-                                    ),
                                   ],
                                 ),
                         ],
@@ -340,7 +341,9 @@ class _SplashViewState extends State<SplashView>
                                       milliseconds: 1300,
                                     ),
                                     curve: Curves.easeInOut,
-                                    color: Colors.black,
+                                    color: context.isDarkMode
+                                        ? Colors.white
+                                        : Colors.black,
                                     width:
                                         (stateSplash.progressValue *
                                         (size.width - 66)),

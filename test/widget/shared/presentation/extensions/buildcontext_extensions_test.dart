@@ -208,5 +208,105 @@ void main() {
       expect(textTheme, isA<TextTheme>());
       expect(textTheme, isNotNull);
     });
+
+    group('isDarkMode', () {
+      testWidgets('should return true when theme brightness is dark', (
+        tester,
+      ) async {
+        late BuildContext capturedContext;
+
+        // Crear app con tema oscuro
+        await tester.pumpWidget(
+          MaterialApp(
+            theme: ThemeData.dark(),
+            home: Scaffold(
+              body: Builder(
+                builder: (context) {
+                  capturedContext = context;
+                  return const SizedBox.shrink();
+                },
+              ),
+            ),
+          ),
+        );
+
+        final isDarkMode = capturedContext.isDarkMode;
+        expect(isDarkMode, isTrue);
+        expect(Theme.of(capturedContext).brightness, equals(Brightness.dark));
+      });
+
+      testWidgets('should return false when theme brightness is light', (
+        tester,
+      ) async {
+        late BuildContext capturedContext;
+
+        // Crear app con tema claro
+        await tester.pumpWidget(
+          MaterialApp(
+            theme: ThemeData.light(),
+            home: Scaffold(
+              body: Builder(
+                builder: (context) {
+                  capturedContext = context;
+                  return const SizedBox.shrink();
+                },
+              ),
+            ),
+          ),
+        );
+
+        final isDarkMode = capturedContext.isDarkMode;
+        expect(isDarkMode, isFalse);
+        expect(Theme.of(capturedContext).brightness, equals(Brightness.light));
+      });
+
+      testWidgets('should return false with default theme', (tester) async {
+        late BuildContext capturedContext;
+
+        await tester.pumpApp(
+          Builder(
+            builder: (context) {
+              capturedContext = context;
+              return const SizedBox.shrink();
+            },
+          ),
+        );
+
+        final isDarkMode = capturedContext.isDarkMode;
+        // El tema por defecto es claro
+        expect(isDarkMode, isFalse);
+        expect(Theme.of(capturedContext).brightness, equals(Brightness.light));
+      });
+
+      testWidgets('should return correct value with custom theme brightness', (
+        tester,
+      ) async {
+        late BuildContext capturedContext;
+
+        // Crear tema personalizado con brightness específico
+        final customDarkTheme = ThemeData(
+          brightness: Brightness.dark,
+          primarySwatch: Colors.blue,
+        );
+
+        await tester.pumpWidget(
+          MaterialApp(
+            theme: customDarkTheme,
+            home: Scaffold(
+              body: Builder(
+                builder: (context) {
+                  capturedContext = context;
+                  return const SizedBox.shrink();
+                },
+              ),
+            ),
+          ),
+        );
+
+        final isDarkMode = capturedContext.isDarkMode;
+        expect(isDarkMode, isTrue);
+        expect(Theme.of(capturedContext).brightness, equals(Brightness.dark));
+      });
+    });
   });
 }

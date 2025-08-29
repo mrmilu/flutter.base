@@ -176,6 +176,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
   }
 
   Widget _buildPageIndicators() {
+    final isDarkMode = context.isDarkMode;
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(
@@ -187,7 +188,11 @@ class _OnboardingPageState extends State<OnboardingPage> {
           width: _currentPage == index ? 24 : 8,
           decoration: BoxDecoration(
             color: _currentPage == index
-                ? context.colors.specificBasicBlack
+                ? isDarkMode
+                      ? Colors.white
+                      : context.colors.specificBasicBlack
+                : isDarkMode
+                ? Colors.white.wOpacity(0.2)
                 : context.colors.specificBasicBlack.wOpacity(0.2),
             borderRadius: BorderRadius.circular(4),
           ),
