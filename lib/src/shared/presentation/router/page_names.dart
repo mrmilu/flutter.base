@@ -1,8 +1,11 @@
 class PageNames {
   static const String splash = 'Splash page';
+  static const String onboarding = 'Onboarding page';
   static const String initial = 'Initial page';
   static const String signIn = 'Sign in page';
   static const String signUp = 'Sign up page';
+  static const String validateEmail = 'Validate email page';
+  static const String signUp2 = 'Sign up 2 page';
   static const String updateDocumentUser = 'Update document user page';
   static const String changePassword = 'Change password page';
   static const String changePasswordSuccess = 'Change password success page';

@@ -63,14 +63,14 @@ class CustomCheckboxWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         if (title != null) ...[
           RMText.bodyMedium(title!),
           const SizedBox(height: 6),
         ],
         Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             InkWell(
               onTap: enabled ? () => onChanged(!value) : null,

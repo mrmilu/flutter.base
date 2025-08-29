@@ -24,9 +24,9 @@ import '../providers/link_encoded/link_encoded_cubit.dart';
 import '../providers/reset_password/reset_password_cubit.dart';
 import '../providers/signin_social/signin_social_cubit.dart';
 import '../providers/update_document/update_document_cubit.dart';
-import '../providers/validate_email/validate_email_cubit.dart';
 import '../signin/providers/signin_cubit.dart';
 import '../signup/providers/signup_cubit.dart';
+import '../validate_email/validate_email_cubit.dart';
 import '../widgets/initial_content_check_email_to_password_widget.dart';
 import '../widgets/initial_content_confirm_your_account_widget.dart';
 import '../widgets/initial_content_forgot_password_widget.dart';
@@ -49,8 +49,8 @@ enum InitialStep {
   updatePassword,
 }
 
-class InitialPage extends StatelessWidget {
-  const InitialPage({super.key, required this.initialStep});
+class InitialPage2 extends StatelessWidget {
+  const InitialPage2({super.key, this.initialStep = 0});
   final int initialStep;
 
   @override
@@ -66,7 +66,6 @@ class InitialPage extends StatelessWidget {
         BlocProvider(
           create: (context) => SignupCubit(
             authRepository: context.read<IAuthRepository>(),
-            authCubit: context.read<AuthCubit>(),
             globalLoaderCubit: context.read<GlobalLoaderCubit>(),
           ),
         ),

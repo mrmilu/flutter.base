@@ -39,8 +39,7 @@ extension DioExceptionExtension on DioException {
 
       case DioExceptionType.connectionError:
         return GeneralBaseFailure.networkError(
-          message:
-              apiErrorMessage ?? 'Sin conexión a internet. Verifica tu red.',
+          message: apiErrorMessage ?? 'Ha falado la conexión',
         );
 
       case DioExceptionType.badResponse:

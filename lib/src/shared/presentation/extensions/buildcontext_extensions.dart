@@ -17,4 +17,6 @@ extension ContextExtension on BuildContext {
       MediaQuery.paddingOf(this).bottom + (Platform.isAndroid ? 24 : 24);
 
   TextTheme get textTheme => Theme.of(this).textTheme;
+
+  bool get isDarkMode => Theme.of(this).brightness == Brightness.dark;
 }

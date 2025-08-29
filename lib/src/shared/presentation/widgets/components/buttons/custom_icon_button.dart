@@ -49,6 +49,12 @@ class CustomIconButton extends StatelessWidget {
   /// Color del icono personalizado
   final Color? foregroundColor;
 
+  /// Si el botón tiene borde
+  final bool withBorder;
+
+  /// Padding del botón
+  final EdgeInsetsGeometry? padding;
+
   const CustomIconButton._({
     super.key,
     required this.iconPath,
@@ -57,6 +63,8 @@ class CustomIconButton extends StatelessWidget {
     this.isLoading = false,
     this.backgroundColor,
     this.foregroundColor,
+    this.withBorder = false,
+    this.padding,
   });
 
   /// Crea un botón de icono con estilo primario
@@ -68,6 +76,8 @@ class CustomIconButton extends StatelessWidget {
     bool isLoading = false,
     Color? backgroundColor,
     Color? foregroundColor,
+    bool withBorder = false,
+    EdgeInsetsGeometry? padding,
   }) : this._(
          key: key,
          iconPath: iconPath,
@@ -76,6 +86,29 @@ class CustomIconButton extends StatelessWidget {
          isLoading: isLoading,
          backgroundColor: backgroundColor,
          foregroundColor: foregroundColor,
+         withBorder: withBorder,
+         padding: padding,
+       );
+
+  const CustomIconButton.outline({
+    Key? key,
+    required String iconPath,
+    required VoidCallback? onPressed,
+    bool enabled = true,
+    bool isLoading = false,
+    Color? backgroundColor,
+    Color? foregroundColor,
+    EdgeInsetsGeometry? padding,
+  }) : this._(
+         key: key,
+         iconPath: iconPath,
+         onPressed: onPressed,
+         enabled: enabled,
+         isLoading: isLoading,
+         backgroundColor: backgroundColor ?? Colors.transparent,
+         foregroundColor: foregroundColor,
+         withBorder: true,
+         padding: padding,
        );
 
   @override
@@ -85,11 +118,19 @@ class CustomIconButton extends StatelessWidget {
     return TextButton(
       onPressed: effectiveOnPressed,
       style: TextButton.styleFrom(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+        padding:
+            padding ?? const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
         minimumSize: const Size(12, 12),
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         visualDensity: VisualDensity.compact,
-        // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        shape: withBorder
+            ? RoundedRectangleBorder(
+                side: BorderSide(
+                  color: context.colors.onDisabled,
+                ),
+                borderRadius: BorderRadius.circular(8),
+              )
+            : null,
         disabledBackgroundColor: context.colors.disabled,
         disabledForegroundColor: context.colors.onDisabled,
         foregroundColor: _getForegroundColor(context),
@@ -130,6 +171,3 @@ class CustomIconButton extends StatelessWidget {
     return brightness == Brightness.dark ? Colors.white : Colors.black;
   }
 }
-
-/// Estilos disponibles para CustomIconButton
-enum CustomIconButtonStyle { primary }

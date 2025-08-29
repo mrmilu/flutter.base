@@ -51,7 +51,7 @@ final appThemeDataLight = ThemeData(
         AppColors.light.specificContentHigh,
       ),
       padding: WidgetStateProperty.all(
-        const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+        const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
       ),
       shape: WidgetStateProperty.all(
         RoundedRectangleBorder(
@@ -69,7 +69,7 @@ final appThemeDataLight = ThemeData(
         AppColors.light.specificContentHigh,
       ),
       padding: WidgetStateProperty.all(
-        const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+        const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
       ),
       shape: WidgetStateProperty.all(
         RoundedRectangleBorder(

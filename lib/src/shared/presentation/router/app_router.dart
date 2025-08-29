@@ -3,11 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
+import '../../../auth/presentation/initial/initial_page.dart';
 import '../../../auth/presentation/pages/forgot_password_page.dart';
-import '../../../auth/presentation/pages/initial_page.dart';
 import '../../../auth/presentation/signin/sign_in_page.dart';
 import '../../../auth/presentation/signup/sign_up_page.dart';
+import '../../../auth/presentation/signup/sign_up_two_page.dart';
+import '../../../auth/presentation/validate_email/validate_email_page.dart';
 import '../../../home/presentation/pages/main_home_page.dart';
+import '../../../onboarding/presentation/onboarding_page.dart';
 import '../../../settings/presentation/profile_info/access_data/access_data_page.dart';
 import '../../../settings/presentation/profile_info/access_data/change_password/change_password_page.dart';
 import '../../../settings/presentation/profile_info/config/settings_config_page.dart';
@@ -43,6 +46,11 @@ final GoRouter routerApp = GoRouter(
       name: PageNames.splash,
       builder: (context, state) => const SplashPage(),
     ),
+    GoRoute(
+      path: '/onboarding',
+      name: PageNames.onboarding,
+      builder: (context, state) => const OnboardingPage(),
+    ),
     // Auth routes
     GoRoute(
       path: '/initial',
@@ -50,17 +58,17 @@ final GoRouter routerApp = GoRouter(
       pageBuilder: (BuildContext context, GoRouterState state) =>
           fadeTransitionPage(
             state,
-            InitialPage(initialStep: state.extra as int),
+            const InitialPage(),
           ),
       routes: [
         GoRoute(
-          path: '/sign-up',
-          name: PageNames.signUp,
+          path: '/sign-up2',
+          name: PageNames.signUp2,
           pageBuilder: (context, state) {
             return CustomTransitionPage(
               opaque: false,
               barrierDismissible: true,
-              child: const SignUpPage(),
+              child: const SignUpTwoPage(),
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
                     const begin = Offset(0.0, 1.0);
@@ -80,6 +88,16 @@ final GoRouter routerApp = GoRouter(
           },
         ),
       ],
+    ),
+    GoRoute(
+      path: '/sign-up',
+      name: PageNames.signUp,
+      builder: (context, state) => const SignUpPage(),
+    ),
+    GoRoute(
+      path: '/validate-email',
+      name: PageNames.validateEmail,
+      builder: (context, state) => const ValidateEmailPage(),
     ),
     GoRoute(
       path: '/sign-in',

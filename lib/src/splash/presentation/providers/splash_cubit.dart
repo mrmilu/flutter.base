@@ -69,8 +69,10 @@ class SplashCubit extends BaseCubit<SplashState> {
   void check() async {
     bool needUpdate = false;
     try {
+      final appVersionData = await PackageInfo.fromPlatform();
+      appVersion = '${appVersionData.version}+${appVersionData.buildNumber}';
       // await preLoadImages(context);
-      // await Future.delayed(const Duration(milliseconds: 400));
+      await Future.delayed(const Duration(milliseconds: 1400));
       changeProgressValue(1 / 4);
 
       if (Platform.isAndroid) {
@@ -102,10 +104,12 @@ class SplashCubit extends BaseCubit<SplashState> {
   Future<void> loadData() async {
     try {
       changeErrorLoading(false);
-      final appVersionData = await PackageInfo.fromPlatform();
-      appVersion = '${appVersionData.version}+${appVersionData.buildNumber}';
+      await Future.delayed(const Duration(milliseconds: 1000));
+
       changeProgressValue(2 / 4);
+      await Future.delayed(const Duration(milliseconds: 500));
       changeProgressValue(3 / 4);
+      await Future.delayed(const Duration(milliseconds: 500));
       // await settingsCubit.getAppSettings();
       // final appSettings = settingsCubit.state.resource;
       // if (appSettings.isFailure) {

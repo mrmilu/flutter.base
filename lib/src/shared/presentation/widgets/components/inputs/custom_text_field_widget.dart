@@ -9,6 +9,7 @@ import '../text/rm_text.dart';
 class CustomTextFieldWidget extends StatefulWidget {
   final FormFieldSetter<String>? onSaved;
   final ValueChanged<String>? onChanged;
+  final ValueChanged<String>? onSubmitted;
   final FormFieldValidator<String>? validator;
   final String? hintText;
   final String? labelText;
@@ -47,6 +48,7 @@ class CustomTextFieldWidget extends StatefulWidget {
     super.key,
     this.onSaved,
     required this.onChanged,
+    this.onSubmitted,
     this.validator,
     this.hintText,
     required this.labelText,
@@ -186,6 +188,7 @@ class _CustomTextFieldWidgetState extends State<CustomTextFieldWidget> {
                                   : null,
                               obscureText: _obscureText,
                               onChanged: widget.onChanged,
+                              onFieldSubmitted: widget.onSubmitted,
                               controller: widget.controller,
                               validator: widget.validator,
                               style:

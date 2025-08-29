@@ -8,7 +8,7 @@ import '../../../shared/presentation/widgets/components/buttons/custom_outlined_
 import '../../../shared/presentation/widgets/components/text/rm_text.dart';
 import '../pages/initial_page.dart';
 import '../providers/auth/auth_cubit.dart';
-import '../providers/validate_email/validate_email_cubit.dart';
+import '../validate_email/validate_email_cubit.dart';
 import 'resend_email_counter_widget.dart';
 
 class InitialContentConfirmYourAccountWidget extends StatefulWidget {

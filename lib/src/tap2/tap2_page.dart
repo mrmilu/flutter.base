@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../shared/presentation/extensions/buildcontext_extensions.dart';
-import '../shared/presentation/providers/theme_mode/theme_mode_cubit.dart';
 import '../shared/presentation/utils/assets/app_assets_icons.dart';
 import '../shared/presentation/utils/styles/colors/colors_context.dart';
 import '../shared/presentation/widgets/common/button_scale_widget.dart';
@@ -17,6 +16,7 @@ import '../shared/presentation/widgets/components/sliders/custom_slider_widget.d
 import '../shared/presentation/widgets/components/switchs/custom_switch_widget.dart';
 import '../shared/presentation/widgets/components/tags/custom_tag_icon_widget.dart';
 import '../shared/presentation/widgets/components/text/rm_text.dart';
+import '../theme_mode/presentation/providers/theme_mode_cubit.dart';
 
 class MainTap2Page extends StatelessWidget {
   const MainTap2Page({super.key});

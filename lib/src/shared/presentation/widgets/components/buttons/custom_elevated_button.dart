@@ -138,6 +138,7 @@ class CustomElevatedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ButtonScaleWidget(
+      key: Key('custom_elevated_button_$isDisabled'),
       onTap: isDisabled
           ? null
           : () {

@@ -1,23 +1,32 @@
+import 'dart:io';
+
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../settings/presentation/profile_info/access_data/change_password/info_password_validator_widget.dart';
+import '../../../shared/presentation/extensions/buildcontext_extensions.dart';
 import '../../../shared/presentation/extensions/failures/email_failure.extension.dart';
 import '../../../shared/presentation/extensions/failures/fullname_failure_extension.dart';
-import '../../../shared/presentation/extensions/failures/password_failure_extension.dart';
 import '../../../shared/presentation/helpers/toasts.dart';
 import '../../../shared/presentation/l10n/generated/l10n.dart';
 import '../../../shared/presentation/providers/global_loader/global_loader_cubit.dart';
 import '../../../shared/presentation/router/app_router.dart';
 import '../../../shared/presentation/router/page_names.dart';
 import '../../../shared/presentation/utils/assets/app_assets_icons.dart';
+import '../../../shared/presentation/utils/open_web_view_utils.dart';
 import '../../../shared/presentation/utils/styles/colors/colors_context.dart';
-import '../../../shared/presentation/widgets/common/image_asset_widget.dart';
 import '../../../shared/presentation/widgets/components/buttons/custom_elevated_button.dart';
+import '../../../shared/presentation/widgets/components/buttons/custom_icon_button.dart';
+import '../../../shared/presentation/widgets/components/checkboxs/custom_checkbox_widget.dart';
 import '../../../shared/presentation/widgets/components/inputs/custom_text_field_widget.dart';
 import '../../../shared/presentation/widgets/components/text/rm_text.dart';
+import '../../domain/failures/oauth_sign_in_failure.dart';
 import '../../domain/interfaces/i_auth_repository.dart';
+import '../extensions/oauth_sign_in_failure_extension.dart';
 import '../extensions/signup_failure_extension.dart';
 import '../providers/auth/auth_cubit.dart';
+import '../providers/signin_social/signin_social_cubit.dart';
 import 'providers/signup_cubit.dart';
 
 class SignUpPage extends StatelessWidget {
@@ -25,196 +34,400 @@ class SignUpPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => SignupCubit(
-        authRepository: context.read<IAuthRepository>(),
-        authCubit: context.read<AuthCubit>(),
-        globalLoaderCubit: context.read<GlobalLoaderCubit>(),
-      ),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => SignupCubit(
+            authRepository: context.read<IAuthRepository>(),
+            globalLoaderCubit: context.read<GlobalLoaderCubit>(),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => SigninSocialCubit(
+            authRepository: context.read<IAuthRepository>(),
+          ),
+        ),
+      ],
       child: const SignUpView(),
     );
   }
 }
 
-class SignUpView extends StatelessWidget {
+class SignUpView extends StatefulWidget {
   const SignUpView({super.key});
 
   @override
+  State<SignUpView> createState() => _SignUpViewState();
+}
+
+class _SignUpViewState extends State<SignUpView> {
+  late FocusNode _fullnameFocusNode;
+  late FocusNode _emailFocusNode;
+  late FocusNode _passwordFocusNode;
+  late FocusNode _repeatPasswordFocusNode;
+
+  @override
+  void initState() {
+    super.initState();
+    _fullnameFocusNode = FocusNode();
+    _emailFocusNode = FocusNode();
+    _passwordFocusNode = FocusNode();
+    _repeatPasswordFocusNode = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    _fullnameFocusNode.dispose();
+    _emailFocusNode.dispose();
+    _passwordFocusNode.dispose();
+    _repeatPasswordFocusNode.dispose();
+    super.dispose();
+  }
+
+  void _submitForm(BuildContext context, SignupState state) {
+    if (state.name.isNotEmpty &&
+        state.email.isNotEmpty &&
+        state.password.isNotEmpty &&
+        state.repeatPassword.isNotEmpty &&
+        state.password == state.repeatPassword &&
+        state.agreeTerms) {
+      context.read<SignupCubit>().signUp();
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return BlocListener<AuthCubit, AuthState>(
-      listenWhen: (previous, current) => previous.user != current.user,
-      listener: (context, state) {
-        if (state.user != null) {
-          routerApp.goNamed(PageNames.mainHome);
-        }
-      },
-      child: Stack(
-        children: [
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            top: 100,
-            child: Material(
-              color: Colors.transparent,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: context.colors.specificBasicWhite,
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(16),
-                    topRight: Radius.circular(16),
-                  ),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const SizedBox(height: 8),
-                    Row(
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<AuthCubit, AuthState>(
+          listener: (context, state) async {
+            if (state.user != null) {
+              if (!state.user!.isValidated) {
+                routerApp.goNamed(PageNames.validateEmail);
+                return;
+              }
+              routerApp.goNamed(PageNames.mainHome);
+            }
+          },
+        ),
+        BlocListener<SignupCubit, SignupState>(
+          listenWhen: (previous, current) =>
+              previous.resultOr != current.resultOr,
+          listener: (context, state) {
+            state.resultOr.whenIsFailure(
+              (e) => showError(
+                context,
+                message: e.toTranslate(context),
+                duration: 3,
+              ),
+            );
+            state.resultOr.whenIsSuccess(
+              () async {
+                await context.read<AuthCubit>().loginUser();
+              },
+            );
+          },
+        ),
+        BlocListener<SigninSocialCubit, SigninSocialState>(
+          listener: (context, state) {
+            state.resultOr.whenIsFailure(
+              (e) {
+                if (e is! OAuthSignInFailureCancel) {
+                  showError(
+                    context,
+                    message: e.toTranslate(context),
+                  );
+                }
+              },
+            );
+            state.resultOr.whenIsSuccess(
+              () {
+                context.read<AuthCubit>().loginUser();
+              },
+            );
+          },
+        ),
+      ],
+      child: Scaffold(
+        body: SafeArea(
+          child: Form(
+            child: BlocBuilder<SignupCubit, SignupState>(
+              builder: (context, state) {
+                return SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        const SizedBox(width: 50),
-                        const Spacer(),
-                        const RMText.bodyLarge('Crea tu cuenta'),
-                        const Spacer(),
-                        InkWell(
-                          onTap: () => routerApp.pop(),
-                          child: const Padding(
-                            padding: EdgeInsets.all(12.0),
-                            child: ImageAssetWidget(
-                              path: AppAssetsIcons.close,
-                              height: 20,
-                              width: 20,
+                        const SizedBox(height: 24),
+                        Center(
+                          child: Container(
+                            height: 80,
+                            width: 80,
+                            decoration: BoxDecoration(
+                              color: context.colors.iconBlack,
+                              shape: BoxShape.circle,
+                            ),
+                            child: const Icon(
+                              Icons.person_add,
+                              size: 32,
+                              color: Colors.white,
                             ),
                           ),
                         ),
-                        const SizedBox(width: 6),
-                      ],
-                    ),
-                    const SizedBox(width: 12),
-                    const SizedBox(height: 20),
-                    BlocConsumer<SignupCubit, SignupState>(
-                      listener: (context, state) {
-                        state.resultOr.whenIsFailure(
-                          (e) {
-                            showError(context, message: e.toTranslate(context));
-                          },
-                        );
-                      },
-                      builder: (context, stateSignUp) {
-                        return Expanded(
-                          child: SingleChildScrollView(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
+
+                        const SizedBox(height: 12),
+                        Center(
+                          child: RMText.titleLarge(
+                            context.cl.translate(
+                              'pages.auth.signUp.title',
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        Center(
+                          child: RMText.bodyMedium(
+                            context.cl.translate(
+                              'pages.auth.signUp.subtitle',
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 24),
+                        CustomTextFieldWidget(
+                          initialValue: state.name,
+                          onChanged: context.read<SignupCubit>().changeName,
+                          keyboardType: TextInputType.name,
+
+                          textInputAction: TextInputAction.next,
+                          focusNode: _fullnameFocusNode,
+                          onSubmitted: (_) => _emailFocusNode.requestFocus(),
+                          labelText: context.cl.translate(
+                            'pages.auth.signUp.form.name',
+                          ),
+                          showError: state.showErrors,
+                          errorText: state.nameVos.map(
+                            isLeft: (e) => e.toTranslate(context),
+                            isRight: (_) => null,
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        CustomTextFieldWidget(
+                          initialValue: state.email,
+                          onChanged: context.read<SignupCubit>().changeEmail,
+                          keyboardType: TextInputType.emailAddress,
+                          textInputAction: TextInputAction.next,
+                          focusNode: _emailFocusNode,
+                          onSubmitted: (_) => _passwordFocusNode.requestFocus(),
+                          labelText: context.cl.translate(
+                            'pages.auth.signUp.form.email',
+                          ),
+                          showError: state.showErrors,
+                          errorText: state.emailVos.map(
+                            isLeft: (e) => e.toTranslate(context),
+                            isRight: (_) => null,
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        CustomTextFieldWidget(
+                          enabled: !state.resultOr.isLoading,
+                          obscureText: true,
+                          focusNode: _passwordFocusNode,
+                          onSubmitted: (_) =>
+                              _repeatPasswordFocusNode.requestFocus(),
+                          labelText: context.cl.translate(
+                            'pages.auth.signUp.form.password',
+                          ),
+                          textInputAction: TextInputAction.next,
+                          onChanged: context.read<SignupCubit>().changePassword,
+                        ),
+                        const SizedBox(height: 4),
+                        InfoPasswordValidatorWidget(
+                          password: state.password,
+                          showError: state.showErrors,
+                        ),
+                        const SizedBox(height: 12),
+                        CustomTextFieldWidget(
+                          enabled: !state.resultOr.isLoading,
+                          obscureText: true,
+                          focusNode: _repeatPasswordFocusNode,
+                          onSubmitted: (_) => _submitForm(context, state),
+                          labelText: context.cl.translate(
+                            'pages.auth.signUp.form.repeatPassword',
+                          ),
+                          showError: state.showErrors,
+                          textInputAction: TextInputAction.done,
+                          onChanged: context
+                              .read<SignupCubit>()
+                              .changeRepeatPassword,
+                          errorText: state.repeatPassword != state.password
+                              ? S.of(context).mismatchedPasswords
+                              : null,
+                        ),
+                        const SizedBox(height: 12),
+                        CustomCheckboxWidget(
+                          textCheckbox: '',
+                          childContent: RichText(
+                            text: TextSpan(
+                              text:
+                                  '${context.cl.translate(
+                                    'pages.auth.signUp.agree',
+                                  )} ',
+                              style: context.textTheme.labelMedium,
                               children: [
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 12.0,
+                                TextSpan(
+                                  text: context.cl.translate(
+                                    'pages.auth.signUp.terms',
                                   ),
-                                  child: Column(
-                                    children: [
-                                      const SizedBox(height: 4),
-                                      CustomTextFieldWidget(
-                                        onChanged: context
-                                            .read<SignupCubit>()
-                                            .changeName,
-                                        labelText: 'Nombre',
-                                        showError: stateSignUp.showErrors,
-                                        errorText: stateSignUp.name.map(
-                                          isLeft: (f) => f.toTranslate(context),
-                                          isRight: (_) => null,
+                                  style: context.textTheme.labelMedium
+                                      ?.copyWith(
+                                        decoration: TextDecoration.underline,
+                                      ),
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () {
+                                      openWebView(
+                                        context: context,
+                                        title: context.cl.translate(
+                                          'pages.auth.signUp.terms',
                                         ),
-                                      ),
-                                      const SizedBox(height: 8),
-                                      CustomTextFieldWidget(
-                                        onChanged: context
-                                            .read<SignupCubit>()
-                                            .changeLastName,
-                                        labelText: 'LastName',
-                                        showError: stateSignUp.showErrors,
-                                        errorText: stateSignUp.lastName.map(
-                                          isLeft: (f) => f.toTranslate(context),
-                                          isRight: (_) => null,
+                                        url: context.cl.translate(
+                                          'urls.termsAndConditions',
                                         ),
-                                      ),
-                                      const SizedBox(height: 8),
-                                      CustomTextFieldWidget(
-                                        initialValue: stateSignUp.email,
-                                        onChanged: context
-                                            .read<SignupCubit>()
-                                            .changeEmail,
-                                        labelText: 'Email',
-                                        showError: stateSignUp.showErrors,
-                                        errorText: stateSignUp.emailVos.map(
-                                          isLeft: (f) => f.toTranslate(context),
-                                          isRight: (_) => null,
-                                        ),
-                                      ),
-                                      const SizedBox(height: 8),
-                                      CustomTextFieldWidget(
-                                        onChanged: context
-                                            .read<SignupCubit>()
-                                            .changePassword,
-                                        labelText: 'Contraseña',
-                                        obscureText: false,
-                                        showError: stateSignUp.showErrors,
-                                        errorText: stateSignUp.passwordVos.map(
-                                          isLeft: (f) => f.toTranslate(context),
-                                          isRight: (_) => null,
-                                        ),
-                                      ),
-                                      const SizedBox(height: 8),
-                                      CustomTextFieldWidget(
-                                        enabled:
-                                            !stateSignUp.resultOr.isLoading,
-                                        obscureText: true,
-                                        labelText: 'Repetir Contraseña',
-                                        onChanged: context
-                                            .read<SignupCubit>()
-                                            .changeRepeatPassword,
-                                        showError: stateSignUp.showErrors,
-                                        errorText:
-                                            stateSignUp.repeatPassword !=
-                                                stateSignUp.password
-                                            ? S.of(context).mismatchedPasswords
-                                            : null,
-                                      ),
-                                    ],
-                                  ),
+                                      );
+                                    },
                                 ),
-                                const SizedBox(height: 20),
-                                const Divider(),
-                                const SizedBox(height: 16),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 12.0,
-                                  ),
-                                  child: CustomElevatedButton.inverse(
-                                    onPressed: () =>
-                                        context.read<SignupCubit>().signUp(),
-                                    padding: const EdgeInsets.symmetric(
-                                      vertical: 16,
-                                    ),
-                                    label: 'Registrarse',
-                                  ),
+                                TextSpan(
+                                  text:
+                                      ' ${context.cl.translate('pages.auth.signUp.and')} ',
                                 ),
-                                const SizedBox(height: 20),
-                                SizedBox(
-                                  height: MediaQuery.viewInsetsOf(
-                                    context,
-                                  ).bottom,
+                                TextSpan(
+                                  text: context.cl.translate(
+                                    'pages.auth.signUp.privacy',
+                                  ),
+                                  style: context.textTheme.labelMedium
+                                      ?.copyWith(
+                                        decoration: TextDecoration.underline,
+                                      ),
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () {
+                                      openWebView(
+                                        context: context,
+                                        title: context.cl.translate(
+                                          'pages.auth.signUp.privacy',
+                                        ),
+                                        url: context.cl.translate(
+                                          'urls.privacyPolicy',
+                                        ),
+                                      );
+                                    },
                                 ),
+                                const TextSpan(text: '.'),
                               ],
                             ),
                           ),
-                        );
-                      },
+                          value: state.agreeTerms,
+                          onChanged: context
+                              .read<SignupCubit>()
+                              .changeAgreeTerms,
+                        ),
+                        const SizedBox(height: 24),
+                        CustomElevatedButton.inverse(
+                          onPressed: () => context.read<SignupCubit>().signUp(),
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 16,
+                          ),
+                          label: context.cl.translate(
+                            'pages.auth.signUp.form.button',
+                          ),
+                        ),
+                        const SizedBox(height: 16),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Divider(
+                                thickness: 0.6,
+                                color: context.colors.specificContentLow,
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                            RMText.bodyMedium(
+                              context.cl.translate(
+                                'pages.auth.signUp.or',
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                            Expanded(
+                              child: Divider(
+                                thickness: 0.6,
+                                color: context.colors.specificContentLow,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 16),
+                        Row(
+                          children: [
+                            if (Platform.isIOS) ...[
+                              Expanded(
+                                child: CustomIconButton.outline(
+                                  padding: const EdgeInsets.symmetric(
+                                    vertical: 20,
+                                  ),
+                                  onPressed: () => context
+                                      .read<SigninSocialCubit>()
+                                      .signInWithApple(),
+                                  iconPath: AppAssetsIcons.logoApple,
+                                ),
+                              ),
+                              const SizedBox(width: 12),
+                            ],
+                            Expanded(
+                              child: CustomIconButton.outline(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 20,
+                                ),
+                                onPressed: () => context
+                                    .read<SigninSocialCubit>()
+                                    .signInWithGoogle(),
+                                iconPath: AppAssetsIcons.logoGoogle,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 24),
+
+                        TextButton(
+                          onPressed: () =>
+                              routerApp.pushReplacementNamed(PageNames.signIn),
+                          child: Text.rich(
+                            TextSpan(
+                              text:
+                                  '${context.cl.translate(
+                                    'pages.auth.signUp.haveAccount',
+                                  )} ',
+                              children: [
+                                TextSpan(
+                                  text: context.cl.translate(
+                                    'pages.auth.signUp.signin',
+                                  ),
+                                  style: TextStyle(
+                                    color:
+                                        context.colors.specificSemanticSuccess,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            style: Theme.of(context).textTheme.bodyMedium!,
+                          ),
+                        ),
+                        const SizedBox(height: 40),
+                      ],
                     ),
-                  ],
-                ),
-              ),
+                  ),
+                );
+              },
             ),
           ),
-        ],
+        ),
       ),
     );
   }

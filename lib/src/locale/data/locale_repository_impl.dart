@@ -4,7 +4,6 @@ import '../domain/i_locale_repository.dart';
 
 class LocaleRepositoryImpl implements ILocaleRepository {
   final String _languageCodeKey = 'languageCode';
-
   @override
   Future<void> changeLanguageCode(String languageCode) async {
     final sharedPreferences = await SharedPreferences.getInstance();

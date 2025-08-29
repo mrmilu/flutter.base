@@ -58,44 +58,12 @@ void main() {
       await clearAppStorage();
 
       // Arrange & Act
-      app.mainTest();
+      await app.mainTest();
       await waitForHomeScreen(tester);
 
       // Assert - Verificar que la app se inicia sin errores
       expect(find.byType(MaterialApp), findsOneWidget);
     });
-
-    testWidgets(
-      'Debería navegar del splash al initial page correctamente y realizar un login',
-      (
-        tester,
-      ) async {
-        // Limpiar storage antes del test
-        await clearAppStorage();
-
-        // Arrange
-        app.mainTest();
-
-        // Act - Esperar a que se complete la navegación
-        await waitForHomeScreen(tester);
-
-        // Assert - Verificar que estamos específicamente en la initial page
-        final initialPageScaffold = find.byKey(const Key('initial_page'));
-        expect(
-          initialPageScaffold,
-          findsOneWidget,
-          reason: 'Debería encontrar el Scaffold con key "initial_page"',
-        );
-
-        // Verificar que tenemos contenido de texto (indicador de que la app está funcionando)
-        final textWidgets = find.byType(Text);
-        expect(
-          textWidgets.evaluate().length,
-          greaterThan(0),
-          reason: 'Debería tener al menos un widget de texto visible',
-        );
-      },
-    );
 
     testWidgets(
       'Debería realizar flujo de interacción completo en pantallas de autenticación',

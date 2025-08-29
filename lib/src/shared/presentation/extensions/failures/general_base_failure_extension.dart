@@ -8,7 +8,7 @@ extension GeneralBaseFailureExtension on GeneralBaseFailure {
     return when(
       unauthorized: (_, _) => S.of(context).unauthorized,
       internalError: (_, _) => S.of(context).internalError,
-      networkError: (_, _) => 'Si conexión a internet. Verifica tu red.',
+      networkError: (_, _) => 'Sin conexión a internet. Verifica tu red.',
       timeoutError: (_, _) => 'La solicitud tardó demasiado. Intenta de nuevo.',
       invalidResponseFormat: (_, _) =>
           'Formato de respuesta inválido. Contacta soporte.',

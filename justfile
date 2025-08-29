@@ -44,7 +44,7 @@ clean-and-get:
 
 # Generate locales
 locales: 
-  fvm flutter pub run intl_utils:generate
+  fvm dart run intl_utils:generate
 
 # Test
 # Note: on macOS you need to have lcov installed on your system (`brew install lcov`) to use this:

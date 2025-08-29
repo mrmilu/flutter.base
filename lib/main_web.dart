@@ -7,9 +7,11 @@ import 'src/locale/domain/i_locale_repository.dart';
 import 'src/locale/presentation/providers/locale_cubit.dart';
 import 'src/locale/presentation/utils/custom_localization_delegate.dart';
 import 'src/shared/presentation/l10n/generated/l10n.dart';
-import 'src/shared/presentation/providers/theme_mode/theme_mode_cubit.dart';
 import 'src/shared/presentation/utils/styles/themes/theme_dark.dart';
 import 'src/shared/presentation/utils/styles/themes/theme_light.dart';
+import 'src/theme_mode/data/theme_mode_repository_impl.dart';
+import 'src/theme_mode/domain/i_theme_mode_repository.dart';
+import 'src/theme_mode/presentation/providers/theme_mode_cubit.dart';
 import 'web_content/web_page.dart';
 
 void main() {
@@ -23,6 +25,9 @@ class AppWeb extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
       providers: [
+        RepositoryProvider<IThemeModeRepository>(
+          create: (_) => ThemeModeRepositoryImpl(),
+        ),
         RepositoryProvider<ILocaleRepository>(
           create: (_) => LocaleRepositoryImpl(),
         ),
@@ -30,7 +35,9 @@ class AppWeb extends StatelessWidget {
       child: MultiBlocProvider(
         providers: [
           BlocProvider<ThemeModeCubit>(
-            create: (context) => ThemeModeCubit(),
+            create: (context) => ThemeModeCubit(
+              themeModeRepository: context.read<IThemeModeRepository>(),
+            ),
           ),
           BlocProvider<LocaleCubit>(
             create: (context) => LocaleCubit(

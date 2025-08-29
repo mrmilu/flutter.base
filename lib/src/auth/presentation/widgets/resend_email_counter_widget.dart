@@ -8,10 +8,12 @@ class ResendEmailCounterWidget extends StatefulWidget {
   const ResendEmailCounterWidget({
     super.key,
     required this.text,
+    this.textInTimer,
     required this.onTap,
-    this.seconds = 60,
+    this.seconds = 90,
   });
   final String text;
+  final String? textInTimer;
   final VoidCallback onTap;
   final int seconds;
 
@@ -53,9 +55,11 @@ class _ResendEmailCounterWidgetState extends State<ResendEmailCounterWidget> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        CustomTextButton.primary(
-          label: widget.text,
-          enabled: secondsLeft == 0,
+        CustomTextButton.secondary(
+          label: secondsLeft == 0
+              ? widget.text
+              : widget.textInTimer ?? widget.text,
+          // enabled: secondsLeft == 0,
           onPressed: secondsLeft == 0
               ? () {
                   widget.onTap();
