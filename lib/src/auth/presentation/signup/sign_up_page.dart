@@ -18,7 +18,6 @@ import '../../../shared/presentation/utils/open_web_view_utils.dart';
 import '../../../shared/presentation/utils/styles/colors/colors_context.dart';
 import '../../../shared/presentation/widgets/components/buttons/custom_elevated_button.dart';
 import '../../../shared/presentation/widgets/components/buttons/custom_icon_button.dart';
-import '../../../shared/presentation/widgets/components/buttons/custom_text_button.dart';
 import '../../../shared/presentation/widgets/components/checkboxs/custom_checkbox_widget.dart';
 import '../../../shared/presentation/widgets/components/inputs/custom_text_field_widget.dart';
 import '../../../shared/presentation/widgets/components/text/rm_text.dart';
@@ -40,7 +39,6 @@ class SignUpPage extends StatelessWidget {
         BlocProvider(
           create: (context) => SignupCubit(
             authRepository: context.read<IAuthRepository>(),
-            authCubit: context.read<AuthCubit>(),
             globalLoaderCubit: context.read<GlobalLoaderCubit>(),
           ),
         ),
@@ -153,17 +151,7 @@ class _SignUpViewState extends State<SignUpView> {
       child: Scaffold(
         body: SafeArea(
           child: Form(
-            child: BlocConsumer<SignupCubit, SignupState>(
-              listener: (context, state) {
-                state.resultOr.whenIsFailure(
-                  (e) {
-                    showError(
-                      context,
-                      message: e.toTranslate(context),
-                    );
-                  },
-                );
-              },
+            child: BlocBuilder<SignupCubit, SignupState>(
               builder: (context, state) {
                 return SingleChildScrollView(
                   child: Padding(
@@ -222,7 +210,7 @@ class _SignUpViewState extends State<SignUpView> {
                             isRight: (_) => null,
                           ),
                         ),
-                        const SizedBox(height: 8),
+                        const SizedBox(height: 12),
                         CustomTextFieldWidget(
                           initialValue: state.email,
                           onChanged: context.read<SignupCubit>().changeEmail,
@@ -239,12 +227,10 @@ class _SignUpViewState extends State<SignUpView> {
                             isRight: (_) => null,
                           ),
                         ),
-                        const SizedBox(height: 8),
+                        const SizedBox(height: 12),
                         CustomTextFieldWidget(
-                          autoHideKeyboard: false,
                           enabled: !state.resultOr.isLoading,
                           obscureText: true,
-                          autofocus: true,
                           focusNode: _passwordFocusNode,
                           onSubmitted: (_) =>
                               _repeatPasswordFocusNode.requestFocus(),
@@ -259,7 +245,7 @@ class _SignUpViewState extends State<SignUpView> {
                           password: state.password,
                           showError: state.showErrors,
                         ),
-                        const SizedBox(height: 8),
+                        const SizedBox(height: 12),
                         CustomTextFieldWidget(
                           enabled: !state.resultOr.isLoading,
                           obscureText: true,
@@ -286,9 +272,7 @@ class _SignUpViewState extends State<SignUpView> {
                                   '${context.cl.translate(
                                     'pages.auth.signUp.agree',
                                   )} ',
-                              style: context.textTheme.labelMedium?.copyWith(
-                                color: context.colors.specificBasicBlack,
-                              ),
+                              style: context.textTheme.labelMedium,
                               children: [
                                 TextSpan(
                                   text: context.cl.translate(
@@ -347,9 +331,6 @@ class _SignUpViewState extends State<SignUpView> {
                         ),
                         const SizedBox(height: 24),
                         CustomElevatedButton.inverse(
-                          isDisabled:
-                              state.password.isEmpty ||
-                              state.repeatPassword.isEmpty,
                           onPressed: () => context.read<SignupCubit>().signUp(),
                           padding: const EdgeInsets.symmetric(
                             vertical: 16,
@@ -397,7 +378,7 @@ class _SignUpViewState extends State<SignUpView> {
                                   iconPath: AppAssetsIcons.logoApple,
                                 ),
                               ),
-                              const SizedBox(width: 8),
+                              const SizedBox(width: 12),
                             ],
                             Expanded(
                               child: CustomIconButton.outline(
@@ -413,15 +394,29 @@ class _SignUpViewState extends State<SignUpView> {
                           ],
                         ),
                         const SizedBox(height: 24),
-                        Align(
-                          alignment: Alignment.center,
-                          child: CustomTextButton.secondary(
-                            onPressed: () => routerApp.pushReplacementNamed(
-                              PageNames.signIn,
+
+                        TextButton(
+                          onPressed: () =>
+                              routerApp.pushReplacementNamed(PageNames.signIn),
+                          child: Text.rich(
+                            TextSpan(
+                              text:
+                                  '${context.cl.translate(
+                                    'pages.auth.signUp.haveAccount',
+                                  )} ',
+                              children: [
+                                TextSpan(
+                                  text: context.cl.translate(
+                                    'pages.auth.signUp.signin',
+                                  ),
+                                  style: TextStyle(
+                                    color:
+                                        context.colors.specificSemanticSuccess,
+                                  ),
+                                ),
+                              ],
                             ),
-                            label: context.cl.translate(
-                              'pages.auth.signUp.amClient',
-                            ),
+                            style: Theme.of(context).textTheme.bodyMedium!,
                           ),
                         ),
                         const SizedBox(height: 40),

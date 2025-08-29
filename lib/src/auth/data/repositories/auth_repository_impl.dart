@@ -49,6 +49,7 @@ class AuthRepositoryImpl implements IAuthRepository {
   Future<ResultOr<SigninFailure>> signInWithEmailAndPassword({
     required String email,
     required String password,
+    bool rememberMe = false,
   }) async {
     try {
       // final response = await httpClient.post(
@@ -61,11 +62,14 @@ class AuthRepositoryImpl implements IAuthRepository {
       //   },
       // );
       final token = 'token'; // response.data['token'];
-      await tokenRepository.saveTokens(token: token);
-      await tokenRepository.saveEmailAndPassword(
-        email: email,
-        password: password,
-      );
+      if (rememberMe) {
+        await tokenRepository.saveTokens(token: token);
+        await tokenRepository.saveEmailAndPassword(
+          email: email,
+          password: password,
+        );
+      }
+
       return ResultOr.success();
     } on DioException catch (e) {
       return ResultOr.failure(

@@ -17,50 +17,50 @@ class InfoPasswordValidatorWidget extends StatelessWidget {
   final String password;
   final bool showError;
 
-  Color getColorMinLength(BuildContext context) {
+  Color? getColorMinLength(BuildContext context) {
     if (showError) {
       return password.length < 8
           ? context.colors.specificSemanticError
           : context.colors.specificSemanticSuccess;
     }
-    return context.colors.specificBasicBlack;
+    return null;
   }
 
-  Color getColorIncludeUppercase(BuildContext context) {
+  Color? getColorIncludeUppercase(BuildContext context) {
     if (showError) {
       return !RegExp(r'^(?=.*[A-Z])').hasMatch(password)
           ? context.colors.specificSemanticError
           : context.colors.specificSemanticSuccess;
     }
-    return context.colors.specificBasicBlack;
+    return null;
   }
 
-  Color getColorIncludeLowercase(BuildContext context) {
+  Color? getColorIncludeLowercase(BuildContext context) {
     if (showError) {
       return !RegExp(r'^(?=.*[a-z])').hasMatch(password)
           ? context.colors.specificSemanticError
           : context.colors.specificSemanticSuccess;
     }
-    return context.colors.specificBasicBlack;
+    return null;
   }
 
-  Color getColorIncludeDigit(BuildContext context) {
+  Color? getColorIncludeDigit(BuildContext context) {
     if (showError) {
       return !RegExp(r'^(?=.*[!@#$%^&*])').hasMatch(password)
           ? context.colors.specificSemanticError
           : context.colors.specificSemanticSuccess;
     }
-    return context.colors.specificBasicBlack;
+    return null;
   }
 
-  Color getIconColor(BuildContext context) {
+  Color? getIconColor(BuildContext context) {
     final passwordVos = PasswordVos(password);
     if (showError) {
       return passwordVos.isInvalid()
           ? context.colors.specificSemanticError
           : context.colors.specificSemanticSuccess;
     }
-    return context.colors.specificBasicBlack;
+    return null;
   }
 
   @override

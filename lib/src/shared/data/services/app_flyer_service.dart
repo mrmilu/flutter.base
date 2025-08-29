@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../auth/presentation/pages/initial_page.dart';
-import '../../../auth/presentation/providers/validate_email/validate_email_cubit.dart';
+import '../../../auth/presentation/validate_email/validate_email_cubit.dart';
 import '../../domain/models/env_vars.dart';
 
 // Types

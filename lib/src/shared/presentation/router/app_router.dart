@@ -8,6 +8,7 @@ import '../../../auth/presentation/pages/forgot_password_page.dart';
 import '../../../auth/presentation/signin/sign_in_page.dart';
 import '../../../auth/presentation/signup/sign_up_page.dart';
 import '../../../auth/presentation/signup/sign_up_two_page.dart';
+import '../../../auth/presentation/validate_email/validate_email_page.dart';
 import '../../../home/presentation/pages/main_home_page.dart';
 import '../../../onboarding/presentation/onboarding_page.dart';
 import '../../../settings/presentation/profile_info/access_data/access_data_page.dart';
@@ -92,6 +93,11 @@ final GoRouter routerApp = GoRouter(
       path: '/sign-up',
       name: PageNames.signUp,
       builder: (context, state) => const SignUpPage(),
+    ),
+    GoRoute(
+      path: '/validate-email',
+      name: PageNames.validateEmail,
+      builder: (context, state) => const ValidateEmailPage(),
     ),
     GoRoute(
       path: '/sign-in',

@@ -51,6 +51,8 @@ class CustomOutlinedButton extends StatelessWidget {
   /// Widget de icono personalizado
   final Widget? iconWidget;
 
+  final Widget? child;
+
   const CustomOutlinedButton._({
     super.key,
     required this.label,
@@ -65,6 +67,7 @@ class CustomOutlinedButton extends StatelessWidget {
     this.textAlign,
     this.textStyle,
     this.iconWidget,
+    this.child,
   });
 
   /// Crea un botón outlined con estilo primario
@@ -82,6 +85,7 @@ class CustomOutlinedButton extends StatelessWidget {
     TextAlign? textAlign,
     TextStyle? textStyle,
     Widget? iconWidget,
+    Widget? child,
   }) : this._(
          key: key,
          label: label,
@@ -96,6 +100,7 @@ class CustomOutlinedButton extends StatelessWidget {
          textAlign: textAlign,
          textStyle: textStyle,
          iconWidget: iconWidget,
+         child: child,
        );
 
   @override
@@ -139,38 +144,43 @@ class CustomOutlinedButton extends StatelessWidget {
                   ),
                 ),
               )
-            : Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  if (!iconRight && iconPath != null) ...[
-                    ImageAssetWidget.icon(
-                      path: iconPath!,
-                      width: 20,
-                      height: 20,
-                    ),
-                    const SizedBox(width: 8),
-                  ],
-                  if (!iconRight && iconWidget != null) ...[
-                    iconWidget!,
-                    const SizedBox(width: 8),
-                  ],
-                  Flexible(
-                    child: Text(label, textAlign: textAlign, style: textStyle),
+            : child ??
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      if (!iconRight && iconPath != null) ...[
+                        ImageAssetWidget.icon(
+                          path: iconPath!,
+                          width: 20,
+                          height: 20,
+                        ),
+                        const SizedBox(width: 8),
+                      ],
+                      if (!iconRight && iconWidget != null) ...[
+                        iconWidget!,
+                        const SizedBox(width: 8),
+                      ],
+                      Flexible(
+                        child: Text(
+                          label,
+                          textAlign: textAlign,
+                          style: textStyle,
+                        ),
+                      ),
+                      if (iconRight && iconPath != null) ...[
+                        const SizedBox(width: 8),
+                        ImageAssetWidget.icon(
+                          path: iconPath!,
+                          width: 20,
+                          height: 20,
+                        ),
+                      ],
+                      if (iconRight && iconWidget != null) ...[
+                        const SizedBox(width: 8),
+                        iconWidget!,
+                      ],
+                    ],
                   ),
-                  if (iconRight && iconPath != null) ...[
-                    const SizedBox(width: 8),
-                    ImageAssetWidget.icon(
-                      path: iconPath!,
-                      width: 20,
-                      height: 20,
-                    ),
-                  ],
-                  if (iconRight && iconWidget != null) ...[
-                    const SizedBox(width: 8),
-                    iconWidget!,
-                  ],
-                ],
-              ),
       ),
     );
   }

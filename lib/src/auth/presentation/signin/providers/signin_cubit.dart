@@ -35,10 +35,15 @@ class SigninCubit extends BaseCubit<SigninState> {
     emit(state.copyWith(showErrors: value));
   }
 
-  bool _allFieldsAreValid() => <ValueObject>[
-    state.emailVos,
-    // state.passwordVos,
-  ].areValid;
+  void changeRememberMe(bool value) {
+    emit(state.copyWith(rememberMe: value));
+  }
+
+  bool _allFieldsAreValid() =>
+      <ValueObject>[
+        state.emailVos,
+      ].areValid &&
+      state.password.isNotEmpty;
 
   void validateEmail() {
     if (state.emailVos.isInvalid()) {
@@ -55,6 +60,7 @@ class SigninCubit extends BaseCubit<SigninState> {
       final result = await authRepository.signInWithEmailAndPassword(
         email: state.email,
         password: state.password,
+        rememberMe: state.rememberMe,
       );
       globalLoaderCubit.hide();
       emitIfNotDisposed(state.copyWith(resultOr: result, showErrors: true));

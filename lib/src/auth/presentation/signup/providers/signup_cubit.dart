@@ -10,7 +10,6 @@ import '../../../../shared/presentation/helpers/value_object.dart';
 import '../../../../shared/presentation/providers/global_loader/global_loader_cubit.dart';
 import '../../../domain/failures/signup_failure.dart';
 import '../../../domain/interfaces/i_auth_repository.dart';
-import '../../providers/auth/auth_cubit.dart';
 
 part 'signup_cubit.freezed.dart';
 part 'signup_state.dart';
@@ -18,11 +17,9 @@ part 'signup_state.dart';
 class SignupCubit extends Cubit<SignupState> {
   SignupCubit({
     required this.authRepository,
-    required this.authCubit,
     required this.globalLoaderCubit,
   }) : super(SignupState.initial());
   final IAuthRepository authRepository;
-  final AuthCubit authCubit;
   final GlobalLoaderCubit globalLoaderCubit;
 
   void reset() {
@@ -59,6 +56,7 @@ class SignupCubit extends Cubit<SignupState> {
 
   bool _allFieldsAreValid() =>
       <ValueObject>[
+        state.nameVos,
         state.emailVos,
         state.passwordVos,
       ].areValid &&

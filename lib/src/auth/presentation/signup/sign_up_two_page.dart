@@ -28,7 +28,6 @@ class SignUpTwoPage extends StatelessWidget {
     return BlocProvider(
       create: (context) => SignupCubit(
         authRepository: context.read<IAuthRepository>(),
-        authCubit: context.read<AuthCubit>(),
         globalLoaderCubit: context.read<GlobalLoaderCubit>(),
       ),
       child: const SignUpView(),

@@ -107,11 +107,24 @@
           "apple": "Iniciar sesión con Apple",
           "google": "Iniciar sesión con Google"
         },
-        "amClient": "¿Tienes una cuenta? Inicia sesión",
+        "haveAccount": "¿Tienes una cuenta?",
+        "signin": "Iniciar sesión",
         "agree": "Estoy de acuerdo con los",
         "terms": "Términos de Condiciones",
         "and": "y",
         "privacy": "Política de Privacidad"
+      },
+      "validateEmail": {
+        "title": "Validar email",
+        "checkYourEmail": "Comprueba tu email",
+        "sentTo": "Se ha enviado un enlace de verificación a",
+        "clickEmail": "Haz clic en el enlace del correo para verificar tu cuenta, si no lo encuentras, revisa tu carpeta de spam.",
+        "openEmailApp": "Abrir aplicación de correo",
+        "resendEmail": "Reenviar email",
+        "resendAvailable": "Reenviar email disponible en",
+        "notReceived": "¿No recibiste el email?",
+        "contactSupport": "Contactar soporte",
+        "info": "El link de verificación caducará en 24 horas. Asegurate de verificar tu email antes de que expire."
       },
       "forgotPassword": {
         "title": "¿Has olvidado tu contraseña?",

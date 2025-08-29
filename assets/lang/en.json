@@ -107,11 +107,23 @@
           "apple": "Continue with Apple",
           "google": "Continue with Google"
         },
-        "amClient": "Don't have an account yet? Sign Up",
-        "agree": "I agree to the",
+        "haveAccount": "Have an account?",
+        "signin": "Sign In",
         "terms": "Terms and Conditions",
         "and": "and",
         "privacy": "Privacy Policy"
+      },
+      "validateEmail": {
+        "title": "Validate email",
+        "checkYourEmail": "Check your email",
+        "sentTo": "A verification link has been sent to your email",
+        "clickEmail": "Click the link in the email to verify your account, if you don't find it, check your spam folder.",
+        "openEmailApp": "Open email app",
+        "resendEmail": "Resend email",
+        "resendAvailable": "Resend email available in",
+        "notReceived": "Didn't receive the email?",
+        "contactSupport": "Contact support",
+        "info": "The verification link will expire in 24 hours. Make sure to verify your email before it expires."
       },
       "forgotPassword": {
         "title": "Forgot your password?",

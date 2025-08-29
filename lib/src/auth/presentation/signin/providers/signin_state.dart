@@ -6,6 +6,7 @@ abstract class SigninState with _$SigninState {
     required String email,
     required String password,
     required bool showErrors,
+    required bool rememberMe,
     required ResultOr<SigninFailure> resultOr,
   }) = _SigninState;
 
@@ -13,6 +14,7 @@ abstract class SigninState with _$SigninState {
     email: '',
     password: '',
     showErrors: false,
+    rememberMe: false,
     resultOr: ResultOr.none(),
   );
 

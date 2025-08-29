@@ -63,7 +63,7 @@ class CustomCheckboxWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         if (title != null) ...[
           RMText.bodyMedium(title!),

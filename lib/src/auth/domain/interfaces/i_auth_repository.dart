@@ -11,6 +11,7 @@ abstract class IAuthRepository {
   Future<ResultOr<SigninFailure>> signInWithEmailAndPassword({
     required String email,
     required String password,
+    bool rememberMe,
   });
   Future<void> logout();
 
