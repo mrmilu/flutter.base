@@ -4,19 +4,15 @@ part of 'reset_password_cubit.dart';
 abstract class ResetPasswordState with _$ResetPasswordState {
   factory ResetPasswordState({
     required String password,
-    required String repeatPassword,
-    required bool showErrors,
+    required String passwordRepeat,
+    required bool showError,
     required ResultOr<GeneralBaseFailure> resultOr,
   }) = _ResetPasswordState;
 
   factory ResetPasswordState.initial() => _ResetPasswordState(
     password: '',
-    repeatPassword: '',
-    showErrors: false,
+    passwordRepeat: '',
+    showError: false,
     resultOr: ResultOr.none(),
   );
-
-  ResetPasswordState._();
-
-  PasswordVos get passwordVos => PasswordVos(password);
 }

@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
+import '../../../auth/presentation/forgot_password/forgot_password_page.dart';
 import '../../../auth/presentation/initial/initial_page.dart';
-import '../../../auth/presentation/pages/forgot_password_page.dart';
+import '../../../auth/presentation/reset_password/reset_password_page.dart';
 import '../../../auth/presentation/signin/sign_in_page.dart';
 import '../../../auth/presentation/signup/sign_up_page.dart';
 import '../../../auth/presentation/signup/sign_up_two_page.dart';
@@ -107,12 +108,22 @@ final GoRouter routerApp = GoRouter(
     GoRoute(
       path: '/forgot-password',
       name: PageNames.forgotPassword,
-      pageBuilder: (context, state) => platformPage(
-        const ForgotPasswordPage(),
-        fullscreenDialog: true,
-        state: state,
-      ),
+      builder: (context, state) => const ForgotPasswordPage(),
     ),
+    GoRoute(
+      path: '/reset-password',
+      name: PageNames.resetPassword,
+      builder: (context, state) => const ResetPasswordPage(),
+    ),
+    // GoRoute(
+    //   path: '/forgot-password',
+    //   name: PageNames.forgotPassword,
+    //   pageBuilder: (context, state) => platformPage(
+    //     const ForgotPasswordPage(),
+    //     fullscreenDialog: true,
+    //     state: state,
+    //   ),
+    // ),
     // GoRoute(
     //   path: '/forgot-password/confirm',
     //   name: PageNames.forgotPasswordConfirm,

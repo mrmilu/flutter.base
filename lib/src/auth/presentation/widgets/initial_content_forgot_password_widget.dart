@@ -8,8 +8,8 @@ import '../../../shared/presentation/widgets/components/buttons/custom_elevated_
 import '../../../shared/presentation/widgets/components/buttons/custom_text_button.dart';
 import '../../../shared/presentation/widgets/components/inputs/custom_text_field_widget.dart';
 import '../../../shared/presentation/widgets/components/text/rm_text.dart';
+import '../forgot_password/forgot_password_cubit.dart';
 import '../pages/initial_page.dart';
-import '../providers/forgot_password/forgot_password_cubit.dart';
 
 class InitialContentForgotPasswordWidget extends StatelessWidget {
   const InitialContentForgotPasswordWidget({
