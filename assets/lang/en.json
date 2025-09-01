@@ -126,13 +126,18 @@
         "info": "The verification link will expire in 24 hours. Make sure to verify your email before it expires."
       },
       "forgotPassword": {
-        "title": "Forgot your password?",
-        "subtitle": "Enter the email address associated with your account and we'll send you a link to reset your password.",
+        "title": "Reset password",
+        "forgotPassword": "Forgot Password?",
+        "subtitle": "Don't worry! Enter your email and we'll send you a link to reset your password.",
         "form": {
           "email": "Email",
-          "button": "Continue"
+          "button": "Send Reset Link"
         },
-        "backToLogin": "Back to sign in"
+        "rememberYourPassword": "Remember your password?",
+        "signIn": "Sign In",
+        "or": "Or",
+        "stillTrouble": "Still having trouble?",
+        "contactSupport": "Contact support"
       },
       "resetPassword": {
         "title": "Reset your password",

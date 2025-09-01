@@ -5,9 +5,10 @@ import 'package:appsflyer_sdk/appsflyer_sdk.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../auth/presentation/pages/initial_page.dart';
 import '../../../auth/presentation/validate_email/validate_email_cubit.dart';
 import '../../domain/models/env_vars.dart';
+import '../../presentation/router/app_router.dart';
+import '../../presentation/router/page_names.dart';
 
 // Types
 const dynamicLinkTypeValidateEmail = 'email_verification';
@@ -239,7 +240,7 @@ void handleDynamicLink(
   switch (typeDynamicLink) {
     case dynamicLinkTypeResetPassword:
       if (keyToken == null) return;
-      currentStep.value = InitialStep.updatePassword.index;
+      routerApp.pushNamed(PageNames.resetPassword);
       break;
     case dynamicLinkTypeValidateEmail:
       if (keyToken == null || !context.mounted) return;

@@ -2,13 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../settings/presentation/profile_info/access_data/change_password/info_password_validator_widget.dart';
-import '../../../shared/data/services/app_flyer_service.dart';
 import '../../../shared/presentation/extensions/buildcontext_extensions.dart';
-import '../../../shared/presentation/l10n/generated/l10n.dart';
-import '../../../shared/presentation/widgets/components/buttons/custom_elevated_button.dart';
 import '../../../shared/presentation/widgets/components/inputs/custom_text_field_widget.dart';
 import '../../../shared/presentation/widgets/components/text/rm_text.dart';
-import '../providers/reset_password/reset_password_cubit.dart';
+import '../reset_password/reset_password_cubit.dart';
 
 class InitialContentResetPasswordWidget extends StatefulWidget {
   const InitialContentResetPasswordWidget({
@@ -57,38 +54,38 @@ class _InitialContentResetPasswordWidgetState
                   const SizedBox(height: 4),
                   InfoPasswordValidatorWidget(
                     password: state.password,
-                    showError: state.showErrors,
+                    showError: state.showError,
                   ),
                   const SizedBox(height: 8),
-                  CustomTextFieldWidget(
-                    enabled: !state.resultOr.isLoading,
-                    obscureText: true,
-                    labelText: context.cl.translate(
-                      'pages.auth.resetPassword.form.confirmPassword',
-                    ),
-                    showError: state.showErrors,
-                    onChanged: context
-                        .read<ResetPasswordCubit>()
-                        .changeRepeatPassword,
-                    errorText: state.repeatPassword != state.password
-                        ? S.of(context).mismatchedPasswords
-                        : null,
-                  ),
-                  const Divider(),
-                  const SizedBox(height: 8),
-                  CustomElevatedButton.inverse(
-                    isDisabled:
-                        state.password.isEmpty ||
-                        state.repeatPassword.isEmpty ||
-                        keyGlobalDynamicLink == null,
-                    onPressed: () => context
-                        .read<ResetPasswordCubit>()
-                        .resetPassword(keyGlobalDynamicLink!),
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    label: context.cl.translate(
-                      'pages.auth.resetPassword.form.button',
-                    ),
-                  ),
+                  // CustomTextFieldWidget(
+                  //   enabled: !state.resultOr.isLoading,
+                  //   obscureText: true,
+                  //   labelText: context.cl.translate(
+                  //     'pages.auth.resetPassword.form.confirmPassword',
+                  //   ),
+                  //   showError: state.showError,
+                  //   onChanged: context
+                  //       .read<ResetPasswordCubit>()
+                  //       .changeRepeatPassword,
+                  //   errorText: state.repeatPassword != state.password
+                  //       ? S.of(context).mismatchedPasswords
+                  //       : null,
+                  // ),
+                  // const Divider(),
+                  // const SizedBox(height: 8),
+                  // CustomElevatedButton.inverse(
+                  //   isDisabled:
+                  //       state.password.isEmpty ||
+                  //       state.repeatPassword.isEmpty ||
+                  //       keyGlobalDynamicLink == null,
+                  //   onPressed: () => context
+                  //       .read<ResetPasswordCubit>()
+                  //       .resetPassword(keyGlobalDynamicLink!),
+                  //   padding: const EdgeInsets.symmetric(vertical: 16),
+                  //   label: context.cl.translate(
+                  //     'pages.auth.resetPassword.form.button',
+                  //   ),
+                  // ),
                 ],
               ),
             ),

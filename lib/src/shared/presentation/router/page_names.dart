@@ -7,6 +7,7 @@ class PageNames {
   static const String validateEmail = 'Validate email page';
   static const String signUp2 = 'Sign up 2 page';
   static const String updateDocumentUser = 'Update document user page';
+  static const String resetPassword = 'Reset password page';
   static const String changePassword = 'Change password page';
   static const String changePasswordSuccess = 'Change password success page';
   static const String forgotPassword = 'Forgot password page';

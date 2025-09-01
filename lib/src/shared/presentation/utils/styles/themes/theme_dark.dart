@@ -58,7 +58,7 @@ final appThemeDataDark = ThemeData(
       ),
       shape: WidgetStateProperty.all(
         RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(100),
+          borderRadius: BorderRadius.circular(8),
         ),
       ),
       textStyle: WidgetStateProperty.all(appTextStylesDark.headlineSmall),
@@ -76,7 +76,7 @@ final appThemeDataDark = ThemeData(
       ),
       shape: WidgetStateProperty.all(
         RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(100),
+          borderRadius: BorderRadius.circular(8),
         ),
       ),
       textStyle: WidgetStateProperty.all(appTextStylesDark.headlineSmall),

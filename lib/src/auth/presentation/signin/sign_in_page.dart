@@ -186,9 +186,9 @@ class SignInView extends StatelessWidget {
                                   ),
                                   const SizedBox(width: 8),
                                   CustomTextButton.secondary(
-                                    onPressed: () {
-                                      // Handle forgot password
-                                    },
+                                    onPressed: () => routerApp.pushNamed(
+                                      PageNames.forgotPassword,
+                                    ),
                                     label: context.cl.translate(
                                       'pages.auth.signIn.forgotPassword',
                                     ),

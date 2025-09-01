@@ -127,16 +127,22 @@
         "info": "El link de verificación caducará en 24 horas. Asegurate de verificar tu email antes de que expire."
       },
       "forgotPassword": {
-        "title": "¿Has olvidado tu contraseña?",
-        "subtitle": "Ingresa el correo electrónico asociado a tu cuenta y te enviaremos un enlace para restablecer tu contraseña.",
+        "title": "Resetear password",
+        "forgotPassword": "¿Has olvidado tu contraseña?",
+        "subtitle": "¡No te preocupes! Inserta tu email y te enviaremos un enlace para restablecer tu contraseña.",
         "form": {
           "email": "Email",
-          "button": "Continuar"
+          "button": "Enviar enlace"
         },
-        "backToLogin": "Volver a iniciar sesión"
+        "rememberYourPassword": "¿Recuerdas tu contraseña?",
+        "signIn": "Iniciar sesión",
+        "or": "O",
+        "stillTrouble": "¿Sigues teniendo problemas?",
+        "contactSupport": "Contactar soporte"
       },
       "resetPassword": {
         "title": "Restablece tu contraseña",
+        "subtitle": "Introduce tu nueva contraseña",
         "form": {
           "newPassword": "Nueva contraseña",
           "confirmPassword": "Confirmar nueva contraseña",
