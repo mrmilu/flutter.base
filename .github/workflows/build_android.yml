@@ -28,6 +28,7 @@ jobs:
         uses: actions/setup-java@v5
         with:
           java-version: "17.x"
+          cache: 'gradle'
 
       - name: Add permissions to script
         run: chmod +x extract_name@version.sh
@@ -44,6 +45,15 @@ jobs:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           channel: ${{ env.FLUTTER_CHANNEL }}
           architecture: x64
+          cache: true
+
+      - name: Cache Pub dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.pub-cache
+          key: ${{ runner.os }}-pub-android-${{ hashFiles('**/pubspec.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pub-android-
 
       - name: Dependencies
         run: |
@@ -51,13 +61,13 @@ jobs:
           flutter pub run build_runner build --delete-conflicting-outputs
           flutter pub run intl_utils:generate
 
-      - name: Setup Ruby and bundle install
+      - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: "3.3.0"
           bundler-cache: true
           working-directory: android
-
+      
       - name: Get Google Play Console API key
         run: echo $GOOGLE_PLAY_API_KEY | base64 -d > ./android/fastlane/api-access.json
 

@@ -49,6 +49,15 @@ jobs:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           channel: ${{ env.FLUTTER_CHANNEL }}
           architecture: x64
+          cache: true
+
+      - name: Cache Pub dependencies (Dart)
+        uses: actions/cache@v4
+        with:
+          path: ~/.pub-cache
+          key: ${{ runner.os }}-pub-${{ hashFiles('**/pubspec.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pub-
 
       - name: Dependencies
         run: |
@@ -56,11 +65,26 @@ jobs:
           flutter pub run build_runner build --delete-conflicting-outputs
           flutter pub run intl_utils:generate
 
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3.0"
+          bundler-cache: true
+          working-directory: ios
+
+      - name: Cache CocoaPods
+        uses: actions/cache@v4
+        with:
+          path: ios/Pods
+          key: ${{ runner.os }}-pods-${{ hashFiles('ios/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pods-
+              
       - name: iOS setup
         working-directory: ios
         run: |
-          flutter precache --ios
-          bundle install
+          # flutter precache --ios deleted is redundant (subosito does it)
+          # bundle install is redundant (ruby/setup-ruby does it)
           pod install
 
       - name: Run lane
