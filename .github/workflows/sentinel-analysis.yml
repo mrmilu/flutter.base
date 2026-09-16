@@ -1,0 +1,26 @@
+# Sentinel Analysis — caller workflow
+#
+# Drop this file into any product repo at:
+#   .github/workflows/sentinel-analysis.yml
+#
+# It calls the reusable workflow in mrmilu/devops.sentinel, which runs a
+# DependencyTrack SBOM scan + a SonarQube scan and pushes both result
+# summaries back to Sentinel. All configuration travels via org/repo secrets,
+# so this caller stays a few lines and never changes per repo.
+#
+# Prerequisites (see runbook):
+#   - mrmilu/devops.sentinel Actions access must allow the org (access_level=organization)
+#   - These secrets must exist at org level or on this repo:
+#       DT_URL, DT_API_TOKEN, SONAR_HOST_URL, SONAR_TOKEN,
+#       SENTINEL_URL, SENTINEL_API_TOKEN
+name: Sentinel Analysis
+
+on:
+  push:
+    branches: [master, main, develop]
+  workflow_dispatch: {}
+
+jobs:
+  sentinel-analysis:
+    uses: mrmilu/devops.sentinel/.github/workflows/sentinel-analysis.yml@master
+    secrets: inherit
