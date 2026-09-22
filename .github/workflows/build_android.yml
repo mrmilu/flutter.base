@@ -19,23 +19,25 @@ jobs:
       PLAY_STORE_UPLOAD_KEY_PROPERTIES: ${{ secrets.PLAY_STORE_UPLOAD_KEY_PROPERTIES }}
       PLAY_STORE_UPLOAD_KEY: ${{ secrets.PLAY_STORE_UPLOAD_KEY }}
       ENVIRONMENT: ${{ github.ref_name == 'master' && 'live' || 'beta'}}
+      CHANNEL_ID: ${{ secrets.SLACK_CHANNEL_ID }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup Java
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v5
         with:
           java-version: "17.x"
+          cache: 'gradle'
 
-      - name: Dar permisos de ejecución al script
+      - name: Add permissions to script
         run: chmod +x extract_name@version.sh
 
       - name: Extract app version
         run: echo "APP_VERSION=$(./extract_name@version.sh)" >> $GITHUB_ENV
 
       - name: Reading FVM
-        uses: kuhnroyal/flutter-fvm-config-action@v1
+        uses: kuhnroyal/flutter-fvm-config-action@v3
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
@@ -43,6 +45,15 @@ jobs:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           channel: ${{ env.FLUTTER_CHANNEL }}
           architecture: x64
+          cache: true
+
+      - name: Cache Pub dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.pub-cache
+          key: ${{ runner.os }}-pub-android-${{ hashFiles('**/pubspec.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pub-android-
 
       - name: Dependencies
         run: |
@@ -50,13 +61,13 @@ jobs:
           flutter pub run build_runner build --delete-conflicting-outputs
           flutter pub run intl_utils:generate
 
-      - name: Setup Ruby and bundle install
+      - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: "3.3.0"
           bundler-cache: true
           working-directory: android
-
+      
       - name: Get Google Play Console API key
         run: echo $GOOGLE_PLAY_API_KEY | base64 -d > ./android/fastlane/api-access.json
 
@@ -74,7 +85,7 @@ jobs:
         id: slack
         uses: slackapi/slack-github-action@v1.24.0
         with:
-          channel-id: "C08M356URCH"
+          channel-id: "${{ env.CHANNEL_ID }}"
           payload: |
             {
               "blocks": [
