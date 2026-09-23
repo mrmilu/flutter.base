@@ -59,6 +59,10 @@ extension DioExceptionExtension on DioException {
         return GeneralBaseFailure.unexpectedError(
           message: apiErrorMessage ?? 'Error inesperado. Intenta más tarde.',
         );
+      default:
+        return GeneralBaseFailure.unexpectedError(
+          message: apiErrorMessage ?? 'Error inesperado. Intenta más tarde.',
+        );
     }
   }
 

@@ -31,7 +31,7 @@ class CustomDropdownFieldPackageWidget<T> extends StatelessWidget {
   final bool readOnly;
   final T? value;
 
-  final List<DropdownMenuItem<T>>? items;
+  final List<DropdownItem<T>>? items;
 
   Color _getBorderColor(BuildContext context) {
     if (!enabled || readOnly) {
@@ -99,7 +99,7 @@ class CustomDropdownFieldPackageWidget<T> extends StatelessWidget {
                               ),
                             ),
                             items: items,
-                            value: value,
+
                             selectedItemBuilder: (context) => items!
                                 .map(
                                   (item) => Padding(

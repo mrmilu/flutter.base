@@ -46,16 +46,6 @@ class _InitialContentUpdateDocumentWidgetState
         }
       }
     });
-
-    appsflyerSdk?.onDeepLinking((p0) {
-      final deepLink = p0.deepLink?.clickEvent;
-      final type = deepLink?[dynamicLinkParamType] ?? '';
-      final encoded = deepLink?[dynamicLinkParamEncoded] ?? '';
-
-      if (type == dynamicLinkTypeLinkEncoded) {
-        context.read<LinkEncodedCubit>().linkEncoded(encoded);
-      }
-    });
   }
 
   @override
@@ -64,7 +54,6 @@ class _InitialContentUpdateDocumentWidgetState
     typeGlobalDynamicLink = null;
     keyGlobalDynamicLink = null;
     encodeGlobalDynamicLink = null;
-    appsflyerSdk?.onDeepLinking((p0) {});
   }
 
   @override

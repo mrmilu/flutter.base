@@ -56,7 +56,7 @@ class CustomElevatedButton extends StatelessWidget {
 
   const CustomElevatedButton._({
     super.key,
-    required CustomElevatedButtonStyle style,
+    required this._style,
     required this.label,
     required this.onPressed,
     this.backgroundColor,
@@ -69,7 +69,7 @@ class CustomElevatedButton extends StatelessWidget {
     this.textAlign,
     this.textStyle,
     this.iconColor,
-  }) : _style = style;
+  });
 
   /// Crea un botón elevado con estilo primario
   const CustomElevatedButton.primary({

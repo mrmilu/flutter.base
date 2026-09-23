@@ -40,7 +40,7 @@ class AuthRepositoryImpl implements IAuthRepository {
       dev.log('User: ${response.data}');
       final user = UserDto.fromMap(response.data ?? {}).toDomain();
       return user;
-    } catch (e, _) {
+    } catch (e) {
       return mockUser;
     }
   }
@@ -78,7 +78,7 @@ class AuthRepositoryImpl implements IAuthRepository {
           (gF) => SigninFailure.general(gF),
         ),
       );
-    } on Exception catch (e, _) {
+    } on Exception catch (e) {
       return ResultOr.failure(
         SigninFailure.general(
           GeneralBaseFailure.unexpectedError(message: e.toString()),
@@ -175,7 +175,7 @@ class AuthRepositoryImpl implements IAuthRepository {
       return ResultOr.failure(
         const OAuthSignInFailure.general(GeneralBaseFailure.internalError()),
       );
-    } catch (e, _) {
+    } catch (e) {
       if (e is CanceledByUserException) {
         throw CanceledByUserException();
       }
@@ -212,7 +212,7 @@ class AuthRepositoryImpl implements IAuthRepository {
       return ResultOr.failure(
         const OAuthSignInFailure.general(GeneralBaseFailure.internalError()),
       );
-    } catch (e, _) {
+    } catch (e) {
       if (e is CanceledByUserException) {
         return ResultOr.failure(const OAuthSignInFailure.cancel());
       }
@@ -245,7 +245,7 @@ class AuthRepositoryImpl implements IAuthRepository {
           (gF) => OAuthSignInFailure.general(gF),
         ),
       );
-    } on Exception catch (e, _) {
+    } on Exception catch (e) {
       return ResultOr.failure(
         OAuthSignInFailure.general(
           GeneralBaseFailure.unexpectedError(message: e.toString()),
@@ -281,7 +281,7 @@ class AuthRepositoryImpl implements IAuthRepository {
           (gF) => UpdateDocumentFailure.general(gF),
         ),
       );
-    } on Exception catch (e, _) {
+    } on Exception catch (e) {
       return ResultOr.failure(
         UpdateDocumentFailure.general(
           GeneralBaseFailure.unexpectedError(message: e.toString()),
@@ -309,7 +309,7 @@ class AuthRepositoryImpl implements IAuthRepository {
           (gF) => ValidateEmailFailure.general(gF),
         ),
       );
-    } on Exception catch (e, _) {
+    } on Exception catch (e) {
       return ResultOr.failure(
         ValidateEmailFailure.general(
           GeneralBaseFailure.unexpectedError(message: e.toString()),
@@ -332,7 +332,7 @@ class AuthRepositoryImpl implements IAuthRepository {
           (gF) => ValidateEmailFailure.general(gF),
         ),
       );
-    } on Exception catch (e, _) {
+    } on Exception catch (e) {
       return ResultOr.failure(
         ValidateEmailFailure.general(
           GeneralBaseFailure.unexpectedError(message: e.toString()),
@@ -360,7 +360,7 @@ class AuthRepositoryImpl implements IAuthRepository {
           (gF) => ValidateEmailFailure.general(gF),
         ),
       );
-    } on Exception catch (e, _) {
+    } on Exception catch (e) {
       return ResultOr.failure(
         ValidateEmailFailure.general(
           GeneralBaseFailure.unexpectedError(message: e.toString()),
@@ -388,7 +388,7 @@ class AuthRepositoryImpl implements IAuthRepository {
           (gF) => SigninFailure.general(gF),
         ),
       );
-    } on Exception catch (e, _) {
+    } on Exception catch (e) {
       return ResultOr.failure(
         SigninFailure.general(
           GeneralBaseFailure.unexpectedError(message: e.toString()),
@@ -420,7 +420,7 @@ class AuthRepositoryImpl implements IAuthRepository {
           (gF) => const GeneralBaseFailure.internalError(),
         ),
       );
-    } on Exception catch (e, _) {
+    } on Exception catch (e) {
       return ResultOr.failure(
         GeneralBaseFailure.unexpectedError(message: e.toString()),
       );
@@ -443,7 +443,7 @@ class AuthRepositoryImpl implements IAuthRepository {
           (gF) => gF,
         ),
       );
-    } on Exception catch (e, _) {
+    } on Exception catch (e) {
       return ResultOr.failure(
         GeneralBaseFailure.unexpectedError(message: e.toString()),
       );
@@ -466,7 +466,7 @@ class AuthRepositoryImpl implements IAuthRepository {
           (gF) => gF,
         ),
       );
-    } on Exception catch (e, _) {
+    } on Exception catch (e) {
       return ResultOr.failure(
         GeneralBaseFailure.unexpectedError(message: e.toString()),
       );

@@ -1,3 +1,4 @@
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -83,7 +84,7 @@ class SettingsLanguagesView extends StatelessWidget {
                       initialValue: myLocale?.toTranslate(context),
                       items: AppLanguageType.values
                           .map(
-                            (item) => DropdownMenuItem<AppLanguageType>(
+                            (item) => DropdownItem<AppLanguageType>(
                               value: item,
                               child: Text(
                                 item.toTranslate(context),

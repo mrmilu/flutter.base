@@ -38,7 +38,7 @@ class MainHomeRepositoryImpl implements IMainHomeRepository {
       //     BaseFailure.unknown,
       //   ),
       // );
-    } on Exception catch (e, _) {
+    } on Exception catch (_) {
       return Resource.failure(
         const GetUserFailure.general(GeneralBaseFailure.networkError()),
       );
