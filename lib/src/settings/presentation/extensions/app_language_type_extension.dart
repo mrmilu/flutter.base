@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../../../shared/presentation/extensions/buildcontext_extensions.dart';
 import '../../domain/types/app_language_type.dart';

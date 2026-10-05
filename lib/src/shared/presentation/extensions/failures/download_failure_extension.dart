@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 
 import '../../../domain/failures/endpoints/download_file_failure.dart';
 import '../buildcontext_extensions.dart';

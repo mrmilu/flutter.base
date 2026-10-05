@@ -70,6 +70,7 @@ class PageDto<T> {
 
   factory PageDto.fromJson(
     String source,
+    // ignore: avoid_types_as_parameter_names, avoid_shadowing_type_parameters
     T Function<T>(dynamic) fromJson,
   ) => PageDto.fromMap(
     json.decode(source),

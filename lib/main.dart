@@ -1,8 +1,11 @@
+import 'dart:developer';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:logging/logging.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 import 'app.dart';
@@ -11,7 +14,9 @@ import 'src/shared/data/services/app_flyer_service.dart';
 import 'src/shared/data/services/simple_notifications_push_service.dart';
 import 'src/shared/domain/models/env_vars.dart';
 import 'src/shared/presentation/helpers/analytics_helper.dart';
-import 'src/shared/presentation/helpers/error_monitoring.dart';
+import 'src/shared/presentation/helpers/app_logger.dart';
+
+final _log = Logger('GlobalErrors');
 
 Future<void> main() async {
   F.appFlavor = Flavor.values.firstWhere(
@@ -21,7 +26,7 @@ Future<void> main() async {
 
   await dotenv.load(fileName: '.env.${F.name}');
   final env = EnvVars();
-  debugPrint('appId: ${env.appId}, flavor: ${F.name}');
+  log('[i] [INFO] [APP] - appId: ${env.appId}, flavor: ${F.name}');
 
   await SentryFlutter.init(
     (options) {
@@ -31,6 +36,7 @@ Future<void> main() async {
     },
     appRunner: () async {
       WidgetsFlutterBinding.ensureInitialized();
+      AppLogger.init(isRelease: kReleaseMode);
 
       await Firebase.initializeApp();
 
@@ -42,15 +48,16 @@ Future<void> main() async {
       ]);
 
       FlutterError.onError = (details) {
-        final error = details.exception;
-        final stack = details.stack ?? StackTrace.current;
-        ErrorMonitoring.captureException(error, stack);
+        _log.severe(
+          'Flutter error',
+          details.exception,
+          details.stack ?? StackTrace.current,
+        );
         FlutterError.presentError(details);
       };
 
       PlatformDispatcher.instance.onError = (error, stack) {
-        Sentry.captureException(error, stackTrace: stack);
-        debugPrintStack(label: error.toString(), stackTrace: stack);
+        _log.severe('Uncaught error', error, stack);
         return true;
       };
 

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 extension TextStyleX on TextStyle {
   /// A method to underline a text with a customizable [distance] between the text

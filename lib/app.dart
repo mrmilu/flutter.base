@@ -1,9 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'flavors.dart';
 import 'src/auth/data/repositories/auth_repository_impl.dart';
@@ -138,9 +137,7 @@ class AppView extends StatelessWidget {
               localizationsDelegates: [
                 CustomLocalizationDelegate(stateLocale.locale.languageCode),
                 S.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
+                ...GlobalMaterialLocalizations.delegates,
               ],
               locale: stateLocale.locale,
               localeResolutionCallback: (locale, supportedLocales) {

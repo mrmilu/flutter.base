@@ -1,9 +1,9 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_base/src/locale/presentation/utils/custom_localization_delegate.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:material_ui/material_ui.dart';
 
 // Mock classes para Dio
 class MockDio implements Dio {
@@ -213,11 +213,14 @@ void main() {
           }
         });
 
-        test('should load CustomLocalization with unsupported locale', () async {
-          // Test with unsupported locale (should default to 'es' in _getLocalization)
-          final result = await CustomLocalization.load('fr'); // unsupported
-          expect(result, isA<CustomLocalization>());
-        });
+        test(
+          'should load CustomLocalization with unsupported locale',
+          () async {
+            // Test with unsupported locale (should default to 'es' in _getLocalization)
+            final result = await CustomLocalization.load('fr'); // unsupported
+            expect(result, isA<CustomLocalization>());
+          },
+        );
 
         test('should handle edge case locales', () async {
           // Test edge cases
@@ -260,32 +263,35 @@ void main() {
 
         // Tests específicos para cubrir las líneas HTTP (81-87)
         group('HTTP response handling with Dio injection', () {
-          test('should handle HTTP 200 response and process JSON data', () async {
-            // Mock Dio que retorna respuesta exitosa (statusCode == 200)
-            final mockResponseData = {
-              'welcome': 'Bienvenido',
-              'goodbye': 'Adiós',
-              'countries': {'es': 'España', 'en': 'Inglaterra'},
-            };
+          test(
+            'should handle HTTP 200 response and process JSON data',
+            () async {
+              // Mock Dio que retorna respuesta exitosa (statusCode == 200)
+              final mockResponseData = {
+                'welcome': 'Bienvenido',
+                'goodbye': 'Adiós',
+                'countries': {'es': 'España', 'en': 'Inglaterra'},
+              };
 
-            final mockDio = MockDio(
-              statusCode: 200,
-              responseData: jsonEncode(mockResponseData),
-            );
+              final mockDio = MockDio(
+                statusCode: 200,
+                responseData: jsonEncode(mockResponseData),
+              );
 
-            // Ejecutar el método con el mock - esto cubrirá líneas 81-85
-            final result = await CustomLocalization.load('es', mockDio);
+              // Ejecutar el método con el mock - esto cubrirá líneas 81-85
+              final result = await CustomLocalization.load('es', mockDio);
 
-            // Verificar que el resultado es correcto
-            expect(result, isA<CustomLocalization>());
-            expect(result.translate('welcome'), 'Bienvenido');
-            expect(result.translate('goodbye'), 'Adiós');
-            // Los objetos anidados se convierten a string por .toString() en línea 84
-            expect(
-              result.translate('countries'),
-              '{es: España, en: Inglaterra}',
-            );
-          });
+              // Verificar que el resultado es correcto
+              expect(result, isA<CustomLocalization>());
+              expect(result.translate('welcome'), 'Bienvenido');
+              expect(result.translate('goodbye'), 'Adiós');
+              // Los objetos anidados se convierten a string por .toString() en línea 84
+              expect(
+                result.translate('countries'),
+                '{es: España, en: Inglaterra}',
+              );
+            },
+          );
 
           test(
             'should handle HTTP non-200 response and fallback to _getLocalization',

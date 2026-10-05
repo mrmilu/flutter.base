@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../../domain/failures/endpoints/general_base_failure.dart';
 import '../../domain/interfaces/i_settings_repository.dart';

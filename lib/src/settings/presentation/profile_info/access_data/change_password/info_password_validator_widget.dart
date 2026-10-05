@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../../../../../shared/domain/failures/password_failure.dart';
 import '../../../../../shared/domain/vos/password_vos.dart';

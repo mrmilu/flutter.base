@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../../../auth/presentation/providers/auth/auth_cubit.dart';
 import '../../../shared/presentation/extensions/buildcontext_extensions.dart';
@@ -133,7 +133,6 @@ class ProfileInfoPage extends StatelessWidget {
                           SizedBox(height: context.paddingBottomPlus),
                         ]
                         .animate(
-                          delay: 200.milliseconds,
                           interval: 40.milliseconds,
                         )
                         .slideY()

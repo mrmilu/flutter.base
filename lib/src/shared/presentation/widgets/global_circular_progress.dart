@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../providers/global_loader/global_loader_cubit.dart';
 import 'common/circular_progress.dart';

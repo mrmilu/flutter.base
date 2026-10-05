@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 
 import '../../../shared/presentation/extensions/failures/general_base_failure_extension.dart';
 import '../../domain/failures/change_language_failure.dart';

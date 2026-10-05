@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'src/locale/data/locale_repository_impl.dart';
 import 'src/locale/domain/i_locale_repository.dart';
@@ -62,9 +61,7 @@ class AppWeb extends StatelessWidget {
                   localizationsDelegates: [
                     CustomLocalizationDelegate(stateLocale.locale.languageCode),
                     S.delegate,
-                    GlobalMaterialLocalizations.delegate,
-                    GlobalWidgetsLocalizations.delegate,
-                    GlobalCupertinoLocalizations.delegate,
+                    ...GlobalMaterialLocalizations.delegates,
                   ],
                   locale: stateLocale.locale,
                   localeResolutionCallback: (locale, supportedLocales) {

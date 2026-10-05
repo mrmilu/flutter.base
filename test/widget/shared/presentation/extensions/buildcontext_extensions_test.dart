@@ -1,11 +1,10 @@
 import 'dart:io';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_base/src/locale/presentation/utils/custom_localization_delegate.dart';
 import 'package:flutter_base/src/shared/presentation/extensions/buildcontext_extensions.dart';
 import 'package:flutter_base/src/shared/presentation/l10n/generated/l10n.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../../../../helpers/pump_app.dart';
 
@@ -35,9 +34,7 @@ void main() {
         localizationsDelegates: [
           S.delegate,
           CustomLocalizationDelegate('es'),
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
+          ...GlobalMaterialLocalizations.delegates,
         ],
         supportedLocales: const [
           Locale('es', 'ES'),

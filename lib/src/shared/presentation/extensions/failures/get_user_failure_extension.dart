@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../../../domain/failures/endpoints/get_user_failure.dart';
 import '../../l10n/generated/l10n.dart';
