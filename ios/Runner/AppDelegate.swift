@@ -4,25 +4,16 @@ import AppsFlyerLib
 import Firebase 
 
 @main
-@objc class AppDelegate: FlutterAppDelegate, FlutterImplicitEngineDelegate {
-
-  private func configureFirebase() {
-    if FirebaseApp.app() == nil {
-      FirebaseApp.configure()
-    }
-  }
-  
+@objc class AppDelegate: FlutterAppDelegate, FlutterImplicitEngineDelegate { 
   
   override func application(
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
-    configureFirebase()
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
 
   func didInitializeImplicitFlutterEngine(_ engineBridge: FlutterImplicitEngineBridge) {
-    configureFirebase()
     GeneratedPluginRegistrant.register(with: engineBridge.pluginRegistry)
   }
 
