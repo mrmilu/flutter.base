@@ -1,6 +1,6 @@
+import 'package:flutter_jungle_core/flutter_jungle_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../../shared/presentation/helpers/result_or.dart';
 import '../../../../shared/presentation/providers/base_cubit.dart';
 import '../../../domain/failures/oauth_sign_in_failure.dart';
 import '../../../domain/interfaces/i_auth_repository.dart';
@@ -14,19 +14,19 @@ class SigninSocialCubit extends BaseCubit<SigninSocialState> {
   final IAuthRepository authRepository;
 
   Future<void> signInWithFacebook() async {
-    emit(state.copyWith(resultOr: ResultOr.loading()));
+    emit(state.copyWith(resultOr: const ResultOr.loading()));
     final result = await authRepository.signInWithFacebook();
     emitIfNotDisposed(state.copyWith(resultOr: result));
   }
 
   Future<void> signInWithGoogle() async {
-    emit(state.copyWith(resultOr: ResultOr.loading()));
+    emit(state.copyWith(resultOr: const ResultOr.loading()));
     final result = await authRepository.signInWithGoogle();
     emitIfNotDisposed(state.copyWith(resultOr: result));
   }
 
   Future<void> signInWithApple() async {
-    emit(state.copyWith(resultOr: ResultOr.loading()));
+    emit(state.copyWith(resultOr: const ResultOr.loading()));
     final result = await authRepository.signInWithApple();
     emitIfNotDisposed(state.copyWith(resultOr: result));
   }

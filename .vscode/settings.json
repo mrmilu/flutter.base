@@ -19,6 +19,7 @@
   "explorer.fileNesting.patterns": {
     "*_cubit.dart": "${capture}_state.dart,${capture}_cubit.freezed.dart, ${capture}_listeners.dart",
     "*_failure.dart": "${capture}_failure.freezed.dart",
+    "*.dart": "${capture}.freezed.dart"
   },
   "editor.formatOnSave": true
 }

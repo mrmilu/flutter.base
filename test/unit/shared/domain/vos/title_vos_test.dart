@@ -1,5 +1,5 @@
-import 'package:flutter_base/src/shared/domain/failures/fullname_failure.dart';
 import 'package:flutter_base/src/shared/domain/vos/title_vos.dart';
+import 'package:flutter_jungle_core/flutter_jungle_core.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

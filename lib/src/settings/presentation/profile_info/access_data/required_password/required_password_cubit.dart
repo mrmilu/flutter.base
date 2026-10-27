@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_jungle_core/flutter_jungle_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../../../shared/presentation/helpers/result_or.dart';
 import '../../../../../shared/presentation/providers/global_loader/global_loader_cubit.dart';
 import '../../../../domain/failures/required_password_failure.dart';
 import '../../../../domain/interfaces/i_personal_info_repository.dart';
@@ -22,7 +22,7 @@ class RequiredPasswordCubit extends Cubit<RequiredPasswordState> {
   }
 
   Future<void> save() async {
-    emit(state.copyWith(resultOr: ResultOr.loading()));
+    emit(state.copyWith(resultOr: const ResultOr.loading()));
     globalLoaderCubit.show();
     final result = await repository.checkPassword(
       password: state.password,

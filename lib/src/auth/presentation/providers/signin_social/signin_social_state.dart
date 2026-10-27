@@ -7,6 +7,6 @@ abstract class SigninSocialState with _$SigninSocialState {
   }) = _SigninSocialState;
 
   factory SigninSocialState.initial() => _SigninSocialState(
-    resultOr: ResultOr.none(),
+    resultOr: const ResultOr.none(),
   );
 }

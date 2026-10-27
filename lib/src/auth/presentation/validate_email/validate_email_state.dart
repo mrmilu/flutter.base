@@ -7,6 +7,6 @@ abstract class ValidateEmailState with _$ValidateEmailState {
   }) = _ValidateEmailState;
 
   factory ValidateEmailState.initial() => _ValidateEmailState(
-    resultOr: ResultOr.none(),
+    resultOr: const ResultOr.none(),
   );
 }

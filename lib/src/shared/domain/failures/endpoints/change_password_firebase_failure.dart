@@ -1,6 +1,5 @@
+import 'package:flutter_jungle_core/flutter_jungle_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import 'general_base_failure.dart';
 
 part 'change_password_firebase_failure.freezed.dart';
 

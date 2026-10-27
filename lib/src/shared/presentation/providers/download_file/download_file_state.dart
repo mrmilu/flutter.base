@@ -9,8 +9,8 @@ abstract class DownloadFileState with _$DownloadFileState {
   }) = _DownloadFileState;
 
   factory DownloadFileState.initial() => _DownloadFileState(
-    resourceGenerateFile: Resource.none(),
-    resourceDownloadFile: Resource.none(),
-    resourceDownloadFileTemp: Resource.none(),
+    resourceGenerateFile: const Resource.none(),
+    resourceDownloadFile: const Resource.none(),
+    resourceDownloadFileTemp: const Resource.none(),
   );
 }

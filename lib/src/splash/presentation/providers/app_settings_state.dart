@@ -7,6 +7,6 @@ abstract class AppSettingsState with _$AppSettingsState {
   }) = _AppSettingsState;
 
   factory AppSettingsState.initial() => _AppSettingsState(
-    resource: Resource.none(),
+    resource: const Resource.none(),
   );
 }

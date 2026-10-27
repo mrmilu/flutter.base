@@ -1,6 +1,6 @@
 import 'package:cupertino_ui/cupertino_ui.dart';
+import 'package:flutter_jungle_core/flutter_jungle_core.dart';
 
-import '../../../domain/failures/fullname_failure.dart';
 import '../../l10n/generated/l10n.dart';
 
 extension FullnameFailureExtension on FullnameFailure {

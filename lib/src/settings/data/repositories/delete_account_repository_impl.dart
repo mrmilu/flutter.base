@@ -1,10 +1,8 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
+import 'package:flutter_jungle_core/flutter_jungle_core.dart';
 
-import '../../../shared/domain/failures/endpoints/general_base_failure.dart';
-import '../../../shared/presentation/extensions/dio_exception_extension.dart';
-import '../../../shared/presentation/helpers/result_or.dart';
 import '../../domain/failures/delete_account_failure.dart';
 import '../../domain/interfaces/i_delete_account_repository.dart';
 
@@ -19,7 +17,7 @@ class DeleteAccountRepositoryImpl implements IDeleteAccountRepository {
         '/api/users',
       );
 
-      return ResultOr.success();
+      return const ResultOr.success();
     } on DioException catch (e) {
       return ResultOr.failure(
         e.toFailure(

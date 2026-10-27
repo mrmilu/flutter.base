@@ -64,6 +64,11 @@ dependencies:
   # rainmakers_design_system:
   #   path: ../../DesignSystem/rainmakers_design_system
 
+  # flutter_jungle_core:
+  #   path: ../../package_jungle/flutter_jungle_core
+
+  flutter_jungle_core: ^0.0.4
+
   material_ui: any
   cupertino_ui: any
 
@@ -75,8 +80,8 @@ dev_dependencies:
   flutter_lints: ^6.0.0
   flutter_flavorizr: ^2.6.0
   flutter_launcher_icons: ^0.14.4
-  freezed: ^4.0.1 # pending update
-  build_runner: ^2.16.1
+  freezed: ^4.0.3
+  build_runner: ^2.17.1
   yaml: ^3.1.4
 
 flutter:

@@ -1,4 +1,5 @@
-import '../../presentation/helpers/resource.dart';
+import 'package:flutter_jungle_core/flutter_jungle_core.dart';
+
 import '../failures/endpoints/download_file_failure.dart';
 
 abstract class IDownloadFileRepository {

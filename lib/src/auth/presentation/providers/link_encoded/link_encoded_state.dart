@@ -7,6 +7,6 @@ abstract class LinkEncodedState with _$LinkEncodedState {
   }) = _LinkEncodedState;
 
   factory LinkEncodedState.initial() => _LinkEncodedState(
-    resultOr: ResultOr.none(),
+    resultOr: const ResultOr.none(),
   );
 }

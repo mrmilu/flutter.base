@@ -1,6 +1,5 @@
+import 'package:flutter_jungle_core/flutter_jungle_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import 'general_base_failure.dart';
 
 part 'get_user_failure.freezed.dart';
 

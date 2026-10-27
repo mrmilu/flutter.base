@@ -1,4 +1,4 @@
-import '../../presentation/extensions/iterable_extension.dart';
+import 'package:flutter_jungle_core/flutter_jungle_core.dart';
 
 enum PrefixPhoneType {
   spain(code: 'ES', prefix: '+34', mask: '000 000 000'),

@@ -405,6 +405,16 @@ class S {
     );
   }
 
+  /// `Debe incluir al menos un carácter especial`
+  String get includeSpecialCharacter {
+    return Intl.message(
+      'Debe incluir al menos un carácter especial',
+      name: 'includeSpecialCharacter',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `El IBAN es demasiado largo`
   String get ibanTooLong {
     return Intl.message(

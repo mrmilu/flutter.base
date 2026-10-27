@@ -1,10 +1,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_jungle_core/flutter_jungle_core.dart';
 import 'package:material_ui/material_ui.dart';
 
 import '../../../../../auth/domain/interfaces/i_token_repository.dart';
 import '../../../../../auth/presentation/providers/auth/auth_cubit.dart';
 import '../../../../../shared/data/services/http_client.dart';
-import '../../../../../shared/domain/vos/password_vos.dart';
 import '../../../../../shared/presentation/extensions/buildcontext_extensions.dart';
 import '../../../../../shared/presentation/extensions/failures/password_failure_extension.dart';
 import '../../../../../shared/presentation/helpers/toasts.dart';

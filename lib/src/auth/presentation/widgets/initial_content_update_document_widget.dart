@@ -1,10 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_jungle_core/flutter_jungle_core.dart';
 import 'package:material_ui/material_ui.dart';
 
 import '../../../shared/data/services/app_flyer_service.dart';
 import '../../../shared/domain/types/document_type.dart';
-import '../../../shared/domain/vos/nie_vos.dart';
-import '../../../shared/domain/vos/nif_vos.dart';
 import '../../../shared/presentation/extensions/buildcontext_extensions.dart';
 import '../../../shared/presentation/extensions/failures/fullname_failure_extension.dart';
 import '../../../shared/presentation/extensions/failures/nie_failure_extension.dart';

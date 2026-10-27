@@ -21,7 +21,7 @@ abstract class SignupState with _$SignupState {
     repeatPassword: '',
     agreeTerms: false,
     showErrors: false,
-    resultOr: ResultOr.none(),
+    resultOr: const ResultOr.none(),
   );
 
   SignupState._();

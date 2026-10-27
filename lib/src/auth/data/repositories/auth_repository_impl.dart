@@ -2,18 +2,15 @@ import 'dart:developer' as dev;
 
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_jungle_core/flutter_jungle_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 import '../../../shared/data/dtos/user_dto.dart';
 import '../../../shared/data/services/app_flyer_service.dart';
 import '../../../shared/data/services/simple_notifications_push_service.dart';
-import '../../../shared/domain/failures/endpoints/general_base_failure.dart';
 import '../../../shared/domain/models/user_model.dart';
-import '../../../shared/presentation/extensions/dio_exception_extension.dart';
 import '../../../shared/presentation/helpers/analytics_helper.dart';
-import '../../../shared/presentation/helpers/handle_request.dart';
-import '../../../shared/presentation/helpers/result_or.dart';
 import '../../domain/failures/oauth_sign_in_failure.dart';
 import '../../domain/failures/signin_failure.dart';
 import '../../domain/failures/signup_failure.dart';
@@ -71,7 +68,7 @@ class AuthRepositoryImpl implements IAuthRepository {
         );
       }
 
-      return ResultOr.success();
+      return const ResultOr.success();
     } on DioException catch (e) {
       return ResultOr.failure(
         e.toFailure(
@@ -132,7 +129,7 @@ class AuthRepositoryImpl implements IAuthRepository {
 
   @override
   Future<ResultOr<OAuthSignInFailure>> signInWithFacebook() async {
-    return ResultOr.failure(const OAuthSignInFailure.invalidCredential());
+    return const ResultOr.failure(OAuthSignInFailure.invalidCredential());
   }
 
   @override
@@ -143,29 +140,29 @@ class AuthRepositoryImpl implements IAuthRepository {
       ).getFirebaseTokenSignInWithApple();
       final result = await socialAuth(firebaseToken);
       if (result.isFailure) {
-        return ResultOr.failure(
-          const OAuthSignInFailure.general(GeneralBaseFailure.internalError()),
+        return const ResultOr.failure(
+          OAuthSignInFailure.general(GeneralBaseFailure.internalError()),
         );
       }
-      return ResultOr.success();
+      return const ResultOr.success();
     } on FirebaseAuthException catch (e) {
       if (e.code == 'account-exists-with-different-credential') {
-        return ResultOr.failure(
-          const OAuthSignInFailure.accountExistsWithDifferentCredential(),
+        return const ResultOr.failure(
+          OAuthSignInFailure.accountExistsWithDifferentCredential(),
         );
       }
       if (e.code == 'invalid-credential') {
-        return ResultOr.failure(const OAuthSignInFailure.invalidCredential());
+        return const ResultOr.failure(OAuthSignInFailure.invalidCredential());
       }
-      return ResultOr.failure(
-        const OAuthSignInFailure.general(GeneralBaseFailure.internalError()),
+      return const ResultOr.failure(
+        OAuthSignInFailure.general(GeneralBaseFailure.internalError()),
       );
     } on SignInWithAppleAuthorizationException catch (e) {
       if (e.code == AuthorizationErrorCode.canceled) {
-        return ResultOr.failure(const OAuthSignInFailure.cancel());
+        return const ResultOr.failure(OAuthSignInFailure.cancel());
       }
-      return ResultOr.failure(
-        const OAuthSignInFailure.general(GeneralBaseFailure.internalError()),
+      return const ResultOr.failure(
+        OAuthSignInFailure.general(GeneralBaseFailure.internalError()),
       );
     } catch (e) {
       if (e is CanceledByUserException) {
@@ -187,26 +184,26 @@ class AuthRepositoryImpl implements IAuthRepository {
       ).getFirebaseTokenSignInWithGoogle();
       final result = await socialAuth(firebaseToken);
       if (result.isFailure) {
-        return ResultOr.failure(
-          const OAuthSignInFailure.general(GeneralBaseFailure.internalError()),
+        return const ResultOr.failure(
+          OAuthSignInFailure.general(GeneralBaseFailure.internalError()),
         );
       }
-      return ResultOr.success();
+      return const ResultOr.success();
     } on FirebaseAuthException catch (e) {
       if (e.code == 'account-exists-with-different-credential') {
-        return ResultOr.failure(
-          const OAuthSignInFailure.accountExistsWithDifferentCredential(),
+        return const ResultOr.failure(
+          OAuthSignInFailure.accountExistsWithDifferentCredential(),
         );
       }
       if (e.code == 'invalid-credential') {
-        return ResultOr.failure(const OAuthSignInFailure.invalidCredential());
+        return const ResultOr.failure(OAuthSignInFailure.invalidCredential());
       }
-      return ResultOr.failure(
-        const OAuthSignInFailure.general(GeneralBaseFailure.internalError()),
+      return const ResultOr.failure(
+        OAuthSignInFailure.general(GeneralBaseFailure.internalError()),
       );
     } catch (e) {
       if (e is CanceledByUserException) {
-        return ResultOr.failure(const OAuthSignInFailure.cancel());
+        return const ResultOr.failure(OAuthSignInFailure.cancel());
       }
       return ResultOr.failure(
         OAuthSignInFailure.general(

@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_jungle_core/flutter_jungle_core.dart';
 import 'package:material_ui/material_ui.dart';
 
 import 'flavors.dart';
@@ -161,11 +162,11 @@ class AppView extends StatelessWidget {
                       child!,
                       BlocBuilder<AppSettingsCubit, AppSettingsState>(
                         builder: (context, stateSettings) {
-                          return stateSettings.resource.map(
-                            isNone: () => const SizedBox.shrink(),
-                            isLoading: () => const SizedBox.shrink(),
-                            isFailure: (_) => const SizedBox.shrink(),
-                            isSuccess: (resource) =>
+                          return stateSettings.resource.when(
+                            none: () => const SizedBox.shrink(),
+                            loading: () => const SizedBox.shrink(),
+                            failure: (_) => const SizedBox.shrink(),
+                            success: (resource) =>
                                 AppStatusPage(status: resource.status),
                           );
                         },

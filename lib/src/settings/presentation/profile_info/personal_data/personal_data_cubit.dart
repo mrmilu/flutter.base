@@ -1,12 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_jungle_core/flutter_jungle_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../../../shared/domain/models/user_model.dart';
-import '../../../../shared/domain/vos/fullname_vos.dart';
-import '../../../../shared/presentation/extensions/iterable_extension.dart';
-import '../../../../shared/presentation/helpers/result_or.dart';
-import '../../../../shared/presentation/helpers/value_object.dart';
 import '../../../../shared/presentation/providers/global_loader/global_loader_cubit.dart';
 import '../../../domain/failures/change_user_info_failure.dart';
 import '../../../domain/interfaces/i_personal_info_repository.dart';
@@ -69,7 +66,7 @@ class PersonalDataCubit extends Cubit<PersonalDataState> {
     if (_allFieldsAreValid()) {
       emit(
         state.copyWith(
-          resultOrPersonalData: ResultOr.loading(),
+          resultOrPersonalData: const ResultOr.loading(),
           showError: false,
         ),
       );
@@ -82,6 +79,6 @@ class PersonalDataCubit extends Cubit<PersonalDataState> {
       globalLoaderCubit.hide();
       emit(state.copyWith(resultOrPersonalData: result, showError: true));
     }
-    emit(state.copyWith(resultOrPersonalData: ResultOr.none()));
+    emit(state.copyWith(resultOrPersonalData: const ResultOr.none()));
   }
 }

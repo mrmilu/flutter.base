@@ -3,10 +3,9 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter_jungle_core/flutter_jungle_core.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:material_ui/material_ui.dart';
-
-import '../../presentation/extensions/iterable_extension.dart';
 
 enum NotificationType {
   none,

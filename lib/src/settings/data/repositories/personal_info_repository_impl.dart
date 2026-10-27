@@ -1,11 +1,9 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
+import 'package:flutter_jungle_core/flutter_jungle_core.dart';
 
 import '../../../auth/domain/interfaces/i_token_repository.dart';
-import '../../../shared/domain/failures/endpoints/general_base_failure.dart';
-import '../../../shared/presentation/extensions/dio_exception_extension.dart';
-import '../../../shared/presentation/helpers/result_or.dart';
 import '../../domain/failures/change_password_failure.dart';
 import '../../domain/failures/change_user_info_failure.dart';
 import '../../domain/failures/required_password_failure.dart';
@@ -35,7 +33,7 @@ class PersonalInfoRepositoryImpl implements IPersonalInfoRepository {
         },
       );
 
-      return ResultOr.success();
+      return const ResultOr.success();
     } on DioException catch (e) {
       return ResultOr.failure(
         e.toFailure(
@@ -65,7 +63,7 @@ class PersonalInfoRepositoryImpl implements IPersonalInfoRepository {
       //   },
       // );
 
-      return ResultOr.success();
+      return const ResultOr.success();
     } on DioException catch (e) {
       return ResultOr.failure(
         e.toFailure(
@@ -99,7 +97,7 @@ class PersonalInfoRepositoryImpl implements IPersonalInfoRepository {
       final token = response.data['token'];
       await tokenRepository.saveTokens(token: token);
       await tokenRepository.savePassword(newPassword);
-      return ResultOr.success();
+      return const ResultOr.success();
     } on DioException catch (e) {
       return ResultOr.failure(
         e.toFailure(

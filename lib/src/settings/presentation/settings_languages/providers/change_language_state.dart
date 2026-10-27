@@ -8,7 +8,7 @@ class ChangeLanguageState {
   });
 
   factory ChangeLanguageState.initial() => ChangeLanguageState(
-    resultOr: ResultOr.none(),
+    resultOr: const ResultOr.none(),
   );
 
   ChangeLanguageState copyWith({

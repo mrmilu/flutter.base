@@ -1,11 +1,11 @@
-import 'package:flutter_base/src/shared/presentation/helpers/result_or.dart';
+import 'package:flutter_jungle_core/flutter_jungle_core.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('ResultOr', () {
     group('Constructors and state getters', () {
       test('should create ResultOr.none and identify state correctly', () {
-        final result = ResultOr<String>.none();
+        final result = const ResultOr<String>.none();
 
         expect(result.isNone, true);
         expect(result.isLoading, false);
@@ -14,7 +14,7 @@ void main() {
       });
 
       test('should create ResultOr.loading and identify state correctly', () {
-        final result = ResultOr<String>.loading();
+        final result = const ResultOr<String>.loading();
 
         expect(result.isNone, false);
         expect(result.isLoading, true);
@@ -23,7 +23,7 @@ void main() {
       });
 
       test('should create ResultOr.success and identify state correctly', () {
-        final result = ResultOr<String>.success();
+        final result = const ResultOr<String>.success();
 
         expect(result.isNone, false);
         expect(result.isLoading, false);
@@ -32,7 +32,7 @@ void main() {
       });
 
       test('should create ResultOr.failure and identify state correctly', () {
-        final result = ResultOr<String>.failure('error message');
+        final result = const ResultOr<String>.failure('error message');
 
         expect(result.isNone, false);
         expect(result.isLoading, false);
@@ -43,7 +43,7 @@ void main() {
 
     group('whenIsFailure method', () {
       test('should call function when ResultOr is failure', () {
-        final result = ResultOr<String>.failure('error message');
+        final result = const ResultOr<String>.failure('error message');
         String? receivedFailure;
 
         result.whenIsFailure((failure) {
@@ -54,7 +54,7 @@ void main() {
       });
 
       test('should not call function when ResultOr is not failure', () {
-        final result = ResultOr<String>.success();
+        final result = const ResultOr<String>.success();
         String? receivedFailure;
 
         result.whenIsFailure((failure) {
@@ -67,7 +67,7 @@ void main() {
 
     group('whenIsSuccess method', () {
       test('should call function when ResultOr is success', () {
-        final result = ResultOr<String>.success();
+        final result = const ResultOr<String>.success();
         bool wasCalled = false;
 
         result.whenIsSuccess(() {
@@ -78,7 +78,7 @@ void main() {
       });
 
       test('should not call function when ResultOr is not success', () {
-        final result = ResultOr<String>.failure('error');
+        final result = const ResultOr<String>.failure('error');
         bool wasCalled = false;
 
         result.whenIsSuccess(() {
@@ -91,56 +91,56 @@ void main() {
 
     group('when method', () {
       test('should call isNone function when ResultOr is none', () {
-        final result = ResultOr<String>.none();
+        final result = const ResultOr<String>.none();
         String? calledFunction;
 
         result.when(
-          isNone: () => calledFunction = 'none',
-          isLoading: () => calledFunction = 'loading',
-          isFailure: (failure) => calledFunction = 'failure: $failure',
-          isSuccess: () => calledFunction = 'success',
+          none: () => calledFunction = 'none',
+          loading: () => calledFunction = 'loading',
+          failure: (failure) => calledFunction = 'failure: $failure',
+          success: () => calledFunction = 'success',
         );
 
         expect(calledFunction, 'none');
       });
 
       test('should call isLoading function when ResultOr is loading', () {
-        final result = ResultOr<String>.loading();
+        final result = const ResultOr<String>.loading();
         String? calledFunction;
 
         result.when(
-          isNone: () => calledFunction = 'none',
-          isLoading: () => calledFunction = 'loading',
-          isFailure: (failure) => calledFunction = 'failure: $failure',
-          isSuccess: () => calledFunction = 'success',
+          none: () => calledFunction = 'none',
+          loading: () => calledFunction = 'loading',
+          failure: (failure) => calledFunction = 'failure: $failure',
+          success: () => calledFunction = 'success',
         );
 
         expect(calledFunction, 'loading');
       });
 
       test('should call isFailure function when ResultOr is failure', () {
-        final result = ResultOr<String>.failure('error message');
+        final result = const ResultOr<String>.failure('error message');
         String? calledFunction;
 
         result.when(
-          isNone: () => calledFunction = 'none',
-          isLoading: () => calledFunction = 'loading',
-          isFailure: (failure) => calledFunction = 'failure: $failure',
-          isSuccess: () => calledFunction = 'success',
+          none: () => calledFunction = 'none',
+          loading: () => calledFunction = 'loading',
+          failure: (failure) => calledFunction = 'failure: $failure',
+          success: () => calledFunction = 'success',
         );
 
         expect(calledFunction, 'failure: error message');
       });
 
       test('should call isSuccess function when ResultOr is success', () {
-        final result = ResultOr<String>.success();
+        final result = const ResultOr<String>.success();
         String? calledFunction;
 
         result.when(
-          isNone: () => calledFunction = 'none',
-          isLoading: () => calledFunction = 'loading',
-          isFailure: (failure) => calledFunction = 'failure: $failure',
-          isSuccess: () => calledFunction = 'success',
+          none: () => calledFunction = 'none',
+          loading: () => calledFunction = 'loading',
+          failure: (failure) => calledFunction = 'failure: $failure',
+          success: () => calledFunction = 'success',
         );
 
         expect(calledFunction, 'success');
@@ -149,52 +149,52 @@ void main() {
 
     group('map method', () {
       test('should map to isNone result when ResultOr is none', () {
-        final result = ResultOr<String>.none();
+        final result = const ResultOr<String>.none();
 
-        final mapped = result.map<String>(
-          isNone: () => 'mapped none',
-          isLoading: () => 'mapped loading',
-          isFailure: (failure) => 'mapped failure: $failure',
-          isSuccess: () => 'mapped success',
+        final mapped = result.when<String>(
+          none: () => 'mapped none',
+          loading: () => 'mapped loading',
+          failure: (failure) => 'mapped failure: $failure',
+          success: () => 'mapped success',
         );
 
         expect(mapped, 'mapped none');
       });
 
       test('should map to isLoading result when ResultOr is loading', () {
-        final result = ResultOr<String>.loading();
+        final result = const ResultOr<String>.loading();
 
-        final mapped = result.map<String>(
-          isNone: () => 'mapped none',
-          isLoading: () => 'mapped loading',
-          isFailure: (failure) => 'mapped failure: $failure',
-          isSuccess: () => 'mapped success',
+        final mapped = result.when<String>(
+          none: () => 'mapped none',
+          loading: () => 'mapped loading',
+          failure: (failure) => 'mapped failure: $failure',
+          success: () => 'mapped success',
         );
 
         expect(mapped, 'mapped loading');
       });
 
       test('should map to isFailure result when ResultOr is failure', () {
-        final result = ResultOr<String>.failure('error message');
+        final result = const ResultOr<String>.failure('error message');
 
-        final mapped = result.map<String>(
-          isNone: () => 'mapped none',
-          isLoading: () => 'mapped loading',
-          isFailure: (failure) => 'mapped failure: $failure',
-          isSuccess: () => 'mapped success',
+        final mapped = result.when<String>(
+          none: () => 'mapped none',
+          loading: () => 'mapped loading',
+          failure: (failure) => 'mapped failure: $failure',
+          success: () => 'mapped success',
         );
 
         expect(mapped, 'mapped failure: error message');
       });
 
       test('should map to isSuccess result when ResultOr is success', () {
-        final result = ResultOr<String>.success();
+        final result = const ResultOr<String>.success();
 
-        final mapped = result.map<String>(
-          isNone: () => 'mapped none',
-          isLoading: () => 'mapped loading',
-          isFailure: (failure) => 'mapped failure: $failure',
-          isSuccess: () => 'mapped success',
+        final mapped = result.when<String>(
+          none: () => 'mapped none',
+          loading: () => 'mapped loading',
+          failure: (failure) => 'mapped failure: $failure',
+          success: () => 'mapped success',
         );
 
         expect(mapped, 'mapped success');
@@ -205,11 +205,11 @@ void main() {
       test(
         'should call specific function when provided and matching state (none)',
         () {
-          final result = ResultOr<String>.none();
+          final result = const ResultOr<String>.none();
           String? calledFunction;
 
           result.maybeWhen(
-            isNone: () => calledFunction = 'none handler',
+            none: () => calledFunction = 'none handler',
             orElse: () => calledFunction = 'orElse handler',
           );
 
@@ -220,11 +220,11 @@ void main() {
       test(
         'should call specific function when provided and matching state (loading)',
         () {
-          final result = ResultOr<String>.loading();
+          final result = const ResultOr<String>.loading();
           String? calledFunction;
 
           result.maybeWhen(
-            isLoading: () => calledFunction = 'loading handler',
+            loading: () => calledFunction = 'loading handler',
             orElse: () => calledFunction = 'orElse handler',
           );
 
@@ -235,12 +235,11 @@ void main() {
       test(
         'should call specific function when provided and matching state (failure)',
         () {
-          final result = ResultOr<String>.failure('error message');
+          final result = const ResultOr<String>.failure('error message');
           String? calledFunction;
 
           result.maybeWhen(
-            isFailure: (failure) =>
-                calledFunction = 'failure handler: $failure',
+            failure: (failure) => calledFunction = 'failure handler: $failure',
             orElse: () => calledFunction = 'orElse handler',
           );
 
@@ -251,11 +250,11 @@ void main() {
       test(
         'should call specific function when provided and matching state (success)',
         () {
-          final result = ResultOr<String>.success();
+          final result = const ResultOr<String>.success();
           String? calledFunction;
 
           result.maybeWhen(
-            isSuccess: () => calledFunction = 'success handler',
+            success: () => calledFunction = 'success handler',
             orElse: () => calledFunction = 'orElse handler',
           );
 
@@ -266,11 +265,11 @@ void main() {
       test(
         'should call orElse when no matching handler is provided (none)',
         () {
-          final result = ResultOr<String>.none();
+          final result = const ResultOr<String>.none();
           String? calledFunction;
 
           result.maybeWhen(
-            isLoading: () => calledFunction = 'loading handler',
+            loading: () => calledFunction = 'loading handler',
             orElse: () => calledFunction = 'orElse handler',
           );
 
@@ -281,11 +280,11 @@ void main() {
       test(
         'should call orElse when no matching handler is provided (loading)',
         () {
-          final result = ResultOr<String>.loading();
+          final result = const ResultOr<String>.loading();
           String? calledFunction;
 
           result.maybeWhen(
-            isNone: () => calledFunction = 'none handler',
+            none: () => calledFunction = 'none handler',
             orElse: () => calledFunction = 'orElse handler',
           );
 
@@ -296,11 +295,11 @@ void main() {
       test(
         'should call orElse when no matching handler is provided (failure)',
         () {
-          final result = ResultOr<String>.failure('error');
+          final result = const ResultOr<String>.failure('error');
           String? calledFunction;
 
           result.maybeWhen(
-            isNone: () => calledFunction = 'none handler',
+            none: () => calledFunction = 'none handler',
             orElse: () => calledFunction = 'orElse handler',
           );
 
@@ -311,11 +310,11 @@ void main() {
       test(
         'should call orElse when no matching handler is provided (success)',
         () {
-          final result = ResultOr<String>.success();
+          final result = const ResultOr<String>.success();
           String? calledFunction;
 
           result.maybeWhen(
-            isNone: () => calledFunction = 'none handler',
+            none: () => calledFunction = 'none handler',
             orElse: () => calledFunction = 'orElse handler',
           );
 
@@ -328,10 +327,10 @@ void main() {
       test(
         'should map with specific function when provided and matching state (none)',
         () {
-          final result = ResultOr<String>.none();
+          final result = const ResultOr<String>.none();
 
-          final mapped = result.maybeMap<String>(
-            isNone: () => 'mapped none',
+          final mapped = result.maybeWhen<String>(
+            none: () => 'mapped none',
             orElse: () => 'mapped orElse',
           );
 
@@ -342,10 +341,10 @@ void main() {
       test(
         'should map with specific function when provided and matching state (loading)',
         () {
-          final result = ResultOr<String>.loading();
+          final result = const ResultOr<String>.loading();
 
-          final mapped = result.maybeMap<String>(
-            isLoading: () => 'mapped loading',
+          final mapped = result.maybeWhen<String>(
+            loading: () => 'mapped loading',
             orElse: () => 'mapped orElse',
           );
 
@@ -356,10 +355,10 @@ void main() {
       test(
         'should map with specific function when provided and matching state (failure)',
         () {
-          final result = ResultOr<String>.failure('error message');
+          final result = const ResultOr<String>.failure('error message');
 
-          final mapped = result.maybeMap<String>(
-            isFailure: (failure) => 'mapped failure: $failure',
+          final mapped = result.maybeWhen<String>(
+            failure: (failure) => 'mapped failure: $failure',
             orElse: () => 'mapped orElse',
           );
 
@@ -370,10 +369,10 @@ void main() {
       test(
         'should map with specific function when provided and matching state (success)',
         () {
-          final result = ResultOr<String>.success();
+          final result = const ResultOr<String>.success();
 
-          final mapped = result.maybeMap<String>(
-            isSuccess: () => 'mapped success',
+          final mapped = result.maybeWhen<String>(
+            success: () => 'mapped success',
             orElse: () => 'mapped orElse',
           );
 
@@ -384,10 +383,10 @@ void main() {
       test(
         'should map with orElse when no matching handler is provided (none)',
         () {
-          final result = ResultOr<String>.none();
+          final result = const ResultOr<String>.none();
 
-          final mapped = result.maybeMap<String>(
-            isLoading: () => 'mapped loading',
+          final mapped = result.maybeWhen<String>(
+            loading: () => 'mapped loading',
             orElse: () => 'mapped orElse',
           );
 
@@ -398,10 +397,10 @@ void main() {
       test(
         'should map with orElse when no matching handler is provided (loading)',
         () {
-          final result = ResultOr<String>.loading();
+          final result = const ResultOr<String>.loading();
 
-          final mapped = result.maybeMap<String>(
-            isNone: () => 'mapped none',
+          final mapped = result.maybeWhen<String>(
+            none: () => 'mapped none',
             orElse: () => 'mapped orElse',
           );
 
@@ -412,10 +411,10 @@ void main() {
       test(
         'should map with orElse when no matching handler is provided (failure)',
         () {
-          final result = ResultOr<String>.failure('error');
+          final result = const ResultOr<String>.failure('error');
 
-          final mapped = result.maybeMap<String>(
-            isNone: () => 'mapped none',
+          final mapped = result.maybeWhen<String>(
+            none: () => 'mapped none',
             orElse: () => 'mapped orElse',
           );
 
@@ -426,10 +425,10 @@ void main() {
       test(
         'should map with orElse when no matching handler is provided (success)',
         () {
-          final result = ResultOr<String>.success();
+          final result = const ResultOr<String>.success();
 
-          final mapped = result.maybeMap<String>(
-            isNone: () => 'mapped none',
+          final mapped = result.maybeWhen<String>(
+            none: () => 'mapped none',
             orElse: () => 'mapped orElse',
           );
 
@@ -443,14 +442,14 @@ void main() {
         // Este test cubre el caso del fallback en el método when
         // Para esto necesitamos crear una instancia que no sea ninguno de los tipos conocidos
         // Como no podemos extender directamente, vamos a simular el caso donde ninguna condición se cumple
-        final result = ResultOr<String>.none();
+        final result = const ResultOr<String>.none();
         String? calledFunction;
 
         result.when(
-          isNone: () => calledFunction = 'none',
-          isLoading: () => calledFunction = 'loading',
-          isFailure: (failure) => calledFunction = 'failure: $failure',
-          isSuccess: () => calledFunction = 'success',
+          none: () => calledFunction = 'none',
+          loading: () => calledFunction = 'loading',
+          failure: (failure) => calledFunction = 'failure: $failure',
+          success: () => calledFunction = 'success',
         );
 
         expect(calledFunction, 'none');
@@ -458,13 +457,13 @@ void main() {
 
       test('should handle map method fallback case', () {
         // Este test cubre el caso del fallback en el método map
-        final result = ResultOr<String>.none();
+        final result = const ResultOr<String>.none();
 
-        final mapped = result.map<String>(
-          isNone: () => 'mapped none',
-          isLoading: () => 'mapped loading',
-          isFailure: (failure) => 'mapped failure: $failure',
-          isSuccess: () => 'mapped success',
+        final mapped = result.when<String>(
+          none: () => 'mapped none',
+          loading: () => 'mapped loading',
+          failure: (failure) => 'mapped failure: $failure',
+          success: () => 'mapped success',
         );
 
         expect(mapped, 'mapped none');

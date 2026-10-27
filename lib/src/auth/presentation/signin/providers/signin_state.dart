@@ -15,7 +15,7 @@ abstract class SigninState with _$SigninState {
     password: '',
     showErrors: false,
     rememberMe: false,
-    resultOr: ResultOr.none(),
+    resultOr: const ResultOr.none(),
   );
 
   SigninState._();

@@ -1,11 +1,10 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_jungle_core/flutter_jungle_core.dart';
 import 'package:material_ui/material_ui.dart';
 
-import '../../domain/failures/endpoints/general_base_failure.dart';
 import '../../domain/interfaces/i_settings_repository.dart';
 import '../../domain/models/app_settings_model.dart';
 import '../../domain/types/app_status_type.dart';
-import '../../presentation/helpers/resource.dart';
 
 class SettingsRepositoryImpl implements ISettingsRepository {
   final Dio httpClient;

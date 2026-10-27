@@ -1,8 +1,8 @@
+import 'package:flutter_jungle_core/flutter_jungle_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../domain/failures/endpoints/download_file_failure.dart';
 import '../../../domain/interfaces/i_download_file_repository.dart';
-import '../../helpers/resource.dart';
 import '../base_cubit.dart';
 
 part 'download_file_cubit.freezed.dart';
@@ -14,7 +14,9 @@ class DownloadFileCubit extends BaseCubit<DownloadFileState> {
   final IDownloadFileRepository downloadFileRepository;
 
   Future<void> generateFile(String documentId) async {
-    emitIfNotDisposed(state.copyWith(resourceGenerateFile: Resource.loading()));
+    emitIfNotDisposed(
+      state.copyWith(resourceGenerateFile: const Resource.loading()),
+    );
     final result = await downloadFileRepository.generateFile(documentId);
     emitIfNotDisposed(state.copyWith(resourceGenerateFile: result));
     result.whenIsSuccess((url) {
@@ -24,7 +26,7 @@ class DownloadFileCubit extends BaseCubit<DownloadFileState> {
 
   Future<void> downloadTemp(String url) async {
     emitIfNotDisposed(
-      state.copyWith(resourceDownloadFileTemp: Resource.loading()),
+      state.copyWith(resourceDownloadFileTemp: const Resource.loading()),
     );
     final result = await downloadFileRepository.downloadAndSaveFile(
       url,
@@ -36,7 +38,9 @@ class DownloadFileCubit extends BaseCubit<DownloadFileState> {
   Future<void> downloadFileFromUrl() async {
     final documentUrl = state.resourceGenerateFile.whenIsSuccess((url) => url);
     if (documentUrl == null) return;
-    emitIfNotDisposed(state.copyWith(resourceDownloadFile: Resource.loading()));
+    emitIfNotDisposed(
+      state.copyWith(resourceDownloadFile: const Resource.loading()),
+    );
     final result = await downloadFileRepository.downloadAndSaveFile(
       documentUrl,
     );
@@ -44,7 +48,9 @@ class DownloadFileCubit extends BaseCubit<DownloadFileState> {
   }
 
   Future<void> downloadFileFromUrlExternal(String documentUrl) async {
-    emitIfNotDisposed(state.copyWith(resourceDownloadFile: Resource.loading()));
+    emitIfNotDisposed(
+      state.copyWith(resourceDownloadFile: const Resource.loading()),
+    );
     final result = await downloadFileRepository.downloadAndSaveFile(
       documentUrl,
     );
@@ -56,7 +62,9 @@ class DownloadFileCubit extends BaseCubit<DownloadFileState> {
       (path) => path,
     );
     if (localPath == null) return;
-    emitIfNotDisposed(state.copyWith(resourceDownloadFile: Resource.loading()));
+    emitIfNotDisposed(
+      state.copyWith(resourceDownloadFile: const Resource.loading()),
+    );
     final result = await downloadFileRepository.saveFileFromPath(localPath);
     emitIfNotDisposed(state.copyWith(resourceDownloadFile: result));
   }

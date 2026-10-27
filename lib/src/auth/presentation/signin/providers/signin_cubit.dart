@@ -1,10 +1,6 @@
+import 'package:flutter_jungle_core/flutter_jungle_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../../shared/domain/vos/email_vos.dart';
-import '../../../../shared/domain/vos/password_vos.dart';
-import '../../../../shared/presentation/extensions/iterable_extension.dart';
-import '../../../../shared/presentation/helpers/result_or.dart';
-import '../../../../shared/presentation/helpers/value_object.dart';
 import '../../../../shared/presentation/providers/base_cubit.dart';
 import '../../../../shared/presentation/providers/global_loader/global_loader_cubit.dart';
 import '../../../domain/failures/signin_failure.dart';
@@ -55,7 +51,7 @@ class SigninCubit extends BaseCubit<SigninState> {
 
   Future<void> signin() async {
     if (_allFieldsAreValid()) {
-      emitIfNotDisposed(state.copyWith(resultOr: ResultOr.loading()));
+      emitIfNotDisposed(state.copyWith(resultOr: const ResultOr.loading()));
       globalLoaderCubit.show();
       final result = await authRepository.signInWithEmailAndPassword(
         email: state.email,
@@ -67,6 +63,6 @@ class SigninCubit extends BaseCubit<SigninState> {
     } else {
       emitIfNotDisposed(state.copyWith(showErrors: true));
     }
-    emitIfNotDisposed(state.copyWith(resultOr: ResultOr.none()));
+    emitIfNotDisposed(state.copyWith(resultOr: const ResultOr.none()));
   }
 }

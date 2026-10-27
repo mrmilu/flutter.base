@@ -1,8 +1,7 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_jungle_core/flutter_jungle_core.dart';
 
 import '../../../shared/domain/failures/endpoints/get_user_failure.dart';
-import '../../../shared/presentation/helpers/handle_request.dart';
-import '../../../shared/presentation/helpers/resource.dart';
 import '../../domain/interfaces/i_main_home_repository.dart';
 
 class MainHomeRepositoryImpl implements IMainHomeRepository {

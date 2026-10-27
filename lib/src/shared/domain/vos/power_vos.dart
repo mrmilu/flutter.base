@@ -1,5 +1,5 @@
-import '../../presentation/helpers/either.dart';
-import '../../presentation/helpers/value_object.dart';
+import 'package:flutter_jungle_core/flutter_jungle_core.dart';
+
 import '../failures/power_failure.dart';
 
 class PowerVos extends ValueObject<PowerFailure, String> {

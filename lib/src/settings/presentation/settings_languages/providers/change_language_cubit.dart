@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_jungle_core/flutter_jungle_core.dart';
 
 import '../../../../locale/presentation/providers/locale_cubit.dart';
-import '../../../../shared/presentation/helpers/result_or.dart';
 import '../../../../shared/presentation/providers/global_loader/global_loader_cubit.dart';
 import '../../../domain/failures/change_language_failure.dart';
 import '../../../domain/interfaces/i_change_language_repository.dart';
@@ -19,7 +19,7 @@ class ChangeLanguageCubit extends Cubit<ChangeLanguageState> {
   final LocaleCubit localeCubit;
 
   void changeLanguage(String languageCode) async {
-    emit(state.copyWith(resultOr: ResultOr.loading()));
+    emit(state.copyWith(resultOr: const ResultOr.loading()));
     globalLoaderCubit.show();
     final result = await repository.changeLanguage(languageCode.toUpperCase());
 

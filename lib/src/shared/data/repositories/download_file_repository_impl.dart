@@ -1,12 +1,11 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutter_jungle_core/flutter_jungle_core.dart';
 import 'package:path_provider/path_provider.dart';
 
 import '../../domain/failures/endpoints/download_file_failure.dart';
 import '../../domain/interfaces/i_download_file_repository.dart';
-import '../../presentation/helpers/handle_request.dart';
-import '../../presentation/helpers/resource.dart';
 
 class DownloadFileRepositoryImpl implements IDownloadFileRepository {
   final Dio httpClient;
