@@ -1,8 +1,8 @@
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 
 Page platformPage(
   Widget child, {
@@ -34,12 +34,11 @@ CustomTransitionPage<void> fadeTransitionPage(
     name: state.name,
     child: page,
     transitionDuration: const Duration(milliseconds: 150),
-    transitionsBuilder:
-        (
-          BuildContext context,
-          Animation<double> animation,
-          Animation<double> secondaryAnimation,
-          Widget child,
-        ) => FadeTransition(opacity: animation, child: child),
+    transitionsBuilder: (
+      BuildContext context,
+      Animation<double> animation,
+      Animation<double> secondaryAnimation,
+      Widget child,
+    ) => FadeTransition(opacity: animation, child: child),
   );
 }

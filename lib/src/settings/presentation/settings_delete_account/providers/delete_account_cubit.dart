@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_jungle_core/flutter_jungle_core.dart';
 
-import '../../../../shared/presentation/helpers/result_or.dart';
 import '../../../../shared/presentation/providers/global_loader/global_loader_cubit.dart';
 import '../../../domain/failures/delete_account_failure.dart';
 import '../../../domain/interfaces/i_delete_account_repository.dart';
@@ -17,7 +17,7 @@ class DeleteAccountCubit extends Cubit<DeleteAccountState> {
 
   void deleteAccount() async {
     globalLoaderCubit.show();
-    emit(state.copyWith(resultOr: ResultOr.loading()));
+    emit(state.copyWith(resultOr: const ResultOr.loading()));
     final result = await repository.deleteAccount();
     globalLoaderCubit.hide();
     emit(state.copyWith(resultOr: result));

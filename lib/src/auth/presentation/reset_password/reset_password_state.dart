@@ -13,6 +13,6 @@ abstract class ResetPasswordState with _$ResetPasswordState {
     password: '',
     passwordRepeat: '',
     showError: false,
-    resultOr: ResultOr.none(),
+    resultOr: const ResultOr.none(),
   );
 }

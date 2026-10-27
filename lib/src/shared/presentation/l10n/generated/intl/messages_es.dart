@@ -101,6 +101,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "includeLowercase": MessageLookupByLibrary.simpleMessage(
       "Debe incluir al menos una minúscula",
     ),
+    "includeSpecialCharacter": MessageLookupByLibrary.simpleMessage(
+      "Debe incluir al menos un carácter especial",
+    ),
     "includeUppercase": MessageLookupByLibrary.simpleMessage(
       "Debe incluir al menos una mayúscula",
     ),

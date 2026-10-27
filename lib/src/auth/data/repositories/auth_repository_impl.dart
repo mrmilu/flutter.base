@@ -2,17 +2,15 @@ import 'dart:developer' as dev;
 
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_jungle_core/flutter_jungle_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 import '../../../shared/data/dtos/user_dto.dart';
 import '../../../shared/data/services/app_flyer_service.dart';
 import '../../../shared/data/services/simple_notifications_push_service.dart';
-import '../../../shared/domain/failures/endpoints/general_base_failure.dart';
 import '../../../shared/domain/models/user_model.dart';
-import '../../../shared/presentation/extensions/dio_exception_extension.dart';
 import '../../../shared/presentation/helpers/analytics_helper.dart';
-import '../../../shared/presentation/helpers/result_or.dart';
 import '../../domain/failures/oauth_sign_in_failure.dart';
 import '../../domain/failures/signin_failure.dart';
 import '../../domain/failures/signup_failure.dart';
@@ -40,7 +38,7 @@ class AuthRepositoryImpl implements IAuthRepository {
       dev.log('User: ${response.data}');
       final user = UserDto.fromMap(response.data ?? {}).toDomain();
       return user;
-    } catch (e, _) {
+    } catch (e) {
       return mockUser;
     }
   }
@@ -70,7 +68,7 @@ class AuthRepositoryImpl implements IAuthRepository {
         );
       }
 
-      return ResultOr.success();
+      return const ResultOr.success();
     } on DioException catch (e) {
       return ResultOr.failure(
         e.toFailure(
@@ -78,7 +76,7 @@ class AuthRepositoryImpl implements IAuthRepository {
           (gF) => SigninFailure.general(gF),
         ),
       );
-    } on Exception catch (e, _) {
+    } on Exception catch (e) {
       return ResultOr.failure(
         SigninFailure.general(
           GeneralBaseFailure.unexpectedError(message: e.toString()),
@@ -105,42 +103,33 @@ class AuthRepositoryImpl implements IAuthRepository {
     required String email,
     required String password,
   }) async {
-    try {
-      final response = await httpClient.post(
-        '/api/users/register',
-        data: {
-          'email': email.toLowerCase(),
-          'password': password,
-          if (encodeGlobalDynamicLink != null)
-            'encoded_identifier': encodeGlobalDynamicLink,
-        },
-      );
-      final token = response.data['token'];
-      await tokenRepository.saveTokens(token: token);
-      await tokenRepository.saveEmailAndPassword(
-        email: email,
-        password: password,
-      );
-      return ResultOr.success();
-    } on DioException catch (e) {
-      return ResultOr.failure(
-        e.toFailure(
-          SignupFailure.fromString,
-          (gF) => SignupFailure.general(gF),
-        ),
-      );
-    } catch (e) {
-      return ResultOr.failure(
-        SignupFailure.general(
-          GeneralBaseFailure.unexpectedError(message: e.toString()),
-        ),
-      );
-    }
+    return handleRequestResultOr(
+      request: () async {
+        final response = await httpClient.post(
+          '/api/users/register',
+          data: {
+            'email': email.toLowerCase(),
+            'password': password,
+            if (encodeGlobalDynamicLink != null)
+              'encoded_identifier': encodeGlobalDynamicLink,
+          },
+        );
+        final token = response.data['token'];
+        await tokenRepository.saveTokens(token: token);
+        await tokenRepository.saveEmailAndPassword(
+          email: email,
+          password: password,
+        );
+      },
+      fromString: SignupFailure.fromString,
+      general: SignupFailure.general,
+      useMockData: false,
+    );
   }
 
   @override
   Future<ResultOr<OAuthSignInFailure>> signInWithFacebook() async {
-    return ResultOr.failure(const OAuthSignInFailure.invalidCredential());
+    return const ResultOr.failure(OAuthSignInFailure.invalidCredential());
   }
 
   @override
@@ -151,31 +140,31 @@ class AuthRepositoryImpl implements IAuthRepository {
       ).getFirebaseTokenSignInWithApple();
       final result = await socialAuth(firebaseToken);
       if (result.isFailure) {
-        return ResultOr.failure(
-          const OAuthSignInFailure.general(GeneralBaseFailure.internalError()),
+        return const ResultOr.failure(
+          OAuthSignInFailure.general(GeneralBaseFailure.internalError()),
         );
       }
-      return ResultOr.success();
+      return const ResultOr.success();
     } on FirebaseAuthException catch (e) {
       if (e.code == 'account-exists-with-different-credential') {
-        return ResultOr.failure(
-          const OAuthSignInFailure.accountExistsWithDifferentCredential(),
+        return const ResultOr.failure(
+          OAuthSignInFailure.accountExistsWithDifferentCredential(),
         );
       }
       if (e.code == 'invalid-credential') {
-        return ResultOr.failure(const OAuthSignInFailure.invalidCredential());
+        return const ResultOr.failure(OAuthSignInFailure.invalidCredential());
       }
-      return ResultOr.failure(
-        const OAuthSignInFailure.general(GeneralBaseFailure.internalError()),
+      return const ResultOr.failure(
+        OAuthSignInFailure.general(GeneralBaseFailure.internalError()),
       );
     } on SignInWithAppleAuthorizationException catch (e) {
       if (e.code == AuthorizationErrorCode.canceled) {
-        return ResultOr.failure(const OAuthSignInFailure.cancel());
+        return const ResultOr.failure(OAuthSignInFailure.cancel());
       }
-      return ResultOr.failure(
-        const OAuthSignInFailure.general(GeneralBaseFailure.internalError()),
+      return const ResultOr.failure(
+        OAuthSignInFailure.general(GeneralBaseFailure.internalError()),
       );
-    } catch (e, _) {
+    } catch (e) {
       if (e is CanceledByUserException) {
         throw CanceledByUserException();
       }
@@ -195,26 +184,26 @@ class AuthRepositoryImpl implements IAuthRepository {
       ).getFirebaseTokenSignInWithGoogle();
       final result = await socialAuth(firebaseToken);
       if (result.isFailure) {
-        return ResultOr.failure(
-          const OAuthSignInFailure.general(GeneralBaseFailure.internalError()),
+        return const ResultOr.failure(
+          OAuthSignInFailure.general(GeneralBaseFailure.internalError()),
         );
       }
-      return ResultOr.success();
+      return const ResultOr.success();
     } on FirebaseAuthException catch (e) {
       if (e.code == 'account-exists-with-different-credential') {
-        return ResultOr.failure(
-          const OAuthSignInFailure.accountExistsWithDifferentCredential(),
+        return const ResultOr.failure(
+          OAuthSignInFailure.accountExistsWithDifferentCredential(),
         );
       }
       if (e.code == 'invalid-credential') {
-        return ResultOr.failure(const OAuthSignInFailure.invalidCredential());
+        return const ResultOr.failure(OAuthSignInFailure.invalidCredential());
       }
-      return ResultOr.failure(
-        const OAuthSignInFailure.general(GeneralBaseFailure.internalError()),
+      return const ResultOr.failure(
+        OAuthSignInFailure.general(GeneralBaseFailure.internalError()),
       );
-    } catch (e, _) {
+    } catch (e) {
       if (e is CanceledByUserException) {
-        return ResultOr.failure(const OAuthSignInFailure.cancel());
+        return const ResultOr.failure(OAuthSignInFailure.cancel());
       }
       return ResultOr.failure(
         OAuthSignInFailure.general(
@@ -225,33 +214,24 @@ class AuthRepositoryImpl implements IAuthRepository {
   }
 
   Future<ResultOr<OAuthSignInFailure>> socialAuth(String firebaseToken) async {
-    try {
-      dev.log('Firebase token: $firebaseToken');
-      final response = await httpClient.post(
-        '/api/users/social-auth',
-        data: {
-          'social_token': firebaseToken,
-          if (encodeGlobalDynamicLink != null)
-            'encoded_identifier': encodeGlobalDynamicLink,
-        },
-      );
-      final token = response.data['token'];
-      await tokenRepository.saveTokens(token: token);
-      return ResultOr.success();
-    } on DioException catch (e) {
-      return ResultOr.failure(
-        e.toFailure(
-          OAuthSignInFailure.fromString,
-          (gF) => OAuthSignInFailure.general(gF),
-        ),
-      );
-    } on Exception catch (e, _) {
-      return ResultOr.failure(
-        OAuthSignInFailure.general(
-          GeneralBaseFailure.unexpectedError(message: e.toString()),
-        ),
-      );
-    }
+    return handleRequestResultOr(
+      request: () async {
+        dev.log('Firebase token: $firebaseToken');
+        final response = await httpClient.post(
+          '/api/users/social-auth',
+          data: {
+            'social_token': firebaseToken,
+            if (encodeGlobalDynamicLink != null)
+              'encoded_identifier': encodeGlobalDynamicLink,
+          },
+        );
+        final token = response.data['token'];
+        await tokenRepository.saveTokens(token: token);
+      },
+      fromString: OAuthSignInFailure.fromString,
+      general: OAuthSignInFailure.general,
+      useMockData: false,
+    );
   }
 
   @override
@@ -261,140 +241,95 @@ class AuthRepositoryImpl implements IAuthRepository {
     required String documentType,
     required String documentValue,
   }) async {
-    try {
-      await httpClient.patch(
-        '/api/users',
-        data: {
-          'first_name': firstName,
-          'last_name': lastName,
-          'document': {
-            'type': documentType,
-            'dni': documentValue,
+    return handleRequestResultOr(
+      request: () async {
+        await httpClient.patch(
+          '/api/users',
+          data: {
+            'first_name': firstName,
+            'last_name': lastName,
+            'document': {
+              'type': documentType,
+              'dni': documentValue,
+            },
           },
-        },
-      );
-      return ResultOr.success();
-    } on DioException catch (e) {
-      return ResultOr.failure(
-        e.toFailure(
-          UpdateDocumentFailure.fromString,
-          (gF) => UpdateDocumentFailure.general(gF),
-        ),
-      );
-    } on Exception catch (e, _) {
-      return ResultOr.failure(
-        UpdateDocumentFailure.general(
-          GeneralBaseFailure.unexpectedError(message: e.toString()),
-        ),
-      );
-    }
+        );
+      },
+      fromString: UpdateDocumentFailure.fromString,
+      general: UpdateDocumentFailure.general,
+      useMockData: false,
+    );
   }
 
   @override
   Future<ResultOr<ValidateEmailFailure>> validateEmail({
     required String token,
   }) async {
-    try {
-      await httpClient.post(
-        '/api/users/verify-email',
-        data: {
-          'token': token,
-        },
-      );
-      return ResultOr.success();
-    } on DioException catch (e) {
-      return ResultOr.failure(
-        e.toFailure(
-          ValidateEmailFailure.fromString,
-          (gF) => ValidateEmailFailure.general(gF),
-        ),
-      );
-    } on Exception catch (e, _) {
-      return ResultOr.failure(
-        ValidateEmailFailure.general(
-          GeneralBaseFailure.unexpectedError(message: e.toString()),
-        ),
-      );
-    }
+    return handleRequestResultOr(
+      request: () async {
+        await httpClient.post(
+          '/api/users/verify-email',
+          data: {
+            'token': token,
+          },
+        );
+      },
+      fromString: ValidateEmailFailure.fromString,
+      general: ValidateEmailFailure.general,
+      useMockData: false,
+    );
   }
 
   @override
   Future<ResultOr<ValidateEmailFailure>> resendVerificationEmail() async {
-    try {
-      await httpClient.post(
-        '/api/users/resend-verification-email',
-      );
-      return ResultOr.success();
-    } on DioException catch (e) {
-      return ResultOr.failure(
-        e.toFailure(
-          ValidateEmailFailure.fromString,
-          (gF) => ValidateEmailFailure.general(gF),
-        ),
-      );
-    } on Exception catch (e, _) {
-      return ResultOr.failure(
-        ValidateEmailFailure.general(
-          GeneralBaseFailure.unexpectedError(message: e.toString()),
-        ),
-      );
-    }
+    return handleRequestResultOr(
+      request: () async {
+        await httpClient.post(
+          '/api/users/resend-verification-email',
+        );
+      },
+      fromString: ValidateEmailFailure.fromString,
+      general: ValidateEmailFailure.general,
+      useMockData: false,
+    );
   }
 
   @override
   Future<ResultOr<ValidateEmailFailure>> linkEncoded({
     required String encodedIdentifier,
   }) async {
-    try {
-      await httpClient.post(
-        '/api/users/link-document',
-        data: {
-          'encoded_identifier': encodedIdentifier,
-        },
-      );
-      return ResultOr.success();
-    } on DioException catch (e) {
-      return ResultOr.failure(
-        e.toFailure(
-          ValidateEmailFailure.fromString,
-          (gF) => ValidateEmailFailure.general(gF),
-        ),
-      );
-    } on Exception catch (e, _) {
-      return ResultOr.failure(
-        ValidateEmailFailure.general(
-          GeneralBaseFailure.unexpectedError(message: e.toString()),
-        ),
-      );
-    }
+    return handleRequestResultOr(
+      request: () async {
+        await httpClient.post(
+          '/api/users/link-document',
+          data: {
+            'encoded_identifier': encodedIdentifier,
+          },
+        );
+      },
+      fromString: ValidateEmailFailure.fromString,
+      general: ValidateEmailFailure.general,
+      useMockData: false,
+    );
   }
 
   @override
   Future<ResultOr<SigninFailure>> forgotPassword({
     required String email,
   }) async {
-    try {
-      await httpClient.post(
-        '/api/users/forgot-password',
-        data: {
-          'email': email.toLowerCase(),
-        },
-      );
-      return ResultOr.success();
-    } on DioException catch (e) {
-      return ResultOr.failure(
-        e.toFailure(
-          SigninFailure.fromString,
-          (gF) => SigninFailure.general(gF),
-        ),
-      );
-    } on Exception catch (e, _) {
-      return ResultOr.failure(
-        SigninFailure.general(
-          GeneralBaseFailure.unexpectedError(message: e.toString()),
-        ),
-      );
-    }
+    return handleRequestResultOr(
+      request: () async {
+        await httpClient.post(
+          '/api/users/forgot-password',
+          data: {
+            'email': email.toLowerCase(),
+          },
+        );
+      },
+      fromString: SigninFailure.fromString,
+      general: SigninFailure.general,
+      useMockData: false,
+    );
   }
 
   @override
@@ -402,74 +337,53 @@ class AuthRepositoryImpl implements IAuthRepository {
     required String tokenKey,
     required String newPassword,
   }) async {
-    try {
-      final response = await httpClient.post(
-        '/api/users/reset-password',
-        data: {
-          'token': tokenKey,
-          'new_password': newPassword,
-        },
-      );
-      final token = response.data['token'];
-      await tokenRepository.saveTokens(token: token);
-      return ResultOr.success();
-    } on DioException catch (e) {
-      return ResultOr.failure(
-        e.toFailure(
-          GeneralBaseFailure.fromString,
-          (gF) => const GeneralBaseFailure.internalError(),
-        ),
-      );
-    } on Exception catch (e, _) {
-      return ResultOr.failure(
-        GeneralBaseFailure.unexpectedError(message: e.toString()),
-      );
-    }
+    return handleRequestResultOr(
+      request: () async {
+        final response = await httpClient.post(
+          '/api/users/reset-password',
+          data: {
+            'token': tokenKey,
+            'new_password': newPassword,
+          },
+        );
+        final token = response.data['token'];
+        await tokenRepository.saveTokens(token: token);
+      },
+      fromString: GeneralBaseFailure.fromString,
+      general: (p0) => p0,
+      useMockData: false,
+    );
   }
 
   @override
   Future<ResultOr<GeneralBaseFailure>> createUserDevice({
     required String token,
   }) async {
-    try {
-      await httpClient.post(
-        '/api/devices/$token',
-      );
-      return ResultOr.success();
-    } on DioException catch (e) {
-      return ResultOr.failure(
-        e.toFailure(
-          GeneralBaseFailure.fromString,
-          (gF) => gF,
-        ),
-      );
-    } on Exception catch (e, _) {
-      return ResultOr.failure(
-        GeneralBaseFailure.unexpectedError(message: e.toString()),
-      );
-    }
+    return handleRequestResultOr(
+      request: () async {
+        await httpClient.post(
+          '/api/devices/$token',
+        );
+      },
+      fromString: GeneralBaseFailure.fromString,
+      general: (p0) => p0,
+      useMockData: false,
+    );
   }
 
   @override
   Future<ResultOr<GeneralBaseFailure>> deleteUserDevice({
     required String token,
   }) async {
-    try {
-      await httpClient.delete(
-        '/api/devices/$token',
-      );
-      return ResultOr.success();
-    } on DioException catch (e) {
-      return ResultOr.failure(
-        e.toFailure(
-          GeneralBaseFailure.fromString,
-          (gF) => gF,
-        ),
-      );
-    } on Exception catch (e, _) {
-      return ResultOr.failure(
-        GeneralBaseFailure.unexpectedError(message: e.toString()),
-      );
-    }
+    return handleRequestResultOr(
+      request: () async {
+        await httpClient.delete(
+          '/api/devices/$token',
+        );
+      },
+      fromString: GeneralBaseFailure.fromString,
+      general: (p0) => p0,
+      useMockData: false,
+    );
   }
 }

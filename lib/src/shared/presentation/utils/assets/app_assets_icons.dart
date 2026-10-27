@@ -12,19 +12,16 @@ class AppAssetsIcons {
   static const String _iconsPath = 'assets/icons';
 
   /// Appliance Air Conditioning - assets/icons/appliance_air_conditioning.svg
-  static const String applianceAirConditioning =
-      'assets/icons/appliance_air_conditioning.svg';
+  static const String applianceAirConditioning = 'assets/icons/appliance_air_conditioning.svg';
 
   /// Appliance Cooking - assets/icons/appliance_cooking.svg
   static const String applianceCooking = 'assets/icons/appliance_cooking.svg';
 
   /// Appliance Entertainment - assets/icons/appliance_entertainment.svg
-  static const String applianceEntertainment =
-      'assets/icons/appliance_entertainment.svg';
+  static const String applianceEntertainment = 'assets/icons/appliance_entertainment.svg';
 
   /// Appliance Freezer Refrigerator - assets/icons/appliance_freezer_refrigerator.svg
-  static const String applianceFreezerRefrigerator =
-      'assets/icons/appliance_freezer_refrigerator.svg';
+  static const String applianceFreezerRefrigerator = 'assets/icons/appliance_freezer_refrigerator.svg';
 
   /// Appliance Heating - assets/icons/appliance_heating.svg
   static const String applianceHeating = 'assets/icons/appliance_heating.svg';
@@ -42,15 +39,13 @@ class AppAssetsIcons {
   static const String applianceStandby = 'assets/icons/appliance_standby.svg';
 
   /// Appliance Total Consumption - assets/icons/appliance_total_consumption.svg
-  static const String applianceTotalConsumption =
-      'assets/icons/appliance_total_consumption.svg';
+  static const String applianceTotalConsumption = 'assets/icons/appliance_total_consumption.svg';
 
   /// Appliance Vehicle - assets/icons/appliance_vehicle.svg
   static const String applianceVehicle = 'assets/icons/appliance_vehicle.svg';
 
   /// Appliance Washing Machine Dishwasher - assets/icons/appliance_washing_machine_dishwasher.svg
-  static const String applianceWashingMachineDishwasher =
-      'assets/icons/appliance_washing_machine_dishwasher.svg';
+  static const String applianceWashingMachineDishwasher = 'assets/icons/appliance_washing_machine_dishwasher.svg';
 
   /// Arrow Down - assets/icons/arrow_down.svg
   static const String arrowDown = 'assets/icons/arrow_down.svg';

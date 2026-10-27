@@ -9,6 +9,6 @@ abstract class RequiredPasswordState with _$RequiredPasswordState {
 
   factory RequiredPasswordState.initial() => _RequiredPasswordState(
     password: '',
-    resultOr: ResultOr.none(),
+    resultOr: const ResultOr.none(),
   );
 }

@@ -1,10 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_jungle_core/flutter_jungle_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../../../shared/domain/vos/password_vos.dart';
-import '../../../../../shared/presentation/extensions/iterable_extension.dart';
-import '../../../../../shared/presentation/helpers/result_or.dart';
-import '../../../../../shared/presentation/helpers/value_object.dart';
 import '../../../../../shared/presentation/providers/global_loader/global_loader_cubit.dart';
 import '../../../../domain/failures/change_password_failure.dart';
 import '../../../../domain/interfaces/i_personal_info_repository.dart';
@@ -45,7 +42,9 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
       return;
     }
     if (_allFieldsAreValid()) {
-      emit(state.copyWith(resultOr: ResultOr.loading(), showError: false));
+      emit(
+        state.copyWith(resultOr: const ResultOr.loading(), showError: false),
+      );
       globalLoaderCubit.show();
       final result = await repository.changePassword(
         oldPassword: state.oldPassword,
@@ -54,6 +53,6 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
       globalLoaderCubit.hide();
       emit(state.copyWith(resultOr: result, showError: true));
     }
-    emit(state.copyWith(resultOr: ResultOr.none()));
+    emit(state.copyWith(resultOr: const ResultOr.none()));
   }
 }

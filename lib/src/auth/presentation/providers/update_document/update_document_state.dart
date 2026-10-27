@@ -17,7 +17,7 @@ abstract class UpdateDocumentState with _$UpdateDocumentState {
     documentType: DocumentType.nif,
     documentValue: '',
     showErrors: false,
-    resultOr: ResultOr.none(),
+    resultOr: const ResultOr.none(),
   );
 
   UpdateDocumentState._();

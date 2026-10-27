@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
 
 import '../../../domain/failures/repeat_email_failure.dart';
 import '../../l10n/generated/l10n.dart';

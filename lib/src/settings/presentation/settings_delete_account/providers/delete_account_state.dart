@@ -8,7 +8,7 @@ class DeleteAccountState {
   });
 
   factory DeleteAccountState.initial() => DeleteAccountState(
-    resultOr: ResultOr.none(),
+    resultOr: const ResultOr.none(),
   );
 
   DeleteAccountState copyWith({

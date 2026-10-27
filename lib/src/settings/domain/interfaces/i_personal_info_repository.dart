@@ -1,4 +1,5 @@
-import '../../../shared/presentation/helpers/result_or.dart';
+import 'package:flutter_jungle_core/flutter_jungle_core.dart';
+
 import '../failures/change_password_failure.dart';
 import '../failures/change_user_info_failure.dart';
 import '../failures/required_password_failure.dart';

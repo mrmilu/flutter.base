@@ -85,9 +85,9 @@ class CustomLocalization {
         );
         return CustomLocalization(localizedStrings);
       }
-      return _getLocalization(locale);
+      return await _getLocalization(locale);
     } catch (e) {
-      return _getLocalization(locale);
+      return await _getLocalization(locale);
     }
   }
 

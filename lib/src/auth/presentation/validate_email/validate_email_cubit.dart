@@ -1,6 +1,6 @@
+import 'package:flutter_jungle_core/flutter_jungle_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../shared/presentation/helpers/result_or.dart';
 import '../../../shared/presentation/providers/base_cubit.dart';
 import '../../../shared/presentation/providers/global_loader/global_loader_cubit.dart';
 import '../../domain/failures/validate_email_failure.dart';
@@ -18,7 +18,7 @@ class ValidateEmailCubit extends BaseCubit<ValidateEmailState> {
   final GlobalLoaderCubit globalLoaderCubit;
 
   Future<void> validateEmail(String token) async {
-    emitIfNotDisposed(state.copyWith(resultOr: ResultOr.loading()));
+    emitIfNotDisposed(state.copyWith(resultOr: const ResultOr.loading()));
     globalLoaderCubit.show();
     final result = await authRepository.validateEmail(
       token: token,

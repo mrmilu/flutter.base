@@ -25,7 +25,7 @@ class TokenRepositoryImpl implements ITokenRepository {
     try {
       final token = await _secureStorageService.storage.read(key: _tokenKey);
       return token;
-    } catch (e, _) {
+    } catch (e) {
       await _secureStorageService.storage.delete(key: _tokenKey);
       return null;
     }
@@ -38,7 +38,7 @@ class TokenRepositoryImpl implements ITokenRepository {
         key: _refreshToken,
       );
       return token;
-    } catch (e, _) {
+    } catch (e) {
       await _secureStorageService.storage.delete(key: _refreshToken);
       return null;
     }

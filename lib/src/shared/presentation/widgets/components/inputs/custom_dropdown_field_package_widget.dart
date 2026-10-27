@@ -1,5 +1,5 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../../../utils/assets/app_assets_icons.dart';
 import '../../../utils/styles/colors/colors_context.dart';
@@ -31,7 +31,7 @@ class CustomDropdownFieldPackageWidget<T> extends StatelessWidget {
   final bool readOnly;
   final T? value;
 
-  final List<DropdownMenuItem<T>>? items;
+  final List<DropdownItem<T>>? items;
 
   Color _getBorderColor(BuildContext context) {
     if (!enabled || readOnly) {
@@ -99,7 +99,7 @@ class CustomDropdownFieldPackageWidget<T> extends StatelessWidget {
                               ),
                             ),
                             items: items,
-                            value: value,
+
                             selectedItemBuilder: (context) => items!
                                 .map(
                                   (item) => Padding(

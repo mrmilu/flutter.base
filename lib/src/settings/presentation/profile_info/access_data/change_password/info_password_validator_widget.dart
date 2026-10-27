@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:flutter_jungle_core/flutter_jungle_core.dart';
+import 'package:material_ui/material_ui.dart';
 
-import '../../../../../shared/domain/failures/password_failure.dart';
-import '../../../../../shared/domain/vos/password_vos.dart';
 import '../../../../../shared/presentation/extensions/buildcontext_extensions.dart';
 import '../../../../../shared/presentation/extensions/failures/password_failure_extension.dart';
 import '../../../../../shared/presentation/utils/assets/app_assets_icons.dart';

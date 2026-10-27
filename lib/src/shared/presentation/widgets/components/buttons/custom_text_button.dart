@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../../../utils/styles/colors/colors_context.dart';
 import '../../common/image_asset_widget.dart';
@@ -37,14 +37,14 @@ class CustomTextButton extends StatelessWidget {
 
   const CustomTextButton._({
     super.key,
-    required CustomTextButtonStyle style,
+    required this._style,
     required this.label,
     required this.onPressed,
     this.enabled = true,
     this.textStyle,
     this.colorText,
     this.iconPath,
-  }) : _style = style;
+  });
 
   /// Crea un botón de texto con estilo primario
   const CustomTextButton.primary({

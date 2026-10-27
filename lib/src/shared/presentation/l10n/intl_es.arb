@@ -37,6 +37,7 @@
   "includeUppercase": "Debe incluir al menos una mayúscula",
   "includeLowercase": "Debe incluir al menos una minúscula",
   "includeDigit": "Debe incluir al menos un carácter especial",
+  "includeSpecialCharacter": "Debe incluir al menos un carácter especial",
   "ibanTooLong": "El IBAN es demasiado largo",
   "ibanTooShort": "El IBAN es demasiado corto",
   "ibanInvalid": "El IBAN no es válido",

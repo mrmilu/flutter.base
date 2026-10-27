@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../../../utils/styles/colors/colors_context.dart';
 import '../../common/button_scale_widget.dart';
@@ -56,7 +56,7 @@ class CustomElevatedButton extends StatelessWidget {
 
   const CustomElevatedButton._({
     super.key,
-    required CustomElevatedButtonStyle style,
+    required this._style,
     required this.label,
     required this.onPressed,
     this.backgroundColor,
@@ -69,7 +69,7 @@ class CustomElevatedButton extends StatelessWidget {
     this.textAlign,
     this.textStyle,
     this.iconColor,
-  }) : _style = style;
+  });
 
   /// Crea un botón elevado con estilo primario
   const CustomElevatedButton.primary({

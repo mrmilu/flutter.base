@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_base/main.dart' as app;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Helper function para limpiar el almacenamiento seguro antes de los tests
 Future<void> clearAppStorage() async {

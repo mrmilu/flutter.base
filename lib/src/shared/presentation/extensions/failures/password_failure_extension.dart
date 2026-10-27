@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
+import 'package:flutter_jungle_core/flutter_jungle_core.dart';
 
-import '../../../domain/failures/password_failure.dart';
 import '../../l10n/generated/l10n.dart';
 
 extension PasswordFailureExtension on PasswordFailure {
@@ -11,6 +11,7 @@ extension PasswordFailureExtension on PasswordFailure {
       includeUppercase: (_) => S.of(context).includeUppercase,
       includeLowercase: (_) => S.of(context).includeLowercase,
       includeDigit: (_) => S.of(context).includeDigit,
+      includeSpecialCharacter: (_) => S.of(context).includeSpecialCharacter,
     );
   }
 }

@@ -1,9 +1,6 @@
+import 'package:flutter_jungle_core/flutter_jungle_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../shared/domain/vos/email_vos.dart';
-import '../../../shared/presentation/extensions/iterable_extension.dart';
-import '../../../shared/presentation/helpers/result_or.dart';
-import '../../../shared/presentation/helpers/value_object.dart';
 import '../../../shared/presentation/providers/base_cubit.dart';
 import '../../../shared/presentation/providers/global_loader/global_loader_cubit.dart';
 import '../../domain/failures/signin_failure.dart';
@@ -28,13 +25,11 @@ class ForgotPasswordCubit extends BaseCubit<ForgotPasswordState> {
     emit(state.copyWith(showErrors: value));
   }
 
-  bool _allFieldsAreValid() => <ValueObject>[
-    state.emailVos,
-  ].areValid;
+  bool _allFieldsAreValid() => state.emailVos.isValid();
 
   Future<void> forgotPassword() async {
     if (_allFieldsAreValid()) {
-      emit(state.copyWith(resultOr: ResultOr.loading()));
+      emit(state.copyWith(resultOr: const ResultOr.loading()));
       globalLoaderCubit.show();
       final result = await authRepository.forgotPassword(
         email: state.email,

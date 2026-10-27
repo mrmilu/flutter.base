@@ -20,7 +20,7 @@ abstract class SplashState with _$SplashState {
     splashIsLoaded: false,
     readyToNavigate: false,
     errorLoading: false,
-    resultOrLoad: ResultOr.none(),
+    resultOrLoad: const ResultOr.none(),
     token: null,
   );
 }

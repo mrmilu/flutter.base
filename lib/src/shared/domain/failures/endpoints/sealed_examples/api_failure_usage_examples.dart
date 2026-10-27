@@ -4,7 +4,7 @@
 /// en escenarios reales de desarrollo.
 library;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'api_failure_example.dart';
 

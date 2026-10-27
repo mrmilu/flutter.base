@@ -1,6 +1,7 @@
-import 'package:flutter/material.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../src/shared/presentation/utils/assets/app_assets_icons.dart';
 import '../src/shared/presentation/widgets/common/button_scale_widget.dart';
@@ -348,11 +349,11 @@ class WebPage extends StatelessWidget {
               CustomDropdownFieldPackageWidget<String>(
                 title: 'Select Language',
                 items: [
-                  const DropdownMenuItem(
+                  const DropdownItem(
                     value: 'en',
                     child: RMText.bodyMedium('English'),
                   ),
-                  const DropdownMenuItem(
+                  const DropdownItem(
                     value: 'es',
                     child: RMText.bodyMedium('Spanish'),
                   ),

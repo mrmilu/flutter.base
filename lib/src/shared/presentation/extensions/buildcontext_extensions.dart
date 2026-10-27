@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../../../locale/presentation/utils/custom_localization_delegate.dart';
 import '../l10n/generated/l10n.dart';

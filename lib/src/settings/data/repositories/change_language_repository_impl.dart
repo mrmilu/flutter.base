@@ -2,10 +2,8 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_jungle_core/flutter_jungle_core.dart';
 
-import '../../../shared/domain/failures/endpoints/general_base_failure.dart';
-import '../../../shared/presentation/extensions/dio_exception_extension.dart';
-import '../../../shared/presentation/helpers/result_or.dart';
 import '../../domain/failures/change_language_failure.dart';
 import '../../domain/interfaces/i_change_language_repository.dart';
 
@@ -19,7 +17,7 @@ class ChangeLanguageRepositoryImpl implements IChangeLanguageRepository {
   ) async {
     try {
       debugPrint('Changing language to: $_httpClient');
-      return ResultOr.success();
+      return const ResultOr.success();
       // await _httpClient.patch(
       //   '/api/users',
       //   data: {

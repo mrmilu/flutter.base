@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_jungle_core/flutter_jungle_core.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../../../auth/domain/interfaces/i_token_repository.dart';
 import '../../../shared/data/services/http_client.dart';
@@ -107,11 +108,11 @@ class _MainHomeViewState extends State<MainHomeView> {
                 padding: const EdgeInsets.only(top: 40.0),
                 child: BlocBuilder<MainHomeCubit, MainHomeState>(
                   builder: (context, state) {
-                    return state.resourceGetProducts.map(
-                      isNone: () => const Text('No products found'),
-                      isLoading: () =>
+                    return state.resourceGetProducts.when(
+                      none: () => const Text('No products found'),
+                      loading: () =>
                           const Center(child: CircularProgressIndicator()),
-                      isFailure: (error) {
+                      failure: (error) {
                         final isUserError =
                             error.typeError is GetUserFailureUserNotFound;
 
@@ -119,7 +120,7 @@ class _MainHomeViewState extends State<MainHomeView> {
                           'Error: ${error.message}, bool: $isUserError ',
                         );
                       },
-                      isSuccess: (products) => ListView.builder(
+                      success: (products) => ListView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
                         itemCount: products.length,

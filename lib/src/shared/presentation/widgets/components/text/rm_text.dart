@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Estilos de texto disponibles en el design system
 enum RMTextStyle {

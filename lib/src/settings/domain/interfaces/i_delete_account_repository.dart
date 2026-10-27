@@ -1,4 +1,5 @@
-import '../../../shared/presentation/helpers/result_or.dart';
+import 'package:flutter_jungle_core/flutter_jungle_core.dart';
+
 import '../failures/delete_account_failure.dart';
 
 abstract class IDeleteAccountRepository {

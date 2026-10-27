@@ -49,6 +49,7 @@ jobs:
           flutter pub get
           flutter pub run build_runner build --delete-conflicting-outputs
           flutter pub run intl_utils:generate
+          dart run scripts/generate_assets_app_files.dart
 
       - name: Setup Ruby and bundle install
         uses: ruby/setup-ruby@v1

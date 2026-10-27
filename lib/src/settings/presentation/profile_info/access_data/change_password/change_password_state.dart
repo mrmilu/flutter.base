@@ -15,6 +15,6 @@ abstract class ChangePasswordState with _$ChangePasswordState {
     password: '',
     passwordRepeat: '',
     showError: false,
-    resultOr: ResultOr.none(),
+    resultOr: const ResultOr.none(),
   );
 }

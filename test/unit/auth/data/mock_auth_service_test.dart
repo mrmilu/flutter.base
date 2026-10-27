@@ -1,5 +1,4 @@
-import 'package:flutter_base/src/shared/domain/vos/email_vos.dart';
-import 'package:flutter_base/src/shared/presentation/helpers/result_or.dart';
+import 'package:flutter_jungle_core/flutter_jungle_core.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 // Simples enums para representar errores de autenticación
@@ -19,66 +18,66 @@ class MockAuthService {
   Future<ResultOr<AuthError>> signIn(String email, String password) async {
     // Simular validación básica
     if (email.isEmpty) {
-      return ResultOr.failure(AuthError.invalidEmail);
+      return const ResultOr.failure(AuthError.invalidEmail);
     }
 
     if (password.isEmpty) {
-      return ResultOr.failure(AuthError.invalidPassword);
+      return const ResultOr.failure(AuthError.invalidPassword);
     }
 
     if (EmailVos(email).isInvalid()) {
-      return ResultOr.failure(AuthError.invalidEmail);
+      return const ResultOr.failure(AuthError.invalidEmail);
     }
 
     if (password.length < 6) {
-      return ResultOr.failure(AuthError.invalidPassword);
+      return const ResultOr.failure(AuthError.invalidPassword);
     }
 
     // Simular credenciales incorrectas
     if (email == 'wrong@example.com' && password == 'wrongpassword') {
-      return ResultOr.failure(AuthError.invalidCredentials);
+      return const ResultOr.failure(AuthError.invalidCredentials);
     }
 
     // Simular usuario no encontrado
     if (email == 'notfound@example.com') {
-      return ResultOr.failure(AuthError.userNotFound);
+      return const ResultOr.failure(AuthError.userNotFound);
     }
 
     // Simular error de red
     if (email == 'network@error.com') {
-      return ResultOr.failure(AuthError.networkError);
+      return const ResultOr.failure(AuthError.networkError);
     }
 
     // Caso exitoso
-    return ResultOr.success();
+    return const ResultOr.success();
   }
 
   Future<ResultOr<AuthError>> signUp(String email, String password) async {
     // Simular validación básica
     if (EmailVos(email).isInvalid()) {
-      return ResultOr.failure(AuthError.invalidEmail);
+      return const ResultOr.failure(AuthError.invalidEmail);
     }
 
     if (password.isEmpty) {
-      return ResultOr.failure(AuthError.invalidPassword);
+      return const ResultOr.failure(AuthError.invalidPassword);
     }
 
     if (password.length < 8) {
-      return ResultOr.failure(AuthError.weakPassword);
+      return const ResultOr.failure(AuthError.weakPassword);
     }
 
     // Simular email ya existente
     if (email == 'existing@example.com') {
-      return ResultOr.failure(AuthError.emailAlreadyInUse);
+      return const ResultOr.failure(AuthError.emailAlreadyInUse);
     }
 
     // Simular error de red
     if (email == 'network@error.com') {
-      return ResultOr.failure(AuthError.networkError);
+      return const ResultOr.failure(AuthError.networkError);
     }
 
     // Caso exitoso
-    return ResultOr.success();
+    return const ResultOr.success();
   }
 }
 
@@ -119,10 +118,10 @@ void main() {
         // Verificar tipo de error usando when
         AuthError? errorType;
         result.when(
-          isNone: () {},
-          isLoading: () {},
-          isFailure: (error) => errorType = error,
-          isSuccess: () {},
+          none: () {},
+          loading: () {},
+          failure: (error) => errorType = error,
+          success: () {},
         );
         expect(errorType, equals(AuthError.invalidEmail));
       });
@@ -140,10 +139,10 @@ void main() {
 
         AuthError? errorType;
         result.when(
-          isNone: () {},
-          isLoading: () {},
-          isFailure: (error) => errorType = error,
-          isSuccess: () {},
+          none: () {},
+          loading: () {},
+          failure: (error) => errorType = error,
+          success: () {},
         );
         expect(errorType, equals(AuthError.invalidPassword));
       });
@@ -161,10 +160,10 @@ void main() {
 
         AuthError? errorType;
         result.when(
-          isNone: () {},
-          isLoading: () {},
-          isFailure: (error) => errorType = error,
-          isSuccess: () {},
+          none: () {},
+          loading: () {},
+          failure: (error) => errorType = error,
+          success: () {},
         );
         expect(errorType, equals(AuthError.invalidEmail));
       });
@@ -182,10 +181,10 @@ void main() {
 
         AuthError? errorType;
         result.when(
-          isNone: () {},
-          isLoading: () {},
-          isFailure: (error) => errorType = error,
-          isSuccess: () {},
+          none: () {},
+          loading: () {},
+          failure: (error) => errorType = error,
+          success: () {},
         );
         expect(errorType, equals(AuthError.invalidPassword));
       });
@@ -203,10 +202,10 @@ void main() {
 
         AuthError? errorType;
         result.when(
-          isNone: () {},
-          isLoading: () {},
-          isFailure: (error) => errorType = error,
-          isSuccess: () {},
+          none: () {},
+          loading: () {},
+          failure: (error) => errorType = error,
+          success: () {},
         );
         expect(errorType, equals(AuthError.invalidCredentials));
       });
@@ -224,10 +223,10 @@ void main() {
 
         AuthError? errorType;
         result.when(
-          isNone: () {},
-          isLoading: () {},
-          isFailure: (error) => errorType = error,
-          isSuccess: () {},
+          none: () {},
+          loading: () {},
+          failure: (error) => errorType = error,
+          success: () {},
         );
         expect(errorType, equals(AuthError.userNotFound));
       });
@@ -245,10 +244,10 @@ void main() {
 
         AuthError? errorType;
         result.when(
-          isNone: () {},
-          isLoading: () {},
-          isFailure: (error) => errorType = error,
-          isSuccess: () {},
+          none: () {},
+          loading: () {},
+          failure: (error) => errorType = error,
+          success: () {},
         );
         expect(errorType, equals(AuthError.networkError));
       });
@@ -281,10 +280,10 @@ void main() {
 
         AuthError? errorType;
         result.when(
-          isNone: () {},
-          isLoading: () {},
-          isFailure: (error) => errorType = error,
-          isSuccess: () {},
+          none: () {},
+          loading: () {},
+          failure: (error) => errorType = error,
+          success: () {},
         );
         expect(errorType, equals(AuthError.weakPassword));
       });
@@ -302,10 +301,10 @@ void main() {
 
         AuthError? errorType;
         result.when(
-          isNone: () {},
-          isLoading: () {},
-          isFailure: (error) => errorType = error,
-          isSuccess: () {},
+          none: () {},
+          loading: () {},
+          failure: (error) => errorType = error,
+          success: () {},
         );
         expect(errorType, equals(AuthError.emailAlreadyInUse));
       });

@@ -11,7 +11,7 @@ abstract class ForgotPasswordState with _$ForgotPasswordState {
   factory ForgotPasswordState.initial() => _ForgotPasswordState(
     email: '',
     showErrors: false,
-    resultOr: ResultOr.none(),
+    resultOr: const ResultOr.none(),
   );
 
   ForgotPasswordState._();

@@ -1,5 +1,5 @@
 import 'package:another_flushbar/flushbar.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../extensions/buildcontext_extensions.dart';
 import '../utils/styles/colors/colors_context.dart';

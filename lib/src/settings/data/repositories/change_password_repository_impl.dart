@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_jungle_core/flutter_jungle_core.dart';
 
 import '../../../shared/domain/failures/endpoints/change_password_firebase_failure.dart';
-import '../../../shared/presentation/helpers/result_or.dart';
 import '../../domain/interfaces/i_change_password_repository.dart';
 
 class ChangePasswordRepositoryImpl implements IChangePasswordRepository {
@@ -19,28 +19,28 @@ class ChangePasswordRepositoryImpl implements IChangePasswordRepository {
         credential,
       );
       await FirebaseAuth.instance.currentUser!.updatePassword(newPassword);
-      return ResultOr.success();
+      return const ResultOr.success();
     } on FirebaseAuthException catch (e) {
       switch (e.code) {
         case 'wrong-password':
-          return ResultOr.failure(
-            const ChangePasswordFirebaseFailure.wrongPassword(),
+          return const ResultOr.failure(
+            ChangePasswordFirebaseFailure.wrongPassword(),
           );
         case 'invalid-credential':
-          return ResultOr.failure(
-            const ChangePasswordFirebaseFailure.invalidCredential(),
+          return const ResultOr.failure(
+            ChangePasswordFirebaseFailure.invalidCredential(),
           );
         case 'invalid-argument':
-          return ResultOr.failure(
-            const ChangePasswordFirebaseFailure.invalidArgument(),
+          return const ResultOr.failure(
+            ChangePasswordFirebaseFailure.invalidArgument(),
           );
         case 'too-many-requests':
-          return ResultOr.failure(
-            const ChangePasswordFirebaseFailure.tooManyRequests(),
+          return const ResultOr.failure(
+            ChangePasswordFirebaseFailure.tooManyRequests(),
           );
         default:
-          return ResultOr.failure(
-            const ChangePasswordFirebaseFailure.invalidArgument(),
+          return const ResultOr.failure(
+            ChangePasswordFirebaseFailure.invalidArgument(),
           );
       }
     }

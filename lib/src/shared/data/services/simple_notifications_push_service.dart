@@ -3,10 +3,9 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter_jungle_core/flutter_jungle_core.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-
-import '../../presentation/extensions/iterable_extension.dart';
+import 'package:material_ui/material_ui.dart';
 
 enum NotificationType {
   none,
@@ -96,7 +95,7 @@ class PushNotificationService {
             );
 
         FlutterLocalNotificationsPlugin().initialize(
-          initializationSettings,
+          settings: initializationSettings,
           onDidReceiveNotificationResponse: onSelectNotification,
           onDidReceiveBackgroundNotificationResponse: onSelectNotification,
         );
@@ -114,9 +113,9 @@ class PushNotificationService {
     NotificationResponse notificationResponse,
   ) async {
     try {
-      final payloadMap =
-          jsonDecode(notificationResponse.payload ?? '{}')
-              as Map<String, dynamic>;
+      final payloadMap = jsonDecode(
+        notificationResponse.payload ?? '{}',
+      ) as Map<String, dynamic>;
 
       final id = int.tryParse(payloadMap['id'] ?? '') ?? -1;
       final type = payloadMap['type'] ?? '';
@@ -134,10 +133,10 @@ class PushNotificationService {
     String? payload,
   }) async {
     await FlutterLocalNotificationsPlugin().show(
-      0,
-      title,
-      body,
-      const NotificationDetails(
+      id: 0,
+      title: title,
+      body: body,
+      notificationDetails: const NotificationDetails(
         android: AndroidNotificationDetails(
           'high_importance_channel',
           'High Importance Notifications',

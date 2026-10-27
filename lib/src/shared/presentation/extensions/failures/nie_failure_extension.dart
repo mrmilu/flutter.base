@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
+import 'package:cupertino_ui/cupertino_ui.dart';
+import 'package:flutter_jungle_core/flutter_jungle_core.dart';
 
-import '../../../domain/failures/nie_failure.dart';
 import '../buildcontext_extensions.dart';
 
 extension NieFailureExtension on NieFailure {

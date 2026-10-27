@@ -17,7 +17,7 @@ abstract class PersonalDataState with _$PersonalDataState {
     name: '',
     lastName: '',
     showError: false,
-    resultOrPersonalData: ResultOr.none(),
+    resultOrPersonalData: const ResultOr.none(),
   );
 
   PersonalDataState._();

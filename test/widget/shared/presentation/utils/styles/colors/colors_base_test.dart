@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_base/src/shared/presentation/utils/styles/colors/colors_base.dart';
 import 'package:flutter_base/src/shared/presentation/utils/styles/colors/colors_dark.dart';
 import 'package:flutter_base/src/shared/presentation/utils/styles/colors/colors_light.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:material_ui/material_ui.dart';
 
 void main() {
   group('AppColors Static Methods', () {

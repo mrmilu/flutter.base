@@ -1,10 +1,9 @@
+import 'package:flutter_jungle_core/flutter_jungle_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../../../shared/domain/failures/endpoints/general_base_failure.dart';
 
 part 'required_password_failure.freezed.dart';
 
-@freezed
+@Freezed(copyWith: false)
 abstract class RequiredPasswordFailure with _$RequiredPasswordFailure {
   const factory RequiredPasswordFailure.general(GeneralBaseFailure error) =
       RequiredPasswordFailureGeneral;

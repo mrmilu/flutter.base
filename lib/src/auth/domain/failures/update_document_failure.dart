@@ -1,6 +1,5 @@
+import 'package:flutter_jungle_core/flutter_jungle_core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../../../shared/domain/failures/endpoints/general_base_failure.dart';
 
 part 'update_document_failure.freezed.dart';
 

@@ -7,6 +7,6 @@ abstract class MainHomeState with _$MainHomeState {
   }) = _MainHomeState;
 
   factory MainHomeState.initial() => _MainHomeState(
-    resourceGetProducts: Resource.none(),
+    resourceGetProducts: const Resource.none(),
   );
 }

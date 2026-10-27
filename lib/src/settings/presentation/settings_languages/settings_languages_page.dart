@@ -1,11 +1,12 @@
-import 'package:flutter/material.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_jungle_core/flutter_jungle_core.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../../../auth/domain/interfaces/i_token_repository.dart';
 import '../../../locale/presentation/providers/locale_cubit.dart';
 import '../../../shared/data/services/http_client.dart';
 import '../../../shared/presentation/extensions/buildcontext_extensions.dart';
-import '../../../shared/presentation/extensions/iterable_extension.dart';
 import '../../../shared/presentation/helpers/toasts.dart';
 import '../../../shared/presentation/providers/global_loader/global_loader_cubit.dart';
 import '../../../shared/presentation/widgets/components/inputs/custom_dropdown_field_package_widget.dart';
@@ -83,7 +84,7 @@ class SettingsLanguagesView extends StatelessWidget {
                       initialValue: myLocale?.toTranslate(context),
                       items: AppLanguageType.values
                           .map(
-                            (item) => DropdownMenuItem<AppLanguageType>(
+                            (item) => DropdownItem<AppLanguageType>(
                               value: item,
                               child: Text(
                                 item.toTranslate(context),

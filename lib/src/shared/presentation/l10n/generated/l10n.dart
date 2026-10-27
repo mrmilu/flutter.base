@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -399,6 +400,16 @@ class S {
     return Intl.message(
       'Debe incluir al menos un carácter especial',
       name: 'includeDigit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Debe incluir al menos un carácter especial`
+  String get includeSpecialCharacter {
+    return Intl.message(
+      'Debe incluir al menos un carácter especial',
+      name: 'includeSpecialCharacter',
       desc: '',
       args: [],
     );

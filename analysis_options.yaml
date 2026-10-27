@@ -14,6 +14,10 @@ analyzer:
     - "**/*.g.dart"
     - "**/generated/**"
     - "**/l10n/generated/**"
+    - build/**
+    - android/**
+    - ios/**
+    - web/**
 
 formatter:
   trailing_commas: preserve

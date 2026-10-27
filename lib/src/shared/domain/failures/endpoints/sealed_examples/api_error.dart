@@ -1,6 +1,6 @@
 // lib/core/errors/app_error.dart
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Clase base sealed para todos los errores de la app.
 /// Permite manejar exhaustivamente con switch y extender para endpoints específicos.

@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../../../../auth/domain/interfaces/i_token_repository.dart';
 import '../../../../auth/presentation/providers/auth/auth_cubit.dart';
@@ -139,13 +140,13 @@ class ProfileInfoPersonalDataView extends StatelessWidget {
                           ),
                           value: user.document?.$1,
                           items: [
-                            DropdownMenuItem(
+                            DropdownItem(
                               value: DocumentType.nif,
                               child: Text(
                                 DocumentType.nif.toTranslate(context),
                               ),
                             ),
-                            DropdownMenuItem(
+                            DropdownItem(
                               value: DocumentType.nie,
                               child: Text(
                                 DocumentType.nie.toTranslate(context),
