@@ -1,10 +1,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_jungle_core/flutter_jungle_core.dart';
 import 'package:material_ui/material_ui.dart';
 
 import '../shared/presentation/extensions/buildcontext_extensions.dart';
 import '../shared/presentation/utils/assets/app_assets_icons.dart';
 import '../shared/presentation/utils/styles/colors/colors_context.dart';
-import '../shared/presentation/widgets/common/button_scale_widget.dart';
 import '../shared/presentation/widgets/components/buttons/custom_elevated_button.dart';
 import '../shared/presentation/widgets/components/buttons/custom_icon_button.dart';
 import '../shared/presentation/widgets/components/buttons/custom_outlined_button.dart';

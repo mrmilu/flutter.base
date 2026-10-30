@@ -1,11 +1,11 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_jungle_core/flutter_jungle_core.dart';
 import 'package:material_ui/material_ui.dart';
 
 import '../../../theme_mode/presentation/providers/theme_mode_cubit.dart';
 import '../router/app_router.dart';
 import '../router/page_names.dart';
 import '../utils/assets/app_assets_icons.dart';
-import 'common/button_scale_widget.dart';
 import 'common/image_asset_widget.dart';
 import 'components/text/rm_text.dart';
 

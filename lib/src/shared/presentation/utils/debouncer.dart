@@ -15,7 +15,6 @@ class Debouncer {
 
 class DebouncerNew {
   Duration? duration;
-  VoidCallback? action;
   Timer? _timer;
 
   DebouncerNew({this.duration});
