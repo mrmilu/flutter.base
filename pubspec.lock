@@ -543,10 +543,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_jungle_core
-      sha256: fd9b8c8f790212931f95bf7662314bc582e64cdf64ef0c7367452af6f2cc257c
+      sha256: ab0f8967a09a86c788130b19c1baf93b8aea44ba597a127914ddf66646bf7430
       url: "https://pub.dev"
     source: hosted
-    version: "0.0.4"
+    version: "0.0.6"
   flutter_launcher_icons:
     dependency: "direct dev"
     description:

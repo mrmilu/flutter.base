@@ -67,7 +67,7 @@ dependencies:
   # flutter_jungle_core:
   #   path: ../../package_jungle/flutter_jungle_core
 
-  flutter_jungle_core: ^0.0.4
+  flutter_jungle_core: ^0.0.6
 
   material_ui: any
   cupertino_ui: any

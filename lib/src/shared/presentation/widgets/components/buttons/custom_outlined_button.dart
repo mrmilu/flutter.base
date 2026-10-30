@@ -1,7 +1,7 @@
+import 'package:flutter_jungle_core/flutter_jungle_core.dart';
 import 'package:material_ui/material_ui.dart';
 
 import '../../../utils/styles/colors/colors_context.dart';
-import '../../common/button_scale_widget.dart';
 import '../../common/image_asset_widget.dart';
 
 /// Widget de botón outlined personalizado del design system
