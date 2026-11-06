@@ -25,20 +25,17 @@ class _OnboardingPageState extends State<OnboardingPage> {
     OnboardingData(
       imagePath: 'assets/images/ente_partial.png',
       title: 'Bienvenido a Flutter Base',
-      description:
-          'Descubre todas las funcionalidades que tenemos preparadas para ti en esta increíble aplicación.',
+      description: 'Descubre todas las funcionalidades que tenemos preparadas para ti en esta increíble aplicación.',
     ),
     OnboardingData(
       imagePath: 'assets/images/ente_partial.png',
       title: 'Gestiona tus proyectos',
-      description:
-          'Organiza y administra todos tus proyectos de manera eficiente desde un solo lugar.',
+      description: 'Organiza y administra todos tus proyectos de manera eficiente desde un solo lugar.',
     ),
     OnboardingData(
       imagePath: 'assets/images/ente_partial.png',
       title: 'Comienza tu experiencia',
-      description:
-          'Todo está listo para que comiences a disfrutar de una experiencia única y personalizada.',
+      description: 'Todo está listo para que comiences a disfrutar de una experiencia única y personalizada.',
     ),
   ];
 

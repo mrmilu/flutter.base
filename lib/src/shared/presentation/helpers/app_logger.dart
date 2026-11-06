@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:logging/logging.dart';
+import 'package:flutter_jungle_core/flutter_jungle_core.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 class AppLogger {

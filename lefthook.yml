@@ -11,11 +11,16 @@ pre-commit:
         - lib/src/shared/presentation/l10n/generated/*
       run: fvm flutter analyze {staged_files}
     format:
-      glob: "*.dart"
+      glob: "**/*.dart"
       exclude:
-        - rive_native-0.0.6/*
-        - lib/src/shared/presentation/l10n/generated/*
-      run: fvm dart format $(find . -name "*.dart" -not \( -name "*.*freezed.dart" -o -name "*.g.dart" -o -name "*.gform.dart" \) | grep -v "^./lib/src/shared/presentation/l10n/generated/") --set-exit-if-changed {staged_files}
+        - rive_native-0.0.17/**
+        - lib/src/shared/presentation/l10n/generated/**
+        - build/**
+        - "**/*.g.dart"
+        - "**/*.gform.dart"
+        - "**/*.freezed.dart"
+      stage_fixed: true
+      run: fvm dart format {staged_files}
 commit-msg:
   parallel: true
   commands:

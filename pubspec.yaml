@@ -19,24 +19,23 @@ dependencies:
 
   # Configs
   flutter_dotenv: ^6.0.1
-  sentry_flutter: ^9.30.1
-  go_router: ^18.0.2
+  sentry_flutter: ^10.3.0
+  go_router: ^18.1.3
   dio: ^5.11.1
-  package_info_plus: ^10.2.1
+  package_info_plus: ^10.2.2
   flutter_bloc: ^9.1.1
   flutter_secure_storage: ^11.2.0
-  shared_preferences: ^2.5.5
+  shared_preferences: ^2.5.6
   freezed_annotation: ^3.1.0
   path_provider: ^2.1.6
   path: ^1.9.1
   permission_handler: ^13.0.2
   webview_flutter: ^4.14.1
-  webview_flutter_wkwebview: ^3.26.1
+  webview_flutter_wkwebview: ^3.27.2
   webview_flutter_android: ^4.14.1
-  url_launcher: ^6.3.2
-  lottie: ^3.6.1
+  url_launcher: ^6.3.3
+  lottie: ^3.8.2
   another_flushbar: ^2.2.4
-  logging: ^1.3.0
 
   # Firebase
   firebase_core: ^4.15.0
@@ -46,20 +45,20 @@ dependencies:
   flutter_local_notifications: ^22.3.1
   google_sign_in: ^7.2.0
   sign_in_with_apple: ^8.2.0
-  crypto: ^3.0.7
+  crypto: ^3.0.8
   app_tracking_transparency: ^2.0.7
 
   # Utils 13
-  flutter_svg: ^2.3.0
-  cached_network_image: ^4.0.0
+  flutter_svg: ^2.3.2
+  cached_network_image: ^4.0.6
   flutter_animate: ^4.5.2
   flutter_animated_dialog_updated: ^1.0.1
   dropdown_button2: ^3.1.0
   skeletonizer: ^3.0.0
-  share_plus: ^13.3.0
+  share_plus: ^13.3.1
   flutter_html: ^3.0.0
-  appsflyer_sdk: ^7.0.2+2-rc1
-  image_picker: ^1.2.3
+  appsflyer_sdk: ^7.0.4
+  image_picker: ^1.2.4
 
   # rainmakers_design_system:
   #   path: ../../DesignSystem/rainmakers_design_system
