@@ -25,7 +25,7 @@ class MainTap2Page extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const RMText.titleLarge('Design System'),
+        title: const RMText.titleLarge('Design System NEW'),
         actions: [
           BlocBuilder<ThemeModeCubit, ThemeModeState>(
             builder: (context, state) {
