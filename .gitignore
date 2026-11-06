@@ -11,7 +11,6 @@
 .svn/
 .swiftpm/
 migrate_working_dir/
-.fvm/flutter_sdk
 
 # IntelliJ related
 *.iml
@@ -66,3 +65,6 @@ report.xml
 
 # Test coverage
 coverage/
+
+# FVM Version Cache
+.fvm/

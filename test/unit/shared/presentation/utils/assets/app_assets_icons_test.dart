@@ -4,16 +4,19 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   group('AppAssetsIcons', () {
     group('Constructor coverage', () {
-      test('should allow instantiation of AppAssetsIcons for 100% coverage', () {
-        // Con el constructor público AppAssetsIcons(), podemos instanciar la clase
-        // para lograr 100% de coverage
+      test(
+        'should allow instantiation of AppAssetsIcons for 100% coverage',
+        () {
+          // Con el constructor público AppAssetsIcons(), podemos instanciar la clase
+          // para lograr 100% de coverage
 
-        final instance = AppAssetsIcons();
+          final instance = AppAssetsIcons();
 
-        // Verificar que la instancia se crea correctamente
-        expect(instance, isA<AppAssetsIcons>());
-        expect(instance, isNotNull);
-      });
+          // Verificar que la instancia se crea correctamente
+          expect(instance, isA<AppAssetsIcons>());
+          expect(instance, isNotNull);
+        },
+      );
 
       test('should create different instances when called multiple times', () {
         final instance1 = AppAssetsIcons();

@@ -32,8 +32,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/AppsFlyerSDK/AppsFlyerFramework.git",
       "state" : {
-        "revision" : "861777e06bd4585ed1aac716dec0fbffdd41677c",
-        "version" : "7.0.2"
+        "revision" : "d7f4901b047a2749fea36de0e98b82c422b5c9d0",
+        "version" : "7.0.4"
       }
     },
     {
@@ -41,8 +41,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/firebase-ios-sdk",
       "state" : {
-        "revision" : "27eaab3918e0bf78711cf1abf240577176326432",
-        "version" : "12.19.0"
+        "revision" : "42cf1417c51c5e3bfbae5d3ab89b778f8fdc4bb8",
+        "version" : "12.19.3"
       }
     },
     {
@@ -154,12 +154,12 @@
       }
     },
     {
-      "identity" : "sentry-cocoa",
+      "identity" : "sentry-apple-binaries",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/getsentry/sentry-cocoa",
+      "location" : "https://github.com/getsentry/sentry-apple-binaries",
       "state" : {
-        "revision" : "f196cbb98e0388381d57908f2f5a9bdc385cde68",
-        "version" : "8.58.4"
+        "revision" : "3f2080e4539a4912c84b4bacc89dba2332f14de8",
+        "version" : "9.32.0"
       }
     }
   ],
